@@ -1,0 +1,549 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Justina Io",
+    "description": "OpenApi documentaciÃ³n para app de justina",
+    "termsOfService": "Terms of service",
+    "contact": {
+      "name": "Justina  Io",
+      "url": "https://justina.io",
+      "email": "justina@ejemplo.com"
+    },
+    "license": {
+      "name": "Licence name",
+      "url": "https://some-url.com"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Local ENV"
+    },
+    {
+      "description": "PROD ENV"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/rol/modificar-rol": {
+      "put": {
+        "tags": ["Rol"],
+        "operationId": "modificarRol",
+        "parameters": [
+          {
+            "name": "idRol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paciente/modificar-paciente": {
+      "put": {
+        "tags": ["Paciente"],
+        "operationId": "modificarPaciente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PacienteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paciente/modificar-contrasenia-paciente": {
+      "put": {
+        "tags": ["Paciente"],
+        "operationId": "modificarContrasenia",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/medico/modificar-medico": {
+      "put": {
+        "tags": ["Medico"],
+        "operationId": "modificarMedico",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MedicoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/medico/modificar-contrasenia-medico": {
+      "put": {
+        "tags": ["Medico"],
+        "operationId": "modificarContraseniaMedico",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rol/crear-rol": {
+      "post": {
+        "tags": ["Rol"],
+        "operationId": "crearRol",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RolRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paciente/crear-paciente": {
+      "post": {
+        "tags": ["Paciente"],
+        "operationId": "crearPaciente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PacienteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/medico/crear-medico": {
+      "post": {
+        "tags": ["Medico"],
+        "operationId": "crearMedico",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MedicoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/registrar": {
+      "post": {
+        "tags": ["Authentication"],
+        "operationId": "registrar",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/autenticar": {
+      "post": {
+        "tags": ["Authentication"],
+        "operationId": "autenticar",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prueba/usuario": {
+      "get": {
+        "tags": ["Prueba"],
+        "operationId": "probarRolUsuario",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prueba/admin": {
+      "get": {
+        "tags": ["Prueba"],
+        "operationId": "probarRolAdmin",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/activar-cuenta": {
+      "get": {
+        "tags": ["Authentication"],
+        "operationId": "confirmarMail",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RolRequest": {
+        "required": ["nombre"],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          }
+        }
+      },
+      "PacienteRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "idPaciente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "apellido": {
+            "type": "string"
+          },
+          "idTipoDocumento": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numeroDocumento": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fechaNacimiento": {
+            "type": "string",
+            "format": "date"
+          },
+          "genero": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "factorSanguineo": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PasswordRequest": {
+        "required": ["password"],
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "MedicoRequest": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "description": "First name of the doctor",
+            "example": "John"
+          },
+          "apellido": {
+            "type": "string",
+            "description": "Last name of the doctor",
+            "example": "Doe"
+          },
+          "telefono": {
+            "type": "string",
+            "description": "Phone number of the doctor",
+            "example": "+54 11 1234-5678"
+          },
+          "provincia": {
+            "type": "string",
+            "description": "Province where the doctor practices",
+            "example": "Santa Fe"
+          },
+          "localidad": {
+            "type": "string",
+            "description": "City or town where the doctor practices",
+            "example": "Rosario"
+          },
+          "licencia": {
+            "type": "string",
+            "description": "Medical license number of the doctor",
+            "example": "123456"
+          },
+          "especialidad": {
+            "type": "integer",
+            "description": "ID of the doctor's specialty",
+            "format": "int32",
+            "example": 1
+          },
+          "financiadores": {
+            "type": "array",
+            "description": "List of IDs of insurance providers the doctor accepts",
+            "example": [1],
+            "items": {
+              "type": "integer",
+              "description": "List of IDs of insurance providers the doctor accepts",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "RegistrationRequest": {
+        "required": ["email", "password"],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "pablo@magna.com"
+          },
+          "password": {
+            "maxLength": 2147483647,
+            "minLength": 8,
+            "type": "string",
+            "description": "User password",
+            "example": "pablomagna"
+          }
+        }
+      },
+      "AuthenticationRequest": {
+        "required": ["email", "password"],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email del usuario",
+            "example": "pablo@magna.com"
+          },
+          "password": {
+            "maxLength": 2147483647,
+            "minLength": 8,
+            "type": "string",
+            "description": "ContraseÃ±a de usuario",
+            "example": "pablomagna"
+          }
+        }
+      },
+      "AuthenticationResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "description": "JWT auth description",
+        "in": "header",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
