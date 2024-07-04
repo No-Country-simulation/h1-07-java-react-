@@ -2,10 +2,9 @@ import './App.css'
 
 function App() {
 
-
   return (
     <>
-      <h1>Bienvenido</h1>
+      <h1 className=' text-4xl'>Hola</h1>
     </>
   )
 }
