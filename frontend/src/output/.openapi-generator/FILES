@@ -1,0 +1,16 @@
+apis/AuthenticationApi.ts
+apis/MedicoApi.ts
+apis/PacienteApi.ts
+apis/PruebaApi.ts
+apis/RolApi.ts
+apis/index.ts
+index.ts
+models/AuthenticationRequest.ts
+models/AuthenticationResponse.ts
+models/MedicoRequest.ts
+models/PacienteRequest.ts
+models/PasswordRequest.ts
+models/RegistrationRequest.ts
+models/RolRequest.ts
+models/index.ts
+runtime.ts
