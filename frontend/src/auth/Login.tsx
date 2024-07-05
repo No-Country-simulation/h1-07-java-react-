@@ -31,7 +31,7 @@ export const Login: React.FC = () => {
 
     return (
         <div className="flex justify-center items-center h-screen ">
-            <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+            <div className=" p-8 rounded shadow-md w-full max-w-md">
                 <h2 className="text-2xl font-semibold mb-6 text-center">Formulario de Autenticación</h2>
                 <Formik
                     initialValues={{ username: '', password: '' }} // Valores iniciales del formulario
