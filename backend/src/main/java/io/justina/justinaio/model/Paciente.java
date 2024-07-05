@@ -50,6 +50,14 @@ public class Paciente {
 
     @ManyToMany
     @JoinTable(
+            name = "paciente_tratamiento",
+            joinColumns = @JoinColumn(name = "paciente_id"),
+            inverseJoinColumns = @JoinColumn(name = "tratamiento_id")
+    )
+    private List<Tratamiento> tratamientos;
+
+    @ManyToMany
+    @JoinTable(
             name = "paciente_entidad",
             joinColumns = @JoinColumn(name = "paciente_id"),
             inverseJoinColumns = @JoinColumn(name = "entidad_id")

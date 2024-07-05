@@ -157,12 +157,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<ExceptionResponse> handleANullPointerException(AccessDeniedException exp) {
+    public ResponseEntity<ExceptionResponse> handleANullPointerException(NullPointerException exp) {
         return ResponseEntity
-                .status(HttpServletResponse.SC_FORBIDDEN)
+                .status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
                 .body(
                         ExceptionResponse.builder()
-                                .businessErrorCode(BusinessErrorCodes.NULL_OBJECT.getCode()) // Define un código de error adecuado
+                                .businessErrorCode(BusinessErrorCodes.NULL_OBJECT.getCode())
                                 .businessErrorDescription(NULL_OBJECT.getDescription())
                                 .error(exp.getMessage())
                                 .build()

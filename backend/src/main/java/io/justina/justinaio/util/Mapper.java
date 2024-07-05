@@ -24,30 +24,4 @@ public class Mapper {
                 .build();
     }
 
-    public static MedicoRequest toMedicoRequest(Medico medico) {
-        List<Integer> financiadorIds = medico.getFinanciadores() != null ?
-                medico.getFinanciadores().stream().map(Financiador::getIdPrepagaObraSocial).collect(Collectors.toList()) : null;
-
-        return MedicoRequest.builder()
-                .nombre(medico.getNombre())
-                .apellido(medico.getApellido())
-                .telefono(medico.getTelefono())
-                .provincia(medico.getProvincia())
-                .localidad(medico.getLocalidad())
-                .licencia(medico.getLicencia())
-                .especialidad(medico.getEspecialidad().getIdEspecialidad())
-                .financiadores(financiadorIds)
-                .build();
-    }
-    public static Paciente toPaciente(PacienteRequest pacienteRequest, TipoDocumento tipoDocumento) {
-        return Paciente.builder()
-                .nombre(pacienteRequest.getNombre())
-                .apellido(pacienteRequest.getApellido())
-                .tipoDocumento(tipoDocumento)
-                .numeroDocumento(pacienteRequest.getNumeroDocumento())
-                .fechaNacimiento(pacienteRequest.getFechaNacimiento())
-                .genero(Genero.values()[pacienteRequest.getGenero()])
-                .factorSanguineo(FactorSanguineo.values()[pacienteRequest.getFactorSanguineo()])
-                .build();
-    }
 }

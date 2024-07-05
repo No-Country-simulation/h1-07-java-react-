@@ -3,6 +3,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -16,4 +18,6 @@ public class Especialidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEspecialidad;
     private String nombre;
+    @OneToMany
+    private List<Patologia> patologias;
 }
