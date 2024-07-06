@@ -18,4 +18,5 @@ public class Laboratorio {
     private Integer idLaboratorio;
     private String nombre;
     private String descripcion;
+    private boolean esActivo;
 }

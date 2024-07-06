@@ -1,6 +1,7 @@
 
 package io.justina.justinaio.services;
 
+import io.justina.justinaio.dto.BajaRequest;
 import io.justina.justinaio.dto.MedicoRequest;
 import io.justina.justinaio.dto.PasswordRequest;
 import io.justina.justinaio.model.*;
@@ -106,6 +107,21 @@ public class MedicoService {
         }
         usuario.setPassword(passwordEncoder.encode(passwordRequest.getPassword()));
         usuarioRepository.save(usuario);
+    }
+
+    public void bajaMedico(BajaRequest bajaRequest) {
+        medicoRepository.findById(bajaRequest.getIdUsuario()).orElseThrow(() ->
+                new NullPointerException("El ID no corresponde a medico válido"));
+
+        Usuario usuarioMedico = usuarioRepository.findById(bajaRequest.getIdUsuario()).orElseThrow(()
+                -> new NullPointerException("Medico no encontrado con ese ID"));
+
+        if(!usuarioMedico.isAccountLocked())
+            usuarioMedico.setAccountLocked(true);
+        else
+            throw new NullPointerException("Medico ya dado de baja");
+
+        usuarioRepository.save(usuarioMedico);
     }
 }
 

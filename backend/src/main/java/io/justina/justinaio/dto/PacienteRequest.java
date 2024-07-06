@@ -16,14 +16,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PacienteRequest {
+
+    @Schema(example = "1")
+    private Integer idPaciente;
     @Schema(example = "paciente@paciente.com")
     private String email;
 
     @Schema(example = "paciente123")
     private String password;
 
-    @Schema(example = "1")
-    private Integer idPaciente;
 
     @Schema(example = "Juan")
     private String nombre;
