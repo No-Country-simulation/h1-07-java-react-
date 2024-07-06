@@ -5,8 +5,10 @@ import io.justina.justinaio.model.*;
 import io.justina.justinaio.model.enums.FactorSanguineo;
 import io.justina.justinaio.model.enums.Genero;
 import io.justina.justinaio.repositories.*;
+import jakarta.mail.MessagingException;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,8 +36,10 @@ public class PacienteService {
     private final FinanciadorRepository financiadorRepository;
     private final TratamientoRepository tratamientoRepository;
 
+    private  final  EmailService emailService;
+
     @Transactional
-    public void crearPaciente(PacienteRequest pacienteRequest, Authentication token) {
+    public void crearPaciente(PacienteRequest pacienteRequest, Authentication token) throws MessagingException {
         if(pacienteRequest.getEmail().isEmpty() || pacienteRequest.getPassword().isEmpty()){
             throw new NullPointerException("Se necesitan mail y password de manera obligatoria");
         }
@@ -78,6 +82,7 @@ public class PacienteService {
                 .build();
 
         pacienteRepository.save(paciente);
+        emailService.sendValidationEmail(usuario);
 
     }
 
