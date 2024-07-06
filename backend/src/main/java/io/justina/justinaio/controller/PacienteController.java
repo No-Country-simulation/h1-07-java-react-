@@ -1,7 +1,8 @@
 package io.justina.justinaio.controller;
 
+import io.justina.justinaio.dto.BajaRequest;
 import io.justina.justinaio.dto.PacienteRequest;
-import io.justina.justinaio.dto.PasswordRequest;
+import io.justina.justinaio.dto.PasswordPacienteRequest;
 import io.justina.justinaio.services.PacienteService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -36,10 +37,18 @@ public class PacienteController {
 
     @PutMapping("/modificar-contrasenia-paciente")
     public ResponseEntity<?> modificarContrasenia(
-            @RequestBody PasswordRequest passwordRequest,
+            @RequestBody PasswordPacienteRequest passwordRequest,
             Authentication token
     ){
         pacienteService.modificarPassword(passwordRequest,token);
         return ResponseEntity.ok("La contraseña ha sido cambiada con éxito");
+    }
+
+    @PutMapping("/baja-paciente")
+    public ResponseEntity<?> bajaPaciente(
+            @RequestBody BajaRequest bajaRequest
+    ){
+        pacienteService.bajaPaciente(bajaRequest);
+        return ResponseEntity.ok("La baja se ha realizado con éxito");
     }
 }

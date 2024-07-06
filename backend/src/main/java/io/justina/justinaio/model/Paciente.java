@@ -18,7 +18,6 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Paciente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPaciente;
     private String nombre;
     private String apellido;

@@ -1,5 +1,6 @@
 package io.justina.justinaio.controller;
 
+import io.justina.justinaio.dto.BajaRequest;
 import io.justina.justinaio.dto.MedicoRequest;
 import io.justina.justinaio.dto.PasswordRequest;
 import io.justina.justinaio.services.MedicoService;
@@ -43,5 +44,12 @@ public class MedicoController {
         return ResponseEntity.ok("La contraseña ha sido cambiada con éxito");
     }
 
+    @PutMapping("/baja-medico")
+    public ResponseEntity<?> bajaMedico(
+            @RequestBody BajaRequest bajaRequest
+    ){
+        medicoService.bajaMedico(bajaRequest);
+        return ResponseEntity.ok("La baja se ha realizado con éxito");
+    }
 
 }

@@ -18,4 +18,5 @@ public class Entidad {
     private  Integer idEntidad;
     private String nombre;
     private String descripcion;
+    private boolean esActivo;
 }
