@@ -1,10 +1,14 @@
 package io.justina.justinaio.services;
 
+import io.justina.justinaio.model.Usuario;
 import io.justina.justinaio.model.enums.EmailTemplateName;
+import io.justina.justinaio.security.Token;
+import io.justina.justinaio.security.TokenRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -12,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +30,12 @@ import static org.springframework.mail.javamail.MimeMessageHelper.MULTIPART_MODE
 public class EmailService {
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
+
+    private final TokenRepository tokenRepository;
+
+
+    @Value("${application.mailing.frontend.activation-url}")
+    private String activationUrl;
 
     @Async
     public void sendEmail(
@@ -63,5 +75,46 @@ public class EmailService {
         helper.setText(template, true);
 
         mailSender.send(mimeMessage);
+    }
+
+    private String generateAndSaveActivationToken(Usuario user) {
+        // Generate a token
+        String generatedToken = generateActivationCode(6);
+        var token = Token.builder()
+                .token(generatedToken)
+                .createdAt(LocalDateTime.now())
+                .expiresAt(LocalDateTime.now().plusMinutes(15))
+                .user(user)
+                .build();
+        tokenRepository.save(token);
+
+        return generatedToken;
+    }
+
+    public void sendValidationEmail(Usuario user) throws MessagingException {
+        var newToken = generateAndSaveActivationToken(user);
+
+      sendEmail(
+                user.getEmail(),
+                user.getName(),
+                EmailTemplateName.ACTIVATE_ACCOUNT,
+                activationUrl,
+                newToken,
+                "Account activation"
+        );
+    }
+
+    private String generateActivationCode(int length) {
+        String characters = "0123456789";
+        StringBuilder codeBuilder = new StringBuilder();
+
+        SecureRandom secureRandom = new SecureRandom();
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = secureRandom.nextInt(characters.length());
+            codeBuilder.append(characters.charAt(randomIndex));
+        }
+
+        return codeBuilder.toString();
     }
 }

@@ -5,6 +5,7 @@ import io.justina.justinaio.dto.PacienteRequest;
 import io.justina.justinaio.dto.PasswordPacienteRequest;
 import io.justina.justinaio.services.PacienteService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -21,7 +22,7 @@ public class PacienteController {
     public ResponseEntity<?> crearPaciente(
             @RequestBody PacienteRequest pacienteRequest,
             Authentication token
-    ){
+    ) throws MessagingException {
         pacienteService.crearPaciente(pacienteRequest,token);
         return ResponseEntity.ok("El paciente " + pacienteRequest.getNombre() + " ha sido creado con éxito!");
     }
