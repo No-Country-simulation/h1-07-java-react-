@@ -73,23 +73,39 @@ public class BeansConfig {
         return new CorsFilter(source);
 
     }
-    @Bean
+   @Bean
     public JavaMailSender javaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("localhost");
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();mailSender.setHost("localhost");
         mailSender.setPort(1025);
-        mailSender.setUsername("ali");
+       mailSender.setUsername("ali");
         mailSender.setPassword("ali");
 
-        Properties props = mailSender.getJavaMailProperties();
+       Properties props = mailSender.getJavaMailProperties();
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.connectiontimeout", "5000");
+       props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.connectiontimeout", "5000");
         props.put("mail.smtp.timeout", "3000");
-        props.put("mail.smtp.writetimeout", "5000");
-        props.put("mail.smtp.trust", "*");
-
-        return mailSender;
-    }
+      props.put("mail.smtp.writetimeout", "5000");
+      props.put("mail.smtp.trust", "*");
+    return mailSender;
+  }
+//@Bean
+//public JavaMailSender javaMailSender() {
+//    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+//    mailSender.setHost("smtp.gmail.com");
+//    mailSender.setPort(587);
+//    mailSender.setUsername("PetNetNoResponder@gmail.com");
+//    mailSender.setPassword("urimyhukiycpxxap");
+//
+//    Properties props = mailSender.getJavaMailProperties();
+//    props.put("mail.smtp.auth", "true");
+//    props.put("mail.smtp.starttls.enable", "true");
+//    props.put("mail.smtp.connectiontimeout", "5000");
+//    props.put("mail.smtp.timeout", "3000");
+//    props.put("mail.smtp.writetimeout", "5000");
+//    props.put("mail.smtp.trust", "*");
+//
+//    return mailSender;
+//}
 
 }

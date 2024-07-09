@@ -30,9 +30,7 @@ import static org.springframework.mail.javamail.MimeMessageHelper.MULTIPART_MODE
 public class EmailService {
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
-
     private final TokenRepository tokenRepository;
-
 
     @Value("${application.mailing.frontend.activation-url}")
     private String activationUrl;
@@ -46,18 +44,11 @@ public class EmailService {
             String activationCode,
             String subject
     ) throws MessagingException {
-        String templateName;
-        if (emailTemplate == null) {
-            templateName = "confirm-email";
-        } else {
-            templateName = emailTemplate.name();
-        }
+        String templateName = (emailTemplate == null) ? "confirm-email" : emailTemplate.name();
+
         MimeMessage mimeMessage = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(
-                mimeMessage,
-                MULTIPART_MODE_MIXED,
-                UTF_8.name()
-        );
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, MULTIPART_MODE_MIXED, UTF_8.name());
+
         Map<String, Object> properties = new HashMap<>();
         properties.put("username", username);
         properties.put("confirmationUrl", confirmationUrl);
@@ -66,19 +57,17 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(properties);
 
-        helper.setFrom("contact@aliboucoding.com");
+        helper.setFrom("PetNetNoResponder@gmail.com"); // Actualiza la dirección de correo de origen aquí
         helper.setTo(to);
         helper.setSubject(subject);
 
         String template = templateEngine.process(templateName, context);
-
         helper.setText(template, true);
 
         mailSender.send(mimeMessage);
     }
 
     private String generateAndSaveActivationToken(Usuario user) {
-        // Generate a token
         String generatedToken = generateActivationCode(6);
         var token = Token.builder()
                 .token(generatedToken)
@@ -87,34 +76,22 @@ public class EmailService {
                 .user(user)
                 .build();
         tokenRepository.save(token);
-
         return generatedToken;
     }
 
     public void sendValidationEmail(Usuario user) throws MessagingException {
         var newToken = generateAndSaveActivationToken(user);
-
-      sendEmail(
-                user.getEmail(),
-                user.getName(),
-                EmailTemplateName.ACTIVATE_ACCOUNT,
-                activationUrl,
-                newToken,
-                "Account activation"
-        );
+        sendEmail(user.getEmail(), user.getName(), EmailTemplateName.ACTIVATE_ACCOUNT, activationUrl, newToken, "Account activation");
     }
 
     private String generateActivationCode(int length) {
         String characters = "0123456789";
         StringBuilder codeBuilder = new StringBuilder();
-
         SecureRandom secureRandom = new SecureRandom();
-
         for (int i = 0; i < length; i++) {
             int randomIndex = secureRandom.nextInt(characters.length());
             codeBuilder.append(characters.charAt(randomIndex));
         }
-
         return codeBuilder.toString();
     }
 }
