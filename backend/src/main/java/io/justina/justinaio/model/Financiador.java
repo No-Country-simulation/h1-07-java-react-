@@ -18,4 +18,5 @@ public class Financiador {
     private Integer idPrepagaObraSocial;
     private String nombre;
     private String descripcion;
+    private boolean esActivo;
 }
