@@ -52,4 +52,13 @@ public class PacienteController {
         pacienteService.bajaPaciente(bajaRequest);
         return ResponseEntity.ok("La baja se ha realizado con éxito");
     }
+
+    @GetMapping("/buscar-pacientes-id-medico-conectado")
+    public ResponseEntity<?> encontrarPacientesDeMedico(
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
+            Authentication token
+    ){
+        return ResponseEntity.ok(pacienteService.encontrarPacientesDeMedico(page, size, token));
+    }
 }

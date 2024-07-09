@@ -5,10 +5,16 @@ import io.justina.justinaio.model.*;
 import io.justina.justinaio.model.enums.FactorSanguineo;
 import io.justina.justinaio.model.enums.Genero;
 import io.justina.justinaio.repositories.*;
+import io.justina.justinaio.util.Mapper;
+import io.justina.justinaio.util.PageResponse;
 import jakarta.mail.MessagingException;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -176,6 +182,24 @@ public class PacienteService {
             throw new NullPointerException("Paciente ya dado de baja");
 
         usuarioRepository.save(usuarioPaciente);
+    }
+
+    public PageResponse<PacienteResponse> encontrarPacientesDeMedico(int page, int size, Authentication token) {
+        Usuario user = ((Usuario) token.getPrincipal());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("apellido").ascending());
+        Page<Paciente> pacientes = pacienteRepository.findAllByMedicosIdMedico(pageable, user.getId());
+        List<PacienteResponse> listaResponse = pacientes.stream()
+                .map(Mapper::toPacienteResponse)
+                .toList();
+        return new PageResponse<>(
+                listaResponse,
+                pacientes.getNumber(),
+                pacientes.getSize(),
+                pacientes.getTotalElements(),
+                pacientes.getTotalPages(),
+                pacientes.isFirst(),
+                pacientes.isLast()
+        );
     }
 }
 

@@ -3,6 +3,7 @@ package io.justina.justinaio.services;
 
 import io.justina.justinaio.dto.BajaRequest;
 import io.justina.justinaio.dto.MedicoRequest;
+import io.justina.justinaio.dto.MedicoResponse;
 import io.justina.justinaio.dto.PasswordRequest;
 import io.justina.justinaio.model.*;
 import io.justina.justinaio.repositories.EspecialidadRepository;
@@ -10,7 +11,12 @@ import io.justina.justinaio.repositories.FinanciadorRepository;
 import io.justina.justinaio.repositories.MedicoRepository;
 import io.justina.justinaio.repositories.UsuarioRepository;
 import io.justina.justinaio.util.Mapper;
+import io.justina.justinaio.util.PageResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -122,6 +128,24 @@ public class MedicoService {
             throw new NullPointerException("Medico ya dado de baja");
 
         usuarioRepository.save(usuarioMedico);
+    }
+
+    public PageResponse<MedicoResponse> encontrarMedicoPorIdPaciente(int page, int size, Authentication token) {
+        Usuario user = ((Usuario) token.getPrincipal());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("apellido").ascending());
+        Page<Medico> medicos = medicoRepository.findAllByPacientesIdPaciente(pageable, user.getId());
+        List<MedicoResponse> listaResponse = medicos.stream()
+                .map(Mapper::toMedicoResponse)
+                .toList();
+        return new PageResponse<>(
+                listaResponse,
+                medicos.getNumber(),
+                medicos.getSize(),
+                medicos.getTotalElements(),
+                medicos.getTotalPages(),
+                medicos.isFirst(),
+                medicos.isLast()
+        );
     }
 }
 
