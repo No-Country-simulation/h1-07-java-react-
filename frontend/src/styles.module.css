@@ -1,0 +1,7 @@
+.h2 {
+  @apply font-bold text-2xl;
+}
+
+.h5 {
+  @apply text-gray-color text-xl
+}
