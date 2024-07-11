@@ -1,9 +1,6 @@
 package io.justina.justinaio.util;
 
-import io.justina.justinaio.dto.FinanciadorRequest;
-import io.justina.justinaio.dto.MedicoRequest;
-import io.justina.justinaio.dto.MedicoResponse;
-import io.justina.justinaio.dto.PacienteResponse;
+import io.justina.justinaio.dto.*;
 import io.justina.justinaio.model.*;
 
 import java.util.List;
@@ -59,6 +56,13 @@ public class Mapper {
                         paciente.getTratamientos().stream().map(Tratamiento::getNombre).collect(Collectors.toList()))
                 .medicos(paciente.getMedicos().stream().map(Medico::getFullName).collect(Collectors.toList()))
                 .entidades(paciente.getEntidades().stream().map(Entidad::getNombre).collect(Collectors.toList()))
+                .build();
+    }
+
+    public static FinanciadorResponse toFinanciadorResponse(Financiador financiador) {
+        return FinanciadorResponse.builder()
+                .nombre(financiador.getNombre())
+                .descripcion(financiador.getDescripcion())
                 .build();
     }
 }
