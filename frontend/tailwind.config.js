@@ -24,7 +24,10 @@ export default {
         'light-color':'#EFF3FD',
         'blue-light-color':"#3563E9"
 
-      }
+      },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+      },
     },
   },
   darkMode: "class",
