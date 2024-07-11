@@ -5,9 +5,8 @@ import PublicRoute from "./PublicRoute";
 import { Dashboard } from "../page/Dashboard";
 import { ErrorPage } from "../page/ErrorPage";
 import { Landing } from "../pages/landing/Landing";
-import SingUp from "../auth/SingUp";
-import { LoginPage } from "../auth/Login";
-
+import { LoginPage } from "../Auth/Login";
+import { SingUp } from "../Auth/SingUp";
 
 function AppRouter() {
     return (
