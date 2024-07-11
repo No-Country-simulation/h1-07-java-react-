@@ -1,9 +1,15 @@
 package io.justina.justinaio.services;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import io.justina.justinaio.model.Medico;
+import io.justina.justinaio.util.PageResponse;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,17 +72,20 @@ public class FinanciadorService {
         financiadorRepository.save(financiador);
     }
 
-    public ArrayList<FinanciadorResponse> buscarFinanciadores(int page) {
-        PageRequest pageRequest = PageRequest.of(page, 10);
-        ArrayList<FinanciadorResponse> financiadores = new ArrayList<>();
-
-        for (Financiador f : financiadorRepository.buscarFinanciadores(pageRequest)) {
-            FinanciadorResponse financiador = new FinanciadorResponse();
-            financiador.setNombre(f.getNombre());
-            financiador.setDescripcion(f.getDescripcion());
-            financiadores.add(financiador);
-        }
-        return financiadores;
+    public PageResponse<FinanciadorResponse> buscarFinanciadores(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("nombre").ascending());
+        Page<Financiador> financiadores = financiadorRepository.findByEsActivoTrue(pageable);
+        List<FinanciadorResponse> financiadoresResponse = financiadores.stream()
+                .map(Mapper::toFinanciadorResponse).toList();
+        return new PageResponse<>(
+                financiadoresResponse,
+                financiadores.getNumber(),
+                financiadores.getSize(),
+                financiadores.getTotalElements(),
+                financiadores.getTotalPages(),
+                financiadores.isFirst(),
+                financiadores.isLast()
+        );
     }
 
     public FinanciadorResponse buscarUnFinanciador(String nombre) {

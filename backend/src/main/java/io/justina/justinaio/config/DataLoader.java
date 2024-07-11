@@ -77,8 +77,8 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadFinanciadores() {
         List<Financiador> financiadores = Arrays.asList(
-                Financiador.builder().nombre("OSDE").descripcion("Descripción para OSDE").build(),
-                Financiador.builder().nombre("Swiss Medical").descripcion("Descripción para Swiss Medical").build(),
+                Financiador.builder().nombre("OSDE").descripcion("Descripción para OSDE").esActivo(true).build(),
+                Financiador.builder().nombre("Swiss Medical").descripcion("Descripción para Swiss Medical").esActivo(true).build(),
                 Financiador.builder().nombre("Galeno").descripcion("Descripción para Galeno").build()
         );
 

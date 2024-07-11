@@ -17,7 +17,7 @@ public class RegistrationRequest {
     @Email(message = "Email is not well formatted")
     @NotEmpty(message = "Email is mandatory")
     @NotNull(message = "Email is mandatory")
-    @Schema(example = "pablo@magna.com", description = "User email")
+    @Schema(example = "pmagnavachi@gmail.com", description = "User email")
     private String email;
     @NotEmpty(message = "Password is mandatory")
     @NotNull(message = "Password is mandatory")

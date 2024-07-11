@@ -17,7 +17,7 @@ public class AuthenticationRequest {
     @Email(message = "Tiene que ser un email válido")
     @NotEmpty(message = "El email es obligatorio")
     @NotNull(message = "EEl email es obligatorio")
-    @Schema(example = "pablo@magna.com", description = "Email del usuario")
+    @Schema(example = "pmagnavachi@gmail.com", description = "Email del usuario")
     private String email;
 
     @NotEmpty(message = "La contraseña es obligatoria")

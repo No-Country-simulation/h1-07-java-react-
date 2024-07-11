@@ -2,6 +2,7 @@ package io.justina.justinaio.controller;
 
 import java.util.ArrayList;
 
+import io.justina.justinaio.util.PageResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,13 +48,15 @@ public class FinanciadorController {
         return ResponseEntity.ok("La baja se ha realizado con éxito");
     }
 
-    @GetMapping("/ver-financiadores")
-    public ArrayList<FinanciadorResponse> buscarFinanciadores(
-            @RequestParam(defaultValue = "0") int page) {
-        return financiadorService.buscarFinanciadores(page);
+    @GetMapping("/buscar-financiadores-activos")
+    public PageResponse<FinanciadorResponse> buscarFinanciadores(
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size)
+            {
+        return financiadorService.buscarFinanciadores(page,size);
     }
 
-    @GetMapping("/ver-financiador")
+    @GetMapping("/buscar-financiador-por-nombre")
     public ResponseEntity<?> buscarUnFinanciador(
         @RequestParam String nombre) {
             return ResponseEntity.ok(financiadorService.buscarUnFinanciador(nombre));
