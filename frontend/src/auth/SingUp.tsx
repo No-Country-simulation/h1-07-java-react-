@@ -37,7 +37,7 @@ const validationSchema = Yup.object({
 		.required('La contraseña es obligatoria')
 });
 
-const SingUp: React.FC = () => {
+export const SingUp: React.FC = () => {
 	const handleSubmit = (values: RegisterFormValues) => {
 		
 		console.log('Formulario enviado', values);
@@ -131,4 +131,4 @@ const SingUp: React.FC = () => {
 	);
 };
 
-export default SingUp;
+
