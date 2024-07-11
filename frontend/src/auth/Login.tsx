@@ -1,84 +1,76 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuthContext } from "../Context/AuthContext";
+import { RootObject } from "../Interfaces/interfaces";
 
-interface FormValues {
-    username: string;
-    password: string;
-}
+export const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+  const { login } = useAuthContext();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-export const Login: React.FC = () => {
-    // Función para validar los campos del formulario
-    const validate = (values: FormValues) => {
-        const errors: Partial<FormValues> = {};
+  const handleNavigation = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        if (!values.username) {
-            errors.username = 'Usuario requerido';
-        }
+    if (username === "admin" && password === "test") {
+      const user: RootObject = {
+        user: {
+          id: 1,
+          nombre: "Admin",
+          email: username,
+          rol_id: 1,
+        },
+        token: "fake-jwt-token",
+      };
+      login(user);
+      navigate("/dashboard");
+    } else {
+      alert("Email o Contraseña incorrecta");
+    }
+  };
 
-        if (!values.password) {
-            errors.password = 'Contraseña requerida';
-        }
+  return (
+    <div className="flex min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+        <h3 className="text-2xl font-bold text-center text-gray-900">Iniciar Sesión</h3>
+        <form onSubmit={handleNavigation} className="space-y-4">
+          <div>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+            <input
+              id="username"
+              placeholder="Correo Electrónico"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Contraseña</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="w-full py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Login
+            </button>
 
-        return errors;
-    };
-
-    // Función que maneja el envío del formulario
-    const handleSubmit = (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-        // Aquí puedes manejar la lógica de envío del formulario
-        console.log('Valores del formulario:', values);
-        setSubmitting(false); // Marca el estado de envío como falso
-    };
-
-    return (
-        <div className="flex justify-center items-center h-screen ">
-            <div className=" p-8 rounded shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-semibold mb-6 text-center">Formulario de Autenticación</h2>
-                <Formik
-                    initialValues={{ username: '', password: '' }} // Valores iniciales del formulario
-                    validate={validate} // Función para validar los campos
-                    onSubmit={handleSubmit} // Función que maneja el envío del formulario
-                >
-                    {({ isSubmitting }) => (
-                        <Form>
-                            {/* Campo de entrada para el usuario */}
-                            <div className="mb-3">
-                                <Field
-                                    type="text"
-                                    name="username"
-                                    placeholder="Usuario"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                />
-                                <ErrorMessage name="username" component="p" className="text-red-500 mt-1" />
-                                {/* Mensaje de error si el campo de usuario no es válido */}
-                            </div>
-
-                            {/* Campo de entrada para la contraseña */}
-                            <div className="mb-3">
-                                <Field
-                                    type="password"
-                                    name="password"
-                                    placeholder="Contraseña"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                />
-                                <ErrorMessage name="password" component="p" className="text-red-500 mt-1" />
-                                {/* Mensaje de error si el campo de contraseña no es válido */}
-                            </div>
-
-                            {/* Botón de envío del formulario */}
-                            <button
-                                type="submit"
-                                disabled={isSubmitting} // Deshabilita el botón mientras se está enviando el formulario
-                                className={`w-full py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
-                                    }`}
-                            >
-                                {isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión'}
-                            </button>
-                        </Form>
-                    )}
-                </Formik>
-            </div>
-        </div>
-    );
+          </div>
+        </form>
+        <Link to={"/singup"}>
+          <button className="w-full py-2 mt-2 text-white bg-green-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Registrate
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
 };
-
-export default Login;
