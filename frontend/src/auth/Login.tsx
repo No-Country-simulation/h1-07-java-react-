@@ -1,86 +1,95 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button } from '@nextui-org/react';
-import { FormRegister } from '../components/formRegister';
+import {  useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuthContext } from "../Context/AuthContext";
+import { RootObject } from "../Interfaces/interfaces";
+import { ClosePassword, IconCorreo, IconPassword, OpenPassword } from "../assets/Icons";
 
-interface FormValues {
-	username: string;
-	password: string;
-}
+export const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+  const { login } = useAuthContext();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-export const Login: React.FC = () => {
-	// Función para validar los campos del formulario
-	const validate = (values: FormValues) => {
-		const errors: Partial<FormValues> = {};
+  const handleNavigation = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-		if (!values.username) {
-			errors.username = 'Usuario requerido';
-		}
+    if (username === "admin" && password === "test") {
+      const user: RootObject = {
+        user: {
+          id: 1,
+          nombre: "Admin",
+          email: username,
+          rol_id: 1,
+        },
+        token: "fake-jwt-token",
+      };
+      login(user);
+      navigate("/dashboard");
+    } else {
+      alert("Email o Contraseña incorrecta");
+    }
+  };
 
-		if (!values.password) {
-			errors.password = 'Contraseña requerida';
-		}
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
-		return errors;
-	};
 
-	// Función que maneja el envío del formulario
-	const handleSubmit = (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-		// Aquí puedes manejar la lógica de envío del formulario
-		console.log('Valores del formulario:', values);
-		setSubmitting(false); // Marca el estado de envío como falso
-	};
+  return (
+    <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center md:bg-black ">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg md:bg-black max-md:m-auto">
+        <h2 className="text-[20px] font-[700] mb-[9px] mt-[1.5rem] text-gray-900 font-inter">Iniciar Sesión</h2>
+        <p className="mb-[46px] text-[15px] text-[#948ABC]">Accede con la cuenta que Registrate</p>
+        <form onSubmit={handleNavigation} className="space-y-4">
+          <div>
+            <div className="flex flex-row items-center mb-1">
+              <IconCorreo width={16} height={16} />
+              <label htmlFor="username" className="block ml-2 text-[17px] font-bold font-inter text-gray-700">Correo</label>
+            </div>
+            <input
+              id="username"
+              placeholder="Ej: tumail@mailito.com"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div className="mb-10">
+            <div className="flex flex-row items-center mb-1">
+              <IconPassword width={16} height={16} />
+              <label htmlFor="password" className="block text-[17px] ml-2 font-bold font-inter text-gray-700">Contraseña</label>
+            </div>
+            <div className="flex items-center relative">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Introduzca contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              />
+              <button type="button" onClick={togglePasswordVisibility} className="absolute right-[1rem]">
+                {showPassword ? <ClosePassword width={16} height={16} /> : <OpenPassword width={16} height={16} />}
+              </button>
+            </div>
+            <p className="mt-1 text-end text-[#948ABC] cursor-pointer">¿Olvidaste tu contraseña?</p>
+          </div>
 
-	return (
-		<div className="flex justify-center items-center h-screen ">
-			<div className=" p-8 rounded shadow-md w-full max-w-md">
-				<h2 className="text-2xl font-semibold mb-6 text-center">Formulario de Autenticación</h2>
-				<Formik
-					initialValues={{ username: '', password: '' }} // Valores iniciales del formulario
-					validate={validate} // Función para validar los campos
-					onSubmit={handleSubmit} // Función que maneja el envío del formulario
-				>
-					{({ isSubmitting }) => (
-						<Form>
-							{/* Campo de entrada para el usuario */}
-							<div className="mb-3">
-								<Field
-									type="text"
-									name="username"
-									placeholder="Usuario"
-									className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-								/>
-								<ErrorMessage name="username" component="p" className="text-red-500 mt-1" />
-								{/* Mensaje de error si el campo de usuario no es válido */}
-							</div>
+          <div className="flex items-center justify-center h-[12rem]" >
+            <img src="JustinaLogo.png" alt="" className="w-[200px] h-[158px]" />
+          </div>
+          <div className=" flex items-center h-[10rem] ">
+            <button
+              type="submit"
+              className="w-full h-[30%] py-2 text-white bg-[#E08733] rounded-md hover:bg-[#9b5416] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Iniciar Sesión
+            </button>
+          </div>
+        </form>
 
-							{/* Campo de entrada para la contraseña */}
-							<div className="mb-3">
-								<Field
-									type="password"
-									name="password"
-									placeholder="Contraseña"
-									className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-								/>
-								<ErrorMessage name="password" component="p" className="text-red-500 mt-1" />
-								{/* Mensaje de error si el campo de contraseña no es válido */}
-							</div>
-
-							{/* Botón de envío del formulario */}
-							<button
-								type="submit"
-								disabled={isSubmitting} // Deshabilita el botón mientras se está enviando el formulario
-								className={`w-full py-2 px-4 bg-blue-500 text-white rounded-md focus:outline-none ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
-									}`}
-							>
-								{isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión'}
-							</button>
-						</Form>
-					)}
-				</Formik>
-			</div>
-		</div>
-	);
+      </div>
+    </div>
+  );
 };
-
-export default Login;
