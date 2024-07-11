@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button } from '@nextui-org/react';
+import { FormRegister } from '../components/formRegister';
 
 interface FormValues {
 	username: string;
