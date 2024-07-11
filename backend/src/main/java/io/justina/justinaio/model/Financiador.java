@@ -16,7 +16,10 @@ public class Financiador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPrepagaObraSocial;
+
+    @Column(unique = true)
     private String nombre;
+
     private String descripcion;
     private boolean esActivo;
 }
