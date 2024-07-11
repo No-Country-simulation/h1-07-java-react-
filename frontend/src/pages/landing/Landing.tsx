@@ -38,7 +38,7 @@ const items = [
 export const Landing = () => {
   const defaultContent = "Elementum ullamcorper felis nulla scelerisque. Nunc enim nunc mattis leo massa.";
   return (
-    <main className=' border-2 border-gray w-96 m-auto max-md:w-full'>
+    <main className=' border-2 border-gray max-w-md  m-auto max-md:w-full'>
       <Nav></Nav>
       <article className=' p-4 flex flex-col gap-y-10'>
         <section className=' flex flex-col gap-y-4'>
