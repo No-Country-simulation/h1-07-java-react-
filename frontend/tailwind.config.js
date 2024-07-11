@@ -8,7 +8,24 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary-brand': '#5366BB',
+        'primary-brand-dark':'#5761C8',
+        'primary-brand-light':'#948ABC',
+        'secondary-brand':'#4F8561',
+        'secondary-brand-dark':'#E08733',
+        'secondary-brand-light':'#E8CE4D',
+        'danger-state':'#E71D36',
+        'warning-state':'#FFB800',
+        'sucess-state':'#3C8505',
+        'dark-color':'#1A1A1A',
+        'gray-color':'#757575',
+        'light-color':'#EFF3FD',
+        'blue-light-color':"#3563E9"
+
+      }
+    },
   },
   darkMode: "class",
   plugins: [nextui()]
