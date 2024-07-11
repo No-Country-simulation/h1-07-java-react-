@@ -1,4 +1,5 @@
 package io.justina.justinaio.config;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -67,52 +68,54 @@ public class BeansConfig {
                 HttpHeaders.ORIGIN,
                 HttpHeaders.CONTENT_TYPE,
                 HttpHeaders.ACCEPT,
-                HttpHeaders.AUTHORIZATION
-        ));
+                HttpHeaders.AUTHORIZATION));
         config.setAllowedMethods(Arrays.asList(
                 "GET",
                 "POST",
                 "DELETE",
                 "PUT",
-                "PATCH"
-        ));
+                "PATCH"));
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
 
     }
-/*   @Bean
+
+    /*
+     * @Bean
+     * public JavaMailSender javaMailSender() {
+     * JavaMailSenderImpl mailSender = new
+     * JavaMailSenderImpl();mailSender.setHost("localhost");
+     * mailSender.setPort(1025);
+     * mailSender.setUsername("ali");
+     * mailSender.setPassword("ali");
+     * 
+     * Properties props = mailSender.getJavaMailProperties();
+     * props.put("mail.smtp.auth", "true");
+     * props.put("mail.smtp.starttls.enable", "true");
+     * props.put("mail.smtp.connectiontimeout", "5000");
+     * props.put("mail.smtp.timeout", "3000");
+     * props.put("mail.smtp.writetimeout", "5000");
+     * props.put("mail.smtp.trust", "*");
+     * return mailSender;
+     * }
+     */
+    @Bean
     public JavaMailSender javaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();mailSender.setHost("localhost");
-        mailSender.setPort(1025);
-       mailSender.setUsername("ali");
-        mailSender.setPassword("ali");
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername(username);
+        mailSender.setPassword(password);
 
-       Properties props = mailSender.getJavaMailProperties();
+        Properties props = mailSender.getJavaMailProperties();
         props.put("mail.smtp.auth", "true");
-       props.put("mail.smtp.starttls.enable", "true");
-      props.put("mail.smtp.connectiontimeout", "5000");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.connectiontimeout", "5000");
         props.put("mail.smtp.timeout", "3000");
-      props.put("mail.smtp.writetimeout", "5000");
-      props.put("mail.smtp.trust", "*");
-    return mailSender;
-  }*/
-@Bean
-public JavaMailSender javaMailSender() {
-    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-    mailSender.setHost("smtp.gmail.com");
-    mailSender.setPort(587);
-    mailSender.setUsername(username);
-    mailSender.setPassword(password);
+        props.put("mail.smtp.writetimeout", "5000");
+        props.put("mail.smtp.trust", "*");
 
-    Properties props = mailSender.getJavaMailProperties();
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.connectiontimeout", "5000");
-    props.put("mail.smtp.timeout", "3000");
-    props.put("mail.smtp.writetimeout", "5000");
-    props.put("mail.smtp.trust", "*");
-
-    return mailSender;
-}
+        return mailSender;
+    }
 
 }
