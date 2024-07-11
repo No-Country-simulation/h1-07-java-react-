@@ -39,6 +39,7 @@ const validationSchema = Yup.object({
 
 const SingUp: React.FC = () => {
 	const handleSubmit = (values: RegisterFormValues) => {
+		
 		console.log('Formulario enviado', values);
 
 	};
@@ -49,9 +50,10 @@ const SingUp: React.FC = () => {
 				initialValues={initialValues}
 				validationSchema={validationSchema}
 				onSubmit={handleSubmit}
+				
 			>
 				{({ isSubmitting }) => (
-					<Form className="border-2 w-96 max-md:w-full m-auto p-4 max-md:p-8 mt-8">
+					<Form className="border-2 w-96 max-md:w-full m-auto p-4 max-md:p-8 mt-8 max-w-md">
 						<div className='mb-6'>
 							<h1 className=' text-2xl font-bold tracking-tight'>Crear cuenta</h1>
 							<p className=' text-sm'>Introduce la información necesaria</p>						</div>
