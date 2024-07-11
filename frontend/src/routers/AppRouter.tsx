@@ -4,9 +4,9 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import { Dashboard } from "../page/Dashboard";
 import { ErrorPage } from "../page/ErrorPage";
+import { Landing } from "../pages/landing/Landing";
 import { LoginPage } from "../Auth/Login";
-import SingUp from "../Auth/SingUp";
-
+import { SingUp } from "../Auth/SingUp";
 
 function AppRouter() {
     return (
@@ -17,6 +17,7 @@ function AppRouter() {
                         <Route path="/" element={<PublicRoute />}>
                             <Route index element={<LoginPage />} />
                             <Route path="/singup" element={<SingUp />} />
+                            <Route path="/landing" element={<Landing></Landing>}></Route>
                         </Route>
                         <Route path="/dashboard" element={<PrivateRoute />}>
                             <Route index element={<Dashboard />} />

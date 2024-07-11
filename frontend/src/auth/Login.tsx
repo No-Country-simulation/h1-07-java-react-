@@ -37,8 +37,8 @@ export const LoginPage: React.FC = () => {
 
 
   return (
-    <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center md:bg-black">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg md:bg-black">
+    <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center md:bg-black ">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg md:bg-black max-md:m-auto">
         <h2 className="text-[20px] font-[700] mb-[9px] mt-[1.5rem] text-gray-900 font-inter">Iniciar Sesión</h2>
         <p className="mb-[46px] text-[15px] text-[#948ABC]">Accede con la cuenta que Registrate</p>
         <form onSubmit={handleNavigation} className="space-y-4">
@@ -73,7 +73,7 @@ export const LoginPage: React.FC = () => {
                 {showPassword ? <ClosePassword width={16} height={16} /> : <OpenPassword width={16} height={16} />}
               </button>
             </div>
-            <p className="mt-1 text-end text-[#948ABC]">¿Olvidaste tu contraseña?</p>
+            <p className="mt-1 text-end text-[#948ABC] cursor-pointer">¿Olvidaste tu contraseña?</p>
           </div>
 
           <div className="flex items-center justify-center h-[12rem]" >

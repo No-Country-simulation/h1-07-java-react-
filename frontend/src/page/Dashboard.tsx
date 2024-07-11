@@ -1,12 +1,10 @@
-import { Logout } from "../Components/Logout";
+import { Logout } from "../components/Logout";
 
 
 export function Dashboard() {
-
-    return (
-        <div>
-
-            <Logout />
-        </div>
-    )
+	return (
+		<div>
+			<Logout />
+		</div>
+	)
 }
