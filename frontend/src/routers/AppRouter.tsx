@@ -7,6 +7,7 @@ import { ErrorPage } from "../page/ErrorPage";
 import { Landing } from "../pages/landing/Landing";
 import SingUp from "../auth/SingUp";
 import { LoginPage } from "../auth/Login";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 
 
 function AppRouter() {
@@ -19,6 +20,7 @@ function AppRouter() {
                             <Route index element={<LoginPage />} />
                             <Route path="/singup" element={<SingUp />} />
                             <Route path="/landing" element={<Landing></Landing>}></Route>
+                            <Route path="/active-account" element={<ActiveAccount></ActiveAccount>}></Route>
                         </Route>
                         <Route path="/dashboard" element={<PrivateRoute />}>
                             <Route index element={<Dashboard />} />

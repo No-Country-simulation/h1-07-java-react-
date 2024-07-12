@@ -16,7 +16,7 @@ const API_URL = "http://localhost:8080";
 const fetchData = async <T>(
   url: string,
   method: string,
-  body: unknown,
+  body?: unknown,
   token?: string
 ): Promise<T> => {
   const headers: HeadersInit = {
@@ -155,5 +155,15 @@ export const authenticate = async (
     "/auth/autenticar",
     "POST",
     authData
+  );
+};
+
+// Function to active account
+export const activeAccount = async (
+  token: string
+): Promise<AuthenticationResponse> => {
+  return await fetchData<AuthenticationResponse>(
+    `/auth/activar-cuenta?token=${token}`,
+    "GET",
   );
 };
