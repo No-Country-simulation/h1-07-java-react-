@@ -1,7 +1,5 @@
 package io.justina.justinaio.controller;
 
-import java.util.ArrayList;
-
 import io.justina.justinaio.util.PageResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.justina.justinaio.dto.BajaFinanciadorRequest;
+import io.justina.justinaio.dto.BajaPorNombreRequest;
 import io.justina.justinaio.dto.FinanciadorModificacionRequest;
 import io.justina.justinaio.dto.FinanciadorRequest;
 import io.justina.justinaio.dto.FinanciadorResponse;
@@ -35,7 +33,7 @@ public class FinanciadorController {
     }
 
     @PutMapping("/modificar-financiador")
-    public ResponseEntity<?> modificarMedico(
+    public ResponseEntity<?> modificarFinanciador(
             @RequestBody FinanciadorModificacionRequest financiadorRequest) {
         financiadorService.modificarFinanciador(financiadorRequest);
         return ResponseEntity.ok("El Financiador " + financiadorRequest.getNombre() + " ha sido modficado con éxito!");
@@ -43,7 +41,7 @@ public class FinanciadorController {
 
     @PutMapping("/baja-financiador")
     public ResponseEntity<?> bajaFinanciador(
-            @RequestBody BajaFinanciadorRequest bajaFinanciadorRequest) {
+            @RequestBody BajaPorNombreRequest bajaFinanciadorRequest) {
         financiadorService.bajaFinanciador(bajaFinanciadorRequest);
         return ResponseEntity.ok("La baja se ha realizado con éxito");
     }
@@ -51,16 +49,14 @@ public class FinanciadorController {
     @GetMapping("/buscar-financiadores-activos")
     public PageResponse<FinanciadorResponse> buscarFinanciadores(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
-            @RequestParam(name = "size", defaultValue = "10", required = false) int size)
-            {
-        return financiadorService.buscarFinanciadores(page,size);
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size) {
+        return financiadorService.buscarFinanciadores(page, size);
     }
 
     @GetMapping("/buscar-financiador-por-nombre")
     public ResponseEntity<?> buscarUnFinanciador(
-        @RequestParam String nombre) {
-            return ResponseEntity.ok(financiadorService.buscarUnFinanciador(nombre));
-        }
-    
+            @RequestParam String nombre) {
+        return ResponseEntity.ok(financiadorService.buscarUnFinanciador(nombre));
+    }
 
 }

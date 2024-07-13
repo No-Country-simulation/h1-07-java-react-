@@ -22,21 +22,6 @@ public class Mapper {
                 .build();
     }
 
-    public static Medico toMedico(MedicoUsuarioRequest request, Especialidad especialidad,
-                                  List<Financiador> financiadores, Usuario usuario) {
-        return Medico.builder()
-                .idMedico(usuario.getId()) // Asignar el ID del usuario al médico
-                .nombre(request.getNombre())
-                .apellido(request.getApellido())
-                .telefono(request.getTelefono())
-                .provincia(request.getProvincia())
-                .localidad(request.getLocalidad())
-                .licencia(request.getLicencia())
-                .especialidad(especialidad)
-                .financiadores(financiadores)
-                .build();
-    }
-
     public static MedicoResponse toMedicoResponse(Medico medico) {
         return MedicoResponse.builder()
                 .idMedico(medico.getIdMedico())
