@@ -9,8 +9,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FinanciadorModificacionRequest {
-    
+public class MedicamentoModificacionRequest {
+
     @Schema(description = "Nombre del financiador", example = "John")
     @JsonProperty("nombre")
     private String nombre;
@@ -22,4 +22,5 @@ public class FinanciadorModificacionRequest {
     @Schema(description = "Descripción del financiador", example = "credito")
     @JsonProperty("descripcion")
     private String descripcion;
+
 }

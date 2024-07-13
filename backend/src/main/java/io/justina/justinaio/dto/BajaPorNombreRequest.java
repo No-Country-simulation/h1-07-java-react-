@@ -9,9 +9,9 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BajaFinanciadorRequest {
+public class BajaPorNombreRequest {
 
-    @Schema(description = "nombre del financiador", example = "John")
-    @JsonProperty("nombreFinanciador")
-    private String nombreFinanciador;
+    @Schema(description = "nombre de la entidad", example = "John")
+    @JsonProperty("nombre")
+    private String nombre;
 }
