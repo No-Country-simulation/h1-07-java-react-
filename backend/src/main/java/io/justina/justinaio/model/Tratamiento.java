@@ -1,9 +1,12 @@
 package io.justina.justinaio.model;
 
+import io.justina.justinaio.model.enums.EstadoTratamiento;
+import io.justina.justinaio.model.enums.TipoTratamiento;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -18,10 +21,26 @@ public class Tratamiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTratamiento;
-    private String nombre;
 
-    @ManyToMany(mappedBy = "tratamientos")
-    private List<Medicamento> medicamentos;
+    @ManyToOne
+    @JoinColumn(name = "patologia_id")
+    private Patologia patologia;
+
+    @ManyToOne
+    @JoinColumn(name = "medicamento_id")
+    private Medicamento medicamento;
+
+    @Enumerated(EnumType.ORDINAL)
+    private TipoTratamiento tipoTratamiento;
+
+    private String descripcion;
+    private String dosis; // ver si queda en descripcion
+
+    @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HorarioToma> horarios;
+
+    private Date fechaInicio;
+    private Date fechaFin;
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")
@@ -30,4 +49,9 @@ public class Tratamiento {
     @ManyToOne
     @JoinColumn(name = "medico_id")
     private Medico medico;
+
+    @Enumerated(EnumType.ORDINAL)
+    private EstadoTratamiento estado;
+
+    private Boolean esActivo;
 }

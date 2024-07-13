@@ -1,8 +1,11 @@
 package io.justina.justinaio.model.enums;
 
 public enum TipoTratamiento {
-    MEDICO,
+    MEDICAMENTO,
+    PROCEDIMIENTO,
+    TRAUMATOLOGICO,
+    QUIRURGICO,
+    ENTRENAMIENTO,
     NUTRICIONAL,
-    PSICOLOGICO,
-    ENTRENAMIENTO
+    OTRO
 }

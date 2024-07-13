@@ -17,7 +17,7 @@ public class PacienteResponse {
     private Integer numeroDocumento;
     private String patologia;
     private String financiador;
-    private List<String> tratamientos;
+    private List<Integer> tratamientos;
     private List<String> medicos;
     private List<String> entidades;
 }
