@@ -20,12 +20,9 @@ public class Medicamento {
     private Integer idMedicamento;
     private String nombre;
     private String descripcion;
+    private boolean esActivo;
 
     @ManyToMany
-    @JoinTable(
-            name = "tratamiento_medicamento",
-            joinColumns = @JoinColumn(name = "medicamento_id"),
-            inverseJoinColumns = @JoinColumn(name = "tratamiento_id")
-    )
+    @JoinTable(name = "tratamiento_medicamento", joinColumns = @JoinColumn(name = "medicamento_id"), inverseJoinColumns = @JoinColumn(name = "tratamiento_id"))
     private List<Tratamiento> tratamientos;
 }
