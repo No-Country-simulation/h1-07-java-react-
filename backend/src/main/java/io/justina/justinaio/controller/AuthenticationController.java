@@ -2,6 +2,7 @@ package io.justina.justinaio.controller;
 
 import io.justina.justinaio.dto.AuthenticationRequest;
 import io.justina.justinaio.dto.AuthenticationResponse;
+import io.justina.justinaio.dto.MedicoUsuarioRequest;
 import io.justina.justinaio.dto.RegistrationRequest;
 import io.justina.justinaio.services.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,14 +27,14 @@ public class AuthenticationController {
 
     private final AuthenticationService service;
 
-    @PostMapping("/registrar")
+  /*  @PostMapping("/registrar")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<?> registrar(
             @RequestBody @Valid RegistrationRequest request
     ) throws MessagingException {
         service.register(request);
         return ResponseEntity.accepted().build();
-    }
+    }*/
 
     @PostMapping("/autenticar")
     public ResponseEntity<AuthenticationResponse> autenticar(
@@ -47,4 +48,13 @@ public class AuthenticationController {
     ) throws MessagingException {
         service.activateAccount(token);
     }
+
+    @PostMapping("/registrar-medico")
+    public ResponseEntity<?> registrarMedico(
+            @RequestBody MedicoUsuarioRequest request
+    ) throws MessagingException {
+        service.registrarMedico(request);
+        return ResponseEntity.accepted().build();
+    }
+
 }

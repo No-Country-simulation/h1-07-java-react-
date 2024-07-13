@@ -22,6 +22,21 @@ public class Mapper {
                 .build();
     }
 
+    public static Medico toMedico(MedicoUsuarioRequest request, Especialidad especialidad,
+                                  List<Financiador> financiadores, Usuario usuario) {
+        return Medico.builder()
+                .idMedico(usuario.getId()) // Asignar el ID del usuario al médico
+                .nombre(request.getNombre())
+                .apellido(request.getApellido())
+                .telefono(request.getTelefono())
+                .provincia(request.getProvincia())
+                .localidad(request.getLocalidad())
+                .licencia(request.getLicencia())
+                .especialidad(especialidad)
+                .financiadores(financiadores)
+                .build();
+    }
+
     public static MedicoResponse toMedicoResponse(Medico medico) {
         return MedicoResponse.builder()
                 .idMedico(medico.getIdMedico())
@@ -53,7 +68,7 @@ public class Mapper {
                 .patologia(paciente.getPatologia().getNombre())
                 .financiador(paciente.getFinanciador().getNombre())
                 .tratamientos(
-                        paciente.getTratamientos().stream().map(Tratamiento::getNombre).collect(Collectors.toList()))
+                        paciente.getTratamientos().stream().map(Tratamiento::getIdTratamiento).collect(Collectors.toList()))
                 .medicos(paciente.getMedicos().stream().map(Medico::getFullName).collect(Collectors.toList()))
                 .entidades(paciente.getEntidades().stream().map(Entidad::getNombre).collect(Collectors.toList()))
                 .build();
