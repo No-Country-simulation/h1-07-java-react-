@@ -65,4 +65,18 @@ public class Mapper {
                 .descripcion(financiador.getDescripcion())
                 .build();
     }
+
+    public static Medicamento toMedicamento(MedicamentoRequest medicamentoRequest) {
+        return Medicamento.builder()
+                .nombre(medicamentoRequest.getNombre())
+                .esActivo(true)
+                .build();
+    }
+
+    public static MedicamentoResponse toMedicamentoResponse(Medicamento medicamento) {
+        return MedicamentoResponse.builder()
+                .nombre(medicamento.getNombre())
+                .descripcion(medicamento.getDescripcion())
+                .build();
+    }
 }

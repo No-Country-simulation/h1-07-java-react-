@@ -1,15 +1,17 @@
-package io.justina.justinaio.model;
+package io.justina.justinaio.services;
 
 import io.justina.justinaio.dto.AdherenciaRequest;
+import io.justina.justinaio.model.AdherenciaTratamiento;
+import io.justina.justinaio.model.HorarioToma;
+import io.justina.justinaio.model.Paciente;
+import io.justina.justinaio.model.Tratamiento;
 import io.justina.justinaio.model.enums.EstadoAdherencia;
 import io.justina.justinaio.repositories.AdherenciaTratamientoRepository;
 import io.justina.justinaio.repositories.HorarioTomaRepository;
 import io.justina.justinaio.repositories.PacienteRepository;
 import io.justina.justinaio.repositories.TratamientoRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
