@@ -1,4 +1,5 @@
 package io.justina.justinaio.services;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -60,11 +61,18 @@ public class LaboratorioService {
 
     public void bajaLaboratorio(BajaPorNombreRequest bajaLaboratorioRequest) {
 
-        Laboratorio laboratorio = laboratorioRepository.buscarPorNombre(bajaLaboratorioRequest.getNombre())
-                .orElseThrow(
-                        () -> new NullPointerException("Laboratorio a dar de baja no encontrado"));
-        laboratorio.setEsActivo(false);
-        laboratorioRepository.save(laboratorio);
+        Optional<Laboratorio> laboratorio = laboratorioRepository.buscarPorNombre(bajaLaboratorioRequest.getNombre());
+
+        if (laboratorio.isEmpty()) {
+            throw new NullPointerException("Laboratorio a dar de baja no encontrado");
+        }
+
+        if (!laboratorio.get().isEsActivo()) {
+            throw new IllegalArgumentException("El laboratorio ya se encuentra dado de baja");
+        }
+
+        laboratorio.get().setEsActivo(false);
+        laboratorioRepository.save(laboratorio.get());
 
     }
 
