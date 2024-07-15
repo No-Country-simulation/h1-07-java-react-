@@ -79,4 +79,19 @@ public class Mapper {
                 .descripcion(medicamento.getDescripcion())
                 .build();
     }
+
+    public static Laboratorio toLaboratorio(LaboratorioRequest laboratorioRequest) {
+        return Laboratorio.builder()
+                .nombre(laboratorioRequest.getNombre())
+                .descripcion(laboratorioRequest.getDescripcion())
+                .esActivo(true)
+                .build();
+    }
+
+    public static LaboratorioResponse toLaboratorioResponse(Laboratorio laboratorio) {
+        return LaboratorioResponse.builder()
+                .nombre(laboratorio.getNombre())
+                .descripcion(laboratorio.getDescripcion())
+                .build();
+    }
 }
