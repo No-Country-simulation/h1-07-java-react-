@@ -3,7 +3,9 @@ import { ArrowIcon, CheckIcon } from '../../components/icons/Icons'
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 export const ActiveAccount = () => {
+  // const navigate = useNavigate();
   const [token, setToken] = useState<string[]>(Array(6).fill(''));
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -25,17 +27,36 @@ export const ActiveAccount = () => {
     }
   }
 
-  const handleSubmitForm = (e:React.FormEvent<HTMLFormElement>) =>{
-    e.preventDefault()
-    //activeAccount(token.join(""))
-  }
-  
+
+  const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const API_URL = "https://97de-181-168-133-217.ngrok-free.app/auth/activar-cuenta";
+    const tokenValue = token.join(""); // Obtén el valor del token
+    try {
+      //token de prueba 139163
+      //el problema es en este fetch
+
+      const res = await fetch(`${API_URL}?token=${tokenValue}`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${tokenValue}`,
+        },
+      });
+
+      const data = res.json()
+      console.log(data);
+    } catch (err: any) {
+      console.error("Fetch error:", err);
+    }
+  };
+
   return (
     <section className='border-2 flex flex-col gap-y-4 w-96 max-md:w-full m-auto p-4 max-md:p-8 mt-8 max-w-md text-center'>
       <div className="flex flex-col ">
         <h5 className=' relative  text-xl text-center font-bold tracking-wide flex items-center justify-center'>
           <Link to={'/'} className=' absolute left-0 cursor-pointer hover:-translate-x-1 transition-all duration-300'>
-              <ArrowIcon width={24} height={24} />
+            <ArrowIcon width={24} height={24} />
           </Link>
           Verificación
         </h5>
@@ -49,7 +70,7 @@ export const ActiveAccount = () => {
         <div className="flex flex-col gap-y-1">
           <h6 className=' text-xl font-bold'>Código de verificación</h6>
           <p className='text-primary-brand-light text-lg'>Hemos enviado el código al correo</p>
-          <p className='text-lg font-semibold'>drortegaramirez@gmail.com</p>
+          {/* <p className='text-lg font-semibold'>drortegaramirez@gmail.com</p> */}
         </div>
       </div>
       <form className='flex flex-col gap-y-4' onSubmit={handleSubmitForm}>
@@ -70,7 +91,7 @@ export const ActiveAccount = () => {
         </div>
         <p className='text-lg font-bold'>Introduzca el código enviado</p>
         <button
-          onClick={() => alert(token.join(""))}
+          type='submit'
           disabled={token.join("").length < 6}
           className="w-full h-[30%] py-2 text-white bg-[#E08733] rounded-md hover:bg-[#9b5416] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
