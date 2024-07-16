@@ -1,8 +1,11 @@
+import { NextUIProvider } from "@nextui-org/react"
 import AppRouter from "./routers/AppRouter"
 
 function App() {
   return (
-    <AppRouter />
+    <NextUIProvider>
+      <AppRouter />
+    </NextUIProvider>
   )
 }
 

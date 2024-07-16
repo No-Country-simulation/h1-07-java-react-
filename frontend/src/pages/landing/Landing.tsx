@@ -1,7 +1,21 @@
-import { ArrowIcon, ArtistIcon, AvatarIcon, CloudIcon, FacebookIcon, FeaturesIcon, LinkedinIcon, SecurityIcon, StarIcon, StorageIcon, TimeIcon, UpdateIcon, VideoIcon } from '../../components/icons/Icons'
 import { Accordion, AccordionItem, Button, Input } from '@nextui-org/react'
 import styles from '../../styles.module.css';
-import { Nav } from '../../components/Nav';
+import { Nav } from '../../Components/Nav';
+import {
+  ArrowIcon,
+  CloudIcon,
+  FacebookIcon,
+  FeaturesIcon,
+  LinkedinIcon,
+  SecurityIcon,
+  StarIcon,
+  StorageIcon,
+  TimeIcon,
+  UpdateIcon,
+  VideoIcon
+} from '../../Components/icons/Icons';
+import { Link } from 'react-router-dom';
+
 
 const items = [
   {
@@ -44,7 +58,9 @@ export const Landing = () => {
         <section className=' flex flex-col gap-y-4'>
           <h2 className={styles.h2}>JUSTINA.IO</h2>
           <p className=' text-lg text-gray-color'>At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis cursus vestibulum, facilisi ac, sed faucibus.</p>
-          <Button color='primary' className=' rounded-sm w-36 h-11'>Get Started</Button>
+          <Link to={"/onboarding"} >
+            <Button color='primary' className=' rounded-sm w-36 h-11'>Get Started</Button>
+          </Link>
           <img src={'./public/Image-generic.png'} alt="image-landing-page" />
         </section>
         <section className=' flex flex-col gap-y-8'>
@@ -124,7 +140,7 @@ export const Landing = () => {
           </div>
           <p className=' px-24 leading-9 font-semibold'>“Orci vel eget in eu. Integer amet porttitor hendrerit etiam arcu, aliquet duis pretium consequat. Semper sed viverra enim ut nunc.”</p>
           <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full">
-            <AvatarIcon width={30} height={30}></AvatarIcon>
+
           </span>
           <p className=' font-semibold'>Courtney Henry</p>
 
@@ -182,7 +198,7 @@ export const Landing = () => {
             <FacebookIcon width={20} height={20}></FacebookIcon>
           </ol>
           <ol className=' border-2 rounded-full w-12 h-12 items-center justify-center flex cursor-pointer hover:scale-105 transition-all duration-300'>
-            <ArtistIcon width={20} height={20}></ArtistIcon>
+
           </ol>
         </li>
       </footer>

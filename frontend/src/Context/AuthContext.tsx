@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 
+
 import { AuthContextProps, AuthContextProviderProps, RootObject, User } from "../Interfaces/interfaces";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -36,6 +37,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     console.log(user);
     setIsAuthenticated(true);
     setUser(user);
+    
   }, []);
 
   const logout = useCallback(() => {

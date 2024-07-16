@@ -100,8 +100,11 @@ export interface AuthenticationRequest {
 }
 
 export interface AuthenticationResponse {
-  token: string;
+  token?: string; 
+
 }
+
+
 
 export interface Product {
   name: string
@@ -208,3 +211,4 @@ export interface AuthContextProps {
 export interface AuthContextProviderProps {
   children: React.ReactNode;
 }
+

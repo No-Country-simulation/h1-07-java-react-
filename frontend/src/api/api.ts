@@ -10,7 +10,7 @@ import {
   RolRequest,
 } from "../Interfaces/interfaces";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "https://27b1-181-168-133-217.ngrok-free.app/";
 
 // Helper function to make fetch requests
 const fetchData = async <T>(
