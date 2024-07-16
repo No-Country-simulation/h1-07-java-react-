@@ -2,7 +2,7 @@ import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthContext } from "../Context/AuthContext";
 import { RootObject } from "../Interfaces/interfaces";
-import { ClosePassword, IconCorreo, IconPassword, OpenPassword } from "../assets/Icons";
+import { ClosePasswordIcon, EmailIcon, LockIcon, OpenPasswordIcon } from "../components/icons/Icons";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ export const LoginPage: React.FC = () => {
         <form onSubmit={handleNavigation} className="space-y-4">
           <div>
             <div className="flex flex-row items-center mb-1">
-              <IconCorreo width={16} height={16} />
+              <EmailIcon width={16} height={16} />
               <label htmlFor="username" className="block ml-2 text-[17px] font-bold font-inter text-gray-700">Correo</label>
             </div>
             <input
@@ -57,7 +57,7 @@ export const LoginPage: React.FC = () => {
           </div>
           <div className="mb-10">
             <div className="flex flex-row items-center mb-1">
-              <IconPassword width={16} height={16} />
+              <LockIcon width={16} height={16} />
               <label htmlFor="password" className="block text-[17px] ml-2 font-bold font-inter text-gray-700">Contraseña</label>
             </div>
             <div className="flex items-center relative">
@@ -70,7 +70,7 @@ export const LoginPage: React.FC = () => {
                 className="w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
               <button type="button" onClick={togglePasswordVisibility} className="absolute right-[1rem]">
-                {showPassword ? <ClosePassword width={16} height={16} /> : <OpenPassword width={16} height={16} />}
+                {showPassword ? <ClosePasswordIcon width={16} height={16} /> : <OpenPasswordIcon width={16} height={16} />}
               </button>
             </div>
             <p className="mt-1 text-end text-[#948ABC] cursor-pointer">¿Olvidaste tu contraseña?</p>
