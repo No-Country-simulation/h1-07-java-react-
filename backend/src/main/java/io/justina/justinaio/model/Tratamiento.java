@@ -34,7 +34,7 @@ public class Tratamiento {
     private TipoTratamiento tipoTratamiento;
 
     private String descripcion;
-    private String dosis; // ver si queda en descripcion
+    private Integer dosisDiaria; // ver si queda en descripcion
 
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HorarioToma> horarios;

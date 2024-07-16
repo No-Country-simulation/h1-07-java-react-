@@ -21,7 +21,7 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
-public class AdherenciaService {
+public class  AdherenciaService {
 
     private final AdherenciaTratamientoRepository adherenciaTratamientoRepository;
     private final TratamientoRepository tratamientoRepository;
