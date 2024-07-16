@@ -78,6 +78,19 @@ export interface PasswordRequest {
   password: string;
 }
 
+export interface MedicoRegister {
+  email: string;
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  provincia: string;
+  localidad: string;
+  licencia: string;
+  especialidad: number;
+  password: string
+  financiadores: number[];
+}
+
 export interface MedicoRequest {
   nombre?: string;
   apellido?: string;
