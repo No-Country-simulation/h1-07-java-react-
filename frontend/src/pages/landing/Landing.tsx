@@ -1,3 +1,4 @@
+import { ArtistIcon, AvatarIcon, ChevronIcon, CloudIcon, FacebookIcon, FeaturesIcon, LinkedinIcon, SecurityIcon, StarIcon, StorageIcon, TimeIcon, UpdateIcon, VideoIcon } from '../../components/icons/Icons'
 import { Accordion, AccordionItem, Button, Input } from '@nextui-org/react'
 import styles from '../../styles.module.css';
 import { Nav } from '../../Components/Nav';
@@ -67,7 +68,7 @@ export const Landing = () => {
           <h5 className={styles.h5}>ACERCA DE</h5>
           <h2 className={styles.h2}>Etiam nulla lectus amet nunc molestie </h2>
           <p className='text-xl text-gray-color leading-8 tracking-wide	'>Metus, diam pretium at at morbi vulputate et. Tellus ipsum sollicitudin ut eu a lectus potenti maecenas </p>
-          <h4 className='text-xl flex items-center gap-x-3 text-blue-light-color font-semibold cursor-pointer hover:translate-x-2 transition-all duration-300'>Read More <ArrowIcon height={15} width={15}></ArrowIcon></h4>
+          <h4 className='text-xl flex items-center gap-x-3 text-blue-light-color font-semibold cursor-pointer hover:translate-x-2 transition-all duration-300'>Read More <ChevronIcon height={15} width={15}></ChevronIcon></h4>
           <img src={'./public/Image-generic.png'} alt="image-landing-page" />
         </section>
         <section className='flex flex-col gap-y-8 items-center text-center'>
@@ -126,7 +127,6 @@ export const Landing = () => {
               {defaultContent}
             </AccordionItem>
           </Accordion>
-
         </section>
         <section className='text-center flex items-center flex-col gap-4'>
           <h2 className={styles.h2}>Clientes</h2>

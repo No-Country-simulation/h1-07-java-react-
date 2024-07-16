@@ -10,13 +10,13 @@ import {
   RolRequest,
 } from "../Interfaces/interfaces";
 
-const API_URL = "https://27b1-181-168-133-217.ngrok-free.app/";
+export const API_URL = "https://97de-181-168-133-217.ngrok-free.app";
 
 // Helper function to make fetch requests
 const fetchData = async <T>(
   url: string,
   method: string,
-  body: unknown,
+  body?: unknown,
   token?: string
 ): Promise<T> => {
   const headers: HeadersInit = {
@@ -30,11 +30,15 @@ const fetchData = async <T>(
     headers,
     body: JSON.stringify(body),
   });
-  console.log(response);
+  const status = response.status;
 
   if (!response.ok) {
-    throw new Error(`Error: ${response.statusText}`);
+    const errorText = await response.text();
+    const error = new Error(`Error: ${response.status} ${response.statusText}. ${errorText}`);
+    (error as any).status = status; // Añadir el código de estado al error
+    throw error;
   }
+  
   return response.json() as Promise<T>;
 };
 
@@ -104,13 +108,11 @@ export const changePatientPassword = async (
 // Function to create a doctor
 export const createDoctor = async (
   doctorData: MedicoRequest,
-  token: string
 ): Promise<void> => {
   return await fetchData<void>(
-    "/medico/crear-medico",
+    "/auth/registrar-medico",
     "POST",
     doctorData,
-    token
   );
 };
 
@@ -155,5 +157,15 @@ export const authenticate = async (
     "/auth/autenticar",
     "POST",
     authData
+  );
+};
+
+// Function to active account
+export const activeAccount = async (
+  token: string
+): Promise<AuthenticationResponse> => {
+  return await fetchData<AuthenticationResponse>(
+    `/auth/activar-cuenta?token=${token}`,
+    "GET",
   );
 };
