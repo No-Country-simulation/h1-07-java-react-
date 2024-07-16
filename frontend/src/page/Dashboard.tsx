@@ -1,4 +1,4 @@
-import { Logout } from "../components/Logout";
+import { Logout } from "../Components/Logout";
 
 
 export function Dashboard() {

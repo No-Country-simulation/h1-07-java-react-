@@ -1,9 +1,9 @@
 import { mapValues } from "../runtime";
 
 /**
- *
- * @export
- * @interface AuthenticationRequest
+ 
+  @export
+  @interface AuthenticationRequest
  */
 export interface AuthenticationRequest {
   /**

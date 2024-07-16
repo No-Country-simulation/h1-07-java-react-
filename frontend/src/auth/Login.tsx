@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthContext } from "../Context/AuthContext";
-import { RootObject } from "../Interfaces/interfaces";
+import { AuthenticationRequest, AuthenticationResponse, RootObject } from "../Interfaces/interfaces";
 import { ClosePassword, IconCorreo, IconPassword, OpenPassword } from "../assets/Icons";
+import { autenticar } from "../services/authServices";
+
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -10,31 +12,83 @@ export const LoginPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  
+  
+  /*
+   const handleNavigation = async (e: React.FormEvent<HTMLFormElement>) => {
+     e.preventDefault();
+ 
+     
+ 
+     try {
+       if (response && response.token) {
+         const user: RootObject = {
+           user: {
+             id: 1,
+             nombre: "Usuario",
+             email: username,
+             rol_id: 1,
+           },
+           token: response.token,
+ 
+         }
+         login(user);
+         navigate("/dashboard");
+       } else if (username === "admin" || password === "test") {
+         const user: RootObject = {
+           user: {
+             id: 1,
+             nombre: "Usuario",
+             email: username,
+             rol_id: 1,
+           },
+           token: "test",
+         }
+         login(user);
+         navigate("/dashboard");
+       } else {
+         alert("Email o Contraseña incorrecta");
+       }
+       
+       
+     } catch (error) {
+       alert("Email o Contraseña incorrecta");
+     }
+   };
+  */
 
-  const handleNavigation = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (username === "admin" && password === "test") {
-      const user: RootObject = {
-        user: {
-          id: 1,
-          nombre: "Admin",
-          email: username,
-          rol_id: 1,
-        },
-        token: "fake-jwt-token",
-      };
-      login(user);
-      navigate("/dashboard");
-    } else {
-      alert("Email o Contraseña incorrecta");
-    }
-  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const handleNavigation = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
+    const request: AuthenticationRequest = { email: username, password: password };
+
+    try {
+      const response: AuthenticationResponse = await autenticar({ authenticationRequest: request });
+
+      if (response && response.token) {
+        const user: RootObject = {
+          user: {
+            id: 1,
+            nombre: "Usuario",
+            email: username,
+            rol_id: 1,
+          },
+          token: response.token,
+        }
+        login(user);
+        navigate("/dashboard");
+      } else {
+        alert("Email o Contraseña incorrecta");
+      }
+
+    } catch (error) {
+      alert("Email o Contraseña incorrecta");
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center md:bg-black ">
