@@ -5,34 +5,38 @@ import PublicRoute from "./PublicRoute";
 import { Dashboard } from "../page/Dashboard";
 import { ErrorPage } from "../page/ErrorPage";
 import { Landing } from "../pages/landing/Landing";
-import { LoginPage } from "../Auth/Login";
-import { SingUp } from "../Auth/SingUp";
+import { LoginPage } from "../auth/Login";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import { Toaster } from "sonner";
+import SignUp from "../pages/signup/SignUp";
+
 
 function AppRouter() {
-    return (
-        <>
-            <AuthContextProvider>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<PublicRoute />}>
-                            <Route index element={<LoginPage />} />
-                            <Route path="/singup" element={<SingUp />} />
-                            <Route path="/landing" element={<Landing></Landing>}></Route>
-                        </Route>
-                        <Route path="/dashboard" element={<PrivateRoute />}>
-                            <Route index element={<Dashboard />} />
-                            {/* <Route path="/dashboard/clients" element={<Clients />} /> */}
-                            {/* <Route path="/dashboard/provider" element={<Provider />} /> */}
-                            {/* <Route path="/dashboard/products" element={<Products />} /> */}
-                            {/* <Route path="/dashboard/users" element={<Users></Users>} /> */}
-                        </Route>
-                        <Route path="*" element={<ErrorPage />} />
-                    </Routes>
-                </BrowserRouter>
-            </AuthContextProvider>
-            {/* <Toaster richColors></Toaster> */}
-        </>
-    );
+	return (
+		<>
+			<AuthContextProvider>
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<PublicRoute />}>
+							<Route index element={<LoginPage />} />
+							<Route path="/signup" element={<SignUp />} />
+							<Route path="/landing" element={<Landing></Landing>}></Route>
+							<Route path="/active-account" element={<ActiveAccount></ActiveAccount>}></Route>
+						</Route>
+						<Route path="/dashboard" element={<PrivateRoute />}>
+							<Route index element={<Dashboard />} />
+							{/* <Route path="/dashboard/clients" element={<Clients />} /> */}
+							{/* <Route path="/dashboard/provider" element={<Provider />} /> */}
+							{/* <Route path="/dashboard/products" element={<Products />} /> */}
+							{/* <Route path="/dashboard/users" element={<Users></Users>} /> */}
+						</Route>
+						<Route path="*" element={<ErrorPage />} />
+					</Routes>
+				</BrowserRouter>
+			</AuthContextProvider>
+			<Toaster richColors></Toaster>
+		</>
+	);
 }
 
 export default AppRouter;
