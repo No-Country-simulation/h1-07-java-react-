@@ -25,7 +25,7 @@ public class NuevoTratamientoRequest {
     @Schema(description = "Identificador del medicamento", example = "1")
     private Integer medicamentoId;
 
-    @Schema(description = "Tipo de tratamiento (0: Medicamento, 1: Procedimiento, etc.)", example = "1")
+    @Schema(description = "Tipo de tratamiento (0: Medicamento, 1: Procedimiento, etc.)", example = "")
     private Integer tipoTratamiento;
 
     @Schema(description = "Descripción del tratamiento", example = "Tratamiento con medicamento X para la patología Y")

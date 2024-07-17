@@ -8,6 +8,7 @@ import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class Tratamiento {
     private Integer dosisDiaria; // ver si queda en descripcion
 
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HorarioToma> horarios;
+    private List<HorarioToma> horarios = new ArrayList<>();
 
     private LocalDate fechaInicio;
     private LocalDate fechaFin;

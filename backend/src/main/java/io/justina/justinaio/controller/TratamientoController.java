@@ -8,10 +8,7 @@ import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("tratamiento")
@@ -27,5 +24,15 @@ public class TratamientoController {
     ) {
         tratamientoService.crearTratamiento(tratamientoRequest,token);
         return ResponseEntity.ok("El tratamiento ha sido creado con éxito!");
+    }
+
+    @PutMapping("/modificar-tratamiento")
+    public ResponseEntity<?> modificarTratamiento(
+            @RequestBody NuevoTratamientoRequest tratamientoRequest,
+            @RequestParam Integer idTratamiento,
+            Authentication token
+    ){
+        tratamientoService.modificarTratamiento(idTratamiento,tratamientoRequest,token);
+        return ResponseEntity.ok("El tratamiento ha sido modificado con válido!");
     }
 }
