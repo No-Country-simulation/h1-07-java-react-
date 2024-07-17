@@ -1,4 +1,4 @@
-import { NextUIProvider } from "@nextui-org/react"
+import { Suspense } from "react"
 import AppRouter from "./routers/AppRouter"
 
 function App() {
