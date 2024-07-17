@@ -4,8 +4,10 @@ import io.justina.justinaio.model.enums.EstadoTratamiento;
 import io.justina.justinaio.model.enums.TipoTratamiento;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -39,8 +41,8 @@ public class Tratamiento {
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HorarioToma> horarios;
 
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
     @ManyToOne
     @JoinColumn(name = "paciente_id")

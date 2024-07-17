@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
@@ -17,9 +18,6 @@ import java.util.List;
 public class NuevoTratamientoRequest {
     @Schema(description = "Identificador del paciente", example = "2")
     private Integer pacienteId;
-
-    @Schema(description = "Identificador del médico", example = "1")
-    private Integer medicoId;
 
     @Schema(description = "Identificador de la patología", example = "1")
     private Integer patologiaId;
@@ -45,5 +43,5 @@ public class NuevoTratamientoRequest {
 
     @Schema(description = "Fecha de inicio del tratamiento", example = "2024-07-16")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 }

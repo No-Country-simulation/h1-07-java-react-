@@ -3,7 +3,9 @@ import io.justina.justinaio.model.enums.EstadoHorario;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -24,6 +26,8 @@ public class HorarioToma {
     private String cometario;
 
     private LocalTime hora;
+    @Temporal(TemporalType.DATE)
+    private LocalDate fecha;
     @Enumerated(EnumType.ORDINAL)
     private EstadoHorario estadoHorario;
 }
