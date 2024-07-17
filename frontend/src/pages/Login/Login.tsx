@@ -1,8 +1,8 @@
-import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuthContext } from "../Context/AuthContext";
-import { RootObject } from "../Interfaces/interfaces";
-import { ClosePasswordIcon, EmailIcon, LockIcon, OpenPasswordIcon } from "../components/icons/Icons";
+import { useAuthContext } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { RootObject } from "../../Interfaces/interfaces";
+import { ClosePasswordIcon, EmailIcon, LockIcon, OpenPasswordIcon } from "../../components/icons/Icons";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();

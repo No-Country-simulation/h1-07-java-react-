@@ -2,6 +2,7 @@ import { Divider } from '@nextui-org/react'
 import { ArrowIcon, CheckIcon } from '../../components/icons/Icons'
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../../api/api';
 
 
 export const ActiveAccount = () => {
@@ -30,7 +31,6 @@ export const ActiveAccount = () => {
 
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const API_URL = "https://97de-181-168-133-217.ngrok-free.app/auth/activar-cuenta";
     const tokenValue = token.join(""); // Obtén el valor del token
     try {
       //token de prueba 139163
@@ -74,7 +74,7 @@ export const ActiveAccount = () => {
         </div>
       </div>
       <form className='flex flex-col gap-y-4' onSubmit={handleSubmitForm}>
-        <div className="flex gap-x-2 justify-center">
+        <div className="flex gap-2 justify-center flex-wrap">
           {token.map((value, index: number) => (
             <input
               key={index}

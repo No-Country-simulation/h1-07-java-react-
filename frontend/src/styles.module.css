@@ -2,6 +2,11 @@
   @apply font-bold text-2xl;
 }
 
+.h1 {
+  @apply font-bold text-4xl;
+}
+
+
 .h5 {
   @apply text-gray-color text-xl
 }
