@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuthContext } from "../Context/AuthContext";
-import { AuthenticationRequest, RootObject } from "../Interfaces/interfaces";
-import { ClosePassword, IconCorreo, IconPassword, OpenPassword } from "../assets/Icons";
-import { autenticar } from "../services/authServices";
+import { useAuthContext } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { RootObject } from "../../Interfaces/interfaces";
+import { ClosePasswordIcon, EmailIcon, LockIcon, OpenPasswordIcon } from "../../components/icons/Icons";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -11,17 +10,9 @@ export const LoginPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleNavigation = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleNavigation = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
 
     if (username === "admin" && password === "test") {
       const user: RootObject = {
@@ -35,32 +26,15 @@ export const LoginPage: React.FC = () => {
       };
       login(user);
       navigate("/dashboard");
-      setLoading(false);
     } else {
-      const requestParameters = {
-        authenticationRequest: { email: username, password } as AuthenticationRequest,
-      };
-
-      try {
-        const response = await autenticar(requestParameters);
-        const user: RootObject = {
-          user: {
-            id: response.id,
-            nombre: response.nombre,
-            email: response.email,
-            rol_id: response.rol_id,
-          },
-          token: response.token,
-        };
-        login(user);
-        navigate("/dashboard");
-      } catch (error) {
-        setError("Email o Contraseña incorrecta");
-      } finally {
-        setLoading(false);
-      }
+      alert("Email o Contraseña incorrecta");
     }
   };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
 
   return (
     <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center md:bg-black ">
@@ -70,7 +44,7 @@ export const LoginPage: React.FC = () => {
         <form onSubmit={handleNavigation} className="space-y-4">
           <div>
             <div className="flex flex-row items-center mb-1">
-              <IconCorreo width={16} height={16} />
+              <EmailIcon width={16} height={16} />
               <label htmlFor="username" className="block ml-2 text-[17px] font-bold font-inter text-gray-700">Correo</label>
             </div>
             <input
@@ -83,7 +57,7 @@ export const LoginPage: React.FC = () => {
           </div>
           <div className="mb-10">
             <div className="flex flex-row items-center mb-1">
-              <IconPassword width={16} height={16} />
+              <LockIcon width={16} height={16} />
               <label htmlFor="password" className="block text-[17px] ml-2 font-bold font-inter text-gray-700">Contraseña</label>
             </div>
             <div className="flex items-center relative">
@@ -96,7 +70,7 @@ export const LoginPage: React.FC = () => {
                 className="w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
               <button type="button" onClick={togglePasswordVisibility} className="absolute right-[1rem]">
-                {showPassword ? <ClosePassword width={16} height={16} /> : <OpenPassword width={16} height={16} />}
+                {showPassword ? <ClosePasswordIcon width={16} height={16} /> : <OpenPasswordIcon width={16} height={16} />}
               </button>
             </div>
             <p className="mt-1 text-end text-[#948ABC] cursor-pointer">¿Olvidaste tu contraseña?</p>
@@ -114,6 +88,7 @@ export const LoginPage: React.FC = () => {
             </button>
           </div>
         </form>
+
       </div>
     </div>
   );

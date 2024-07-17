@@ -1,12 +1,12 @@
 import * as Yup from 'yup';
 import { MedicoRegister } from '../../Interfaces/interfaces';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { API_URL } from '../../api/api';
 import { toast } from 'sonner';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { CardIcon, EmailIcon, HomeIcon, LoaderIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from '../../Components/icons/Icons';
-import { Button } from '@nextui-org/react';
+import { CardIcon, EmailIcon, HomeIcon, LoaderIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from '../../components/icons/Icons';
+import { Button, Select, SelectItem } from '@nextui-org/react';
 
 
 const initialValues: MedicoRegister = {
@@ -21,6 +21,11 @@ const initialValues: MedicoRegister = {
 	especialidad: 1,
 	financiadores: [1]
 };
+
+// const financiadores = [
+// 	{ key: 1, label: "OSDE" },
+// 	{ key: 2, label: "Swiss Medical" },
+// ]
 
 const validationSchema = Yup.object({
 	email: Yup.string()
@@ -53,6 +58,7 @@ const validationSchema = Yup.object({
 const SignUp: React.FC = () => {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false)
+	// const [valuesSelect, setValuesSelect] = useState<number[]>([1]);
 
 	const handleSubmit = async (values: MedicoRegister) => {
 		setLoading(true)
@@ -92,6 +98,12 @@ const SignUp: React.FC = () => {
 		}
 	};
 
+	// const handleSelectOption = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   setValuesSelect(prev => [...prev, Number(e.target.value)]);
+	// 	console.log(valuesSelect)
+	// }
+
+
 	return (
 		<section className="max-md:w-full mt-8 mx-auto p-4 max-w-[50rem] border-2 m">
 			<div className="mb-6 text-center">
@@ -105,7 +117,7 @@ const SignUp: React.FC = () => {
 			>
 				{({ isSubmitting }) => (
 					<Form className=" w-full p-4 flex flex-col gap-y-4  ">
-						<div className="flex-wrap grid grid-rows-4 gap-6 max-md:grid-rows-8 max-md:gap-1 grid-flow-col max-md:gap-y-3">
+						<div className="flex-wrap grid grid-rows-4 gap-6 max-md:grid-rows-9 max-md:gap-1 grid-flow-col max-md:gap-y-3">
 							<div>
 								<label className="font-semibold flex items-center gap-2 pl-2" htmlFor="email">
 									<EmailIcon width={15} height={15} /> Correo Electrónico
@@ -210,6 +222,23 @@ const SignUp: React.FC = () => {
 								/>
 								<ErrorMessage name="licencia" component="div" className="text-red-500" />
 							</div>
+							{/* <div>
+								<label className="font-semibold flex items-center gap-2 pl-2" htmlFor="licencia">
+									<CardIcon width={15} height={15} /> Financiadores
+								</label>
+								<Select
+									id="financiadores"
+									name="financiadores"
+									label="Ingresar Financiador"
+									selectionMode='multiple'
+									onChange={handleSelectOption}>
+									{financiadores.map((financiador) => (
+										<SelectItem key={financiador.key}>{financiador.label}</SelectItem>
+									))}
+								</Select>
+
+								<ErrorMessage name="financiadores" component="div" className="text-red-500" />
+							</div> */}
 						</div>
 
 						<div>

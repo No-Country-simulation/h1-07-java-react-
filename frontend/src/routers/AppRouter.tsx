@@ -2,15 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthContextProvider } from "../Context/AuthContext";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import { Dashboard } from "../page/Dashboard";
-import { ErrorPage } from "../page/ErrorPage";
-import { Landing } from "../pages/landing/Landing";
-import { LoginPage } from "../Auth/Login";
-import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import { Toaster } from "sonner";
-import SignUp from "../pages/signup/SignUp";
-import { Onboarding } from "../page/OnBoarding/OnBoarding";
-
+import SignUp from "../pages/SignUp/SignUp";
+import { Landing } from "../pages/Landing/Landing";
+import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+import { ErrorPage } from "../pages/NotFound/ErrorPage";
+import { Dashboard } from "../pages/Dashboard/Dashboard";
+import { LoginPage } from "../pages/Login/Login";
 
 function AppRouter() {
 	return (
@@ -21,9 +19,8 @@ function AppRouter() {
 						<Route path="/" element={<PublicRoute />}>
 							<Route path="/login" element={<LoginPage />} />
 							<Route path="/signup" element={<SignUp />} />
-							<Route index path="/" element={<Landing  />}></Route>
-							<Route path="/onboarding" element={<Onboarding />} />
-							<Route path="/active-account" element={<ActiveAccount></ActiveAccount>}></Route>
+							<Route path="/landing" element={<Landing />}></Route>
+							<Route path="/active-account" element={<ActiveAccount />}></Route>
 						</Route>
 						<Route path="/dashboard" element={<PrivateRoute />}>
 							<Route index element={<Dashboard />} />

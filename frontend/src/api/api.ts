@@ -10,7 +10,7 @@ import {
   RolRequest,
 } from "../Interfaces/interfaces";
 
-export const API_URL = "https://0663-181-168-133-217.ngrok-free.app/swagger-ui/index.html#";
+export const API_URL = "https://0663-181-168-133-217.ngrok-free.app";
 
 // Helper function to make fetch requests
 const fetchData = async <T>(
