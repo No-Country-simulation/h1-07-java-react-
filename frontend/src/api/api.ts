@@ -10,7 +10,7 @@ import {
   RolRequest,
 } from "../Interfaces/interfaces";
 
-export const API_URL = "https://0663-181-168-133-217.ngrok-free.app";
+export const API_URL = "https://aff0-181-168-133-217.ngrok-free.app";
 
 // Helper function to make fetch requests
 const fetchData = async <T>(
@@ -143,7 +143,7 @@ export const changeDoctorPassword = async (
 export const register = async (
   registrationData: RegistrationRequest
 ): Promise<void> => {
-  return await fetchData<void>("/auth/registrar", "POST", registrationData);
+  return await fetchData<void>("/auth/registrar-medico", "POST", registrationData);
 };
 
 // Function to authenticate

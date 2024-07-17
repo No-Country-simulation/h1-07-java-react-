@@ -6,7 +6,6 @@ export interface ModalProps {
   handleClose: () => void;
 }
 
-
 export interface ApiResponseProfesional {
   data: Omit<ProfessionalData, "slots">;
   success: boolean;
@@ -110,9 +109,6 @@ export interface RegistrationRequest {
   password: string;
 }
 
-
-
-
 export interface Product {
   name: string
   price: number
@@ -136,7 +132,6 @@ export interface IProvider {
   direccion: string;
   telefono: string;
 }
-
 
 export interface newClient {
   name: string
@@ -176,7 +171,6 @@ export interface Clients {
   phone: string
 }
 
-
 export interface Users {
   id: number
   nombre: string
@@ -196,23 +190,11 @@ export interface RegistrarRequest {
   registrationRequest: RegistrationRequest;
 }
 
-
-export interface User {
-  id: number;
-  nombre: string;
-  email: string;
-  rol_id: number;
-}
-
 export interface AuthContextProps {
-  login: (user: RootObject) => void;
+  login: (authTokens: AuthTokens) => void;
   logout: () => void;
-  isAuthenticated: boolean;
-  user: RootObject;
-}
-
-export interface AuthContextProviderProps {
-  children: React.ReactNode;
+  isLoggedIn: boolean;
+  authTokens: AuthTokens | null;
 }
 
 export interface AuthenticationRequest {
@@ -226,17 +208,20 @@ export interface AuthenticationResponse {
   email: string;
   rol_id: number;
   token?: string;
-  
 }
 
-export interface RootObject {
-  token?: any;
-  user: User;
-}
-
-export interface User {
-  id: number;
-  nombre: string;
+export interface AuthTokens {
+  token: string;
   email: string;
-  rol_id: number;
+  iat: number
+  exp: number
+  authorities: string[];
+}
+
+export interface tokenData {
+  fullName: string
+  sub: string
+  iat: number
+  exp: number
+  authorities: string[]
 }
