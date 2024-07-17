@@ -2,8 +2,9 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
-import { register } from '../api/api'; 
-import { EmailIcon, LockIcon, UserIcon } from '../Components/icons/Icons';
+import { register } from '../../api/api';
+import { EmailIcon, LockIcon, UserIcon } from '../../components/icons/Icons';
+
 
 interface RegisterFormValues {
   firstName: string;

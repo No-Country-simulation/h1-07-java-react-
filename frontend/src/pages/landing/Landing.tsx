@@ -1,20 +1,9 @@
 import { Accordion, AccordionItem, Button, Input } from '@nextui-org/react'
 import styles from '../../styles.module.css';
-import { Nav } from '../../Components/Nav';
-import {
-  ChevronIcon,
-  CloudIcon,
-  FacebookIcon,
-  FeaturesIcon,
-  LinkedinIcon,
-  SecurityIcon,
-  StarIcon,
-  StorageIcon,
-  TimeIcon,
-  UpdateIcon,
-  VideoIcon
-} from '../../Components/icons/Icons';
+
 import { Link } from 'react-router-dom';
+import { Nav } from '../../components/Nav';
+import { ChevronIcon, CloudIcon, FacebookIcon, FeaturesIcon, LinkedinIcon, SecurityIcon, StarIcon, StorageIcon, TimeIcon, UpdateIcon, VideoIcon } from '../../components/icons/Icons';
 
 
 const items = [
