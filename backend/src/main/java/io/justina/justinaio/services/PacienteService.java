@@ -58,6 +58,8 @@ public class PacienteService {
                 .email(pacienteRequest.getEmail())
                 .password(passwordEncoder.encode(pacienteRequest.getPassword()))
                 .roles(roles)
+                .accountLocked(false)
+                .enabled(true)
                 .build();
 
         Integer userPacienteId = usuarioRepository.save(usuario).getId();
@@ -88,8 +90,7 @@ public class PacienteService {
                 .build();
 
         pacienteRepository.save(paciente);
-        emailService.sendValidationEmail(usuario);
-
+        //emailService.sendValidationEmail(usuario);
     }
 
     @Transactional
