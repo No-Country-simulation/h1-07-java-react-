@@ -7,7 +7,6 @@ import {
   useState,
 } from "react";
 
-
 import { AuthContextProps, AuthContextProviderProps, RootObject, User } from "../Interfaces/interfaces";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);

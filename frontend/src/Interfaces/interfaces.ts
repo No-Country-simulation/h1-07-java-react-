@@ -103,19 +103,13 @@ export interface MedicoRequest {
 }
 
 export interface RegistrationRequest {
+  firstName: string;
+  lastName: string;
+  age: number;
   email: string;
   password: string;
 }
 
-export interface AuthenticationRequest {
-  email: string;
-  password: string;
-}
-
-export interface AuthenticationResponse {
-  token?: string; 
-
-}
 
 
 
@@ -202,10 +196,6 @@ export interface RegistrarRequest {
   registrationRequest: RegistrationRequest;
 }
 
-export interface RootObject {
-  token: string;
-  user: User;
-}
 
 export interface User {
   id: number;
@@ -225,3 +215,28 @@ export interface AuthContextProviderProps {
   children: React.ReactNode;
 }
 
+export interface AuthenticationRequest {
+  email: string;
+  password: string;
+}
+
+export interface AuthenticationResponse {
+  id: number;
+  nombre: string;
+  email: string;
+  rol_id: number;
+  token?: string;
+  
+}
+
+export interface RootObject {
+  token?: any;
+  user: User;
+}
+
+export interface User {
+  id: number;
+  nombre: string;
+  email: string;
+  rol_id: number;
+}

@@ -1,9 +1,8 @@
-import { ArtistIcon, AvatarIcon, ChevronIcon, CloudIcon, FacebookIcon, FeaturesIcon, LinkedinIcon, SecurityIcon, StarIcon, StorageIcon, TimeIcon, UpdateIcon, VideoIcon } from '../../components/icons/Icons'
 import { Accordion, AccordionItem, Button, Input } from '@nextui-org/react'
 import styles from '../../styles.module.css';
 import { Nav } from '../../Components/Nav';
 import {
-  ArrowIcon,
+  ChevronIcon,
   CloudIcon,
   FacebookIcon,
   FeaturesIcon,
