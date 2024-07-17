@@ -62,13 +62,69 @@ public class TratamientoService {
         horarioTomaRepository.saveAll(horarios);
     }
 
+    public void modificarTratamiento(Integer tratamientoId, NuevoTratamientoRequest request, Authentication token) {
+        Usuario userMedico = (Usuario) token.getPrincipal();
+
+        // Obtiene el tratamiento existente por ID
+        Tratamiento tratamiento = tratamientoRepository.findById(tratamientoId)
+                .orElseThrow(() -> new NullPointerException("No se encuentra el tratamiento en la DB con ese ID"));
+
+        // Verifica que el médico que hace la modificación es el mismo que creó el tratamiento
+        if (!tratamiento.getMedico().getIdMedico().equals(userMedico.getId())) {
+            throw new SecurityException("No tienes permiso para modificar este tratamiento");
+        }
+
+        // Actualiza los campos del tratamiento con la nueva información del request
+        TipoTratamiento tipoTratamiento = TipoTratamiento.values()[request.getTipoTratamiento()];
+        if (tipoTratamiento == TipoTratamiento.MEDICAMENTO) {
+            Patologia patologia = obtenerPatologiaPorId(request.getPatologiaId());
+            Medicamento medicamento = obtenerMedicamentoPorId(request.getMedicamentoId());
+            tratamiento.setPatologia(patologia);
+            tratamiento.setMedicamento(medicamento);
+        } else {
+            tratamiento.setPatologia(null);
+            tratamiento.setMedicamento(null);
+        }
+
+        tratamiento.setTipoTratamiento(tipoTratamiento);
+        tratamiento.setDescripcion(request.getDescripcion());
+        tratamiento.setDosisDiaria(request.getDosisDiaria());
+
+        // Actualiza la fecha de inicio y recalcula la fecha de fin
+        LocalDate fechaInicio = calcularFechaInicio(request.getFechaInicio(), request.getHoraInicio());
+        tratamiento.setFechaInicio(fechaInicio);
+        tratamiento.setFechaFin(fechaInicio.plusDays(request.getDiasTotales()));
+
+        tratamiento.setEstado(EstadoTratamiento.EN_CURSO);
+
+        // Actualiza el tratamiento
+        tratamientoRepository.save(tratamiento);
+
+        // Primero elimina los horarios de toma antiguos (esto debería ser redundante, pero es una medida de precaución)
+        List<HorarioToma> horariosExistentes = horarioTomaRepository.findByTratamiento(tratamiento);
+        horarioTomaRepository.deleteAll(horariosExistentes);
+
+        // Crea y asigna nuevos horarios de toma
+        List<HorarioToma> nuevosHorarios = crearHorariosToma(tratamiento, request.getHoraInicio(), request.getDosisDiaria(), request.getDiasTotales());
+        tratamiento.setHorarios(nuevosHorarios);  // Aquí se actualizan los horarios de toma del tratamiento
+
+        // Guarda los nuevos horarios
+        horarioTomaRepository.saveAll(nuevosHorarios);
+    }
+
     private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
         LocalDate fechaInicio;
+
+        if(fechaInicioRequest.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("La fecha de inicio no puede ser anterior a la fecha actual");
+        }
+
         if (fechaInicioRequest == null) {
             fechaInicio = LocalDate.now();
         } else {
             fechaInicio = fechaInicioRequest;
         }
+
 
         // Ajusta la fecha de inicio si la hora es menor a la hora actual y es el mismo día
         LocalTime currentTime = LocalTime.now();

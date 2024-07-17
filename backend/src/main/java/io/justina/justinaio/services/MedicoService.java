@@ -71,9 +71,7 @@ public class MedicoService {
 
         if (medicoRequest.getEspecialidad() != null) {
             Optional<Especialidad> especialidadOpt = especialidadRepository.findById(medicoRequest.getEspecialidad());
-            if (especialidadOpt.isPresent()) {
-                medico.setEspecialidad(especialidadOpt.get());
-            }
+            especialidadOpt.ifPresent(medico::setEspecialidad);
         }
 
         if (medicoRequest.getFinanciadores() != null && !medicoRequest.getFinanciadores().isEmpty()) {
@@ -146,6 +144,13 @@ public class MedicoService {
                 medicos.isFirst(),
                 medicos.isLast()
         );
+    }
+
+    public MedicoResponse buscarMedicoConectado(Authentication token) {
+        Usuario userMedico = (Usuario) token.getPrincipal();
+
+        Medico medico = medicoRepository.findById(userMedico.getId()).orElseThrow(() -> new NullPointerException("Medico no encontrado"));
+        return Mapper.toMedicoResponse(medico);
     }
 }
 

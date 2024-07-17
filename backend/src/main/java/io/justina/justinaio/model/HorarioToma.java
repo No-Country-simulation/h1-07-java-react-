@@ -20,7 +20,7 @@ public class HorarioToma {
     private Integer idHorario;
 
     @ManyToOne
-    @JoinColumn(name = "tratamiento_id")
+    @JoinColumn(name = "tratamiento_id", nullable = false)
     private Tratamiento tratamiento;
 
     private String cometario;
