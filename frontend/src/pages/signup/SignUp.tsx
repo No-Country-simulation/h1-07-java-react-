@@ -5,8 +5,8 @@ import { ChangeEvent, useState } from 'react';
 import { API_URL } from '../../api/api';
 import { toast } from 'sonner';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { CardIcon, EmailIcon, HomeIcon, LoaderIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from '../../components/icons/Icons';
 import { Button, Select, SelectItem } from '@nextui-org/react';
+import { CardIcon, EmailIcon, HomeIcon, LoaderIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from '../../Components/icons/Icons';
 
 
 const initialValues: MedicoRegister = {

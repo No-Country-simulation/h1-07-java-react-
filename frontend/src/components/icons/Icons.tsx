@@ -1,3 +1,4 @@
+
 export const ClosePasswordIcon = ({ width, height }: { width: number, height: number }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -274,3 +275,148 @@ export const CardIcon = ({ width, height }: { width: number, height: number }) =
 }
 
 
+interface IconProps {
+  width: number
+  height: number
+}
+
+
+export const IconCorreo = ({ width, height }: IconProps) => {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.75 3.75C13.75 3.0625 13.1875 2.5 12.5 2.5H2.5C1.8125 2.5 1.25 3.0625 1.25 3.75M13.75 3.75V11.25C13.75 11.9375 13.1875 12.5 12.5 12.5H2.5C1.8125 12.5 1.25 11.9375 1.25 11.25V3.75M13.75 3.75L7.5 8.125L1.25 3.75" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
+
+export const IconPassword = ({ width, height }: IconProps) => {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_39_11424)">
+        <path d="M4.375 6.875V4.375C4.375 3.5462 4.70424 2.75134 5.29029 2.16529C5.87634 1.57924 6.6712 1.25 7.5 1.25C8.3288 1.25 9.12366 1.57924 9.70971 2.16529C10.2958 2.75134 10.625 3.5462 10.625 4.375V6.875M3.125 6.875H11.875C12.5654 6.875 13.125 7.43464 13.125 8.125V12.5C13.125 13.1904 12.5654 13.75 11.875 13.75H3.125C2.43464 13.75 1.875 13.1904 1.875 12.5V8.125C1.875 7.43464 2.43464 6.875 3.125 6.875Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_39_11424">
+          <rect width="15" height="15" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+
+  )
+}
+
+
+export function ClosePassword({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_39_11059)">
+        <path d="M8.825 8.825C8.65334 9.00922 8.44634 9.15697 8.21635 9.25945C7.98635 9.36193 7.73806 9.41704 7.48631 9.42148C7.23455 9.42592 6.98448 9.37961 6.75101 9.28531C6.51754 9.191 6.30545 9.05064 6.1274 8.8726C5.94936 8.69455 5.809 8.48246 5.71469 8.24899C5.62039 8.01552 5.57408 7.76545 5.57852 7.51369C5.58296 7.26194 5.63807 7.01365 5.74055 6.78365C5.84303 6.55366 5.99078 6.34666 6.175 6.175M0.625 0.625L14.375 14.375M11.2125 11.2125C10.1441 12.0269 8.84319 12.478 7.5 12.5C3.125 12.5 0.625 7.5 0.625 7.5C1.40243 6.05118 2.48071 4.78538 3.7875 3.7875L11.2125 11.2125ZM6.1875 2.65C6.61771 2.5493 7.05817 2.49896 7.5 2.5C11.875 2.5 14.375 7.5 14.375 7.5C13.9956 8.20975 13.5432 8.87796 13.025 9.49375L6.1875 2.65Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_39_11059">
+          <rect width="15" height="15" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+
+  )
+}
+
+export function OpenPassword({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 9C1 9 5 1 12 1C19 1 23 9 23 9C23 9 19 17 12 17C5 17 1 9 1 9Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
+
+export function UserIconTwo({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_259_774)">
+        <circle cx="22" cy="22" r="20" fill="white" stroke="#666666" stroke-width="4" stroke-linecap="round" />
+        <path d="M31.625 33.6875V33.6875C31.625 30.6499 29.1626 28.1875 26.125 28.1875H17.875C14.8374 28.1875 12.375 30.6499 12.375 33.6875V33.6875" stroke="#666666" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M22 24.0625C25.797 24.0625 28.875 20.9845 28.875 17.1875C28.875 13.3905 25.797 10.3125 22 10.3125C18.203 10.3125 15.125 13.3905 15.125 17.1875C15.125 20.9845 18.203 24.0625 22 24.0625Z" stroke="#666666" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_259_774">
+          <rect width="44" height="44" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+
+  )
+}
+
+export function CampanaIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.7295 21C13.5537 21.3031 13.3014 21.5547 12.9978 21.7295C12.6941 21.9044 12.3499 21.9965 11.9995 21.9965C11.6492 21.9965 11.3049 21.9044 11.0013 21.7295C10.6977 21.5547 10.4453 21.3031 10.2695 21M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function MenuHambuerguesa({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={width} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2">
+      <path d="M3 12H21M3 6H21M3 18H21" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+
+export function CalendarIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_261_794)">
+        <path d="M10 1.25V3.75M5 1.25V3.75M1.875 6.25H13.125M3.125 2.5H11.875C12.5654 2.5 13.125 3.05964 13.125 3.75V12.5C13.125 13.1904 12.5654 13.75 11.875 13.75H3.125C2.43464 13.75 1.875 13.1904 1.875 12.5V3.75C1.875 3.05964 2.43464 2.5 3.125 2.5Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_261_794">
+          <rect width="15" height="15" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  )
+}
+
+export function RelojIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_262_796)">
+        <path d="M7.5 3.75V7.5L10 8.75M13.75 7.5C13.75 10.9518 10.9518 13.75 7.5 13.75C4.04822 13.75 1.25 10.9518 1.25 7.5C1.25 4.04822 4.04822 1.25 7.5 1.25C10.9518 1.25 13.75 4.04822 13.75 7.5Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_262_796">
+          <rect width="15" height="15" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+
+  )
+}
+
+export function LapizIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.5 12.5001H13.125M10.3125 2.18764C10.5611 1.939 10.8984 1.79932 11.25 1.79932C11.4241 1.79932 11.5965 1.83361 11.7574 1.90024C11.9182 1.96687 12.0644 2.06453 12.1875 2.18764C12.3106 2.31076 12.4083 2.45691 12.4749 2.61777C12.5415 2.77863 12.5758 2.95103 12.5758 3.12514C12.5758 3.29925 12.5415 3.47166 12.4749 3.63251C12.4083 3.79337 12.3106 3.93953 12.1875 4.06264L4.375 11.8751L1.875 12.5001L2.5 10.0001L10.3125 2.18764Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function FlechaIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
