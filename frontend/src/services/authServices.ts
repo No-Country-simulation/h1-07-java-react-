@@ -1,14 +1,27 @@
-import jwt from "jsonwebtoken";
-import { AuthenticationRequest, AuthenticationResponse } from "../output";
+import { AuthenticationRequest, AuthenticationResponse } from "../Interfaces/interfaces";
 
-
-const BASE_URL = "https://97de-181-168-133-217.ngrok-free.app/swagger-ui/index.html#/";
-
-const SECRET_KEY = "your_secret_key"; 
+const BASE_URL = "https://97de-181-168-133-217.ngrok-free.app/api";
 
 const getToken = async (email: string, password: string): Promise<string> => {
   const payload = { email, password };
-  return jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
+  const response = await fetch(`${BASE_URL}/auth/token`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error obtaining token");
+  }
+
+  const data = await response.json();
+  if (!data.token) {
+    throw new Error("Token is undefined");
+  }
+
+  return data.token;
 };
 
 const AuthenticationRequestToJSON = (
@@ -31,7 +44,13 @@ export const autenticar = async (requestParameters: {
   }
 
   const { email, password } = requestParameters.authenticationRequest;
-  const token = await getToken(email, password);
+  let token: string;
+
+  try {
+    token = await getToken(email, password);
+  } catch (error) {
+    throw new Error("Failed to get token: " + (error as Error).message);
+  }
 
   const headers = new Headers({
     "Content-Type": "application/json",

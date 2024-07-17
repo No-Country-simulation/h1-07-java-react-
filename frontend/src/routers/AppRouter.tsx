@@ -5,10 +5,11 @@ import PublicRoute from "./PublicRoute";
 import { Dashboard } from "../page/Dashboard";
 import { ErrorPage } from "../page/ErrorPage";
 import { Landing } from "../pages/landing/Landing";
-import { LoginPage } from "../auth/Login";
+import { LoginPage } from "../Auth/Login";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import { Toaster } from "sonner";
 import SignUp from "../pages/signup/SignUp";
+import { Onboarding } from "../page/OnBoarding/OnBoarding";
 
 
 function AppRouter() {
@@ -18,9 +19,10 @@ function AppRouter() {
 				<BrowserRouter>
 					<Routes>
 						<Route path="/" element={<PublicRoute />}>
-							<Route index element={<LoginPage />} />
+							<Route path="/login" element={<LoginPage />} />
 							<Route path="/signup" element={<SignUp />} />
-							<Route path="/landing" element={<Landing></Landing>}></Route>
+							<Route index path="/" element={<Landing  />}></Route>
+							<Route path="/onboarding" element={<Onboarding />} />
 							<Route path="/active-account" element={<ActiveAccount></ActiveAccount>}></Route>
 						</Route>
 						<Route path="/dashboard" element={<PrivateRoute />}>

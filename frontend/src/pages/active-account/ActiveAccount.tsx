@@ -1,6 +1,6 @@
-import { Divider } from '@nextui-org/react'
-import { ArrowIcon, CheckIcon } from '../../components/icons/Icons'
-import React, { useRef, useState } from 'react';
+import { Divider } from '@nextui-org/react';
+import { ArrowIcon, CheckIcon } from '../../Components/icons/Icons';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -30,22 +30,39 @@ export const ActiveAccount = () => {
 
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const API_URL = "https://97de-181-168-133-217.ngrok-free.app/auth/activar-cuenta";
-    const tokenValue = token.join(""); // Obtén el valor del token
+
+
+    const API_URL = "https://0663-181-168-133-217.ngrok-free.app/swagger-ui/index.html#/";
+    const tokenValue = token.join("");
+    console.log(tokenValue);
+    // Obtén el valor del token
     try {
       //token de prueba 139163
       //el problema es en este fetch
 
-      const res = await fetch(`${API_URL}?token=${tokenValue}`, {
+      const res = await fetch(`${API_URL}/auth/activar-cuenta?token=${tokenValue}`, {
         method: "GET",
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${tokenValue}`,
         },
+        redirect: 'follow'
       });
+      console.log(res);
 
-      const data = res.json()
-      console.log(data);
+
+      // Verifica si el contenido es JSON
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        const data = await res.json();
+        console.log(data);
+      } else {
+        const text = await res.text();
+        console.error("Respuesta no es JSON:", text);
+        console.log(text);
+        
+      }
+
+
     } catch (err: any) {
       console.error("Fetch error:", err);
     }

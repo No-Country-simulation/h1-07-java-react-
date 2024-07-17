@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
 import { MedicoRegister } from '../../Interfaces/interfaces';
-import {  Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { API_URL } from '../../api/api';
 import { toast } from 'sonner';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { CardIcon, EmailIcon, HomeIcon, LoaderIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from '../../components/icons/Icons';
+import { CardIcon, EmailIcon, HomeIcon, LoaderIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from '../../Components/icons/Icons';
 import { Button } from '@nextui-org/react';
 
 
@@ -223,12 +223,14 @@ const SignUp: React.FC = () => {
 						</div>
 
 						<div className="text-center">
-							<button
-								onClick={() => { }}
-								className="w-full mt-2 p-2 rounded hover:text-blue-500"
-							>
-								<Link to="/">Iniciar sesión</Link>
-							</button>
+							<Link to="/login">
+								<button
+									onClick={() => { }}
+									className="w-full mt-2 p-2 rounded hover:text-blue-500"
+								>
+									Iniciar sesión
+								</button>
+							</Link>
 						</div>
 					</Form>
 				)}

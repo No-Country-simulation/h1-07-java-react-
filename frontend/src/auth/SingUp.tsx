@@ -1,10 +1,9 @@
-import React from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
+import { register } from '../api/api'; 
 import { EmailIcon, LockIcon, UserIcon } from '../Components/icons/Icons';
-import { register } from '../api/api';  // Asegúrate de ajustar la ruta de importación según tu estructura de proyecto
 
 interface RegisterFormValues {
   firstName: string;
