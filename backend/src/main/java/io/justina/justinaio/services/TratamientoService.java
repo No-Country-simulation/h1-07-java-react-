@@ -10,12 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,7 +26,6 @@ public class TratamientoService {
     private final MedicamentoRepository medicamentoRepository;
     private final HorarioTomaRepository horarioTomaRepository;
 
-
     public void crearTratamiento(NuevoTratamientoRequest request, Authentication token) {
         Usuario userMedico = (Usuario) token.getPrincipal();
 
@@ -41,10 +37,9 @@ public class TratamientoService {
             medicamento = obtenerMedicamentoPorId(request.getMedicamentoId());
         }
 
-        Date fechaInicio = request.getFechaInicio() != null ? request.getFechaInicio()
-                : Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Date fechaFin = Date.from(fechaInicio.toInstant().plusSeconds(
-                request.getDiasTotales() * 24L * 60 * 60));
+        // Calcula la fecha de inicio y finalización del tratamiento
+        LocalDate fechaInicio = calcularFechaInicio(request.getFechaInicio(), request.getHoraInicio());
+        LocalDate fechaFin = fechaInicio.plusDays(request.getDiasTotales());
 
         Tratamiento tratamiento = Tratamiento.builder()
                 .medico(obtenerMedicoPorId(userMedico.getId()))
@@ -65,29 +60,54 @@ public class TratamientoService {
         List<HorarioToma> horarios = crearHorariosToma(tratamiento, request.getHoraInicio(), request.getDosisDiaria(), request.getDiasTotales());
         tratamiento.setHorarios(horarios);
         horarioTomaRepository.saveAll(horarios);
+    }
 
-        // Finalmente, guardamos el tratamiento nuevamente para asegurar que los horarios estén asociados
-        //tratamientoRepository.save(tratamiento);
+    private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
+        LocalDate fechaInicio;
+        if (fechaInicioRequest == null) {
+            fechaInicio = LocalDate.now();
+        } else {
+            fechaInicio = fechaInicioRequest;
+        }
+
+        // Ajusta la fecha de inicio si la hora es menor a la hora actual y es el mismo día
+        LocalTime currentTime = LocalTime.now();
+        if (fechaInicio.isEqual(LocalDate.now()) && horaInicioRequest != null && horaInicioRequest.isBefore(currentTime)) {
+            fechaInicio = fechaInicio.plusDays(1);
+        }
+
+        return fechaInicio;
     }
 
     private List<HorarioToma> crearHorariosToma(Tratamiento tratamiento, LocalTime horaInicio, Integer dosisDiaria, Integer diasTotales) {
         List<HorarioToma> horarios = new ArrayList<>();
+        long totalDosis = dosisDiaria * diasTotales;
         long intervaloHoras = 24 / dosisDiaria;
 
-        for (int dia = 0; dia < diasTotales; dia++) {
-            for (int dosis = 0; dosis < dosisDiaria; dosis++) {
-                LocalTime horaToma = horaInicio.plusHours(intervaloHoras * dosis);
-                HorarioToma horarioToma = HorarioToma.builder()
-                        .tratamiento(tratamiento)
-                        .hora(horaToma)
-                        .estadoHorario(EstadoHorario.ACTIVO)
-                        .build();
-                horarios.add(horarioToma);
+        LocalDate fechaActual = tratamiento.getFechaInicio();
+        LocalTime horaActual = horaInicio;
+
+        while (totalDosis > 0) {
+            HorarioToma horarioToma = HorarioToma.builder()
+                    .tratamiento(tratamiento)
+                    .hora(horaActual)
+                    .estadoHorario(EstadoHorario.ACTIVO)
+                    .fecha(fechaActual)
+                    .build();
+            horarios.add(horarioToma);
+
+            horaActual = horaActual.plusHours(intervaloHoras);
+            totalDosis--;
+
+            // Incrementa la fecha cada vez que se supera 23:59
+            if (horaActual.isAfter(LocalTime.of(23, 59)) || horaActual.equals(LocalTime.of(0, 0))) {
+                fechaActual = fechaActual.plusDays(1);
+                horaActual = horaActual.minusHours(24); // Ajusta la hora al siguiente ciclo del día
             }
-            horaInicio = horaInicio.plusHours(24); // Incrementa un día
         }
         return horarios;
     }
+
 
     private Medico obtenerMedicoPorId(Integer id) {
         return medicoRepository.findById(id)
@@ -109,4 +129,3 @@ public class TratamientoService {
                 .orElseThrow(() -> new NullPointerException("No se encuentra el medicamento en la DB con ese ID"));
     }
 }
-
