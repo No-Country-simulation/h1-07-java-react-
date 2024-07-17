@@ -7,66 +7,67 @@ import {
   useState,
 } from "react";
 
-import { AuthContextProps, AuthContextProviderProps, RootObject, User } from "../Interfaces/interfaces";
+import { AuthContextProps, AuthTokens } from "../Interfaces/interfaces";
 
-const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+export const AuthContext = createContext<AuthContextProps>({
+  login: () => {},
+  logout: () => {},
+  isLoggedIn: false,
+  authTokens: null
+});
 
-export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const initialUser: User = {
-    id: 0,
-    nombre: "",
-    email: "",
-    rol_id: 0,
-  };
+const AUTH_TOKEN_KEY = "TOKEN_KEY"
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    return localStorage.getItem("isAuthenticated") === "true";
-  });
+export const AuthContextProvider = ({ children }: {children: React.ReactNode}) => {
 
-  const [user, setUser] = useState<RootObject>(() => {
-    const storedUser = localStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : { user: initialUser, token: "" };
-  });
+  const authTokensInLocalStorage = typeof window !== "undefined"
+    ? window.localStorage.getItem(AUTH_TOKEN_KEY)
+    : null;
 
-  const [userInfo, setUserInfo] = useState<string>("");
+  const [authTokens, setAuthTokens] = useState<AuthTokens | null>(
+    authTokensInLocalStorage ? JSON.parse(authTokensInLocalStorage) : null
+  );
 
-  const login = useCallback((user: RootObject) => {
-    localStorage.setItem("isAuthenticated", "true");
-    localStorage.setItem("user", JSON.stringify(user));
-    console.log(user);
-    setIsAuthenticated(true);
-    setUser(user);
-    
+  const login = useCallback(function (dataToken: AuthTokens) {
+    window.localStorage.setItem(AUTH_TOKEN_KEY, JSON.stringify(dataToken));
+    setAuthTokens(dataToken);
   }, []);
 
-  const logout = useCallback(() => {
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("user");
-    setIsAuthenticated(false);
-    setUser({ user: initialUser, token: "" });
+  const logout = useCallback(function () {
+    window.localStorage.removeItem(AUTH_TOKEN_KEY);
+    setAuthTokens(null);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
+    const handleStorageChange = () => {
+      const storedTokens = window.localStorage.getItem(AUTH_TOKEN_KEY);
+      if (!storedTokens) {
+        setAuthTokens(null);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const value = useMemo<AuthContextProps>(() => ({
     login,
     logout,
-    user,
-    isAuthenticated,
-    userInfo,
-    setUserInfo,
-  }), [user, login, logout, isAuthenticated, userInfo]);
+    authTokens,
+    isLoggedIn: !!authTokens
+  }), [authTokens, login, logout]);
+
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useAuthContext = (): AuthContextProps => {
+export const useAuthContext = () => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuthContext debe ser utilizado dentro de AuthContextProvider");
   }
   return context;
 };
-

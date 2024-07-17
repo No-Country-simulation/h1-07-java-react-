@@ -1,38 +1,33 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthContextProvider } from "../Context/AuthContext";
+import { BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-import PublicRoute from "./PublicRoute";
 import { Toaster } from "sonner";
-import SignUp from "../pages/signup/SignUp";
-import { Landing } from "../pages/landing/Landing";
-import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import { ErrorPage } from "../pages/NotFound/ErrorPage";
-import { Dashboard } from "../pages/Dashboard/Dashboard";
 import { LoginPage } from "../pages/Login/Login";
 import { Onboarding } from "../pages/OnBoarding/OnBoarding";
-
+import SignUp from "../pages/SignUp/SignUp";
+import { Landing } from "../pages/Landing/Landing";
+import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+import { AuthContextProvider } from "../Context/AuthContext";
+import { Dashboard } from "../pages/private/Dashboard/Dashboard";
+import { RoutesWithNotFound } from "./RoutesWithNotFound";
 function AppRouter() {
+
 	return (
 		<>
 			<AuthContextProvider>
 				<BrowserRouter>
-					<Routes>
-						<Route path="/" element={<PublicRoute />}>
-							<Route path="/login" element={<LoginPage />} />
-							<Route path="/signup" element={<SignUp />} />
-							<Route path="onboarding" element={<Onboarding />} />
-							<Route path="/landing" element={<Landing />}></Route>
-							<Route path="/active-account" element={<ActiveAccount />}></Route>
-						</Route>
-						<Route path="/dashboard" element={<PrivateRoute />}>
-							<Route index element={<Dashboard />} />
-							{/* <Route path="/dashboard/clients" element={<Clients />} /> */}
-							{/* <Route path="/dashboard/provider" element={<Provider />} /> */}
-							{/* <Route path="/dashboard/products" element={<Products />} /> */}
-							{/* <Route path="/dashboard/users" element={<Users></Users>} /> */}
+					<RoutesWithNotFound>
+						<Route path="/" element={<p>hola</p>} />
+						<Route path="/login" element={<LoginPage />} />
+						<Route path="/signup" element={<SignUp />} />
+						<Route path="/onboarding" element={<Onboarding />} />
+						<Route path="/landing" element={<Landing />}></Route>
+						<Route path="/active-account" element={<ActiveAccount />}></Route>
+						<Route element={<PrivateRoute />}>
+							<Route path="/dashboard" index element={<Dashboard />} />
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
-					</Routes>
+					</RoutesWithNotFound>
 				</BrowserRouter>
 			</AuthContextProvider>
 			<Toaster richColors></Toaster>

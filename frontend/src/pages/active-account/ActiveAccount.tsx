@@ -1,7 +1,7 @@
 import { Divider } from '@nextui-org/react';
-import { ArrowIcon, CheckIcon } from '../../Components/icons/Icons';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowIcon, CheckIcon } from '../../components/icons/Icons';
 import { API_URL } from '../../api/api';
 
 
@@ -32,8 +32,6 @@ export const ActiveAccount = () => {
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-
-    const API_URL = "https://0663-181-168-133-217.ngrok-free.app/swagger-ui/index.html#/";
     const tokenValue = token.join("");
     console.log(tokenValue);
     // Obtén el valor del token
