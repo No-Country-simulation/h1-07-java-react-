@@ -7,9 +7,11 @@ import SignUp from "../pages/signup/SignUp";
 import { Landing } from "../pages/landing/Landing";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import { ErrorPage } from "../pages/NotFound/ErrorPage";
-import { Dashboard } from "../pages/Dashboard/Dashboard";
 import { LoginPage } from "../pages/Login/Login";
 import { Onboarding } from "../pages/OnBoarding/OnBoarding";
+import { Home } from "../pages/Dashboard/Home/Home";
+import { UserInfo } from "../pages/Dashboard/UserInfo/UserInfo";
+import { Detalle } from "../pages/Dashboard/Detalle/Detalle";
 
 function AppRouter() {
 	return (
@@ -21,15 +23,13 @@ function AppRouter() {
 							<Route path="/login" element={<LoginPage />} />
 							<Route path="/signup" element={<SignUp />} />
 							<Route path="onboarding" element={<Onboarding />} />
-							<Route path="/landing" element={<Landing />}></Route>
+							<Route index path="/" element={<Landing />}></Route>
 							<Route path="/active-account" element={<ActiveAccount />}></Route>
 						</Route>
 						<Route path="/dashboard" element={<PrivateRoute />}>
-							<Route index element={<Dashboard />} />
-							{/* <Route path="/dashboard/clients" element={<Clients />} /> */}
-							{/* <Route path="/dashboard/provider" element={<Provider />} /> */}
-							{/* <Route path="/dashboard/products" element={<Products />} /> */}
-							{/* <Route path="/dashboard/users" element={<Users></Users>} /> */}
+							<Route index element={<Home />} />
+							<Route path="user-info" element={<UserInfo />} />
+							<Route path="detalle" element={<Detalle />} />
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>

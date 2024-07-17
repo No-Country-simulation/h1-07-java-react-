@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { RootObject } from "../../Interfaces/interfaces";
-import { ClosePasswordIcon, EmailIcon, LockIcon, OpenPasswordIcon } from "../../components/icons/Icons";
+import { ClosePasswordIcon, EmailIcon, LockIcon, OpenPasswordIcon } from "../../Components/icons/Icons";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -37,8 +37,8 @@ export const LoginPage: React.FC = () => {
 
 
   return (
-    <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center md:bg-black ">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg md:bg-black max-md:m-auto">
+    <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center  ">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg  max-md:m-auto">
         <h2 className="text-[20px] font-[700] mb-[9px] mt-[1.5rem] text-gray-900 font-inter">Iniciar Sesión</h2>
         <p className="mb-[46px] text-[15px] text-[#948ABC]">Accede con la cuenta que Registrate</p>
         <form onSubmit={handleNavigation} className="space-y-4">
