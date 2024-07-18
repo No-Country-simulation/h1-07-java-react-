@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CalendarIcon, CampanaIcon, FlechaIcon, LapizIcon, MenuHambuerguesa, RelojIcon, UserIconTwo } from '../../../Components/icons/Icons';
+import { CalendarIcon, CampanaIcon, FlechaIcon, HomeIconTwo, LapizIcon, MenuHambuerguesa, RelojIcon, UserIconTwo } from '../../../../Components/icons/Icons';
 import { Link } from 'react-router-dom';
-import { Calendar } from '@nextui-org/react';
+
 
 interface Message {
     id: number;
@@ -19,6 +19,7 @@ const messages: Message[] = [
 export function Home(): JSX.Element {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeTab, setActiveTab] = useState('Pacientes');
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
@@ -28,11 +29,31 @@ export function Home(): JSX.Element {
         setActiveTab(tab);
     };
 
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+
     return (
         <div className="p-4 bg-gray-100 min-h-screen w-full">
+            <div className={`fixed top-0 w=full left-0 h-full bg-black text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10 px-16' : '-translate-x-full z-10'}`}>
+                <div className="py-10 flex flex-col ">
+                    <h1 className="text-xl font-bold mb-5">MENÚ</h1>
+                    <ul className='bg-red-500 w-[10vh] '>
+                        <li className="mb-2">
+                            <Link to="/link1">
+                                <HomeIconTwo width={16} height={16} />
+                            </Link>
+                        </li>
+                        <li className="mb-2"><Link to="/link2">Link 2</Link></li>
+                        <li className="mb-2"><Link to="/link3">Link 3</Link></li>
+                        {/* Add more links as needed */}
+                    </ul>
+                </div>
+            </div>
             <header className="flex flex-col justify-between h-[9.5rem] mb-4 relative right-4 bottom-3 w-[25rem] bg-[#D9D9D9] border rounded-br-[3rem]">
                 <div className="flex items-center space-x-2 content-center justify-between ml-4">
-                    <Link to={"user-info"}>
+                    <Link to={"/userInfo"}>
                         <div className="w-[10.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
                             <UserIconTwo width={44} height={44} />
                             <div className=''>
@@ -43,7 +64,10 @@ export function Home(): JSX.Element {
                     </Link>
                     <div className='relative right-7 flex flex-row '>
                         <CampanaIcon width={24} height={24} />
-                        <MenuHambuerguesa width={24} height={24} />
+                        <button onClick={toggleSidebar}>
+                            <MenuHambuerguesa width={24} height={24} />
+                        </button>
+
                     </div>
                 </div>
                 <div className="flex items-center space-x-2  justify-center">
@@ -100,7 +124,7 @@ export function Home(): JSX.Element {
                             <RelojIcon width={15} height={15} />
                             <p className="ml-4 text-sm text-primary-brand-light">10:00-11:00 AM</p>
                         </div>
-                        <div className='absolute left-[21.4rem] top-[19.4rem]'>
+                        <div className='absolute left-[20.4rem] top-[19.4rem]'>
                             <LapizIcon width={16} height={16} />
                         </div>
                     </div>
