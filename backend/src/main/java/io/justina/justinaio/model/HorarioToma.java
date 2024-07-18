@@ -30,5 +30,6 @@ public class HorarioToma {
     private LocalDate fecha;
     @Enumerated(EnumType.ORDINAL)
     private EstadoHorario estadoHorario;
+    private Boolean esActivo;
 }
 

@@ -4,5 +4,5 @@ public enum EstadoHorario {
     ACTIVO,
     INACTIVO,
     SUSPENDIDO,
-    RETRASADO,
+    RETRASADO, BORRADO, EN_CURSO,
 }
