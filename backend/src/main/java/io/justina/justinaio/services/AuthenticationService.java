@@ -81,7 +81,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    @Transactional
+    /*@Transactional
     public void activateAccount(String token) throws MessagingException {
         Token savedToken = tokenRepository.findByToken(token)
                 // todo exception has to be defined
@@ -98,7 +98,7 @@ public class AuthenticationService {
 
         savedToken.setValidatedAt(LocalDateTime.now());
         tokenRepository.save(savedToken);
-    }
+    }*/
 
     @Transactional
     public void registrarMedico(MedicoUsuarioRequest request) throws MessagingException {
@@ -109,7 +109,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .accountLocked(false)
-                .enabled(false)
+                .enabled(true) // cambiado para activar directamente
                 .roles(List.of(userRole))
                 .build();
 
@@ -141,6 +141,6 @@ public class AuthenticationService {
 
 
         medicoRepository.save(medico);
-        emailService.sendValidationEmail(user);
+        //emailService.sendValidationEmail(user);
     }
 }
