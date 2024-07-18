@@ -1,8 +1,7 @@
 package io.justina.justinaio.controller;
 
-import io.justina.justinaio.dto.BajaRequest;
-import io.justina.justinaio.dto.PacienteRequest;
-import io.justina.justinaio.dto.PasswordPacienteRequest;
+import io.justina.justinaio.dto.*;
+import io.justina.justinaio.repositories.PacienteRepository;
 import io.justina.justinaio.services.PacienteService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
@@ -60,5 +59,11 @@ public class PacienteController {
             Authentication token
     ){
         return ResponseEntity.ok(pacienteService.encontrarPacientesDeMedico(page, size, token));
+    }
+    @GetMapping("/buscar-paciente-conectado")
+    public ResponseEntity<PacienteResponse> buscarPacienteConectado(
+            Authentication token
+    ){
+        return ResponseEntity.ok(pacienteService.buscarPacienteConectado(token));
     }
 }

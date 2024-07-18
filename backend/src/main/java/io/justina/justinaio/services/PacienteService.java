@@ -202,5 +202,14 @@ public class PacienteService {
                 pacientes.isLast()
         );
     }
+
+    public PacienteResponse buscarPacienteConectado(Authentication token) {
+        Usuario usuarioPaciente = ((Usuario) token.getPrincipal());
+
+        Paciente paciente = pacienteRepository.findByIdPaciente(usuarioPaciente.getId()).orElseThrow(() ->
+                new NullPointerException("Paciente no encontrado con ese ID"));
+
+        return Mapper.toPacienteResponse(paciente);
+    }
 }
 
