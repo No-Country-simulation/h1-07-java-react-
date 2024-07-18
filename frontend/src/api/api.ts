@@ -10,7 +10,7 @@ import {
   RolRequest,
 } from "../Interfaces/interfaces";
 
-export const API_URL = "https://97de-181-168-133-217.ngrok-free.app";
+export const API_URL = "https://aff0-181-168-133-217.ngrok-free.app";
 
 // Helper function to make fetch requests
 const fetchData = async <T>(
@@ -35,16 +35,13 @@ const fetchData = async <T>(
   if (!response.ok) {
     const errorText = await response.text();
     const error = new Error(`Error: ${response.status} ${response.statusText}. ${errorText}`);
-    (error as any).status = status; // Añadir el código de estado al error
+    (error as any).status = status; 
     throw error;
   }
   
   return response.json() as Promise<T>;
 };
 
-// Define interfaces for the request bodies
-
-// Function to create a role
 export const createRole = async (
   roleData: RolRequest,
   token: string
@@ -146,7 +143,7 @@ export const changeDoctorPassword = async (
 export const register = async (
   registrationData: RegistrationRequest
 ): Promise<void> => {
-  return await fetchData<void>("/auth/registrar", "POST", registrationData);
+  return await fetchData<void>("/auth/registrar-medico", "POST", registrationData);
 };
 
 // Function to authenticate
