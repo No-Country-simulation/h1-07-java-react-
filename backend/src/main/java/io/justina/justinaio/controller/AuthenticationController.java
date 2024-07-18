@@ -42,12 +42,12 @@ public class AuthenticationController {
     ) {
         return ResponseEntity.ok(service.authenticate(request));
     }
-    @GetMapping("/activar-cuenta")
+    /*@GetMapping("/activar-cuenta")
     public void confirmarMail(
             @RequestParam String token
     ) throws MessagingException {
         service.activateAccount(token);
-    }
+    }*/
 
     @PostMapping("/registrar-medico")
     public ResponseEntity<?> registrarMedico(

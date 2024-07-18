@@ -2,6 +2,7 @@ package io.justina.justinaio.controller;
 
 import io.justina.justinaio.dto.BajaRequest;
 import io.justina.justinaio.dto.MedicoRequest;
+import io.justina.justinaio.dto.MedicoResponse;
 import io.justina.justinaio.dto.PasswordRequest;
 import io.justina.justinaio.services.MedicoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -59,6 +60,13 @@ public class MedicoController {
             Authentication token
     ){
         return ResponseEntity.ok(medicoService.encontrarMedicoPorIdPaciente(page, size, token));
+    }
+
+    @GetMapping("/buscar-medico-conectado")
+    public ResponseEntity<MedicoResponse> buscarMedicoConectado(
+            Authentication token
+    ){
+        return ResponseEntity.ok(medicoService.buscarMedicoConectado(token));
     }
 
 }
