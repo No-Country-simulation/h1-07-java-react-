@@ -282,9 +282,9 @@ export const CardIcon = ({ width, height }: { width: number, height: number }) =
 
 export const IconCorreo = ({ width, height }: IconProps) => {
   return (
-      <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M13.75 3.75C13.75 3.0625 13.1875 2.5 12.5 2.5H2.5C1.8125 2.5 1.25 3.0625 1.25 3.75M13.75 3.75V11.25C13.75 11.9375 13.1875 12.5 12.5 12.5H2.5C1.8125 12.5 1.25 11.9375 1.25 11.25V3.75M13.75 3.75L7.5 8.125L1.25 3.75" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.75 3.75C13.75 3.0625 13.1875 2.5 12.5 2.5H2.5C1.8125 2.5 1.25 3.0625 1.25 3.75M13.75 3.75V11.25C13.75 11.9375 13.1875 12.5 12.5 12.5H2.5C1.8125 12.5 1.25 11.9375 1.25 11.25V3.75M13.75 3.75L7.5 8.125L1.25 3.75" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
 
   )
 }
@@ -292,16 +292,16 @@ export const IconCorreo = ({ width, height }: IconProps) => {
 
 export const IconPassword = ({ width, height }: IconProps) => {
   return (
-      <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clipPath="url(#clip0_39_11424)">
-              <path d="M4.375 6.875V4.375C4.375 3.5462 4.70424 2.75134 5.29029 2.16529C5.87634 1.57924 6.6712 1.25 7.5 1.25C8.3288 1.25 9.12366 1.57924 9.70971 2.16529C10.2958 2.75134 10.625 3.5462 10.625 4.375V6.875M3.125 6.875H11.875C12.5654 6.875 13.125 7.43464 13.125 8.125V12.5C13.125 13.1904 12.5654 13.75 11.875 13.75H3.125C2.43464 13.75 1.875 13.1904 1.875 12.5V8.125C1.875 7.43464 2.43464 6.875 3.125 6.875Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </g>
-          <defs>
-              <clipPath id="clip0_39_11424">
-                  <rect width="15" height="15" fill="white" />
-              </clipPath>
-          </defs>
-      </svg>
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_39_11424)">
+        <path d="M4.375 6.875V4.375C4.375 3.5462 4.70424 2.75134 5.29029 2.16529C5.87634 1.57924 6.6712 1.25 7.5 1.25C8.3288 1.25 9.12366 1.57924 9.70971 2.16529C10.2958 2.75134 10.625 3.5462 10.625 4.375V6.875M3.125 6.875H11.875C12.5654 6.875 13.125 7.43464 13.125 8.125V12.5C13.125 13.1904 12.5654 13.75 11.875 13.75H3.125C2.43464 13.75 1.875 13.1904 1.875 12.5V8.125C1.875 7.43464 2.43464 6.875 3.125 6.875Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_39_11424">
+          <rect width="15" height="15" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
 
   )
 }
@@ -309,28 +309,37 @@ export const IconPassword = ({ width, height }: IconProps) => {
 
 export function ClosePassword({ width, height }: IconProps) {
   return (
-      <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clipPath="url(#clip0_39_11059)">
-              <path d="M8.825 8.825C8.65334 9.00922 8.44634 9.15697 8.21635 9.25945C7.98635 9.36193 7.73806 9.41704 7.48631 9.42148C7.23455 9.42592 6.98448 9.37961 6.75101 9.28531C6.51754 9.191 6.30545 9.05064 6.1274 8.8726C5.94936 8.69455 5.809 8.48246 5.71469 8.24899C5.62039 8.01552 5.57408 7.76545 5.57852 7.51369C5.58296 7.26194 5.63807 7.01365 5.74055 6.78365C5.84303 6.55366 5.99078 6.34666 6.175 6.175M0.625 0.625L14.375 14.375M11.2125 11.2125C10.1441 12.0269 8.84319 12.478 7.5 12.5C3.125 12.5 0.625 7.5 0.625 7.5C1.40243 6.05118 2.48071 4.78538 3.7875 3.7875L11.2125 11.2125ZM6.1875 2.65C6.61771 2.5493 7.05817 2.49896 7.5 2.5C11.875 2.5 14.375 7.5 14.375 7.5C13.9956 8.20975 13.5432 8.87796 13.025 9.49375L6.1875 2.65Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </g>
-          <defs>
-              <clipPath id="clip0_39_11059">
-                  <rect width="15" height="15" fill="white" />
-              </clipPath>
-          </defs>
-      </svg>
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_39_11059)">
+        <path d="M8.825 8.825C8.65334 9.00922 8.44634 9.15697 8.21635 9.25945C7.98635 9.36193 7.73806 9.41704 7.48631 9.42148C7.23455 9.42592 6.98448 9.37961 6.75101 9.28531C6.51754 9.191 6.30545 9.05064 6.1274 8.8726C5.94936 8.69455 5.809 8.48246 5.71469 8.24899C5.62039 8.01552 5.57408 7.76545 5.57852 7.51369C5.58296 7.26194 5.63807 7.01365 5.74055 6.78365C5.84303 6.55366 5.99078 6.34666 6.175 6.175M0.625 0.625L14.375 14.375M11.2125 11.2125C10.1441 12.0269 8.84319 12.478 7.5 12.5C3.125 12.5 0.625 7.5 0.625 7.5C1.40243 6.05118 2.48071 4.78538 3.7875 3.7875L11.2125 11.2125ZM6.1875 2.65C6.61771 2.5493 7.05817 2.49896 7.5 2.5C11.875 2.5 14.375 7.5 14.375 7.5C13.9956 8.20975 13.5432 8.87796 13.025 9.49375L6.1875 2.65Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_39_11059">
+          <rect width="15" height="15" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
 
   )
 }
 
 export function OpenPassword({ width, height }: IconProps) {
   return (
-      <svg width={width} height={height} viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 9C1 9 5 1 12 1C19 1 23 9 23 9C23 9 19 17 12 17C5 17 1 9 1 9Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+    <svg width={width} height={height} viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 9C1 9 5 1 12 1C19 1 23 9 23 9C23 9 19 17 12 17C5 17 1 9 1 9Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
 
   )
 }
+
+export function GenderIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.625 13.125V11.875C10.625 11.212 10.3616 10.5761 9.89277 10.1072C9.42393 9.63839 8.78804 9.375 8.125 9.375H3.125C2.46196 9.375 1.82607 9.63839 1.35723 10.1072C0.888392 10.5761 0.625 11.212 0.625 11.875V13.125M14.375 13.125V11.875C14.3746 11.3211 14.1902 10.783 13.8509 10.3452C13.5115 9.90741 13.0363 9.59473 12.5 9.45625M10 1.95625C10.5378 2.09394 11.0144 2.40669 11.3548 2.84519C11.6952 3.2837 11.8799 3.82302 11.8799 4.37813C11.8799 4.93323 11.6952 5.47255 11.3548 5.91106C11.0144 6.34956 10.5378 6.66231 10 6.8M8.125 4.375C8.125 5.75571 7.00571 6.875 5.625 6.875C4.24429 6.875 3.125 5.75571 3.125 4.375C3.125 2.99429 4.24429 1.875 5.625 1.875C7.00571 1.875 8.125 2.99429 8.125 4.375Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+
 
 

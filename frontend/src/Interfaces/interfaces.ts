@@ -225,3 +225,20 @@ export interface tokenData {
   exp: number
   authorities: string[]
 }
+
+export interface PatientRegister {
+  email: string
+  password: string
+  nombre: string
+  apellido: string
+  tipoDocumentoId: number
+  numeroDocumento: number
+  fechaNacimiento: string
+  genero: number
+  factorSanguineo: number
+  patologiaId: number
+  medicosId: number[]
+  tratamientosId: number[]
+  entidadesId: number[]
+  financiadorId: number
+}

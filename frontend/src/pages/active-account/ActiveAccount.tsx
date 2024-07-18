@@ -71,7 +71,7 @@ export const ActiveAccount = () => {
     <section className='border-2 flex flex-col gap-y-4 w-96 max-md:w-full m-auto p-4 max-md:p-8 mt-8 max-w-md text-center'>
       <div className="flex flex-col ">
         <h5 className=' relative  text-xl text-center font-bold tracking-wide flex items-center justify-center'>
-          <Link to={'/'} className=' absolute left-0 cursor-pointer hover:-translate-x-1 transition-all duration-300'>
+          <Link to={'/login'} className=' absolute left-0 cursor-pointer hover:-translate-x-1 transition-all duration-300'>
             <ArrowIcon width={24} height={24} />
           </Link>
           Verificación
