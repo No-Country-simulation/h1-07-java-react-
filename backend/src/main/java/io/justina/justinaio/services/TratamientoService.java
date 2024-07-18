@@ -1,12 +1,22 @@
 package io.justina.justinaio.services;
 
+import io.justina.justinaio.dto.HorarioTomaResponse;
+import io.justina.justinaio.dto.ModificarTratamientoRequest;
 import io.justina.justinaio.dto.NuevoTratamientoRequest;
+import io.justina.justinaio.dto.TratamientoMedicoResponse;
 import io.justina.justinaio.model.*;
 import io.justina.justinaio.model.enums.EstadoHorario;
 import io.justina.justinaio.model.enums.EstadoTratamiento;
 import io.justina.justinaio.model.enums.TipoTratamiento;
 import io.justina.justinaio.repositories.*;
+import io.justina.justinaio.util.Mapper;
+import io.justina.justinaio.util.PageResponse;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +37,8 @@ public class TratamientoService {
     private final MedicamentoRepository medicamentoRepository;
     private final HorarioTomaRepository horarioTomaRepository;
 
+
+    @Transactional
     public void crearTratamiento(NuevoTratamientoRequest request, Authentication token) {
         Usuario userMedico = (Usuario) token.getPrincipal();
 
@@ -62,11 +75,12 @@ public class TratamientoService {
         horarioTomaRepository.saveAll(horarios);
     }
 
-    public void modificarTratamiento(Integer tratamientoId, NuevoTratamientoRequest request, Authentication token) {
+    @Transactional
+    public void modificarTratamiento(ModificarTratamientoRequest request, Authentication token) {
         Usuario userMedico = (Usuario) token.getPrincipal();
 
         // Obtiene el tratamiento existente por ID
-        Tratamiento tratamiento = tratamientoRepository.findById(tratamientoId)
+        Tratamiento tratamiento = tratamientoRepository.findById(request.getTratamientoId())
                 .orElseThrow(() -> new NullPointerException("No se encuentra el tratamiento en la DB con ese ID"));
 
         // Verifica que el médico que hace la modificación es el mismo que creó el tratamiento
@@ -74,21 +88,19 @@ public class TratamientoService {
             throw new SecurityException("No tienes permiso para modificar este tratamiento");
         }
 
-        // Actualiza los campos del tratamiento con la nueva información del request
-        TipoTratamiento tipoTratamiento = TipoTratamiento.values()[request.getTipoTratamiento()];
-        if (tipoTratamiento == TipoTratamiento.MEDICAMENTO) {
-            Patologia patologia = obtenerPatologiaPorId(request.getPatologiaId());
-            Medicamento medicamento = obtenerMedicamentoPorId(request.getMedicamentoId());
-            tratamiento.setPatologia(patologia);
-            tratamiento.setMedicamento(medicamento);
-        } else {
-            tratamiento.setPatologia(null);
-            tratamiento.setMedicamento(null);
-        }
-
-        tratamiento.setTipoTratamiento(tipoTratamiento);
         tratamiento.setDescripcion(request.getDescripcion());
         tratamiento.setDosisDiaria(request.getDosisDiaria());
+
+        // Modifica patología y medicamento si corresponde
+        if (request.getPatologiaId() != null) {
+            Patologia patologia = obtenerPatologiaPorId(request.getPatologiaId());
+            tratamiento.setPatologia(patologia);
+        }
+
+        if (request.getMedicamentoId() != null) {
+            Medicamento medicamento = obtenerMedicamentoPorId(request.getMedicamentoId());
+            tratamiento.setMedicamento(medicamento);
+        }
 
         // Actualiza la fecha de inicio y recalcula la fecha de fin
         LocalDate fechaInicio = calcularFechaInicio(request.getFechaInicio(), request.getHoraInicio());
@@ -100,17 +112,87 @@ public class TratamientoService {
         // Actualiza el tratamiento
         tratamientoRepository.save(tratamiento);
 
-        // Primero elimina los horarios de toma antiguos (esto debería ser redundante, pero es una medida de precaución)
+        // Desactiva los horarios de toma antiguos en lugar de eliminarlos
         List<HorarioToma> horariosExistentes = horarioTomaRepository.findByTratamiento(tratamiento);
-        horarioTomaRepository.deleteAll(horariosExistentes);
+        for (HorarioToma horario : horariosExistentes) {
+                horario.setEstadoHorario(EstadoHorario.BORRADO);
+                horario.setEsActivo(false); // Desactiva el horario
+            }
+        horarioTomaRepository.saveAll(horariosExistentes);
 
         // Crea y asigna nuevos horarios de toma
         List<HorarioToma> nuevosHorarios = crearHorariosToma(tratamiento, request.getHoraInicio(), request.getDosisDiaria(), request.getDiasTotales());
-        tratamiento.setHorarios(nuevosHorarios);  // Aquí se actualizan los horarios de toma del tratamiento
+
+        tratamiento.getHorarios().addAll(nuevosHorarios);  // Aquí se agregan los nuevos horarios de toma al tratamiento
 
         // Guarda los nuevos horarios
         horarioTomaRepository.saveAll(nuevosHorarios);
     }
+
+    public void bajaTratamiento(Integer idTratamiento) {
+        Tratamiento tratamiento = tratamientoRepository.findById(idTratamiento).orElseThrow(
+                () -> new NullPointerException("No se encuentra el tratamiento en la DB con ese ID")
+        );
+        tratamiento.setEstado(EstadoTratamiento.SUSPENDIDO);
+        tratamiento.setEsActivo(false);
+        tratamientoRepository.save(tratamiento);
+
+        List<HorarioToma> horarios = horarioTomaRepository.findByTratamiento(tratamiento);
+        for (HorarioToma horario : horarios) {
+            horario.setEsActivo(false);
+        }
+        horarioTomaRepository.saveAll(horarios);
+    }
+
+    @Transactional
+    public PageResponse<TratamientoMedicoResponse> listarTratamientosPacienteMedicoConectado(Authentication token, Integer idPaciente, int page, int size) {
+        Usuario userMedico = (Usuario) token.getPrincipal();
+        Medico medico = obtenerMedicoPorId(userMedico.getId());
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Tratamiento> tratamientos = tratamientoRepository.findByPacienteIdAndMedicoIdAndEsActivoTrue(pageable, idPaciente, medico.getIdMedico());
+
+        // Convierte la lista de tratamientos a una lista de TratamientoMedicoResponse
+        List<TratamientoMedicoResponse> tratamientosResponse = tratamientos.stream()
+                .map(Mapper::toTratamientoMedicoResponse)
+                .collect(Collectors.toList()); //dentro está la conversion de las horas
+
+        // Crea una página de TratamientoMedicoResponse
+        return new PageResponse<>(
+                tratamientosResponse,
+                tratamientos.getNumber(),
+                tratamientos.getSize(),
+                tratamientos.getTotalElements(),
+                tratamientos.getTotalPages(),
+                tratamientos.isFirst(),
+                tratamientos.isLast()
+        );
+    }
+
+    private TratamientoMedicoResponse convertirATratamientoMedicoResponse(Tratamiento tratamiento) {
+        List<HorarioTomaResponse> horarioTomaResponses = tratamiento.getHorarios().stream()
+                .filter(HorarioToma::getEsActivo)
+                .map(horario -> HorarioTomaResponse.builder()
+                        .fecha(horario.getFecha())
+                        .hora(horario.getHora())
+                        .estado(horario.getEstadoHorario())
+                        .build())
+                .collect(Collectors.toList());
+
+        return TratamientoMedicoResponse.builder()
+                .idTratamiento(tratamiento.getIdTratamiento())
+                .descripcion(tratamiento.getDescripcion())
+                .dosisDiaria(tratamiento.getDosisDiaria())
+                .fechaInicio(tratamiento.getFechaInicio())
+                .fechaFin(tratamiento.getFechaFin())
+                .estado(tratamiento.getEstado())
+                .tipoTratamientoId(tratamiento.getTipoTratamiento().ordinal())
+                .horarios(horarioTomaResponses)
+                .build();
+    }
+
+
+
 
     private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
         LocalDate fechaInicio;
@@ -147,8 +229,9 @@ public class TratamientoService {
             HorarioToma horarioToma = HorarioToma.builder()
                     .tratamiento(tratamiento)
                     .hora(horaActual)
-                    .estadoHorario(EstadoHorario.ACTIVO)
+                    .estadoHorario(EstadoHorario.EN_CURSO)
                     .fecha(fechaActual)
+                    .esActivo(true)
                     .build();
             horarios.add(horarioToma);
 
@@ -163,7 +246,6 @@ public class TratamientoService {
         }
         return horarios;
     }
-
 
     private Medico obtenerMedicoPorId(Integer id) {
         return medicoRepository.findById(id)
@@ -184,4 +266,5 @@ public class TratamientoService {
         return medicamentoRepository.findById(id)
                 .orElseThrow(() -> new NullPointerException("No se encuentra el medicamento en la DB con ese ID"));
     }
+
 }

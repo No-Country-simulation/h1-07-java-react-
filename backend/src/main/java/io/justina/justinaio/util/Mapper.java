@@ -94,4 +94,27 @@ public class Mapper {
                 .descripcion(laboratorio.getDescripcion())
                 .build();
     }
+
+    public static TratamientoMedicoResponse toTratamientoMedicoResponse(Tratamiento tratamiento) {
+        return TratamientoMedicoResponse.builder()
+                .idTratamiento(tratamiento.getIdTratamiento())
+                .descripcion(tratamiento.getDescripcion())
+                .dosisDiaria(tratamiento.getDosisDiaria())
+                .fechaInicio(tratamiento.getFechaInicio())
+                .fechaFin(tratamiento.getFechaFin())
+                .estado(tratamiento.getEstado())
+                .tipoTratamientoId(tratamiento.getTipoTratamiento().ordinal())
+                .horarios(tratamiento.getHorarios().stream()
+                        .map(Mapper::toHorarioTomaResponse)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+    public static HorarioTomaResponse toHorarioTomaResponse(HorarioToma horarioToma) {
+        return HorarioTomaResponse.builder()
+                .fecha(horarioToma.getFecha())
+                .hora(horarioToma.getHora())
+                .estado(horarioToma.getEstadoHorario())
+                .build();
+    }
 }
