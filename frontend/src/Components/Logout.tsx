@@ -6,18 +6,17 @@ export const Logout: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(); 
-    navigate('/'); 
+    logout();
+    navigate('/login');
   };
 
   return (
-    <header className="bg-white shadow p-4 flex justify-between items-center">
-      <h1 className="text-xl font-semibold">Dashboard</h1>
+    <header className="bg-white mb-10 shadow p-4 flex justify-between items-center">
       <button
         onClick={handleLogout}
-        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        className="px-14 py-2 bg-[#959596] font-inter rounded-xl text-white hover:bg-blue-700"
       >
-        Logout
+        Cerrar Sesión
       </button>
     </header>
   );
