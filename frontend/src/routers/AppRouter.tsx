@@ -10,6 +10,7 @@ import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
 import { AuthContextProvider } from "../Context/AuthContext";
 import { Dashboard } from "../pages/private/Dashboard/Dashboard";
 import { RoutesWithNotFound } from "./RoutesWithNotFound";
+import { RegisterPatient } from "../pages/private/RegisterPatient/RegisterPatient";
 function AppRouter() {
 
 	return (
@@ -25,6 +26,7 @@ function AppRouter() {
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
 						<Route element={<PrivateRoute />}>
 							<Route path="/dashboard" index element={<Dashboard />} />
+							<Route path="/dashboard/register-patient" element={<RegisterPatient/>}></Route>
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 					</RoutesWithNotFound>
