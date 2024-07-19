@@ -4,5 +4,6 @@ public enum EstadoTratamiento {
 
     TERMINADO,
     SUSPENDIDO,
-    EN_CURSO
+    EN_CURSO,
+    BORRADO,
 }

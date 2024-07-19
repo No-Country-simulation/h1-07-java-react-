@@ -1,8 +1,9 @@
 package io.justina.justinaio.model.enums;
 
 public enum EstadoHorario {
-    ACTIVO,
-    INACTIVO,
+    EN_CURSO,
+    BORRADO,
+    TERMINADO,
     SUSPENDIDO,
-    RETRASADO, BORRADO, EN_CURSO,
+    ATRASADO
 }

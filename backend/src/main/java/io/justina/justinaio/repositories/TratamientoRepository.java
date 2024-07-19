@@ -14,5 +14,9 @@ public interface TratamientoRepository extends JpaRepository<Tratamiento, Intege
 
     @Query("SELECT t FROM Tratamiento t JOIN FETCH t.horarios h WHERE t.paciente.id = :idPaciente AND t.medico.idMedico = :idMedico AND t.esActivo = true AND h.esActivo = true")
     Page<Tratamiento> findByPacienteIdAndMedicoIdAndEsActivoTrue(Pageable pageable, Integer idPaciente, Integer idMedico);
+
+    @Query("SELECT t FROM Tratamiento t JOIN FETCH t.horarios h WHERE t.paciente.id = :idPaciente AND t.esActivo = true AND h.esActivo = true")
+    Page<Tratamiento> findByPacienteIdAndEsActivoTrue(Pageable pageable, Integer idPaciente);
+
 }
 

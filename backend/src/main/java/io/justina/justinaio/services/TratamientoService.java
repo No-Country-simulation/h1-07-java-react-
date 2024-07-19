@@ -1,9 +1,6 @@
 package io.justina.justinaio.services;
 
-import io.justina.justinaio.dto.HorarioTomaResponse;
-import io.justina.justinaio.dto.ModificarTratamientoRequest;
-import io.justina.justinaio.dto.NuevoTratamientoRequest;
-import io.justina.justinaio.dto.TratamientoMedicoResponse;
+import io.justina.justinaio.dto.*;
 import io.justina.justinaio.model.*;
 import io.justina.justinaio.model.enums.EstadoHorario;
 import io.justina.justinaio.model.enums.EstadoTratamiento;
@@ -24,6 +21,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -169,6 +167,49 @@ public class TratamientoService {
         );
     }
 
+  @Transactional
+  public PageResponse<TratamientoPacienteResponse> listarTratamientosPacienteConectado(Authentication token, int page, int size) {
+      Usuario userPaciente = (Usuario) token.getPrincipal();
+
+      Pageable pageable = PageRequest.of(page, size);
+      Page<Tratamiento> tratamientos = tratamientoRepository.findByPacienteIdAndEsActivoTrue(pageable, userPaciente.getId());
+
+      // Convierte la lista de tratamientos a una lista de TratamientoMedicoResponse
+      List<TratamientoPacienteResponse> tratamientosResponse = tratamientos.stream()
+              .map(Mapper::toTratamientoPacienteResponse)
+              .collect(Collectors.toList()); //dentro está la conversion de las horas
+
+      // Crea una página de TratamientoMedicoResponse
+      return new PageResponse<>(
+              tratamientosResponse,
+              tratamientos.getNumber(),
+              tratamientos.getSize(),
+              tratamientos.getTotalElements(),
+              tratamientos.getTotalPages(),
+              tratamientos.isFirst(),
+              tratamientos.isLast()
+      );
+  }
+
+ @Transactional
+ public TratamientoResponse buscarTratamientoPorId(Authentication token, Integer idTratamiento) {
+     Usuario usuario = (Usuario) token.getPrincipal();
+
+     if(usuario == null) {
+         throw new NullPointerException("Usuario no encontrado");
+     }
+     Tratamiento tratamiento = tratamientoRepository.findById(idTratamiento).orElseThrow(
+             () -> new NullPointerException("No se encuentra el tratamiento en la DB con ese ID")
+     );
+
+     if(!Objects.equals(tratamiento.getMedico().getIdMedico(), usuario.getId()) &&
+             !Objects.equals(tratamiento.getPaciente().getIdPaciente(), usuario.getId())) {
+         throw new SecurityException("No tienes permisos para realizar esta buqeuda");
+     }
+
+     return Mapper.toTratamientoResponse(tratamiento);
+
+ }
     private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
         LocalDate fechaInicio;
 
@@ -241,5 +282,6 @@ public class TratamientoService {
         return medicamentoRepository.findById(id)
                 .orElseThrow(() -> new NullPointerException("No se encuentra el medicamento en la DB con ese ID"));
     }
+
 
 }

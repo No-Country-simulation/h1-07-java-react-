@@ -54,9 +54,6 @@ public class PacienteRequest {
     private List<Integer> medicosId;
 
     @Schema(example = "[1]")
-    private List<Integer> tratamientosId;
-
-    @Schema(example = "[1]")
     private List<Integer> entidadesId;
 
     @Schema(example = "1")
