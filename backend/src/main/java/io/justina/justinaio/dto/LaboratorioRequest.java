@@ -15,7 +15,7 @@ public class LaboratorioRequest {
     @JsonProperty("nombre")
     private String nombre;
 
-    @Schema(description = "Descripción del medicamento", example = "Investigación y desarrollo. Especialistas en salud femenina.")
+    @Schema(description = "Descripción del laboratorio", example = "Investigación y desarrollo. Especialistas en salud femenina.")
     @JsonProperty("descripcion")
     private String descripcion;
 }

@@ -9,18 +9,17 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MedicamentoModificacionRequest {
+public class FarmaciaModificacionRequest {
 
-    @Schema(description = "Nombre del medicamento", example = "John")
+    @Schema(description = "Nombre de la farmacia", example = "Farmacity")
     @JsonProperty("nombre")
     private String nombre;
 
-    @Schema(description = "Nombre a cambiar del medicamento", example = "Juan")
+    @Schema(description = "Nombre a cambiar de la farmacia", example = "Farmaplus")
     @JsonProperty("nombreCambio")
     private String nombreCambio;
 
-    @Schema(description = "Descripción del medicamento", example = "credito")
-    @JsonProperty("descripcion")
-    private String descripcion;
-
+    @Schema(description = "Dirección de la farmacia", example = "Araoz 932")
+    @JsonProperty("direccion")
+    private String direccion;
 }

@@ -31,7 +31,7 @@ public class LaboratorioController {
 
         laboratorioService.crearLaboratorio(laboratorioRequest);
 
-        return ResponseEntity.ok("El laboratorio " + laboratorioRequest.getNombre() + " ha sido creado con èxito!");
+        return ResponseEntity.ok("El laboratorio " + laboratorioRequest.getNombre() + " ha sido creado con éxito!");
 
     }
 
@@ -41,7 +41,7 @@ public class LaboratorioController {
 
         laboratorioService.modificarLaboratorio(laboratorioRequest);
 
-        return ResponseEntity.ok("El laboratorio " + laboratorioRequest.getNombre() + " ha sido modficado con éxito!");
+        return ResponseEntity.ok("El laboratorio " + laboratorioRequest.getNombre() + " ha sido modificado con éxito!");
 
     }
 
@@ -49,7 +49,7 @@ public class LaboratorioController {
     public ResponseEntity<?> bajaLaboratorio(
             @RequestBody BajaPorNombreRequest bajaLaboratorioRequest) {
         laboratorioService.bajaLaboratorio(bajaLaboratorioRequest);
-        return ResponseEntity.ok("La baja se ha realizado con éxito");
+        return ResponseEntity.ok("La baja se ha realizado con éxito!");
     }
 
     @GetMapping("/buscar-laboratorios-activos")
