@@ -119,4 +119,19 @@ public class Mapper {
                 .estado(horarioToma.getEstadoHorario())
                 .build();
     }
+
+    public static Farmacia toFarmacia(FarmaciaRequest farmaciaRequest) {
+        return Farmacia.builder()
+                .nombre(farmaciaRequest.getNombre())
+                .direccion(farmaciaRequest.getDireccion())
+                .esActivo(true)
+                .build();
+    }
+
+    public static FarmaciaResponse toFarmaciaResponse(Farmacia farmacia) {
+        return FarmaciaResponse.builder()
+                .nombre(farmacia.getNombre())
+                .direccion(farmacia.getDireccion())
+                .build();
+    }
 }

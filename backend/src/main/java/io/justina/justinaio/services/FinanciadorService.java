@@ -63,11 +63,18 @@ public class FinanciadorService {
 
     public void bajaFinanciador(BajaPorNombreRequest bajaFinanciadorRequest) {
 
-        Financiador financiador = financiadorRepository.buscarPorNombre(bajaFinanciadorRequest.getNombre())
-                .orElseThrow(
-                        () -> new NullPointerException("Financiador a dar de baja no encontrado"));
-        financiador.setEsActivo(false);
-        financiadorRepository.save(financiador);
+        Optional<Financiador> financiador = financiadorRepository.buscarPorNombre(bajaFinanciadorRequest.getNombre());
+
+        if (financiador.isEmpty()) {
+            throw new NullPointerException("Financiador a dar de baja no encontrado");
+        }
+
+        if (!financiador.get().isEsActivo()) {
+            throw new IllegalArgumentException("El financiador ya se encuentra dado de baja");
+        }
+
+        financiador.get().setEsActivo(false);
+        financiadorRepository.save(financiador.get());
     }
 
     public PageResponse<FinanciadorResponse> buscarFinanciadores(int page, int size) {
@@ -82,8 +89,7 @@ public class FinanciadorService {
                 financiadores.getTotalElements(),
                 financiadores.getTotalPages(),
                 financiadores.isFirst(),
-                financiadores.isLast()
-        );
+                financiadores.isLast());
     }
 
     public FinanciadorResponse buscarUnFinanciador(String nombre) {

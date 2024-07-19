@@ -60,11 +60,18 @@ public class MedicamentoService {
 
     public void bajaMedicamento(BajaPorNombreRequest bajaMedicamentoRequest) {
 
-        Medicamento medicamento = medicamentoRepository.buscarPorNombre(bajaMedicamentoRequest.getNombre())
-                .orElseThrow(
-                        () -> new NullPointerException("Medicamento a dar de baja no encontrado"));
-        medicamento.setEsActivo(false);
-        medicamentoRepository.save(medicamento);
+        Optional<Medicamento> medicamento = medicamentoRepository.buscarPorNombre(bajaMedicamentoRequest.getNombre());
+
+        if (medicamento.isEmpty()) {
+            throw new NullPointerException("Medicamento a dar de baja no encontrado");
+        }
+
+        if (!medicamento.get().isEsActivo()) {
+            throw new IllegalArgumentException("El medicamento ya se encuentra dado de baja");
+        }
+
+        medicamento.get().setEsActivo(false);
+        medicamentoRepository.save(medicamento.get());
 
     }
 

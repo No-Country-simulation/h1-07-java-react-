@@ -8,7 +8,8 @@
             "mainClass": "io.justina.justinaio.JustinaioApplication",  // Reemplaza con el nombre de tu clase principal
             "env": {
                 "MAIL_USERNAME": "PetNetNoResponder@gmail.com",
-                "MAIL_PASSWORD": "qzdhkzkfwcwfsyip"
+                "MAIL_PASSWORD": "qzdhkzkfwcwfsyip",
+                "GEMINI_KEY": "AIzaSyDUgePFFR9CjsFJmkTw_JRQO37v8HRrK3M"
             }
         }
     ]

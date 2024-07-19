@@ -36,14 +36,14 @@ public class FinanciadorController {
     public ResponseEntity<?> modificarFinanciador(
             @RequestBody FinanciadorModificacionRequest financiadorRequest) {
         financiadorService.modificarFinanciador(financiadorRequest);
-        return ResponseEntity.ok("El Financiador " + financiadorRequest.getNombre() + " ha sido modficado con éxito!");
+        return ResponseEntity.ok("El Financiador " + financiadorRequest.getNombre() + " ha sido modificado con éxito!");
     }
 
     @PutMapping("/baja-financiador")
     public ResponseEntity<?> bajaFinanciador(
             @RequestBody BajaPorNombreRequest bajaFinanciadorRequest) {
         financiadorService.bajaFinanciador(bajaFinanciadorRequest);
-        return ResponseEntity.ok("La baja se ha realizado con éxito");
+        return ResponseEntity.ok("La baja se ha realizado con éxito!");
     }
 
     @GetMapping("/buscar-financiadores-activos")
