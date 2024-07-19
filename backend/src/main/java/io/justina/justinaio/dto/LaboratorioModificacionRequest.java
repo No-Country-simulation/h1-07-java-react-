@@ -1,4 +1,5 @@
 package io.justina.justinaio.dto;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -14,11 +15,11 @@ public class LaboratorioModificacionRequest {
     @JsonProperty("nombre")
     private String nombre;
 
-    @Schema(description = "Nombre a cambiar del financiador", example = "Insud")
+    @Schema(description = "Nombre a cambiar del laboratorio", example = "Insud")
     @JsonProperty("nombreCambio")
     private String nombreCambio;
 
-    @Schema(description = "Descripción del financiador", example = "Invertimos en investigación y desarrollo para potenciar el conocimiento científico.")
+    @Schema(description = "Descripción del laboratorio", example = "Invertimos en investigación y desarrollo para potenciar el conocimiento científico.")
     @JsonProperty("descripcion")
     private String descripcion;
 }
