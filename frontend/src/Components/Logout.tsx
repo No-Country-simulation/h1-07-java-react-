@@ -14,7 +14,7 @@ export const Logout: React.FC = () => {
     <header className="bg-white mb-10 shadow p-4 flex justify-between items-center">
       <button
         onClick={handleLogout}
-        className="px-14 py-2 bg-[#959596] font-inter rounded-xl text-white hover:bg-blue-700"
+        className="px-14 py-2 bg-[#959596] font-inter rounded-xl text-white hover:bg-gray-700"
       >
         Cerrar Sesión
       </button>

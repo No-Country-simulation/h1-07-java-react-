@@ -67,6 +67,8 @@ export const LoginPage: React.FC = () => {
       const token: string = data.token
       const infoToken: tokenData = jwtDecode(token)
 
+      console.log(infoToken);
+
       const dataToken: AuthTokens = {
         token: token,
         email: infoToken.fullName,
