@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { CalendarIcon, CampanaIcon, FlechaIcon, HomeIconTwo, LapizIcon, MenuHambuerguesa, RelojIcon, UserIconTwo } from '../../../../Components/icons/Icons';
-import { Link } from 'react-router-dom';
+import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo, UserIconTwo2 } from '../../../../Components/icons/Icons';
+import { Link, useLocation } from 'react-router-dom';
 
 
 interface Message {
@@ -20,10 +20,13 @@ export function Home(): JSX.Element {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeTab, setActiveTab] = useState('Pacientes');
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+    const location = useLocation();
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
     };
+
+    console.log(location);
+
 
     const handleTabChange = (tab: string) => {
         setActiveTab(tab);
@@ -33,25 +36,35 @@ export function Home(): JSX.Element {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const menuItems = [
+        { to: "/dashboard", icon: HomeIconTwo, label: "Inicio" },
+        { to: "/", icon: PeopleIcon, label: "Gente" },
+        { to: "/", icon: MenssageIcon, label: "Mensajes" },
+        { to: "/", icon: CampanaIconTwo, label: "Notificaciones" },
+        { to: "/userInfo", icon: UserIconTwo2, label: "Perfil" }
+    ]
 
     return (
         <div className="p-4 bg-gray-100 min-h-screen w-full">
-            <div className={`fixed top-0 w=full left-0 h-full bg-black text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10 px-16' : '-translate-x-full z-10'}`}>
+            <div className={`fixed top-0  left-0 h-full bg-white text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10' : '-translate-x-full z-10'}`}>
                 <div className="py-10 flex flex-col ">
-                    <h1 className="text-xl font-bold mb-5">MENÚ</h1>
-                    <ul className='bg-red-500 w-[10vh] '>
-                        <li className="mb-2">
-                            <Link to="/link1">
-                                <HomeIconTwo width={16} height={16} />
+                    <h1 className="text-xl font-bold mb-5 text-center text-black">MENÚ</h1>
+                    <ul className='w-[30vh]'>
+                        {menuItems.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <li
+                                    className={`mb-5 flex flex-row ml-4 w-[13rem] items-center p-3 rounded-lg ${location.pathname === item.to ? 'bg-[#666666]' : 'text-black'
+                                        }`}
+                                >
+                                    <item.icon width={26} height={26} />
+                                    <p className="font-inter text-xl ml-5">{item.label}</p>
+                                </li>
                             </Link>
-                        </li>
-                        <li className="mb-2"><Link to="/link2">Link 2</Link></li>
-                        <li className="mb-2"><Link to="/link3">Link 3</Link></li>
-                        {/* Add more links as needed */}
+                        ))}
                     </ul>
                 </div>
             </div>
-            <header className="flex flex-col justify-between h-[9.5rem] mb-4 relative right-4 bottom-3 w-[25rem] bg-[#D9D9D9] border rounded-br-[3rem]">
+            <header className="flex flex-col justify-between h-[9.5rem] mb-4 relative right-4 bottom-3 w-[109%] bg-[#D9D9D9] border rounded-br-[3rem]">
                 <div className="flex items-center space-x-2 content-center justify-between ml-4">
                     <Link to={"/userInfo"}>
                         <div className="w-[10.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
