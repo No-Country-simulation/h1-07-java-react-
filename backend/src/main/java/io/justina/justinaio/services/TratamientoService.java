@@ -169,31 +169,6 @@ public class TratamientoService {
         );
     }
 
-    private TratamientoMedicoResponse convertirATratamientoMedicoResponse(Tratamiento tratamiento) {
-        List<HorarioTomaResponse> horarioTomaResponses = tratamiento.getHorarios().stream()
-                .filter(HorarioToma::getEsActivo)
-                .map(horario -> HorarioTomaResponse.builder()
-                        .fecha(horario.getFecha())
-                        .hora(horario.getHora())
-                        .estado(horario.getEstadoHorario())
-                        .build())
-                .collect(Collectors.toList());
-
-        return TratamientoMedicoResponse.builder()
-                .idTratamiento(tratamiento.getIdTratamiento())
-                .descripcion(tratamiento.getDescripcion())
-                .dosisDiaria(tratamiento.getDosisDiaria())
-                .fechaInicio(tratamiento.getFechaInicio())
-                .fechaFin(tratamiento.getFechaFin())
-                .estado(tratamiento.getEstado())
-                .tipoTratamientoId(tratamiento.getTipoTratamiento().ordinal())
-                .horarios(horarioTomaResponses)
-                .build();
-    }
-
-
-
-
     private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
         LocalDate fechaInicio;
 

@@ -98,6 +98,8 @@ public class Mapper {
     public static TratamientoMedicoResponse toTratamientoMedicoResponse(Tratamiento tratamiento) {
         return TratamientoMedicoResponse.builder()
                 .idTratamiento(tratamiento.getIdTratamiento())
+                .nombrePatologia(tratamiento.getPatologia() != null ? tratamiento.getPatologia().getNombre() : null)
+                .nombreMedicamento(tratamiento.getMedicamento() != null ? tratamiento.getMedicamento().getNombre() : null)
                 .descripcion(tratamiento.getDescripcion())
                 .dosisDiaria(tratamiento.getDosisDiaria())
                 .fechaInicio(tratamiento.getFechaInicio())

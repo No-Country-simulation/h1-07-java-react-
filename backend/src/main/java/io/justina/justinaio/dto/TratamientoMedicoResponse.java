@@ -1,5 +1,6 @@
 package io.justina.justinaio.dto;
 
+import io.justina.justinaio.model.Patologia;
 import io.justina.justinaio.model.enums.EstadoTratamiento;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -15,6 +16,12 @@ import java.util.List;
 public class TratamientoMedicoResponse {
     @Schema(description = "ID del tratamiento", example = "1")
     private Integer idTratamiento;
+
+    @Schema(description = "Nombre de la patología", example = "Cefalea")
+    private String nombrePatologia;
+
+    @Schema(description = "Nombre del medicamento", example = "Ibuprofeno")
+    private String nombreMedicamento;
 
     @Schema(description = "Descripción del tratamiento", example = "Tomar 2 veces al día después de las comidas")
     private String descripcion;
