@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Logout } from "../../../components/Logout";
 import { useAuthContext } from "../../../Context/AuthContext";
+import { Logout } from "../../../components/Logout";
 
 
 export function Dashboard() {

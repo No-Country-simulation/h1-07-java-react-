@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Button } from '@nextui-org/react';
 import { dataRegisterDoctor, initialValuesDoctor } from '../../data/data';
-import { LoaderIcon } from '../../components/icons/Icons';
+import { CardIcon, JobIcon, LoaderIcon } from '../../components/icons/Icons';
 
 // const financiadores = [
 // 	{ key: 1, label: "OSDE" },
@@ -57,10 +57,10 @@ const SignUp: React.FC = () => {
 			provincia: values.provincia,
 			localidad: values.localidad,
 			licencia: values.licencia,
-			especialidad: 1,
-			financiadores: [1]
+			especialidad: values.especialidad,
+			financiadores: [values.financiadores[0]]
 		};
-
+		console.log(doctor)
 		try {
 			const res = await fetch(`${API_URL}/auth/registrar-medico`, {
 				method: "POST",
@@ -97,7 +97,7 @@ const SignUp: React.FC = () => {
 			>
 				{({ isSubmitting }) => (
 					<Form className=" w-full p-4 flex flex-col gap-y-4  ">
-						<div className="flex-wrap grid grid-rows-4 gap-6 max-md:grid-rows-8 max-md:gap-1 grid-flow-col max-md:gap-y-3">
+						<div className="flex-wrap grid grid-rows-5 gap-6 max-md:grid-rows-10 grid-flow-col  max-md:gap-1 max-md:gap-y-3">
 							{dataRegisterDoctor.map(({ label, name, type, icon: Icon, placeholder }) => (
 								<div key={name}>
 									<label className="font-semibold flex items-center gap-2 pl-2" htmlFor={name}>
@@ -113,6 +113,25 @@ const SignUp: React.FC = () => {
 									<ErrorMessage name={name} component="div" className="text-red-500" />
 								</div>
 							))}
+							<div className="">
+								<label className="font-semibold flex items-center gap-2 pl-2" htmlFor="especialidad">
+									<JobIcon width={15} height={15} />Especialidad
+								</label>
+								<Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="especialidad">
+									<option value={1}>Cardiología</option>
+									<option value={2}>Neurología</option>
+									<option value={3}>Pediatría</option>
+								</Field>
+							</div>
+							<div className="">
+								<label className="font-semibold flex items-center gap-2 pl-2" htmlFor="financiadores">
+									<CardIcon width={15} height={15} />Financiador
+								</label>
+								<Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="financiadores">
+									<option value={1}>OSDE</option>
+									<option value={2}>Swiss Medical</option>
+								</Field>
+							</div>
 						</div>
 						<div>
 							<Button

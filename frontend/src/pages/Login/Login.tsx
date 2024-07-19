@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthenticationRequest, AuthTokens, tokenData } from "../../Interfaces/interfaces";
-import { ClosePasswordIcon, EmailIcon, LoaderIcon, LockIcon, OpenPasswordIcon } from "../../components/icons/Icons";
+import { AuthenticationRequest, AuthTokens, tokenData} from "../../Interfaces/interfaces";
 import { useAuthContext } from "../../Context/AuthContext";
 import { jwtDecode } from "jwt-decode";
 import { API_URL } from "../../api/api";
@@ -9,6 +8,7 @@ import { toast } from "sonner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { initialValuesLogin } from "../../data/data";
 import * as Yup from 'yup';
+import { ClosePasswordIcon, EmailIcon, LoaderIcon, LockIcon, OpenPasswordIcon } from "../../components/icons/Icons";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -28,7 +28,7 @@ export const LoginPage: React.FC = () => {
   //falta agregar una validacion
   const handleSubmitLogin = async (values: AuthenticationRequest) => {
     setLoading(true);
-    console.log(values)
+    // console.log(values)
     try {
       const res = await fetch(`${API_URL}/auth/autenticar`, {
         method: "POST",
@@ -54,7 +54,6 @@ export const LoginPage: React.FC = () => {
           exp: infoToken.exp,
           authorities: infoToken.authorities
         }
-
         login(dataToken)
       }
 
@@ -76,8 +75,8 @@ export const LoginPage: React.FC = () => {
 
 
   return (
-    <section className="flex min-h-screen bg-gray-100 md:flex md:justify-center md:bg-black ">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg md:bg-black max-md:m-auto">
+    <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center  ">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg  max-md:m-auto">
         <h2 className="text-[20px] font-[700] mb-[9px] mt-[1.5rem] text-gray-900 font-inter">Iniciar Sesión</h2>
         <p className="mb-[46px] text-[15px] text-[#948ABC]">Accede con la cuenta que registraste</p>
         <Formik
@@ -141,6 +140,6 @@ export const LoginPage: React.FC = () => {
           )}
         </Formik>
       </div>
-    </section >
+    </div>
   );
 };

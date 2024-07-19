@@ -1,8 +1,8 @@
 import { Divider } from '@nextui-org/react';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowIcon, CheckIcon } from '../../components/icons/Icons';
 import { API_URL } from '../../api/api';
+import { ArrowIcon, CheckIcon } from '../../components/icons/Icons';
 
 
 export const ActiveAccount = () => {
@@ -34,11 +34,8 @@ export const ActiveAccount = () => {
 
     const tokenValue = token.join("");
     console.log(tokenValue);
-    // Obtén el valor del token
+  
     try {
-      //token de prueba 139163
-      //el problema es en este fetch
-
       const res = await fetch(`${API_URL}/auth/activar-cuenta?token=${tokenValue}`, {
         method: "GET",
         headers: {
