@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import { CalendarIcon, CampanaIcon, FlechaIcon, HomeIconTwo, LapizIcon, MenuHambuerguesa, RelojIcon, UserIconTwo } from '../../../../components/icons/Icons'
-import { Link } from 'react-router-dom';
-import { API_URL } from '../../../../api/api';
+import { useEffect, useState } from 'react';;
+import { Link, useLocation } from 'react-router-dom';
 import { useAuthContext } from '../../../../Context/AuthContext';
+import { API_URL } from '../../../../api/api';
+import { Logout } from '../../../../components/Logout';
+import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo, UserIconTwo2  } from '../../../../components/icons/Icons';
 
 
 interface Message {
@@ -19,18 +20,20 @@ const messages: Message[] = [
 ];
 
 export function Home(): JSX.Element {
-	const { authTokens } = useAuthContext()
-	const [searchQuery, setSearchQuery] = useState('');
-	const [activeTab, setActiveTab] = useState('Pacientes');
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [activeTab, setActiveTab] = useState('Pacientes');
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const location = useLocation();
+		const {authTokens} = useAuthContext()
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value);
+    };
 
-	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchQuery(e.target.value);
-	};
+    
 
-	const handleTabChange = (tab: string) => {
-		setActiveTab(tab);
-	};
+    const handleTabChange = (tab: string) => {
+        setActiveTab(tab);
+    };
 
 	const toggleSidebar = () => {
 		setIsSidebarOpen(!isSidebarOpen);
@@ -61,40 +64,51 @@ export function Home(): JSX.Element {
 		fetchPatient()
 	}, [])
 
+    const menuItems = [
+        { to: "/dashboard", icon: HomeIconTwo, label: "Inicio" },
+        { to: "/", icon: PeopleIcon, label: "Gente" },
+        { to: "/", icon: MenssageIcon, label: "Mensajes" },
+        { to: "/", icon: CampanaIconTwo, label: "Notificaciones" },
+        { to: "/userInfo", icon: UserIconTwo2, label: "Perfil" }
+    ]
 
-	return (
-		<div className="p-4 bg-gray-100 min-h-screen w-full">
-			<div className={`fixed top-0 w=full left-0 h-full bg-black text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10 px-16' : '-translate-x-full z-10'}`}>
-				<div className="py-10 flex flex-col ">
-					<h1 className="text-xl font-bold mb-5">MENÚ</h1>
-					<ul className='bg-red-500 w-[10vh] '>
-						<li className="mb-2">
-							<Link to="/link1">
-								<HomeIconTwo width={16} height={16} />
-							</Link>
-						</li>
-						<li className="mb-2"><Link to="/link2">Link 2</Link></li>
-						<li className="mb-2"><Link to="/link3">Link 3</Link></li>
-						{/* Add more links as needed */}
-					</ul>
-				</div>
-			</div>
-			<header className="flex flex-col justify-between h-[9.5rem] mb-4 relative right-4 bottom-3 w-[25rem] bg-[#D9D9D9] border rounded-br-[3rem]">
-				<div className="flex items-center space-x-2 content-center justify-between ml-4">
-					<Link to={"/userInfo"}>
-						<div className="w-[10.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
-							<UserIconTwo width={44} height={44} />
-							<div className=''>
-								<h1 className="text-lg font-inter font-bold">Buenos días,</h1>
-								<p className="font-inter font-bold">Dr. Ortega</p>
-							</div>
-						</div>
-					</Link>
-					<div className='relative right-7 flex flex-row '>
-						<CampanaIcon width={24} height={24} />
-						<button onClick={toggleSidebar}>
-							<MenuHambuerguesa width={24} height={24} />
-						</button>
+    return (
+        <div className="p-4 bg-gray-100 min-h-screen w-full">
+            <div className={`fixed top-0  left-0 h-full bg-white text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10' : '-translate-x-full z-10'}`}>
+                <div className="py-10 flex flex-col ">
+                    <h1 className="text-xl font-bold mb-5 text-center text-black">MENÚ</h1>
+                    <ul className='w-[30vh]'>
+                        {menuItems.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <li
+                                    className={`mb-5 flex flex-row ml-4 w-[13rem] items-center p-3 rounded-lg ${location.pathname === item.to ? 'bg-[#666666]' : 'text-black hover:bg-[#9b9595]'
+                                        }`}
+                                >
+                                    <item.icon width={26} height={26} />
+                                    <p className="font-inter text-xl ml-5">{item.label}</p>
+                                </li>
+                            </Link>
+                        ))}
+                    </ul>
+                    <Logout />
+                </div>
+            </div>
+            <header className="flex flex-col justify-between h-[9.5rem] mb-4 relative right-4 bottom-3 w-[109%] bg-[#D9D9D9] border rounded-br-[3rem]">
+                <div className="flex items-center space-x-2 content-center justify-between ml-4">
+                    <Link to={"/userInfo"}>
+                        <div className="w-[10.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
+                            <UserIconTwo width={44} height={44} />
+                            <div className=''>
+                                <h1 className="text-lg font-inter font-bold">Buenos días,</h1>
+                                <p className="font-inter font-bold">Dr. Ortega</p>
+                            </div>
+                        </div>
+                    </Link>
+                    <div className='relative right-7 flex flex-row '>
+                        <CampanaIcon width={24} height={24} />
+                        <button onClick={toggleSidebar}>
+                            <MenuHambuerguesa width={24} height={24} />
+                        </button>
 
 					</div>
 				</div>
