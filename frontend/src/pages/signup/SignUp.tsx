@@ -76,7 +76,7 @@ const SignUp: React.FC = () => {
 		};
 
 		try {
-			const res = await fetch(`${API_URL}/auth/registrar-medico`, {
+			const res = await fetch(`${API_URL}auth/registrar-medico`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(doctor)
@@ -98,10 +98,6 @@ const SignUp: React.FC = () => {
 		}
 	};
 
-	// const handleSelectOption = (e: ChangeEvent<HTMLSelectElement>) => {
-  //   setValuesSelect(prev => [...prev, Number(e.target.value)]);
-	// 	console.log(valuesSelect)
-	// }
 
 
 	return (

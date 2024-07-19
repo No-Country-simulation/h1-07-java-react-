@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo, UserIconTwo2 } from '../../../../Components/icons/Icons';
 import { Link, useLocation } from 'react-router-dom';
+import { Logout } from '../../../../Components/Logout';
 
 
 interface Message {
@@ -25,8 +26,7 @@ export function Home(): JSX.Element {
         setSearchQuery(e.target.value);
     };
 
-    console.log(location);
-
+    
 
     const handleTabChange = (tab: string) => {
         setActiveTab(tab);
@@ -53,7 +53,7 @@ export function Home(): JSX.Element {
                         {menuItems.map((item, index) => (
                             <Link to={item.to} key={index}>
                                 <li
-                                    className={`mb-5 flex flex-row ml-4 w-[13rem] items-center p-3 rounded-lg ${location.pathname === item.to ? 'bg-[#666666]' : 'text-black'
+                                    className={`mb-5 flex flex-row ml-4 w-[13rem] items-center p-3 rounded-lg ${location.pathname === item.to ? 'bg-[#666666]' : 'text-black hover:bg-[#9b9595]'
                                         }`}
                                 >
                                     <item.icon width={26} height={26} />
@@ -62,6 +62,7 @@ export function Home(): JSX.Element {
                             </Link>
                         ))}
                     </ul>
+                    <Logout />
                 </div>
             </div>
             <header className="flex flex-col justify-between h-[9.5rem] mb-4 relative right-4 bottom-3 w-[109%] bg-[#D9D9D9] border rounded-br-[3rem]">
