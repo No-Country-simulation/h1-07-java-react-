@@ -19,20 +19,14 @@ public class Farmacia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idFarmacia;
     private String nombre;
+    private String direccion;
+    private boolean esActivo;
 
     @ManyToMany
-    @JoinTable(
-        name = "farmacia_medicamento",
-        joinColumns = @JoinColumn(name = "farmacia_id"),
-        inverseJoinColumns = @JoinColumn(name = "medicamento_id")
-    )
+    @JoinTable(name = "farmacia_medicamento", joinColumns = @JoinColumn(name = "farmacia_id"), inverseJoinColumns = @JoinColumn(name = "medicamento_id"))
     private List<Medicamento> medicamentos;
 
     @ManyToMany
-    @JoinTable(
-        name = "farmacia_laboratorio",
-        joinColumns = @JoinColumn(name = "farmacia_id"),
-        inverseJoinColumns = @JoinColumn(name = "laboratorio_id")
-    )
+    @JoinTable(name = "farmacia_laboratorio", joinColumns = @JoinColumn(name = "farmacia_id"), inverseJoinColumns = @JoinColumn(name = "laboratorio_id"))
     private List<Laboratorio> laboratorios;
 }

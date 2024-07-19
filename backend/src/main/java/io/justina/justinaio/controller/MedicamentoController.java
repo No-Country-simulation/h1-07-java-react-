@@ -31,7 +31,7 @@ public class MedicamentoController {
 
         medicamentoService.crearMedicamento(medicamentoRequest);
 
-        return ResponseEntity.ok("El Medicamento " + medicamentoRequest.getNombre() + " ha sido creado con èxito!");
+        return ResponseEntity.ok("El Medicamento " + medicamentoRequest.getNombre() + " ha sido creado con éxito!");
 
     }
 
@@ -41,7 +41,7 @@ public class MedicamentoController {
 
         medicamentoService.modificarMedicamento(medicamentoRequest);
 
-        return ResponseEntity.ok("El medicamento " + medicamentoRequest.getNombre() + " ha sido modficado con éxito!");
+        return ResponseEntity.ok("El medicamento " + medicamentoRequest.getNombre() + " ha sido modificado con éxito!");
 
     }
 
@@ -49,7 +49,7 @@ public class MedicamentoController {
     public ResponseEntity<?> bajaMedicamento(
             @RequestBody BajaPorNombreRequest bajaMedicamentoRequest) {
         medicamentoService.bajaMedicamento(bajaMedicamentoRequest);
-        return ResponseEntity.ok("La baja se ha realizado con éxito");
+        return ResponseEntity.ok("La baja se ha realizado con éxito!");
     }
 
     @GetMapping("/buscar-medicamentos-activos")

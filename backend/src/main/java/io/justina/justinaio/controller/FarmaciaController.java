@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.justina.justinaio.dto.BajaPorNombreRequest;
-import io.justina.justinaio.dto.LaboratorioModificacionRequest;
+import io.justina.justinaio.dto.FarmaciaModificacionRequest;
+import io.justina.justinaio.dto.FarmaciaRequest;
+import io.justina.justinaio.dto.FarmaciaResponse;
+import io.justina.justinaio.services.FarmaciaService;
 import io.justina.justinaio.util.PageResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -25,20 +28,27 @@ public class FarmaciaController {
 
     @PostMapping("/crear-farmacia")
     public ResponseEntity<?> crearFarmacia(@RequestBody FarmaciaRequest farmaciaRequest) {
+
         farmaciaService.crearFarmacia(farmaciaRequest);
-        return ResponseEntity.ok("La farmacia " + farmaciaRequest.getNombre() + " ha sido creada con èxito!");
+
+        return ResponseEntity.ok("La farmacia " + farmaciaRequest.getNombre() + " ha sido creada con éxito!");
+
     }
 
     @PutMapping("/modificar-farmacia")
-    public ResponseEntity<?> modificarFarmacia(@RequestBody FarmaciaModificacionRequest farmaciaRequest) {
+    public ResponseEntity<?> modificarFarmacia(
+            @RequestBody FarmaciaModificacionRequest farmaciaRequest) {
+
         farmaciaService.modificarFarmacia(farmaciaRequest);
-        return ResponseEntity.ok("La farmacia " + farmaciaRequest.getNombre() + " ha sido modificada con إxito!");
+
+        return ResponseEntity.ok("La farmacia " + farmaciaRequest.getNombre() + " ha sido modificada con éxito!");
+
     }
 
     @PutMapping("/baja-farmacia")
     public ResponseEntity<?> bajaFarmacia(@RequestBody BajaPorNombreRequest bajaFarmaciaRequest) {
         farmaciaService.bajaFarmacia(bajaFarmaciaRequest);
-        return ResponseEntity.ok("La farmacia " + bajaFarmaciaRequest.getNombre() + " ha sido dada de baja con إxito!");
+        return ResponseEntity.ok("La farmacia " + bajaFarmaciaRequest.getNombre() + " ha sido dada de baja con éxito!");
     }
 
     @GetMapping("/buscar-farmacias-activas")
@@ -48,10 +58,10 @@ public class FarmaciaController {
         return farmaciaService.buscarFarmacias(page, size);
     }
 
-    @GetMapping("/buscar-laboratorio-por-nombre")
-    public ResponseEntity<?> buscarUnLaboratorio(
+    @GetMapping("/buscar-farmacia-por-nombre")
+    public ResponseEntity<?> buscarUnaFarmacia(
             @RequestParam String nombre) {
-        return ResponseEntity.ok(laboratorioService.buscarUnLaboratorio(nombre));
+        return ResponseEntity.ok(farmaciaService.buscarUnaFarmacia(nombre));
     }
-    
+
 }
