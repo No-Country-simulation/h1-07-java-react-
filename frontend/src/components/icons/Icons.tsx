@@ -345,10 +345,10 @@ export function OpenPassword({ width, height }: IconProps) {
 export function UserIconTwo({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_259_774)">
-        <circle cx="22" cy="22" r="20" fill="white" stroke="#666666" stroke-width="4" stroke-linecap="round" />
-        <path d="M31.625 33.6875V33.6875C31.625 30.6499 29.1626 28.1875 26.125 28.1875H17.875C14.8374 28.1875 12.375 30.6499 12.375 33.6875V33.6875" stroke="#666666" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M22 24.0625C25.797 24.0625 28.875 20.9845 28.875 17.1875C28.875 13.3905 25.797 10.3125 22 10.3125C18.203 10.3125 15.125 13.3905 15.125 17.1875C15.125 20.9845 18.203 24.0625 22 24.0625Z" stroke="#666666" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      <g clipPath="url(#clip0_259_774)">
+        <circle cx="22" cy="22" r="20" fill="white" stroke="#666666" strokeWidth="4" strokeLinecap="round" />
+        <path d="M31.625 33.6875V33.6875C31.625 30.6499 29.1626 28.1875 26.125 28.1875H17.875C14.8374 28.1875 12.375 30.6499 12.375 33.6875V33.6875" stroke="#666666" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M22 24.0625C25.797 24.0625 28.875 20.9845 28.875 17.1875C28.875 13.3905 25.797 10.3125 22 10.3125C18.203 10.3125 15.125 13.3905 15.125 17.1875C15.125 20.9845 18.203 24.0625 22 24.0625Z" stroke="#666666" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
       </g>
       <defs>
         <clipPath id="clip0_259_774">
@@ -363,7 +363,7 @@ export function UserIconTwo({ width, height }: IconProps) {
 export function CampanaIcon({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13.7295 21C13.5537 21.3031 13.3014 21.5547 12.9978 21.7295C12.6941 21.9044 12.3499 21.9965 11.9995 21.9965C11.6492 21.9965 11.3049 21.9044 11.0013 21.7295C10.6977 21.5547 10.4453 21.3031 10.2695 21M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M13.7295 21C13.5537 21.3031 13.3014 21.5547 12.9978 21.7295C12.6941 21.9044 12.3499 21.9965 11.9995 21.9965C11.6492 21.9965 11.3049 21.9044 11.0013 21.7295C10.6977 21.5547 10.4453 21.3031 10.2695 21M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
@@ -372,7 +372,7 @@ export function CampanaIcon({ width, height }: IconProps) {
 export function MenuHambuerguesa({ width, height }: IconProps) {
   return (
     <svg width={width} height={width} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2">
-      <path d="M3 12H21M3 6H21M3 18H21" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M3 12H21M3 6H21M3 18H21" stroke="#1E1E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
@@ -382,8 +382,8 @@ export function MenuHambuerguesa({ width, height }: IconProps) {
 export function CalendarIcon({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_261_794)">
-        <path d="M10 1.25V3.75M5 1.25V3.75M1.875 6.25H13.125M3.125 2.5H11.875C12.5654 2.5 13.125 3.05964 13.125 3.75V12.5C13.125 13.1904 12.5654 13.75 11.875 13.75H3.125C2.43464 13.75 1.875 13.1904 1.875 12.5V3.75C1.875 3.05964 2.43464 2.5 3.125 2.5Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <g clipPath="url(#clip0_261_794)">
+        <path d="M10 1.25V3.75M5 1.25V3.75M1.875 6.25H13.125M3.125 2.5H11.875C12.5654 2.5 13.125 3.05964 13.125 3.75V12.5C13.125 13.1904 12.5654 13.75 11.875 13.75H3.125C2.43464 13.75 1.875 13.1904 1.875 12.5V3.75C1.875 3.05964 2.43464 2.5 3.125 2.5Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </g>
       <defs>
         <clipPath id="clip0_261_794">
@@ -397,8 +397,8 @@ export function CalendarIcon({ width, height }: IconProps) {
 export function RelojIcon({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_262_796)">
-        <path d="M7.5 3.75V7.5L10 8.75M13.75 7.5C13.75 10.9518 10.9518 13.75 7.5 13.75C4.04822 13.75 1.25 10.9518 1.25 7.5C1.25 4.04822 4.04822 1.25 7.5 1.25C10.9518 1.25 13.75 4.04822 13.75 7.5Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <g clipPath="url(#clip0_262_796)">
+        <path d="M7.5 3.75V7.5L10 8.75M13.75 7.5C13.75 10.9518 10.9518 13.75 7.5 13.75C4.04822 13.75 1.25 10.9518 1.25 7.5C1.25 4.04822 4.04822 1.25 7.5 1.25C10.9518 1.25 13.75 4.04822 13.75 7.5Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </g>
       <defs>
         <clipPath id="clip0_262_796">
@@ -413,7 +413,7 @@ export function RelojIcon({ width, height }: IconProps) {
 export function LapizIcon({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} className="ml-4" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7.5 12.5001H13.125M10.3125 2.18764C10.5611 1.939 10.8984 1.79932 11.25 1.79932C11.4241 1.79932 11.5965 1.83361 11.7574 1.90024C11.9182 1.96687 12.0644 2.06453 12.1875 2.18764C12.3106 2.31076 12.4083 2.45691 12.4749 2.61777C12.5415 2.77863 12.5758 2.95103 12.5758 3.12514C12.5758 3.29925 12.5415 3.47166 12.4749 3.63251C12.4083 3.79337 12.3106 3.93953 12.1875 4.06264L4.375 11.8751L1.875 12.5001L2.5 10.0001L10.3125 2.18764Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M7.5 12.5001H13.125M10.3125 2.18764C10.5611 1.939 10.8984 1.79932 11.25 1.79932C11.4241 1.79932 11.5965 1.83361 11.7574 1.90024C11.9182 1.96687 12.0644 2.06453 12.1875 2.18764C12.3106 2.31076 12.4083 2.45691 12.4749 2.61777C12.5415 2.77863 12.5758 2.95103 12.5758 3.12514C12.5758 3.29925 12.5415 3.47166 12.4749 3.63251C12.4083 3.79337 12.3106 3.93953 12.1875 4.06264L4.375 11.8751L1.875 12.5001L2.5 10.0001L10.3125 2.18764Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
@@ -422,7 +422,7 @@ export function LapizIcon({ width, height }: IconProps) {
 export function FlechaIcon({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
@@ -432,7 +432,7 @@ export function FlechaIcon({ width, height }: IconProps) {
 export function FlechaIconTwo({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} className="ml-10" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#1C1B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#1C1B1F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
@@ -440,8 +440,44 @@ export function FlechaIconTwo({ width, height }: IconProps) {
 
 export function HomeIconTwo({ width, height }: IconProps) {
   return (
+    <svg width={width} className="text-red-600" height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 22V12H15V22M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="#F9F9F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
+export function PeopleIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 19V17C17 15.9391 16.5786 14.9217 15.8284 14.1716C15.0783 13.4214 14.0609 13 13 13H5C3.93913 13 2.92172 13.4214 2.17157 14.1716C1.42143 14.9217 1 15.9391 1 17V19M23 19V17C22.9993 16.1137 22.7044 15.2528 22.1614 14.5523C21.6184 13.8519 20.8581 13.3516 20 13.13M16 1.13C16.8604 1.3503 17.623 1.8507 18.1676 2.55231C18.7122 3.25392 19.0078 4.11683 19.0078 5.005C19.0078 5.89317 18.7122 6.75608 18.1676 7.45769C17.623 8.1593 16.8604 8.6597 16 8.88M13 5C13 7.20914 11.2091 9 9 9C6.79086 9 5 7.20914 5 5C5 2.79086 6.79086 1 9 1C11.2091 1 13 2.79086 13 5Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
+export function MenssageIcon({ width, height }: IconProps) {
+  return (
     <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 22V12H15V22M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="#F9F9F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
+export function CampanaIconTwo({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.7295 21C13.5537 21.3031 13.3014 21.5547 12.9978 21.7295C12.6941 21.9044 12.3499 21.9965 11.9995 21.9965C11.6492 21.9965 11.3049 21.9044 11.0013 21.7295C10.6977 21.5547 10.4453 21.3031 10.2695 21M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
+export function UserIconTwo2({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
