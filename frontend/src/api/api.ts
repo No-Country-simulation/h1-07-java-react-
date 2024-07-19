@@ -34,11 +34,13 @@ const fetchData = async <T>(
 
   if (!response.ok) {
     const errorText = await response.text();
-    const error = new Error(`Error: ${response.status} ${response.statusText}. ${errorText}`);
-    (error as any).status = status; 
+    const error = new Error(
+      `Error: ${response.status} ${response.statusText}. ${errorText}`
+    );
+    (error as any).status = status;
     throw error;
   }
-  
+
   return response.json() as Promise<T>;
 };
 
@@ -104,13 +106,9 @@ export const changePatientPassword = async (
 
 // Function to create a doctor
 export const createDoctor = async (
-  doctorData: MedicoRequest,
+  doctorData: MedicoRequest
 ): Promise<void> => {
-  return await fetchData<void>(
-    "/auth/registrar-medico",
-    "POST",
-    doctorData,
-  );
+  return await fetchData<void>("/auth/registrar-medico", "POST", doctorData);
 };
 
 // Function to update a doctor
@@ -143,7 +141,11 @@ export const changeDoctorPassword = async (
 export const register = async (
   registrationData: RegistrationRequest
 ): Promise<void> => {
-  return await fetchData<void>("/auth/registrar-medico", "POST", registrationData);
+  return await fetchData<void>(
+    "/auth/registrar-medico",
+    "POST",
+    registrationData
+  );
 };
 
 // Function to authenticate
@@ -163,6 +165,6 @@ export const activeAccount = async (
 ): Promise<AuthenticationResponse> => {
   return await fetchData<AuthenticationResponse>(
     `/auth/activar-cuenta?token=${token}`,
-    "GET",
+    "GET"
   );
 };

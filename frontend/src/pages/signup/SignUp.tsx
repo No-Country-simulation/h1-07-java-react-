@@ -62,7 +62,7 @@ const SignUp: React.FC = () => {
 		};
 		console.log(doctor)
 		try {
-			const res = await fetch(`${API_URL}/auth/registrar-medico`, {
+			const res = await fetch(`${API_URL}auth/registrar-medico`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(doctor)
@@ -83,6 +83,8 @@ const SignUp: React.FC = () => {
 			setLoading(false)
 		}
 	};
+
+
 
 	return (
 		<section className="max-md:w-full mt-8 mx-auto p-4 max-w-[50rem] border-2 m">
