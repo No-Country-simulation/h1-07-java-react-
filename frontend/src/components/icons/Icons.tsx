@@ -341,6 +341,15 @@ export function OpenPassword({ width, height }: IconProps) {
   )
 }
 
+export function GenderIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.625 13.125V11.875C10.625 11.212 10.3616 10.5761 9.89277 10.1072C9.42393 9.63839 8.78804 9.375 8.125 9.375H3.125C2.46196 9.375 1.82607 9.63839 1.35723 10.1072C0.888392 10.5761 0.625 11.212 0.625 11.875V13.125M14.375 13.125V11.875C14.3746 11.3211 14.1902 10.783 13.8509 10.3452C13.5115 9.90741 13.0363 9.59473 12.5 9.45625M10 1.95625C10.5378 2.09394 11.0144 2.40669 11.3548 2.84519C11.6952 3.2837 11.8799 3.82302 11.8799 4.37813C11.8799 4.93323 11.6952 5.47255 11.3548 5.91106C11.0144 6.34956 10.5378 6.66231 10 6.8M8.125 4.375C8.125 5.75571 7.00571 6.875 5.625 6.875C4.24429 6.875 3.125 5.75571 3.125 4.375C3.125 2.99429 4.24429 1.875 5.625 1.875C7.00571 1.875 8.125 2.99429 8.125 4.375Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+
+
 
 export function UserIconTwo({ width, height }: IconProps) {
   return (
@@ -482,3 +491,31 @@ export function UserIconTwo2({ width, height }: IconProps) {
 
   )
 }
+
+export function BloodIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.9999 2.68994L17.6599 8.34994C18.7792 9.46855 19.5417 10.894 19.8508 12.446C20.1599 13.998 20.0018 15.6068 19.3964 17.0689C18.7911 18.531 17.7657 19.7808 16.45 20.66C15.1343 21.5393 13.5874 22.0086 12.0049 22.0086C10.4224 22.0086 8.87549 21.5393 7.55978 20.66C6.24407 19.7808 5.2187 18.531 4.61335 17.0689C4.008 15.6068 3.84988 13.998 4.15899 12.446C4.46809 10.894 5.23054 9.46855 6.34989 8.34994L11.9999 2.68994Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+
+export function DateIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2V6M8 2V6M3 10H21M5 4H19C20.1046 4 21 4.89543 21 6V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V6C3 4.89543 3.89543 4 5 4Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+
+
+
+export function JobIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V21M4 7H20C21.1046 7 22 7.89543 22 9V19C22 20.1046 21.1046 21 20 21H4C2.89543 21 2 20.1046 2 19V9C2 7.89543 2.89543 7 4 7Z" stroke="#948ABC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+

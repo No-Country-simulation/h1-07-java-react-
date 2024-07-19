@@ -87,7 +87,7 @@ export interface MedicoRegister {
   licencia: string;
   especialidad: number;
   password: string
-  financiadores: number[];
+  financiadores: any;
 }
 
 export interface MedicoRequest {
@@ -224,4 +224,33 @@ export interface tokenData {
   iat: number
   exp: number
   authorities: string[]
+}
+
+export interface PatientRegister {
+  email: string
+  password: string
+  nombre: string
+  apellido: string
+  tipoDocumentoId: number
+  numeroDocumento: string
+  fechaNacimiento: string
+  genero: string
+  factorSanguineo: number
+  patologiaId: number
+  medicosId: number[]
+  entidadesId: number[]
+  financiadorId: number
+}
+
+export interface Paciente {
+  idPaciente: number
+  nombre: string
+  apellido: string
+  tipoDocumento: string
+  numeroDocumento: number
+  patologia: string
+  financiador: string
+  tratamientos: any[]
+  medicos: string[]
+  entidades: string[]
 }
