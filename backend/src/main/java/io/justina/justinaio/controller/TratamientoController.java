@@ -1,9 +1,6 @@
 package io.justina.justinaio.controller;
 
-import io.justina.justinaio.dto.ModificarTratamientoRequest;
-import io.justina.justinaio.dto.NuevoTratamientoRequest;
-import io.justina.justinaio.dto.PacienteRequest;
-import io.justina.justinaio.dto.TratamientoMedicoResponse;
+import io.justina.justinaio.dto.*;
 import io.justina.justinaio.services.TratamientoService;
 import io.justina.justinaio.util.PageResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -59,4 +56,23 @@ public class TratamientoController {
     ){
         return ResponseEntity.ok(tratamientoService.listarTratamientosPacienteMedicoConectado(token, idPaciente, page, size));
     }
+
+    @GetMapping("listar-tratamientos-paciente-conectado")
+    public ResponseEntity<PageResponse<TratamientoPacienteResponse>> listarTratamientosPacienteConectado(
+            Authentication token,
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size
+    ){
+        return ResponseEntity.ok(tratamientoService.listarTratamientosPacienteConectado(token,page, size));
+    }
+
+   @GetMapping("buscar-tratamiento-id")
+   public ResponseEntity<TratamientoResponse> buscarTratamientoPorId(
+           Authentication token,
+           @RequestParam Integer idTratamiento
+   ){
+       return ResponseEntity.ok(tratamientoService.buscarTratamientoPorId(token,idTratamiento));
+   }
+
+
 }

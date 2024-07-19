@@ -84,7 +84,6 @@ public class PacienteService {
                 .factorSanguineo(FactorSanguineo.values()[pacienteRequest.getFactorSanguineo()])
                 .patologia(getPatologiaById(pacienteRequest.getPatologiaId()))
                 .medicos(getMedicosByIds(pacienteRequest.getMedicosId()))
-                .tratamientos(getTratamientosByIds(pacienteRequest.getTratamientosId()))
                 .entidades(getEntidadesByIds(pacienteRequest.getEntidadesId()))
                 .financiador(getFinanciadorById(pacienteRequest.getFinanciadorId()))
                 .build();
@@ -114,7 +113,6 @@ public class PacienteService {
         paciente.setFactorSanguineo(FactorSanguineo.values()[pacienteRequest.getFactorSanguineo()]);
         paciente.setPatologia(getPatologiaById(pacienteRequest.getPatologiaId()));
         paciente.setMedicos(getMedicosByIds(pacienteRequest.getMedicosId()));
-        paciente.setTratamientos(getTratamientosByIds(pacienteRequest.getTratamientosId()));
         paciente.setEntidades(getEntidadesByIds(pacienteRequest.getEntidadesId()));
         paciente.setFinanciador(getFinanciadorById(pacienteRequest.getFinanciadorId()));
 
