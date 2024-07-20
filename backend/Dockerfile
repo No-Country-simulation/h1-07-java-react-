@@ -1,24 +1,24 @@
-# Utilizar una imagen base de Maven para construir la aplicación
-FROM maven:3.8.5-openjdk-17 AS builder
+# Usa una imagen de Maven para construir el proyecto
+FROM maven:3.8.6-openjdk-17 AS build
 
-# Establecer el directorio de trabajo
+# Configura el directorio de trabajo
 WORKDIR /app
 
-# Copiar el archivo pom.xml y descargar las dependencias
-COPY pom.xml .
+# Copia el archivo pom.xml y descarga las dependencias
+COPY backend/pom.xml .
 RUN mvn dependency:go-offline
 
-# Copiar el resto del código fuente
-COPY src /app/src
+# Copia el código fuente
+COPY backend/src /app/src
 
-# Construir la aplicación
-RUN mvn package -DskipTests
+# Compila la aplicación
+RUN mvn package
 
-# Utilizar una imagen base más ligera de OpenJDK para ejecutar la aplicación
-FROM openjdk:17-alpine
+# Usa una imagen de Corretto para ejecutar la aplicación
+FROM amazoncorretto:17-alpine-jdk
 
-# Copiar el JAR construido desde el contenedor builder
-COPY --from=builder /app/target/justinaio-0.0.1-SNAPSHOT.jar /app/app.jar
+# Copia el JAR construido desde el contenedor de construcción
+COPY --from=build /app/target/justinaio-0.0.1-SNAPSHOT.jar /app.jar
 
-# Configurar el punto de entrada
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Comando para ejecutar el JAR
+ENTRYPOINT ["java", "-jar", "/app.jar"]
