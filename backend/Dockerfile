@@ -1,16 +1,7 @@
-# Etapa de construcción
 FROM maven:3.8.5-openjdk-17-slim AS build
-
-# Configura el directorio de trabajo
-WORKDIR /app
-
-# Copia todo el contenido del directorio `backend` al contenedor
-COPY . .
-
-# Construye el proyecto
+COPY .. /
 RUN mvn clean package -DskipTests
 
-# Etapa de ejecución
 FROM openjdk:17.0.1-jdk-slim
 
 # Copia el JAR desde la etapa de construcción
