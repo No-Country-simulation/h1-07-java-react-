@@ -1,5 +1,5 @@
 # Usa una imagen de Maven para construir el proyecto
-FROM maven:3.8.6-openjdk-17 AS build
+FROM maven:amazoncorretto:17-alpine-jdk
 
 # Configura el directorio de trabajo
 WORKDIR /app
