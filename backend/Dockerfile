@@ -4,8 +4,8 @@ FROM maven:3.8.5-openjdk-17-slim AS build
 # Configura el directorio de trabajo
 WORKDIR /app
 
-# Copia el contenido del directorio `backend` al contenedor
-COPY backend/ .
+# Copia todo el contenido del directorio `backend` al contenedor
+COPY . .
 
 # Construye el proyecto
 RUN mvn clean package -DskipTests
