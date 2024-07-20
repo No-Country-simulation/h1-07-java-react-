@@ -1,14 +1,25 @@
+# Etapa de construcción
 FROM maven:3.8.5-openjdk-17-slim AS build
-COPY .. /
+
+# Establecer el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copiar solo el contenido relevante del proyecto al contenedor
+COPY backend/pom.xml .
+COPY backend/src ./src
+
+# Ejecutar Maven para construir el proyecto
 RUN mvn clean package -DskipTests
 
+# Etapa de ejecución
 FROM openjdk:17.0.1-jdk-slim
 
-# Copia el JAR desde la etapa de construcción
+# Copiar el JAR construido desde la etapa de construcción
 COPY --from=build /app/target/justinaio-0.0.1-SNAPSHOT.jar app.jar
 
-# Expone el puerto en el que la aplicación escuchará
+# Exponer el puerto que la aplicación utilizará
 EXPOSE 8080
 
-# Define el comando para ejecutar el JAR
+# Comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
