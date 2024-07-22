@@ -160,7 +160,7 @@ export const VideoIcon = ({ width, height }: { width: number, height: number }) 
 export const ChevronIcon = ({ width, height }: { width: number, height: number }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 13L7 7L1 1" stroke="#3563E9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M1 13L7 7L1 1" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
@@ -380,7 +380,7 @@ export function CampanaIcon({ width, height }: IconProps) {
 
 export function MenuHambuerguesa({ width, height }: IconProps) {
   return (
-    <svg width={width} height={width} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2">
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2">
       <path d="M3 12H21M3 6H21M3 18H21" stroke="#1E1E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
@@ -518,4 +518,38 @@ export function JobIcon({ width, height }: IconProps) {
 
   )
 }
+
+
+export function MicrophoneOpen({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 10V12C19 13.8565 18.2625 15.637 16.9497 16.9497C15.637 18.2625 13.8565 19 12 19M12 19C10.1435 19 8.36301 18.2625 7.05025 16.9497C5.7375 15.637 5 13.8565 5 12V10M12 19V23M8 23H16M12 1C11.2044 1 10.4413 1.31607 9.87868 1.87868C9.31607 2.44129 9 3.20435 9 4V12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12V4C15 3.20435 14.6839 2.44129 14.1213 1.87868C13.5587 1.31607 12.7956 1 12 1Z" stroke="#EFF3FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+export function MicrophoneClose({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 0.99997L23 23M15 9.33997V3.99997C15.0007 3.256 14.725 2.53829 14.2264 1.98617C13.7277 1.43405 13.0417 1.08691 12.3015 1.01214C11.5613 0.937375 10.8197 1.14031 10.2207 1.58156C9.62172 2.0228 9.20805 2.67088 9.06 3.39997M17 16.95C16.0238 17.9464 14.7721 18.6284 13.4056 18.9086C12.0391 19.1887 10.62 19.0542 9.3305 18.5223C8.04096 17.9903 6.93976 17.0852 6.16817 15.9231C5.39658 14.761 4.98979 13.3949 5 12V9.99997M19 9.99997V12C18.9996 12.4124 18.9628 12.824 18.89 13.23M12 19V23M8 23H16M9 8.99997V12C9.00052 12.5929 9.17675 13.1724 9.50643 13.6653C9.83611 14.1582 10.3045 14.5423 10.8523 14.7691C11.4002 14.996 12.0029 15.0554 12.5845 14.9398C13.1661 14.8243 13.7005 14.539 14.12 14.12L9 8.99997Z" stroke="#EFF3FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+
+export function SearchIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_518_588)">
+        <path d="M13.1252 13.125L10.4065 10.4063M11.875 6.875C11.875 9.63642 9.63642 11.875 6.875 11.875C4.11358 11.875 1.875 9.63642 1.875 6.875C1.875 4.11358 4.11358 1.875 6.875 1.875C9.63642 1.875 11.875 4.11358 11.875 6.875Z" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_518_588">
+          <rect width="15" height="15" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+
+  )
+}
+
 
