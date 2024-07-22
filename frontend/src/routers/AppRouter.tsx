@@ -9,10 +9,10 @@ import { RoutesWithNotFound } from "./RoutesWithNotFound";
 import { Home } from "../pages/private/Dashboard/Home/Home";
 import { Detalle } from "../pages/private/Dashboard/Detalle/Detalle";
 import { UserInfo } from "../pages/private/Dashboard/UserInfo/UserInfo";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
-import { Landing } from "../pages/Landing/Landing";
-import SignUp from "../pages/SignUp/SignUp";
 import { RegisterPatient } from "../pages/private/RegisterPatient/RegisterPatient";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import { Landing } from "../pages/landing/Landing";
+import SignUp from "../pages/signup/SignUp";
 function AppRouter() {
 
 	return (
@@ -26,10 +26,10 @@ function AppRouter() {
 						<Route path="/" element={<Landing />}></Route>
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
 						<Route element={<PrivateRoute />}>
-							<Route path="/dashboard" index element={<Home />} />
-							<Route path="/detalle" element={<Detalle />}/>
-							<Route path="/userInfo" element={<UserInfo />}/>
-							<Route path="/register-patient" element={<RegisterPatient/>}></Route>
+							<Route index path="/dashboard"  element={<Home />} />
+							<Route path="/detalle" element={<Detalle />} />
+							<Route path="/userInfo" element={<UserInfo />} />
+							<Route path="/register-patient" element={<RegisterPatient />}></Route>
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 					</RoutesWithNotFound>

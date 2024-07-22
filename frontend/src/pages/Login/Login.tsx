@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthenticationRequest, AuthTokens, tokenData} from "../../Interfaces/interfaces";
+import { AuthenticationRequest, AuthTokens, tokenData } from "../../Interfaces/interfaces";
 import { useAuthContext } from "../../Context/AuthContext";
 import { jwtDecode } from "jwt-decode";
 import { API_URL } from "../../api/api";
@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { initialValuesLogin } from "../../data/data";
 import * as Yup from 'yup';
-import { ClosePasswordIcon, EmailIcon, LoaderIcon, LockIcon, OpenPasswordIcon } from "../../components/icons/Icons";
+import { ClosePasswordIcon, EmailIcon, LoaderIcon, LockIcon, OpenPasswordIcon } from "../../../public/icons/Icons";
 
 const validationSchema = Yup.object({
   email: Yup.string()

@@ -20,6 +20,8 @@ const AUTH_TOKEN_KEY = "TOKEN_KEY"
 
 export const AuthContextProvider = ({ children }: {children: React.ReactNode}) => {
 
+
+  
   const authTokensInLocalStorage = typeof window !== "undefined"
     ? window.localStorage.getItem(AUTH_TOKEN_KEY)
     : null;

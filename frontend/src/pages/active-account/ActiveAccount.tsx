@@ -2,7 +2,7 @@ import { Divider } from '@nextui-org/react';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../api/api';
-import { ArrowIcon, CheckIcon } from '../../components/icons/Icons';
+import { ArrowIcon, CheckIcon } from '../../../public/icons/Icons';
 
 
 export const ActiveAccount = () => {
@@ -34,7 +34,7 @@ export const ActiveAccount = () => {
 
     const tokenValue = token.join("");
     console.log(tokenValue);
-  
+
     try {
       const res = await fetch(`${API_URL}/auth/activar-cuenta?token=${tokenValue}`, {
         method: "GET",
@@ -55,7 +55,7 @@ export const ActiveAccount = () => {
         const text = await res.text();
         console.error("Respuesta no es JSON:", text);
         console.log(text);
-        
+
       }
 
 
