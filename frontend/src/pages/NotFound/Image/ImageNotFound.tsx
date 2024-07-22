@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function ImageNotFound({width, height}:{width:number, height:number}) {
   return (
     <div>
