@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
-// import { useAuthContext } from '../../../../Context/AuthContext';
+import { useAuthContext } from '../../../../Context/AuthContext';
 import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo, UserIconTwo2 } from '../../../../../public/icons/Icons';
 import { Logout } from '../../../../Components/Logout';
 import { API_URL } from '../../../../api/api';
@@ -40,75 +40,6 @@ export function Home(): JSX.Element {
 	const toggleSidebar = () => {
 		setIsSidebarOpen(!isSidebarOpen);
 	};
-
-
-
-	useEffect(() => {
-		const fetchPatient = async () => {
-
-			try {
-				const res = await fetch(`${API_URL}paciente/buscar-pacientes-id-medico-conectado`, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						'Authorization': `Bearer ${authTokens.}`
-					},
-				})
-
-				console.log(res);
-
-
-				if (!res.ok) {
-					throw new Error(`Response status: ${res.status}`);
-				}
-
-				const data: ResponseType = await res.json()
-				console.log(data);
-
-
-			} catch (err: any) {
-				console.log(err)
-			}
-		}
-
-		fetchPatient()
-	}, [])
-
-	/* 	useEffect(() => {
-			const fetchPatient = async () => {
-				if (authTokens?.token) {
-				
-					
-					try {
-						const res = await fetch(`${API_URL}paciente/buscar-paciente-conectado`, {
-							method: "GET",
-							headers: {
-								"Content-Type": "application/json",
-								'Authorization': `Bearer ${authTokens?.token}`
-							},
-						});
-	
-						console.log('Response Status:', res.status);
-						console.log('Response Headers:', res.headers);
-	
-						const text = await res.text(); 
-						console.log('Response Body:', text);
-	
-						if (res.headers.get('Content-Type')?.includes('application/json')) {
-							const data = JSON.parse(text);
-							console.log(data);
-						} else {
-							console.error('Unexpected content type:', res.headers.get('Content-Type'));
-						}
-	
-					} catch (err: any) {
-						console.log(err);
-					}
-				}
-			};
-	
-			fetchPatient();
-		}, [authTokens]); */
 
 
 	const menuItems = [
