@@ -122,10 +122,10 @@ export function Home(): JSX.Element {
 
 			<section className="flex flex-row justify-evenly">
 				<div className='rounded-lg py-1 px-3 text-[14px] border-1 border-solid border-gray-500'>
-					<Link to={"/register-patient"}><button>Añadir nuevo paciente</button></Link>
+					<Link to={"/patient-register"}><button>Añadir nuevo paciente</button></Link>
 				</div>
 				<div className="rounded-lg py-1 px-3 text-[14px] border-1 border-solid border-gray-500">
-					<button>Lista de pacientes</button>
+					<Link to={"/patient-list"}><button>Lista de pacientes</button></Link>
 				</div>
 			</section>
 

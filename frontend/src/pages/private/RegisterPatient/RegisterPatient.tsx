@@ -1,77 +1,32 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Button } from '@nextui-org/react';
-import * as Yup from 'yup';
-import React from 'react';
-import { API_URL } from '../../../api/api';
+import React, { useState } from 'react';
 import { useAuthContext } from '../../../Context/AuthContext';
-import { dataRegisterPatient, initialValuesPatient } from '../../../data/data';
 import { PatientRegister } from '../../../Interfaces/interfaces';
-import { BloodIcon, CardIcon, GenderIcon } from '../../../../public/icons/Icons';
+import { BloodIcon, CardIcon, FlechaIconTwo, GenderIcon, LoaderIcon } from '../../../components/icons/Icons';
 import { toast } from 'sonner';
-
-const validationSchemaPatient = Yup.object({
-  nombre: Yup.string()
-    .min(2, 'El nombre debe tener al menos 2 caracteres')
-    .required('El nombre es obligatoria'),
-  apellido: Yup.string()
-    .min(2, 'El apellido debe tener al menos 2 caracteres')
-    .required('El apellido es obligatoria'),
-  password: Yup.string()
-    .min(6, 'La contraseña debe tener mas de 8 caracteres')
-    .required('La contraseña es obligatoria'),
-  numeroDocumento: Yup.string()
-    .matches(/^[0-9]+$/, 'El documento debe contener solo números')
-    .min(8, 'El documento debe tener al menos 8 caracteres')
-    .required('El documento es obligatoria'),
-  email: Yup.string()
-    .email('Correo electrónico inválido')
-    .required('El correo electrónico es obligatorio'),
-});
-
+import { dataRegisterPatient, initialValuesPatient } from '../../../utils/data/data';
+import { validationSchemaPatient } from '../../../utils/validation/validation';
+import { Link } from 'react-router-dom';
 
 export const RegisterPatient: React.FC = () => {
-  const { authTokens } = useAuthContext()
-
+  const { registerPatient } = useAuthContext()
+  const [loading, setLoading] = useState(false)
   const handleSubmit = async (values: PatientRegister) => {
-    const patient: PatientRegister = {
-      email: values.apellido,
-      password: values.password,
-      nombre: values.nombre,
-      apellido: values.apellido,
-      tipoDocumentoId: values.tipoDocumentoId,
-      numeroDocumento: values.numeroDocumento,
-      fechaNacimiento: values.fechaNacimiento,
-      genero: values.genero,
-      factorSanguineo: values.factorSanguineo,
-      patologiaId: values.patologiaId,
-      medicosId: values.medicosId,
-      entidadesId: values.entidadesId,
-      financiadorId: values.financiadorId,
-    }
-    console.log(patient)
-
+    const patient: PatientRegister = values
     try {
-      const res = await fetch(`${API_URL}/paciente/crear-paciente`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${authTokens?.token}`
-        },
-        body: JSON.stringify(patient)
-      })
-      if (!res.ok) {
-        console.error('HTTP error', res.status, res.statusText);
-        throw new Error('Network response was not ok');
-      }
+      setLoading(true)
+      await registerPatient(patient)
       toast.success("El paciente fue creado correctamente")
     } catch (err: any) {
       console.log(err)
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
-    //RECORDATORIO AGREGAR LA FECHA DEL MOMENTO DE LA CREACION DEL TRATAMIENTO: ENVIAR FECHA ACTUAL YYYY-MM-DD
-    <section className="max-md:w-full min-h-screen flex justify-center items-center">
+    <section className="flex min-h-screen bg-gray-100 md:flex md:justify-center  ">
       <Formik
         initialValues={initialValuesPatient}
         validationSchema={validationSchemaPatient}
@@ -79,12 +34,15 @@ export const RegisterPatient: React.FC = () => {
       >
         {/* FALTA LIMIPIAR EL FORMULARIO CUANDO SE REGISTRA UN USUARIO */}
         {({ isSubmitting }) => (
-          <Form className="  p-6 flex flex-col gap-y-4 border-2 w-[50rem] rounded-lg">
-            <div className="mb-6 text-center">
+          <Form className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg  max-md:m-auto flex flex-col gap-y-4">
+            <div className="mb-6 text-center relative flex flex-col items-center justify-center">
+              <Link to={"/dashboard"} className=' absolute -left-10 hover:-translate-x-1 transition-all duration-300'>
+                <FlechaIconTwo width={30} height={30} />
+              </Link>
               <h1 className="text-2xl font-bold tracking-tight">Crear cuenta paciente</h1>
               <p className="text-sm">Introduzca la información necesaria</p>
             </div>
-            <div className="flex-wrap grid grid-rows-5 gap-6 max-md:grid-rows-9 max-md:gap-1 grid-flow-col max-md:gap-y-3">
+            <div className="flex-wrap grid grid-rows-9 gap-6  max-md:gap-1 grid-flow-col max-md:gap-y-3">
               {dataRegisterPatient.map(({ label, name, type, icon: Icon, placeholder }) => (
                 <div key={name}>
                   <label className="font-semibold flex items-center gap-2 pl-2" htmlFor={name}>
@@ -139,7 +97,7 @@ export const RegisterPatient: React.FC = () => {
                 className="h-10 w-full font-semibold bg-secondary-brand-dark text-white"
                 disabled={isSubmitting}
               >
-                Registrar
+                <span className=' animate-spin'>{loading && <LoaderIcon width={30} height={30}></LoaderIcon>}</span>  Registrar
               </Button>
             </div>
           </Form>
