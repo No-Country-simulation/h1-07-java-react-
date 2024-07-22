@@ -6,7 +6,7 @@ import { API_URL } from '../../../api/api';
 import { useAuthContext } from '../../../Context/AuthContext';
 import { dataRegisterPatient, initialValuesPatient } from '../../../data/data';
 import { PatientRegister } from '../../../Interfaces/interfaces';
-import { BloodIcon, CardIcon, GenderIcon } from '../../../components/icons/Icons';
+import { BloodIcon, CardIcon, GenderIcon } from '../../../../public/icons/Icons';
 import { toast } from 'sonner';
 
 const validationSchemaPatient = Yup.object({

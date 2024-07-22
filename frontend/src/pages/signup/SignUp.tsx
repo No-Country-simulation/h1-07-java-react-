@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Button } from '@nextui-org/react';
 import { dataRegisterDoctor, initialValuesDoctor } from '../../data/data';
-import { CardIcon, JobIcon, LoaderIcon } from '../../components/icons/Icons';
+import { CardIcon, JobIcon, LoaderIcon } from '../../../public/icons/Icons';
 
 // const financiadores = [
 // 	{ key: 1, label: "OSDE" },
