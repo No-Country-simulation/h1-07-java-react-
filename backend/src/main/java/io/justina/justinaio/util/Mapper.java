@@ -170,4 +170,12 @@ public class Mapper {
                 .direccion(farmacia.getDireccion())
                 .build();
     }
+
+    public static CasoClinicoResponse toCasoClinicoResponse(CasoClinico casoClinico) {
+        return CasoClinicoResponse.builder()
+                .fecha(casoClinico.getFecha())
+                .titulo(casoClinico.getTitulo())
+                .descripcion(casoClinico.getDescripcion())
+                .build();
+    }
 }
