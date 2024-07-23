@@ -209,5 +209,22 @@ public class PacienteService {
 
         return Mapper.toPacienteResponse(paciente);
     }
+
+    public PacienteResponse buscarPaciente(Integer idPaciente, Authentication token) {
+        Usuario usuarioMedico = (Usuario) token.getPrincipal();
+        Medico medico = medicoRepository.findById(usuarioMedico.getId()).orElseThrow(() ->
+                new IllegalArgumentException("Médico no encontrado, acceso denegado"));
+
+        Paciente paciente = pacienteRepository.findById(idPaciente).orElseThrow(() ->
+                new NullPointerException("Paciente no encontrado con ese ID"));
+
+        // Validar que el médico esté asociado al paciente
+        if (paciente.getMedicos() == null || !paciente.getMedicos().contains(medico)) {
+            throw new IllegalArgumentException("Acceso denegado: El médico no tiene permisos para acceder a la información de este paciente");
+        }
+
+        return Mapper.toPacienteResponse(paciente);
+    }
+
 }
 

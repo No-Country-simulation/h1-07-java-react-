@@ -52,7 +52,7 @@ public class PacienteController {
         return ResponseEntity.ok("La baja se ha realizado con éxito");
     }
 
-    @GetMapping("/buscar-pacientes-id-medico-conectado")
+    @GetMapping("/listar-pacientes-id-medico-conectado")
     public ResponseEntity<?> encontrarPacientesDeMedico(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "10", required = false) int size,
@@ -60,10 +60,19 @@ public class PacienteController {
     ){
         return ResponseEntity.ok(pacienteService.encontrarPacientesDeMedico(page, size, token));
     }
+
     @GetMapping("/buscar-paciente-conectado")
     public ResponseEntity<PacienteResponse> buscarPacienteConectado(
             Authentication token
     ){
         return ResponseEntity.ok(pacienteService.buscarPacienteConectado(token));
+    }
+
+    @GetMapping("/buscar-paciente-id-medico-conectado")
+    public ResponseEntity<PacienteResponse> obtenerPacientes(
+            Authentication token,
+            @RequestParam Integer idPaciente
+    ){
+        return ResponseEntity.ok(pacienteService.buscarPaciente(idPaciente,token));
     }
 }
