@@ -170,4 +170,22 @@ public class Mapper {
                 .direccion(farmacia.getDireccion())
                 .build();
     }
+
+    public static InstitucionDeSalud toInstitucionDeSalud(InstitucionDeSaludRequest institucionDeSaludRequest) {
+        return InstitucionDeSalud.builder()
+                .nombre(institucionDeSaludRequest.getNombre())
+                .direccion(institucionDeSaludRequest.getDireccion())
+                .emailContacto(institucionDeSaludRequest.getEmailContacto())
+                .esActivo(true)
+                .build();
+    }
+
+    public static InstitucionDeSaludResponse toInstitucionDeSaludResponse(InstitucionDeSalud institucionDeSalud) {
+        return InstitucionDeSaludResponse.builder()
+                .nombre(institucionDeSalud.getNombre())
+                .direccion(institucionDeSalud.getDireccion())
+                .emailContacto(institucionDeSalud.getEmailContacto())
+                .build();
+    }
+
 }

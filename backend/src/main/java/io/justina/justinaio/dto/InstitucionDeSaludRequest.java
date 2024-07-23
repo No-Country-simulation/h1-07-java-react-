@@ -20,6 +20,6 @@ public class InstitucionDeSaludRequest {
     private String direccion;
 
     @Schema(description = "Email de la institución de salud", example = "HsplAlz@gmail.com")
-    @JsonProperty("email")
-    private String email;
+    @JsonProperty("emailContacto")
+    private String emailContacto;
 }
