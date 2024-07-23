@@ -21,6 +21,7 @@ public class InstitucionDeSalud {
     private String nombre;
     private String direccion;
     private String emailContacto;
+    private boolean esActivo;
 
     @ManyToMany
     @JoinTable(name = "institucion_medico", joinColumns = @JoinColumn(name = "institucion_id"), inverseJoinColumns = @JoinColumn(name = "medico_id"))

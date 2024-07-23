@@ -61,9 +61,9 @@ public class InstitucionDeSaludController {
         return institucionDeSaludService.buscarInstitucionesDeSalud(page, size);
     }
 
-    @GetMapping("/buscar-Institucion-de-salud-por-nombre")
+    @GetMapping("/buscar-institucion-de-salud-por-nombre")
     public ResponseEntity<?> buscarUnaInstitucionDeSalud(
             @RequestParam String nombre) {
-        return ResponseEntity.ok(InstitucionDeSaludService.buscarUnaInstitucionDeSalud(nombre));
+        return ResponseEntity.ok(institucionDeSaludService.buscarUnaInstitucionDeSalud(nombre));
     }
 }
