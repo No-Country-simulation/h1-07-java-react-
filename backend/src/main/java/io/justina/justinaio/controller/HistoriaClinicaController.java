@@ -36,4 +36,11 @@ public class HistoriaClinicaController {
     ){
         return ResponseEntity.ok(historiaClinicaService.ObtenerHistoriaClinicaPorIdPaciente(idPaciente,token,page,size));
     }
+    @GetMapping("buscar-caso-clinico-por-id")
+    public ResponseEntity<CasoClinicoResponse> ObtenerCasoClinicoPorId(
+            Authentication token,
+            @RequestParam Integer idCaso
+    ){
+        return ResponseEntity.ok(historiaClinicaService.ObtenerCasoClinicoPorId(idCaso,token));
+    }
 }

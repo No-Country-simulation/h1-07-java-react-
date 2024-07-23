@@ -87,4 +87,14 @@ public class HistoriaClinicaService {
         return paciente.getMedicos().stream()
                 .anyMatch(medico -> Objects.equals(medico.getIdMedico(), user.getId()));
     }
+
+    public CasoClinicoResponse ObtenerCasoClinicoPorId(Integer idCaso, Authentication token) {
+        Usuario user = (Usuario) token.getPrincipal();
+        CasoClinico caso = historiaClinicaRepository.findById(idCaso)
+                .orElseThrow(() -> new NullPointerException("No se encuentra el caso en la DB con ese ID"));
+        if (esPacienteOEsMedicoDelPaciente(user, caso.getPaciente())) {
+            throw new SecurityException("Acceso denegado");
+        }
+        return Mapper.toCasoClinicoResponse(caso);
+    }
 }
