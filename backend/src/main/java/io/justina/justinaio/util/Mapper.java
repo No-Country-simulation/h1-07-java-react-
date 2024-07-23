@@ -2,6 +2,8 @@ package io.justina.justinaio.util;
 
 import io.justina.justinaio.dto.*;
 import io.justina.justinaio.model.*;
+import io.justina.justinaio.model.enums.FactorSanguineo;
+import io.justina.justinaio.model.enums.Genero;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -176,6 +178,46 @@ public class Mapper {
                 .fecha(casoClinico.getFecha())
                 .titulo(casoClinico.getTitulo())
                 .descripcion(casoClinico.getDescripcion())
+                .build();
+    }
+
+    public static Donante toDonante(DonanteRequest donanteRequest, Medico medico, Paciente paciente) {
+        return Donante.builder()
+                .paciente(paciente)
+                .medico(medico)
+                .nombre(donanteRequest.getNombre())
+                .apellido(donanteRequest.getApellido())
+                .altura(donanteRequest.getAltura())
+                .peso(donanteRequest.getPeso())
+                .genero(Genero.values()[donanteRequest.getGenero()])
+                .factorSanguineo(FactorSanguineo.values()[ donanteRequest.getFactorSanguineo()])
+                .fechaNacimiento(donanteRequest.getFechaNacimiento())
+                .Localidad(donanteRequest.getLocalidad())
+                .provincia(donanteRequest.getProvincia())
+                .build();
+    }
+
+    public static DonanteResponse toDonanteResponse(Donante donante) {
+        return DonanteResponse.builder()
+                .idMedico(donante.getMedico().getIdMedico())
+                .altura(donante.getAltura())
+                .peso(donante.getPeso())
+                .genero(donante.getGenero().ordinal())
+                .factorSanguineo(donante.getFactorSanguineo().ordinal())
+                .fechaNacimiento(donante.getFechaNacimiento())
+                .Localidad(donante.getLocalidad())
+                .provincia(donante.getProvincia())
+                .build();
+    }
+
+    public static MedicoDonanteRequest toMedicoDonanteRequest(Medico medico) {
+        return MedicoDonanteRequest.builder()
+                .apellido(medico.getApellido())
+                .licencia(medico.getLicencia())
+                .localidad(medico.getLocalidad())
+                .nombre(medico.getNombre())
+                .provincia(medico.getProvincia())
+                .telefono(medico.getTelefono())
                 .build();
     }
 }
