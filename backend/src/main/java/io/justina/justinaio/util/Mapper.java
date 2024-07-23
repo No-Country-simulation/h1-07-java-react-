@@ -71,6 +71,7 @@ public class Mapper {
     public static Medicamento toMedicamento(MedicamentoRequest medicamentoRequest) {
         return Medicamento.builder()
                 .nombre(medicamentoRequest.getNombre())
+                .descripcion(medicamentoRequest.getDescripcion())
                 .esActivo(true)
                 .build();
     }
