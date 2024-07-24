@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';;
+import { useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
 import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo2 } from '../../../../../public/icons/Icons';
-import { AuthContext } from '../../../../Context/AuthContext';
+// import { AuthContext } from '../../../../Context/AuthContext';
 import { Logout } from '../../../../components/Logout';
 
 
@@ -11,16 +11,18 @@ interface Message {
 	time: string;
 	message: string;
 	src: string;
+	color: string;
 }
 
 const messages: Message[] = [
-	{ id: 1, name: 'Anna Herrera', time: '9:28 AM', message: 'Le solicito recomendaciones para diabetes tipo II', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes.png" },
-	{ id: 2, name: 'Juan Gutierrez', time: '1:35 PM', message: 'Gracias por las recomendaciones Doctor Facundo', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes_2.png" },
-	{ id: 3, name: 'Sofia Castillo', time: '10:25 AM', message: 'Ok, entendido. Muchas gracias por la atencion Doctor Facundo', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes_3.png" },
+	{ id: 1, name: 'Anna Herrera', time: '9:28 AM', message: 'Le solicito recomendaciones para diabetes tipo II', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes.png", color: "#56BF33" },
+	{ id: 2, name: 'Juan Gutierrez', time: '1:35 PM', message: 'Gracias por las recomendaciones Doctor Facundo', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes_2.png", color: "" },
+	{ id: 3, name: 'Sofia Castillo', time: '10:25 AM', message: 'Ok, entendido. Muchas gracias por la atencion Doctor Facundo', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes_3.png", color: "" },
 ];
 
+
 export function Home(): JSX.Element {
-	const { userName } = useContext(AuthContext);
+	// const { userName } = useContext(AuthContext);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [activeTab, setActiveTab] = useState('Pacientes');
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -175,11 +177,11 @@ export function Home(): JSX.Element {
 					{messages
 						.filter((msg) => msg.name.toLowerCase().includes(searchQuery.toLowerCase()))
 						.map((msg) => (
-							<div key={msg.id} className="flex justify-between py-1 px-2 border-b-1 border-gray-500">
-								<div className="flex flex-row items-center  w-full">
+							<div key={msg.id} className={`flex justify-between bg-[${msg.color}]  py-1 px-2 border-b-1 border-gray-500`}>
+								<div className={`flex flex-row items-center bg-${msg.color}  w-full`}>
 
 									<img src={msg.src} alt="imagen_paciente" />
-									<div className='flex flex-col ml-3 w-full'>
+									<div className={`flex flex-col ml-3 w-full  `}>
 										<div className='flex flex-row justify-between '>
 											<p className="font-semibold text-sm">{msg.name}</p>
 											<div className='flex flex-row'>
@@ -194,9 +196,16 @@ export function Home(): JSX.Element {
 						))}
 				</div>
 			</section>
+			<div className='mt-5 flex justify-center items-center flex-col'>
+				<h2 className='text-center font-inter font-bold text-2xl'>Donaciones</h2>
+				<img src="../../../../../public/JustinaLogo_2.png" width={250} height={250} alt="" />
+				<Link to={"/userInfo"}>
+					<button className='mt-4 bg-[#E08733] px-24 text-white font-inter py-3 rounded-3xl'>Acceder</button>
+				</Link>
+			</div>
 
 			<footer className="mt-4">
-				{/* Additional footer content */}
+
 			</footer>
 		</div>
 	);

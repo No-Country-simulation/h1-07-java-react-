@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CampanaIcon, HomeIconTwo, MenuHambuerguesa, UserIconTwo, UserIconTwo2 } from "../../../../../../public/icons/Icons";
+import { CampanaIcon, MensaggeIcon, MenuHambuerguesa, UserIconTwo, UserIconTwo2 } from "../../../../../../public/icons/Icons";
 import { Link } from "react-router-dom";
 import { Logout } from "../../../../../components/Logout";
 
@@ -8,24 +8,20 @@ import { Logout } from "../../../../../components/Logout";
 
 export function Home_Patients() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
 
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value);
-    };
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
     const menuItems = [
-        { to: "/patient-home", icon: HomeIconTwo, label: "Inicio" },
-        { to: "/userInfo_Patien", icon: UserIconTwo2, label: "Perfil" }
+        { to: "/patient-home", icon: UserIconTwo2, label: "Mi Perfil" },
+        { to: "/userInfo_Patien", icon: MensaggeIcon, label: "Mensajes" }
     ]
 
     return (
         <div>
-            <div className={`fixed top-0  left-0 h-full bg-white text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10' : '-translate-x-full z-10'}`}>
+            <nav className={`fixed top-0  left-0 h-full bg-white text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10' : '-translate-x-full z-10'}`}>
                 <div className="py-10 flex flex-col ">
                     <h1 className="text-xl font-bold mb-5 text-center text-black">MENÚ</h1>
                     <ul className='w-[30vh]'>
@@ -43,15 +39,15 @@ export function Home_Patients() {
                     </ul>
                     <Logout />
                 </div>
-            </div>
-            <header className="flex flex-col justify-between h-[9.5rem] mb-4 relative right-4 bottom-3 w-[109%] bg-[#D9D9D9] border rounded-br-[3rem]">
+            </nav>
+            <header className="flex flex-col justify-between h-[9.5rem] mb-4 relative right-9 bottom-3 w-[109%] bg-[#D9D9D9] border rounded-br-[3rem] bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] mt-3">
                 <div className="flex items-center space-x-2 content-center justify-between ml-4">
-                    <Link to={"/userInfo"}>
-                        <div className="w-[10.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
+                    <Link to={"/"}>
+                        <div className="w-[10.6rem] h-[5.5rem] ml-7 mt-7 rounded-full flex flex-row items-center content-center justify-between">
                             <UserIconTwo width={44} height={44} />
                             <div className=''>
-                                <h1 className="text-lg font-inter font-bold">Buenos días,</h1>
-                                <p className="font-inter font-bold">Ana Maria</p>
+                                <h1 className="text-lg font-inter font-bold text-white">Buenos días,</h1>
+                                <p className="font-inter font-bold text-white">Ana Maria</p>
                             </div>
                         </div>
                     </Link>
@@ -60,38 +56,67 @@ export function Home_Patients() {
                         <button onClick={toggleSidebar}>
                             <MenuHambuerguesa width={24} height={24} />
                         </button>
-
                     </div>
-                </div>
-                <div className="flex items-center space-x-2  justify-center">
-                    <div className="relative py-2">
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                            className="border rounded-sm py-3 mb-3 pl-8 w-[40vh] text-sm"
-                            placeholder="Búsqueda"
-                        />
-                        <svg
-                            className="absolute left-[17rem] top-5 w-6 h-6 text-gray-500"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 25 25"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="28"
-                            height="28"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            ></path>
-                        </svg>
-                    </div>
-
                 </div>
             </header>
+            <section className="bg-gray-400 mt-2">
+                <div className="grid grid-flow-row gap-4 grid-cols-3 p-4">
+                    <div className="flex items-center flex-col">
+                        <div className="bg-[#5666BF] w-[7rem] h-[7rem] rounded-3xl">
+                            <div className=" bg-white w-[6.5rem] h-[6.5rem] mt-1 ml-1 mr-7 rounded-[50%] text-center">
+                               
+
+                            </div>
+                        </div>
+                        <p className="mt-1">Citas</p>
+                    </div>
+                    <div className="flex items-center flex-col">
+                        <div className="bg-[#CEF086] w-[7rem] h-[7rem] rounded-3xl ">
+                            <div className=" bg-white w-[6.5rem] h-[6.5rem] mt-1 ml-1 mr-7 rounded-[50%]"></div>
+                        </div>
+                        <p className="mt-1">Tratamiento</p>
+                    </div>
+                    <div className="flex items-center flex-col">
+                        <div className="bg-[#FFF386] w-[7rem] h-[7rem] rounded-3xl">
+                            <div className=" bg-white w-[6.5rem] h-[6.5rem] mt-1 ml-1 mr-7 rounded-[50%]"></div>
+                        </div>
+                        <p className="mt-1">Ejercicio</p>
+                    </div>
+                    <div className="flex items-center flex-col">
+                        <div className="bg-[#00E0FF] w-[7rem] h-[7rem] rounded-3xl">
+                            <div className=" bg-white w-[6.5rem] h-[6.5rem] mt-1 ml-1 mr-7 rounded-[50%]"></div>
+                        </div>
+                        <p className="mt-1">Nutricion</p>
+                    </div>
+                    <div className="flex items-center flex-col">
+                        <div className="bg-[#A9FFBC] w-[7rem] h-[7rem] rounded-3xl">
+                            <div className=" bg-white w-[6.5rem] h-[6.5rem] mt-1 ml-1 mr-7 rounded-[50%]"></div>
+                        </div>
+                        <p className="mt-1">Salud Mental</p>
+                    </div>
+                    <div className="flex items-center flex-col">
+                        <div className="bg-[#F49E93] w-[7rem] h-[7rem] rounded-3xl">
+                            <div className=" bg-white w-[6.5rem] h-[6.5rem] mt-1 ml-1 mr-7 rounded-[50%]"></div>
+                        </div>
+                        <p className="mt-1">Cora</p>
+                    </div>
+
+
+
+
+
+                </div>
+            </section>
+            <section className="font-inter mt-5">
+                <div className="flex flex-col ">
+                    <h3 className="font-bold text-center text-lg">Explorar categorias</h3>
+                    <p className="pt-4 pl-2">Próximas citas</p>
+                </div>
+                <div className="flex flex-col items-center mt-10">
+                    <h3 className=" text-center text-lg">Control y seguimiento</h3>
+                </div>
+
+            </section>
         </div>
     );
 }
