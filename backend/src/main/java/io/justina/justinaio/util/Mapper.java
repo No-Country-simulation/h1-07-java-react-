@@ -175,6 +175,23 @@ public class Mapper {
                 .build();
     }
 
+    public static InstitucionDeSalud toInstitucionDeSalud(InstitucionDeSaludRequest institucionDeSaludRequest) {
+        return InstitucionDeSalud.builder()
+                .nombre(institucionDeSaludRequest.getNombre())
+                .direccion(institucionDeSaludRequest.getDireccion())
+                .emailContacto(institucionDeSaludRequest.getEmailContacto())
+                .esActivo(true)
+                .build();
+    }
+
+    public static InstitucionDeSaludResponse toInstitucionDeSaludResponse(InstitucionDeSalud institucionDeSalud) {
+        return InstitucionDeSaludResponse.builder()
+                .nombre(institucionDeSalud.getNombre())
+                .direccion(institucionDeSalud.getDireccion())
+                .emailContacto(institucionDeSalud.getEmailContacto())
+                .build();
+    }
+
     public static CasoClinicoResponse toCasoClinicoResponse(CasoClinico casoClinico) {
         return CasoClinicoResponse.builder()
                 .fecha(casoClinico.getFecha())
@@ -187,6 +204,7 @@ public class Mapper {
         return Donante.builder()
                 .paciente(paciente)
                 .medico(medico)
+                .descripcion(donanteRequest.getDescripcion())
                 .nombre(donanteRequest.getNombre())
                 .apellido(donanteRequest.getApellido())
                 .altura(donanteRequest.getAltura())
@@ -202,6 +220,7 @@ public class Mapper {
     public static DonanteResponse toDonanteResponse(Donante donante) {
         return DonanteResponse.builder()
                 .idMedico(donante.getMedico().getIdMedico())
+                .descripcion(donante.getDescripcion())
                 .altura(donante.getAltura())
                 .peso(donante.getPeso())
                 .genero(donante.getGenero().ordinal())

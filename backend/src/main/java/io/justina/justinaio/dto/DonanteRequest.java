@@ -17,6 +17,9 @@ public class DonanteRequest { // Puede ser nulo
     @Schema(description = "ID del paciente asociado al donante", example = "2")
     private Integer pacienteId;
 
+    @Schema(description = "Descripcion de la donación", example = "Higado")
+    private String descripcion;
+
     @Schema(description = "Nombre del donante", example = "Juan")
     private String nombre;
 
