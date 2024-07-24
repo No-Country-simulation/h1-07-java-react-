@@ -3,7 +3,7 @@ import { Button } from '@nextui-org/react';
 import React, { useState } from 'react';
 import { useAuthContext } from '../../../Context/AuthContext';
 import { PatientRegister } from '../../../Interfaces/interfaces';
-import { BloodIcon, CardIcon, FlechaIconTwo, GenderIcon, LoaderIcon } from '../../../components/icons/Icons';
+import { BloodIcon, CardIcon, FlechaIconTwo, GenderIcon, HealthIcon, LoaderIcon } from '../../../../public/icons/Icons';
 import { toast } from 'sonner';
 import { dataRegisterPatient, initialValuesPatient } from '../../../utils/data/data';
 import { validationSchemaPatient } from '../../../utils/validation/validation';
@@ -42,7 +42,7 @@ export const RegisterPatient: React.FC = () => {
               <h1 className="text-2xl font-bold tracking-tight">Crear cuenta paciente</h1>
               <p className="text-sm">Introduzca la información necesaria</p>
             </div>
-            <div className="flex-wrap grid grid-rows-9 gap-6  max-md:gap-1 grid-flow-col max-md:gap-y-3">
+            <div className="flex-wrap grid grid-rows-10 gap-6  max-md:gap-1 grid-flow-col max-md:gap-y-3">
               {dataRegisterPatient.map(({ label, name, type, icon: Icon, placeholder }) => (
                 <div key={name}>
                   <label className="font-semibold flex items-center gap-2 pl-2" htmlFor={name}>
@@ -66,6 +66,16 @@ export const RegisterPatient: React.FC = () => {
                   <option value={0}>Masculino</option>
                   <option value={1}>Femenino</option>
                   {/* <option value={2}>Otro</option> */}
+                </Field>
+              </div>
+              <div className="">
+                <label className="font-semibold flex items-center gap-2 pl-2" htmlFor="patologiaId">
+                  <HealthIcon width={15} height={15} />Patología
+                </label>
+                <Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="patologiaId">
+                  <option value={1}>Cancer</option>
+                  <option value={2}>Epilepsia</option>
+                  <option value={3}>Asma</option>
                 </Field>
               </div>
               <div className="">

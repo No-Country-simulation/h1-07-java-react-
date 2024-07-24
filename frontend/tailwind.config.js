@@ -23,7 +23,7 @@ export default {
         'gray-color':'#757575',
         'light-color':'#EFF3FD',
         'blue-light-color':"#3563E9",
-        'violet-color':'#3D4DA5'
+        'violet-color':'#5761C8'
 
       },
       fontFamily: {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { EmailIcon, FlechaIconTwo, IconPassword, LapizIcon, UserIconTwo } from "../../../../components/icons/Icons";
+import { EmailIcon, FlechaIconTwo, IconPassword, LapizIcon, UserIconTwo } from "../../../../../public/icons/Icons";
 import { Logout } from "../../../../components/Logout";
 
 export function UserInfo(): JSX.Element {

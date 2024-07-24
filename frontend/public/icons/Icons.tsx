@@ -447,6 +447,15 @@ export function FlechaIconTwo({ width, height }: IconProps) {
   )
 }
 
+export function ArrowWhiteIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} className="ml-10" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#F9F9F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
 export function HomeIconTwo({ width, height }: IconProps) {
   return (
     <svg width={width} className="text-red-600" height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -551,5 +560,11 @@ export function SearchIcon({ width, height }: IconProps) {
 
   )
 }
-
+export function HealthIcon({ width, height }: IconProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="#948ABC" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+      </path >
+      </svg>
+  )
+}
 
