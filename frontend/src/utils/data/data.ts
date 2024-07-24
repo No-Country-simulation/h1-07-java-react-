@@ -1,5 +1,6 @@
-import { CalendarIcon, CardIcon, EmailIcon, HomeIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from "../components/icons/Icons";
-import { AuthenticationRequest, MedicoRegister, PatientRegister } from "../Interfaces/interfaces";
+import { getLocalTimeZone, today } from "@internationalized/date";
+import { CalendarIcon, CardIcon, EmailIcon, HomeIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from "../../../public/icons/Icons";
+import { AuthenticationRequest, DoctorRegister, PatientRegister, Treatment } from "../../Interfaces/interfaces";
 
 export const dataRegisterDoctor = [
   { label: 'Nombre', name: 'nombre', type: 'text', icon: UserIcon, placeholder: 'Ej: Mario' },
@@ -43,7 +44,7 @@ export const initialValuesPatient: PatientRegister = {
   financiadorId: 1
 };
 
-export const initialValuesDoctor: MedicoRegister = {
+export const initialValuesDoctor: DoctorRegister = {
   email: "",
   password: "",
   nombre: "",
@@ -59,4 +60,28 @@ export const initialValuesDoctor: MedicoRegister = {
 export const initialValuesLogin: AuthenticationRequest = {
   email: "",
   password: ""
+}
+
+export const initialValuesTreatment: Treatment ={
+    pacienteId: 10, //modificar con el id del paciente correspendiente
+    patologiaId: 1,
+    medicamentoId: 0,
+    tipoTratamiento: 0,
+    descripcion: "",
+    dosisDiaria: 1,
+    horaInicio: "12:00",
+    diasTotales: 1,
+    fechaInicio: ""
+}
+
+export const initialValuesOthers: Treatment ={
+  pacienteId: 10, //modificar con el id del paciente correspendiente
+  patologiaId: 1,
+  medicamentoId: 5,
+  tipoTratamiento: 1,
+  descripcion: "",
+  dosisDiaria: 1,
+  horaInicio: "12:00",
+  diasTotales: 1,
+  fechaInicio: String(today(getLocalTimeZone()))
 }

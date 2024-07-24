@@ -77,7 +77,7 @@ export interface PasswordRequest {
   password: string;
 }
 
-export interface MedicoRegister {
+export interface DoctorRegister {
   email: string;
   nombre: string;
   apellido: string;
@@ -191,10 +191,16 @@ export interface RegistrarRequest {
 }
 
 export interface AuthContextProps {
-  login: (authTokens: AuthTokens) => void;
+  login: (email: string, password: string) => void;
   logout: () => void;
   isLoggedIn: boolean;
   authTokens: AuthTokens | null;
+  userName: string;
+  roles: string[];
+  registerDoctor: (doctor: DoctorRegister) => void
+  registerPatient: (patient: PatientRegister) => void
+  registerTreatment: (treatment: Treatment) => void
+  createRole:  (email: string, role: string) => Promise<void>;
 }
 
 export interface AuthenticationRequest {
@@ -242,7 +248,7 @@ export interface PatientRegister {
   financiadorId: number
 }
 
-export interface Paciente {
+export interface Patient {
   idPaciente: number
   nombre: string
   apellido: string
@@ -253,4 +259,80 @@ export interface Paciente {
   tratamientos: any[]
   medicos: string[]
   entidades: string[]
+}
+
+export interface ContentPatient {
+  content: Patient[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface ResponseRequest {
+  businessErrorCode: number
+  businessErrorDescription: string
+  error: string
+  token: string | undefined
+}
+
+
+export interface Treatment {
+  pacienteId: number | undefined
+  patologiaId: number
+  medicamentoId: number
+  tipoTratamiento: number 
+  descripcion: string
+  dosisDiaria: number
+  horaInicio: string
+  diasTotales: number
+  fechaInicio: string
+}
+
+
+export interface ContentMedicines {
+  content: Medicines[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface Medicines {
+  idMedicamento: number
+  nombre: string
+  descripcion: string
+}
+
+export interface ContentTreatmentPacient {
+  content: TreatmentPacient[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface TreatmentPacient {
+  idTratamiento: number
+  nombrePatologia: string | null
+  nombreMedicamento: string | null
+  descripcion: string
+  dosisDiaria: number
+  fechaInicio: string
+  fechaFin: string
+  estado: string
+  tipoTratamientoId: number
+  horarios: Time[]
+}
+
+export interface Time {
+  fecha: string
+  hora: string
+  estado: string
 }
