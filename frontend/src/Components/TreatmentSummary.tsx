@@ -35,9 +35,7 @@ export default function TreatmentSummary() {
       <div className=' border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm'>
         {treatments && treatments.content.map((treatment) => (
           <>
-            <h6 className='text-violet-color font-bold text-lg'>Patología</h6>
-            <p>{treatment.nombrePatologia}</p>
-            <h6 className=' text-violet-color font-bold text-lg'>Medicación Actual</h6>
+            <h6 className=' text-violet-color font-bold text-lg'>Medicación</h6>
             <ul className=' ml-6 list-disc'>
               <li>{treatment.nombreMedicamento} {treatment.descripcion}.</li>
               <li>Dosis: {treatment.dosisDiaria} diaria</li>
@@ -49,7 +47,6 @@ export default function TreatmentSummary() {
               <li>Estado: {treatment.estado}</li>
             </ul>
           </>
-
         ))
 
         }

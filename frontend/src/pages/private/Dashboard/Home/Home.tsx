@@ -1,9 +1,8 @@
-import { useState } from 'react';;
+import { useContext, useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
-// import { useAuthContext } from '../../../../Context/AuthContext';
 import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo, UserIconTwo2 } from '../../../../../public/icons/Icons';
+import { AuthContext } from '../../../../Context/AuthContext';
 import { Logout } from '../../../../components/Logout';
-// import { Logout } from '../../../../Components/Logout';
 
 
 
@@ -21,11 +20,12 @@ const messages: Message[] = [
 ];
 
 export function Home(): JSX.Element {
+	const { userName } = useContext(AuthContext);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [activeTab, setActiveTab] = useState('Pacientes');
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const location = useLocation();
-	
+
 	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchQuery(e.target.value);
 	};
@@ -76,7 +76,7 @@ export function Home(): JSX.Element {
 							<UserIconTwo width={44} height={44} />
 							<div className=''>
 								<h1 className="text-lg font-inter font-bold">Buenos días,</h1>
-								<p className="font-inter font-bold">Dr. Ortega</p>
+								<p className="font-inter font-bold">{userName}</p>
 							</div>
 						</div>
 					</Link>
