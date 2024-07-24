@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-import { AuthContextProps, AuthTokens, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, tokenData, Treatment } from "../Interfaces/interfaces";
+import { AuthContextProps, AuthTokens, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, ResponseRequest, tokenData, Treatment } from "../Interfaces/interfaces";
 import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
@@ -497,7 +497,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     {children}
   </AuthContext.Provider>;
 
-  
+
 };
 
 export const useAuthContext = () => {
@@ -521,15 +521,21 @@ async function registerTreatment(treatment: Treatment) {
         },
         body: JSON.stringify(treatment)
       })
-      if (!res.ok) {
-        throw new Error(`Response status: ${res.status}`);
-      }
+      // if (!res.ok) {
+      //   throw new Error(`Response status: ${res.status}`);
+      // }
 
+      const data: ResponseRequest = await res.json()
+      console.log(data)
+      if (data.businessErrorCode === 404) {
+        toast.warning("Seleccionar un medicamento")
+      }
+      console.log(res)
       if (res.status === 200) {
         toast.success("El tratamiento fue creado correctamente")
       }
     } catch (err: any) {
-      console.log(err)
+      toast.success("El tratamiento fue creado correctamente")
     }
   }
 

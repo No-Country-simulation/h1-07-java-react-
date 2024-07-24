@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { CampanaIcon, CampanaIconTwo, HomeIconTwo, MenssageIcon, MenuHambuerguesa, PeopleIcon, UserIconTwo, UserIconTwo2 } from "../../../../../../public/icons/Icons";
+import { CampanaIcon, HomeIconTwo, MenuHambuerguesa, UserIconTwo, UserIconTwo2 } from "../../../../../../public/icons/Icons";
 import { Link } from "react-router-dom";
-import { Logout } from "../../../../../Components/Logout";
+import { Logout } from "../../../../../components/Logout";
 
 
 
