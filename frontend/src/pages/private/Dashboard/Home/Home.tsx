@@ -74,9 +74,9 @@ export function Home(): JSX.Element {
 				<div className="flex items-center space-x-2 content-center justify-between ml-4">
 					<Link to={"/userInfo"}>
 						<div className="w-[10.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
-							<UserIconTwo width={44} height={44} />
+							<img src="../../../../../public/IMG_MEDICO/IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
 							<div className=''>
-								<h1 className="text-lg font-inter font-bold">Buenos días,</h1>
+								<h1 className=" text-lg font-inter font-bold">Buenos días,</h1>
 								<p className="font-inter font-bold">{userName}</p>
 							</div>
 						</div>
