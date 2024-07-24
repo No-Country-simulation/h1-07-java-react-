@@ -1,7 +1,7 @@
 import { Avatar, Tab, Tabs } from '@nextui-org/react';
-import FormTreatment from '../../../../components/FormTreatment';
-import FormTraining from '../../../../components/FormTraining';
-import { FlechaIconTwo } from '../../../../components/icons/Icons';
+import FormTreatment from '../../../../Components/FormTreatment';
+import FormTraining from '../../../../Components/FormTraining';
+import { FlechaIconTwo } from '../../../../../public/icons/Icons';
 import { Link, useParams } from 'react-router-dom';
 
 export const TreatmentPatient = () => {

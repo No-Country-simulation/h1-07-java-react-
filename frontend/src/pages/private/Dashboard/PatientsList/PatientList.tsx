@@ -1,6 +1,6 @@
 import  { useEffect, useState } from 'react'
 import { fetchPatient } from '../../../../Context/AuthContext'
-import { ChevronIcon, FlechaIconTwo, SearchIcon } from '../../../../components/icons/Icons'
+import { ChevronIcon, FlechaIconTwo, SearchIcon } from '../../../../../public/icons/Icons'
 import { Link } from 'react-router-dom'
 import { ContentPatient } from '../../../../Interfaces/interfaces'
 import { Avatar } from '@nextui-org/react'

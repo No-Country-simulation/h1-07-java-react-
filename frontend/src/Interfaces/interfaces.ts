@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { StringSchema } from "yup";
 // import { FormValuesEdit } from "../../professional/pages/EditProfile";
 
 export interface ModalProps {
@@ -195,9 +196,12 @@ export interface AuthContextProps {
   logout: () => void;
   isLoggedIn: boolean;
   authTokens: AuthTokens | null;
+  userName: string;
+  roles: string[];
   registerDoctor: (doctor: DoctorRegister) => void
   registerPatient: (patient: PatientRegister) => void
   registerTreatment: (treatment: Treatment) => void
+  createRole:  (email: string, role: string) => Promise<void>;
 }
 
 export interface AuthenticationRequest {

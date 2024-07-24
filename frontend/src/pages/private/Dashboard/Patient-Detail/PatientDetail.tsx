@@ -1,6 +1,6 @@
 import { Avatar } from '@nextui-org/react';
 import { Link, useParams } from 'react-router-dom';
-import { FlechaIconTwo } from '../../../../components/icons/Icons';
+import { FlechaIconTwo } from '../../../../../public/icons/Icons';
 
 const user = {
   idPaciente: 1,

@@ -7,7 +7,7 @@ import { fetchMedicines, useAuthContext } from '../Context/AuthContext'
 import { ContentMedicines, Treatment } from '../Interfaces/interfaces'
 import { initialValuesTreatment } from '../utils/data/data'
 import { validationSchemaTreatment } from '../utils/validation/validation'
-import { MicrophoneClose, MicrophoneOpen } from './icons/Icons'
+import { MicrophoneClose, MicrophoneOpen } from '../../public/icons/Icons'
 
 export default function FormTreatment() {
   const [medicines, setMedicines] = useState<ContentMedicines>()
@@ -148,18 +148,21 @@ export default function FormTreatment() {
             </div>
           </div>
           {/* PATOLOGIAS */}
-          <div className="">
-            <label className="font-bold flex items-center gap-2 " htmlFor="fechaInicio">
+          <div className="w-full">
+            <label className="font-bold flex items-center gap-2 pb-4" htmlFor="fechaInicio">
               Fecha de Inicio
             </label>
+
             <Calendar
               aria-label="Date (Min Date Value)"
               defaultValue={today(getLocalTimeZone())}
               minValue={today(getLocalTimeZone())}
               color="warning"
-              className=" flex justify-center py-4 "
+              calendarWidth="100%"
+              className='flex justify-center scale-150 py-[5rem] bg-transparent z-[10]'
               onChange={handleDateChange}
             />
+
           </div>
           <div className="">
             <label className="font-bold flex items-center gap-2 " htmlFor="diasTotales">

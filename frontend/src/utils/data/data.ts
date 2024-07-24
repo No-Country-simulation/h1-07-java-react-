@@ -1,4 +1,4 @@
-import { CalendarIcon, CardIcon, EmailIcon, HomeIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from "../../components/icons/Icons";
+import { CalendarIcon, CardIcon, EmailIcon, HomeIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from "../../../public/icons/Icons";
 import { AuthenticationRequest, DoctorRegister, PatientRegister, Treatment } from "../../Interfaces/interfaces";
 
 export const dataRegisterDoctor = [

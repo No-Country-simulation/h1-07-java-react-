@@ -4,7 +4,7 @@ import { AuthenticationRequest } from "../../Interfaces/interfaces";
 import { useAuthContext } from "../../Context/AuthContext";
 import { toast } from "sonner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { ClosePasswordIcon, EmailIcon, LoaderIcon, LockIcon, OpenPasswordIcon } from "../../components/icons/Icons";
+import { ClosePasswordIcon, EmailIcon, LoaderIcon, LockIcon, OpenPasswordIcon } from "../../../public/icons/Icons";
 import { initialValuesLogin } from "../../utils/data/data";
 import { validationSchemaLogin } from "../../utils/validation/validation";
 
@@ -13,7 +13,7 @@ export const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
 
-  //AGREGAR VALIDACION CUANDO HAY UN ERROR EN EL SERVIDOR
+  
   const handleSubmitLogin = async (values: AuthenticationRequest) => {
     setLoading(true);
     try {
