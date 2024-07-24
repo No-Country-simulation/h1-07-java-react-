@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthenticationRequest } from "../../Interfaces/interfaces";
 import { useAuthContext } from "../../Context/AuthContext";
 import { toast } from "sonner";
@@ -17,9 +17,8 @@ export const LoginPage: React.FC = () => {
   const handleSubmitLogin = async (values: AuthenticationRequest) => {
     setLoading(true);
     try {
-      await login(values.email, values.password)
-      toast.success('¡Inicio de sesión exitoso!');
-      window.location.href = '/dashboard'
+      console.log(loading)
+      login(values.email, values.password)
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
       toast.error('Error en el inicio de sesión. Por favor, intenta nuevamente.');
@@ -87,7 +86,9 @@ export const LoginPage: React.FC = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className="flex items-center justify-center text-center w-full h-[30%] py-2 text-white bg-[#E08733] rounded-md hover:bg-[#9b5416] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                  <span className=' animate-spin'>{loading && <LoaderIcon width={30} height={30}></LoaderIcon>}  </span>Iniciar Sesión
+                  <span className=' animate-spin'>
+                    {loading && <LoaderIcon width={30} height={30}></LoaderIcon>}</span>
+                    Iniciar Sesión
                 </button>
                 <Link className="w-full h-[30%] py-2 text-[#E08733] border-2 text-center border-[#E08733] rounded-md  hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" to={"/signup"}>
                   Registrarme

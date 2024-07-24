@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
 import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo, UserIconTwo2 } from '../../../../../public/icons/Icons';
-import { Logout } from '../../../../Components/Logout';
 import { AuthContext } from '../../../../Context/AuthContext';
+import { Logout } from '../../../../components/Logout';
 
 
 
@@ -39,7 +39,6 @@ export function Home(): JSX.Element {
 	const toggleSidebar = () => {
 		setIsSidebarOpen(!isSidebarOpen);
 	};
-
 
 	const menuItems = [
 		{ to: "/dashboard", icon: HomeIconTwo, label: "Inicio" },

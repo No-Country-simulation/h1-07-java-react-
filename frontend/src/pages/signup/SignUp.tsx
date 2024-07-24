@@ -15,9 +15,11 @@ const SignUp: React.FC = () => {
 	const { registerDoctor } = useAuthContext()
 
 	const handleSubmit = async (values: DoctorRegister) => {
-		const doctor: DoctorRegister = values
+		const doctor: DoctorRegister = {...values, financiadores:new Array(values.financiadores)}
+		console.log(values.financiadores)
 		try {
 			setLoading(true)
+			console.log(doctor)
 			registerDoctor(doctor)
 			toast.success("El registro fue existoso")
 			navigate("/login")
