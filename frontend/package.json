@@ -11,6 +11,7 @@
     "openapi": "openapi-generator-cli generate -i ./src/openapi.json -g typescript-fetch -o ./src/output"
   },
   "dependencies": {
+    "@internationalized/date": "^3.5.4",
     "@nextui-org/react": "^2.4.2",
     "formik": "^2.4.6",
     "framer-motion": "^11.2.13",

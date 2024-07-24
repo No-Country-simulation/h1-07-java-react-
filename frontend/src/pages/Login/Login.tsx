@@ -1,78 +1,35 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthenticationRequest, AuthTokens, tokenData} from "../../Interfaces/interfaces";
+import { Link } from "react-router-dom";
+import { AuthenticationRequest } from "../../Interfaces/interfaces";
 import { useAuthContext } from "../../Context/AuthContext";
-import { jwtDecode } from "jwt-decode";
-import { API_URL } from "../../api/api";
 import { toast } from "sonner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { initialValuesLogin } from "../../data/data";
-import * as Yup from 'yup';
-import { ClosePasswordIcon, EmailIcon, LoaderIcon, LockIcon, OpenPasswordIcon } from "../../components/icons/Icons";
-
-const validationSchema = Yup.object({
-  email: Yup.string()
-    .email('Correo electrónico inválido')
-    .required('El correo electrónico es obligatorio'),
-  password: Yup.string()
-    .min(6, 'La contraseña debe tener mas de 6 caracteres')
-    .required('La contraseña es obligatoria'),
-});
+import { ClosePasswordIcon, EmailIcon, LoaderIcon, LockIcon, OpenPasswordIcon } from "../../../public/icons/Icons";
+import { initialValuesLogin } from "../../utils/data/data";
+import { validationSchemaLogin } from "../../utils/validation/validation";
 
 export const LoginPage: React.FC = () => {
-  const navigate = useNavigate();
   const { login } = useAuthContext();
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
 
-  //falta agregar una validacion
+  
   const handleSubmitLogin = async (values: AuthenticationRequest) => {
     setLoading(true);
-    // console.log(values)
     try {
-      const res = await fetch(`${API_URL}/auth/autenticar`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values)
-      });
-      const data = await res.json()
-
-      if (data.businessErrorCode == 304) {
-        toast.warning("La contraseña o usuario son incorrectos")
-      }
-      const token: string = data.token
-
-      if (token) {
-        const infoToken: tokenData = jwtDecode(token)
-
-        const dataToken: AuthTokens = {
-          token: token,
-          email: infoToken.fullName,
-          iat: infoToken.iat,
-          exp: infoToken.exp,
-          authorities: infoToken.authorities
-        }
-        login(dataToken)
-      }
-
-      if (res.status == 200) {
-        return navigate("/dashboard")
-      }
-
-    } catch (err: any) {
-      console.log(err);
+      console.log(loading)
+      login(values.email, values.password)
+    } catch (error) {
+      console.error('Error en el inicio de sesión:', error);
+      toast.error('Error en el inicio de sesión. Por favor, intenta nuevamente.');
     } finally {
       setLoading(false);
     }
-
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
 
   return (
     <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center  ">
@@ -81,7 +38,7 @@ export const LoginPage: React.FC = () => {
         <p className="mb-[46px] text-[15px] text-[#948ABC]">Accede con la cuenta que registraste</p>
         <Formik
           initialValues={initialValuesLogin}
-          validationSchema={validationSchema}
+          validationSchema={validationSchemaLogin}
           onSubmit={handleSubmitLogin}>
           {({ isSubmitting }) => (
             <Form className=" flex flex-col gap-y-10">
@@ -98,7 +55,6 @@ export const LoginPage: React.FC = () => {
                   className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
                 <ErrorMessage name={"email"} component="div" className=" flex-wrap text-red-500" />
-
               </div>
               <div className=" ">
                 <div className="flex flex-row items-center mb-1">
@@ -130,7 +86,9 @@ export const LoginPage: React.FC = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className="flex items-center justify-center text-center w-full h-[30%] py-2 text-white bg-[#E08733] rounded-md hover:bg-[#9b5416] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                  <span className=' animate-spin'>{loading && <LoaderIcon width={30} height={30}></LoaderIcon>}  </span>Iniciar Sesión
+                  <span className=' animate-spin'>
+                    {loading && <LoaderIcon width={30} height={30}></LoaderIcon>}</span>
+                    Iniciar Sesión
                 </button>
                 <Link className="w-full h-[30%] py-2 text-[#E08733] border-2 text-center border-[#E08733] rounded-md  hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" to={"/signup"}>
                   Registrarme
