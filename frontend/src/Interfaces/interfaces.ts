@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { StringSchema } from "yup";
 // import { FormValuesEdit } from "../../professional/pages/EditProfile";
 
 export interface ModalProps {
@@ -321,8 +320,8 @@ export interface ContentTreatmentPacient {
 
 export interface TreatmentPacient {
   idTratamiento: number
-  nombrePatologia: string
-  nombreMedicamento: string
+  nombrePatologia: string | null
+  nombreMedicamento: string | null
   descripcion: string
   dosisDiaria: number
   fechaInicio: string

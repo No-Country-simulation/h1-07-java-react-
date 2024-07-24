@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import AppRouter from '../../routers/AppRouter';
 
-const DeviceDetection: React.FC = () => {
+interface PropsDeviceDectection{
+    children: JSX.Element | JSX.Element[]
+}
+
+const DeviceDetection: React.FC<PropsDeviceDectection> = ({children}) => {
     const [isMobile, setIsMobile] = useState<boolean>(false);
 
     useEffect(() => {
@@ -20,7 +23,7 @@ const DeviceDetection: React.FC = () => {
     return (
         <>
             {isMobile ? (
-                <AppRouter />
+                {children}
             ) : (
                 <div className="flex flex-col justify-center items-center h-screen bg-black text-white font-inter">
                     <h1>Esta aplicación solo está disponible para dispositivos móviles.</h1>

@@ -1,9 +1,8 @@
-import { useContext, useState } from 'react';;
+import { useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
-import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo, UserIconTwo2 } from '../../../../../public/icons/Icons';
-import { AuthContext } from '../../../../Context/AuthContext';
-import { Logout } from '../../../../Components/Logout';
-
+import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo2 } from '../../../../../public/icons/Icons';
+// import { AuthContext } from '../../../../Context/AuthContext';
+import { Logout } from '../../../../components/Logout';
 
 
 interface Message {
@@ -23,7 +22,7 @@ const messages: Message[] = [
 
 
 export function Home(): JSX.Element {
-	const { userName } = useContext(AuthContext);
+	// const { userName } = useContext(AuthContext);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [activeTab, setActiveTab] = useState('Pacientes');
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);

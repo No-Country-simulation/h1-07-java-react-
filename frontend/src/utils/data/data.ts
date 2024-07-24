@@ -1,3 +1,4 @@
+import { getLocalTimeZone, today } from "@internationalized/date";
 import { CalendarIcon, CardIcon, EmailIcon, HomeIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from "../../../public/icons/Icons";
 import { AuthenticationRequest, DoctorRegister, PatientRegister, Treatment } from "../../Interfaces/interfaces";
 
@@ -67,8 +68,20 @@ export const initialValuesTreatment: Treatment ={
     medicamentoId: 0,
     tipoTratamiento: 0,
     descripcion: "",
-    dosisDiaria: 0,
-    horaInicio: "",
-    diasTotales: 0,
+    dosisDiaria: 1,
+    horaInicio: "12:00",
+    diasTotales: 1,
     fechaInicio: ""
+}
+
+export const initialValuesOthers: Treatment ={
+  pacienteId: 10, //modificar con el id del paciente correspendiente
+  patologiaId: 1,
+  medicamentoId: 5,
+  tipoTratamiento: 1,
+  descripcion: "",
+  dosisDiaria: 1,
+  horaInicio: "12:00",
+  diasTotales: 1,
+  fechaInicio: String(today(getLocalTimeZone()))
 }

@@ -3,7 +3,7 @@ import styles from '../../styles.module.css';
 
 import { Link } from 'react-router-dom';
 import { ChevronIcon, CloudIcon, FacebookIcon, FeaturesIcon, LinkedinIcon, SecurityIcon, StarIcon, StorageIcon, TimeIcon, UpdateIcon, VideoIcon } from '../../../public/icons/Icons';
-import { Nav } from '../../Components/Nav';
+import { Nav } from '../../components/Nav';
 
 
 const items = [
