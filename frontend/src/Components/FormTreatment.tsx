@@ -1,84 +1,43 @@
 import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date'
 import { Calendar } from '@nextui-org/react'
 import { Field, Form, Formik } from 'formik'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { generateFrecuency, generateHours, getTodayDate } from '../utils/functions/functions'
 import { fetchMedicines, useAuthContext } from '../Context/AuthContext'
 import { ContentMedicines, Treatment } from '../Interfaces/interfaces'
 import { initialValuesTreatment } from '../utils/data/data'
 import { validationSchemaTreatment } from '../utils/validation/validation'
-import { MicrophoneClose, MicrophoneOpen } from '../../public/icons/Icons'
+import { VoiceTranscript } from './VoiceTranscript'
+import { useParams } from 'react-router-dom'
 
 export default function FormTreatment() {
   const [medicines, setMedicines] = useState<ContentMedicines>()
   const [dayInit, setDayInit] = useState(getTodayDate(today(getLocalTimeZone())))
   const [transcript, setTranscript] = useState<string>('');
-  const [isRecording, setIsRecording] = useState<boolean>(false);
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const socketRef = useRef<WebSocket | null>(null);
   const { registerTreatment } = useAuthContext()
+  const { id } = useParams()
 
   const handleSubmitTreatment = async (treatment: Treatment) => {
     const treatementData: Treatment = {
       ...treatment,
+      pacienteId: Number(id),
       descripcion: transcript,
       fechaInicio: dayInit,
     }
-    console.log(treatementData)
     try {
       registerTreatment(treatementData)
     } catch (err: any) {
       console.log(err)
-    } finally {
     }
   }
 
   useEffect(() => {
+
     const fetchMedicinesData = async () => {
       setMedicines(await fetchMedicines())
     }
     fetchMedicinesData()
   }, [])
-
-
-  const handleStart = () => {
-    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-      const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
-      mediaRecorderRef.current = mediaRecorder;
-
-      const socket = new WebSocket('wss://api.deepgram.com/v1/listen?language=es', ['token', '7e3357ed49084483c2f80078538eefea980dc180']);
-      socketRef.current = socket;
-
-      socket.onopen = () => {
-        mediaRecorder.addEventListener('dataavailable', (event) => {
-          if (event.data.size > 0) {
-            socket.send(event.data);
-          }
-        });
-        mediaRecorder.start(250);
-      };
-
-      socket.onmessage = (message) => {
-        const received = JSON.parse(message.data);
-        const transcript = received.channel.alternatives[0].transcript;
-        setTranscript((prev) => prev + ' ' + transcript);
-      };
-
-      setIsRecording(true);
-    });
-  };
-
-  const handleStop = () => {
-    if (mediaRecorderRef.current && socketRef.current) {
-      mediaRecorderRef.current.stop();
-      socketRef.current.close();
-      setIsRecording(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTranscript(e.target.value)
-  }
 
   const handleDateChange = (date: CalendarDate) => {
     setDayInit(getTodayDate(date))
@@ -99,7 +58,7 @@ export default function FormTreatment() {
               PX
             </label>
             <Field as="select" className="w-full h-14 p-2 border-1 border-violet-color rounded-lg mt-1" name="tipoTratamiento">
-              <option value={0} selected disabled  >Busqueda...</option>
+              <option defaultValue={0} selected disabled  >Busqueda...</option>
               <option value={0}>Medicamento</option>
               <option value={1}>Entrenamiento</option>
               <option value={2}>Psicologico</option>
@@ -113,9 +72,8 @@ export default function FormTreatment() {
               Medicamento
             </label>
             <Field as="select" className="w-full p-2  h-14 border-1 border-violet-color rounded-lg  mt-1" name="medicamentoId">
-              <option value={""} selected disabled  >Busqueda...</option>
-              {medicines?.content.map((medicine, index) => (
-                <option value={index + 1} key={index}>
+              {medicines?.content.map((medicine) => (
+                <option value={medicine.idMedicamento} key={medicine.idMedicamento}>
                   {medicine.nombre}
                 </option>
               ))
@@ -148,18 +106,17 @@ export default function FormTreatment() {
             </div>
           </div>
           {/* PATOLOGIAS */}
-          <div className="w-full">
-            <label className="font-bold flex items-center gap-2 pb-4" htmlFor="fechaInicio">
-              Fecha de Inicio
-            </label>
-
+          <label className="font-bold flex items-center gap-2" htmlFor="fechaInicio">
+            Fecha de Inicio
+          </label>
+          <div className="w-full my-[3rem]">
             <Calendar
               aria-label="Date (Min Date Value)"
               defaultValue={today(getLocalTimeZone())}
               minValue={today(getLocalTimeZone())}
               color="warning"
               calendarWidth="100%"
-              className='flex justify-center scale-150 py-[5rem] bg-transparent z-[10]'
+              className='flex justify-center scale-150 bg-transparent z-[10]'
               onChange={handleDateChange}
             />
 
@@ -179,20 +136,7 @@ export default function FormTreatment() {
             </Field>
           </div>
 
-          <div className="flex flex-col relative">
-            <label className="font-bold flex items-center gap-2 " htmlFor="descripcion">
-              Recomendaciones
-            </label>
-            <Field as="textarea" placeholder='Añadir' name={'descripcion'} value={transcript} onChange={handleChange} className=' min-h-40  border-1 border-violet-color rounded-lg p-2' id={'descripcion'}>
-            </Field>
-            <div className=" absolute bottom-4 right-4">
-              {isRecording ? (
-                <span className=' cursor-pointer hover:scale-105 transition-all duration-300 w-10 border-black bg-black h-10  p-2 m-auto flex justify-center items-center border-2 rounded-full' onClick={handleStop}><MicrophoneOpen width={30} height={30} /></span>
-              ) : (
-                <span className=' cursor-pointer hover:scale-105 transition-all duration-300 w-10 border-black bg-black h-10  p-2 m-auto flex justify-center items-center border-2 rounded-full' onClick={handleStart}><MicrophoneClose width={30} height={30} /></span>
-              )}
-            </div>
-          </div>
+          <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones' />
           <div className=" flex items-center flex-col gap-2">
             <button
               type="submit"

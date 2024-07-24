@@ -272,12 +272,19 @@ export interface ContentPatient {
   last: boolean
 }
 
+export interface ResponseRequest {
+  businessErrorCode: number
+  businessErrorDescription: string
+  error: string
+  token: string | undefined
+}
+
 
 export interface Treatment {
-  pacienteId: number
+  pacienteId: number | undefined
   patologiaId: number
   medicamentoId: number
-  tipoTratamiento: number
+  tipoTratamiento: number 
   descripcion: string
   dosisDiaria: number
   horaInicio: string
@@ -297,6 +304,36 @@ export interface ContentMedicines {
 }
 
 export interface Medicines {
+  idMedicamento: number
   nombre: string
   descripcion: string
+}
+
+export interface ContentTreatmentPacient {
+  content: TreatmentPacient[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface TreatmentPacient {
+  idTratamiento: number
+  nombrePatologia: string
+  nombreMedicamento: string
+  descripcion: string
+  dosisDiaria: number
+  fechaInicio: string
+  fechaFin: string
+  estado: string
+  tipoTratamientoId: number
+  horarios: Time[]
+}
+
+export interface Time {
+  fecha: string
+  hora: string
+  estado: string
 }
