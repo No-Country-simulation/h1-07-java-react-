@@ -13,8 +13,8 @@ export const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
 
-  //AGREGAR VALIDACION CUANDO HAY UN ERROR EN EL SERVIDOR
-  const handleSubmitLogin = (values: AuthenticationRequest) => {
+  
+  const handleSubmitLogin = async (values: AuthenticationRequest) => {
     setLoading(true);
     try {
       console.log(loading)

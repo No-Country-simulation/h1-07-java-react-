@@ -15,7 +15,7 @@ export default function FormTreatment() {
   const [dayInit, setDayInit] = useState(getTodayDate(today(getLocalTimeZone())))
   const [transcript, setTranscript] = useState<string>('');
   const { registerTreatment } = useAuthContext()
-  const {id} = useParams()
+  const { id } = useParams()
 
   const handleSubmitTreatment = async (treatment: Treatment) => {
     const treatementData: Treatment = {
@@ -58,7 +58,7 @@ export default function FormTreatment() {
               PX
             </label>
             <Field as="select" className="w-full h-14 p-2 border-1 border-violet-color rounded-lg mt-1" name="tipoTratamiento">
-              <option defaultValue={0}  selected disabled  >Busqueda...</option>
+              <option defaultValue={0} selected disabled  >Busqueda...</option>
               <option value={0}>Medicamento</option>
               <option value={1}>Entrenamiento</option>
               <option value={2}>Psicologico</option>
@@ -106,18 +106,20 @@ export default function FormTreatment() {
             </div>
           </div>
           {/* PATOLOGIAS */}
-          <div className="touch-manipulation	">
-            <label className="font-bold flex items-center gap-2 " htmlFor="fechaInicio">
-              Fecha de Inicio
-            </label>
+          <label className="font-bold flex items-center gap-2" htmlFor="fechaInicio">
+            Fecha de Inicio
+          </label>
+          <div className="w-full my-[3rem]">
             <Calendar
               aria-label="Date (Min Date Value)"
               defaultValue={today(getLocalTimeZone())}
               minValue={today(getLocalTimeZone())}
               color="warning"
-              className=" flex justify-center py-4 transition:flex-grow duration-300"
+              calendarWidth="100%"
+              className='flex justify-center scale-150 bg-transparent z-[10]'
               onChange={handleDateChange}
             />
+
           </div>
           <div className="">
             <label className="font-bold flex items-center gap-2 " htmlFor="diasTotales">
@@ -134,7 +136,7 @@ export default function FormTreatment() {
             </Field>
           </div>
 
-          <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones'/>
+          <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones' />
           <div className=" flex items-center flex-col gap-2">
             <button
               type="submit"

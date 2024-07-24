@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Button } from '@nextui-org/react';
+import { CardIcon, FlechaIconTwo, JobIcon, LoaderIcon } from '../../../public/icons/Icons';
 import { useAuthContext } from '../../Context/AuthContext';
 import { dataRegisterDoctor, initialValuesDoctor } from '../../utils/data/data';
 import { validationSchema } from '../../utils/validation/validation';
-import { CardIcon, FlechaIconTwo, JobIcon, LoaderIcon } from '../../../public/icons/Icons';
 
 const SignUp: React.FC = () => {
 	const navigate = useNavigate();
