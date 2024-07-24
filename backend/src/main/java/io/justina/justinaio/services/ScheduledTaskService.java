@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Service
+//@Service
 @Slf4j
 @RequiredArgsConstructor
 public class ScheduledTaskService {
@@ -32,7 +32,7 @@ public class ScheduledTaskService {
         log.info("Found {} upcoming HorarioTomas", upcomingHorarios.size());
 
         for (HorarioToma horarioToma : upcomingHorarios) {
-            emailService.sendReminderEmail(horarioToma);
+          //  emailService.sendReminderEmail(horarioToma);
         }
     }
 }

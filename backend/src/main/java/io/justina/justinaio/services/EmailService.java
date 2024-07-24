@@ -98,7 +98,7 @@ public class EmailService {
         return codeBuilder.toString();
     }
 
-    @Async
+    /*@Async
     public void sendReminderEmail(HorarioToma horarioToma) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper;
@@ -127,5 +127,5 @@ public class EmailService {
         } catch (MessagingException e) {
             log.error("Error sending reminder email", e);
         }
-    }
+    }*/
 }
