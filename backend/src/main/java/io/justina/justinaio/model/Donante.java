@@ -30,6 +30,7 @@ public class Donante {
     @ManyToOne
     @JoinColumn(name = "id_medico")
     private Medico medico;
+    private String descripcion;
 
     private String nombre;
     private String apellido;

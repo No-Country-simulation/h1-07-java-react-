@@ -9,7 +9,8 @@
             "env": {
                 "MAIL_USERNAME": "PetNetNoResponder@gmail.com",
                 "MAIL_PASSWORD": "qzdhkzkfwcwfsyip",
-                "GEMINI_KEY": "AIzaSyDUgePFFR9CjsFJmkTw_JRQO37v8HRrK3M"
+                "GEMINI_KEY": "AIzaSyDUgePFFR9CjsFJmkTw_JRQO37v8HRrK3M",
+                "MYSQL_PASSWORD": "@zZAb%4SA7JeBtX"
             }
         }
     ]

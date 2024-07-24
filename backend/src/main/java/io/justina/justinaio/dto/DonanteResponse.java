@@ -13,6 +13,7 @@ public class DonanteResponse {
 
     private Integer idMedico;
     private String altura;
+    private String descripcion;
     private String peso;
     private Integer genero;
     private Integer factorSanguineo;
