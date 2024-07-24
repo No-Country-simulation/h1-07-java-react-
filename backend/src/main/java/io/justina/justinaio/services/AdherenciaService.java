@@ -6,6 +6,7 @@ import io.justina.justinaio.model.HorarioToma;
 import io.justina.justinaio.model.Paciente;
 import io.justina.justinaio.model.Tratamiento;
 import io.justina.justinaio.model.enums.EstadoAdherencia;
+import io.justina.justinaio.model.enums.EstadoHorario;
 import io.justina.justinaio.repositories.AdherenciaTratamientoRepository;
 import io.justina.justinaio.repositories.HorarioTomaRepository;
 import io.justina.justinaio.repositories.PacienteRepository;
@@ -19,51 +20,29 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
 @RequiredArgsConstructor
-public class  AdherenciaService {
-
-    private final AdherenciaTratamientoRepository adherenciaTratamientoRepository;
-    private final TratamientoRepository tratamientoRepository;
+public class AdherenciaService {
     private final HorarioTomaRepository horarioTomaRepository;
-    private final PacienteRepository pacienteRepository;
 
-    public void registrarAdherencia(AdherenciaRequest request) {
-        Tratamiento tratamiento = tratamientoRepository.findById(request.getTratamientoId())
-                .orElseThrow(() -> new EntityNotFoundException("Tratamiento no encontrado"));
-
-        HorarioToma horarioToma = horarioTomaRepository.findById(request.getHorarioId())
-                .orElseThrow(() -> new EntityNotFoundException("Horario de toma no encontrado"));
-
-        Paciente paciente = pacienteRepository.findById(request.getPacienteId())
-                .orElseThrow(() -> new EntityNotFoundException("Paciente no encontrado"));
-
-        EstadoAdherencia estado = determinarEstadoAdherencia(horarioToma, request.getFechaHora());
-
-        AdherenciaTratamiento adherencia = AdherenciaTratamiento.builder()
-                .paciente(paciente)
-                .tratamiento(tratamiento)
-                .horarioToma(horarioToma)
-                .comentarios(request.getComentarios())
-                .estadoAdherencia(estado)
-                .fechaHora(request.getFechaHora())
-                .build();
-        adherenciaTratamientoRepository.save(adherencia);
+    @Transactional
+    public void confirmarAdherencia(Integer idHorario) {
+        HorarioToma horarioToma = horarioTomaRepository.findById(idHorario)
+                .orElseThrow(() -> new IllegalArgumentException("Horario no encontrado"));
+        horarioToma.setEstadoHorario(EstadoHorario.TERMINADO);
+        horarioTomaRepository.save(horarioToma);
     }
 
-    private EstadoAdherencia determinarEstadoAdherencia(HorarioToma horarioToma, Date fechaHora) {
-        LocalTime horaProgramada = horarioToma.getHora();
-        LocalTime horaReal = LocalDateTime.ofInstant(fechaHora.toInstant(), ZoneId.systemDefault()).toLocalTime();
-
-        LocalTime margenInicio = horaProgramada.minusMinutes(30);
-        LocalTime margenFin = horaProgramada.plusMinutes(30);
-
-        if (horaReal.isAfter(margenInicio) && horaReal.isBefore(margenFin)) {
-            return EstadoAdherencia.A_TIEMPO;
-        } else if (horaReal.isAfter(margenFin)) {
-            return EstadoAdherencia.RETRASO;
-        }
-        return EstadoAdherencia.SUSPENDIDO;
+    @Transactional
+    public void noTomarMedicamento(Integer idHorario) {
+        HorarioToma horarioToma = horarioTomaRepository.findById(idHorario)
+                .orElseThrow(() -> new IllegalArgumentException("Horario no encontrado"));
+        horarioToma.setEstadoHorario(EstadoHorario.NO_TOMADO);
+        horarioTomaRepository.save(horarioToma);
     }
 }
 

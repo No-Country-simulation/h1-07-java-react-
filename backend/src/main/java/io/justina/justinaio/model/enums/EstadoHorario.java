@@ -5,5 +5,5 @@ public enum EstadoHorario {
     BORRADO,
     TERMINADO,
     SUSPENDIDO,
-    ATRASADO
+    NO_TOMADO, ATRASADO
 }
