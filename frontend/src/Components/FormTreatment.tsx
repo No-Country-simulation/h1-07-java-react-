@@ -1,21 +1,18 @@
 import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date'
 import { Calendar } from '@nextui-org/react'
-import { Field, Form, Formik } from 'formik'
-import { useEffect, useState } from 'react'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { useState } from 'react'
 import { generateFrecuency, generateHours, getTodayDate } from '../utils/functions/functions'
-import { fetchMedicines, useAuthContext } from '../Context/AuthContext'
-import { ContentMedicines, Treatment } from '../Interfaces/interfaces'
+import { useAuthContext } from '../Context/AuthContext'
+import { Medicines, Treatment } from '../Interfaces/interfaces'
 import { initialValuesTreatment } from '../utils/data/data'
 import { validationSchemaTreatment } from '../utils/validation/validation'
 import { VoiceTranscript } from './VoiceTranscript'
-import { useParams } from 'react-router-dom'
 
-export default function FormTreatment() {
-  const [medicines, setMedicines] = useState<ContentMedicines>()
+export default function FormTreatment({ id, medicines }: { id: string | undefined, medicines: Medicines[] | undefined }) {
   const [dayInit, setDayInit] = useState(getTodayDate(today(getLocalTimeZone())))
   const [transcript, setTranscript] = useState<string>('');
   const { registerTreatment } = useAuthContext()
-  const { id } = useParams()
 
   const handleSubmitTreatment = async (treatment: Treatment) => {
     const treatementData: Treatment = {
@@ -24,20 +21,13 @@ export default function FormTreatment() {
       descripcion: transcript,
       fechaInicio: dayInit,
     }
+    console.log(treatementData)
     try {
       registerTreatment(treatementData)
     } catch (err: any) {
       console.log(err)
     }
   }
-
-  useEffect(() => {
-
-    const fetchMedicinesData = async () => {
-      setMedicines(await fetchMedicines())
-    }
-    fetchMedicinesData()
-  }, [])
 
   const handleDateChange = (date: CalendarDate) => {
     setDayInit(getTodayDate(date))
@@ -52,33 +42,47 @@ export default function FormTreatment() {
       {({ isSubmitting }) => (
         <Form className='flex flex-col gap-y-6 px-4'>
           <h2 className=' text-xl font-bold'>Tratamientos</h2>
-          {/* PATOLOGIAS */}
           <div className="">
+            <label className="font-bold flex items-center gap-2 " htmlFor="patologiaId">
+              PX(Patologia)
+            </label>
+            <Field as="select" className="w-full h-14 p-2 border-1 border-violet-color rounded-lg mt-1" name="patologiaId">
+              <option value={0} key={0} selected disabled  >Busqueda...</option>
+              <option value={1}>Cancer</option>
+              <option value={2}>Epilepsia</option>
+              <option value={3}>Asma</option>
+
+            </Field>
+          </div>
+          {/* Tratamiento */}
+          {/* <div className="">
             <label className="font-bold flex items-center gap-2 " htmlFor="tipoTratamiento">
-              PX
+              Tipo de Tratamiento
             </label>
             <Field as="select" className="w-full h-14 p-2 border-1 border-violet-color rounded-lg mt-1" name="tipoTratamiento">
-              <option defaultValue={0} selected disabled  >Busqueda...</option>
+              <option value={""} key={""} selected disabled  >Busqueda...</option>
               <option value={0}>Medicamento</option>
               <option value={1}>Entrenamiento</option>
               <option value={2}>Psicologico</option>
               <option value={3}>Nutricional</option>
               <option value={4}>Otro</option>
             </Field>
-          </div>
+          </div> */}
           {/* MEDICAMENTOS */}
           <div className="">
             <label className="font-bold flex items-center gap-2 " htmlFor="medicamentoId">
               Medicamento
             </label>
             <Field as="select" className="w-full p-2  h-14 border-1 border-violet-color rounded-lg  mt-1" name="medicamentoId">
-              {medicines?.content.map((medicine) => (
+              <option value={0} key={0} selected disabled  >Busqueda...</option>
+              {medicines && medicines.map((medicine) => (
                 <option value={medicine.idMedicamento} key={medicine.idMedicamento}>
                   {medicine.nombre}
                 </option>
               ))
               }
             </Field>
+            <ErrorMessage name={"medicamentoId"} component="div" className=" flex-wrap text-red-500" />
           </div>
           {/* MEDICAMENTOS -> HORAINICIO/FRECUENCIA*/}
           <div className="">
@@ -116,7 +120,7 @@ export default function FormTreatment() {
               minValue={today(getLocalTimeZone())}
               color="warning"
               calendarWidth="100%"
-              className='flex justify-center scale-150 bg-transparent z-[10]'
+              className='flex justify-center scale-125 shadow-none bg-transparent z-[10]'
               onChange={handleDateChange}
             />
 
@@ -135,7 +139,6 @@ export default function FormTreatment() {
               }
             </Field>
           </div>
-
           <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones' />
           <div className=" flex items-center flex-col gap-2">
             <button

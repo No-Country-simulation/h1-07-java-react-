@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Patient } from '../../../../Interfaces/interfaces';
 import { fetchPatientSingle } from '../../../../Context/AuthContext';
-import { HeaderProfile } from '../../../../Components/HeaderProfile';
 import { useParams } from 'react-router-dom';
-import ClinicHistory from '../../../../Components/ClinicHistory';
-import TreatmentSummary from '../../../../Components/TreatmentSummary';
+import ClinicHistory from '../../../../components/ClinicHistory';
+import TreatmentSummary from '../../../../components/TreatmentSummary';
+import { HeaderProfile } from '../../../../components/HeaderProfile';
+
 
 const tabInfo = [
   { tabName: 'Historia clínica', component: <ClinicHistory /> },

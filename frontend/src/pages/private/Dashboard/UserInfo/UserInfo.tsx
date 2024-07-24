@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { EmailIcon, FlechaIconTwo, IconPassword, LapizIcon } from "../../../../../public/icons/Icons";
-import { Logout } from "../../../../Components/Logout";
+import { ArrowWhiteIcon, EmailIcon, IconPassword, LapizIcon } from "../../../../../public/icons/Icons";
+import { Logout } from "../../../../components/Logout";
 
 export function UserInfo(): JSX.Element {
     const [curriculum, setCurriculum] = useState("");
@@ -32,13 +32,13 @@ export function UserInfo(): JSX.Element {
             <header className="h-[11.7rem] bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] w-[100%] relative bottom-5 rounded-br-[4rem] text-white shadow-sm shadow-[#000]">
                 <Link to={"/dashboard"}>
                     <section className="flex flex-row mt-5 h-[3rem] items-center pt-5 ">
-                        <FlechaIconTwo width={30} height={30} />
+                        <ArrowWhiteIcon width={30} height={30} />
                         <h4 className="ml-10 font-inter font-bold text-[18px] text-center">Perfil de doctor</h4>
                     </section>
                 </Link>
                 <section>
                     <div className="w-[14.5rem] h-[5.5rem] ml-6 mt-5 rounded-full flex flex-row items-center content-center justify-between">
-                        <img src="../../../../../public/IMG_MEDICO/IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
+                        <img src="IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
                         <div className='mr-1'>
                             <h1 className="text-[18px] font-inter font-bold">Dr. Franco Ortega</h1>
                             <p className="font-inter">Médico Internista</p>

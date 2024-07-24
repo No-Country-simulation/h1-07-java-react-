@@ -4,8 +4,8 @@ import { ChevronIcon, FlechaIconTwo, SearchIcon } from '../../../../../public/ic
 import { Link } from 'react-router-dom'
 import { ContentPatient } from '../../../../Interfaces/interfaces'
 import { Avatar } from '@nextui-org/react'
-import SkeletonsListPatient from '../../../../Components/Skeletons'
 import { getRandomColor } from '../../../../utils/functions/functions'
+import SkeletonsListPatient from '../../../../components/Skeletons'
 
 
 export default function PatientList() {
@@ -42,9 +42,10 @@ export default function PatientList() {
             <SearchIcon width={20} height={20} />
           </span>
         </div>
-        <div className=" border-1 border-violet-color rounded-md min-h-[20rem]">
+        <div className=" border-1 border-violet-color rounded-md min-h-[30rem]">
           {loading &&
             <>
+              <SkeletonsListPatient />
               <SkeletonsListPatient />
               <SkeletonsListPatient />
             </>
