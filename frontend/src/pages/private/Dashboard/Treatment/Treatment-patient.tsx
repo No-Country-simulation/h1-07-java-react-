@@ -1,11 +1,11 @@
 import { Tab, Tabs } from '@nextui-org/react';
-import FormTraining from '../../../../components/FormTraining';
-import FormTreatment from '../../../../components/FormTreatment';
-import { HeaderProfile } from '../../../../components/HeaderProfile';
 import { useEffect, useState } from 'react';
 import { Patient } from '../../../../Interfaces/interfaces';
 import { Link, useParams } from 'react-router-dom';
 import { fetchPatientSingle } from '../../../../Context/AuthContext';
+import FormTreatment from '../../../../Components/FormTreatment';
+import FormTraining from '../../../../Components/FormTraining';
+import { HeaderProfile } from '../../../../Components/HeaderProfile';
 
 export const TreatmentPatient = () => {
   const [loading, setLoading] = useState(true)

@@ -13,11 +13,10 @@ import { RegisterPatient } from "../pages/private/RegisterPatient/RegisterPatien
 import { TreatmentPatient } from "../pages/private/Dashboard/Treatment/Treatment-patient";
 import PatientList from "../pages/private/Dashboard/PatientsList/PatientList";
 import PatientDetail from "../pages/private/Dashboard/Patient-Detail/PatientDetail";
-
 import { Home_Patients } from "../pages/private/Dashboard/Patients_Pages/Home/Home_Patients";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
-import { Landing } from "../pages/Landing/Landing";
-import SignUp from "../pages/SignUp/SignUp";
+import SignUp from "../pages/signup/SignUp";
+import { Landing } from "../pages/landing/Landing";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 function AppRouter() {
 
 	return (
@@ -28,7 +27,7 @@ function AppRouter() {
 						<Route path="/login" element={<LoginPage />} />
 						<Route path="/signup" element={<SignUp />} />
 						<Route path="/onboarding" element={<Onboarding />} />
-						<Route path="/" element={<Landing />} />
+						<Route index path="/" element={<Landing />} />
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_MEDICO"]} />}>
 							<Route path="/dashboard" index element={<Home />} />
