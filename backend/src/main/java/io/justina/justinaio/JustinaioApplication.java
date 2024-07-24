@@ -10,6 +10,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 public class JustinaioApplication {
 
+	//solo para ver cambios en ambas
+
 	public static void main(String[] args) {
 		SpringApplication.run(JustinaioApplication.class, args);
 	}
