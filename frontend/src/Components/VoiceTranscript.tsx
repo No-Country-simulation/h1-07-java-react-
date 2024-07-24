@@ -1,8 +1,13 @@
 import React, { useRef, useState } from 'react'
-import { MicrophoneClose, MicrophoneOpen } from './icons/Icons';
 import { Field } from 'formik';
+import { MicrophoneClose, MicrophoneOpen } from '../../public/icons/Icons';
 
-export default function VoiceTranscript() {
+interface VoiceTranscriptProps {
+  onTranscriptChange: (transcript: string) => void;
+  label: string
+}
+
+export const VoiceTranscript: React.FC<VoiceTranscriptProps> = ({ onTranscriptChange, label}) => {
   const [transcript, setTranscript] = useState<string>('');
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -45,12 +50,16 @@ export default function VoiceTranscript() {
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTranscript(e.target.value)
+    onTranscriptChange(e.target.value);
   }
 
 
   return (
     <div className="flex flex-col relative">
-      <Field as="textarea" placeholder='Añadir'name={'descripcion'} value={transcript} onChange={handleChange} className=' min-h-40 border-2 border-[#3D4DA5] rounded-lg p-2' id={'descripcion'}>
+      <label className="font-bold flex items-center gap-2 " htmlFor="descripcion">
+        {label}
+      </label>
+      <Field as="textarea" placeholder='Añadir' name={'descripcion'} value={transcript} onChange={handleChange} className=' min-h-40 border-2 border-[#3D4DA5] rounded-lg p-2' id={'descripcion'}>
       </Field>
       <div className=" absolute bottom-4 right-4">
         {isRecording ? (

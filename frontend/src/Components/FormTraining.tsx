@@ -2,7 +2,7 @@ import { generateFrecuency, generateHours } from '../utils/functions/functions'
 
 export default function FormTraining() {
   return (
-    <form className='flex flex-col gap-y-6 px-4'>
+    <form className='flex flex-col gap-y-6 px-4 min-h-[60vh]'>
       <h2 className=' text-xl font-bold'>Ejercicios</h2>
       <textarea placeholder='Añadir' name={'descripcion'} className=' min-h-40  border-1 border-violet-color rounded-lg p-2' id={'descripcion'}>
       </textarea>

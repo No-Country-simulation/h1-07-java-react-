@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-import { AuthContextProps, AuthTokens, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, tokenData, Treatment } from "../Interfaces/interfaces";
+import { AuthContextProps, AuthTokens, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, ResponseRequest, tokenData, Treatment } from "../Interfaces/interfaces";
 import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
@@ -26,6 +26,9 @@ const AUTH_TOKEN_KEY = "TOKEN_KEY"
 const AUTH_INFO_USER = "USER_INFO"
 
 export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
+
+
+
   const authTokensInLocalStorage = typeof window !== "undefined"
     ? window.localStorage.getItem(AUTH_INFO_USER)
     : null;
@@ -45,28 +48,33 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         body: JSON.stringify({ email, password })
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to login");
+      // if (!res.ok) {
+      //   throw new Error("Failed to login");
+      // }
+
+      const data: ResponseRequest = await res.json()
+
+      if (data.businessErrorCode == 304) {
+        toast.warning("El email o contraseña son incorrectos")
+      }
+      if (data.token) {
+        toast.success('¡Inicio de sesión exitoso!');
+        window.location.href = '/dashboard'
+        const token = data.token
+        const infoToken: tokenData = jwtDecode(token)
+        const dataToken: AuthTokens = {
+          token: token,
+          email: infoToken.fullName,
+          iat: infoToken.iat,
+          exp: infoToken.exp,
+          authorities: infoToken.authorities
+        }
+        setAuthTokens(dataToken);
+        window.localStorage.setItem(AUTH_INFO_USER, JSON.stringify(dataToken));
+        window.localStorage.setItem(AUTH_TOKEN_KEY, data.token)
       }
 
-      const data = await res.json()
-      const token: string = data.token
 
-      if (!token) {
-        throw new Error("Access token not found in response");
-
-      }      
-      const infoToken: tokenData = jwtDecode(token)
-      const dataToken: AuthTokens = {
-        token: token,
-        email: infoToken.fullName,
-        iat: infoToken.iat,
-        exp: infoToken.exp,
-        authorities: infoToken.authorities
-      }
-      setAuthTokens(dataToken);
-      window.localStorage.setItem(AUTH_INFO_USER, JSON.stringify(dataToken));
-      window.localStorage.setItem(AUTH_TOKEN_KEY, token)
 
     } catch (err: any) {
       console.log(err);
@@ -205,7 +213,7 @@ export async function fetchPatient() {
     try {
       // Usar la información decodificada si es necesario
       // Por ejemplo, puedes verificar los roles o permisos del usuario aquí
-      const res = await fetch(`${API_URL}/paciente/buscar-pacientes-id-medico-conectado`, {
+      const res = await fetch(`${API_URL}/paciente/listar-pacientes-id-medico-conectado`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -249,5 +257,23 @@ export const fetchMedicines = async () => {
     } catch (err: any) {
       console.log(err)
     }
+  }
+}
+
+export const fetchPatientSingle = async (id: string | undefined) => {
+  const token = localStorage.getItem("TOKEN_KEY");
+
+  try {
+    const res = await fetch(`${API_URL}/paciente/buscar-paciente-id-medico-conectado?idPaciente=${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
+    })
+    const data = await res.json()
+    return data
+  } catch (err: any) {
+    console.log(err)
   }
 }
