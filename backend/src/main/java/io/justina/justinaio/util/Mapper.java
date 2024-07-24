@@ -78,6 +78,7 @@ public class Mapper {
 
     public static MedicamentoResponse toMedicamentoResponse(Medicamento medicamento) {
         return MedicamentoResponse.builder()
+                .idMedicamento(medicamento.getIdMedicamento())
                 .nombre(medicamento.getNombre())
                 .descripcion(medicamento.getDescripcion())
                 .build();
