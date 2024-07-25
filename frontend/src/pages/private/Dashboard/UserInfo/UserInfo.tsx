@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowWhiteIcon, EmailIcon, IconPassword, LapizIcon } from "../../../../../public/icons/Icons";
-import { Logout } from "../../../../components/Logout";
+import { Logout } from "../../../../Components/Logout";
 
 export function UserInfo(): JSX.Element {
     const [curriculum, setCurriculum] = useState("");

@@ -1,37 +1,50 @@
 import React, { useEffect, useState } from 'react';
+import AppRouter from '../../routers/AppRouter';
 
-interface PropsDeviceDectection{
-    children: JSX.Element | JSX.Element[]
+interface PropsDeviceDetection {
+  children: JSX.Element | JSX.Element[];
 }
 
-const DeviceDetection: React.FC<PropsDeviceDectection> = ({children}) => {
-    const [isMobile, setIsMobile] = useState<boolean>(false);
+const DeviceDetection: React.FC<PropsDeviceDetection> = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isAndroidOrIOS, setIsAndroidOrIOS] = useState<boolean>(false);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 568); 
-        };
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); 
+    };
 
-        handleResize(); 
-        window.addEventListener('resize', handleResize); 
+    const checkDevice = () => {
+      const userAgent = navigator.userAgent || navigator.vendor;
+      if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent)) {
+        setIsAndroidOrIOS(true);
+      } else {
+        setIsAndroidOrIOS(false);
+      }
+    };
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    handleResize();
+    checkDevice();
+    
+    window.addEventListener('resize', handleResize);
 
-    return (
-        <>
-            {isMobile ? (
-                {children}
-            ) : (
-                <div className="flex flex-col justify-center items-center h-screen bg-black text-white font-inter">
-                    <h1>Esta aplicación solo está disponible para dispositivos móviles.</h1>
-                    <p>Por favor, accede desde un dispositivo móvil.</p>
-                </div>
-            )}
-        </>
-    );
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <>
+      {isMobile && isAndroidOrIOS ? (
+        <AppRouter />
+      ) : (
+        <div className="flex flex-col justify-center items-center h-screen bg-black text-white font-inter">
+          <h1>Esta aplicación solo está disponible para dispositivos móviles con Android o iOS.</h1>
+          <p>Por favor, accede desde un dispositivo móvil con Android o iOS.</p>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default DeviceDetection;
