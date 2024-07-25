@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { ContentMedicines, Patient } from '../../../../Interfaces/interfaces';
 import { Link, useParams } from 'react-router-dom';
 import { fetchMedicines, fetchPatientSingle } from '../../../../Context/AuthContext';
-import { HeaderProfile } from '../../../../components/HeaderProfile';
 import FormTreatment from '../../../../components/FormTreatment';
-import FormTraining from '../../../../components/FormTraining';
 import { FormTreamentVoice } from '../../../../components/FormTreamentVoice';
+import FormTraining from '../../../../components/FormTraining';
+import { HeaderProfile } from '../../../../components/HeaderProfile';
 
 
 export const TreatmentPatient = () => {
@@ -43,11 +43,11 @@ export const TreatmentPatient = () => {
           <div className='absolute -bottom-4 w-full flex justify-center'>
             <div className='flex gap-4'>
               <Link to={`/patient/${id}`} className='px-3  cursor-pointer p-1 rounded-lg border-2 bg-violet-color  border-light-color shadow-xl text-light-color '>Historia clínica</Link>
-              <Link to={`/patient/${id}`} className='px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color '>Tratamiento</Link>
+              <p  className='px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color '>Tratamiento</p>
             </div>
           </div>
         </HeaderProfile>
-        <Tabs fullWidth={true} key="lg" size="lg" aria-label="Tabs sizes" className='shadow-2xl border-3 my-8 bg-violet-color border-violet-color  rounded-md' >
+        <Tabs fullWidth={true} key="lg" size="lg" aria-label="Tabs sizes" className='shadow-2xl border-3 my-8 mt-16 bg-violet-color border-violet-color  rounded-md' >
           <Tab key="Medicación" title="Medicación" className='' >
             <FormTreatment id={id} medicines={medicines?.content} />
           </Tab>
