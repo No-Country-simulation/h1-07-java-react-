@@ -17,7 +17,7 @@ export const Nav = () => {
     <Navbar onMenuOpenChange={setIsMenuOpen} className=" border-b-2">
       <NavbarContent>
         <NavbarBrand>
-          <img src={'./public/logo-justina.webp'} className=" w-40"/>
+          <img src={'logo-justina.webp'} className=" w-40"/>
         </NavbarBrand>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
