@@ -23,7 +23,7 @@ const DeviceDetection: React.FC<PropsDeviceDectection> = ({children}) => {
     return (
         <>
             {isMobile ? (
-                {children}
+                children
             ) : (
                 <div className="flex flex-col justify-center items-center h-screen bg-black text-white font-inter">
                     <h1>Esta aplicación solo está disponible para dispositivos móviles.</h1>

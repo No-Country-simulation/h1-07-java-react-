@@ -50,14 +50,14 @@ export const Landing = () => {
           <Link to={"/onboarding"} >
             <Button color='primary' className=' rounded-sm w-36 h-11'>Get Started</Button>
           </Link>
-          <img src={'./public/Image-generic.png'} alt="image-landing-page" />
+          <img src={'Image-generic.png'} alt="image-landing-page" />
         </section>
         <section className=' flex flex-col gap-y-8'>
           <h5 className={styles.h5}>ACERCA DE</h5>
           <h2 className={styles.h2}>Etiam nulla lectus amet nunc molestie </h2>
           <p className='text-xl text-gray-color leading-8 tracking-wide	'>Metus, diam pretium at at morbi vulputate et. Tellus ipsum sollicitudin ut eu a lectus potenti maecenas </p>
           <h4 className='text-xl flex items-center gap-x-3 text-blue-light-color font-semibold cursor-pointer hover:translate-x-2 transition-all duration-300'>Read More <ChevronIcon height={15} width={15}></ChevronIcon></h4>
-          <img src={'./public/Image-generic.png'} alt="image-landing-page" />
+          <img src={'Image-generic.png'} alt="image-landing-page" />
         </section>
         <section className='flex flex-col gap-y-8 items-center text-center'>
           <h5 className={styles.h5}>SERVICIOS</h5>
@@ -184,9 +184,6 @@ export const Landing = () => {
           </ol>
           <ol className=' border-2 rounded-full w-12 h-12 items-center justify-center flex cursor-pointer hover:scale-105 transition-all duration-300'>
             <FacebookIcon width={20} height={20}></FacebookIcon>
-          </ol>
-          <ol className=' border-2 rounded-full w-12 h-12 items-center justify-center flex cursor-pointer hover:scale-105 transition-all duration-300'>
-
           </ol>
         </li>
       </footer>
