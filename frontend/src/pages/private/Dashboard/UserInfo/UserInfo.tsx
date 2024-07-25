@@ -38,7 +38,7 @@ export function UserInfo(): JSX.Element {
                 </Link>
                 <section>
                     <div className="w-[14.5rem] h-[5.5rem] ml-6 mt-5 rounded-full flex flex-row items-center content-center justify-between">
-                        <img src="IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
+                        <img src="IMG_MEDICO/IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
                         <div className='mr-1'>
                             <h1 className="text-[18px] font-inter font-bold">Dr. Franco Ortega</h1>
                             <p className="font-inter">Médico Internista</p>

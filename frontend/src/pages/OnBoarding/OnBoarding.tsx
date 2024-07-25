@@ -17,10 +17,10 @@ export function Onboarding() {
         return (
             <div className="flex justify-center items-center h-full ">
                 <div className=' blur-sm'>
-                    <img src="../../../public/imagen-2.png" alt="" className="w-[100vh] h-[100vh] relative" />
+                    <img src="imagen-2.png" alt="" className="w-[100vh] h-[100vh] relative" />
                 </div>
                 <div className=" flex flex-col items-center pt-5 w-[100%] absolute top-[14rem] rounded-t-[3rem] mb-2">
-                    <img src="../../../public/JustinaIO_logo_page-02.png" alt="" />
+                    <img src="JustinaIO_logo_page-02.png" alt="" />
                 </div>
                 <div className='absolute'>
                     <p className='font-inter text-white mt-56'>Salud al alcance de todos</p>

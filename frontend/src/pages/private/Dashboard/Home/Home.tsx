@@ -15,9 +15,9 @@ interface Message {
 }
 
 const messages: Message[] = [
-	{ id: 1, name: 'Anna Herrera', time: '9:28 AM', message: 'Le solicito recomendaciones para diabetes tipo II', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes.png", color: "#56BF33" },
-	{ id: 2, name: 'Juan Gutierrez', time: '1:35 PM', message: 'Gracias por las recomendaciones Doctor Facundo', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes_2.png", color: "" },
-	{ id: 3, name: 'Sofia Castillo', time: '10:25 AM', message: 'Ok, entendido. Muchas gracias por la atencion Doctor Facundo', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes_3.png", color: "" },
+	{ id: 1, name: 'Anna Herrera', time: '9:28 AM', message: 'Le solicito recomendaciones para diabetes tipo II', src: "IMG_MEDICO/IMG_Pacientes.png", color: "#56BF33" },
+	{ id: 2, name: 'Juan Gutierrez', time: '1:35 PM', message: 'Gracias por las recomendaciones Doctor Facundo', src: "IMG_MEDICO/IMG_Pacientes_2.png", color: "" },
+	{ id: 3, name: 'Sofia Castillo', time: '10:25 AM', message: 'Ok, entendido. Muchas gracias por la atencion Doctor Facundo', src: "IMG_MEDICO/IMG_Pacientes_3.png", color: "" },
 ];
 
 
@@ -77,7 +77,7 @@ export function Home(): JSX.Element {
 				<div className="flex items-center space-x-2 content-center justify-between ml-4">
 					<Link to={"/userInfo"}>
 						<div className="w-[12.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
-							<img src="../../../../../public/IMG_MEDICO/IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
+							<img src="IMG_MEDICO/IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
 							<div className=''>
 								<h1 className=" text-lg font-inter font-bold text-white">Buenos días,</h1>
 								<p className="font-inter font-bold text-white">Dr. Facundo</p>
@@ -198,7 +198,7 @@ export function Home(): JSX.Element {
 			</section>
 			<div className='mt-5 flex justify-center items-center flex-col'>
 				<h2 className='text-center font-inter font-bold text-2xl'>Donaciones</h2>
-				<img src="../../../../../public/JustinaLogo_2.png" width={250} height={250} alt="" />
+				<img src="JustinaLogo_2.png" width={250} height={250} alt="" />
 				<Link to={"/userInfo"}>
 					<button className='mt-4 bg-[#E08733] px-24 text-white font-inter py-3 rounded-3xl'>Acceder</button>
 				</Link>
