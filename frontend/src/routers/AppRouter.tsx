@@ -14,9 +14,12 @@ import { TreatmentPatient } from "../pages/private/Dashboard/Treatment/Treatment
 import PatientList from "../pages/private/Dashboard/PatientsList/PatientList";
 import PatientDetail from "../pages/private/Dashboard/Patient-Detail/PatientDetail";
 import { Home_Patients } from "../pages/private/Dashboard/Patients_Pages/Home/Home_Patients";
-import { Landing } from "../pages/Landing/Landing";
 import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+import { Landing } from "../pages/Landing/Landing";
 import SignUp from "../pages/SignUp/SignUp";
+import { PublicRoute } from "./PublicRoute";
+
+
 
 function AppRouter() {
 
@@ -25,8 +28,10 @@ function AppRouter() {
 			<AuthContextProvider>
 				<BrowserRouter>
 					<RoutesWithNotFound>
-						<Route path="/login" element={<LoginPage />} />
-						<Route path="/signup" element={<SignUp />} />
+						<Route element={<PublicRoute />}>
+							<Route path="/login" element={<LoginPage />} />
+							<Route path="/signup" element={<SignUp />} />
+						</Route>
 						<Route path="/onboarding" element={<Onboarding />} />
 						<Route index path="/" element={<Landing />} />
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
