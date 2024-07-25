@@ -28,15 +28,15 @@ Información del Proyecto
 <img src="https" width="300" alt="LOGO">
 
   <h2>justina.io | Hackaton h1-07-java-react</h2>
-  <p>Description
-</p>
+
+<p>Link -> <a href="https://justina-io.netlify.app/">Deploy</a></p>
 </div>
 
 <br>
 
 <h2 align="center">Objetivo</h2>
 
-<p align="center">El objetivo principal de .</p>
+<p align="center">El objetivo principal de Justina.io es desarrollar una aplicación para el acompañamiento y seguimiento de pacientes en estado de sensibilidad de salud. La aplicación permitirá gestionar turnos médicos, crear y seguir una agenda de turnos, introducir tratamientos y recetas, y realizar ABM (Alta, Baja, Modificación) de usuarios. </p>
 
 <br>
 
