@@ -67,7 +67,7 @@ Información del Proyecto
   </tr>
   <tr>
     <td>Ismael</td>
-    <td>Mirandao</td>
+    <td>Miranda</td>
     <td>UX/UI</td>
     <td><a href="https://www.behance.net/ismaelmiranda4" target="_blank">Ver Portfolio</a></td>
   </tr>
