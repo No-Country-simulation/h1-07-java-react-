@@ -37,7 +37,7 @@ export const TreatmentPatient = () => {
     fetchPatient()
   }, []);
   return (
-    <section className=" bg-gray-100 min-h-screen m-auto ">
+    <section className=" bg-gray-100 min-h-screen m-auto overflow-hidden">
       <div className="w-full max-w-md m-auto  bg-white rounded-lg shadow-lg  max-md:m-auto">
         <HeaderProfile loading={loading} name={patient?.nombre} lastname={patient?.apellido} typeDocument={patient?.tipoDocumento} financier={patient?.financiador} document={patient?.numeroDocumento} >
           <div className='absolute -bottom-4 w-full flex justify-center'>
