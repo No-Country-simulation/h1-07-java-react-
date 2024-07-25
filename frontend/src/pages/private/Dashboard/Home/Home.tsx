@@ -2,7 +2,7 @@ import { useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
 import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo2 } from '../../../../../public/icons/Icons';
 // import { AuthContext } from '../../../../Context/AuthContext';
-import { Logout } from '../../../../components/Logout';
+import { Logout } from '../../../../Components/Logout';
 
 
 interface Message {

@@ -14,9 +14,10 @@ import { TreatmentPatient } from "../pages/private/Dashboard/Treatment/Treatment
 import PatientList from "../pages/private/Dashboard/PatientsList/PatientList";
 import PatientDetail from "../pages/private/Dashboard/Patient-Detail/PatientDetail";
 import { Home_Patients } from "../pages/private/Dashboard/Patients_Pages/Home/Home_Patients";
-import { Landing } from "../pages/Landing/Landing";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
-import SignUp from "../pages/SignUp/SignUp";
+import SignUp from "../pages/signup/SignUp";
+import { Landing } from "../pages/landing/Landing";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+
 
 function AppRouter() {
 

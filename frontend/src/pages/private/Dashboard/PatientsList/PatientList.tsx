@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { ContentPatient } from '../../../../Interfaces/interfaces'
 import { Avatar } from '@nextui-org/react'
 import { getRandomColor } from '../../../../utils/functions/functions'
-import SkeletonsListPatient from '../../../../components/Skeletons'
+import SkeletonsListPatient from '../../../../Components/Skeletons'
 
 
 export default function PatientList() {
