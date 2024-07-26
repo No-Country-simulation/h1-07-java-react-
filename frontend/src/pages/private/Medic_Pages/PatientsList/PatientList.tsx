@@ -4,7 +4,7 @@ import { ChevronIcon, FlechaIconTwo, SearchIcon } from '../../../../../public/ic
 import { Link } from 'react-router-dom'
 import { ContentPatient } from '../../../../Interfaces/interfaces'
 import { Avatar } from '@nextui-org/react'
-import SkeletonsListPatient from '../../../../Components/Skeletons'
+import SkeletonsListPatient from '../../../../components/Skeletons'
 
 
 export default function PatientList() {
