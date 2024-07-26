@@ -1,33 +1,33 @@
 import { Accordion, AccordionItem, Button, Input } from '@nextui-org/react';
 import styles from '../../styles.module.css';
 import { Link } from 'react-router-dom';
-import { ChevronIcon, CloudIcon, FacebookIcon, FeaturesIcon, FlechaIcon, GitBrantIcon, LinkedinIcon, SecurityIcon, StarIcon, StorageIcon, TimeIcon, UpdateIcon, VideoIcon } from '../../../public/icons/Icons';
+import { CheckIcon, CheckIconTwo, ChevronIcon, CloudIcon, CorIcon, DonationIcon, FacebookIcon, FeaturesIcon, FlechaIcon, GitBrantIcon, HistoryIconTwo, LinkedinIcon, RecordIcon, SecurityIcon, StarIcon, StorageIcon, TimeIcon, TratamentIcon, UpdateIcon, VideoIcon, WacthIcon } from '../../../public/icons/Icons';
 import { Nav } from '../../components/Nav';
 
 const items = [
   {
-    "icon": <CloudIcon width={30} height={30} />,
+    "icon": <HistoryIconTwo width={30} height={30} />,
     "text": "Historial Clínico",
 
   },
   {
-    "icon": <TimeIcon width={30} height={30} />,
+    "icon": <DonationIcon width={30} height={30} />,
     "text": "Donaciones",
 
   },
   {
-    "icon": <VideoIcon width={30} height={30} />,
+    "icon": <TratamentIcon width={30} height={30} />,
     "text": "Tratamientos",
 
   },
   {
-    "icon": <VideoIcon width={30} height={30} />,
+    "icon": <CorIcon width={30} height={30} />,
     "text": "Acompañamiento al paciente",
     "padding": "md:pt-6"
 
   },
   {
-    "icon": <StorageIcon width={30} height={30} />,
+    "icon": <WacthIcon width={30} height={30} />,
     "text": "Gestión de turnos",
   },
   {
@@ -36,13 +36,13 @@ const items = [
 
   },
   {
-    "icon": <FeaturesIcon width={30} height={30} />,
+    "icon": <RecordIcon width={30} height={30} />,
     "text": "Recordatorios para Pacientes",
     "padding": "md:mt-4"
 
   },
   {
-    "icon": <UpdateIcon width={30} height={30} />,
+    "icon": <CheckIconTwo width={30} height={30} />,
     "text": "Perfiles verificados",
 
   }
@@ -52,9 +52,9 @@ export const Landing = () => {
   const defaultContent = "Elementum ullamcorper felis nulla scelerisque. Nunc enim nunc mattis leo massa.";
 
   return (
-    <main className='border-2 border-gray max-w-4xl mx-auto md:mx-0 md:max-w-full p-2 md:p-0 '>
-      <Nav />
-      <nav className='hidden  md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small'>
+    <main className='w-full md:mx-0 md:max-w-full md:p-0 '>
+
+      <nav className='hidden   md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small'>
         <div className='md:ml-4'>
           <img src="./public/LOGOS/JustinaLogo_Lading.png" className='md:w-20' alt="" />
         </div>
@@ -83,38 +83,45 @@ export const Landing = () => {
           </Link>
         </div>
       </nav>
-      <article className='flex flex-col gap-y-10 pl-2 md:pl-0  '>
+      <Nav />
+      <article className='flex flex-col md:pl-0  '>
 
         {/* Destoks y Mobile */}
-        <section className="flex flex-col gap-y-4 md:gap-y-0 md:flex-row md:bg-cover md:bg-center md:h-screen  " style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
-          <div className='flex flex-col md:flex-col mt-2 md:mt-52 md:ml-10'>
-            <h2 className={`md:text-[3rem] md:mt-6 text-white ${styles.h2}`}>JUSTINA.IO</h2>
-            <p className='md:text-3xl mt-5 mb-4 md:mt-4 text-white  md:w-[80%]'>
-              Una web app que conecta a pacientes y doctores para ofrecer los mejores servicios de especialidades médicas.
+        <section className="flex flex-col items-center md:gap-y-0 md:flex-row bg-cover md:bg-center md:h-screen  " style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+          <div className='flex  w-full flex-col md:flex-col mt-2 md:mt-30 md:ml-10'>
+            <h2 className={`text-center md:text-start md:mb-4 md:text-[3rem] md:mt-0 text-white ${styles.h2}`}>JUSTINA.IO</h2>
+            <p className='md:text-3xl mt-5 w-[80%] ml-2 font-inter mb-4 md:mt-4 text-white  md:w-[80%]'>
+              Creemos en un enfoque integral y humano, donde cada paciente recibe el apoyo necesario en cada etapa de su tratamiento.
             </p>
             <Link to="/onboarding">
-              <Button color='warning' className='rounded-md w-36 md:mt-5 h-10 text-white font-bold font-inter '>Acceder</Button>
+              <Button className='rounded-md bg-[#E08733] ml-2 mt-5 mb-10 drop-shadow-lg  w-32 md:mt-5 h-10 text-white font-[300] font-inter '>Acceder</Button>
             </Link>
           </div>
-          <img src='./public/LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg md:mr-36 md:w-[30%] md:h-[20rem] md:mt-44' alt="image-landing-page" />
+          <img src='./public/LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg w-[60%] mb-4 md:mb-32 md:mr-36 md:w-[30%] md:h-[20rem]' alt="image-landing-page" />
         </section>
 
         {/* Dispositivo Mobile */}
-        <section className='flex flex-col gap-y-8 md:hidden'>
-          <h5 className={styles.h5}>ACERCA DE</h5>
-          <h2 className={styles.h2}>Etiam nulla lectus amet nunc molestie</h2>
-          <p className='text-xl text-gray-color leading-8 tracking-wide'>
-            Metus, diam pretium at at morbi vulputate et. Tellus ipsum sollicitudin ut eu a lectus potenti maecenas.
-          </p>
-          <h4 className='text-xl flex items-center gap-x-3 text-blue-light-color font-semibold cursor-pointer hover:translate-x-2 transition-all duration-300'>
-            Read More <ChevronIcon height={15} width={15} />
+        <section className='flex flex-col gap-y-8 md:hidden content-center'>
+          <h5 className={`hidden ${styles.h5}`}>ACERCA DE</h5>
+          <div className='flex flex-col items-center'>
+            <h2 className={`${styles.h2} text-[#5956E9] font-inter font-[600] text-[27px] h-[3rem] mt-16 `}>Una Web App Para Todos</h2>
+            <p className=' text-black leading-6 tracking-wide text-sm w-[90%] font-inter font-[500]'>
+              Diseñada para transformar la experiencia en el cuidado de la salud. Nuestra misión es proporcionar soluciones eficientes tanto a pacientes como a médicos, mejorando la comunicación, agilizando procesos y brindando un acompañamiento continuo.
+              Destacamos especialmente en el área de trasplantes de órganos, ofreciendo herramientas y recursos que facilitan este delicado y vital proceso
+            </p>
+          </div>
+          <h4 className='text-lg ml-4 flex items-center gap-x-3 text-black font-semibold cursor-pointer hover:translate-x-2 transition-all duration-300'>
+            Leer Más <ChevronIcon height={15} width={15} />
           </h4>
-          <img src='./public/IMG_Lading/Medico_Img_2.png' alt="image-landing-page" />
+          <div className=' flex justify-center '>
+            <img src='./public/Imagen-1.2.png' alt="image-landing-page" className='mb-10 mt-10 w-[90%] shadow-large ' />
+
+          </div>
         </section>
 
         {/* Dispositivo Destosk */}
         <section className='hidden md:flex md:flex-row md:mt-32 md:mb-24 '>
-          <div className='md:w-[30rem]  md:pl-4 md:ml-10 '>
+          <div className='md:w-[30rem] md:pl-4 md:ml-10 '>
             <img src='./public/Imagen-1.2.png' className='rounded-xl h-[20em] w-[70em]' alt="image-landing-page" />
           </div>
           <div className='md:ml-20 md:w-[40%]'>
@@ -130,11 +137,12 @@ export const Landing = () => {
           </div>
         </section>
 
+        {/* Version Mobile y Destosk */}
         <section className='flex flex-col gap-y-8 items-center md:justify-center text-white text-center md:mb-32 md:bg-cover md:bg-center md:h-screen rounded-xl' style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
-          <h5 className={`${styles.h5} text-white font-bold font-inter`}>Servicios</h5>
-          <h2 className={`md:text-5xl md:font-bold md:w-[60%] ${styles.h2}`}>Aportando valor Verdadero</h2>
-          <h5 className={`${styles.h5} text-white font-inter font-[400]`}>Servicios de calidad para pacientes y doctores</h5>
-          <ul className={`list-none flex flex-col gap-y-16 md:gap-y-4  md:flex-row md:grid md:grid-cols-4 md:mt-5`}>
+          <h5 className={`${styles.h5} text-white font-[500] md:font-semibold font-inter mt-5`}>Servicios</h5>
+          <h2 className={`md:text-5xl md:font-[600] md:w-[60%] font-[500] font-inter ${styles.h2}`}>Aportando valor Verdadero</h2>
+          <h5 className={`${styles.h5} text-white w-[60%] text-lg font-inter font-[400]`}>Calidad Para Pacientes y Doctores</h5>
+          <ul className={`list-none flex flex-col gap-y-16 md:gap-y-4 justify-center items-center md:flex-row md:grid md:grid-cols-4 md:mt-5 mb-10`}>
             {items.map((item, index) => (
               <li key={index} className={`gap-y-4 flex flex-col justify-center items-center w-[80%] ${item.padding}`}>
                 <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full">
@@ -147,24 +155,41 @@ export const Landing = () => {
         </section>
 
         {/* Version Mobile */}
-        <section className='md:hidden flex flex-col'>
+        <section className='md:hidden flex flex-col mt-10'>
           <div className='text-center gap-y-4 md:flex md:flex-col md:mb-32'>
-            <h2 className={`md:font-bold md:font-inter md:text-5xl text-blue-juli-color  ${styles.h2}`}>Diferenciadores</h2>
-            <h5 className={` ${styles.h5}`}>Neque, pulvinar vestibulum non aliquam.</h5>
+            <h2 className={`md:font-bold md:font-inter md:text-5xl text-3xl font-inter text-blue-juli-color ${styles.h2} mb-4`}>Lo Que Ofrecemos</h2>
+            <h5 className={` ${styles.h5} text-black font-[400] mb-10 text-lg font-inter`}>Nuestro Diferenciadores.</h5>
           </div>
-          {[1, 2, 3].map((_, index) => (
-            <div key={index} className=" md:flex md:flex-row md:items-center ">
-              <div className='md:flex md:flex-col md:pl-20'>
-                <h4 className='text-2xl font-semibold'>Purus id tellus arcu habitant proin magna. Integer purus</h4>
-                <h5 className={styles.h5}>Facilisi viverra dictum augue eu lobortis elit. In et donec habitasse lacus mi commodo elementum.</h5>
-              </div>
-              <img src='./public/Image-generic.png' alt="image-landing-page" />
+
+          <div className="flex flex-col items-center ">
+            <div className='md:flex md:flex-col md:pl-20'>
+              <h4 className='text-xl  text-blue-juli-color font-inter font-semibold w-[90%] mb-5'>Asistencia Personalizada 24/7</h4>
             </div>
-          ))}
+            <div className='rounded-xl bg-gradient-to-r from-[#5F5CF4] to-[#C49FE0] w-[90%] h-[20rem]  '>
+              <img src='./public/jus-removebg-preview_1.png' alt="image-landing-page" className='w-[40%] relative top-[1rem] left-4 ' />
+              <img src='./public/Ellipse_136.png' alt="image-landing-page" className='w-[40%] relative left-[10rem] top-[3rem]' />
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center mt-10">
+            <div className='md:flex md:flex-col md:pl-20'>
+              <h4 className='text-xl  text-blue-juli-color font-inter font-semibold w-[90%] mb-5 ml-5'>Plataforma Integral Para Transplantes</h4>
+            </div>
+            <img src='./public/CenterContent.png' alt="image-landing-page" className='md:mr-20 w-[90%]' />
+          </div>
+
+          <div className="flex flex-col items-center mt-10">
+            <div className='md:flex md:flex-col md:pl-20'>
+              <h4 className='text-xl  text-blue-juli-color font-inter font-semibold w-[90%] mb-5 ml-5'>Purus id tellus arcu habitant proin magna. Integer purus </h4>
+            </div>
+            <img src='./public/image.png' alt="image-landing-page" className='md:ml-32 w-[90%]' />
+          </div>
+
+
         </section>
 
         {/* Version Desktop - Diferenciadores */}
-        <section className='md:flex md:flex-col md:gap-y-8'>
+        <section className='md:flex md:flex-col md:gap-y-8 hidden'>
           <div className='text-center gap-y-4 flex flex-col md:mb-10'>
             <h2 className={`md:font-bold md:font-inter md:text-5xl text-blue-juli-color  ${styles.h2}`}>Lo que ofrecemos</h2>
             <h5 className={` ${styles.h5}`}>Nuestros diferenciadores.</h5>
@@ -204,7 +229,7 @@ export const Landing = () => {
         </section>
 
         {/*Version Mobile  */}
-        <section className='md:hidden flex flex-col gap-y-6'>
+        <section className='md:hidden flex flex-col gap-y-6 mt-10 items-center'>
           <h2 className={styles.h2}>Preguntas Frecuentes</h2>
           <h5 className={styles.h5}>Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque.</h5>
           <Accordion className='gap-y-4 flex flex-col'>
@@ -258,7 +283,7 @@ export const Landing = () => {
         </section>
 
         {/* Version Desktop - Clientes  */}
-        <section className='text-center flex items-center flex-col gap-4'>
+        <section className='text-center flex items-center flex-col gap-4 md:mt-10'>
           <h2 className={styles.h2}>Clientes</h2>
           <h5 className={styles.h5}>Valor que Retribuye valor </h5>
           <div className='md:flex md:flex-row md:mt-10'>
@@ -332,7 +357,7 @@ export const Landing = () => {
       </footer>
 
       {/* Version Desktop */}
-      <footer className='md:bg-[#232233] md:h-screen md:flex md:flex-col md:items-center mt-10 hidden'>
+      <footer className='md:bg-[#232233] md:h-full md:flex md:flex-col md:items-center mt-10 hidden'>
 
         <div className='md:text-white md:grid md:grid-cols-4 md:mt-10 w-[85%] '>
           <div className='md:mt-20'>

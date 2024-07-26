@@ -595,3 +595,66 @@ export function GitBrantIcon({ width, height }: IconProps) {
   </svg>
   )
 }
+
+export function HistoryIconTwo({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8M14 2L20 8M14 2V8H20M9 15H15" stroke="#5956E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function DonationIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.9996 3.36255L22.0746 10.4375C23.4738 11.8358 24.4269 13.6176 24.8132 15.5576C25.1996 17.4976 25.002 19.5086 24.2453 21.3363C23.4886 23.1639 22.2069 24.7261 20.5622 25.8252C18.9176 26.9243 16.984 27.5109 15.0059 27.5109C13.0278 27.5109 11.0941 26.9243 9.44948 25.8252C7.80485 24.7261 6.52313 23.1639 5.76644 21.3363C5.00976 19.5086 4.81211 17.4976 5.19849 15.5576C5.58487 13.6176 6.53793 11.8358 7.93711 10.4375L14.9996 3.36255Z" stroke="#5956E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function TratamentIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M27.5 15H22.5L18.75 26.25L11.25 3.75L7.5 15H2.5" stroke="#5956E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function CorIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M26.0497 5.76246C25.4112 5.12372 24.6532 4.61702 23.8189 4.27132C22.9845 3.92561 22.0903 3.74768 21.1872 3.74768C20.2841 3.74768 19.3898 3.92561 18.5555 4.27132C17.7211 4.61702 16.9631 5.12372 16.3247 5.76246L14.9997 7.08746L13.6747 5.76246C12.385 4.47285 10.636 3.74835 8.81216 3.74835C6.98837 3.74835 5.23928 4.47285 3.94966 5.76246C2.66005 7.05208 1.93555 8.80117 1.93555 10.625C1.93555 12.4488 2.66005 14.1978 3.94966 15.4875L5.27466 16.8125L14.9997 26.5375L24.7247 16.8125L26.0497 15.4875C26.6884 14.849 27.1951 14.091 27.5408 13.2567C27.8865 12.4223 28.0644 11.5281 28.0644 10.625C28.0644 9.72185 27.8865 8.82759 27.5408 7.99327C27.1951 7.15894 26.6884 6.40091 26.0497 5.76246V5.76246Z" stroke="#5956E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function WacthIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 7.5V15L20 17.5M27.5 15C27.5 21.9036 21.9036 27.5 15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15Z" stroke="#5956E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function RecordIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 10V15M15 20H15.0125M27.5 15C27.5 21.9036 21.9036 27.5 15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15Z" stroke="#5956E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function CheckIconTwo({width, height}: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.25 13.75L15 17.5L27.5 5M26.25 15V23.75C26.25 24.413 25.9866 25.0489 25.5178 25.5178C25.0489 25.9866 24.413 26.25 23.75 26.25H6.25C5.58696 26.25 4.95107 25.9866 4.48223 25.5178C4.01339 25.0489 3.75 24.413 3.75 23.75V6.25C3.75 5.58696 4.01339 4.95107 4.48223 4.48223C4.95107 4.01339 5.58696 3.75 6.25 3.75H20" stroke="#5956E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
