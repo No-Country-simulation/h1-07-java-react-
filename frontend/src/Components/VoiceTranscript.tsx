@@ -18,7 +18,7 @@ export const VoiceTranscript: React.FC<VoiceTranscriptProps> = ({ onTranscriptCh
       const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
       mediaRecorderRef.current = mediaRecorder;
 
-      const socket = new WebSocket('wss://api.deepgram.com/v1/listen?language=es', ['token', import.meta.env.KEY_DEEPGRAM]);
+      const socket = new WebSocket('wss://api.deepgram.com/v1/listen?language=es', ['token', '7e3357ed49084483c2f80078538eefea980dc180']);
       socketRef.current = socket;
 
       socket.onopen = () => {
@@ -59,7 +59,7 @@ export const VoiceTranscript: React.FC<VoiceTranscriptProps> = ({ onTranscriptCh
       <label className="font-bold flex items-center gap-2 " htmlFor="descripcion">
         {label}
       </label>
-      <Field as="textarea" placeholder='Añadir' name={'descripcion'} value={transcript} onChange={handleChange} className=' min-h-40 border-2 border-[#3D4DA5] rounded-lg p-2' id={'descripcion'}>
+      <Field as="textarea" placeholder='Añadir' name={'descripcion'} value={transcript} onChange={handleChange} className=' min-h-40 border-1 border-violet-color rounded-lg p-2' id={'descripcion'}>
       </Field>
       <div className=" absolute bottom-4 right-4">
         {isRecording ? (
