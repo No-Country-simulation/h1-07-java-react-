@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
 import { CalendarIcon, CampanaIcon, CampanaIconTwo, CloseIcon, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo2 } from '../../../../../public/icons/Icons';
-import { Logout } from '../../../../components/Logout';
+import { Logout } from '../../../../Components/Logout';
 import { Medic } from '../../../../Interfaces/interfaces';
 import { fetchMedicData } from '../../../../Context/AuthContext';
 // import { AuthContext } from '../../../../Context/AuthContext';

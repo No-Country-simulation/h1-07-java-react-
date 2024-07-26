@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { ContentMedicines, Patient } from '../../../../Interfaces/interfaces';
 import { Link, useParams } from 'react-router-dom';
 import { fetchMedicines, fetchPatientSingle } from '../../../../Context/AuthContext';
-import FormTreatment from '../../../../components/FormTreatment';
-import { FormTreamentVoice } from '../../../../components/FormTreamentVoice';
-import FormTraining from '../../../../components/FormTraining';
-import { HeaderProfile } from '../../../../components/HeaderProfile';
+import FormTreatment from '../../../../Components/FormTreatment';
+import { FormTreamentVoice } from '../../../../Components/FormTreamentVoice';
+import FormTraining from '../../../../Components/FormTraining';
+import { HeaderProfile } from '../../../../Components/HeaderProfile';
 
 
 export const TreatmentPatient = () => {
@@ -43,7 +43,7 @@ export const TreatmentPatient = () => {
           <div className='absolute -bottom-4 w-full flex justify-center'>
             <div className='flex gap-4'>
               <Link to={`/patient/${id}`} className='px-3  cursor-pointer p-1 rounded-lg border-2 bg-violet-color  border-light-color shadow-xl text-light-color '>Historia clínica</Link>
-              <p  className='px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color '>Tratamiento</p>
+              <p className='px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color '>Tratamiento</p>
             </div>
           </div>
         </HeaderProfile>
