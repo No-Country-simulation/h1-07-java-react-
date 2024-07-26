@@ -56,7 +56,7 @@ export const Landing = () => {
       <Nav />
       <nav className='hidden  md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small'>
         <div className='md:ml-4'>
-          <img src="./public/LOGOS/JustinaLogo_Lading.png" className='md:w-20' alt="" />
+          <img src="LOGOS/JustinaLogo_Lading.png" className='md:w-20' alt="" />
         </div>
         <div className='md:flex md:items-center'>
           <ul className='md:flex md:flex-row'>
@@ -79,14 +79,14 @@ export const Landing = () => {
         </div>
         <div>
           <Link to={'/'}>
-            <img src="./public/Avatar.png" className='md:mr-8' alt="" />
+            <img src="Avatar.png" className='md:mr-8' alt="" />
           </Link>
         </div>
       </nav>
       <article className='flex flex-col gap-y-10 pl-2 md:pl-0  '>
 
         {/* Destoks y Mobile */}
-        <section className="flex flex-col gap-y-4 md:gap-y-0 md:flex-row md:bg-cover md:bg-center md:h-screen  " style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+        <section className="flex flex-col gap-y-4 md:gap-y-0 md:flex-row md:bg-cover md:bg-center md:h-screen  " style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <div className='flex flex-col md:flex-col mt-2 md:mt-52 md:ml-10'>
             <h2 className={`md:text-[3rem] md:mt-6 text-white ${styles.h2}`}>JUSTINA.IO</h2>
             <p className='md:text-3xl mt-5 mb-4 md:mt-4 text-white  md:w-[80%]'>
@@ -96,7 +96,7 @@ export const Landing = () => {
               <Button color='warning' className='rounded-md w-36 md:mt-5 h-10 text-white font-bold font-inter '>Acceder</Button>
             </Link>
           </div>
-          <img src='./public/LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg md:mr-36 md:w-[30%] md:h-[20rem] md:mt-44' alt="image-landing-page" />
+          <img src='LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg md:mr-36 md:w-[30%] md:h-[20rem] md:mt-44' alt="image-landing-page" />
         </section>
 
         {/* Dispositivo Mobile */}
@@ -109,13 +109,13 @@ export const Landing = () => {
           <h4 className='text-xl flex items-center gap-x-3 text-blue-light-color font-semibold cursor-pointer hover:translate-x-2 transition-all duration-300'>
             Read More <ChevronIcon height={15} width={15} />
           </h4>
-          <img src='./public/IMG_Lading/Medico_Img_2.png' alt="image-landing-page" />
+          <img src='IMG_Lading/Medico_Img_2.png' alt="image-landing-page" />
         </section>
 
         {/* Dispositivo Destosk */}
         <section className='hidden md:flex md:flex-row md:mt-32 md:mb-24 '>
           <div className='md:w-[30rem]  md:pl-4 md:ml-10 '>
-            <img src='./public/Imagen-1.2.png' className='rounded-xl h-[20em] w-[70em]' alt="image-landing-page" />
+            <img src='Imagen-1.2.png' className='rounded-xl h-[20em] w-[70em]' alt="image-landing-page" />
           </div>
           <div className='md:ml-20 md:w-[40%]'>
             <h5 className={`${styles.h5} md:text-black font-inter`}>ACERCA DE</h5>
@@ -130,7 +130,7 @@ export const Landing = () => {
           </div>
         </section>
 
-        <section className='flex flex-col gap-y-8 items-center md:justify-center text-white text-center md:mb-32 md:bg-cover md:bg-center md:h-screen rounded-xl' style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+        <section className='flex flex-col gap-y-8 items-center md:justify-center text-white text-center md:mb-32 md:bg-cover md:bg-center md:h-screen rounded-xl' style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <h5 className={`${styles.h5} text-white font-bold font-inter`}>Servicios</h5>
           <h2 className={`md:text-5xl md:font-bold md:w-[60%] ${styles.h2}`}>Aportando valor Verdadero</h2>
           <h5 className={`${styles.h5} text-white font-inter font-[400]`}>Servicios de calidad para pacientes y doctores</h5>
@@ -158,7 +158,7 @@ export const Landing = () => {
                 <h4 className='text-2xl font-semibold'>Purus id tellus arcu habitant proin magna. Integer purus</h4>
                 <h5 className={styles.h5}>Facilisi viverra dictum augue eu lobortis elit. In et donec habitasse lacus mi commodo elementum.</h5>
               </div>
-              <img src='./public/Image-generic.png' alt="image-landing-page" />
+              <img src='Image-generic.png' alt="image-landing-page" />
             </div>
           ))}
         </section>
@@ -172,8 +172,8 @@ export const Landing = () => {
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
             <div className='md:rounded-xl md:bg-gradient-to-r md:from-[#5F5CF4] md:to-[#C49FE0] md:w-[30%] md:h-[20rem] md:ml-44 '>
-              <img src='./public/jus-removebg-preview_1.png' alt="image-landing-page" className='md:ml-32 md:w-40 md:relative md:right-20 ' />
-              <img src='./public/Ellipse_136.png' alt="image-landing-page" className='md:ml-32 md:w-36 md:relative md:left-20' />
+              <img src='jus-removebg-preview_1.png' alt="image-landing-page" className='md:ml-32 md:w-40 md:relative md:right-20 ' />
+              <img src='Ellipse_136.png' alt="image-landing-page" className='md:ml-32 md:w-36 md:relative md:left-20' />
             </div>
             <div className='md:flex md:flex-col md:pr-20 md:w-[45%]'>
               <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-4'>Asistencia Personalizada 24/7</h4>
@@ -190,11 +190,11 @@ export const Landing = () => {
               <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10'>Plataforma Integral para Trasplantes</h4>
               <h5 className={`${styles.h5} `}>Justina.IO se centra en coordinar a especialistas de la salud para gestión y coordinación de trasplantes de órganos, brindando herramientas de comunicación eficiente entre equipos médicos.</h5>
             </div>
-            <img src='./public/CenterContent.png' alt="image-landing-page" className='md:mr-20' />
+            <img src='CenterContent.png' alt="image-landing-page" className='md:mr-20' />
           </div>
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
-            <img src='./public/image.png' alt="image-landing-page" className='md:ml-32' />
+            <img src='image.png' alt="image-landing-page" className='md:ml-32' />
             <div className='md:flex md:flex-col md:pr-20 md:w-[45%]'>
               <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10'>Interfaz Amigable y Accesible</h4>
               <h5 className={`${styles.h5} `}>Nuestra plataforma es fácil de usar y está diseñada para ser accesible a usuarios de todas las edades y niveles de experiencia tecnológica. Esto garantiza que tanto pacientes como médicos puedan beneficiarse de nuestras soluciones sin complicaciones.</h5>
@@ -217,7 +217,7 @@ export const Landing = () => {
         </section>
 
         {/* Version Desktop  */}
-        <section className='md:flex md:flex-row md:gap-y-6 md:items-center md:bg-cover md:bg-center md:h-screen' style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+        <section className='md:flex md:flex-row md:gap-y-6 md:items-center md:bg-cover md:bg-center md:h-screen' style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <div className='md:flex md:flex-col md:pl-10'>
             <h2 className={`md:font-inter md:font-[600] md:mb-7 md:text-5xl md:text-white ${styles.h2}`}>Preguntas Frecuentes</h2>
             <h5 className={`md:font-inter md:text-white ${styles.h5} md:w-[70%] md:text-lg`}>
@@ -272,7 +272,7 @@ export const Landing = () => {
                 “Como médico, Justina.IO me ha permitido gestionar mis pacientes de manera más eficiente. La plataforma es intuitiva y me ha ayudado a mantener una comunicación constante y efectiva con mis pacientes, especialmente en casos de trasplantes.”
               </p>
               <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
-              <img src="./public/IMG_MEDICO/IMG_MEDICO.png" className='md:w-10' alt="" />
+              <img src="IMG_MEDICO/IMG_MEDICO.png" className='md:w-10' alt="" />
               <p className='font-semibold md:w-[25%] md:text-gray-500 md:mt-2'>Doctor Ortega
                 (Médico internista)</p>
             </div>
@@ -287,7 +287,7 @@ export const Landing = () => {
                 “Como médico, Justina.IO me ha permitido gestionar mis pacientes de manera más eficiente. La plataforma es intuitiva y me ha ayudado a mantener una comunicación constante y efectiva con mis pacientes, especialmente en casos de trasplantes.”
               </p>
               <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
-              <img src="./public/IMG_MEDICO/IMG_MEDICO_2.png" className='md:w-10' alt="" />
+              <img src="IMG_MEDICO/IMG_MEDICO_2.png" className='md:w-10' alt="" />
               <p className='font-semibold md:w-[25%] md:text-gray-500 md:mt-2'>Doctor Ortega
                 (Médico internista)</p>
             </div>
@@ -296,7 +296,7 @@ export const Landing = () => {
         </section>
 
         <section className='md:hidden gap-4 flex flex-col'>
-          <img src='./public/logo-justina.webp' className='w-40' alt="logo-justina" />
+          <img src='logo-justina.webp' className='w-40' alt="logo-justina" />
           <div className='bg-light-color p-6 pl-10 flex flex-col gap-3 rounded-lg'>
             <p className='font-bold'>Subscribe</p>
             <Input type='email' placeholder='Email address' />
@@ -378,8 +378,8 @@ export const Landing = () => {
         <div className='md:text-white md:w-full md:flex '>
           <section className=" md:flex md:mt-20 md:justify-between md:items-center  md:flex-row md:w-[100%]  ">
             <div className='md:flex md:flex-row  md:w-[20%] '>
-              <img src="./public/D_1.png" alt="" />
-              <img src="./public/LOGOS/JustinaLogo_Lading.png" className='md:w-[70%]' alt="" />
+              <img src="D_1.png" alt="" />
+              <img src="LOGOS/JustinaLogo_Lading.png" className='md:w-[70%]' alt="" />
             </div>
 
             <ul className='md:flex md:items-center md:gap-10'>
