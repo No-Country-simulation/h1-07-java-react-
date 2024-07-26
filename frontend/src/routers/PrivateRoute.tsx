@@ -9,12 +9,10 @@ interface PrivateRouteProps {
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ allowedRoles }) => {
   const { isLoggedIn, roles } = useAuthContext();
 
-  // Verificar si el usuario está autenticado
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }
 
-  // Verificar si el rol del usuario está en la lista de roles permitidos
   const hasAccess = roles.some(role => allowedRoles.includes(role));
 
   return hasAccess ? <Outlet /> : <Navigate to="/patient-home" />;
