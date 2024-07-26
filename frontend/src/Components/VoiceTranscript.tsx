@@ -18,7 +18,7 @@ export const VoiceTranscript: React.FC<VoiceTranscriptProps> = ({ onTranscriptCh
       const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
       mediaRecorderRef.current = mediaRecorder;
 
-      const socket = new WebSocket('wss://api.deepgram.com/v1/listen?language=es', ['token', '7e3357ed49084483c2f80078538eefea980dc180']);
+      const socket = new WebSocket('wss://api.deepgram.com/v1/listen?language=es', ['token', import.meta.env.KEY_DEEPGRAM]);
       socketRef.current = socket;
 
       socket.onopen = () => {

@@ -31,3 +31,16 @@ export const SkeletonPatientInfo = () => (
     </div>
   </div>
 );
+
+export const SkeletonAcordion = () => {
+  return (
+    <>
+      <div className=" justify-left p-6 flex items-center bg-gray-400 h-16  w-[325px] rounded-md m-auto animate-pulse">
+      </div>
+      <div className=" justify-left p-6 flex items-center bg-gray-400 h-16  w-[325px] rounded-md m-auto animate-pulse">
+      </div>
+      <div className=" justify-left p-6 flex items-center bg-gray-400 h-16  w-[325px] rounded-md m-auto animate-pulse">
+      </div>
+    </>
+  )
+}

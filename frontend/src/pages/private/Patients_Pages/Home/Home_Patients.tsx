@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CampanaIcon, MensaggeIcon, MenuHambuerguesa, UserIconTwo, UserIconTwo2 } from "../../../../../../public/icons/Icons";
-import { Logout } from "../../../../../components/Logout";
+import { CampanaIcon, MensaggeIcon, MenuHambuerguesa, UserIconTwo, UserIconTwo2 } from "../../../../../public/icons/Icons";
+import { Logout } from "../../../../components/Logout";
 
 export function Home_Patients() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
