@@ -1,4 +1,4 @@
-import { Accordion, AccordionItem, Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react"
+import { Accordion, AccordionItem, Button, ModalBody, ModalHeader, useDisclosure } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { ClinicHistoryProps, ContentClinicHistory } from "../Interfaces/interfaces"
@@ -11,7 +11,6 @@ import { initialValuesHistory } from "../utils/data/data"
 import { validationHistoryClinic } from "../utils/validation/validation"
 import { VoiceTranscript } from "./VoiceTranscript"
 import { API_URL } from "../api/api"
-import { string } from "yup"
 
 const user = {
   idPaciente: 1,
@@ -173,7 +172,7 @@ export default function ClinicHistory() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Título de la historia clinica"></Field>
                 <VoiceTranscript onTranscriptChange={setTranscript} label={"Descripción"} />
-                <button type="submit" className=" bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</button>
+                <button disabled={isSubmitting} type="submit" className=" bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</button>
               </Form>
             )}
           </Formik>

@@ -194,9 +194,9 @@ export const AvatarIcon = ({ width, height }: { width: number, height: number })
 export const LinkedinIcon = ({ width, height }: { width: number, height: number }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13.333 6.66699C14.6591 6.66699 15.9309 7.19378 16.8685 8.13146C17.8062 9.06914 18.333 10.3409 18.333 11.667V17.5003H14.9997V11.667C14.9997 11.225 14.8241 10.801 14.5115 10.4885C14.199 10.1759 13.775 10.0003 13.333 10.0003C12.891 10.0003 12.4671 10.1759 12.1545 10.4885C11.8419 10.801 11.6663 11.225 11.6663 11.667V17.5003H8.33301V11.667C8.33301 10.3409 8.85979 9.06914 9.79747 8.13146C10.7352 7.19378 12.0069 6.66699 13.333 6.66699Z" fill="#424242" />
-      <path d="M5.00033 7.5H1.66699V17.5H5.00033V7.5Z" fill="#424242" />
-      <path d="M3.33366 5.00033C4.25413 5.00033 5.00033 4.25413 5.00033 3.33366C5.00033 2.41318 4.25413 1.66699 3.33366 1.66699C2.41318 1.66699 1.66699 2.41318 1.66699 3.33366C1.66699 4.25413 2.41318 5.00033 3.33366 5.00033Z" fill="#424242" />
+      <path d="M13.333 6.66699C14.6591 6.66699 15.9309 7.19378 16.8685 8.13146C17.8062 9.06914 18.333 10.3409 18.333 11.667V17.5003H14.9997V11.667C14.9997 11.225 14.8241 10.801 14.5115 10.4885C14.199 10.1759 13.775 10.0003 13.333 10.0003C12.891 10.0003 12.4671 10.1759 12.1545 10.4885C11.8419 10.801 11.6663 11.225 11.6663 11.667V17.5003H8.33301V11.667C8.33301 10.3409 8.85979 9.06914 9.79747 8.13146C10.7352 7.19378 12.0069 6.66699 13.333 6.66699Z" fill="#ffffff" />
+      <path d="M5.00033 7.5H1.66699V17.5H5.00033V7.5Z" fill="#ffffff" />
+      <path d="M3.33366 5.00033C4.25413 5.00033 5.00033 4.25413 5.00033 3.33366C5.00033 2.41318 4.25413 1.66699 3.33366 1.66699C2.41318 1.66699 1.66699 2.41318 1.66699 3.33366C1.66699 4.25413 2.41318 5.00033 3.33366 5.00033Z" fill="#ffffff" />
     </svg>
   )
 }
@@ -215,7 +215,7 @@ export const ArtistIcon = ({ width, height }: { width: number, height: number })
 export const FacebookIcon = ({ width, height }: { width: number, height: number }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14.9997 1.66699H12.4997C11.3946 1.66699 10.3348 2.10598 9.5534 2.88738C8.77199 3.66878 8.33301 4.72859 8.33301 5.83366V8.33366H5.83301V11.667H8.33301V18.3337H11.6663V11.667H14.1663L14.9997 8.33366H11.6663V5.83366C11.6663 5.61265 11.7541 5.40068 11.9104 5.2444C12.0667 5.08812 12.2787 5.00033 12.4997 5.00033H14.9997V1.66699Z" fill="#424242" />
+      <path d="M14.9997 1.66699H12.4997C11.3946 1.66699 10.3348 2.10598 9.5534 2.88738C8.77199 3.66878 8.33301 4.72859 8.33301 5.83366V8.33366H5.83301V11.667H8.33301V18.3337H11.6663V11.667H14.1663L14.9997 8.33366H11.6663V5.83366C11.6663 5.61265 11.7541 5.40068 11.9104 5.2444C12.0667 5.08812 12.2787 5.00033 12.4997 5.00033H14.9997V1.66699Z" fill="#ffffff" />
     </svg>
   )
 }
@@ -431,7 +431,7 @@ export function LapizIcon({ width, height }: IconProps) {
 export function FlechaIcon({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
@@ -577,10 +577,13 @@ export function MensaggeIcon({ width, height }: IconProps) {
   )
 }
 
-export function CloseIcon({ width, height }: IconProps) {
-  return (
-    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 6L6 18M6 6L18 18" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
+
+export function GitBrantIcon({ width, height }: IconProps) {
+  return (<svg width={height} height={height} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 2.5V12.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M15 7.5C16.3807 7.5 17.5 6.38071 17.5 5C17.5 3.61929 16.3807 2.5 15 2.5C13.6193 2.5 12.5 3.61929 12.5 5C12.5 6.38071 13.6193 7.5 15 7.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M5 17.5C6.38071 17.5 7.5 16.3807 7.5 15C7.5 13.6193 6.38071 12.5 5 12.5C3.61929 12.5 2.5 13.6193 2.5 15C2.5 16.3807 3.61929 17.5 5 17.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M15 7.5C15 9.48912 14.2098 11.3968 12.8033 12.8033C11.3968 14.2098 9.48912 15 7.5 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
   )
 }

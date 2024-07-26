@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
-import { CalendarIcon, CampanaIcon, CampanaIconTwo, CloseIcon, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo2 } from '../../../../../public/icons/Icons';
+import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo2 } from '../../../../../public/icons/Icons';
 import { Logout } from '../../../../components/Logout';
 import { Medic } from '../../../../Interfaces/interfaces';
 import { fetchMedicData } from '../../../../Context/AuthContext';
@@ -80,7 +80,6 @@ export function Home(): JSX.Element {
 				<div className="py-10 flex flex-col ">
 					<h1 className="text-xl font-bold mb-5 text-center text-black">MENÚ</h1>
 					<span className=' absolute right-5 top-9 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-90' onClick={toggleSidebar}>
-						<CloseIcon width={30} height={30}/>
 					</span>
 					<ul className='w-[30vh] '>
 						{menuItems.map((item, index) => (
