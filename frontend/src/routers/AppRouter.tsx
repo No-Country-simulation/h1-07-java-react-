@@ -6,17 +6,24 @@ import { LoginPage } from "../pages/Login/Login";
 import { Onboarding } from "../pages/OnBoarding/OnBoarding";
 import { AuthContextProvider } from "../Context/AuthContext";
 import { RoutesWithNotFound } from "./RoutesWithNotFound";
-import { Home } from "../pages/private/Dashboard/Home/Home";
-import { Detalle } from "../pages/private/Dashboard/Detalle/Detalle";
-import { UserInfo } from "../pages/private/Dashboard/UserInfo/UserInfo";
-import { RegisterPatient } from "../pages/private/RegisterPatient/RegisterPatient";
-import { TreatmentPatient } from "../pages/private/Dashboard/Treatment/Treatment-patient";
-import PatientList from "../pages/private/Dashboard/PatientsList/PatientList";
-import PatientDetail from "../pages/private/Dashboard/Patient-Detail/PatientDetail";
-import { Home_Patients } from "../pages/private/Dashboard/Patients_Pages/Home/Home_Patients";
+import { PublicRoute } from "./PublicRoute";
+
+import { Home } from "../pages/private/Medic_Pages/Home/Home";
+import { Detalle } from "../pages/private/Medic_Pages/Detalle/Detalle";
+import { UserInfo } from "../pages/private/Medic_Pages/UserInfo/UserInfo";
+import { RegisterPatient } from "../pages/private/Medic_Pages/RegisterPatient/RegisterPatient";
+import PatientList from "../pages/private/Medic_Pages/PatientsList/PatientList";
+import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
+import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
+import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patients";
+// import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
+import SignUp from "../pages/SignUp/SignUp";
 import { Landing } from "../pages/Landing/Landing";
 import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
-import SignUp from "../pages/SignUp/SignUp";
+import Chat from "../components/Chat";
+
+
+
 
 function AppRouter() {
 
@@ -25,9 +32,13 @@ function AppRouter() {
 			<AuthContextProvider>
 				<BrowserRouter>
 					<RoutesWithNotFound>
-						<Route path="/login" element={<LoginPage />} />
-						<Route path="/signup" element={<SignUp />} />
-						<Route path="/onboarding" element={<Onboarding />} />
+						<Route element={<PublicRoute />}>
+							{/* <Route element={<DeviceDetection />} > */}
+							<Route path="/login" element={<LoginPage />} />
+							<Route path="/signup" element={<SignUp />} />
+							<Route path="/onboarding" element={<Onboarding />} />
+						</Route>
+						{/* </Route> */}
 						<Route index path="/" element={<Landing />} />
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_MEDICO"]} />}>
@@ -42,13 +53,14 @@ function AppRouter() {
 						</Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
 							<Route path="/patient-home" element={<Home_Patients />} />
+							<Route path="/chat-cora" element={<Chat></Chat>}></Route>
 						</Route>
-
 						<Route path="*" element={<ErrorPage />} />
+
 					</RoutesWithNotFound>
 				</BrowserRouter>
-			</AuthContextProvider>
-			<Toaster richColors></Toaster>
+			</AuthContextProvider >
+			<Toaster richColors ></Toaster>
 		</>
 	);
 }

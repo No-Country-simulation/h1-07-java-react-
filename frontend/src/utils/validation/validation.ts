@@ -69,6 +69,10 @@ export const validationSchemaExercises = Yup.object({
 
 })
 
+export const validationHistoryClinic = Yup.object({
+
+})
+
 export const validationSchemaLogin = Yup.object({
   email: Yup.string()
     .email('Correo electrónico inválido')

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { ArrowWhiteIcon } from '../../public/icons/Icons'
 import React from 'react'
 import { SkeletonPatientInfo } from './Skeletons'
-import { getRandomColor } from '../utils/functions/functions'
 
 
 interface HeaderProfileProps {
@@ -32,7 +31,7 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({  loading, children
           {loading
             ? <SkeletonPatientInfo />
             : <>
-              <Avatar name={name} className={`${getRandomColor()}`} isBordered size='lg' />
+              <Avatar name={name} color='primary'isBordered size='lg' />
               <div className="text-left">
                 <h6 className='font-bold text-light-color'>{name} {lastname}</h6>
                 <p className='text-sm text-light-color font-semibold'>{typeDocument} {document}</p>

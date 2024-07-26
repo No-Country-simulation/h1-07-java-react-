@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-import { AuthContextProps, AuthTokens, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, ResponseRequest, tokenData, Treatment } from "../Interfaces/interfaces";
+import { AuthContextProps, AuthTokens, ClinicHistoryProps, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, ResponseRequest, tokenData, Treatment } from "../Interfaces/interfaces";
 import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
@@ -296,6 +296,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   const logout = useCallback(() => {
     window.localStorage.removeItem(AUTH_TOKEN_KEY);
     window.localStorage.removeItem(AUTH_INFO_USER);
+    window.localStorage.removeItem('MEDIC-DATA');
 
     setAuthTokens(null);
     setUserName('');
@@ -595,7 +596,7 @@ export const fetchMedicines = async () => {
 }
 
 export const fetchPatientSingle = async (id: string | undefined) => {
-  const token = localStorage.getItem("TOKEN_KEY");
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   try {
     const res = await fetch(`${API_URL}/paciente/buscar-paciente-id-medico-conectado?idPaciente=${id}`, {
@@ -605,9 +606,87 @@ export const fetchPatientSingle = async (id: string | undefined) => {
         'Authorization': `Bearer ${token}`
       },
     })
+
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
     const data = await res.json()
     return data
   } catch (err: any) {
     console.log(err)
   }
 }
+
+export const fetchMedicData = async () => {
+  const token = localStorage.getItem("TOKEN_KEY");
+
+  try {
+    const res = await fetch(`${API_URL}/medico/buscar-medico-conectado`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
+    })
+
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+    const data = await res.json()
+    localStorage.setItem("MEDIC-DATA", JSON.stringify(data))
+
+    return data
+  } catch (err: any) {
+    console.error(err)
+  }
+}
+
+export const fetchClinicHistory = async (id: string | undefined) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(`${API_URL}/historia-clinica/historia-clinica-por-id-paciente?idPaciente=${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
+    })
+
+
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+
+    const data = await res.json()
+    return data
+
+  } catch (err: any) {
+    console.log(err)
+  }
+}
+
+export
+  const registerClinicHistory = async (id: string, historyClinic: ClinicHistoryProps) => {
+    const token = localStorage.getItem('TOKEN_KEY');
+
+    try {
+      const res = await fetch(`${API_URL}/historia-clinica/crear-caso?idPaciente=${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(historyClinic)
+      })
+
+      if (!res.ok) {
+        throw new Error("Fail:" + res.status);
+      }
+      const data = await res.json()
+      console.log(data)
+      toast.success("La historia clinica fue registrada correctamente")
+    } catch (err: any) {
+      console.log(err)
+    }
+  }

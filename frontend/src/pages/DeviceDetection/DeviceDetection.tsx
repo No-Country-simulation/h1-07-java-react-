@@ -1,37 +1,50 @@
 import React, { useEffect, useState } from 'react';
 
-interface PropsDeviceDectection{
-    children: JSX.Element | JSX.Element[]
-}
+import { Outlet } from 'react-router-dom';
 
-const DeviceDetection: React.FC<PropsDeviceDectection> = ({children}) => {
-    const [isMobile, setIsMobile] = useState<boolean>(false);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 568); 
-        };
 
-        handleResize(); 
-        window.addEventListener('resize', handleResize); 
+const DeviceDetection: React.FC = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isAndroidOrIOS, setIsAndroidOrIOS] = useState<boolean>(false);
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-    return (
-        <>
-            {isMobile ? (
-                {children}
-            ) : (
-                <div className="flex flex-col justify-center items-center h-screen bg-black text-white font-inter">
-                    <h1>Esta aplicación solo está disponible para dispositivos móviles.</h1>
-                    <p>Por favor, accede desde un dispositivo móvil.</p>
-                </div>
-            )}
-        </>
-    );
+    const checkDevice = () => {
+      const userAgent = navigator.userAgent || navigator.vendor;
+      if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent)) {
+        setIsAndroidOrIOS(true);
+      } else {
+        setIsAndroidOrIOS(false);
+      }
+    };
+
+    handleResize();
+    checkDevice();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <>
+      {isMobile && isAndroidOrIOS ? (
+        <Outlet />
+      ) : (
+        <div className="flex flex-col justify-center items-center h-screen  font-inter">
+          <h1 className='text-center'>Esta aplicación solo está disponible para dispositivos móviles con Android o iOS.</h1>
+          <p>Por favor, Scanner el código QR</p>
+          <img src="QR/qrcode-generado.png" alt="" />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default DeviceDetection;

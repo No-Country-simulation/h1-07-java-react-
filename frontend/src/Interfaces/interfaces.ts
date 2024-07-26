@@ -336,3 +336,32 @@ export interface Time {
   hora: string
   estado: string
 }
+
+export interface Medic{
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  provincia: string;
+  localidad: string;
+  licencia: string;
+  especialidad: number;
+  financiadores: number[];
+}
+
+export interface ContentClinicHistory {
+  content: ClinicHistoryProps[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface ClinicHistoryProps {
+  fecha?: string
+  titulo: string
+  descripcion: string
+  idPaciente: number
+
+}

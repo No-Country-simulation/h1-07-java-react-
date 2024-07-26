@@ -13,12 +13,11 @@ export const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
 
-  
+
   const handleSubmitLogin = async (values: AuthenticationRequest) => {
-    setLoading(true);
     try {
-      console.log(loading)
-      login(values.email, values.password)
+      setLoading(true);
+      await login(values.email, values.password);
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
       toast.error('Error en el inicio de sesión. Por favor, intenta nuevamente.');
@@ -74,13 +73,11 @@ export const LoginPage: React.FC = () => {
                   </button>
                 </div>
                 <ErrorMessage name={"password"} component="div" className=" flex-wrap text-red-500" />
-
                 <p className="mt-1 text-end text-[#948ABC] cursor-pointer">¿Olvidaste tu contraseña?</p>
               </div>
               <div className="flex items-center justify-center h-[12rem]" >
                 <img src="JustinaLogo.png" alt="" className="w-[200px] h-[158px]" />
               </div>
-
               <div className=" flex items-center h-[10rem] flex-col gap-2">
                 <button
                   type="submit"
@@ -88,7 +85,7 @@ export const LoginPage: React.FC = () => {
                   className="flex items-center justify-center text-center w-full h-[30%] py-2 text-white bg-[#E08733] rounded-md hover:bg-[#9b5416] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                   <span className=' animate-spin'>
                     {loading && <LoaderIcon width={30} height={30}></LoaderIcon>}</span>
-                    Iniciar Sesión
+                  Iniciar Sesión
                 </button>
                 <Link className="w-full h-[30%] py-2 text-[#E08733] border-2 text-center border-[#E08733] rounded-md  hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" to={"/signup"}>
                   Registrarme
