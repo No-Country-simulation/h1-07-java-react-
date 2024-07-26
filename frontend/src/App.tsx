@@ -1,16 +1,12 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Login from './auth/Login'
+import { NextUIProvider } from "@nextui-org/react"
+import AppRouter from "./routers/AppRouter"
+
 
 function App() {
-
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <NextUIProvider>
+      <AppRouter />
+    </NextUIProvider>
   )
 }
 
