@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowWhiteIcon, CardIcon, EmailIcon, HomeIcon, IconPassword, LapizIcon, MapIcon, PhoneIcon } from "../../../../../public/icons/Icons";
-import { Logout } from "../../../../Components/Logout";
+import { Logout } from "../../../../components/Logout";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { useAuthContext } from "../../../../Context/AuthContext";
 

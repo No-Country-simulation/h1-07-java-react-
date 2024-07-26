@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { ContentMedicines, Patient } from '../../../../Interfaces/interfaces';
 import { Link, useParams } from 'react-router-dom';
 import { fetchMedicines, fetchPatientSingle } from '../../../../Context/AuthContext';
-import FormTreatment from '../../../../Components/FormTreatment';
-import { FormTreamentVoice } from '../../../../Components/FormTreamentVoice';
-import FormTraining from '../../../../Components/FormTraining';
-import { HeaderProfile } from '../../../../Components/HeaderProfile';
+import FormTreatment from '../../../../components/FormTreatment';
+import { FormTreamentVoice } from '../../../../components/FormTreamentVoice';
+import FormTraining from '../../../../components/FormTraining';
+import { HeaderProfile } from '../../../../components/HeaderProfile';
 
 
 export const TreatmentPatient = () => {
