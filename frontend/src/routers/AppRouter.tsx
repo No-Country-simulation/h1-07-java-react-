@@ -19,7 +19,7 @@ import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patient
 import SignUp from "../pages/signup/SignUp";
 import { Landing } from "../pages/landing/Landing";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
-import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
+// import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
 
 
 
@@ -32,12 +32,12 @@ function AppRouter() {
 				<BrowserRouter>
 					<RoutesWithNotFound>
 						<Route element={<PublicRoute />}>
-							<Route element={<DeviceDetection />} >
+							
 								<Route path="/login" element={<LoginPage />} />
 								<Route path="/signup" element={<SignUp />} />
 
 								<Route path="/onboarding" element={<Onboarding />} />
-							</Route>
+						
 						</Route>
 						<Route index path="/" element={<Landing />} />
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
