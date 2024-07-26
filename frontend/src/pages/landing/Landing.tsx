@@ -1,7 +1,7 @@
-import { Accordion, AccordionItem, Button, Input } from '@nextui-org/react';
+import { Accordion, AccordionItem, Button } from '@nextui-org/react';
 import styles from '../../styles.module.css';
 import { Link } from 'react-router-dom';
-import { CheckIconTwo, ChevronIcon, CorIcon, DonationIcon, FacebookIcon, FlechaIcon, GitBrantIcon, HistoryIconTwo, LinkedinIcon, RecordIcon, SecurityIcon, StarIcon, TratamentIcon,WacthIcon } from '../../../public/icons/Icons';
+import { CheckIconTwo, ChevronIcon, CorIcon, DonationIcon, FacebookIcon, FlechaIcon, GitBrantIcon, HistoryIconTwo, LinkedinIcon, RecordIcon, SecurityIcon, StarIcon, TratamentIcon, WacthIcon } from '../../../public/icons/Icons';
 import { Nav } from '../../components/Nav';
 
 const items = [
@@ -49,7 +49,7 @@ const items = [
 ];
 
 export const Landing = () => {
-  const defaultContent = "Elementum ullamcorper felis nulla scelerisque. Nunc enim nunc mattis leo massa.";
+  const defaultContent = "Para poder registrarse dentro de la aplicacion lo que necesitas en tu numero de matricula como medico, esto habilita la entrada al sistema.";
 
   return (
     <main className='w-full md:mx-0 md:max-w-full md:p-0 '>
@@ -89,7 +89,7 @@ export const Landing = () => {
         {/* Destoks y Mobile */}
         <section className="flex flex-col items-center md:gap-y-0 md:flex-row bg-cover md:bg-center md:h-screen  " style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <div className='flex  w-full flex-col md:flex-col mt-2 md:mt-30 md:ml-10'>
-            <h2 className={`text-center md:text-start md:mb-4 md:text-[3rem] md:mt-0 text-white ${styles.h2}`}>JUSTINA.IO</h2>
+            <h2 className={`mt-5 text-center md:text-start md:mb-4 md:text-[3rem] md:mt-0 text-white ${styles.h2}`}>JUSTINA.IO</h2>
             <p className='md:text-3xl mt-5 w-[80%] ml-2 font-inter mb-4 md:mt-4 text-white  md:w-[80%]'>
               Creemos en un enfoque integral y humano, donde cada paciente recibe el apoyo necesario en cada etapa de su tratamiento.
             </p>
@@ -164,7 +164,7 @@ export const Landing = () => {
             </div>
             <div className='rounded-xl bg-gradient-to-r from-[#5F5CF4] to-[#C49FE0] w-[90%] h-[20rem]  '>
               <img src='jus-removebg-preview_1.png' alt="image-landing-page" className='w-[40%] relative top-[1rem] left-4 ' />
-              <img src='Ellipse_136.png' alt="image-landing-page" className='w-[40%] relative left-[10rem] top-[3rem]' />
+              <img src='Ellipse_136.png' alt="image-landing-page" className='w-[40%] relative left-[10rem] top-[2rem]' />
             </div>
           </div>
 
@@ -225,21 +225,27 @@ export const Landing = () => {
 
         </section>
 
-        {/*Version Mobile  */}
-        <section className='md:hidden flex flex-col gap-y-6 mt-10 items-center'>
+        {/*Version Mobile - Preguntas Frecuentes */}
+        <section className='md:hidden flex flex-col gap-y-4 mt-10 items-center mb-10'>
           <h2 className={styles.h2}>Preguntas Frecuentes</h2>
           <h5 className={styles.h5}>Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque.</h5>
-          <Accordion className='gap-y-4 flex flex-col'>
-            {[1, 2, 3, 4, 5].map((_, index) => (
-              <AccordionItem key={index} aria-label={`FAQ ${index + 1}`} title={`FAQ ${index + 1}`}>
-                {defaultContent}
-              </AccordionItem>
-            ))}
+          <Accordion className='flex flex-col '>
+
+            <AccordionItem className='bg-green-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`Como me regitros en Justina.IO? `}>
+              {defaultContent}
+            </AccordionItem>
+            <AccordionItem className='bg-green-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`Como me regitros en Justina.IO? `}>
+              {defaultContent}
+            </AccordionItem>
+            <AccordionItem className='bg-green-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`Como me regitros en Justina.IO? `}>
+              {defaultContent}
+            </AccordionItem>
+
           </Accordion>
         </section>
 
         {/* Version Desktop  */}
-        <section className='md:flex md:flex-row md:gap-y-6 md:items-center md:bg-cover md:bg-center md:h-screen' style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
+        <section className='hidden md:flex md:flex-row md:gap-y-6 md:items-center md:bg-cover md:bg-center md:h-screen' style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <div className='md:flex md:flex-col md:pl-10'>
             <h2 className={`md:font-inter md:font-[600] md:mb-7 md:text-5xl md:text-white ${styles.h2}`}>Preguntas Frecuentes</h2>
             <h5 className={`md:font-inter md:text-white ${styles.h5} md:w-[70%] md:text-lg`}>
@@ -275,37 +281,38 @@ export const Landing = () => {
             La plataforma es intuitiva y me ha ayudado a mantener una comunicación constante y efectiva con mis pacientes,
             especialmente en casos de trasplantes.””
           </p>
-          <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
+
+          <img src="IMG_MEDICO/IMG_MEDICO.png" className='w-10' alt="" />
           <p className='font-semibold'>Courtney Henry</p>
         </section>
 
         {/* Version Desktop - Clientes  */}
-        <section className='text-center flex items-center flex-col gap-4 md:mt-10'>
+        <section className='text-center md:flex items-center flex-col gap-4 md:mt-10 hidden'>
           <h2 className={styles.h2}>Clientes</h2>
           <h5 className={styles.h5}>Valor que Retribuye valor </h5>
-          <div className='md:flex md:flex-row md:mt-10'>
-            <div className='md:flex md:flex-col md:items-center md:w-[100%]'>
+          <div className='md:flex md:flex-row md:mt-10 mb-3'>
+            <div className='flex flex-col items-center md:w-[100%] w-[100%]'>
               <div className="flex gap-2">
                 {[...Array(5)].map((_, index) => (
                   <StarIcon key={index} width={30} height={30} />
                 ))}
               </div>
-              <p className='px-20 leading-9 font-semibold'>
+              <p className='px-9 mt-3 leading-9 font-semibold w-[100%]'>
                 “Como médico, Justina.IO me ha permitido gestionar mis pacientes de manera más eficiente. La plataforma es intuitiva y me ha ayudado a mantener una comunicación constante y efectiva con mis pacientes, especialmente en casos de trasplantes.”
               </p>
               <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
-              <img src="IMG_MEDICO/IMG_MEDICO.png" className='md:w-10' alt="" />
-              <p className='font-semibold md:w-[25%] md:text-gray-500 md:mt-2'>Doctor Ortega
+              <img src="IMG_MEDICO/IMG_MEDICO.png" className='w-10' alt="" />
+              <p className='font-semibold md:w-[25%] w-[40%] mt-3 md:text-gray-500 md:mt-2'>Doctor Ortega
                 (Médico internista)</p>
             </div>
 
-            <div className='md:flex md:flex-col md:items-center md:w-[100%]'>
+            <div className='flex flex-col items-center md:w-[100%] mt-10'>
               <div className="flex gap-2">
                 {[...Array(5)].map((_, index) => (
                   <StarIcon key={index} width={30} height={30} />
                 ))}
               </div>
-              <p className='px-20 leading-9 font-semibold'>
+              <p className='px-9 mt-3 leading-9 font-semibold'>
                 “Como médico, Justina.IO me ha permitido gestionar mis pacientes de manera más eficiente. La plataforma es intuitiva y me ha ayudado a mantener una comunicación constante y efectiva con mis pacientes, especialmente en casos de trasplantes.”
               </p>
               <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
@@ -317,35 +324,55 @@ export const Landing = () => {
           </div>
         </section>
 
-        <section className='md:hidden gap-4 flex flex-col'>
-          <img src='logo-justina.webp' className='w-40' alt="logo-justina" />
-          <div className='bg-light-color p-6 pl-10 flex flex-col gap-3 rounded-lg'>
-            <p className='font-bold'>Subscribe</p>
-            <Input type='email' placeholder='Email address' />
-            <p className='text-gray-color text-md'>
-              Gravida sed justo, justo, id est et. Amet tristique convallis sed porttitor nullam eu ut. Duis et odio aliquam bibendum. Metus et lectus id viverra fringilla magna morbi.
-            </p>
-          </div>
-        </section>
       </article>
-      <footer className='flex md:hidden flex-col gap-y-8 p-4 md:bg-[#232233]'>
-        {['Product', 'Information', 'Company'].map((section, index) => (
-          <div key={index}>
-            <h6 className='tracking-wider mb-2 font-bold'>{section}</h6>
-            <ul className='flex flex-col list-none text-gray-color leading-8 font-normal'>
-              {['Mi feugiat', 'Netus fermentum', 'Id dolor', 'Erat mattis', 'Suspendisse viverra'].map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-        <ul className='flex list-none justify-around'>
-          <li className='font-bold cursor-pointer'>Terms</li>
-          <li className='font-bold cursor-pointer'>Privacy</li>
-          <li className='font-bold cursor-pointer'>Cookies</li>
+
+      {/* Version Mobile */}
+      <footer className='flex md:hidden flex-col p-4 bg-[#232233] mt-4'>
+        <div className='flex flex-row  items-center'>
+          <img src="D_1.png" className='w-[50%] h-[50%] ' alt="" />
+          <img src="LOGOS/JustinaLogo_Lading.png" className='w-[40%] pl-1 ml-6 mb-4 px-2 py-1 h-[50%] md:w-[70%] ' alt="" />
+        </div>
+        <div className='bg-[#5956e9] px-10 py-10'>
+          <h1 className='text-white font-inter font-semibold mb-4'>Subcribirse</h1>
+          <form action="" className='flex items-center'>
+            <input type="text" className='py-3 px-5 rounded-s-md' />
+            <button className='bg-[#e09733] px-3 py-3 mr-22 rounded-se-md rounded-ee-md'><FlechaIcon width={24} height={24} /></button>
+          </form>
+          <p className='text-white mt-6 leading-[24px] font-inter text-small font-[400]'>
+            ¿Quieres estar al día con las últimas novedades y recibir recordatorios importantes?
+            Suscríbete a nuestras notificaciones por correo electrónico.
+          </p>
+        </div>
+        <div className='mb-7 mt-4 ml-4'>
+          <h6 className='tracking-wider mb-1 font-bold text-white font-inter'>Jusinta.IO</h6>
+          <ul className='flex font-inter flex-col list-none text-gray-color leading-7 font-normal'>
+            <li>Servicios</li>
+            <li>Cora</li>
+            <li>Transplantes</li>
+          </ul>
+        </div>
+        <div className='mb-7 mt-2 ml-4'>
+          <h6 className='tracking-wider mb-1  font-bold text-white font-inter'>Informacion</h6>
+          <ul className='flex font-inter flex-col list-none text-gray-color leading-7 font-normal'>
+            <li>Preguntas Frecuentes</li>
+          </ul>
+        </div>
+        <div className='mb-7 mt-2 ml-4'>
+          <h6 className='tracking-wider mb-1  font-bold text-white font-inter'>Acerca de</h6>
+          <ul className='flex font-inter flex-col list-none text-gray-color leading-7 font-normal'>
+            <li>Ley Justina</li>
+            <li>Casa Justina</li>
+            <li>Nosotros</li>
+          </ul>
+        </div>
+
+        <ul className='flex list-none justify-around mb-10 mt-4 text-white font-inter font-[400]'>
+          <li className='font-[400] cursor-pointer'>Terminos</li>
+          <li className='font-[400] cursor-pointer'>Privacidad</li>
+          <li className='font-[400] cursor-pointer'>Cookies</li>
         </ul>
         <ul className="list-none flex justify-center gap-x-6">
-          {[<LinkedinIcon width={20} height={20} />, <FacebookIcon width={20} height={20} />, <></>].map((icon, idx) => (
+          {[<LinkedinIcon width={20} height={20} />, <FacebookIcon width={20} height={20} />, <GitBrantIcon width={20} height={20} />].map((icon, idx) => (
             <li key={idx} className='border-2 rounded-full w-12 h-12 items-center justify-center flex cursor-pointer hover:scale-105 transition-all duration-300'>
               {icon}
             </li>
