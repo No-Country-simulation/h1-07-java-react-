@@ -1,8 +1,10 @@
-import { useState } from 'react';;
+import { useEffect, useState } from 'react';;
 import { Link, useLocation } from 'react-router-dom';
-import { CalendarIcon, CampanaIcon, CampanaIconTwo, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo2 } from '../../../../../public/icons/Icons';
+import { CalendarIcon, CampanaIcon, CampanaIconTwo, CloseIcon, FlechaIcon, HomeIconTwo, LapizIcon, MenssageIcon, MenuHambuerguesa, PeopleIcon, RelojIcon, UserIconTwo2 } from '../../../../../public/icons/Icons';
+import { Logout } from '../../../../components/Logout';
+import { Medic } from '../../../../Interfaces/interfaces';
+import { fetchMedicData } from '../../../../Context/AuthContext';
 // import { AuthContext } from '../../../../Context/AuthContext';
-import { Logout } from '../../../../Components/Logout';
 
 
 interface Message {
@@ -15,9 +17,9 @@ interface Message {
 }
 
 const messages: Message[] = [
-	{ id: 1, name: 'Anna Herrera', time: '9:28 AM', message: 'Le solicito recomendaciones para diabetes tipo II', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes.png", color: "#56BF33" },
-	{ id: 2, name: 'Juan Gutierrez', time: '1:35 PM', message: 'Gracias por las recomendaciones Doctor Facundo', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes_2.png", color: "" },
-	{ id: 3, name: 'Sofia Castillo', time: '10:25 AM', message: 'Ok, entendido. Muchas gracias por la atencion Doctor Facundo', src: "../../../../../public/IMG_MEDICO/IMG_Pacientes_3.png", color: "" },
+	{ id: 1, name: 'Anna Herrera', time: '9:28 AM', message: 'Le solicito recomendaciones para diabetes tipo II', src: "IMG_MEDICO/IMG_Pacientes.png", color: "#56BF33" },
+	{ id: 2, name: 'Juan Gutierrez', time: '1:35 PM', message: 'Gracias por las recomendaciones Doctor Facundo', src: "IMG_MEDICO/IMG_Pacientes_2.png", color: "" },
+	{ id: 3, name: 'Sofia Castillo', time: '10:25 AM', message: 'Ok, entendido. Muchas gracias por la atencion Doctor Facundo', src: "IMG_MEDICO/IMG_Pacientes_3.png", color: "" },
 ];
 
 
@@ -26,6 +28,7 @@ export function Home(): JSX.Element {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [activeTab, setActiveTab] = useState('Pacientes');
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+	const [medicInfo, setMedicInfo] = useState<Medic>()
 	const location = useLocation();
 
 	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,13 +53,35 @@ export function Home(): JSX.Element {
 		{ to: "/userInfo", icon: UserIconTwo2, label: "Perfil" }
 	]
 
+	useEffect(() => {
+
+		const fetchMedic = async () => {
+			try {
+				setMedicInfo(await fetchMedicData())
+			} catch (err: any) {
+				console.log(err)
+			}
+		}
+
+		fetchMedic()
+
+		const storedMedic = localStorage.getItem("MEDIC-DATA");
+		if (storedMedic) {
+			const medic: Medic = JSON.parse(storedMedic);
+			setMedicInfo(medic);
+		}
+	}, [])
 
 
 	return (
+
 		<div className="p-4 bg-gray-100 min-h-screen w-full">
-			<div className={`fixed top-0 duration-700 left-0 h-full bg-white text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10' : '-translate-x-full z-10'}`}>
+			<aside className={`fixed z-20 top-0 duration-700 left-0 h-full  border-2 bg-white text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10' : '-translate-x-full z-10'}`}>
 				<div className="py-10 flex flex-col ">
 					<h1 className="text-xl font-bold mb-5 text-center text-black">MENÚ</h1>
+					<span className=' absolute right-5 top-9 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-90' onClick={toggleSidebar}>
+						<CloseIcon width={30} height={30}/>
+					</span>
 					<ul className='w-[30vh] '>
 						{menuItems.map((item, index) => (
 							<Link to={item.to} key={index}>
@@ -72,15 +97,21 @@ export function Home(): JSX.Element {
 					</ul>
 					<Logout />
 				</div>
-			</div>
+			</aside>
+			{isSidebarOpen && (
+				<div
+					className="fixed inset-0 bg-black bg-opacity-50 z-10"
+					onClick={toggleSidebar}
+				></div>
+			)}
 			<header className="flex flex-col justify-between h-[9.7rem] mb-4 relative right-7 bottom-4 w-[113%] bg-[#D9D9D9] border rounded-br-[3rem] bg-gradient-to-r from-[#5761C8] to-[#A1AAFF]">
 				<div className="flex items-center space-x-2 content-center justify-between ml-4">
 					<Link to={"/userInfo"}>
 						<div className="w-[12.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
-							<img src="../../../../../public/IMG_MEDICO/IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
+							<img src="IMG_MEDICO/IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
 							<div className=''>
 								<h1 className=" text-lg font-inter font-bold text-white">Buenos días,</h1>
-								<p className="font-inter font-bold text-white">Dr. Facundo</p>
+								<p className="font-inter font-bold text-white">Dr. {medicInfo?.nombre} {medicInfo?.apellido}</p>
 							</div>
 						</div>
 					</Link>
@@ -89,7 +120,6 @@ export function Home(): JSX.Element {
 						<button onClick={toggleSidebar}>
 							<MenuHambuerguesa width={24} height={24} />
 						</button>
-
 					</div>
 				</div>
 				<div className="flex items-center space-x-2  justify-center">
@@ -118,10 +148,8 @@ export function Home(): JSX.Element {
 							></path>
 						</svg>
 					</div>
-
 				</div>
 			</header>
-
 			<section className="flex flex-row justify-evenly">
 				<div className='rounded-lg py-1 px-3 bg-[#5761C8] text-white text-[14px] border-1 border-solid border-[#948ABC]'>
 					<Link to={"/patient-register"}><button>Añadir nuevo paciente</button></Link>
@@ -130,7 +158,6 @@ export function Home(): JSX.Element {
 					<Link to={"/patient-list"}><button>Lista de pacientes</button></Link>
 				</div>
 			</section>
-
 			<section className="mb-10 bg-gray- p-4 mt-5 rounded-lg shadow-md h-[9rem] border-1 border-solid border-gray-500">
 				<div className='flex flex-row justify-between items-center '>
 					<h2 className="text-md font-semibold mb-2 text-[#3D4DA5]">Siguiente cita programada</h2>
@@ -173,13 +200,11 @@ export function Home(): JSX.Element {
 					))}
 				</div>
 				<div className="bg-gray-200 rounded-r-xl rounded-xl shadow-md ">
-
 					{messages
 						.filter((msg) => msg.name.toLowerCase().includes(searchQuery.toLowerCase()))
 						.map((msg) => (
 							<div key={msg.id} className={`flex justify-between bg-[${msg.color}]  py-1 px-2 border-b-1 border-gray-500`}>
 								<div className={`flex flex-row items-center bg-${msg.color}  w-full`}>
-
 									<img src={msg.src} alt="imagen_paciente" />
 									<div className={`flex flex-col ml-3 w-full  `}>
 										<div className='flex flex-row justify-between '>
@@ -198,14 +223,12 @@ export function Home(): JSX.Element {
 			</section>
 			<div className='mt-5 flex justify-center items-center flex-col'>
 				<h2 className='text-center font-inter font-bold text-2xl'>Donaciones</h2>
-				<img src="../../../../../public/JustinaLogo_2.png" width={250} height={250} alt="" />
+				<img src="JustinaLogo_2.png" width={250} height={250} alt="" />
 				<Link to={"/userInfo"}>
 					<button className='mt-4 bg-[#E08733] px-24 text-white font-inter py-3 rounded-3xl'>Acceder</button>
 				</Link>
 			</div>
-
 			<footer className="mt-4">
-
 			</footer>
 		</div>
 	);

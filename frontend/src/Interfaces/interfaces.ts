@@ -336,3 +336,14 @@ export interface Time {
   hora: string
   estado: string
 }
+
+export interface Medic{
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  provincia: string;
+  localidad: string;
+  licencia: string;
+  especialidad: number;
+  financiadores: number[];
+}

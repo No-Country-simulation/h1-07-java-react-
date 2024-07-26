@@ -17,10 +17,10 @@ export function Onboarding() {
         return (
             <div className="flex justify-center items-center h-full ">
                 <div className=' blur-sm'>
-                    <img src="../../../public/imagen-2.png" alt="" className="w-[100vh] h-[100vh] relative" />
+                    <img src="IMG_WEBP/imagen-2.webp" alt="" className="w-[100vh] h-[100vh] relative" />
                 </div>
                 <div className=" flex flex-col items-center pt-5 w-[100%] absolute top-[14rem] rounded-t-[3rem] mb-2">
-                    <img src="../../../public/JustinaIO_logo_page-02.png" alt="" />
+                    <img src="JustinaIO_logo_page-02.png" alt="" />
                 </div>
                 <div className='absolute'>
                     <p className='font-inter text-white mt-56'>Salud al alcance de todos</p>
@@ -35,7 +35,7 @@ export function Onboarding() {
     return (
         <div className="flex justify-center items-center h-full ">
             <div>
-                <img src="../../../public/IMG_WEBP/Imagen-1.webp" alt="" className="w-[100vh] h-full relative" />
+                <img src="IMG_WEBP/Imagen-1.webp" alt="" className="w-[100vh] h-full relative" />
             </div>
             <div className="bg-[#F9F9F9] flex flex-col items-center pt-5 w-[100%] h-[45%] absolute top-[27rem] border rounded-t-[3rem] mb-2">
                 <h1 className="text-center font-bold font-inter text-[22px] w-[80%] text-[#1A1A1A]">Comprometidos con la salud y bienestar de todos</h1>
