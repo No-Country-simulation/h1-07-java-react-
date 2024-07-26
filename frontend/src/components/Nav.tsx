@@ -14,19 +14,19 @@ export const Nav = () => {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className=" border-b-2">
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="w-[100%] md:hidden  bg-[#5956E9]" >
       <NavbarContent>
         <NavbarBrand>
-          <img src={'./public/logo-justina.webp'} className=" w-40"/>
+          <img src={'JustinaLogo_2.png'} className="w-20" />
         </NavbarBrand>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="sm:hidden text-white"
         />
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem key={`${item}-${index}`} className="">
             <Link
               color={
                 index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"

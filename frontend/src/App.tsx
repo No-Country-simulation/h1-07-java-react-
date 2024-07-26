@@ -1,13 +1,11 @@
-import DeviceDetection from "./pages/DeviceDetection/DeviceDetection"
-import AppRouter from "./routers/AppRouter"
 import { NextUIProvider } from "@nextui-org/react"
+import AppRouter from "./routers/AppRouter"
+
 
 function App() {
   return (
     <NextUIProvider>
-      <DeviceDetection >
-        <AppRouter />
-      </DeviceDetection>
+      <AppRouter />
     </NextUIProvider>
   )
 }
