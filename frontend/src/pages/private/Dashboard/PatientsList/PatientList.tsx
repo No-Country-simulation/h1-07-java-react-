@@ -4,8 +4,7 @@ import { ChevronIcon, FlechaIconTwo, SearchIcon } from '../../../../../public/ic
 import { Link } from 'react-router-dom'
 import { ContentPatient } from '../../../../Interfaces/interfaces'
 import { Avatar } from '@nextui-org/react'
-import { getRandomColor } from '../../../../utils/functions/functions'
-import SkeletonsListPatient from '../../../../Components/Skeletons'
+import SkeletonsListPatient from '../../../../components/Skeletons'
 
 
 export default function PatientList() {
@@ -53,7 +52,7 @@ export default function PatientList() {
           {patients && patients.content.filter((msg) => msg.nombre.concat(msg.apellido).toLowerCase().includes(searchPatient.toLowerCase()))
             .map((patient) => (
               <div key={patient.idPaciente} className='border-1 rounded-md flex h-20 items-center justify-around transition-all duration-200 hover:border-violet-color'>
-                <Avatar name={patient.nombre} color='default' className={`${getRandomColor()}`} key={patient.idPaciente} />
+                <Avatar name={patient.nombre} color='primary' key={patient.idPaciente} />
                 <div className=" w-3/6 text-center">
                   <h6 className=' font-bold'>{patient.nombre} {patient.apellido}</h6>
                   <p className=' text-sm text-gray-color'>{patient.numeroDocumento}</p>
