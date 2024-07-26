@@ -578,7 +578,7 @@ export function MensaggeIcon({ width, height }: IconProps) {
 }
 
 
-export function GitBrantIcon({ width, height }: IconProps) {
+export function GitBrantIcon({ height }: IconProps) {
   return (<svg width={height} height={height} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M5 2.5V12.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     <path d="M15 7.5C16.3807 7.5 17.5 6.38071 17.5 5C17.5 3.61929 16.3807 2.5 15 2.5C13.6193 2.5 12.5 3.61929 12.5 5C12.5 6.38071 13.6193 7.5 15 7.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
