@@ -49,7 +49,11 @@ const items = [
 ];
 
 export const Landing = () => {
-  const defaultContent = "Para poder registrarse dentro de la aplicacion lo que necesitas en tu numero de matricula como medico, esto habilita la entrada al sistema.";
+  const question_One = "Para poder registrarse dentro de la aplicacion lo que necesitas en tu numero de matricula como medico, esto habilita la entrada al sistema.";
+  const question_Two = "Cora esta diseñado para ofrecer información y soporte general, pero no sustituye la opinión de un profesional de la salud.";
+  const question_Three = "Todos los datos que registre dentro de la aplicacion queda reguardados y solo el medico asigna puede revisar los mismos.";
+  const question_four = "Si, actualmente solo existe la version mobile, en un futuro queremos poder hacer la version para computadora para una mejora experiencia de usuario"
+  const question_five = "Para programar una cita con su médico se tiene que coordina con el presencial o de manera virtual con el apartado de mensajeria, este mismo turno lo gestion el profecional atraves de la plataforma, a usted como paciente le llega una notificación con el turno, puede confirmar o rechazar el turno.";
 
   return (
     <main className='w-full md:mx-0 md:max-w-full md:p-0 '>
@@ -90,11 +94,11 @@ export const Landing = () => {
         <section className="flex flex-col items-center md:gap-y-0 md:flex-row bg-cover md:bg-center md:h-screen  " style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
           <div className='flex  w-full flex-col md:flex-col mt-2 md:mt-30 md:ml-10'>
             <h2 className={`mt-5 text-center md:text-start md:mb-4 md:text-[3rem] md:mt-0 text-white ${styles.h2}`}>JUSTINA.IO</h2>
-            <p className='md:text-3xl mt-5 w-[80%] ml-2 font-inter mb-4 md:mt-4 text-white  md:w-[80%]'>
+            <p className='md:text-3xl text-2xl font-[300] mt-5 w-[80%] ml-4 font-inter mb-4 md:mt-4 text-white  md:w-[80%]'>
               Creemos en un enfoque integral y humano, donde cada paciente recibe el apoyo necesario en cada etapa de su tratamiento.
             </p>
             <Link to="/onboarding">
-              <Button className='rounded-md bg-[#E08733] ml-2 mt-5 mb-10 drop-shadow-lg  w-32 md:mt-5 h-10 text-white font-[300] font-inter '>Acceder</Button>
+              <Button className='rounded-md bg-[#E08733] ml-5 mt-6 mb-10 drop-shadow-lg  w-36 md:mt-5 h-12 text-white font-[300] font-inter '>Acceder</Button>
             </Link>
           </div>
           <img src='./public/LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg w-[60%] mb-4 md:mb-32 md:mr-36 md:w-[30%] md:h-[20rem]' alt="image-landing-page" />
@@ -229,21 +233,28 @@ export const Landing = () => {
         </section>
 
         {/*Version Mobile - Preguntas Frecuentes */}
-        <section className='md:hidden flex flex-col gap-y-4 mt-10 items-center mb-10'>
-          <h2 className={styles.h2}>Preguntas Frecuentes</h2>
-          <h5 className={styles.h5}>Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque.</h5>
-          <Accordion className='flex flex-col '>
-            
-              <AccordionItem className='bg-green-500 rounded-md pl-3 border-2 border-solid border-gray-500'  title={`Como me regitros en Justina.IO? `}>
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem className='bg-green-500 rounded-md pl-3 border-2 border-solid border-gray-500'  title={`Como me regitros en Justina.IO? `}>
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem className='bg-green-500 rounded-md pl-3 border-2 border-solid border-gray-500'  title={`Como me regitros en Justina.IO? `}>
-                {defaultContent}
-              </AccordionItem>
-          
+        <section className='md:hidden flex flex-col gap-y-4 mt-10  mb-10 bg-cover h-screen bg-center text-white ' style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+          <h2 className={`${styles.h2} ml-3 mt-20 font-inter font-[500] text-[25px] `}>Preguntas Frecuentes</h2>
+          <h5 className={`w-[60%] ml-3 font-inter text-white ${styles.h5}`}>Las mas solicitadas de nuestros servicios</h5>
+          <Accordion className='flex flex-col text-white '>
+
+            <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500 text-white' title={`¿Como me regitros en Justina.IO? `}>
+              {question_One}
+            </AccordionItem>
+            <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`¿El bot de ayuda puede darme diagnósticos médicos?`}>
+              {question_Two}
+            </AccordionItem>
+            <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`¿Como manejar la privacidad de mis datos?`}>
+              {question_Three}
+            </AccordionItem>
+            <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`¿Puedo acceder desde mi smartphone?`}>
+              {question_four}
+            </AccordionItem>
+            <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`¿Como programar una cita con mi médico a través de JUSTINA.IO?`}>
+              {question_five}
+            </AccordionItem>
+
+
           </Accordion>
         </section>
 
@@ -255,16 +266,22 @@ export const Landing = () => {
               Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque.
             </h5>
           </div>
-          <div className='md:w-[80%] md:bg-[#423FD9] md:h-[60%] md:mr-10 md:text-white'>
-            <Accordion className='md:gap-y-4 md:text-white md:flex md:flex-col' >
-              <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1" className='md:text-white' style={{ color: '#ffffff' }}>
-                {defaultContent}
+          <div className='md:w-[80%] md:h-[60%] md:mr-10 md:mt-20 md:text-white'>
+            <Accordion className=' md:text-white md:flex md:flex-col' >
+              <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500 text-white' title={`¿Como me regitros en Justina.IO? `}>
+                {question_One}
               </AccordionItem>
-              <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
-                {defaultContent}
+              <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`¿El bot de ayuda puede darme diagnósticos médicos?`}>
+                {question_Two}
               </AccordionItem>
-              <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
-                {defaultContent}
+              <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`¿Como manejar la privacidad de mis datos?`}>
+                {question_Three}
+              </AccordionItem>
+              <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`¿Puedo acceder desde mi smartphone?`}>
+                {question_four}
+              </AccordionItem>
+              <AccordionItem className='bg-cyan-500 rounded-md pl-3 border-2 border-solid border-gray-500' title={`¿Como programar una cita con mi médico a través de JUSTINA.IO?`}>
+                {question_five}
               </AccordionItem>
             </Accordion>
           </div>
@@ -343,30 +360,30 @@ export const Landing = () => {
             <button className='bg-[#e09733] px-3 py-3 mr-22 rounded-se-md rounded-ee-md'><FlechaIcon width={24} height={24} /></button>
           </form>
           <p className='text-white mt-6 leading-[24px] font-inter text-small font-[400]'>
-            ¿Quieres estar al día con las últimas novedades y recibir recordatorios importantes? 
+            ¿Quieres estar al día con las últimas novedades y recibir recordatorios importantes?
             Suscríbete a nuestras notificaciones por correo electrónico.
           </p>
         </div>
         <div className='mb-7 mt-4 ml-4'>
           <h6 className='tracking-wider mb-1 font-bold text-white font-inter'>Jusinta.IO</h6>
           <ul className='flex font-inter flex-col list-none text-gray-color leading-7 font-normal'>
-              <li>Servicios</li>
-              <li>Cora</li>
-              <li>Transplantes</li>
+            <li>Servicios</li>
+            <li>Cora</li>
+            <li>Transplantes</li>
           </ul>
         </div>
         <div className='mb-7 mt-2 ml-4'>
           <h6 className='tracking-wider mb-1  font-bold text-white font-inter'>Informacion</h6>
           <ul className='flex font-inter flex-col list-none text-gray-color leading-7 font-normal'>
-              <li>Preguntas Frecuentes</li>
+            <li>Preguntas Frecuentes</li>
           </ul>
         </div>
         <div className='mb-7 mt-2 ml-4'>
           <h6 className='tracking-wider mb-1  font-bold text-white font-inter'>Acerca de</h6>
           <ul className='flex font-inter flex-col list-none text-gray-color leading-7 font-normal'>
-              <li>Ley Justina</li>
-              <li>Casa Justina</li>
-              <li>Nosotros</li>
+            <li>Ley Justina</li>
+            <li>Casa Justina</li>
+            <li>Nosotros</li>
           </ul>
         </div>
 
@@ -375,8 +392,8 @@ export const Landing = () => {
           <li className='font-[400] cursor-pointer'>Privacidad</li>
           <li className='font-[400] cursor-pointer'>Cookies</li>
         </ul>
-        <ul className="list-none flex justify-center gap-x-6">
-          {[<LinkedinIcon width={20} height={20} />, <FacebookIcon width={20} height={20} />, <GitBrantIcon width={20} height={20}/>].map((icon, idx) => (
+        <ul className="list-none flex justify-center gap-x-6 mb-10">
+          {[<LinkedinIcon width={20} height={20} />, <FacebookIcon width={20} height={20} />, <GitBrantIcon width={20} height={20} />].map((icon, idx) => (
             <li key={idx} className='border-2 rounded-full w-12 h-12 items-center justify-center flex cursor-pointer hover:scale-105 transition-all duration-300'>
               {icon}
             </li>
