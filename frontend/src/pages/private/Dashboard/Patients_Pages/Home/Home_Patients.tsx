@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CampanaIcon, MensaggeIcon, MenuHambuerguesa, UserIconTwo, UserIconTwo2 } from "../../../../../../public/icons/Icons";
-import { Logout } from "../../../../../components/Logout";
+import { Logout } from "../../../../../Components/Logout";
 
 export function Home_Patients() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -70,7 +70,7 @@ export function Home_Patients() {
                     <Link to={option.to} key={index} className="flex flex-col items-center">
                         <div className={`${option.color} w-[7rem] h-[7rem] rounded-3xl flex items-center justify-center`}>
                             <div className="bg-white w-[6.5rem] h-[6.5rem] rounded-full">
-                            {option.svg}
+                                {option.svg}
                             </div>
                         </div>
                         <p className="mt-1">{option.label}</p>
