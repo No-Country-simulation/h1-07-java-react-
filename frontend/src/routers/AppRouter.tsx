@@ -20,6 +20,7 @@ import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patient
 import SignUp from "../pages/SignUp/SignUp";
 import { Landing } from "../pages/Landing/Landing";
 import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+import Chat from "../components/Chat";
 
 
 
@@ -33,11 +34,10 @@ function AppRouter() {
 					<RoutesWithNotFound>
 						<Route element={<PublicRoute />}>
 							{/* <Route element={<DeviceDetection />} > */}
-								<Route path="/login" element={<LoginPage />} />
-								<Route path="/signup" element={<SignUp />} />
-
-								<Route path="/onboarding" element={<Onboarding />} />
-							</Route>
+							<Route path="/login" element={<LoginPage />} />
+							<Route path="/signup" element={<SignUp />} />
+							<Route path="/onboarding" element={<Onboarding />} />
+						</Route>
 						{/* </Route> */}
 						<Route index path="/" element={<Landing />} />
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
@@ -53,13 +53,14 @@ function AppRouter() {
 						</Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
 							<Route path="/patient-home" element={<Home_Patients />} />
+							<Route path="/chat-cora" element={<Chat></Chat>}></Route>
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 
 					</RoutesWithNotFound>
 				</BrowserRouter>
 			</AuthContextProvider >
-			<Toaster richColors></Toaster>
+			<Toaster richColors ></Toaster>
 		</>
 	);
 }

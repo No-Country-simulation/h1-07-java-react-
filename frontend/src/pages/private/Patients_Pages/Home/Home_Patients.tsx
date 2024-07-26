@@ -19,7 +19,7 @@ export function Home_Patients() {
         { to: "/patient-nutricion", color: "bg-[#00E0FF]", label: "Nutricion" },
         { to: "/patient-saludmental", color: "bg-[#A9FFBC]", label: "Salud Mental" },
         {
-            to: "/patient-historial",
+            to: "/chat-cora",
             color: "bg-[#F49E93]",
             label: "Cora",
             svg: (
@@ -69,7 +69,7 @@ export function Home_Patients() {
                 {patientOptions.map((option, index) => (
                     <Link to={option.to} key={index} className="flex flex-col items-center">
                         <div className={`${option.color} w-[7rem] h-[7rem] rounded-3xl flex items-center justify-center`}>
-                            <div className="bg-white w-[6.5rem] h-[6.5rem] rounded-full">
+                            <div className="bg-white w-[6.5rem] h-[6.5rem] rounded-full flex  justify-center items-center">
                             {option.svg}
                             </div>
                         </div>

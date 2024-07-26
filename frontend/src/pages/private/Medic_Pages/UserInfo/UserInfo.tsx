@@ -69,7 +69,7 @@ export function UserInfo(): JSX.Element {
 				</div>
 				<div className="flex flex-row mt-4 items-center">
 					<CardIcon width={16} height={16} />
-					<p className="ml-3 font-inter font-bold">Lincencia</p>
+					<p className="ml-3 font-inter font-bold">Licencia</p>
 				</div>
 				<div className="mt-3 w-full">
 					<input type="text" placeholder="drortegaramirez@gmail.com" value={medicInfo?.licencia} className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[95%]" />

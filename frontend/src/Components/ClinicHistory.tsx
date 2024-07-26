@@ -3,14 +3,14 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { ClinicHistoryProps, ContentClinicHistory } from "../Interfaces/interfaces"
 import { SearchIcon } from "../../public/icons/Icons"
-import { fetchClinicHistory } from "../Context/AuthContext"
+import { fetchClinicHistory, registerClinicHistory } from "../Context/AuthContext"
 import { SkeletonAcordion } from "./Skeletons"
 import { ModalComponent } from "./ModalRegister"
 import { Field, Form, Formik } from "formik"
 import { initialValuesHistory } from "../utils/data/data"
 import { validationHistoryClinic } from "../utils/validation/validation"
 import { VoiceTranscript } from "./VoiceTranscript"
-import { API_URL } from "../api/api"
+import { toast } from "sonner"
 
 const user = {
   idPaciente: 1,
@@ -63,8 +63,6 @@ const user = {
   comentarios: "María presenta un buen control de su diabetes y factores de riesgo cardiovascular, aunque es necesario optimizar su régimen de ejercicio y realizar ajustes en su dieta para mejorar los niveles de glucemia y perfil lipídico. Continuar con el seguimiento estrecho y educación en autocuidado."
 }
 
-
-
 export default function ClinicHistory() {
   const [clinicHistories, setClinicHistories] = useState<ContentClinicHistory>()
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -73,45 +71,41 @@ export default function ClinicHistory() {
   const [transcript, setTranscript] = useState("")
 
   const { id } = useParams()
-  useEffect(() => {
+
+  const fetchDataHistory = async () => {
     if (id) {
-      const fetchDataHistory = async () => {
-        setLoading(true)
-        try {
-          setClinicHistories(await fetchClinicHistory(id))
-        } catch (err: any) {
-          console.log(err)
-        } finally {
-          setLoading(false)
-        }
+      setLoading(true)
+      try {
+        setClinicHistories(await fetchClinicHistory(id))
+      } catch (err: any) {
+        console.log(err)
+      } finally {
+        setLoading(false)
       }
-      fetchDataHistory()
     }
+  }
+
+  useEffect(() => {
+    fetchDataHistory()
   }, [])
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
-    const token = localStorage.getItem('TOKEN_KEY');
 
+    if (transcript.length < 5 || values.titulo.length < 5) {
+      toast.warning("El título y la descripción deben tener mas de 5 caracteres")
+      return
+    }
     if (id) {
       const historyClinic: ClinicHistoryProps = { ...values, descripcion: transcript, idPaciente: Number(id) }
       try {
-        const res = await fetch(`${API_URL}/historia-clinica/crear-caso?idPaciente=${id}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify(historyClinic)
-        })
-
-        if (!res.ok) {
-          throw new Error("Fail:" + res.status);
-        }
-        const data = await res.json()
-        console.log(data)
+        await registerClinicHistory(id, historyClinic)
+        fetchDataHistory()
+        onOpen()
+        setTranscript("")
       } catch (err: any) {
-        console.log(err)
+        console.error(err)
       }
+
     }
   }
 
@@ -149,7 +143,7 @@ export default function ClinicHistory() {
                 </Accordion>
               ))
             ) : (
-              <p>No se encontraron historiales clínicos.</p>
+              <p className=" text-center">No se encontraron historiales clínicos.</p>
             )}
           </>
         }
@@ -164,15 +158,16 @@ export default function ClinicHistory() {
             validationSchema={validationHistoryClinic}
             onSubmit={handleSubmitHistory}>
             {({ isSubmitting }) => (
-              <Form className=" flex flex-col  gap-4">
-                <label htmlFor="titulo">Título</label>
-                <Field id="titulo"
-                  type="text"
-                  name="titulo"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Título de la historia clinica"></Field>
+              <Form className=" flex flex-col  gap-6">
+                <><label htmlFor="titulo" className=" font-bold">Título</label>
+                  <Field id="titulo"
+                    type="text"
+                    name="titulo"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Título de la historia clinica"></Field>
+                </>
                 <VoiceTranscript onTranscriptChange={setTranscript} label={"Descripción"} />
-                <button disabled={isSubmitting} type="submit" className=" bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</button>
+                <button disabled={isSubmitting} type="submit" className="mb-10 bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</button>
               </Form>
             )}
           </Formik>
