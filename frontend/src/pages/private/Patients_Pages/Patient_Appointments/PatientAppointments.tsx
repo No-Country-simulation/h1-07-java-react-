@@ -1,4 +1,4 @@
-import { FlechaIcon } from "../../../../../../public/icons/Icons"
+import { FlechaIcon } from "../../../../../public/icons/Icons"
 
 
 export function PatientAppointments() {
