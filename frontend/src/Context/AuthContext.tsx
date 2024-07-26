@@ -606,6 +606,10 @@ export const fetchPatientSingle = async (id: string | undefined) => {
         'Authorization': `Bearer ${token}`
       },
     })
+    
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
     const data = await res.json()
     return data
   } catch (err: any) {
@@ -624,11 +628,40 @@ export const fetchMedicData = async () => {
         'Authorization': `Bearer ${token}`
       },
     })
+    
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
     const data = await res.json()
     localStorage.setItem("MEDIC-DATA", JSON.stringify(data))
 
     return data
   } catch (err: any) {
     console.error(err)
+  }
+}
+
+export const fetchClinicHistory = async (id: string | undefined) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(`${API_URL}/historia-clinica/historia-clinica-por-id-paciente?idPaciente=${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
+    })
+
+    
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+
+    const data = await res.json()
+    return data
+
+  } catch (err: any) {
+    console.log(err)
   }
 }

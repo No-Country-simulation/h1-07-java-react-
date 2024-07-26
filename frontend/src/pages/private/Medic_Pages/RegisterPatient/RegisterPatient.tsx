@@ -1,13 +1,13 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Button } from '@nextui-org/react';
 import React, { useState } from 'react';
-import { useAuthContext } from '../../../Context/AuthContext';
-import { PatientRegister } from '../../../Interfaces/interfaces';
-import { BloodIcon, CardIcon, FlechaIconTwo, GenderIcon, HealthIcon, LoaderIcon } from '../../../../public/icons/Icons';
 import { toast } from 'sonner';
-import { dataRegisterPatient, initialValuesPatient } from '../../../utils/data/data';
-import { validationSchemaPatient } from '../../../utils/validation/validation';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../../../Context/AuthContext';
+import { PatientRegister } from '../../../../Interfaces/interfaces';
+import { dataRegisterPatient, initialValuesPatient } from '../../../../utils/data/data';
+import { validationSchemaPatient } from '../../../../utils/validation/validation';
+import { BloodIcon, CardIcon, FlechaIconTwo, GenderIcon, HealthIcon, LoaderIcon } from '../../../../../public/icons/Icons';
 
 export const RegisterPatient: React.FC = () => {
   const { registerPatient } = useAuthContext();

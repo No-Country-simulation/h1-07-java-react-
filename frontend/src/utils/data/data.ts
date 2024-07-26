@@ -1,6 +1,6 @@
 import { getLocalTimeZone, today } from "@internationalized/date";
 import { CalendarIcon, CardIcon, EmailIcon, HomeIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from "../../../public/icons/Icons";
-import { AuthenticationRequest, DoctorRegister, PatientRegister, Treatment } from "../../Interfaces/interfaces";
+import { AuthenticationRequest, ClinicHistoryProps, DoctorRegister, PatientRegister, Treatment } from "../../Interfaces/interfaces";
 
 export const dataRegisterDoctor = [
   { label: 'Nombre', name: 'nombre', type: 'text', icon: UserIcon, placeholder: 'Ej: Mario' },
@@ -42,6 +42,12 @@ export const initialValuesPatient: PatientRegister = {
   medicosId: [1],
   entidadesId: [1],
   financiadorId: 1
+};
+
+export const initialValuesHistory:ClinicHistoryProps = {
+  titulo: "",
+  descripcion: "",
+  idPaciente: 12
 };
 
 export const initialValuesDoctor: DoctorRegister = {
