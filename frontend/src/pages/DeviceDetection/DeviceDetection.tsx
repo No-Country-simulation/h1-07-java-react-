@@ -1,46 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import AppRouter from '../../routers/AppRouter';
 
 interface PropsDeviceDetection {
-  children: JSX.Element | JSX.Element[];
+  children?: React.ReactNode;
 }
 
-const DeviceDetection: React.FC<PropsDeviceDetection> = () => {
+const DeviceDetection: React.FC<PropsDeviceDetection> = ({ children }) => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [isAndroidOrIOS, setIsAndroidOrIOS] = useState<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); 
-    };
-
-    const checkDevice = () => {
-      const userAgent = navigator.userAgent || navigator.vendor;
-      if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent)) {
-        setIsAndroidOrIOS(true);
-      } else {
-        setIsAndroidOrIOS(false);
-      }
+      setIsMobile(window.innerWidth <= 568);
     };
 
     handleResize();
-    checkDevice();
-    
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  const isAndroidOrIOS = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   return (
     <>
       {isMobile && isAndroidOrIOS ? (
-        <AppRouter />
+        children
       ) : (
         <div className="flex flex-col justify-center items-center h-screen bg-black text-white font-inter">
           <h1>Esta aplicación solo está disponible para dispositivos móviles con Android o iOS.</h1>
-          <p>Por favor, accede desde un dispositivo móvil con Android o iOS.</p>
+          <p>Por favor, escanee el código QR</p>
+          <img src="QR/qrcode-generado.png" alt="QR Code" />
         </div>
       )}
     </>
