@@ -14,7 +14,7 @@ export const Nav = () => {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className=" border-b-2">
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="md:hidden border-b-2">
       <NavbarContent>
         <NavbarBrand>
           <img src={'logo-justina.webp'} className=" w-40"/>

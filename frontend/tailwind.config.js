@@ -23,8 +23,8 @@ export default {
         'gray-color':'#757575',
         'light-color':'#EFF3FD',
         'blue-light-color':"#3563E9",
-        'violet-color':'#5761C8'
-
+        'violet-color':'#5761C8',
+        'blue-juli-color': '#5956E9',
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
