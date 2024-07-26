@@ -5,7 +5,7 @@ import AppRouter from "./routers/AppRouter"
 function App() {
   return (
     <NextUIProvider>
-        <AppRouter />
+      <AppRouter />
     </NextUIProvider>
   )
 }

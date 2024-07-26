@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-import { AuthContextProps, AuthTokens, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, ResponseRequest, tokenData, Treatment } from "../Interfaces/interfaces";
+import { AuthContextProps, AuthTokens, ClinicHistoryProps, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, ResponseRequest, tokenData, Treatment } from "../Interfaces/interfaces";
 import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
@@ -606,7 +606,7 @@ export const fetchPatientSingle = async (id: string | undefined) => {
         'Authorization': `Bearer ${token}`
       },
     })
-    
+
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
@@ -628,7 +628,7 @@ export const fetchMedicData = async () => {
         'Authorization': `Bearer ${token}`
       },
     })
-    
+
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
@@ -653,7 +653,7 @@ export const fetchClinicHistory = async (id: string | undefined) => {
       },
     })
 
-    
+
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
@@ -665,3 +665,28 @@ export const fetchClinicHistory = async (id: string | undefined) => {
     console.log(err)
   }
 }
+
+export
+  const registerClinicHistory = async (id: string, historyClinic: ClinicHistoryProps) => {
+    const token = localStorage.getItem('TOKEN_KEY');
+
+    try {
+      const res = await fetch(`${API_URL}/historia-clinica/crear-caso?idPaciente=${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(historyClinic)
+      })
+
+      if (!res.ok) {
+        throw new Error("Fail:" + res.status);
+      }
+      const data = await res.json()
+      console.log(data)
+      toast.success("La historia clinica fue registrada correctamente")
+    } catch (err: any) {
+      console.log(err)
+    }
+  }

@@ -40,7 +40,7 @@ const DeviceDetection: React.FC = () => {
         <div className="flex flex-col justify-center items-center h-screen  font-inter">
           <h1 className='text-center'>Esta aplicación solo está disponible para dispositivos móviles con Android o iOS.</h1>
           <p>Por favor, Scanner el código QR</p>
-          <img src="./public/QR/qrcode-generado.png" alt="" />
+          <img src="QR/qrcode-generado.png" alt="" />
         </div>
       )}
     </>

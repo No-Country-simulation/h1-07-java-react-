@@ -58,7 +58,7 @@ export const TreatmentPatient = () => {
             <FormTreamentVoice id={id} type={2} label={'Recomendaciones nutricionales'} />
           </Tab>
           <Tab key="Psicológico" title="Psicológico" className='' >
-            <FormTreamentVoice id={id} type={3} label={'Ejercicios mentales'} />
+            <FormTreamentVoice id={id} type={3} label={'Recomedaciones'} />
           </Tab>
           {/* <Tab key="Resumen" title="Resumen" className='' >
             <form className='flex flex-col gap-y-6 px-4 min-h-[60vh]'>

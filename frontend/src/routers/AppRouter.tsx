@@ -16,10 +16,11 @@ import PatientList from "../pages/private/Medic_Pages/PatientsList/PatientList";
 import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patients";
-import SignUp from "../pages/signup/SignUp";
-import { Landing } from "../pages/landing/Landing";
-import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 // import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
+import SignUp from "../pages/SignUp/SignUp";
+import { Landing } from "../pages/Landing/Landing";
+import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+import Chat from "../components/Chat";
 
 
 
@@ -32,13 +33,12 @@ function AppRouter() {
 				<BrowserRouter>
 					<RoutesWithNotFound>
 						<Route element={<PublicRoute />}>
-							
-								<Route path="/login" element={<LoginPage />} />
-								<Route path="/signup" element={<SignUp />} />
-
-								<Route path="/onboarding" element={<Onboarding />} />
-						
+							{/* <Route element={<DeviceDetection />} > */}
+							<Route path="/login" element={<LoginPage />} />
+							<Route path="/signup" element={<SignUp />} />
+							<Route path="/onboarding" element={<Onboarding />} />
 						</Route>
+						{/* </Route> */}
 						<Route index path="/" element={<Landing />} />
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_MEDICO"]} />}>
@@ -53,13 +53,14 @@ function AppRouter() {
 						</Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
 							<Route path="/patient-home" element={<Home_Patients />} />
+							<Route path="/chat-cora" element={<Chat></Chat>}></Route>
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 
 					</RoutesWithNotFound>
 				</BrowserRouter>
 			</AuthContextProvider >
-			<Toaster richColors></Toaster>
+			<Toaster richColors ></Toaster>
 		</>
 	);
 }
