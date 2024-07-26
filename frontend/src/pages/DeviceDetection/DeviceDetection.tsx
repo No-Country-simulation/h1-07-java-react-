@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import AppRouter from '../../routers/AppRouter';
+
+import { Outlet } from 'react-router-dom';
 
 
 
@@ -34,7 +35,7 @@ const DeviceDetection: React.FC = () => {
   return (
     <>
       {isMobile && isAndroidOrIOS ? (
-        <AppRouter />
+        <Outlet />
       ) : (
         <div className="flex flex-col justify-center items-center h-screen  font-inter">
           <h1 className='text-center'>Esta aplicación solo está disponible para dispositivos móviles con Android o iOS.</h1>
