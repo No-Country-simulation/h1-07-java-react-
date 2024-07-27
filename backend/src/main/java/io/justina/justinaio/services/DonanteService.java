@@ -46,13 +46,35 @@ public class DonanteService {
         donanteRepository.save(donante);
     }
 
-    public PageResponse<DonanteResponse> buscarDonantes(int page, int size, BusquedaDonanteRequest busquedaRequest, Authentication token) {
+    /*public PageResponse<DonanteResponse> buscarDonantes(int page, int size, BusquedaDonanteRequest busquedaRequest, Authentication token) {
         Usuario userMedico = (Usuario) token.getPrincipal();
         Medico medico = medicoRepository.findById(userMedico.getId()).orElseThrow(
                 () -> new IllegalArgumentException("Medico no encontrado, acceso denegado"));
 
         Pageable pageable = PageRequest.of(page, size);
         Specification<Donante> spec = DonanteSpecification.containsTextInAttributes(busquedaRequest);
+        Page<Donante> donantes = donanteRepository.findAll(spec, pageable);
+        List<DonanteResponse> donantesResponse = donantes.stream()
+                .map(Mapper::toDonanteResponse)
+                .toList();
+        return new PageResponse<>(
+                donantesResponse,
+                donantes.getNumber(),
+                donantes.getSize(),
+                donantes.getTotalElements(),
+                donantes.getTotalPages(),
+                donantes.isFirst(),
+                donantes.isLast()
+        );
+    }*/
+
+    public PageResponse<DonanteResponse> buscarDonantes(int page, int size, BusquedaDonanteRequest busquedaRequest, Authentication token) {
+        Usuario userMedico = (Usuario) token.getPrincipal();
+        Medico medico = medicoRepository.findById(userMedico.getId()).orElseThrow(
+                () -> new IllegalArgumentException("Medico no encontrado, acceso denegado"));
+
+        Pageable pageable = PageRequest.of(page, size);
+        Specification<Donante> spec = DonanteSpecification.buildSpecification(busquedaRequest);
         Page<Donante> donantes = donanteRepository.findAll(spec, pageable);
         List<DonanteResponse> donantesResponse = donantes.stream()
                 .map(Mapper::toDonanteResponse)
