@@ -1,17 +1,23 @@
 import { useEffect, useState } from 'react'
 import { fetchPatient } from '../../../../Context/AuthContext'
-import { ChevronIcon, FlechaIconTwo, SearchIcon } from '../../../../../public/icons/Icons'
+import { ChevronIcon, FlechaIconTwo, HamburguerIcon, SearchIcon } from '../../../../../public/icons/Icons'
 import { Link } from 'react-router-dom'
 import { ContentPatient } from '../../../../Interfaces/interfaces'
 import { Avatar } from '@nextui-org/react'
 import SkeletonsListPatient from '../../../../components/Skeletons'
+import { AsideMenu } from '../../../../components/AsideMenu'
 
 
 export default function PatientList() {
   const [patients, setPatients] = useState<ContentPatient>()
   const [searchPatient, setSearchPatient] = useState("")
   const [loading, setLoading] = useState(false)
-  
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   useEffect(() => {
     const fetchPatientData = async () => {
       setLoading(true)
@@ -30,11 +36,17 @@ export default function PatientList() {
   return (
     <section className='flex min-h-screen bg-gray-100 md:flex md:justify-center '>
       <div className='w-full max-w-md p-6  bg-white rounded-lg shadow-lg  max-md:m-auto'>
+        <AsideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <div className="mb-6 text-center relative flex flex-col items-center justify-center">
-          <Link to={"/dashboard"} className=' absolute -left-5 hover:-translate-x-1 transition-all duration-300'>
+          <Link to={"/dashboard"} className=' absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
             <FlechaIconTwo width={30} height={30} />
           </Link>
-          <h1 className="text-xl font-bold ">Listado de pacientes</h1>
+          <div className="flex items-center justify-center">
+            <h1 className="text-xl font-bold ">Listado de pacientes</h1>
+            <button onClick={toggleSidebar} className=' absolute right-0'>
+              <HamburguerIcon width={30} height={30} />
+            </button>
+          </div>
         </div>
         <div className=' relative w-full h-12 mb-6 flex justify-center items-center'>
           <input type="text" placeholder='Búsqueda' onChange={(e) => setSearchPatient(e.target.value)} className='w-full h-full  border-violet-color rounded-md border-1 px-4' />
