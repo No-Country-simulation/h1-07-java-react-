@@ -20,11 +20,11 @@ import { Patient_Notification } from "../pages/private/Patients_Pages/Notificati
 import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
 import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
 import { UserInfo_Patients } from "../pages/private/Patients_Pages/UserInfo_Patients/UserInfo_Patients";
-import SignUp from "../pages/SignUp/SignUp";
-import { Landing } from "../pages/Landing/Landing";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
 import Donations from "../pages/private/Medic_Pages/Donations/Donations";
 import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
+import SignUp from "../pages/signup/SignUp";
+import { Landing } from "../pages/landing/Landing";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 
 
 

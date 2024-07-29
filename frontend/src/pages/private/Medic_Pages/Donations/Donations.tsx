@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { ArrowWhiteIcon, MenuHambuerguesa, SearchIcon, SilderIcon } from "../../../../../public/icons/Icons";
+import {  SearchIcon, SilderIcon } from "../../../../../public/icons/Icons";
 import { useState } from "react";
 import { AsideMenu } from "../../../../components/AsideMenu";
 import { getAge } from "../../../../utils/functions/functions";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import { Header_Donation } from "../../../../components/Header_Medic_Donation/Header_Donation";
 
 export interface Donors {
   altura: string
@@ -82,7 +82,8 @@ export default function Donations() {
     <main className="flex bg-gray-100 md:flex md:justify-center  ">
       <div className="w-full max-w-md min-h-screen font-inter bg-white rounded-lg shadow-lg  max-md:m-auto">
         <AsideMenu toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
-        <header className='mb-10 p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl'>
+        
+        {/* <header className='mb-10 p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl'>
           <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
             <Link to={"/dashboard"} className=' text-light-color absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
               <ArrowWhiteIcon width={30} height={30} />
@@ -101,7 +102,9 @@ export default function Donations() {
           <div className='rounded-lg absolute -bottom-3 py-1 px-3 shadow-md bg-[#5761C8] text-white text-[14px] border-1 border-solid border-[#948ABC]'>
             <Link to={"/patient-register"}><button>Añadir posible donante</button></Link>
           </div>
-        </header>
+        </header> */}
+        <Header_Donation />
+
         <section className="p-4 flex flex-col gap-8">
           <div className=' relative w-full h-12 flex justify-center items-center'>
             <input type="text" placeholder='Búsqueda' className='w-full h-full  border-violet-color rounded-md border-1 px-4' />
