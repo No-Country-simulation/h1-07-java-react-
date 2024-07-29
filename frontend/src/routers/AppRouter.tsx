@@ -7,7 +7,6 @@ import { Onboarding } from "../pages/OnBoarding/OnBoarding";
 import { AuthContextProvider } from "../Context/AuthContext";
 import { RoutesWithNotFound } from "./RoutesWithNotFound";
 import { PublicRoute } from "./PublicRoute";
-
 import { Home } from "../pages/private/Medic_Pages/Home/Home";
 import { Detalle } from "../pages/private/Medic_Pages/Detalle/Detalle";
 import { UserInfo } from "../pages/private/Medic_Pages/UserInfo/UserInfo";
@@ -17,10 +16,15 @@ import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDe
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patients";
 // import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
+import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
+import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
+import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
+import { UserInfo_Patients } from "../pages/private/Patients_Pages/UserInfo_Patients/UserInfo_Patients";
 import SignUp from "../pages/SignUp/SignUp";
 import { Landing } from "../pages/Landing/Landing";
 import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
-import Chat from "../components/Chat";
+import Donations from "../pages/private/Medic_Pages/Donations/Donations";
+import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
 
 
 
@@ -48,12 +52,16 @@ function AppRouter() {
 							<Route path="/patient-register" element={<RegisterPatient />}></Route>
 							<Route path="/patient-list" element={<PatientList />}></Route>
 							<Route path="/patient/:id" element={<PatientDetail />} />
-							<Route path="/patient/:id/treatment" element={<TreatmentPatient />}>
-							</Route>
+							<Route path="/patient/:id/treatment" element={<TreatmentPatient />}/>
+							<Route path="/donations" element={<Donations />} />
 						</Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
 							<Route path="/patient-home" element={<Home_Patients />} />
+							<Route path="/user-info-patient" element={<UserInfo_Patients />}/>
 							<Route path="/chat-cora" element={<Chat></Chat>}></Route>
+							<Route path="/notification" element={<Patient_Notification />}/>
+							<Route path="/citas" element={<PatientAppointments />} />
+							<Route path="/Medic_Appointment" element={<Medic_Appointment />}/>
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 
