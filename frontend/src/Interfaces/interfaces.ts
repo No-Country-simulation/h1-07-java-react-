@@ -86,7 +86,7 @@ export interface DoctorRegister {
   localidad: string;
   licencia: string;
   especialidad: number;
-  password: string
+  password: string;
   financiadores: any;
 }
 
@@ -110,20 +110,20 @@ export interface RegistrationRequest {
 }
 
 export interface Product {
-  name: string
-  price: number
-  provider: number
-  stock: number
-  category: number
+  name: string;
+  price: number;
+  provider: number;
+  stock: number;
+  category: number;
 }
 
 export interface DataProduct {
-  producto_id: number
-  nombre: string
-  precio: string
-  stock: number
-  proveedor_id: number
-  categoria_id: number
+  producto_id: number;
+  nombre: string;
+  precio: string;
+  stock: number;
+  proveedor_id: number;
+  categoria_id: number;
 }
 
 export interface IProvider {
@@ -134,16 +134,16 @@ export interface IProvider {
 }
 
 export interface newClient {
-  name: string
-  address: string
-  phone: string
+  name: string;
+  address: string;
+  phone: string;
 }
 
 export interface Client {
-  id: number
-  name: string
-  address: string
-  phone: string
+  id: number;
+  name: string;
+  address: string;
+  phone: string;
 }
 
 export type drinkCategory = {
@@ -151,31 +151,31 @@ export type drinkCategory = {
 };
 
 export interface StateModal {
-  title?: string
-  stateModal: boolean
-  closeModal: () => void
-  deletePost: () => void
+  title?: string;
+  stateModal: boolean;
+  closeModal: () => void;
+  deletePost: () => void;
 }
 
 export interface EditModal {
-  stateEditModal: boolean
-  dataProduct: DataProduct | undefined
-  closeModal: () => void
-  updateTable: () => void
+  stateEditModal: boolean;
+  dataProduct: DataProduct | undefined;
+  closeModal: () => void;
+  updateTable: () => void;
 }
 
 export interface Clients {
-  id: number
-  name: string
-  address: string
-  phone: string
+  id: number;
+  name: string;
+  address: string;
+  phone: string;
 }
 
 export interface Users {
-  id: number
-  nombre: string
-  email: string
-  rol_id: number
+  id: number;
+  nombre: string;
+  email: string;
+  rol_id: number;
 }
 
 export interface AutenticarRequest {
@@ -197,10 +197,10 @@ export interface AuthContextProps {
   authTokens: AuthTokens | null;
   userName: string;
   roles: string[];
-  registerDoctor: (doctor: DoctorRegister) => void
-  registerPatient: (patient: PatientRegister) => void
-  registerTreatment: (treatment: Treatment) => void
-  createRole:  (email: string, role: string) => Promise<void>;
+  registerDoctor: (doctor: DoctorRegister) => void;
+  registerPatient: (patient: PatientRegister) => void;
+  registerTreatment: (treatment: Treatment) => void;
+  createRole: (email: string, role: string) => Promise<void>;
 }
 
 export interface AuthenticationRequest {
@@ -219,125 +219,123 @@ export interface AuthenticationResponse {
 export interface AuthTokens {
   token: string;
   email: string;
-  iat: number
-  exp: number
+  iat: number;
+  exp: number;
   authorities: string[];
 }
 
 export interface tokenData {
-  fullName: string
-  sub: string
-  iat: number
-  exp: number
-  authorities: string[]
+  fullName: string;
+  sub: string;
+  iat: number;
+  exp: number;
+  authorities: string[];
 }
 
 export interface PatientRegister {
-  email: string
-  password: string
-  nombre: string
-  apellido: string
-  tipoDocumentoId: number
-  numeroDocumento: string
-  fechaNacimiento: string
-  genero: string
-  factorSanguineo: number
-  patologiaId: number
-  medicosId: number[]
-  entidadesId: number[]
-  financiadorId: number
+  email: string;
+  password: string;
+  nombre: string;
+  apellido: string;
+  tipoDocumentoId: number;
+  numeroDocumento: string;
+  fechaNacimiento: string;
+  genero: string;
+  factorSanguineo: number;
+  patologiaId: number;
+  medicosId: number[];
+  entidadesId: number[];
+  financiadorId: number;
 }
 
 export interface Patient {
-  idPaciente: number
-  nombre: string
-  apellido: string
-  tipoDocumento: string
-  numeroDocumento: number
-  patologia: string
-  financiador: string
-  tratamientos: any[]
-  medicos: string[]
-  entidades: string[]
+  idPaciente: number;
+  nombre: string;
+  apellido: string;
+  tipoDocumento: string;
+  numeroDocumento: number;
+  patologia: string;
+  financiador: string;
+  tratamientos: any[];
+  medicos: string[];
+  entidades: string[];
 }
 
 export interface ContentPatient {
-  content: Patient[]
-  number: number
-  size: number
-  totalElements: number
-  totalPages: number
-  first: boolean
-  last: boolean
+  content: Patient[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
 }
 
 export interface ResponseRequest {
-  businessErrorCode: number
-  businessErrorDescription: string
-  error: string
-  token: string | undefined
+  businessErrorCode: number;
+  businessErrorDescription: string;
+  error: string;
+  token: string | undefined;
 }
-
 
 export interface Treatment {
-  pacienteId: number | undefined
-  patologiaId: number
-  medicamentoId: number
-  tipoTratamiento: number 
-  descripcion: string
-  dosisDiaria: number
-  horaInicio: string
-  diasTotales: number
-  fechaInicio: string
+  pacienteId: number | undefined;
+  patologiaId: number;
+  medicamentoId: number;
+  tipoTratamiento: number;
+  descripcion: string;
+  dosisDiaria: number;
+  horaInicio: string;
+  diasTotales: number;
+  fechaInicio: string;
 }
 
-
 export interface ContentMedicines {
-  content: Medicines[]
-  number: number
-  size: number
-  totalElements: number
-  totalPages: number
-  first: boolean
-  last: boolean
+  content: Medicines[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
 }
 
 export interface Medicines {
-  idMedicamento: number
-  nombre: string
-  descripcion: string
+  idMedicamento: number;
+  nombre: string;
+  descripcion: string;
 }
 
 export interface ContentTreatmentPacient {
-  content: TreatmentPacient[]
-  number: number
-  size: number
-  totalElements: number
-  totalPages: number
-  first: boolean
-  last: boolean
+  content: TreatmentPacient[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
 }
 
 export interface TreatmentPacient {
-  idTratamiento: number
-  nombrePatologia: string | null
-  nombreMedicamento: string | null
-  descripcion: string
-  dosisDiaria: number
-  fechaInicio: string
-  fechaFin: string
-  estado: string
-  tipoTratamientoId: number
-  horarios: Time[]
+  idTratamiento: number;
+  nombrePatologia: string | null;
+  nombreMedicamento: string | null;
+  descripcion: string;
+  dosisDiaria: number;
+  fechaInicio: string;
+  fechaFin: string;
+  estado: string;
+  tipoTratamientoId: number;
+  horarios: Time[];
 }
 
 export interface Time {
-  fecha: string
-  hora: string
-  estado: string
+  fecha: string;
+  hora: string;
+  estado: string;
 }
 
-export interface Medic{
+export interface Medic {
   nombre: string;
   apellido: string;
   telefono: string;
@@ -349,19 +347,32 @@ export interface Medic{
 }
 
 export interface ContentClinicHistory {
-  content: ClinicHistoryProps[]
-  number: number
-  size: number
-  totalElements: number
-  totalPages: number
-  first: boolean
-  last: boolean
+  content: ClinicHistoryProps[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
 }
 
 export interface ClinicHistoryProps {
-  fecha?: string
-  titulo: string
-  descripcion: string
-  idPaciente: number
+  fecha?: string;
+  titulo: string;
+  descripcion: string;
+  idPaciente: number;
+}
 
+export interface Paciente {
+  idPaciente: number;
+  nombre: string;
+  apellido: string;
+  tipoDocumento: string;
+  numeroDocumento: number;
+  patologia: string;
+  financiador: string;
+  tratamientos: number[];
+  medicos: string[];
+  entidades: string[];
+  imagen: string;
 }

@@ -79,7 +79,7 @@ export default function Donations() {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <div className="flex bg-gray-100 md:flex md:justify-center  ">
+    <main className="flex bg-gray-100 md:flex md:justify-center  ">
       <div className="w-full max-w-md min-h-screen font-inter bg-white rounded-lg shadow-lg  max-md:m-auto">
         <AsideMenu toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         <header className='mb-10 p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl'>
@@ -210,6 +210,6 @@ export default function Donations() {
         </section>
 
       </div>
-    </div>
+    </main>
   )
 }

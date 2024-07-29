@@ -57,7 +57,6 @@ export const Landing = () => {
 
   return (
     <main className='w-full md:mx-0 md:max-w-full md:p-0 '>
-
       <nav className='hidden   md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small'>
         <div className='md:ml-4'>
           <img src="./public/LOGOS/JustinaLogo_Lading.png" className='md:w-20' alt="" />
@@ -101,13 +100,13 @@ export const Landing = () => {
               <Button className='rounded-md bg-[#E08733] ml-5 mt-6 mb-10 drop-shadow-lg  w-36 md:mt-5 h-12 text-white font-[300] font-inter '>Acceder</Button>
             </Link>
           </div>
-          <img src='./public/LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg w-[60%] mb-4 md:mb-32 md:mr-36 md:w-[30%] md:h-[20rem]' alt="image-landing-page" />
+          <img src='./public/LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg min-w-[900px]:hidden w-[60%] mb-4 md:mb-32 md:mr-36 md:w-[30%] md:h-[20rem]' alt="image-landing-page" />
         </section>
 
         {/* Dispositivo Mobile */}
         <section className='flex flex-col gap-y-8 md:hidden content-center'>
           <h5 className={`hidden ${styles.h5}`}>ACERCA DE</h5>
-          <div className='flex flex-col items-center'>
+          <div className='flex flex-col ml-5'>
             <h2 className={`${styles.h2} text-[#5956E9] font-inter font-[600] text-[27px] h-[3rem] mt-16 `}>Una Web App Para Todos</h2>
             <p className=' text-black leading-6 tracking-wide text-sm w-[90%] font-inter font-[500]'>
               Diseñada para transformar la experiencia en el cuidado de la salud. Nuestra misión es proporcionar soluciones eficientes tanto a pacientes como a médicos, mejorando la comunicación, agilizando procesos y brindando un acompañamiento continuo.
@@ -158,54 +157,39 @@ export const Landing = () => {
           </ul>
         </section>
 
-        {/* Version Mobile */}
-        <section className='md:hidden flex flex-col mt-10'>
-          <div className='text-center gap-y-4 md:flex md:flex-col md:mb-32'>
-            <h2 className={`md:font-bold md:font-inter md:text-5xl text-3xl font-inter text-blue-juli-color ${styles.h2} mb-4`}>Lo Que Ofrecemos</h2>
-            <h5 className={` ${styles.h5} text-black font-[400] mb-10 text-lg font-inter`}>Nuestro Diferenciadores.</h5>
+
+
+        <section className='flex flex-col mt-10'>
+          <div className='text-center gap-y-4 md:flex md:flex-col md:mb-10'>
+            <h2 className={`md:font-bold md:font-inter md:text-5xl text-3xl font-inter text-blue-juli-color ${styles.h2} mb-4`}>
+              Lo Que Ofrecemos
+            </h2>
+            <h5 className={` ${styles.h5} text-black font-[400] mb-10 text-lg font-inter`}>
+              Nuestro Diferenciadores.
+            </h5>
           </div>
 
-          <div className="flex flex-col items-center ">
+          <div className="flex flex-col items-center md:hidden">
             <div className='md:flex md:flex-col md:pl-20'>
-              <h4 className='text-xl  text-blue-juli-color font-inter font-semibold w-[90%] mb-5'>Asistencia Personalizada 24/7</h4>
+              <h4 className='text-xl text-blue-juli-color font-inter font-semibold w-[90%] mb-5'>
+                Asistencia Personalizada 24/7
+              </h4>
             </div>
-            <div className='rounded-xl bg-gradient-to-r from-[#5F5CF4] to-[#C49FE0] w-[90%] h-[20rem]  '>
-              <img src='./public/jus-removebg-preview_1.png' alt="image-landing-page" className='w-[40%] relative top-[1rem] left-4 ' />
-              <img src='./public/Ellipse_136.png' alt="image-landing-page" className='w-[40%] relative left-[10rem] top-[2rem]' />
+            <div className='relative grid grid-cols-1 grid-rows-2 rounded-xl bg-gradient-to-r from-[#5F5CF4] to-[#C49FE0] w-[90%] h-[20rem]'>
+              <img src='./public/jus-removebg-preview_1.png' alt="image-landing-page" className='absolute top-0 left-0 w-[35%] h-auto lg:w-[20%]' />
+              <img src='./public/Ellipse_136.png' alt="image-landing-page" className='absolute bottom-0 right-0 w-[35%] h-auto lg:w-[20%]' />
             </div>
-          </div>
-
-          <div className="flex flex-col items-center mt-10">
-            <div className='md:flex md:flex-col md:pl-20'>
-              <h4 className='text-xl  text-blue-juli-color font-inter font-semibold w-[90%] mb-5 ml-5'>Plataforma Integral Para Transplantes</h4>
-            </div>
-            <img src='./public/CenterContent.png' alt="image-landing-page" className='md:mr-20 w-[90%]' />
-          </div>
-
-          <div className="flex flex-col items-center mt-10">
-            <div className='md:flex md:flex-col md:pl-20'>
-              <h4 className='text-xl  text-blue-juli-color font-inter font-semibold w-[90%] mb-5 ml-5'>Purus id tellus arcu habitant proin magna. Integer purus </h4>
-            </div>
-            <img src='./public/image.png' alt="image-landing-page" className='md:ml-32 w-[90%]' />
-          </div>
-
-
-        </section>
-
-        {/* Version Desktop - Diferenciadores */}
-        <section className='md:flex md:flex-col md:gap-y-8 hidden'>
-          <div className='text-center gap-y-4 flex flex-col md:mb-10'>
-            <h2 className={`md:font-bold md:font-inter md:text-5xl text-blue-juli-color  ${styles.h2}`}>Lo que ofrecemos</h2>
-            <h5 className={` ${styles.h5}`}>Nuestros diferenciadores.</h5>
           </div>
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
-            <div className='md:rounded-xl md:bg-gradient-to-r md:from-[#5F5CF4] md:to-[#C49FE0] md:w-[30%] md:h-[20rem] md:ml-44 '>
-              <img src='./public/jus-removebg-preview_1.png' alt="image-landing-page" className='md:ml-32 md:w-40 md:relative md:right-20 ' />
-              <img src='./public/Ellipse_136.png' alt="image-landing-page" className='md:ml-32 md:w-36 md:relative md:left-20' />
+            <div className='md:rounded-xl md:bg-gradient-to-r md:from-[#5F5CF4] md:to-[#C49FE0] md:w-[33%] md:h-[17rem] md:ml-36'>
+              <img src='./public/jus-removebg-preview_1.png' alt="image-landing-page" className='md:relative md:bottom-auto xl:left-10 md:left-auto md:w-28 lg:w-36 xl:w-36' />
+              <img src='./public/Ellipse_136.png' alt="image-landing-page" className='md:relative md:bottom-auto md:left-40 xl:left-60 xl:bottom-3 lg:left-40  md:w-28 lg:w-32 xl:w-36' />
             </div>
             <div className='md:flex md:flex-col md:pr-20 md:w-[45%]'>
-              <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-4'>Asistencia Personalizada 24/7</h4>
+              <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-4'>
+                Asistencia Personalizada 24/7
+              </h4>
               <h5 className={`${styles.h5} `}>
                 “CORA” Nuestro bot de ayuda está disponible las 24 horas del día, los 7 días de la semana,
                 ofreciendo respuestas rápidas y precisas a las preguntas de los pacientes,
@@ -214,23 +198,49 @@ export const Landing = () => {
             </div>
           </div>
 
+          <div className="flex flex-col items-center mt-10 md:hidden">
+            <div className='md:flex md:flex-col md:pl-20'>
+              <h4 className='text-xl text-blue-juli-color font-inter font-semibold w-[90%] mb-5 ml-5'>
+                Plataforma Integral Para Transplantes
+              </h4>
+            </div>
+            <img src='./public/CenterContent.png' alt="image-landing-page" className='md:mr-20 w-[90%]' />
+          </div>
+
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
             <div className='md:flex md:flex-col md:pr-20 md:w-[45%] md:ml-32'>
-              <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10'>Plataforma Integral para Trasplantes</h4>
-              <h5 className={`${styles.h5} `}>Justina.IO se centra en coordinar a especialistas de la salud para gestión y coordinación de trasplantes de órganos, brindando herramientas de comunicación eficiente entre equipos médicos.</h5>
+              <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10'>
+                Plataforma Integral para Trasplantes
+              </h4>
+              <h5 className={`${styles.h5} `}>
+                Justina.IO se centra en coordinar a especialistas de la salud para gestión y coordinación de trasplantes de órganos, brindando herramientas de comunicación eficiente entre equipos médicos.
+              </h5>
             </div>
             <img src='./public/CenterContent.png' alt="image-landing-page" className='md:mr-20' />
+          </div>
+
+          <div className="flex flex-col items-center mt-10 md:hidden">
+            <div className='md:flex md:flex-col md:pl-20'>
+              <h4 className='text-xl text-blue-juli-color font-inter font-semibold w-[90%] mb-5 ml-5'>
+                Purus id tellus arcu habitant proin magna. Integer purus
+              </h4>
+            </div>
+            <img src='./public/image.png' alt="image-landing-page" className='md:ml-32 w-[90%]' />
           </div>
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
             <img src='./public/image.png' alt="image-landing-page" className='md:ml-32' />
             <div className='md:flex md:flex-col md:pr-20 md:w-[45%]'>
-              <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10'>Interfaz Amigable y Accesible</h4>
-              <h5 className={`${styles.h5} `}>Nuestra plataforma es fácil de usar y está diseñada para ser accesible a usuarios de todas las edades y niveles de experiencia tecnológica. Esto garantiza que tanto pacientes como médicos puedan beneficiarse de nuestras soluciones sin complicaciones.</h5>
+              <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10'>
+                Interfaz Amigable y Accesible
+              </h4>
+              <h5 className={`${styles.h5} `}>
+                Nuestra plataforma es fácil de usar y está diseñada para ser accesible a usuarios de todas las edades y niveles de experiencia tecnológica. Esto garantiza que tanto pacientes como médicos puedan beneficiarse de nuestras soluciones sin complicaciones.
+              </h5>
             </div>
           </div>
-
         </section>
+
 
         {/*Version Mobile - Preguntas Frecuentes */}
         <section className='md:hidden flex flex-col gap-y-4 mt-10  mb-10 bg-cover h-screen bg-center text-white ' style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
