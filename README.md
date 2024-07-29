@@ -17,7 +17,7 @@ Información del Proyecto
   </tr>
   <tr>
     <td>Fecha de fin</td>
-    <td>??/07/2024</td>
+    <td>05/08/2024</td>
   </tr>
  
 </table>
@@ -47,10 +47,10 @@ Información del Proyecto
 
 | Funcionalidad | Descripción |
 |---|---|
-| Registro | Permite a los usuarios objetivo el crear cuentas en la plataforma. |
-| Logueo  | Permite a los usuarios ya registrados iniciar sesión en la plataforma. Habilitando la vista de reservas.|
-| Recomendaciones de clientes | Permite a los dueños de mascotas ver y dejar comentarios sobre los espacios. |
-| Visualización de espacios disponibles | Permite a los usuarios ponerse visualizar anticipadamenta los espacios disponibles, horarios y precios. |
+| Registro | Permite a los usuarios crear cuentas en la plataforma. |
+| Logueo  | Permite a los usuarios ya registrados iniciar sesión en la plataforma. Habilitando la vista de dashboard.|
+| Bot interactivo | Permite a los usuarios "Pacientes" poder acceder a un chatbot que usa IA para apoyo emocional. |
+| Gestión de turnos médicos | Permite a los "Pacientes" y "Doctores" poder crear y seguir una agenda de turnos, introducir tratamientos y recetas, y realizar ABM (Alta, Baja, Modificación). |
 
 
 
