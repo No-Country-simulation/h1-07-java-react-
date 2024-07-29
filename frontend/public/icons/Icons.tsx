@@ -445,6 +445,15 @@ export function FlechaIcon({ width, height }: IconProps) {
   )
 }
 
+export function ArrowBlackIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
 
 export function FlechaIconTwo({ width, height }: IconProps) {
   return (
@@ -851,3 +860,29 @@ export function AdressIcon({ width, height }: IconProps) {
 
   )
 }
+
+export function SilderIcon({ width, height }: IconProps) {
+  return (
+
+    <svg width={width} height={height} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_736_3842)">
+        <path d="M8.75001 1.66699H5.83334" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M4.16667 1.66699H1.25" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M8.75 5H5" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M3.33333 5H1.25" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M8.74999 8.33301H6.66666" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M5 8.33301H1.25" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M5.83334 0.833008V2.49967" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M3.33334 4.16699V5.83366" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M6.66666 7.5V9.16667" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_736_3842">
+          <rect width="10" height="10" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  )
+}
+
+

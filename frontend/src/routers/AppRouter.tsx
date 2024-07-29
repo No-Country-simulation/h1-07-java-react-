@@ -16,14 +16,15 @@ import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDe
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patients";
 // import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
-import Chat from "../components/Chat";
-import SignUp from "../pages/signup/SignUp";
-import { Landing } from "../pages/landing/Landing";
-import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
 import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
 import { UserInfo_Patients } from "../pages/private/Patients_Pages/UserInfo_Patients/UserInfo_Patients";
+import SignUp from "../pages/SignUp/SignUp";
+import { Landing } from "../pages/Landing/Landing";
+import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+import Donations from "../pages/private/Medic_Pages/Donations/Donations";
+import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
 
 
 
@@ -51,8 +52,8 @@ function AppRouter() {
 							<Route path="/patient-register" element={<RegisterPatient />}></Route>
 							<Route path="/patient-list" element={<PatientList />}></Route>
 							<Route path="/patient/:id" element={<PatientDetail />} />
-							<Route path="/patient/:id/treatment" element={<TreatmentPatient />}>
-							</Route>
+							<Route path="/patient/:id/treatment" element={<TreatmentPatient />}/>
+							<Route path="/donations" element={<Donations />} />
 						</Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
 							<Route path="/patient-home" element={<Home_Patients />} />

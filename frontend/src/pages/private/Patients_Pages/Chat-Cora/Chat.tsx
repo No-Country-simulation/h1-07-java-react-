@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { API_URL } from '../api/api';
+import { API_URL } from '../../../../api/api';
 import { ReactTyped } from 'react-typed';
-import { ArrowIcon } from '../../public/icons/Icons';
+import { ArrowIcon } from '../../../../../public/icons/Icons';
 import { Link } from 'react-router-dom';
 
 interface MessageProps {
@@ -58,6 +58,7 @@ export default function Chat() {
     <main className=" min-h-screen bg-gray-100 md:flex md:justify-center">
       <div className="w-full max-w-md relative  bg-white rounded-lg shadow-lg  max-md:m-auto">
         <header className="relative bg-white flex justify-center items-center p-4 text-gray-700">
+          <img src="Ellipse_136.png" alt="User Avatar" className="w-10 h-10 rounded-full" />
           <h1 className="text-2xl font-semibold text-center">Cora</h1>
           <Link to={"/patient-home"} className=' absolute left-5'><ArrowIcon width={30} height={30} /></Link>
         </header>
@@ -85,7 +86,7 @@ export default function Chat() {
                   <div className="w-9 h-9 rounded-full flex items-center justify-center mr-2">
                     <img src={`Ellipse_136.png`} alt="My Avatar" className={`w-8 h-8 rounded-full `} />
                   </div>
-                  <ReactTyped strings={[message.message]} showCursor={false} typeSpeed={50} className='flex max-w-80 rounded-lg p-3 gap-3 bg-light-color text-[#1F4A69]' />
+                  <ReactTyped strings={[message.message]} showCursor={false} typeSpeed={5} className='flex max-w-80 rounded-lg p-3 gap-3 bg-light-color text-[#1F4A69]' />
                 </>
               }
               {message.sender == 'user' &&
@@ -106,8 +107,8 @@ export default function Chat() {
 
         <footer className="bg-[#1F4A69] border-t border-gray-300 p-4 absolute bottom-0 w-full">
           <form className="flex items-center" onSubmit={(e) => submitMessageUser(e)}>
-            <input onChange={(e) => setNewMessage(e.target.value)} type="text" name='message' placeholder="Escribe aquí..." className="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" />
-            <button disabled={isTyping} type='submit' className="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2">Enviar</button>
+            <input disabled={isTyping} onChange={(e) => setNewMessage(e.target.value)} type="text" name='message' placeholder="Escribe aquí..." className="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" />
+            <button disabled={isTyping} type='submit' className={`${isTyping && 'disabled:brightness-90 cursor-not-allowed'}  bg-indigo-500 text-white px-4 py-2 rounded-md ml-2`}>Enviar</button>
           </form>
         </footer>
       </div >
