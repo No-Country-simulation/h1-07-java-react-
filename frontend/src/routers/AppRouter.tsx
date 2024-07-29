@@ -20,7 +20,8 @@ import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patient
 import SignUp from "../pages/SignUp/SignUp";
 import { Landing } from "../pages/Landing/Landing";
 import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
-import Chat from "../components/Chat";
+import Donations from "../pages/private/Medic_Pages/Donations/Donations";
+import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
 
 
 
@@ -48,8 +49,8 @@ function AppRouter() {
 							<Route path="/patient-register" element={<RegisterPatient />}></Route>
 							<Route path="/patient-list" element={<PatientList />}></Route>
 							<Route path="/patient/:id" element={<PatientDetail />} />
-							<Route path="/patient/:id/treatment" element={<TreatmentPatient />}>
-							</Route>
+							<Route path="/patient/:id/treatment" element={<TreatmentPatient />}/>
+							<Route path="/donations" element={<Donations />} />
 						</Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
 							<Route path="/patient-home" element={<Home_Patients />} />

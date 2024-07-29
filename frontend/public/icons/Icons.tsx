@@ -445,6 +445,15 @@ export function FlechaIcon({ width, height }: IconProps) {
   )
 }
 
+export function ArrowBlackIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  )
+}
+
 
 export function FlechaIconTwo({ width, height }: IconProps) {
   return (
@@ -570,7 +579,7 @@ export function SearchIcon({ width, height }: IconProps) {
 }
 export function HealthIcon({ width, height }: IconProps) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="#948ABC" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="#fff" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
     </path >
     </svg>
   )
@@ -650,7 +659,7 @@ export function RecordIcon({ width, height }: IconProps) {
   )
 }
 
-export function CheckIconTwo({width, height}: IconProps) {
+export function CheckIconTwo({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M11.25 13.75L15 17.5L27.5 5M26.25 15V23.75C26.25 24.413 25.9866 25.0489 25.5178 25.5178C25.0489 25.9866 24.413 26.25 23.75 26.25H6.25C5.58696 26.25 4.95107 25.9866 4.48223 25.5178C4.01339 25.0489 3.75 24.413 3.75 23.75V6.25C3.75 5.58696 4.01339 4.95107 4.48223 4.48223C4.95107 4.01339 5.58696 3.75 6.25 3.75H20" stroke="#5956E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -658,3 +667,29 @@ export function CheckIconTwo({width, height}: IconProps) {
 
   )
 }
+
+export function SilderIcon({ width, height }: IconProps) {
+  return (
+
+    <svg width={width} height={height} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_736_3842)">
+        <path d="M8.75001 1.66699H5.83334" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M4.16667 1.66699H1.25" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M8.75 5H5" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M3.33333 5H1.25" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M8.74999 8.33301H6.66666" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M5 8.33301H1.25" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M5.83334 0.833008V2.49967" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M3.33334 4.16699V5.83366" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M6.66666 7.5V9.16667" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_736_3842">
+          <rect width="10" height="10" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  )
+}
+
+
