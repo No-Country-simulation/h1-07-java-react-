@@ -11,6 +11,7 @@ export default function PatientList() {
   const [patients, setPatients] = useState<ContentPatient>()
   const [searchPatient, setSearchPatient] = useState("")
   const [loading, setLoading] = useState(false)
+  
   useEffect(() => {
     const fetchPatientData = async () => {
       setLoading(true)

@@ -54,7 +54,6 @@ export function Home(): JSX.Element {
 	]
 
 	useEffect(() => {
-
 		const fetchMedic = async () => {
 			try {
 				setMedicInfo(await fetchMedicData())
@@ -103,14 +102,14 @@ export function Home(): JSX.Element {
 					onClick={toggleSidebar}
 				></div>
 			)}
-			<header className="flex flex-col justify-between h-[9.7rem] mb-4 relative  w-[100%] bg-[#D9D9D9] border rounded-br-[3rem] bg-gradient-to-r from-[#5761C8] to-[#A1AAFF]">
-				<div className="flex items-center space-x-2 content-center justify-between ml-4">
+			<header className="flex flex-col justify-between h-[9.8rem] mb-4 relative w-[100%] bg-[#D9D9D9] border rounded-br-[3rem] bg-gradient-to-r from-[#5761C8] to-[#A1AAFF]">
+				<div className="flex items-center space-x-2 content-center justify-between ml-3">
 					<Link to={"/userInfo"}>
-						<div className="w-[12.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
+						<div className="w-[14rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
 							<img src="IMG_MEDICO/IMG_MEDICO.png" className='ml-2' alt="" width={56} height={58} />
 							<div className=''>
-								<h1 className=" text-lg font-inter font-bold text-white">Buenos días,</h1>
-								<p className="font-inter font-bold text-white">Dr. {medicInfo?.nombre} {medicInfo?.apellido}</p>
+								<h1 className="ml-3 text-lg font-inter font-bold text-white">Buenos días,</h1>
+								<p className="ml-3 font-inter font-bold text-white">Dr. {medicInfo?.nombre} {medicInfo?.apellido}</p>
 							</div>
 						</div>
 					</Link>
@@ -121,7 +120,7 @@ export function Home(): JSX.Element {
 						</button>
 					</div>
 				</div>
-				<div className="flex items-center space-x-2  justify-center">
+				<div className="flex items-center space-x-2 justify-center">
 					<div className="relative py-2">
 						<input
 							type="text"

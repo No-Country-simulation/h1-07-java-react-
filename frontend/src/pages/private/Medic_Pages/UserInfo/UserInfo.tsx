@@ -55,6 +55,7 @@ export function UserInfo(): JSX.Element {
 					</div>
 				</section>
 			</header>
+			
 			<section className="flex flex-row justify-center absolute top-[10.5rem] left-12">
 				<div className="bg-white border-2 border-solid border-[#3D4DA5] rounded-xl py-1 mr-1 ml-2 px-[10px]">
 					<p className="text-[14px] text-[#3D4DA5]">Medicina Interna</p>
@@ -63,6 +64,7 @@ export function UserInfo(): JSX.Element {
 					<p className="text-[14px] text-[#3D4DA5]">Medicina General</p>
 				</div>
 			</section>
+			
 			<section className="ml-4 mt-5 mb-10">
 				<div>
 					<h2 className="font-bold text-[24px] font-inter">Datos Personales</h2>
@@ -96,6 +98,7 @@ export function UserInfo(): JSX.Element {
 					<input type="text" placeholder="Rosario" value={medicInfo?.telefono} className="px-5 py-3 border-2 border-solid border-gray-400 rounded-xl w-[95%]" />
 				</div>
 			</section>
+			
 			<section className="mt-10 ml-6">
 				<div className="flex flex-row items-center">
 					<h3 className="text-[24px] font-inter font-bold">Curriculum</h3>
@@ -116,13 +119,15 @@ export function UserInfo(): JSX.Element {
 						<textarea
 							value={curriculum}
 							onChange={handleChange}
-							className="w-full h-40 p-2 border-2 border-solid border-gray-400 rounded-xl"
+							className="w-full h-40 p-2 border-2 border-solid rounded-xl outline-none"
+							placeholder=""
 						/>
 					) : (
 						<p className="font-inter text-[15px]">{curriculum}</p>
 					)}
 				</div>
 			</section>
+			
 			<section className="ml-4 mt-5 mb-10">
 				<div>
 					<h2 className="font-bold text-[24px] font-inter">Datos inicio de sesión</h2>

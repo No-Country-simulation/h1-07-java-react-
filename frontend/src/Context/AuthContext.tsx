@@ -385,6 +385,8 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       }
 
       const data = await res.json();
+      console.log(data);
+
       await createRole(doctor.email, 'DOCTOR');
 
       if (data.nombre) {
@@ -404,6 +406,9 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     } catch (err: any) {
       if (err.status === 400) {
         toast.error('El email ya está registrado');
+      } else {
+        console.error(err);
+        toast.error('Error al registrar el doctor');
       }
     }
   };
@@ -690,3 +695,27 @@ export
       console.log(err)
     }
   }
+
+export const fetchPatietConect = async () => {
+  const token = localStorage.getItem("TOKEN_KEY");
+
+  try {
+    const res = await fetch(`${API_URL}/paciente/buscar-paciente-conectado`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
+    })
+
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+    const data = await res.json()
+    localStorage.setItem("MEDIC-DATA", JSON.stringify(data))
+
+    return data
+  } catch (err: any) {
+    console.error(err)
+  }
+}
