@@ -25,7 +25,7 @@ Información del Proyecto
 
 <div align="center">
 
-<img src="https" width="300" alt="LOGO">
+<img src="https://res.cloudinary.com/draig/image/upload/v1722290699/pruebas/upiunhnmho2z959bwb33.png" width="300" alt="LOGO">
 
   <h2>justina.io | Hackaton h1-07-java-react</h2>
 
