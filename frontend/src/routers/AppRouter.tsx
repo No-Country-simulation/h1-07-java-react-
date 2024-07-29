@@ -7,7 +7,6 @@ import { Onboarding } from "../pages/OnBoarding/OnBoarding";
 import { AuthContextProvider } from "../Context/AuthContext";
 import { RoutesWithNotFound } from "./RoutesWithNotFound";
 import { PublicRoute } from "./PublicRoute";
-
 import { Home } from "../pages/private/Medic_Pages/Home/Home";
 import { Detalle } from "../pages/private/Medic_Pages/Detalle/Detalle";
 import { UserInfo } from "../pages/private/Medic_Pages/UserInfo/UserInfo";
@@ -17,10 +16,14 @@ import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDe
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patients";
 // import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
-import SignUp from "../pages/SignUp/SignUp";
-import { Landing } from "../pages/Landing/Landing";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
 import Chat from "../components/Chat";
+import SignUp from "../pages/signup/SignUp";
+import { Landing } from "../pages/landing/Landing";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
+import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
+import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
+import { UserInfo_Patients } from "../pages/private/Patients_Pages/UserInfo_Patients/UserInfo_Patients";
 
 
 
@@ -53,7 +56,11 @@ function AppRouter() {
 						</Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
 							<Route path="/patient-home" element={<Home_Patients />} />
+							<Route path="/user-info-patient" element={<UserInfo_Patients />}/>
 							<Route path="/chat-cora" element={<Chat></Chat>}></Route>
+							<Route path="/notification" element={<Patient_Notification />}/>
+							<Route path="/citas" element={<PatientAppointments />} />
+							<Route path="/Medic_Appointment" element={<Medic_Appointment />}/>
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 
