@@ -12,4 +12,6 @@ public interface HorarioTomaRepository extends JpaRepository<HorarioToma, Intege
     List<HorarioToma> findByTratamientoAndEsActivoTrue(Tratamiento tratamiento);
 
     List<HorarioToma> findAllByFechaAndHoraBetweenAndEsActivoTrue(LocalDate localDate, LocalTime localTime, LocalTime localTime1);
+
+    List<HorarioToma> findByHoraBetween(LocalTime localTime, LocalTime localTime1);
 }

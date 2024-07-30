@@ -241,4 +241,15 @@ public class Mapper {
                 .telefono(medico.getTelefono())
                 .build();
     }
+
+    public static NotificacionResponse toNotificacionResponse(Notificacion notificacion) {
+        return NotificacionResponse.builder()
+                .idNotificacion(notificacion.getIdNotificacion())
+                .horarioTomaId(notificacion.getHorarioToma().getIdHorario())
+                .pacienteId(notificacion.getPaciente().getIdPaciente())
+                .fechaNotificacion(notificacion.getFechaNotificacion())
+                .leido(notificacion.getLeido())
+                .mensaje(notificacion.getMensaje())
+                .build();
+    }
 }
