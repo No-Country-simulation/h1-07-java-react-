@@ -247,7 +247,8 @@ public class Mapper {
                 .idNotificacion(notificacion.getIdNotificacion())
                 .horarioTomaId(notificacion.getHorarioToma().getIdHorario())
                 .pacienteId(notificacion.getPaciente().getIdPaciente())
-                .fechaNotificacion(notificacion.getFechaNotificacion())
+                .fecha(notificacion.getFecha())
+                .hora(notificacion.getHora())
                 .leido(notificacion.getLeido())
                 .mensaje(notificacion.getMensaje())
                 .build();

@@ -3,7 +3,9 @@ package io.justina.justinaio.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -25,7 +27,9 @@ public class Notificacion {
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 
-    private LocalDateTime fechaNotificacion;
+    private LocalTime hora;
+    @Temporal(TemporalType.DATE)
+    private LocalDate fecha;
     private Boolean leido;
     private String mensaje;
 }

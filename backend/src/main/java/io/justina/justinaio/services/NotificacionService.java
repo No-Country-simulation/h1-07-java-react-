@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -39,7 +40,8 @@ public class NotificacionService {
                 Notificacion notificacion = Notificacion.builder()
                         .horarioToma(horario)
                         .paciente(horario.getTratamiento().getPaciente())
-                        .fechaNotificacion(LocalDateTime.now())
+                        .fecha(horario.getFecha())
+                        .hora(horario.getHora())
                         .leido(false)
                         .mensaje(horario.getTratamiento().getDescripcion())
                         .build();
@@ -58,11 +60,11 @@ public class NotificacionService {
     }
 
     public List<NotificacionResponse> obtenerTodasNotificacionesPaciente(Paciente paciente) {
-        LocalDateTime ahora = LocalDateTime.now();
-        LocalDateTime tresDiasAtras = ahora.minusDays(3);
+        LocalDate ahora = LocalDate.now();
+        LocalDate tresDiasAtras = ahora.minusDays(3);
 
         // Obtén todas las notificaciones (leídas y no leídas) en el rango de fechas
-        List<Notificacion> notificaciones = notificacionRepository.findByPacienteAndFechaNotificacionBetween(paciente, tresDiasAtras, ahora);
+        List<Notificacion> notificaciones = notificacionRepository.findByPacienteAndFechaBetween(paciente, tresDiasAtras, ahora);
 
         // Mapea las notificaciones a NotificacionResponse
         return notificaciones.stream()
@@ -72,10 +74,10 @@ public class NotificacionService {
 
 
     public List<NotificacionResponse> obtenerNotificacionesNoLeidasPaciente(Paciente paciente) {
-        LocalDateTime ahora = LocalDateTime.now();
-        LocalDateTime tresDiasAtras = ahora.minusDays(3);
+        LocalDate ahora = LocalDate.now();
+        LocalDate tresDiasAtras = ahora.minusDays(3);
 
-        List<Notificacion> notificaciones = notificacionRepository.findByPacienteAndFechaNotificacionBetweenAndLeidoFalse(paciente, tresDiasAtras, ahora);
+        List<Notificacion> notificaciones = notificacionRepository.findByPacienteAndFechaBetweenAndLeidoFalse(paciente, tresDiasAtras, ahora);
 
         return notificaciones.stream().map(Mapper::toNotificacionResponse).toList();
     }
