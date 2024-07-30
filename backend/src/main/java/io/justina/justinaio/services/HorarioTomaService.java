@@ -29,7 +29,7 @@ public class HorarioTomaService {
                 () -> new NullPointerException("Horario no encontrado con ese ID")
         );
         horarioToma.setEstadoHorario(EstadoHorario.values()[horarioTomaRequest.getEstado()]);
-        horarioToma.setCometario(horarioToma.getCometario());
+        horarioToma.setCometario(horarioTomaRequest.getComentario());
         horarioTomaRepository.save(horarioToma);
     }
 }
