@@ -29,7 +29,7 @@ public class NotificacionService {
     private final PacienteRepository pacienteRepository;
 
     @Transactional
-    @Scheduled(fixedRate = 900000) // Ejecución cada 15 minutos
+    @Scheduled(fixedRate = 840000) // Ejecución cada 14 minutos
     public void crearNotificaciones() {
         // Obtener todas las HorarioToma de los próximos 20 minutos y crear notificaciones
         List<HorarioToma> proximosHorarios = obtenerProximosHorarios();

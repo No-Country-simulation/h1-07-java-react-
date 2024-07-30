@@ -6,5 +6,4 @@ public enum EstadoHorario {
     COMPLETADO,
     NO_COMPLETADO,
     ATRASADO,
-    OLVIDO
 }
