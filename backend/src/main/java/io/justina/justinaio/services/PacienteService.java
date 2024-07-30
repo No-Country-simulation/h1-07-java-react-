@@ -226,5 +226,11 @@ public class PacienteService {
         return Mapper.toPacienteResponse(paciente);
     }
 
+
+    public Paciente obtenerModeloPacienteConectado(Authentication token) {
+        Usuario usuarioPaciente = ((Usuario) token.getPrincipal());
+        return pacienteRepository.findByIdPaciente(usuarioPaciente.getId()).orElseThrow(() ->
+                new NullPointerException("Paciente no encontrado con ese ID"));
+    }
 }
 
