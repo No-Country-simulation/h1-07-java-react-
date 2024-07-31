@@ -62,7 +62,7 @@ export default function Chat() {
           <h1 className="text-2xl font-semibold text-center">Cora</h1>
           <Link to={"/patient-home"} className=' absolute left-5'><ArrowIcon width={30} height={30} /></Link>
         </header>
-        <div className=" font-mono h-screen relative overflow-y-auto p-4 pb-36 bg-gradient-to-t from-pink-300 to-indigo-500">
+        <div className=" font-mono min-h-[90vh] relative overflow-y-auto p-4 pb-36 bg-gradient-to-t from-pink-300 to-indigo-500">
           <div className="flex mb-4 cursor-pointer">
             <div className="w-9 h-9 rounded-full flex items-center justify-center mr-2">
               <img src="Ellipse_136.png" alt="User Avatar" className="w-8 h-8 rounded-full" />

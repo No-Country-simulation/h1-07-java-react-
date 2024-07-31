@@ -13,11 +13,12 @@ interface HeaderProfileProps {
   typeDocument: string | undefined
   financier: string | undefined
   document: number | undefined
-  loading: boolean | undefined
+  loading?: boolean | undefined
   pathology?: string | undefined
+  title: string
 }
 
-export const HeaderProfile: React.FC<HeaderProfileProps> = ({ loading, children, name, lastname, typeDocument, financier, document }) => {
+export const HeaderProfile: React.FC<HeaderProfileProps> = ({title, loading, children, name, lastname, typeDocument, financier, document }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -32,7 +33,7 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({ loading, children,
               <ArrowWhiteIcon width={30} height={30} />
             </Link>
             <div className="flex items-center justify-center">
-              <h1 className="text-xl font-bold text-light-color">Listado de pacientes</h1>
+              <h1 className="text-xl font-bold text-light-color">{title}</h1>
               <button onClick={toggleSidebar} className=' absolute right-0'>
                 <MenuHambuerguesa width={30} height={30} />
               </button>

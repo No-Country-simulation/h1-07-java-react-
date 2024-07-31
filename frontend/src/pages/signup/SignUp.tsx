@@ -6,8 +6,20 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Button } from '@nextui-org/react';
 import { CardIcon, FlechaIconTwo, JobIcon, LoaderIcon } from '../../../public/icons/Icons';
 import { useAuthContext } from '../../Context/AuthContext';
-import { dataRegisterDoctor, initialValuesDoctor } from '../../utils/data/data';
 import { validationSchema } from '../../utils/validation/validation';
+import { initialValuesDoctor } from '../../utils/data/data';
+import { EmailIcon, HomeIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from "../../../public/icons/Icons";
+
+const dataRegisterDoctor = [
+	{ label: 'Nombre', name: 'nombre', type: 'text', icon: UserIcon, placeholder: 'Ej: Mario' },
+	{ label: 'Apellido', name: 'apellido', type: 'text', icon: UserIcon, placeholder: 'Ej: Hernandez' },
+	{ label: 'Correo Electrónico', name: 'email', type: 'email', icon: EmailIcon, placeholder: 'Ej: tumail@mailito.com' },
+	{ label: 'Contraseña', name: 'password', type: 'password', icon: LockIcon, placeholder: 'Introduzca contraseña' },
+	{ label: 'Teléfono', name: 'telefono', type: 'tel', icon: PhoneIcon, placeholder: 'Ej: 55 5555-5555' },
+	{ label: 'Provincia', name: 'localidad', type: 'text', icon: MapIcon, placeholder: 'Ej: Santa Fe' },
+	{ label: 'Localidad', name: 'provincia', type: 'text', icon: HomeIcon, placeholder: 'Ej: Rosario' },
+	{ label: 'Licencia', name: 'licencia', type: 'text', icon: CardIcon, placeholder: 'Ej: 123456' },
+]
 
 const SignUp: React.FC = () => {
 	const navigate = useNavigate();
@@ -15,7 +27,7 @@ const SignUp: React.FC = () => {
 	const { registerDoctor } = useAuthContext()
 
 	const handleSubmit = async (values: DoctorRegister) => {
-		const doctor: DoctorRegister = {...values, financiadores:new Array(values.financiadores)}
+		const doctor: DoctorRegister = { ...values, financiadores: new Array(values.financiadores) }
 		console.log(values.financiadores)
 		try {
 			setLoading(true)

@@ -11,7 +11,7 @@ export const Logout: React.FC = () => {
   };
 
   return (
-    <header className=" mb-10 shadow p-4 flex justify-between items-center">
+    <header className=" mb-10 shadow p-4 flex justify-between items-center bg-transparent">
       <button
         onClick={handleLogout}
         className="px-14 py-2 bg-[#E08733] font-inter rounded-xl text-white hover:bg-[#794e0a] duration-700"
