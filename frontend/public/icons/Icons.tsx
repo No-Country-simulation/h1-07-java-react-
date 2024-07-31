@@ -1,4 +1,3 @@
-
 interface IconProps {
   width: number
   height: number
@@ -83,10 +82,10 @@ export const TabletIcon = ({ width, height }: { width: number, height: number })
   )
 }
 
-export const UserIcon = ({ width, height }: { width: number, height: number }) => {
+export const UserIcon = ({ width, height }: IconProps) => {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12.5 13.125V11.875C12.5 11.212 12.2366 10.5761 11.7678 10.1072C11.2989 9.63839 10.663 9.375 10 9.375H5C4.33696 9.375 3.70107 9.63839 3.23223 10.1072C2.76339 10.5761 2.5 11.212 2.5 11.875V13.125M10 4.375C10 5.75571 8.88071 6.875 7.5 6.875C6.11929 6.875 5 5.75571 5 4.375C5 2.99429 6.11929 1.875 7.5 1.875C8.88071 1.875 10 2.99429 10 4.375Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12.5 13.125V11.875C12.5 11.212 12.2366 10.5761 11.7678 10.1072C11.2989 9.63839 10.663 9.375 10 9.375H5C4.33696 9.375 3.70107 9.63839 3.23223 10.1072C2.76339 10.5761 2.5 11.212 2.5 11.875V13.125M10 4.375C10 5.75571 8.88071 6.875 7.5 6.875C6.11929 6.875 5 5.75571 5 4.375C5 2.99429 6.11929 1.875 7.5 1.875C8.88071 1.875 10 2.99429 10 4.375Z" stroke={'#948ABC'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
@@ -475,12 +474,12 @@ export function ArrowWhiteIcon({ width, height }: IconProps) {
 
 export function HomeIconTwo({ width, height }: IconProps) {
   return (
-    <svg width={width} className="text-red-600" height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 22V12H15V22M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="#F9F9F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 22V12H15V22M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke={'#948ABC'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-
   )
 }
+
 
 export function PeopleIcon({ width, height }: IconProps) {
   return (
@@ -579,8 +578,9 @@ export function SearchIcon({ width, height }: IconProps) {
 }
 export function HealthIcon({ width, height }: IconProps) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="#948ABC" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-    </path >
+    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="#fff" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" >
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+      </path >
     </svg>
   )
 }
@@ -770,7 +770,6 @@ export function CampanaNotificIcon({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.7295 25C13.5537 25.3031 13.3014 25.5547 12.9978 25.7295C12.6941 25.9044 12.3499 25.9965 11.9995 25.9965C11.6492 25.9965 11.3049 25.9044 11.0013 25.7295C10.6977 25.5547 10.4453 25.3031 10.2695 25M18 12C18 10.4087 17.3679 8.88258 16.2426 7.75736C15.1174 6.63214 13.5913 6 12 6C10.4087 6 8.88258 6.63214 7.75736 7.75736C6.63214 8.88258 6 10.4087 6 12C6 19 3 21 3 21H21C21 21 18 19 18 12Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="19.5" cy="5.5" r="5.5" fill="#FF0000" />
     </svg>
   )
 }
@@ -885,4 +884,53 @@ export function SilderIcon({ width, height }: IconProps) {
   )
 }
 
+export function ShieldIcon({ width, height }: IconProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={'#948ABC'} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+  )
+}
 
+export function HospitalIcon({ width, height }: IconProps) {
+  return (
+    <svg fill={'#948ABC'} width={width} height={height} version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 324.667 324.667" enable-background="new 0 0 324.667 324.667">
+      <g>
+        <path d="m168.333,69.539v-2.739h2.738c3.313,0 6-2.687 6-6s-2.687-6-6-6h-2.738v-2.738c0-3.313-2.687-6-6-6s-6,2.687-6,6v2.738h-2.738c-3.313,0-6,2.687-6,6s2.687,6 6,6h2.738v2.738c0,3.313 2.687,6 6,6s6-2.686 6-5.999z" />
+        <path d="m54.919,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z" />
+        <path d="m78.748,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z" />
+        <path d="m54.919,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z" />
+        <path d="m78.748,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z" />
+        <path d="m54.919,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.687,6 6,6z" />
+        <path d="m78.748,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.686,6 6,6z" />
+        <path d="m245.919,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z" />
+        <path d="m269.748,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z" />
+        <path d="m245.919,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z" />
+        <path d="m269.748,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z" />
+        <path d="m245.919,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.687,6 6,6z" />
+        <path d="m269.748,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.686,6 6,6z" />
+        <path d="m144.419,155.221v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6z" />
+        <path d="m168.248,155.221v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6z" />
+        <path d="m150.419,178.864c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.686-6-6-6z" />
+        <path d="m174.248,178.864c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.687-6-6-6z" />
+        <path d="m150.419,208.506c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.686-6-6-6z" />
+        <path d="m174.248,208.506c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.687-6-6-6z" />
+        <path d="m318.667,284.144h-12.611v-127.376c0-3.314-2.687-6-6-6h-78v-42.943c0-3.313-2.687-6-6-6h-47.723v-8.747h20.277c3.313,0 6-2.687 6-6v-52.555c0-3.313-2.687-6-6-6h-52.555c-3.313,0-6,2.687-6,6v52.555c0,3.313 2.687,6 6,6h20.277v8.747h-47.723c-3.313,0-6,2.687-6,6v42.943h-78c-3.313,0-6,2.686-6,6v127.376h-12.609c-3.313,0-6,2.687-6,6s2.687,6 6,6h312.667c3.313,0 6-2.687 6-6s-2.687-6-6-6zm-108.611-170.319v170.319h-10.056v-26.374c0-3.313-2.687-6-6-6h-63.333c-3.313,0-6,2.687-6,6v26.375h-10.056v-170.32h95.445zm-22.056,170.319h-51.333v-20.374h51.333v20.374zm106.056,0h-72v-121.376h72v121.376zm-191.445,0h-72v-121.376h72v121.376zm39.445-243.621h40.555v40.555h-40.555v-40.555z" />
+      </g>
+    </svg>)
+}
+
+export function AcceptIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 1L6 12L1 7" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+
+export function CommentIcon({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}

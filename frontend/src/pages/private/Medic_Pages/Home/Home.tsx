@@ -4,6 +4,7 @@ import { ArrowBlackIcon, CalendarIcon, CampanaIcon, FlechaIcon, LapizIcon, MenuH
 import { Medic } from '../../../../Interfaces/interfaces';
 import { fetchMedicData } from '../../../../Context/AuthContext';
 import { AsideMenu } from '../../../../components/AsideMenu';
+import { PopoverMessage } from '../../../../components/PopoverMessage';
 // import { AuthContext } from '../../../../Context/AuthContext';
 
 
@@ -143,13 +144,14 @@ export function Home(): JSX.Element {
 								<LapizIcon width={16} height={16} />
 							</div>
 						</div>
-						<Link to={"detalle"}>
-							<div className='flex items-center justify-center '>
+						<div className='flex items-center justify-center '>
+							<PopoverMessage locate={'top'} title={'Funcionalidad en Desarrollo'} content={'Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!'} color={'primary'}>
 								<button className=" absolute top-[22rem]  text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm mt-5">
 									Ver detalles
 								</button>
-							</div>
-						</Link>
+							</PopoverMessage>
+						</div>
+
 					</section>
 					<div className="mb-4 flex items-center justify-between">
 						<h2 className='font-bold  font-inter'>Mensajeria</h2>

@@ -5,14 +5,23 @@ import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../../../Context/AuthContext';
 import { PatientRegister } from '../../../../Interfaces/interfaces';
-import { dataRegisterPatient, initialValuesPatient } from '../../../../utils/data/data';
 import { validationSchemaPatient } from '../../../../utils/validation/validation';
-import { BloodIcon, CardIcon, FlechaIconTwo, GenderIcon, HealthIcon, LoaderIcon } from '../../../../../public/icons/Icons';
+import { BloodIcon, CalendarIcon, CardIcon, EmailIcon, FlechaIconTwo, GenderIcon, HealthIcon, LoaderIcon, LockIcon, UserIcon } from '../../../../../public/icons/Icons';
+import { initialValuesPatient } from '../../../../utils/data/data';
+
+const dataRegisterPatient = [
+  { label: 'Nombre', name: 'nombre', type: 'text', icon: UserIcon, placeholder: 'Ej: Mario' },
+  { label: 'Apellido', name: 'apellido', type: 'text', icon: UserIcon, placeholder: 'Ej: Hernandez' },
+  { label: 'Correo Electrónico', name: 'email', type: 'email', icon: EmailIcon, placeholder: 'Ej: tumail@mailito.com' },
+  { label: 'Contraseña', name: 'password', type: 'password', icon: LockIcon, placeholder: 'Introduzca contraseña' },
+  { label: 'Documento', name: 'numeroDocumento', type: 'number', icon: CardIcon, placeholder: 'Ej: 43812312' },
+  { label: 'Fecha de Nacimiento', name: 'fechaNacimiento', type: 'date', icon: CalendarIcon, },//cambiar icono
+]
 
 export const RegisterPatient: React.FC = () => {
   const { registerPatient } = useAuthContext();
   const [loading, setLoading] = useState(false);
-  
+
   const handleSubmit = async (values: PatientRegister, { resetForm }: any) => {
     const patient: PatientRegister = values;
     try {
@@ -110,7 +119,7 @@ export const RegisterPatient: React.FC = () => {
                 disabled={isSubmitting}
               >
                 {loading ? (
-                  <LoaderIcon width={30} height={30}  />
+                  <LoaderIcon width={30} height={30} />
                 ) : (
                   'Registrar'
                 )}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { API_URL } from "../api/api";
 import { ContentTreatmentPacient } from "../Interfaces/interfaces";
+import { tipoTratamientoMap } from "../utils/data/data";
 
 export default function TreatmentSummary() {
   const { id } = useParams()
@@ -28,13 +29,6 @@ export default function TreatmentSummary() {
 
     fetchTreatmentPatient()
   }, []);
-
-  const tipoTratamientoMap: Record<number, string> = {
-    0: 'Medicación',
-    1: 'Ejercitación',
-    2: 'Nutrición',
-    3: 'Psicologico'
-  };
 
 
   return (
