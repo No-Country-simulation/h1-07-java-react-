@@ -26,6 +26,7 @@ import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfileP
 import TreatementPatient from "../pages/private/Patients_Pages/Treatement/TreatementPatient";
 import History from "../pages/private/Patients_Pages/HistoryClinic/History";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
+import Statistics from "../pages/private/Medic_Pages/Statistics/Statistics";
 
 
 
@@ -51,6 +52,7 @@ function AppRouter() {
 							<Route path="/patient-register" element={<RegisterPatient />}></Route>
 							<Route path="/patient-list" element={<PatientList />}></Route>
 							<Route path="/patient/:id" element={<PatientDetail />} />
+							<Route path="/patient/:id/statistics" element={<Statistics />} />
 							<Route path="/patient/:id/treatment" element={<TreatmentPatient />}/>
 							<Route path="/donations" element={<Donations />} />
 						</Route>

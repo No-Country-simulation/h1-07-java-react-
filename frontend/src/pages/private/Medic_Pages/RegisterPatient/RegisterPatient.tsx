@@ -28,6 +28,7 @@ export const RegisterPatient: React.FC = () => {
       setLoading(true);
       await registerPatient(patient);
       toast.success("El paciente fue creado correctamente");
+      window.location.href = '/patient-list'
       resetForm(); // Limpiar el formulario
     } catch (err: any) {
       console.error(err);
@@ -47,7 +48,7 @@ export const RegisterPatient: React.FC = () => {
         {({ isSubmitting }) => (
           <Form className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg max-md:m-auto flex flex-col gap-y-4">
             <div className="mb-6 text-center relative flex flex-col items-center justify-center">
-              <Link to="/dashboard" className='absolute -left-5 hover:-translate-x-1 transition-all duration-300'>
+              <Link to="/dashboard" className='absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
                 <FlechaIconTwo width={30} height={30} />
               </Link>
               <h1 className="text-2xl font-bold tracking-tight">Crear cuenta paciente</h1>
