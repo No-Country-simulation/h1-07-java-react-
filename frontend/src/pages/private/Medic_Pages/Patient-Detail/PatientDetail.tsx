@@ -32,6 +32,7 @@ export default function PatientDetail() {
     }
     fetchPatient()
   }, []);
+
   return (
     <main className='flex min-h-screen bg-gray-100 md:flex md:justify-center '>
       <section className='w-full max-w-md  min-h-screen bg-white rounded-lg shadow-lg  max-md:m-auto'>

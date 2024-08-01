@@ -25,7 +25,7 @@ export const FormTreamentVoice:React.FC<FormTreatmentProps> = ({ id, type, label
     const valuesForm: Treatment = {
       ...values,
       pacienteId: Number(id),
-      descripcion: transcript,
+      descripcion: transcript.trim(),
       tipoTratamiento: type
     }
     try {

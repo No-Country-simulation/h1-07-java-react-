@@ -39,7 +39,7 @@ export default function PatientList() {
         <AsideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <div className="mb-6 text-center relative flex flex-col items-center justify-center">
           <Link to={"/dashboard"} className=' absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
-            <FlechaIconTwo width={30} height={30} />
+            <FlechaIconTwo width={30} height={30} stroke='#000000' classname=''/>
           </Link>
           <div className="flex items-center justify-center">
             <h1 className="text-xl font-bold ">Listado de pacientes</h1>
@@ -51,7 +51,7 @@ export default function PatientList() {
         <div className=' relative w-full h-12 mb-6 flex justify-center items-center'>
           <input type="text" placeholder='Búsqueda' onChange={(e) => setSearchPatient(e.target.value)} className='w-full h-full  border-violet-color rounded-md border-1 px-4' />
           <span className='right-5 absolute'>
-            <SearchIcon width={20} height={20} />
+            <SearchIcon width={20} height={20} stroke='' />
           </span>
         </div>
         <div className=" border-1 border-violet-color rounded-md min-h-[30rem]">

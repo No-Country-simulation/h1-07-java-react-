@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { ArrowBlackIcon, CalendarIcon, CampanaIcon, ChevronIcon, LapizIcon, MenuHambuerguesa, RelojIcon } from '../../../../../public/icons/Icons';
 import { ContentPatient, Medic } from '../../../../Interfaces/interfaces';
 import { fetchMedicData, fetchPatient } from '../../../../Context/AuthContext';
-import { AsideMenu } from '../../../../components/AsideMenu';
 import { PopoverMessage } from '../../../../components/PopoverMessage';
 import SkeletonsListPatient from '../../../../components/Skeletons';
 import { Avatar } from '@nextui-org/react';
+import { AsideMenu } from '../../../../components/AsideMenu';
 // import { AuthContext } from '../../../../Context/AuthContext';
 
 export interface Message {
@@ -83,9 +83,9 @@ export function Home(): JSX.Element {
 							</div>
 						</Link>
 						<div className='relative right-7 flex flex-row '>
-							<CampanaIcon width={24} height={24} />
+							<CampanaIcon width={24} height={24} stroke='' />
 							<button onClick={toggleSidebar}>
-								<MenuHambuerguesa width={24} height={24} />
+								<MenuHambuerguesa width={24} height={24} stroke=''/>
 							</button>
 						</div>
 					</div>
@@ -130,27 +130,27 @@ export function Home(): JSX.Element {
 						<div className='flex  mb-2 flex-row justify-between items-center '>
 							<h2 className="text-md font-semibold text-[#3D4DA5]">Siguiente cita programada</h2>
 							<span className=' cursor-pointer'>
-								<ArrowBlackIcon width={16} height={16} />
+								<ArrowBlackIcon width={16} height={16} stroke=''/>
 							</span>
 						</div>
 						<div className="flex mb-2  items-center justify-between">
 							<div className='flex flex-col'>
 								<div className='flex flex-row items-center mt-1 '>
-									<CalendarIcon width={15} height={15} />
+									<CalendarIcon width={15} height={15} stroke=''/>
 									<p className="font-inter text-black font-[500] ml-4 text-sm">20 Julio 2024</p>
 								</div>
 								<div className='flex flex-row items-center mt-[15px]'>
-									<RelojIcon width={15} height={15} />
+									<RelojIcon width={15} height={15} stroke=''/>
 									<p className=" font-inter font-[500] text-black ml-4 text-sm ">10:00-11:00 AM</p>
 								</div>
 							</div>
 							<div className=' cursor-pointer'>
-								<LapizIcon width={16} height={16} />
+								<LapizIcon width={16} height={16} stroke='' classname=''/>
 							</div>
 						</div>
 						<div className='flex items-center justify-center '>
 							<PopoverMessage locate={'top'} title={'Funcionalidad en Desarrollo'} content={'Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!'} color={'primary'}>
-								<button className=" absolute top-[22rem]  text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm mt-5">
+								<button className=" absolute top-[22rem] z-0  text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm mt-5">
 									Ver detalles
 								</button>
 							</PopoverMessage>

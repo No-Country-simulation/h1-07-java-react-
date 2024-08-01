@@ -6,28 +6,28 @@ import { Nav } from '../../components/Nav';
 
 const items = [
   {
-    "icon": <HistoryIconTwo width={30} height={30} />,
+    "icon": <HistoryIconTwo width={30} height={30} stroke=''/>,
     "text": "Historial Clínico",
 
   },
   {
-    "icon": <DonationIcon width={30} height={30} />,
+    "icon": <DonationIcon width={30} height={30} stroke=''/>,
     "text": "Donaciones",
 
   },
   {
-    "icon": <TratamentIcon width={30} height={30} />,
+    "icon": <TratamentIcon width={30} height={30} stroke=''/>,
     "text": "Tratamientos",
 
   },
   {
-    "icon": <CorIcon width={30} height={30} />,
+    "icon": <CorIcon width={30} height={30} stroke=''/>,
     "text": "Acompañamiento al paciente",
     "padding": "md:pt-6"
 
   },
   {
-    "icon": <WacthIcon width={30} height={30} />,
+    "icon": <WacthIcon width={30} height={30} stroke=''/>,
     "text": "Gestión de turnos",
   },
   {
@@ -36,13 +36,13 @@ const items = [
 
   },
   {
-    "icon": <RecordIcon width={30} height={30} />,
+    "icon": <RecordIcon width={30} height={30} stroke=''/>,
     "text": "Recordatorios para Pacientes",
     "padding": "md:mt-4"
 
   },
   {
-    "icon": <CheckIconTwo width={30} height={30} />,
+    "icon": <CheckIconTwo width={30} height={30} stroke=''/>,
     "text": "Perfiles verificados",
 
   }
@@ -56,8 +56,8 @@ export const Landing = () => {
   const question_five = "Para programar una cita con su médico se tiene que coordina con el presencial o de manera virtual con el apartado de mensajeria, este mismo turno lo gestion el profecional atraves de la plataforma, a usted como paciente le llega una notificación con el turno, puede confirmar o rechazar el turno.";
 
   return (
-    <main className='w-full md:mx-0 md:max-w-full md:p-0 '>
-      <nav className='hidden   md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small'>
+    <main className='xl:w-[1440px] md:mx-0 md:max-w-full md:p-0'>
+      <nav className='hidden md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small'>
         <div className='md:ml-4'>
           <img src="LOGOS/JustinaLogo_Lading.png" className='md:w-20' alt="" />
         </div>

@@ -292,6 +292,7 @@ export const CardIcon = ({ width, height }: { width: number, height: number }) =
 interface IconProps {
   width: number
   height: number
+  stroke?: string
 }
 
 
@@ -387,7 +388,7 @@ export function CampanaIcon({ width, height }: IconProps) {
 
 export function MenuHambuerguesa({ width, height }: IconProps) {
   return (
-    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2">
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-20">
       <path d="M3 12H21M3 6H21M3 18H21" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
@@ -426,38 +427,45 @@ export function RelojIcon({ width, height }: IconProps) {
   )
 }
 
-export function LapizIcon({ width, height }: IconProps) {
+interface IconPropsTwo {
+  width: number
+  height: number
+  stroke: string
+  classname: string
+}
+
+export function LapizIcon({ width, height, classname }: IconPropsTwo) {
   return (
-    <svg width={width} height={height} className="ml-4" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} className={classname} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M7.5 12.5001H13.125M10.3125 2.18764C10.5611 1.939 10.8984 1.79932 11.25 1.79932C11.4241 1.79932 11.5965 1.83361 11.7574 1.90024C11.9182 1.96687 12.0644 2.06453 12.1875 2.18764C12.3106 2.31076 12.4083 2.45691 12.4749 2.61777C12.5415 2.77863 12.5758 2.95103 12.5758 3.12514C12.5758 3.29925 12.5415 3.47166 12.4749 3.63251C12.4083 3.79337 12.3106 3.93953 12.1875 4.06264L4.375 11.8751L1.875 12.5001L2.5 10.0001L10.3125 2.18764Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
 }
 
-export function FlechaIcon({ width, height }: IconProps) {
+export function FlechaIcon({ width, height, stroke }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
 }
 
-export function ArrowBlackIcon({ width, height }: IconProps) {
+export function ArrowBlackIcon({ width, height, stroke }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
 }
 
 
-export function FlechaIconTwo({ width, height }: IconProps) {
+export function FlechaIconTwo({ width, height, stroke, classname }: IconPropsTwo) {
   return (
-    <svg width={width} height={height} className="ml-10 text-white hover:relative hover:duration-1000 transition-all  hover:right-1 hover:top-2 " viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width={width} height={height} className={classname} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
@@ -465,7 +473,7 @@ export function FlechaIconTwo({ width, height }: IconProps) {
 
 export function ArrowWhiteIcon({ width, height }: IconProps) {
   return (
-    <svg width={width} height={height} className="ml-10" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} className="ml-1" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#F9F9F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
@@ -768,7 +776,7 @@ export function HistoryIconThree({ width, height }: IconProps) {
 
 export function CampanaNotificIcon({ width, height }: IconProps) {
   return (
-    <svg width={width} height={height} viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} className="" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.7295 25C13.5537 25.3031 13.3014 25.5547 12.9978 25.7295C12.6941 25.9044 12.3499 25.9965 11.9995 25.9965C11.6492 25.9965 11.3049 25.9044 11.0013 25.7295C10.6977 25.5547 10.4453 25.3031 10.2695 25M18 12C18 10.4087 17.3679 8.88258 16.2426 7.75736C15.1174 6.63214 13.5913 6 12 6C10.4087 6 8.88258 6.63214 7.75736 7.75736C6.63214 8.88258 6 10.4087 6 12C6 19 3 21 3 21H21C21 21 18 19 18 12Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
@@ -930,6 +938,15 @@ export function CommentIcon({ width, height }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function DonationRegistreIcon({width, height}: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.3333 16.5V14.8333C13.3333 13.9493 12.9821 13.1014 12.357 12.4763C11.7319 11.8512 10.8841 11.5 10 11.5H4.16667C3.28261 11.5 2.43477 11.8512 1.80965 12.4763C1.18453 13.1014 0.833336 13.9493 0.833336 14.8333V16.5M16.6667 5.66667V10.6667M19.1667 8.16667H14.1667M10.4167 4.83333C10.4167 6.67428 8.92428 8.16667 7.08334 8.16667C5.24239 8.16667 3.75 6.67428 3.75 4.83333C3.75 2.99238 5.24239 1.5 7.08334 1.5C8.92428 1.5 10.4167 2.99238 10.4167 4.83333Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
 
   )
