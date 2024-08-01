@@ -1,7 +1,6 @@
 import { DoctorRegister } from '../../Interfaces/interfaces';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { toast } from 'sonner';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Button } from '@nextui-org/react';
 import { CardIcon, FlechaIconTwo, JobIcon, LoaderIcon } from '../../../public/icons/Icons';
@@ -28,12 +27,9 @@ const SignUp: React.FC = () => {
 
 	const handleSubmit = async (values: DoctorRegister) => {
 		const doctor: DoctorRegister = { ...values, financiadores: new Array(values.financiadores) }
-		console.log(values.financiadores)
 		try {
 			setLoading(true)
-			console.log(doctor)
 			registerDoctor(doctor)
-			toast.success("El registro fue existoso")
 			navigate("/login")
 		} catch (err: any) {
 			console.log(err)
