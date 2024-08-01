@@ -437,7 +437,6 @@ export
       }
       const data = await res.json()
       console.log(data)
-      toast.success("La historia clinica fue registrada correctamente")
     } catch (err: any) {
       console.log(err)
     }

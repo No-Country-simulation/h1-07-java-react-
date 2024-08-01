@@ -33,7 +33,16 @@ export default function TreatmentSummary() {
 
   return (
     <div className=' mt-8 p-6 flex-col gap-3 flex'>
-      <h5 className='font-bold text-xl'>Resumen</h5>
+      <div className="flex justify-between">
+        <h5 className='font-bold text-xl'>Resumen</h5>
+        {/* <Link to={`/patient/${id}/statistics`}>
+          <p className=" cursor-pointer flex items-center justify-center">Ver más...
+            <span>
+              <ArrowBlackIcon width={20} height={20} />
+            </span>
+          </p>
+        </Link> */}
+      </div>
       <div className=' justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm'>
         {treatments && treatments.content.map((treatment) => (
           <>
@@ -59,9 +68,7 @@ export default function TreatmentSummary() {
         }
         {treatments?.content.length == 0 &&
           <h4 className=" text-xl  h-full flex justify-center items-center text-center">"El paciente no tiene un tratamiento registrado"</h4>
-
         }
-
       </div>
       <Link to={`/patient/${id}/treatment`} className="m-auto h-10  mt-6 w-3/4 ">
         <button className="w-full rounded-lg h-full m-auto font-semibold bg-violet-color text-white">Nuevo Registro</button>
