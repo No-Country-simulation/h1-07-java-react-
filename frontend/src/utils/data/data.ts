@@ -47,7 +47,7 @@ export const initialValuesDoctor: DoctorRegister = {
   localidad: "",
   licencia: "",
   especialidad: 1,
-  financiadores: [1]
+  financiadores: 1
 };
 
 export const initialValuesLogin: AuthenticationRequest = {
