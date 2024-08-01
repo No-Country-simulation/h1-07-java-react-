@@ -93,7 +93,7 @@ export default function ClinicHistory() {
       return
     }
     if (id) {
-      const historyClinic: ClinicHistoryProps = { ...values, descripcion: transcript, idPaciente: Number(id) }
+      const historyClinic: ClinicHistoryProps = { ...values, descripcion: transcript.trim(), idPaciente: Number(id) }
       try {
         await registerClinicHistory(id, historyClinic)
         toast.success("La historia clinica fue registrada correctamente")

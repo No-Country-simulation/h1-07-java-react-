@@ -19,7 +19,7 @@ export const AsideMenu: React.FC<MenuProps> = ({ toggleSidebar, isSidebarOpen })
 
   return (
     <>
-      <aside className={`fixed z-20 duration-700 left-0 h-full border-2 bg-white text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10' : '-translate-x-full z-10'}`}>
+      <aside className={`fixed z-50 duration-700 left-0 h-full border-2 bg-white text-white transition-transform transform ${isSidebarOpen ? 'translate-x-0 z-10' : '-translate-x-full z-10'}`}>
         <div className="py-10 flex flex-col ">
           <h1 className="text-xl font-bold mb-5 text-center text-black">MENÚ</h1>
           <span className=' absolute right-5 top-9 cursor-pointer transition-all duration-200 hover:scale-105 hover:rotate-90' onClick={toggleSidebar}>

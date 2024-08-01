@@ -18,7 +18,7 @@ export function Side_Menu() {
         <aside className={`h-screen fixed top-0 bg-[#fff] text-[#000] font-mono ${isExpanded ? 'w-[325px]' : 'w-[80px]'} shadow-md shadow-black transition-width duration-300 ease-in-out`}>
             <nav className="flex flex-col w-full">
                 <button onClick={toggleMenu} className="flex justify-end p-2  text-[#fff] rounded-md m-2 pr-3 w-full">
-                    <FlechaIconTwo width={26} height={26} stroke="#000000" />
+                    <FlechaIconTwo width={26} height={26} stroke="#000000" classname={""} />
                 </button>
                 <section className={`ml-1 mt-1 mb-[17.67px] ${isExpanded ? 'block' : 'hidden'}`}>
                     <p className='text-[18px] pb-3 pl-[10px] font-montserrat text-[#828282]'>

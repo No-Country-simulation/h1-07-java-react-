@@ -50,7 +50,7 @@ export default function TreatementPatient() {
           lastname={patientInfo?.apellido}
           typeDocument={patientInfo?.tipoDocumento}
           financier={patientInfo?.financiador}
-          document={patientInfo?.numeroDocumento}>
+          document={patientInfo?.numeroDocumento} >
         </HeaderProfile>
         <div className="p-4 mt-4">
           <section className='justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm'>

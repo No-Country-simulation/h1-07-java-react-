@@ -2,7 +2,7 @@ import { SearchIcon, SilderIcon } from "../../../../../../public/icons/Icons";
 import { useState } from "react";
 import { AsideMenu } from "../../../../../components/AsideMenu";
 import { getAge } from "../../../../../utils/functions/functions";
-import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -115,7 +115,7 @@ export default function Donations() {
                 console.log(values);
               }}
             >
-              {({ handleSubmit }) => (
+              {/* {({ handleSubmit }) => ( */}
                 <Form className="p-3 grid grid-cols-2 gap-4 rounded-r-xl rounded-md border-2 border-gray-500 shadow-xl overflow-hidden">
                   <div className="">
                     <label htmlFor="genero" className="text-sm ">Edad</label>
@@ -158,7 +158,7 @@ export default function Donations() {
                     Buscar
                   </Button>
                 </Form>
-              )}
+              {/* )} */}
             </Formik>
           )}
           <div className="rounded-r-xl rounded-xl border-2 border-gray-500 shadow-xl overflow-hidden">

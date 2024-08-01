@@ -1,7 +1,6 @@
 import { DoctorRegister } from '../../Interfaces/interfaces';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { toast } from 'sonner';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { Button } from '@nextui-org/react';
 import { CardIcon, FlechaIconTwo, JobIcon, LoaderIcon } from '../../../public/icons/Icons';
@@ -28,12 +27,9 @@ const SignUp: React.FC = () => {
 
 	const handleSubmit = async (values: DoctorRegister) => {
 		const doctor: DoctorRegister = { ...values, financiadores: new Array(values.financiadores) }
-		console.log(values.financiadores)
 		try {
 			setLoading(true)
-			console.log(doctor)
 			registerDoctor(doctor)
-			toast.success("El registro fue existoso")
 			navigate("/login")
 		} catch (err: any) {
 			console.log(err)
@@ -43,7 +39,7 @@ const SignUp: React.FC = () => {
 	};
 	//FALTA VALIDAR LOS SELECT HAY ALGUNOS QUE NO LOS ACEPTA
 	return (
-		<section className="flex min-h-screen bg-gray-100 md:flex md:justify-center  " style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+		<section className="flex min-h-screen bg-gray-100 md:flex md:justify-center  " style={{ backgroundImage: 'url(/IMG_FONDO/IMG_FONDO.png)' }}>
 
 			<Formik
 				initialValues={initialValuesDoctor}
@@ -54,7 +50,7 @@ const SignUp: React.FC = () => {
 					<Form className=" w-full max-w-[40rem] xl:shadow-xl xl:shadow-black 2xl:h-[70%] 2xl:max-w-[60rem] p-8 bg-white xl:bg-transparent 2xl:mt-[10rem] xl:text-white rounded-lg shadow-lg  max-md:m-auto flex flex-col gap-y-4 " >
 						<div className="mb-6 text-center relative flex flex-col items-center justify-center xl:items-center ">
 							<Link to={"/login"} className=' absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
-								<FlechaIconTwo width={30} height={30} stroke={"#ffffff"} />
+								<FlechaIconTwo width={30} height={30} stroke={"#ffffff"} classname={''} />
 							</Link>
 							<h1 className="text-2xl font-bold tracking-tight xl:text-[2rem] xl:mb-2">Crear cuenta</h1>
 							<p className="text-sm">Introduce la información necesaria</p>
@@ -63,7 +59,7 @@ const SignUp: React.FC = () => {
 							{dataRegisterDoctor.map(({ label, name, type, icon: Icon, placeholder }) => (
 								<div key={name} className=''>
 									<label className="font-semibold flex items-center gap-2 pl-2" htmlFor={name}>
-										<Icon width={15} height={15} /> {label}
+										<Icon width={15} height={15} stroke={''} /> {label}
 									</label>
 									<Field
 										type={type}

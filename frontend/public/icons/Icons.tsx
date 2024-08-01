@@ -292,7 +292,7 @@ export const CardIcon = ({ width, height }: { width: number, height: number }) =
 interface IconProps {
   width: number
   height: number
-  stroke: string
+  stroke?: string
 }
 
 

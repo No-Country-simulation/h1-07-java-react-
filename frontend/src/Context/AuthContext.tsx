@@ -181,7 +181,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         }
 
         if (res.status === 500) {
-          return toast.warning("El correo ya está registrado");
+          toast.warning("El correo ya está registrado");
         }
 
         await createRole(patient.email, 'PATIENT');

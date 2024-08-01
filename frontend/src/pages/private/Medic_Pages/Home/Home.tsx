@@ -150,7 +150,7 @@ export function Home(): JSX.Element {
 						</div>
 						<div className='flex items-center justify-center '>
 							<PopoverMessage locate={'top'} title={'Funcionalidad en Desarrollo'} content={'Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!'} color={'primary'}>
-								<button className=" absolute top-[22rem]  text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm mt-5">
+								<button className=" absolute top-[22rem] z-0  text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm mt-5">
 									Ver detalles
 								</button>
 							</PopoverMessage>
