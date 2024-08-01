@@ -7,22 +7,22 @@ export function Medic_Appointment() {
         <main>
             <Link to={"/citas"}>
                 <section className="flex flex-row items-center mt-6 mb-5 ">
-                    <FlechaIconTwo width={30} height={30} />
+                    <FlechaIconTwo width={30} height={30} stroke="#000000" classname="ml-10" />
                     <h3 className="ml-24 text-[20px] font-inter font-bold">Citas</h3>
                 </section>
             </Link>
             <h2 className="ml-5 font-inter text-gray-500">Próxima citas</h2>
             <section className="mt-5 flex flex-col items-center rounded-xl">
                 <div className="flex flex-col items-center w-[90%] mt-5 bg-[#FFFEED]">
-                    <img src="./public/IMG_MEDICO/IMG_MEDICO_CITAS_2.png" alt="" />
+                    <img src="IMG_MEDICO/IMG_MEDICO_CITAS_2.png" alt="" />
                     <h2 className="mt-7 font-inter font-bold">Control y Seguimiento</h2>
                     <div className="flex flex-row items-center justify-center gap-x-4 w-full mt-5">
                         <div className="flex flex-row items-center">
-                            <CaledarIcon width={20} height={20} />
+                            <CaledarIcon width={20} height={20} stroke=""/>
                             <p className="font-inter font-semibold ml-1">01/08/2024</p>
                         </div>
                         <div className="flex flex-row items-center ml-4">
-                            <RelojIcon width={16} height={16} />
+                            <RelojIcon width={16} height={16} stroke=""/>
                             <p className="font-inter font-semibold ml-1">10:00 AM</p>
                         </div>
 
@@ -43,11 +43,11 @@ export function Medic_Appointment() {
                 <div className="mb-2 py-5 bg-gray-300 w-[90%] rounded-xl">
                     <p className="text-center mb-3">Dirrección</p>
                     <p className="flex flex-row gap-x-3 ml-5 font-inter font-semibold ">
-                        <AdressIcon width={20} height={20} />
+                        <AdressIcon width={20} height={20} stroke=""/>
                         Av. Rio Salado #301, B.A, Argentina
                     </p>
                     <p className="flex flex-row gap-x-3 ml-5 mt-2 font-inter font-semibold ">
-                        <PhoneIcon width={20} height={20}/>
+                        <PhoneIcon width={20} height={20} />
                         722 6354 57
                     </p>
                 </div>

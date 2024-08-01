@@ -63,9 +63,9 @@ export const VoiceTranscript: React.FC<VoiceTranscriptProps> = ({ onTranscriptCh
       </Field>
       <div className=" absolute bottom-4 right-4">
         {isRecording ? (
-          <button className=' w-10 border-black bg-black h-10  p-2 m-auto flex justify-center items-center border-2 rounded-full' onClick={handleStop}><MicrophoneOpen width={30} height={30} /></button>
+          <button type='button' className=' w-10 border-black bg-black h-10  p-2 m-auto flex justify-center items-center border-2 rounded-full' onClick={handleStop}><MicrophoneOpen width={30} height={30} /></button>
         ) : (
-          <button className=' w-10 border-black bg-black h-10  p-2 m-auto flex justify-center items-center border-2 rounded-full' onClick={handleStart}><MicrophoneClose width={30} height={30} /></button>
+          <button type='button' className=' w-10 border-black bg-black h-10  p-2 m-auto flex justify-center items-center border-2 rounded-full' onClick={handleStart}><MicrophoneClose width={30} height={30} /></button>
         )}
       </div>
     </div>
