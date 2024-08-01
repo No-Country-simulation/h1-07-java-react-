@@ -16,20 +16,26 @@ interface HeaderProfileProps {
   loading: boolean | undefined
   pathology?: string | undefined
   title?: string
+  to?: string
 }
 
-export const HeaderProfile: React.FC<HeaderProfileProps> = ({ loading, children, name, lastname, typeDocument, financier, document, title }) => {
+
+
+export const HeaderProfile: React.FC<HeaderProfileProps> = ({ to, loading, children, name, lastname, typeDocument, financier, document, title }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  to = "/patient-list"
+
   return (
     <>
       <AsideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <header className='p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl'>
         <div className="w-full flex flex-col items-start">
           <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
-            <Link to={"/patient-list"} className=' text-light-color absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
+            <Link to={`${to}`} className=' text-light-color absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
               <ArrowWhiteIcon width={30} height={30} stroke='' />
             </Link>
             <div className="flex items-center justify-center">
