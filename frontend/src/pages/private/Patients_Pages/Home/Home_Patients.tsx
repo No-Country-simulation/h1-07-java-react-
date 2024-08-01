@@ -27,7 +27,6 @@ export function Home_Patients() {
 		fetchPatien()
 
 		const storedMedic = localStorage.getItem("PATIENT-DATA");
-		console.log(storedMedic);
 
 		if (storedMedic) {
 			const medic: Paciente = JSON.parse(storedMedic);
@@ -44,12 +43,12 @@ export function Home_Patients() {
 	];
 
 	const patientOptions = [
-		{ to: "/Citas", icon: <CaledarIcon width={45} height={45} />, label: "Citas" },
-		{ to: "/patient-tratamiento", icon: <TratamentIconTwo width={45} height={45} />, label: "Tratamiento" },
-		{ to: "/patient-tratamiento", icon: <EjercicioIcon width={45} height={45} />, label: "Ejercicio" },
-		{ to: "/patient-tratamiento", icon: <CerebroIcon width={45} height={45} />, label: "Psicologia" },
-		{ to: "/patient-tratamiento", icon: <DonationIconTwo width={45} height={45} />, label: "Donaciones" },
-		{ to: "/patient-tratamiento", icon: <HistoryIconThree width={45} height={45} />, label: "Historial" },
+		{ to: "/Citas", icon: <CaledarIcon width={45} height={45} stroke=""/>, label: "Citas" },
+		{ to: "/patient-tratamiento", icon: <TratamentIconTwo width={45} height={45} stroke=""/>, label: "Tratamiento" },
+		{ to: "/patient-tratamiento", icon: <EjercicioIcon width={45} height={45} stroke=""/>, label: "Ejercicio" },
+		{ to: "/patient-tratamiento", icon: <CerebroIcon width={45} height={45} stroke=""/>, label: "Psicologia" },
+		{ to: "/patient-tratamiento", icon: <DonationIconTwo width={45} height={45} stroke=""/>, label: "Donaciones" },
+		{ to: "/patient-tratamiento", icon: <HistoryIconThree width={45} height={45} stroke=""/>, label: "Historial" },
 	];
 
 	return (
@@ -62,7 +61,7 @@ export function Home_Patients() {
 							{menuItems.map((item, index) => (
 								<Link to={item.to} key={index}>
 									<li className={`border-1 border-solid border-gray-500 mb-5 flex items-center p-3 rounded-lg ${location.pathname === item.to ? 'bg-[#ffffff] hover:bg-[#9b9595]' : 'text-black hover:bg-[#9b9595]'}`}>
-										<item.icon width={26} height={26} />
+										<item.icon width={26} height={26} stroke=""/>
 										<p className="ml-5 text-xl font-inter">{item.label}</p>
 									</li>
 								</Link>
@@ -71,36 +70,37 @@ export function Home_Patients() {
 						<Logout />
 					</div>
 				</nav>
-				<header className="flex flex-col h-[10rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] px-4">
-					<div className="flex flex-row mt-4 justify-between w-full ">
+				
+				<header className="flex flex-col h-[10rem] mb-4 w-full bg-orange-800 bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] px-4">
+					<div className="flex flex-row mt-4  justify-between w-full ">
 						<Link to="/user-info-patient">
-							<div className="flex items-center space-x-2">
-								<img src="./public/IMG_MEDICO/IMG_Pacientes_3.png" className="w-12" alt="" />
+							<div className="flex items-center space-x-2 ">
+								<img src="./public/IMG_MEDICO/IMG_Pacientes_3.png" className="w-16" alt="" />
 								<div>
 									<h1 className="text-lg font-bold text-white">Buenos días,</h1>
 									<p className="font-bold text-white">{patientInfo?.nombre} {patientInfo?.apellido}</p>
 								</div>
 							</div>
 						</Link>
-						<div className="flex items-center space-x-4 mt-2">
+						<div className="flex flex-row items-center ">
 							{hasNotifications ? (
-								<div className="relative">
-									<Link to={"/notification"}>
-										<CampanaNotificIcon width={26} height={26} />
+								<div className="relative left-16">
+									<Link to={"/notification"} className="">
+										<CampanaNotificIcon width={26} height={26} stroke="" />
 									</Link>
 								</div>
 							) : (
-								<Link to={"/notification"}>
-									<CampanaIcon width={26} height={26} />
+								<Link to={"/notification"} className="relative left-14">
+									<CampanaIcon width={26} height={26} stroke=""/>
 								</Link>
 							)}
-							<button onClick={toggleSidebar}>
-								<MenuHambuerguesa width={24} height={24} />
+							<button onClick={toggleSidebar} className="relative left-20">
+								<MenuHambuerguesa width={24} height={24} stroke=""/>
 							</button>
 						</div>
 					</div>
 					<div className="bg-white flex flex-row items-center py-[5px] mt-5 px-4 rounded-3xl ml-3">
-						<SearchIcon width={16} height={16} />
+						<SearchIcon width={16} height={16} stroke="" />
 						<input type="text" className="pl-2 py-1 w-full border-none outline-none" placeholder="Buscar" />
 					</div>
 				</header>
@@ -135,7 +135,7 @@ export function Home_Patients() {
 								</div>
 							</Link>
 							<div className="flex flex-row items-center">
-								<RelojIcon width={16} height={16} />
+								<RelojIcon width={16} height={16} stroke=""/>
 								<div className="flex flex-col ml-4">
 									<p className="font-inter font-semibold">01/08/2024</p>
 									<p className="font-inter font-semibold">10:00 AM</p>

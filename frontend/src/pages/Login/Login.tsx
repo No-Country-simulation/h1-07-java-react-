@@ -31,20 +31,21 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 md:flex md:justify-center  ">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg  max-md:m-auto">
-        <h2 className="text-[20px] font-[700] mb-[9px] mt-[1.5rem] text-gray-900 font-inter">Iniciar Sesión</h2>
-        <p className="mb-[46px] text-[15px] text-[#948ABC]">Accede con la cuenta que registraste</p>
+    <div className="flex min-h-screen xl:overflow-hidden  md:flex md:justify-center 2xl:items-center xl:bg-cover 2xl:bg-cover xl:bg-center 2xl:bg-center " style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+
+      <div className="w-full max-w-md p-8 xl:px-6 xl:py-3 2xl:py-12 bg-white xl:bg-transparent rounded-lg shadow-lg shadow-black  2xl:h-full  ">
+        <h2 className="text-[20px] font-[700] mb-[9px] mt-[1.5rem] xl:mt-0 text-gray-900 font-inter xl:text-white 2xl:text-white">Iniciar Sesión</h2>
+        <p className="mb-[46px] text-[15px] text-[#948ABC] xl:text-white 2xl:text-white ">Accede con la cuenta que registraste</p>
         <Formik
           initialValues={initialValuesLogin}
           validationSchema={validationSchemaLogin}
           onSubmit={handleSubmitLogin}>
           {({ isSubmitting }) => (
-            <Form className=" flex flex-col gap-y-10">
+            <Form className=" flex flex-col gap-y-10 ">
               <div>
                 <div className="flex flex-row items-center mb-1">
                   <EmailIcon width={16} height={16} />
-                  <label htmlFor="email" className="block ml-2 text-[17px] font-bold font-inter text-gray-700">Correo</label>
+                  <label htmlFor="email" className="block ml-2 text-[17px] font-bold font-inter text-gray-700 xl:text-white 2xl:text-white">Correo</label>
                 </div>
                 <Field
                   id="email"
@@ -58,7 +59,7 @@ export const LoginPage: React.FC = () => {
               <div className=" ">
                 <div className="flex flex-row items-center mb-1">
                   <LockIcon width={16} height={16} />
-                  <label htmlFor="password" className="block text-[17px] ml-2 font-bold font-inter text-gray-700">Contraseña</label>
+                  <label htmlFor="password" className="block text-[17px] ml-2 font-bold font-inter text-gray-700 xl:text-white 2xl:text-white">Contraseña</label>
                 </div>
                 <div className="flex items-center relative">
                   <Field
@@ -73,12 +74,12 @@ export const LoginPage: React.FC = () => {
                   </button>
                 </div>
                 <ErrorMessage name={"password"} component="div" className=" flex-wrap text-red-500" />
-                <p className="mt-1 text-end text-[#948ABC] cursor-pointer">¿Olvidaste tu contraseña?</p>
+                <p className="mt-1 text-end text-[#948ABC] cursor-pointer xl:text-white 2xl:text-white">¿Olvidaste tu contraseña?</p>
               </div>
-              <div className="flex items-center justify-center h-[12rem]" >
+              <div className="flex items-center justify-center h-[12rem] min-[1440px]:h-[10rem]" >
                 <img src="JustinaLogo.png" alt="" className="w-[200px] h-[158px]" />
               </div>
-              <div className=" flex items-center h-[10rem] flex-col gap-2">
+              <div className=" flex items-center h-[10rem] min-[1440px]:h-[10rem] flex-col gap-2">
                 <button
                   type="submit"
                   disabled={isSubmitting}

@@ -1,7 +1,7 @@
 import { CalendarDate } from "@internationalized/date";
 
 export const getTodayDate = (date: CalendarDate) => {
-  return date.year + "-" + date.month.toString().padStart(2, '0') + "-" + date.day;
+  return date.year + "-" + date.month.toString().padStart(2, '0') + "-" + date.day.toString().padStart(2, '0');
 }
 
 export const generateHours = () => {
