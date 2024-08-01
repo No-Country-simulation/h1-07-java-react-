@@ -19,14 +19,16 @@ import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_App
 import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
 import Donations from "../pages/private/Medic_Pages/Donations/Donations";
 import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
-import SignUp from "../pages/SignUp/SignUp";
-import { Landing } from "../pages/Landing/Landing";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+
 import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfilePatient";
 import TreatementPatient from "../pages/private/Patients_Pages/Treatement/TreatementPatient";
 import History from "../pages/private/Patients_Pages/HistoryClinic/History";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import Statistics from "../pages/private/Medic_Pages/Statistics/Statistics";
+import SignUp from "../pages/signup/SignUp";
+import { Landing } from "../pages/landing/Landing";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import { Donation_Registre } from "../pages/private/Medic_Pages/Donations/Donation_Registre/Donation_Registre";
 
 
 
@@ -44,7 +46,7 @@ function AppRouter() {
 							<Route path="/onboarding" element={<Onboarding />} />
 						</Route>
 						{/* </Route> */}
-						<Route index path="/lading" element={<Landing />} />
+						<Route index path="/" element={<Landing />} />
 						<Route path="/active-account" element={<ActiveAccount />}></Route>
 						<Route element={<PrivateRoute allowedRoles={["ROLE_MEDICO"]} />}>
 							<Route path="/dashboard" index element={<Home />} />
