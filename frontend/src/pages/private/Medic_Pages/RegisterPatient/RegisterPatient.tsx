@@ -39,7 +39,7 @@ export const RegisterPatient: React.FC = () => {
           <Form className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg max-md:m-auto flex flex-col gap-y-4">
             <div className="mb-6 text-center relative flex flex-col items-center justify-center">
               <Link to="/dashboard" className='absolute -left-5 hover:-translate-x-1 transition-all duration-300'>
-                <FlechaIconTwo width={30} height={30} />
+                <FlechaIconTwo width={30} height={30} stroke='#000000' classname=''/>
               </Link>
               <h1 className="text-2xl font-bold tracking-tight">Crear cuenta paciente</h1>
               <p className="text-sm">Introduzca la información necesaria</p>
@@ -48,7 +48,7 @@ export const RegisterPatient: React.FC = () => {
               {dataRegisterPatient.map(({ label, name, type, icon: Icon, placeholder }) => (
                 <div key={name}>
                   <label className="font-semibold flex items-center gap-2 pl-2" htmlFor={name}>
-                    <Icon width={15} height={15} /> {label}
+                    <Icon width={15} height={15} stroke=''/> {label}
                   </label>
                   <Field
                     type={type}
@@ -62,7 +62,7 @@ export const RegisterPatient: React.FC = () => {
               ))}
               <div>
                 <label className="font-semibold flex items-center gap-2 pl-2" htmlFor="genero">
-                  <GenderIcon width={15} height={15} />Genero
+                  <GenderIcon width={15} height={15} stroke=''/>Genero
                 </label>
                 <Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="genero">
                   <option value={0}>Masculino</option>
@@ -72,7 +72,7 @@ export const RegisterPatient: React.FC = () => {
               </div>
               <div className="">
                 <label className="font-semibold flex items-center gap-2 pl-2" htmlFor="patologiaId">
-                  <HealthIcon width={15} height={15} />Patología
+                  <HealthIcon width={15} height={15} stroke=''/>Patología
                 </label>
                 <Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="patologiaId">
                   <option value={1}>Cancer</option>
@@ -91,7 +91,7 @@ export const RegisterPatient: React.FC = () => {
               </div>
               <div>
                 <label className="font-semibold flex items-center gap-2 pl-2" htmlFor="factorSanguineo">
-                  <BloodIcon width={15} height={15} />Factor Sanguineo
+                  <BloodIcon width={15} height={15} stroke=''/>Factor Sanguineo
                 </label>
                 <Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="factorSanguineo">
                   <option value={0}>Cero Positivo</option>

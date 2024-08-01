@@ -36,6 +36,7 @@ export const TreatmentPatient = () => {
     fetchMedicinesData()
     fetchPatient()
   }, []);
+  
   return (
     <section className=" bg-gray-100 min-h-screen m-auto overflow-hidden">
       <div className="w-full max-w-md m-auto  bg-white rounded-lg shadow-lg  max-md:m-auto">

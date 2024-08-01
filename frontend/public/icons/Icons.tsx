@@ -293,6 +293,7 @@ export const CardIcon = ({ width, height }: { width: number, height: number }) =
 interface IconProps {
   width: number
   height: number
+  stroke: string
 }
 
 
@@ -388,7 +389,7 @@ export function CampanaIcon({ width, height }: IconProps) {
 
 export function MenuHambuerguesa({ width, height }: IconProps) {
   return (
-    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-2">
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-20">
       <path d="M3 12H21M3 6H21M3 18H21" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
@@ -427,38 +428,45 @@ export function RelojIcon({ width, height }: IconProps) {
   )
 }
 
-export function LapizIcon({ width, height }: IconProps) {
+interface IconPropsTwo {
+  width: number
+  height: number
+  stroke: string
+  classname: string
+}
+
+export function LapizIcon({ width, height, classname }: IconPropsTwo) {
   return (
-    <svg width={width} height={height} className="ml-4" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} className={classname} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M7.5 12.5001H13.125M10.3125 2.18764C10.5611 1.939 10.8984 1.79932 11.25 1.79932C11.4241 1.79932 11.5965 1.83361 11.7574 1.90024C11.9182 1.96687 12.0644 2.06453 12.1875 2.18764C12.3106 2.31076 12.4083 2.45691 12.4749 2.61777C12.5415 2.77863 12.5758 2.95103 12.5758 3.12514C12.5758 3.29925 12.5415 3.47166 12.4749 3.63251C12.4083 3.79337 12.3106 3.93953 12.1875 4.06264L4.375 11.8751L1.875 12.5001L2.5 10.0001L10.3125 2.18764Z" stroke="#948ABC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
 }
 
-export function FlechaIcon({ width, height }: IconProps) {
+export function FlechaIcon({ width, height, stroke }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
 }
 
-export function ArrowBlackIcon({ width, height }: IconProps) {
+export function ArrowBlackIcon({ width, height, stroke }: IconProps) {
   return (
     <svg width={width} height={height} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.625 11.25L9.375 7.5L5.625 3.75" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
 }
 
 
-export function FlechaIconTwo({ width, height }: IconProps) {
+export function FlechaIconTwo({ width, height, stroke, classname }: IconPropsTwo) {
   return (
-    <svg width={width} height={height} className="ml-10 text-white hover:relative hover:duration-1000 transition-all  hover:right-1 hover:top-2 " viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width={width} height={height} className={classname} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
   )
@@ -466,7 +474,7 @@ export function FlechaIconTwo({ width, height }: IconProps) {
 
 export function ArrowWhiteIcon({ width, height }: IconProps) {
   return (
-    <svg width={width} height={height} className="ml-10" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} className="ml-1" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#F9F9F9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 
@@ -768,7 +776,7 @@ export function HistoryIconThree({ width, height }: IconProps) {
 
 export function CampanaNotificIcon({ width, height }: IconProps) {
   return (
-    <svg width={width} height={height} viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} className="" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13.7295 25C13.5537 25.3031 13.3014 25.5547 12.9978 25.7295C12.6941 25.9044 12.3499 25.9965 11.9995 25.9965C11.6492 25.9965 11.3049 25.9044 11.0013 25.7295C10.6977 25.5547 10.4453 25.3031 10.2695 25M18 12C18 10.4087 17.3679 8.88258 16.2426 7.75736C15.1174 6.63214 13.5913 6 12 6C10.4087 6 8.88258 6.63214 7.75736 7.75736C6.63214 8.88258 6 10.4087 6 12C6 19 3 21 3 21H21C21 21 18 19 18 12Z" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="19.5" cy="5.5" r="5.5" fill="#FF0000" />
     </svg>
@@ -886,3 +894,64 @@ export function SilderIcon({ width, height }: IconProps) {
 }
 
 
+export function CoraBotIcon() {
+  return (
+    <svg width="160" height="174" viewBox="0 0 160 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d_1129_5382)">
+        <rect x="59" y="42" width="64" height="56" rx="16" fill="white" />
+      </g>
+      <mask id="path-2-outside-1_1129_5382" maskUnits="userSpaceOnUse" x="76" y="52" width="27" height="34" fill="black">
+        <rect fill="white" x="76" y="52" width="27" height="34" />
+        <path d="M93.5838 79.44C95.0558 79.44 96.3038 79.312 97.3278 79.056C98.3518 78.8 99.2318 78.448 99.9678 78L101.312 82.8C100.544 83.248 99.4558 83.648 98.0478 84C96.6398 84.352 94.9278 84.528 92.9118 84.528C90.6398 84.528 88.5438 84.176 86.6238 83.472C84.7038 82.736 83.0398 81.696 81.6318 80.352C80.2558 78.976 79.1838 77.328 78.4158 75.408C77.6478 73.456 77.2638 71.264 77.2638 68.832C77.2638 66.464 77.6318 64.32 78.3678 62.4C79.1358 60.48 80.1918 58.848 81.5358 57.504C82.9118 56.128 84.5758 55.072 86.5278 54.336C88.4798 53.6 90.6558 53.232 93.0558 53.232C95.1038 53.232 96.7838 53.424 98.0958 53.808C99.4398 54.192 100.528 54.608 101.36 55.056L99.8718 59.904C99.0398 59.456 98.1118 59.088 97.0878 58.8C96.0958 58.48 94.9758 58.32 93.7278 58.32C92.4158 58.32 91.1838 58.512 90.0318 58.896C88.8798 59.28 87.8718 59.904 87.0078 60.768C86.1438 61.6 85.4558 62.688 84.9438 64.032C84.4638 65.344 84.2238 66.944 84.2238 68.832C84.2238 70.656 84.4638 72.24 84.9438 73.584C85.4238 74.896 86.0798 75.984 86.9118 76.848C87.7758 77.712 88.7678 78.368 89.8878 78.816C91.0398 79.232 92.2718 79.44 93.5838 79.44Z" />
+      </mask>
+      <path d="M93.5838 79.44C95.0558 79.44 96.3038 79.312 97.3278 79.056C98.3518 78.8 99.2318 78.448 99.9678 78L101.312 82.8C100.544 83.248 99.4558 83.648 98.0478 84C96.6398 84.352 94.9278 84.528 92.9118 84.528C90.6398 84.528 88.5438 84.176 86.6238 83.472C84.7038 82.736 83.0398 81.696 81.6318 80.352C80.2558 78.976 79.1838 77.328 78.4158 75.408C77.6478 73.456 77.2638 71.264 77.2638 68.832C77.2638 66.464 77.6318 64.32 78.3678 62.4C79.1358 60.48 80.1918 58.848 81.5358 57.504C82.9118 56.128 84.5758 55.072 86.5278 54.336C88.4798 53.6 90.6558 53.232 93.0558 53.232C95.1038 53.232 96.7838 53.424 98.0958 53.808C99.4398 54.192 100.528 54.608 101.36 55.056L99.8718 59.904C99.0398 59.456 98.1118 59.088 97.0878 58.8C96.0958 58.48 94.9758 58.32 93.7278 58.32C92.4158 58.32 91.1838 58.512 90.0318 58.896C88.8798 59.28 87.8718 59.904 87.0078 60.768C86.1438 61.6 85.4558 62.688 84.9438 64.032C84.4638 65.344 84.2238 66.944 84.2238 68.832C84.2238 70.656 84.4638 72.24 84.9438 73.584C85.4238 74.896 86.0798 75.984 86.9118 76.848C87.7758 77.712 88.7678 78.368 89.8878 78.816C91.0398 79.232 92.2718 79.44 93.5838 79.44Z" fill="#948ABC" />
+      <path d="M97.3278 79.056L97.5703 80.0261L97.3278 79.056ZM99.9678 78L100.931 77.7304L100.575 76.4597L99.4478 77.1458L99.9678 78ZM101.312 82.8L101.816 83.6638L102.483 83.2744L102.275 82.5304L101.312 82.8ZM86.6238 83.472L86.2658 84.4057L86.2726 84.4084L86.2795 84.4109L86.6238 83.472ZM81.6318 80.352L80.9246 81.0591L80.9329 81.0673L80.9413 81.0754L81.6318 80.352ZM78.4158 75.408L77.4852 75.7741L77.4873 75.7794L78.4158 75.408ZM78.3678 62.4L77.4393 62.0286L77.4366 62.0353L77.434 62.0421L78.3678 62.4ZM81.5358 57.504L80.8286 56.7969V56.7969L81.5358 57.504ZM86.5278 54.336L86.8806 55.2717L86.5278 54.336ZM98.0958 53.808L97.8148 54.7678L97.821 54.7695L98.0958 53.808ZM101.36 55.056L102.316 55.3494L102.557 54.5647L101.834 54.1755L101.36 55.056ZM99.8717 59.904L99.3977 60.7845L100.47 61.362L100.828 60.1974L99.8717 59.904ZM97.0877 58.8L96.7807 59.7517L96.7988 59.7575L96.817 59.7626L97.0877 58.8ZM90.0318 58.896L90.348 59.8447L90.348 59.8447L90.0318 58.896ZM87.0078 60.768L87.7014 61.4883L87.7082 61.4818L87.7149 61.4751L87.0078 60.768ZM84.9438 64.032L84.0092 63.676L84.0046 63.6884L84.9438 64.032ZM84.9438 73.584L84.002 73.9203L84.0046 73.9276L84.9438 73.584ZM86.9118 76.848L86.1914 77.5416L86.198 77.5484L86.2046 77.5551L86.9118 76.848ZM89.8878 78.816L89.5164 79.7445L89.5321 79.7508L89.5481 79.7566L89.8878 78.816ZM93.5838 80.44C95.108 80.44 96.4427 80.308 97.5703 80.0261L97.0852 78.0859C96.1648 78.316 95.0035 78.44 93.5838 78.44V80.44ZM97.5703 80.0261C98.6709 79.751 99.6488 79.3648 100.488 78.8542L99.4478 77.1458C98.8147 77.5312 98.0326 77.849 97.0852 78.0859L97.5703 80.0261ZM99.0048 78.2696L100.349 83.0696L102.275 82.5304L100.931 77.7304L99.0048 78.2696ZM100.808 81.9362C100.157 82.3162 99.1716 82.6883 97.8052 83.0299L98.2903 84.9701C99.7399 84.6077 100.931 84.1798 101.816 83.6638L100.808 81.9362ZM97.8052 83.0299C96.5005 83.356 94.8751 83.528 92.9118 83.528V85.528C94.9804 85.528 96.779 85.348 98.2903 84.9701L97.8052 83.0299ZM92.9118 83.528C90.7442 83.528 88.7662 83.1925 86.968 82.5331L86.2795 84.4109C88.3213 85.1595 90.5353 85.528 92.9118 85.528V83.528ZM86.9817 82.5383C85.1783 81.847 83.6291 80.8761 82.3222 79.6286L80.9413 81.0754C82.4504 82.5159 84.2292 83.625 86.2658 84.4057L86.9817 82.5383ZM82.3389 79.6449C81.0645 78.3706 80.0651 76.8389 79.3442 75.0366L77.4873 75.7794C78.3024 77.8171 79.447 79.5814 80.9246 81.0591L82.3389 79.6449ZM79.3463 75.0419C78.6309 73.2235 78.2638 71.1584 78.2638 68.832H76.2638C76.2638 71.3696 76.6646 73.6885 77.4852 75.7741L79.3463 75.0419ZM78.2638 68.832C78.2638 66.5681 78.6154 64.5477 79.3015 62.7579L77.434 62.0421C76.6481 64.0922 76.2638 66.3599 76.2638 68.832H78.2638ZM79.2962 62.7714C80.0184 60.966 81.0028 59.4512 82.2429 58.2111L80.8286 56.7969C79.3807 58.2448 78.2531 59.994 77.4393 62.0286L79.2962 62.7714ZM82.2429 58.2111C83.5112 56.9427 85.0518 55.9612 86.8806 55.2717L86.1749 53.4003C84.0997 54.1828 82.3123 55.3133 80.8286 56.7969L82.2429 58.2111ZM86.8806 55.2717C88.7042 54.5841 90.7584 54.232 93.0558 54.232V52.232C90.5531 52.232 88.2553 52.6159 86.1749 53.4003L86.8806 55.2717ZM93.0558 54.232C95.051 54.232 96.6273 54.4202 97.8149 54.7677L98.3767 52.8483C96.9402 52.4278 95.1565 52.232 93.0558 52.232V54.232ZM97.821 54.7695C99.1254 55.1422 100.139 55.5346 100.886 55.9365L101.834 54.1755C100.916 53.6814 99.7541 53.2418 98.3705 52.8465L97.821 54.7695ZM100.404 54.7626L98.9158 59.6106L100.828 60.1974L102.316 55.3494L100.404 54.7626ZM100.346 59.0235C99.4418 58.5367 98.4444 58.1428 97.3585 57.8373L96.817 59.7626C97.7791 60.0332 98.6377 60.3753 99.3977 60.7845L100.346 59.0235ZM97.3948 57.8483C96.2862 57.4907 95.0601 57.32 93.7278 57.32V59.32C94.8914 59.32 95.9053 59.4693 96.7807 59.7517L97.3948 57.8483ZM93.7278 57.32C92.3169 57.32 90.9774 57.5267 89.7155 57.9473L90.348 59.8447C91.3901 59.4973 92.5146 59.32 93.7278 59.32V57.32ZM89.7155 57.9473C88.4153 58.3807 87.2737 59.0878 86.3006 60.0609L87.7149 61.4751C88.4698 60.7202 89.3442 60.1793 90.348 59.8447L89.7155 57.9473ZM86.3141 60.0477C85.3249 61.0002 84.5634 62.2213 84.0093 63.676L85.8782 64.388C86.3481 63.1547 86.9626 62.1998 87.7014 61.4883L86.3141 60.0477ZM84.0046 63.6884C83.473 65.1416 83.2238 66.8653 83.2238 68.832H85.2238C85.2238 67.0227 85.4545 65.5464 85.8829 64.3756L84.0046 63.6884ZM83.2238 68.832C83.2238 70.7403 83.4744 72.4431 84.002 73.9203L85.8855 73.2477C85.4531 72.0369 85.2238 70.5717 85.2238 68.832H83.2238ZM84.0046 73.9276C84.5246 75.3489 85.2483 76.5623 86.1914 77.5416L87.6321 76.1544C86.9112 75.4057 86.3229 74.4431 85.8829 73.2404L84.0046 73.9276ZM86.2046 77.5551C87.1631 78.5136 88.269 79.2455 89.5164 79.7445L90.2591 77.8875C89.2665 77.4905 88.3884 76.9104 87.6189 76.1409L86.2046 77.5551ZM89.5481 79.7566C90.8166 80.2146 92.1642 80.44 93.5838 80.44V78.44C92.3793 78.44 91.2629 78.2494 90.2274 77.8754L89.5481 79.7566Z" fill="#948ABC" mask="url(#path-2-outside-1_1129_5382)" />
+      <defs>
+        <filter id="filter0_d_1129_5382" x="0" y="0" width="182" height="174" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feMorphology radius="11" operator="erode" in="SourceAlpha" result="effect1_dropShadow_1129_5382" />
+          <feOffset dy="17" />
+          <feGaussianBlur stdDeviation="35" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1129_5382" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1129_5382" result="shape" />
+        </filter>
+      </defs>
+    </svg>
+
+
+  )
+}
+
+
+
+export function LupitaIconTwo({ width, height }: IconProps) {
+  return (
+    <svg
+
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 25 25"
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      ></path>
+    </svg>
+  )
+}
+
+export function DonationRegistreIcon({width, height}: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.3333 16.5V14.8333C13.3333 13.9493 12.9821 13.1014 12.357 12.4763C11.7319 11.8512 10.8841 11.5 10 11.5H4.16667C3.28261 11.5 2.43477 11.8512 1.80965 12.4763C1.18453 13.1014 0.833336 13.9493 0.833336 14.8333V16.5M16.6667 5.66667V10.6667M19.1667 8.16667H14.1667M10.4167 4.83333C10.4167 6.67428 8.92428 8.16667 7.08334 8.16667C5.24239 8.16667 3.75 6.67428 3.75 4.83333C3.75 2.99238 5.24239 1.5 7.08334 1.5C8.92428 1.5 10.4167 2.99238 10.4167 4.83333Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
