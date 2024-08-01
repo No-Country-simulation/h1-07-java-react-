@@ -79,7 +79,7 @@ export function Patient_Notification(): JSX.Element {
 			<div className="w-full relative max-w-md min-h-screen p-8 bg-white rounded-lg shadow-lg max-md:m-auto">
 				<div className=" mb-4 relative">
 					<Link to={"/patient-home"} className=' absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
-						<FlechaIconTwo width={30} height={30} />
+						<FlechaIconTwo width={30} height={30} stroke={"#111"} classname={""} />
 					</Link>
 					<h6 className=" font-semibold text-2xl text-center" id="inicio-notificacion">Notificaciones</h6>
 				</div>
@@ -140,7 +140,7 @@ export function Patient_Notification(): JSX.Element {
 						{visible &&
 							<a href="#inicio-notificacion" className=" rotate-180  z-30 bg-grays-400 border-2 items-center justify-center flex animate-bounce w-10 rounded-full h-10 fixed right-5 bottom-5">
 								<span className=" rotate-90">
-									<FlechaIconTwo width={40} height={40} />
+									<FlechaIconTwo width={40} height={40} stroke={"#111"} classname={""} />
 								</span>
 							</a>
 						}

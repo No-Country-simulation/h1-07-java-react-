@@ -10,8 +10,8 @@ export function PatientAppointments() {
         <main className="flex flex-col">
             <Link to={"/patient-home"}>
                 <section className="flex flex-row items-center mt-6 mb-5 ">
-                    <FlechaIconTwo width={30} height={30} />
-                    <h3 className="ml-28 font-inter font-bold">Citas</h3>
+                    <FlechaIconTwo width={30} height={30} stroke="#000000" classname="ml-12"/>
+                    <h3 className="ml-20 font-inter font-bold">Citas</h3>
                 </section>
             </Link>
             <section>
@@ -34,7 +34,7 @@ export function PatientAppointments() {
                                 <img src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.png" className="rounded-full ml-20 w-16 h-16" alt="" />
                             </div>
                             <div className="flex flex-row items-center">
-                                <RelojIcon width={16} height={16} />
+                                <RelojIcon width={16} height={16} stroke=""/>
                                 <div className="flex flex-col ml-4">
                                     <p className="font-inter font-semibold">01/08/2024</p>
                                     <p className="font-inter font-semibold">10:00 AM</p>
@@ -53,7 +53,7 @@ export function PatientAppointments() {
                 <div className="flex items-center flex-col py-3 bg-gray-300 w-[90%] rounded-xl mb-10">
                     <h2 className="font-inter font-semibold text-md text-gray-600 mb-4">Control de seguimiento</h2>
                     <div className="flex flex-row justify-evenly w-[80%] items-center">
-                        <CaledarIcon width={36} height={36} />
+                        <CaledarIcon width={36} height={36} stroke=""/>
                         <p>11/03/2024</p>
                         <p>Psicólogo</p>
                     </div>

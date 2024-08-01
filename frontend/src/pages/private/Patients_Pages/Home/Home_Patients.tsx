@@ -98,7 +98,7 @@ export function Home_Patients() {
 						</div>
 					</div>
 					<div className="bg-white flex flex-row items-center py-[5px] mt-5 px-4 rounded-3xl ml-3">
-						<SearchIcon width={16} height={16} />
+						<SearchIcon width={16} height={16} stroke="" />
 						<input type="text" className="pl-2 py-1 w-full border-none outline-none" placeholder="Buscar" />
 					</div>
 				</header>
@@ -133,7 +133,7 @@ export function Home_Patients() {
 								</div>
 							</Link>
 							<div className="flex flex-row items-center">
-								<RelojIcon width={16} height={16} />
+								<RelojIcon width={16} height={16} stroke=""/>
 								<div className="flex flex-col ml-4">
 									<p className="font-inter font-semibold">01/08/2024</p>
 									<p className="font-inter font-semibold">10:00 AM</p>
