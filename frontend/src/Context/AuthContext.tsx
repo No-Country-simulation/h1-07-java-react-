@@ -516,3 +516,28 @@ export const markNotificationsAsRead = async () => {
     }
   }
 };
+
+
+export const getAllNotifications = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (token) {
+    try {
+      const res = await fetch(`${API_URL}/notificaciones-totales`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Ocurrió un error");
+      }
+
+      const data = await res.json();
+      return data
+    } catch (err: any) {
+      console.error(err);
+    }
+  }
+};
