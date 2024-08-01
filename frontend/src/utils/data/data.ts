@@ -1,26 +1,13 @@
 import { getLocalTimeZone, today } from "@internationalized/date";
-import { CalendarIcon, CardIcon, EmailIcon, HomeIcon, LockIcon, MapIcon, PhoneIcon, UserIcon } from "../../../public/icons/Icons";
-import { AuthenticationRequest, ClinicHistoryProps, DoctorRegister, PatientRegister, Treatment } from "../../Interfaces/interfaces";
+import { EmailIcon, LockIcon } from "../../../public/icons/Icons";
+import { AdherenceRequest, AuthenticationRequest, ClinicHistoryProps, DoctorRegister, PatientRegister, Treatment } from "../../Interfaces/interfaces";
 
-export const dataRegisterDoctor = [
-  { label: 'Nombre', name: 'nombre', type: 'text', icon: UserIcon, placeholder: 'Ej: Mario' },
-  { label: 'Apellido', name: 'apellido', type: 'text', icon: UserIcon, placeholder: 'Ej: Hernandez' },
-  { label: 'Correo Electrónico', name: 'email', type: 'email', icon: EmailIcon, placeholder: 'Ej: tumail@mailito.com' },
-  { label: 'Contraseña', name: 'password', type: 'password', icon: LockIcon, placeholder: 'Introduzca contraseña' },
-  { label: 'Teléfono', name: 'telefono', type: 'tel', icon: PhoneIcon, placeholder: 'Ej: 55 5555-5555' },
-  { label: 'Provincia', name: 'localidad', type: 'text', icon: MapIcon, placeholder: 'Ej: Santa Fe' },
-  { label: 'Localidad', name: 'provincia', type: 'text', icon: HomeIcon, placeholder: 'Ej: Rosario' },
-  { label: 'Licencia', name: 'licencia', type: 'text', icon: CardIcon, placeholder: 'Ej: 123456' },
-]
-
-export const dataRegisterPatient = [
-  { label: 'Nombre', name: 'nombre', type: 'text', icon: UserIcon, placeholder: 'Ej: Mario' },
-  { label: 'Apellido', name: 'apellido', type: 'text', icon: UserIcon, placeholder: 'Ej: Hernandez' },
-  { label: 'Correo Electrónico', name: 'email', type: 'email', icon: EmailIcon, placeholder: 'Ej: tumail@mailito.com' },
-  { label: 'Contraseña', name: 'password', type: 'password', icon: LockIcon, placeholder: 'Introduzca contraseña' },
-  { label: 'Documento', name: 'numeroDocumento', type: 'number', icon: CardIcon, placeholder: 'Ej: 43812312' },
-  { label: 'Fecha de Nacimiento', name: 'fechaNacimiento', type: 'date', icon: CalendarIcon, },//cambiar icono
-]
+export const tipoTratamientoMap: Record<number, string> = {
+  0: 'Medicación',
+  1: 'Ejercitación',
+  2: 'Nutrición',
+  3: 'Psicologico'
+};
 
 export const dataLoginUser = [
   { label: 'Correo Electrónico', name: 'email', type: 'email', icon: EmailIcon, placeholder: 'Ej: tumail@mailito.com' },
@@ -44,7 +31,7 @@ export const initialValuesPatient: PatientRegister = {
   financiadorId: 1
 };
 
-export const initialValuesHistory:ClinicHistoryProps = {
+export const initialValuesHistory: ClinicHistoryProps = {
   titulo: "",
   descripcion: "",
   idPaciente: 12
@@ -68,19 +55,26 @@ export const initialValuesLogin: AuthenticationRequest = {
   password: ""
 }
 
-export const initialValuesTreatment: Treatment ={
-    pacienteId: 10, //modificar con el id del paciente correspendiente
-    patologiaId: 1,
-    medicamentoId: 0,
-    tipoTratamiento: 0,
-    descripcion: "",
-    dosisDiaria: 1,
-    horaInicio: "12:00",
-    diasTotales: 1,
-    fechaInicio: ""
+export const initialValuesAdherence: AdherenceRequest = {
+  comentario: "",
+  horarioId: 1,
+  estado: 2
 }
 
-export const initialValuesOthers: Treatment ={
+
+export const initialValuesTreatment: Treatment = {
+  pacienteId: 10, //modificar con el id del paciente correspendiente
+  patologiaId: 1,
+  medicamentoId: 0,
+  tipoTratamiento: 0,
+  descripcion: "",
+  dosisDiaria: 1,
+  horaInicio: "12:00",
+  diasTotales: 1,
+  fechaInicio: ""
+}
+
+export const initialValuesOthers: Treatment = {
   pacienteId: 10, //modificar con el id del paciente correspendiente
   patologiaId: 1,
   medicamentoId: 5,

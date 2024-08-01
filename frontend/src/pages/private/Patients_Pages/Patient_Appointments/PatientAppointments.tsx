@@ -31,7 +31,7 @@ export function PatientAppointments() {
                                     <h3 className="text-2xl font-inter font-bold ">Dra. Peters</h3>
                                     <p className="font-inter text-gray-400 ">Nutriologa</p>
                                 </div>
-                                <img src="./public/IMG_PATIENTS/IMG_PATIENS_MEDICO_1.png" className="rounded-full ml-20 w-16 h-16" alt="" />
+                                <img src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.png" className="rounded-full ml-20 w-16 h-16" alt="" />
                             </div>
                             <div className="flex flex-row items-center">
                                 <RelojIcon width={16} height={16} stroke=""/>
