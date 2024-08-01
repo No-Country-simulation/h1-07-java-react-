@@ -1,11 +1,10 @@
-import { Accordion, AccordionItem, Button, ModalBody, ModalHeader, useDisclosure } from "@nextui-org/react"
+import { Accordion, AccordionItem, Button, Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { ClinicHistoryProps, ContentClinicHistory } from "../Interfaces/interfaces"
 import { SearchIcon } from "../../public/icons/Icons"
 import { fetchClinicHistory, registerClinicHistory } from "../Context/AuthContext"
 import { SkeletonAcordion } from "./Skeletons"
-import { ModalComponent } from "./ModalRegister"
 import { Field, Form, Formik } from "formik"
 import { initialValuesHistory } from "../utils/data/data"
 import { validationHistoryClinic } from "../utils/validation/validation"
@@ -65,7 +64,7 @@ const user = {
 
 export default function ClinicHistory() {
   const [clinicHistories, setClinicHistories] = useState<ContentClinicHistory>()
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [histories, setHistories] = useState("")
   const [loading, setLoading] = useState(false)
   const [transcript, setTranscript] = useState("")
@@ -85,9 +84,7 @@ export default function ClinicHistory() {
     }
   }
 
-  useEffect(() => {
-    fetchDataHistory()
-  }, [])
+
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
 
@@ -96,18 +93,23 @@ export default function ClinicHistory() {
       return
     }
     if (id) {
-      const historyClinic: ClinicHistoryProps = { ...values, descripcion: transcript, idPaciente: Number(id) }
+      const historyClinic: ClinicHistoryProps = { ...values, descripcion: transcript.trim(), idPaciente: Number(id) }
       try {
         await registerClinicHistory(id, historyClinic)
+        toast.success("La historia clinica fue registrada correctamente")
         fetchDataHistory()
-        onOpen()
+        onClose()
         setTranscript("")
       } catch (err: any) {
         console.error(err)
       }
-
     }
   }
+
+  useEffect(() => {
+    fetchDataHistory()
+  }, [])
+
 
   return (
     <div className=' mt-8 p-6 flex-col gap-3 flex'>
@@ -150,29 +152,45 @@ export default function ClinicHistory() {
       </div>
       <Button onPress={onOpen} className="h-10 rounded-lg mt-10 w-3/4  m-auto font-semibold bg-secondary-brand-dark text-white">Nuevo Historial</Button>
 
-      <ModalComponent isOpen={isOpen} onOpenChange={onOpenChange} type="auto">
-        <ModalHeader className="flex flex-col gap-1 text-center">Formulario Historial Clinico</ModalHeader>
-        <ModalBody>
-          <Formik
-            initialValues={initialValuesHistory}
-            validationSchema={validationHistoryClinic}
-            onSubmit={handleSubmitHistory}>
-            {({ isSubmitting }) => (
-              <Form className=" flex flex-col  gap-6">
-                <><label htmlFor="titulo" className=" font-bold">Título</label>
-                  <Field id="titulo"
-                    type="text"
-                    name="titulo"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Título de la historia clinica"></Field>
-                </>
-                <VoiceTranscript onTranscriptChange={setTranscript} label={"Descripción"} />
-                <button disabled={isSubmitting} type="submit" className="mb-10 bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</button>
-              </Form>
-            )}
-          </Formik>
-        </ModalBody>
-      </ModalComponent>
+      <Modal
+        isOpen={isOpen}
+        placement={'auto'}
+        onOpenChange={onOpenChange}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalBody>
+                <ModalHeader className="flex flex-col gap-1 text-center">Formulario Historial Clinico</ModalHeader>
+                <ModalBody>
+                  <Formik
+                    initialValues={initialValuesHistory}
+                    validationSchema={validationHistoryClinic}
+                    onSubmit={handleSubmitHistory}>
+                    {({ isSubmitting }) => (
+                      <Form className=" flex flex-col  gap-6">
+                        <div>
+                          <label htmlFor="titulo" className=" font-bold">Título</label>
+                          <Field id="titulo"
+                            type="text"
+                            name="titulo"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Título de la historia clinica"></Field>
+                        </div>
+                        <VoiceTranscript onTranscriptChange={setTranscript} label={"Descripción"} />
+                        <div className="flex justify-center gap-2" >
+                          <Button disabled={isSubmitting} type="submit" className=" w-2/4 mb-10 bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</Button>
+                          <Button className=" rounded-md w-2/4 border-2  border-red-300" color="danger" variant="light" onPress={onClose}>Cancelar</Button>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
+                </ModalBody>
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   )
 }

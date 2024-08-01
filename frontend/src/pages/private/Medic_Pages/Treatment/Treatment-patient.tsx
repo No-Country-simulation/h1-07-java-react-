@@ -36,10 +36,11 @@ export const TreatmentPatient = () => {
     fetchMedicinesData()
     fetchPatient()
   }, []);
+  
   return (
     <section className=" bg-gray-100 min-h-screen m-auto overflow-hidden">
       <div className="w-full max-w-md m-auto  bg-white rounded-lg shadow-lg  max-md:m-auto">
-        <HeaderProfile loading={loading} name={patient?.nombre} lastname={patient?.apellido} typeDocument={patient?.tipoDocumento} financier={patient?.financiador} document={patient?.numeroDocumento} >
+        <HeaderProfile loading={loading} name={patient?.nombre} lastname={patient?.apellido} typeDocument={patient?.tipoDocumento} financier={patient?.financiador} document={patient?.numeroDocumento} title={'Tratamientos'} >
           <div className='absolute -bottom-4 w-full flex justify-center'>
             <div className='flex gap-4'>
               <Link to={`/patient/${id}`} className='px-3  cursor-pointer p-1 rounded-lg border-2 bg-violet-color  border-light-color shadow-xl text-light-color '>Historia clínica</Link>
@@ -60,13 +61,6 @@ export const TreatmentPatient = () => {
           <Tab key="Psicológico" title="Psicológico" className='' >
             <FormTreamentVoice id={id} type={3} label={'Recomedaciones'} />
           </Tab>
-          {/* <Tab key="Resumen" title="Resumen" className='' >
-            <form className='flex flex-col gap-y-6 px-4 min-h-[60vh]'>
-              <h1>Resumen</h1>
-              <textarea placeholder='Añadir' name={'descripcion'} className=' min-h-40  border-1 border-violet-color rounded-lg p-2' id={'descripcion'}>
-              </textarea>
-            </form>
-          </Tab> */}
         </Tabs>
       </div>
     </section >

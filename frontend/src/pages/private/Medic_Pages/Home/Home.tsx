@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';;
 import { Link } from 'react-router-dom';
-import { ArrowBlackIcon, CalendarIcon, CampanaIcon, FlechaIcon, LapizIcon, MenuHambuerguesa, RelojIcon } from '../../../../../public/icons/Icons';
-import { Medic } from '../../../../Interfaces/interfaces';
-import { fetchMedicData } from '../../../../Context/AuthContext';
+import { ArrowBlackIcon, CalendarIcon, CampanaIcon, ChevronIcon, LapizIcon, MenuHambuerguesa, RelojIcon } from '../../../../../public/icons/Icons';
+import { ContentPatient, Medic } from '../../../../Interfaces/interfaces';
+import { fetchMedicData, fetchPatient } from '../../../../Context/AuthContext';
+import { PopoverMessage } from '../../../../components/PopoverMessage';
+import SkeletonsListPatient from '../../../../components/Skeletons';
+import { Avatar } from '@nextui-org/react';
 import { AsideMenu } from '../../../../components/AsideMenu';
 // import { AuthContext } from '../../../../Context/AuthContext';
-
 
 export interface Message {
 	id: number;
@@ -16,31 +18,33 @@ export interface Message {
 	color: string;
 }
 
-const messages: Message[] = [
-	{ id: 1, name: 'Anna Herrera', time: '9:28 AM', message: 'Le solicito recomendaciones para diabetes tipo II', src: "IMG_MEDICO/IMG_Pacientes.png", color: "#56BF33" },
-	{ id: 2, name: 'Juan Gutierrez', time: '1:35 PM', message: 'Gracias por las recomendaciones Doctor Facundo', src: "IMG_MEDICO/IMG_Pacientes_2.png", color: "" },
-	{ id: 3, name: 'Sofia Castillo', time: '10:25 AM', message: 'Ok, entendido. Muchas gracias por la atencion Doctor Facundo', src: "IMG_MEDICO/IMG_Pacientes_3.png", color: "" },
-];
-
-
 export function Home(): JSX.Element {
-	// const { userName } = useContext(AuthContext);
 	const [searchQuery, setSearchQuery] = useState('');
-	const [activeTab, setActiveTab] = useState('Pacientes');
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const [medicInfo, setMedicInfo] = useState<Medic>()
+	const [patients, setPatients] = useState<ContentPatient>()
+	const [loading, setLoading] = useState(false)
 
 	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchQuery(e.target.value);
 	};
 
-	const handleTabChange = (tab: string) => {
-		setActiveTab(tab);
-	};
 
 	const toggleSidebar = () => {
 		setIsSidebarOpen(!isSidebarOpen);
 	};
+
+	const fetchPatientData = async () => {
+		setLoading(true)
+		try {
+			setPatients(await fetchPatient())
+
+		} catch (err: any) {
+			console.log(err)
+		} finally {
+			setLoading(false)
+		}
+	}
 
 	useEffect(() => {
 		const fetchMedic = async () => {
@@ -52,6 +56,7 @@ export function Home(): JSX.Element {
 		}
 
 		fetchMedic()
+		fetchPatientData()
 
 		const storedMedic = localStorage.getItem("MEDIC-DATA");
 		if (storedMedic) {
@@ -78,9 +83,9 @@ export function Home(): JSX.Element {
 							</div>
 						</Link>
 						<div className='relative right-7 flex flex-row '>
-							<CampanaIcon width={24} height={24} />
+							<CampanaIcon width={24} height={24} stroke='' />
 							<button onClick={toggleSidebar}>
-								<MenuHambuerguesa width={24} height={24} />
+								<MenuHambuerguesa width={24} height={24} stroke=''/>
 							</button>
 						</div>
 					</div>
@@ -125,71 +130,63 @@ export function Home(): JSX.Element {
 						<div className='flex  mb-2 flex-row justify-between items-center '>
 							<h2 className="text-md font-semibold text-[#3D4DA5]">Siguiente cita programada</h2>
 							<span className=' cursor-pointer'>
-								<ArrowBlackIcon width={16} height={16} />
+								<ArrowBlackIcon width={16} height={16} stroke=''/>
 							</span>
 						</div>
 						<div className="flex mb-2  items-center justify-between">
 							<div className='flex flex-col'>
 								<div className='flex flex-row items-center mt-1 '>
-									<CalendarIcon width={15} height={15} />
+									<CalendarIcon width={15} height={15} stroke=''/>
 									<p className="font-inter text-black font-[500] ml-4 text-sm">20 Julio 2024</p>
 								</div>
 								<div className='flex flex-row items-center mt-[15px]'>
-									<RelojIcon width={15} height={15} />
+									<RelojIcon width={15} height={15} stroke=''/>
 									<p className=" font-inter font-[500] text-black ml-4 text-sm ">10:00-11:00 AM</p>
 								</div>
 							</div>
 							<div className=' cursor-pointer'>
-								<LapizIcon width={16} height={16} />
+								<LapizIcon width={16} height={16} stroke='' classname=''/>
 							</div>
 						</div>
-						<Link to={"detalle"}>
-							<div className='flex items-center justify-center '>
-								<button className=" absolute top-[22rem]  text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm mt-5">
+						<div className='flex items-center justify-center '>
+							<PopoverMessage locate={'top'} title={'Funcionalidad en Desarrollo'} content={'Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!'} color={'primary'}>
+								<button className=" absolute top-[22rem] z-0  text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm mt-5">
 									Ver detalles
 								</button>
-							</div>
-						</Link>
+							</PopoverMessage>
+						</div>
+
 					</section>
 					<div className="mb-4 flex items-center justify-between">
-						<h2 className='font-bold  font-inter'>Mensajeria</h2>
-						<ArrowBlackIcon width={16} height={16} />
+						<h2 className='font-bold  font-inter'>Lista de pacientes</h2>
 					</div>
 
-					<section className="w-[100%] overflow-hidden border-2 rounded-xl border-gray-500">
-						<div className="flex border-b-2 border-gray-500 rounded-lg mb-2">
-							{['Pacientes', 'Médicos', 'Otros'].map((tab) => (
-								<button
-									key={tab}
-									onClick={() => handleTabChange(tab)}
-									className={`px-4 w-1/3  py-2 text-sm ${activeTab === tab ? 'bg-[#3D4DA5] text-white rounded-[8px] border-solid border-[1px] border-gray-500' : 'bg-gray-200 text-gray-600 '}`}
-								>
-									{tab}
-								</button>
-							))}
-						</div>
-						<div className=" rounded-r-xl rounded-xl  shadow-xl">
-							{messages
-								.filter((msg) => msg.name.toLowerCase().includes(searchQuery.toLowerCase()))
-								.map((msg) => (
-									<div key={msg.id} className={`flex hover:bg-gray-200 transition-all duration-300 cursor-pointer justify-between bg-[${msg.color}]  py-1 px-2 border-b-1 border-gray-500`}>
-										<div className={`flex flex-row items-center bg-${msg.color}  w-full`}>
-											<img src={msg.src} alt="imagen_paciente" />
-											<div className={`flex flex-col ml-3 w-full  `}>
-												<div className='flex flex-row justify-between '>
-													<p className="font-semibold text-sm">{msg.name}</p>
-													<div className='flex flex-row'>
-														<p className="text-gray-500 text-xs mr-2">{msg.time}</p>
-														<FlechaIcon width={16} height={16} />
-													</div>
-												</div>
-												<p className="text-gray-700 text-sm">{msg.message}</p>
-											</div>
-										</div>
+					<section className="w-[100%]">
+						<div className=" border-1 border-violet-color rounded-md min-h-[20rem]">
+							{loading &&
+								<>
+									<SkeletonsListPatient />
+									<SkeletonsListPatient />
+								</>
+							}
+							{patients && patients.content.slice(1,5).map((patient) => (
+								<div key={patient.idPaciente} className='border-1 rounded-md flex h-20 items-center justify-around transition-all duration-200 hover:border-violet-color'>
+									<Avatar name={patient.nombre} color='primary' key={patient.idPaciente} />
+									<div className=" w-3/6 text-center">
+										<h6 className=' font-bold'>{patient.nombre} {patient.apellido}</h6>
+										<p className=' text-sm text-gray-color'>{patient.numeroDocumento}</p>
 									</div>
-								))}
+									<Link to={`/patient/${patient.idPaciente}`} className=' w-10 h-10 border-2 rounded-full flex justify-center hover:translate-x-1 transition-all duration-300 items-center bg-gray-200 cursor-pointer hover:brightness-90' >
+										<ChevronIcon width={20} height={20} />
+									</Link>
+								</div>
+							))
+							}
 						</div>
 					</section>
+					<div className="flex items-center justify-end ">
+						<Link to={"/patient-list"} className=' px-4 border-2 bg-violet-color cursor-pointer w-32 text-center py-1 rounded-xl text-light-color'>Ver más</Link>
+					</div>
 				</div>
 				<div className='mt-5 flex justify-center items-center flex-col'>
 					<h2 className='text-center font-inter font-bold text-2xl'>Donaciones</h2>
