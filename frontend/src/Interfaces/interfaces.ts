@@ -208,6 +208,13 @@ export interface AuthenticationRequest {
   password: string;
 }
 
+
+export interface AdherenceRequest {
+  comentario: string
+  horarioId: number
+  estado: number
+}
+
 export interface AuthenticationResponse {
   id: number;
   nombre: string;

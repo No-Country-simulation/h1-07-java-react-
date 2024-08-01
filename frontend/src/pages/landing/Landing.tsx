@@ -1,7 +1,7 @@
-import { Accordion, AccordionItem, Button, Input } from '@nextui-org/react';
+import { Accordion, AccordionItem, Button } from '@nextui-org/react';
 import styles from '../../styles.module.css';
 import { Link } from 'react-router-dom';
-import { CheckIcon, CheckIconTwo, ChevronIcon, CloudIcon, CorIcon, DonationIcon, FacebookIcon, FeaturesIcon, FlechaIcon, GitBrantIcon, HistoryIconTwo, LinkedinIcon, RecordIcon, SecurityIcon, StarIcon, StorageIcon, TimeIcon, TratamentIcon, UpdateIcon, VideoIcon, WacthIcon } from '../../../public/icons/Icons';
+import {  CheckIconTwo, ChevronIcon, CorIcon, DonationIcon, FacebookIcon, FlechaIcon, GitBrantIcon, HistoryIconTwo, LinkedinIcon, RecordIcon, SecurityIcon, StarIcon, TratamentIcon, WacthIcon } from '../../../public/icons/Icons';
 import { Nav } from '../../components/Nav';
 
 const items = [
@@ -59,7 +59,7 @@ export const Landing = () => {
     <main className='xl:w-[1440px] md:mx-0 md:max-w-full md:p-0'>
       <nav className='hidden md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small'>
         <div className='md:ml-4'>
-          <img src="./public/LOGOS/JustinaLogo_Lading.png" className='md:w-20' alt="" />
+          <img src="LOGOS/JustinaLogo_Lading.png" className='md:w-20' alt="" />
         </div>
         <div className='md:flex md:items-center'>
           <ul className='md:flex md:flex-row'>
@@ -82,7 +82,7 @@ export const Landing = () => {
         </div>
         <div>
           <Link to={'/'}>
-            <img src="./public/Avatar.png" className='md:mr-8' alt="" />
+            <img src="Avatar.png" className='md:mr-8' alt="" />
           </Link>
         </div>
       </nav>
@@ -90,7 +90,7 @@ export const Landing = () => {
       <article className='flex flex-col md:pl-0  '>
 
         {/* Destoks y Mobile */}
-        <section className="flex flex-col items-center md:gap-y-0 md:flex-row bg-cover md:bg-center md:h-screen  " style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+        <section className="flex flex-col items-center md:gap-y-0 md:flex-row bg-cover md:bg-center md:h-screen  " style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <div className='flex  w-full flex-col md:flex-col mt-2 md:mt-30 md:ml-10'>
             <h2 className={`mt-5 text-center md:text-start md:mb-4 md:text-[3rem] md:mt-0 text-white ${styles.h2}`}>JUSTINA.IO</h2>
             <p className='md:text-3xl text-2xl font-[300] mt-5 w-[80%] ml-4 font-inter mb-4 md:mt-4 text-white  md:w-[80%]'>
@@ -100,7 +100,7 @@ export const Landing = () => {
               <Button className='rounded-md bg-[#E08733] ml-5 mt-6 mb-10 drop-shadow-lg  w-36 md:mt-5 h-12 text-white font-[300] font-inter '>Acceder</Button>
             </Link>
           </div>
-          <img src='./public/LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg min-w-[900px]:hidden w-[60%] mb-4 md:mb-32 md:mr-36 md:w-[30%] md:h-[20rem]' alt="image-landing-page" />
+          <img src='LOGOS/JustinaLogo_Lading.png' className='md:rounded-lg min-w-[900px]:hidden w-[60%] mb-4 md:mb-32 md:mr-36 md:w-[30%] md:h-[20rem]' alt="image-landing-page" />
         </section>
 
         {/* Dispositivo Mobile */}
@@ -117,7 +117,7 @@ export const Landing = () => {
             Leer Más <ChevronIcon height={15} width={15} />
           </h4>
           <div className=' flex justify-center '>
-            <img src='./public/Imagen-1.2.png' alt="image-landing-page" className='mb-10 mt-10 w-[90%] shadow-large ' />
+            <img src='Imagen-1.2.png' alt="image-landing-page" className='mb-10 mt-10 w-[90%] shadow-large ' />
 
           </div>
         </section>
@@ -125,7 +125,7 @@ export const Landing = () => {
         {/* Dispositivo Destosk */}
         <section className='hidden md:flex md:flex-row md:mt-32 md:mb-24 '>
           <div className='md:w-[30rem] md:pl-4 md:ml-10 '>
-            <img src='./public/Imagen-1.2.png' className='rounded-xl h-[20em] w-[70em]' alt="image-landing-page" />
+            <img src='Imagen-1.2.png' className='rounded-xl h-[20em] w-[70em]' alt="image-landing-page" />
           </div>
           <div className='md:ml-20 md:w-[40%]'>
             <h5 className={`${styles.h5} md:text-black font-inter`}>ACERCA DE</h5>
@@ -141,7 +141,7 @@ export const Landing = () => {
         </section>
 
         {/* Version Mobile y Destosk */}
-        <section className='flex flex-col gap-y-8 items-center md:justify-center text-white text-center md:mb-32 md:bg-cover md:bg-center md:h-screen rounded-xl' style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+        <section className='flex flex-col gap-y-8 items-center md:justify-center text-white text-center md:mb-32 md:bg-cover md:bg-center md:h-screen rounded-xl' style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <h5 className={`${styles.h5} text-white font-[500] md:font-semibold font-inter mt-5`}>Servicios</h5>
           <h2 className={`md:text-5xl md:font-[600] md:w-[60%] font-[500] font-inter ${styles.h2}`}>Aportando valor Verdadero</h2>
           <h5 className={`${styles.h5} text-white w-[60%] text-lg font-inter font-[400]`}>Calidad Para Pacientes y Doctores</h5>
@@ -176,15 +176,15 @@ export const Landing = () => {
               </h4>
             </div>
             <div className='relative grid grid-cols-1 grid-rows-2 rounded-xl bg-gradient-to-r from-[#5F5CF4] to-[#C49FE0] w-[90%] h-[20rem]'>
-              <img src='./public/jus-removebg-preview_1.png' alt="image-landing-page" className='absolute top-0 left-0 w-[35%] h-auto lg:w-[20%]' />
-              <img src='./public/Ellipse_136.png' alt="image-landing-page" className='absolute bottom-0 right-0 w-[35%] h-auto lg:w-[20%]' />
+              <img src='jus-removebg-preview_1.png' alt="image-landing-page" className='absolute top-0 left-0 w-[35%] h-auto lg:w-[20%]' />
+              <img src='Ellipse_136.png' alt="image-landing-page" className='absolute bottom-0 right-0 w-[35%] h-auto lg:w-[20%]' />
             </div>
           </div>
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
             <div className='md:rounded-xl md:bg-gradient-to-r md:from-[#5F5CF4] md:to-[#C49FE0] md:w-[33%] md:h-[17rem] md:ml-36'>
-              <img src='./public/jus-removebg-preview_1.png' alt="image-landing-page" className='md:relative md:bottom-auto xl:left-10 md:left-auto md:w-28 lg:w-36 xl:w-36' />
-              <img src='./public/Ellipse_136.png' alt="image-landing-page" className='md:relative md:bottom-auto md:left-40 xl:left-60 xl:bottom-3 lg:left-40  md:w-28 lg:w-32 xl:w-36' />
+              <img src='jus-removebg-preview_1.png' alt="image-landing-page" className='md:relative md:bottom-auto xl:left-10 md:left-auto md:w-28 lg:w-36 xl:w-36' />
+              <img src='Ellipse_136.png' alt="image-landing-page" className='md:relative md:bottom-auto md:left-40 xl:left-60 xl:bottom-3 lg:left-40  md:w-28 lg:w-32 xl:w-36' />
             </div>
             <div className='md:flex md:flex-col md:pr-20 md:w-[45%]'>
               <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-4'>
@@ -204,7 +204,7 @@ export const Landing = () => {
                 Plataforma Integral Para Transplantes
               </h4>
             </div>
-            <img src='./public/CenterContent.png' alt="image-landing-page" className='md:mr-20 w-[90%]' />
+            <img src='CenterContent.png' alt="image-landing-page" className='md:mr-20 w-[90%]' />
           </div>
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
@@ -216,7 +216,7 @@ export const Landing = () => {
                 Justina.IO se centra en coordinar a especialistas de la salud para gestión y coordinación de trasplantes de órganos, brindando herramientas de comunicación eficiente entre equipos médicos.
               </h5>
             </div>
-            <img src='./public/CenterContent.png' alt="image-landing-page" className='md:mr-20' />
+            <img src='CenterContent.png' alt="image-landing-page" className='md:mr-20' />
           </div>
 
           <div className="flex flex-col items-center mt-10 md:hidden">
@@ -225,11 +225,11 @@ export const Landing = () => {
                 Purus id tellus arcu habitant proin magna. Integer purus
               </h4>
             </div>
-            <img src='./public/image.png' alt="image-landing-page" className='md:ml-32 w-[90%]' />
+            <img src='image.png' alt="image-landing-page" className='md:ml-32 w-[90%]' />
           </div>
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
-            <img src='./public/image.png' alt="image-landing-page" className='md:ml-32' />
+            <img src='image.png' alt="image-landing-page" className='md:ml-32' />
             <div className='md:flex md:flex-col md:pr-20 md:w-[45%]'>
               <h4 className='md:text-5xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10'>
                 Interfaz Amigable y Accesible
@@ -243,7 +243,7 @@ export const Landing = () => {
 
 
         {/*Version Mobile - Preguntas Frecuentes */}
-        <section className='md:hidden flex flex-col gap-y-4 mt-10  mb-10 bg-cover h-screen bg-center text-white ' style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+        <section className='md:hidden flex flex-col gap-y-4 mt-10  mb-10 bg-cover h-screen bg-center text-white ' style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <h2 className={`${styles.h2} ml-3 mt-20 font-inter font-[500] text-[25px] `}>Preguntas Frecuentes</h2>
           <h5 className={`w-[60%] ml-3 font-inter text-white ${styles.h5}`}>Las mas solicitadas de nuestros servicios</h5>
           <Accordion className='flex flex-col text-white '>
@@ -269,7 +269,7 @@ export const Landing = () => {
         </section>
 
         {/* Version Desktop  */}
-        <section className='hidden md:flex md:flex-row md:gap-y-6 md:items-center md:bg-cover md:bg-center md:h-screen' style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+        <section className='hidden md:flex md:flex-row md:gap-y-6 md:items-center md:bg-cover md:bg-center md:h-screen' style={{ backgroundImage: 'url(IMG_FONDO/IMG_FONDO.png)' }}>
           <div className='md:flex md:flex-col md:pl-10'>
             <h2 className={`md:font-inter md:font-[600] md:mb-7 md:text-5xl md:text-white ${styles.h2}`}>Preguntas Frecuentes</h2>
             <h5 className={`md:font-inter md:text-white ${styles.h5} md:w-[70%] md:text-lg`}>
@@ -312,7 +312,7 @@ export const Landing = () => {
             especialmente en casos de trasplantes.””
           </p>
 
-          <img src="./public/IMG_MEDICO/IMG_MEDICO.png" className='w-10' alt="" />
+          <img src="IMG_MEDICO/IMG_MEDICO.png" className='w-10' alt="" />
           <p className='font-semibold'>Courtney Henry</p>
         </section>
 
@@ -331,7 +331,7 @@ export const Landing = () => {
                 “Como médico, Justina.IO me ha permitido gestionar mis pacientes de manera más eficiente. La plataforma es intuitiva y me ha ayudado a mantener una comunicación constante y efectiva con mis pacientes, especialmente en casos de trasplantes.”
               </p>
               <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
-              <img src="./public/IMG_MEDICO/IMG_MEDICO.png" className='w-10' alt="" />
+              <img src="IMG_MEDICO/IMG_MEDICO.png" className='w-10' alt="" />
               <p className='font-semibold md:w-[25%] w-[40%] mt-3 md:text-gray-500 md:mt-2'>Doctor Ortega
                 (Médico internista)</p>
             </div>
@@ -346,7 +346,7 @@ export const Landing = () => {
                 “Como médico, Justina.IO me ha permitido gestionar mis pacientes de manera más eficiente. La plataforma es intuitiva y me ha ayudado a mantener una comunicación constante y efectiva con mis pacientes, especialmente en casos de trasplantes.”
               </p>
               <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
-              <img src="./public/IMG_MEDICO/IMG_MEDICO_2.png" className='md:w-10' alt="" />
+              <img src="IMG_MEDICO/IMG_MEDICO_2.png" className='md:w-10' alt="" />
               <p className='font-semibold md:w-[25%] md:text-gray-500 md:mt-2'>Doctor Ortega
                 (Médico internista)</p>
             </div>
@@ -360,8 +360,8 @@ export const Landing = () => {
       {/* Version Mobile */}
       <footer className='flex md:hidden flex-col p-4 bg-[#232233] mt-4'>
         <div className='flex flex-row  items-center'>
-          <img src="./public/D_1.png" className='w-[50%] h-[50%] ' alt="" />
-          <img src="./public/LOGOS/JustinaLogo_Lading.png" className='w-[40%] pl-1 ml-6 mb-4 px-2 py-1 h-[50%] md:w-[70%] ' alt="" />
+          <img src="D_1.png" className='w-[50%] h-[50%] ' alt="" />
+          <img src="LOGOS/JustinaLogo_Lading.png" className='w-[40%] pl-1 ml-6 mb-4 px-2 py-1 h-[50%] md:w-[70%] ' alt="" />
         </div>
         <div className='bg-[#5956e9] px-10 py-10'>
           <h1 className='text-white font-inter font-semibold mb-4'>Subcribirse</h1>
@@ -458,8 +458,8 @@ export const Landing = () => {
         <div className='md:text-white md:w-full md:flex '>
           <section className=" md:flex md:mt-20 md:justify-between md:items-center  md:flex-row md:w-[100%]  ">
             <div className='md:flex md:flex-row  md:w-[20%] '>
-              <img src="./public/D_1.png" alt="" />
-              <img src="./public/LOGOS/JustinaLogo_Lading.png" className='md:w-[70%]' alt="" />
+              <img src="D_1.png" alt="" />
+              <img src="LOGOS/JustinaLogo_Lading.png" className='md:w-[70%]' alt="" />
             </div>
 
             <ul className='md:flex md:items-center md:gap-10'>
