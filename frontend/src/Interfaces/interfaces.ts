@@ -87,7 +87,7 @@ export interface DoctorRegister {
   licencia: string;
   especialidad: number;
   password: string;
-  financiadores: any;
+  financiadores: number[];
 }
 
 export interface MedicoRequest {
@@ -349,7 +349,7 @@ export interface Medic {
   provincia: string;
   localidad: string;
   licencia: string;
-  especialidad: number;
+  especialidad: string;
   financiadores: number[];
 }
 

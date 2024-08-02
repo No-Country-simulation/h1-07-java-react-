@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { ContentTreatmentPacient } from "../../../../Interfaces/interfaces";
+import { ContentTreatmentPacient, Paciente } from "../../../../Interfaces/interfaces";
 // import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { API_URL } from "../../../../api/api";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
+import { HeaderProfile } from "../../../../components/HeaderProfile";
 
 export default function TreatementPatient() {
-  // const [patientInfo, setPatienInfo] = useState<Paciente>();
+  const [patientInfo, setPatienInfo] = useState<Paciente>();
   const [treatments, setTreatments] = useState<ContentTreatmentPacient>();
 
   useEffect(() => {
@@ -37,8 +38,8 @@ export default function TreatementPatient() {
 
     const storedMedic = localStorage.getItem("PATIENT-DATA");
     if (storedMedic) {
-      // const medic: Paciente = JSON.parse(storedMedic);
-      // setPatienInfo(medic);
+      const medic: Paciente = JSON.parse(storedMedic);
+      setPatienInfo(medic);
       console.log("hi");
     }
   }, []);
@@ -46,15 +47,17 @@ export default function TreatementPatient() {
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center  ">
       <div className="w-full  min-h-screen max-w-md  bg-white rounded-lg shadow-lg  max-md:m-auto">
-        {/* <HeaderProfile
+        <HeaderProfile
           name={patientInfo?.nombre}
           title='Tus Tratamientos'
           lastname={patientInfo?.apellido}
           typeDocument={patientInfo?.tipoDocumento}
           financier={patientInfo?.financiador}
-          document={patientInfo?.numeroDocumento} >
-        </HeaderProfile> */}
-        <div className="p-4 mt-4">
+          document={patientInfo?.numeroDocumento} link={"/patient-home"} >
+        </HeaderProfile>
+        <div className="p-4">
+          <h1 className=" text-xl text-gray-700 font-semibold">Mis tratamientos</h1>
+
           <section className="justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
             {treatments &&
               treatments.content.map((treatment) => (

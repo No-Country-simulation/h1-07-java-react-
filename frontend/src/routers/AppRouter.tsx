@@ -24,11 +24,14 @@ import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfileP
 import TreatementPatient from "../pages/private/Patients_Pages/Treatement/TreatementPatient";
 import History from "../pages/private/Patients_Pages/HistoryClinic/History";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
-import Statistics from "../pages/private/Medic_Pages/Statistics/Statistics";
 import { Donation_Registre } from "../pages/private/Medic_Pages/Donations/Donation_Registre/Donation_Registre";
-import SignUp from "../pages/signup/SignUp";
 import LandingView from "../pages/landing/LandingView";
-import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import SignUp from "../pages/SignUp/SignUp";
+import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
+import Adherence from "../pages/private/Medic_Pages/Adherence/Adherence";
+import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/TreatmentAdherence/TreatmentAdherence";
+import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 
 function AppRouter() {
   return (
@@ -53,12 +56,13 @@ function AppRouter() {
                 element={<RegisterPatient />}
               ></Route>
               <Route path="/patient-list" element={<PatientList />}></Route>
-              {/* <Route path="/patient/:id" element={<PatientDetail />} /> */}
-              <Route path="/patient/:id/statistics" element={<Statistics />} />
-              {/* <Route
+              <Route path="/patient/:id" element={<PatientDetail />} />
+              <Route path="/patient/:id/adherence" element={<Adherence />} />
+              <Route path="/patient/:id/adherence/:idTratamiento" element={<TreatmentAdherence />} />
+              <Route
                 path="/patient/:id/treatment"
                 element={<TreatmentPatient />}
-              /> */}
+              />
               {/* <Route path="/donations" element={<Donations />} /> */}
               <Route path="/donationRegistre" element={<Donation_Registre />} />
             </Route>
@@ -78,8 +82,9 @@ function AppRouter() {
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>
         </BrowserRouter>
+        <Toaster richColors></Toaster>
+
       </AuthContextProvider>
-      <Toaster richColors></Toaster>
     </>
   );
 }

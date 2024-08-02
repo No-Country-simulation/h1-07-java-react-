@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   CaledarIcon,
-  CampanaNotificIcon,
   CerebroIcon,
   DonationIconTwo,
   EjercicioIcon,
   HistoryIconThree,
-  MenuHambuerguesa,
   RelojIcon,
-  SearchIcon,
   TratamentIconTwo,
 } from "../../../../../public/icons/Icons";
 import { Paciente } from "../../../../Interfaces/interfaces";
@@ -17,9 +14,9 @@ import {
   fetchNotifications,
   fetchPatientConnect,
 } from "../../../../Context/AuthContext";
-import { Avatar, Badge } from "@nextui-org/react";
 import { toast } from "sonner";
-import { AsideMenu } from "../../../../Components/AsideMenu";
+import { AsideMenu } from "../../../../components/AsideMenu";
+import Header from "./Header/Header";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -115,50 +112,9 @@ export function Home_Patients() {
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
         ></AsideMenu>
-        <header className="flex flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] px-4">
-          <div className="flex flex-row  justify-between w-full ">
-            <Link to="/profile">
-              <div className="flex items-center space-x-2">
-                <Avatar
-                  name={patientInfo?.nombre}
-                  color="primary"
-                  isBordered
-                  size="lg"
-                />
-                <div>
-                  <h1 className="text-lg font-bold text-white">Buenos días,</h1>
-                  <p className="font-bold text-white">
-                    {patientInfo?.nombre} {patientInfo?.apellido}
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <div className="flex items-center space-x-4 mt-2">
-              <Link to={"/notification"}>
-                <Badge
-                  color="danger"
-                  content={notifications?.length}
-                  isInvisible={notifications?.length === 0}
-                  shape="circle"
-                >
-                  <CampanaNotificIcon width={26} height={26} />
-                </Badge>
-              </Link>
-
-              <button onClick={toggleSidebar}>
-                <MenuHambuerguesa width={24} height={24} />
-              </button>
-            </div>
-          </div>
-          <div className="bg-white flex flex-row items-center py-[5px] mt-5 px-4 rounded-3xl ml-3">
-            <SearchIcon width={16} height={16} stroke="" />
-            <input
-              type="text"
-              className="pl-2 py-1 w-full border-none outline-none"
-              placeholder="Buscar"
-            />
-          </div>
-        </header>
+        <Header toggleSidebar={toggleSidebar} nombre={patientInfo?.nombre} apellido={patientInfo?.apellido} notifications={notifications} >
+          
+        </Header>
         <div className="ml-5 mt-10">
           <h3 className="font-bold font-inter text-2xl">Categorías</h3>
         </div>

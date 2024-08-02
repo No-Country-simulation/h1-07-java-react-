@@ -8,16 +8,19 @@ import {
   IconPassword,
   LapizIcon,
   MapIcon,
+  MenuHambuerguesa,
   PhoneIcon,
 } from "../../../../../public/icons/Icons";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { useAuthContext } from "../../../../Context/AuthContext";
+import { AsideMenu } from "../../../../components/AsideMenu";
+import { Logout } from "../../../../components/Logout";
 
 export function UserInfo(): JSX.Element {
   const [curriculum, setCurriculum] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [medicInfo, setMedicInfo] = useState<Medic>();
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { authTokens } = useAuthContext();
   useEffect(() => {
     const storedCurriculum = localStorage.getItem("curriculum");
@@ -45,30 +48,33 @@ export function UserInfo(): JSX.Element {
     setCurriculum(e.target.value);
   };
 
-  // const toggleSidebar = () => {
-  //   setIsSidebarOpen(!isSidebarOpen);
-  // };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
       <div className="w-full xl:max-w-7xl max-w-md bg-white rounded-lg shadow-lg  max-md:m-auto">
-        {/* <AsideMenu
+        <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
-        /> */}
+        />
         <header className="p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl">
           <div className="xl:flex xl:flex-col xl:justify-center xl:items-center">
             <div className="w-full flex flex-col items-start">
-              <div className="xl:flex mb-6 text-center relative flex flex-col items-center justify-center w-full">
+              <div className="xl:flex mb-6 text-center relative flex items-center justify-center w-full">
                 <Link
                   to={"/dashboard"}
-                  className="text-light-color absolute xl:-left-20 -left-8 hover:-translate-x-1 transition-all duration-300"
+                  className="text-light-color absolute xl:-left-20 -left-10 hover:-translate-x-1 transition-all duration-300"
                 >
                   <ArrowWhiteIcon width={30} height={30} stroke="" />
                 </Link>
                 <h1 className="text-xl font-semibold text-light-color">
                   Detalles de paciente
                 </h1>
+                <button onClick={toggleSidebar} className=" hidden absolute -right-10 max-md:flex">
+                  <MenuHambuerguesa width={24} height={24} stroke="" />
+                </button>
               </div>
             </div>
             <div className=" flex gap-4 items-start w-full">
@@ -83,16 +89,6 @@ export function UserInfo(): JSX.Element {
                 </h6>
                 <p className=" text-light-color">
                   Especialidad {medicInfo?.especialidad}
-                </p>
-              </div>
-            </div>
-            <div className="absolute top-44 left-1 w-full flex justify-center">
-              <div className="flex gap-4 items-center justify-center">
-                <p className="px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color ">
-                  Medicina Interna
-                </p>
-                <p className="px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color ">
-                  Medicina General
                 </p>
               </div>
             </div>
@@ -216,7 +212,9 @@ export function UserInfo(): JSX.Element {
             </button>
           </div>
         </section>
-        <div className="flex flex-row justify-center">{/* <Logout /> */}</div>
+        <div className="flex flex-row justify-center">
+          <Logout />
+        </div>
       </div>
     </main>
   );

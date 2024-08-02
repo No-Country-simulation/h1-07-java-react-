@@ -2075,7 +2075,7 @@ export function HistoryIconThree({ width, height }: IconProps) {
   );
 }
 
-export function CampanaNotificIcon({ width, height }: IconProps) {
+export function CampanaNotificIcon({ width, height, stroke }: IconProps) {
   return (
     <svg
       width={width}
@@ -2087,7 +2087,7 @@ export function CampanaNotificIcon({ width, height }: IconProps) {
     >
       <path
         d="M13.7295 25C13.5537 25.3031 13.3014 25.5547 12.9978 25.7295C12.6941 25.9044 12.3499 25.9965 11.9995 25.9965C11.6492 25.9965 11.3049 25.9044 11.0013 25.7295C10.6977 25.5547 10.4453 25.3031 10.2695 25M18 12C18 10.4087 17.3679 8.88258 16.2426 7.75736C15.1174 6.63214 13.5913 6 12 6C10.4087 6 8.88258 6.63214 7.75736 7.75736C6.63214 8.88258 6 10.4087 6 12C6 19 3 21 3 21H21C21 21 18 19 18 12Z"
-        stroke="#1A1A1A"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -2510,3 +2510,5 @@ export function DonationRegistreIcon({ width, height }: IconProps) {
     </svg>
   );
 }
+
+

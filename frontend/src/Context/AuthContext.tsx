@@ -78,15 +78,18 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         body: JSON.stringify({ email, password })
       });
 
+
+
+      if (res.status == 401) {
+        toast.warning("El email o contraseña son incorrectos")
+      }
+
       if (!res.ok) {
         throw new Error("Failed to login");
       }
 
       const data = await res.json();
 
-      if (data.businessErrorCode == 304) {
-        toast.warning("El email o contraseña son incorrectos")
-      }
       if (data.token) {
         toast.success('¡Inicio de sesión exitoso!');
         window.location.href = '/dashboard'
@@ -129,35 +132,40 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         body: JSON.stringify(doctor)
       });
 
+
+      if (res.status === 202) {
+        window.location.href = '/login'
+      }
+
+      if (res.status == 500) {
+        toast.warning("Sucedió un error en el servidor inténtalo mas tarde")
+      }
+
+      if (res.status == 400) {
+        toast.warning("El email ingresado ya existe")
+      }
+
       if (!res.ok) {
         throw new Error("Failed to register doctor");
       }
 
       const data = await res.json();
-      console.log(data);
-
       await createRole(doctor.email, 'DOCTOR');
 
-      if (data.nombre) {
+      if (data) {
+        toast.success("Su cuenta fue creada correctamente");
         const userName = data.nombre;
+        window.location.href = '/login'
+        setUserName(userName);
+        localStorage.setItem(AUTH_INFO_USER, JSON.stringify({ email: doctor.email, nombre: userName }));
+        setRoles(prevRoles => [...prevRoles, 'DOCTOR']);
 
-        if (res.status === 400) {
-          toast.error('El email ya está registrado');
-        } else if (res.status === 200) {
-          toast.success("Su cuenta fue creada correctamente");
-          setUserName(userName);
-          localStorage.setItem(AUTH_INFO_USER, JSON.stringify({ email: doctor.email, nombre: userName }));
-          setRoles(prevRoles => [...prevRoles, 'DOCTOR']);
-        }
       } else {
         throw new Error("Nombre del doctor no recibido");
       }
     } catch (err: any) {
       if (err.status === 400) {
         toast.error('El email ya está registrado');
-      } else {
-        console.error(err);
-        toast.error('Error al registrar el doctor');
       }
     }
   };
@@ -175,17 +183,20 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
           body: JSON.stringify(patient)
         });
 
-        if (!res.ok) {
-          console.error('HTTP error', res.status);
-          throw new Error('Network response was not ok');
-        }
-
         if (res.status === 500) {
           toast.warning("El correo ya está registrado");
         }
 
-        await createRole(patient.email, 'PATIENT');
-        setRoles(prevRoles => [...prevRoles, 'PATIENT']);
+        if (!res.ok) {
+          console.error('HTTP error', res.status);
+          throw new Error('Network response was not ok');
+        }
+        
+        toast.success("El paciente fue creado correctamente");
+        window.location.href = '/patient-list'
+
+        //await createRole(patient.email, 'PATIENT');
+        //setRoles(prevRoles => [...prevRoles, 'PATIENT']);
 
       } catch (err: any) {
         console.log(err);
@@ -506,7 +517,7 @@ export const markNotificationsAsRead = async () => {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to mark notifications as read");
+        throw new Error(`Response status: ${res.status}`);
       }
 
       toast.success("Las notificaciones fueron leídas correctamente");
@@ -530,7 +541,7 @@ export const getAllNotifications = async () => {
       });
 
       if (!res.ok) {
-        throw new Error("Ocurrió un error");
+        throw new Error(`Response status: ${res.status}`);
       }
 
       const data = await res.json();
@@ -540,3 +551,26 @@ export const getAllNotifications = async () => {
     }
   }
 };
+
+export const fetchTreatmentPatient = async (id: string) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (id) {
+    try {
+      const res = await fetch(`${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      })
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+
+      const data = await res.json()
+      return data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

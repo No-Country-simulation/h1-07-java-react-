@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import {
   ClinicHistoryProps,
   ContentClinicHistory,
+  Patient,
 } from "../Interfaces/interfaces";
 import { SearchIcon } from "../../public/icons/Icons";
 import {
@@ -24,101 +25,10 @@ import { initialValuesHistory } from "../utils/data/data";
 import { validationHistoryClinic } from "../utils/validation/validation";
 import { VoiceTranscript } from "./VoiceTranscript";
 import { toast } from "sonner";
+import { SkeletonAcordion } from "./Skeletons";
 
-const user = {
-  idPaciente: 1,
-  nombre: "Anna Herrera",
-  apellido: "Perez",
-  tipoDocumento: "DNI",
-  numeroDocumento: 12345678,
-  patologia: "Diabetes",
-  financiador: "Swiss Medical",
-  tratamientos: [
-    {
-      tipoTratamiento: "Medicamento",
-      descripcion: "Metformina",
-      dosis: "500mg",
-      frecuencia: "Diaria",
-    },
-    {
-      tipoTratamiento: "Nutrición",
-      descripcion: "Dieta baja en azúcar",
-      frecuencia: "Semanal",
-    },
-  ],
-  medicos: ["Dr. Gonzalez", "Dra. Martinez"],
-  entidades: ["Hospital Central"],
-  datosPersonales: {
-    nacionalidad: "Argentina",
-    estadoCivil: "Casada",
-    ocupacion: "Administrativa",
-    domicilio: "Buenos Aires, Argentina",
-  },
-  antecedentesPersonales: [
-    {
-      tipo: "Diabetes Mellitus Tipo II",
-      descripcion: "Diagnóstico hace 5 años.",
-    },
-    {
-      tipo: "Hipertensión Arterial",
-      descripcion: "Controlada con medicación (Losartán 50 mg/día).",
-    },
-    {
-      tipo: "Dislipidemia",
-      descripcion: "Tratada con atorvastatina 20 mg/día.",
-    },
-    { tipo: "Cirugías", descripcion: "Apendicectomía a los 15 años." },
-    { tipo: "Alergias", descripcion: "No conocidas." },
-    {
-      tipo: "Hábitos",
-      descripcion:
-        "No fuma, consumo de alcohol ocasional. Dieta controlada baja en carbohidratos y grasas. Realiza actividad física moderada (caminata 3 veces por semana).",
-    },
-  ],
-  antecedentesFamiliares: [
-    {
-      familiar: "Padre",
-      descripcion:
-        "Fallecido a los 68 años por complicaciones de diabetes tipo II.",
-    },
-    { familiar: "Madre", descripcion: "62 años, hipertensa." },
-    { familiar: "Hermano", descripcion: "40 años, sano." },
-  ],
-  evaluacionClinica: {
-    peso: "75 kg",
-    talla: "1.65 m",
-    imc: "27.5 kg/m² (Sobrepeso)",
-    presionArterial: "130/85 mmHg",
-    frecuenciaCardiaca: "78 latidos por minuto",
-    examenFisico: [
-      { region: "Cabeza y cuello", descripcion: "Sin hallazgos patológicos." },
-      {
-        region: "Cardiovascular",
-        descripcion: "Ruidos cardíacos regulares sin soplos.",
-      },
-      {
-        region: "Respiratorio",
-        descripcion: "Murmullo vesicular presente, sin ruidos agregados.",
-      },
-      {
-        region: "Abdomen",
-        descripcion: "Blando, depresible, sin visceromegalias.",
-      },
-      {
-        region: "Extremidades",
-        descripcion: "Pulsos periféricos presentes y simétricos. Sin edemas.",
-      },
-      {
-        region: "Neurológico",
-        descripcion: "Sin déficit motor ni sensitivo. Reflejos normales.",
-      },
-    ],
-  },
-  comentarios:
-    "María presenta un buen control de su diabetes y factores de riesgo cardiovascular, aunque es necesario optimizar su régimen de ejercicio y realizar ajustes en su dieta para mejorar los niveles de glucemia y perfil lipídico. Continuar con el seguimiento estrecho y educación en autocuidado.",
-};
-
-export default function ClinicHistory() {
+export default function ClinicHistory({ patient }: { patient: Patient | undefined }) {
+  const { id } = useParams();
   const [clinicHistories, setClinicHistories] =
     useState<ContentClinicHistory>();
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -126,27 +36,13 @@ export default function ClinicHistory() {
   const [loading, setLoading] = useState(false);
   const [transcript, setTranscript] = useState("");
 
-  const { id } = useParams();
-
-  const fetchDataHistory = async () => {
-    if (id) {
-      setLoading(true);
-      try {
-        setClinicHistories(await fetchClinicHistory(id));
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-  }
   const handleTranscriptChange = (newTranscript: string) => {
     setTranscript(newTranscript.trimStart());
   };
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
     const trimmedTranscript = transcript.trim(); // Eliminar espacios al inicio y al final
-
+    const defaultDescription = "Descripción por defecto"; 
     if (values.titulo.length < 5) {
       toast.warning("El título debe tener al menos 5 caracteres");
       return;
@@ -156,11 +52,11 @@ export default function ClinicHistory() {
     //   toast.warning("La descripción debe tener al menos 5 caracteres");
     //   return;
     // }
-
+    const description = trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
     if (id) {
       const historyClinic: ClinicHistoryProps = {
         ...values,
-        descripcion: trimmedTranscript,
+        descripcion: description,
         idPaciente: Number(id)
       };
 
@@ -180,36 +76,52 @@ export default function ClinicHistory() {
     fetchDataHistory();
   }, []);
 
+  
+  const fetchDataHistory = async () => {
+    if (id) {
+      setLoading(true);
+      try {
+        setClinicHistories(await fetchClinicHistory(id));
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }
+
   return (
-    <div className=" mt-8 p-6 flex-col gap-3 flex">
+    <div className=" p-6 flex-col gap-3 flex">
       <h5 className="font-bold text-xl text-violet-color">Datos Personales</h5>
       <div className=" border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
         <h6 className="  font-bold text-lg">Datos</h6>
-        {/* AGREGAR DATOS REALES DEL USUARIO */}
-        <ul className=" ml-6 list-disc">
-          {user.antecedentesFamiliares.map((familia) => (
-            <li key={familia.descripcion}>
-              {familia.familiar} {familia.descripcion}
-            </li>
-          ))}
-        </ul>
+        <div className=" ml-6 list-disc  tracking-wide ">
+          <p className=" text-medium leading-9"><span className=" font-semibold">Nombre Completo</span>: {patient?.nombre} {patient?.apellido}</p>
+          <p className=" text-medium leading-9"><span className=" font-semibold">Financiador</span>: {patient?.financiador}</p>
+          <p className=" text-medium leading-9"><span className=" font-semibold">Tipo de Documento</span>: {patient?.tipoDocumento} {patient?.numeroDocumento}</p>
+          <p className=" text-medium leading-9"><span className=" font-semibold">Médicos a cargo</span>: {patient?.medicos.map((medico) => (<span>{medico} </span>))}</p>
+          <p className=" text-medium leading-9"><span className=" font-semibold">Hospitales</span>: {patient?.entidades}</p>
+        </div>
       </div>
       <h5 className="font-bold text-xl text-violet-color">Historia Clinica</h5>
-      <div className=" relative w-full h-12 mb-3 flex justify-center items-center">
-        <input
-          type="text"
-          placeholder="Búsqueda"
-          onChange={(e) => setHistories(e.target.value)}
-          className="w-full h-full  border-violet-color rounded-md border-1 px-4"
-        />
-        <span className="right-5 absolute">
-          <SearchIcon width={20} height={20} />
-        </span>
-      </div>
+      {clinicHistories && clinicHistories.content.length != 0 && <>
+        <div className=" relative w-full h-12 mb-3 flex justify-center items-center">
+          <input
+            type="text"
+            placeholder="Búsqueda"
+            onChange={(e) => setHistories(e.target.value)}
+            className="w-full h-full  border-violet-color rounded-md border-1 px-4"
+          />
+          <span className="right-5 absolute">
+            <SearchIcon width={20} height={20} />
+          </span>
+        </div>
+      </>
+
+      }
       <div className=" flex flex-col gap-3">
         {loading ? (
-          // <SkeletonAcordion />
-          <p>Loading</p>
+          <SkeletonAcordion />
         ) : (
           <>
             {clinicHistories && clinicHistories?.content?.length > 0 ? (
@@ -233,7 +145,7 @@ export default function ClinicHistory() {
                   </Accordion>
                 ))
             ) : (
-              <p className=" text-center">
+              <p className=" text-center my-4 font-semibold">
                 No se encontraron historiales clínicos.
               </p>
             )}
