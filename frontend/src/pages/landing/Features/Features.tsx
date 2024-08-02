@@ -4,13 +4,11 @@ export const FeaturesSection = () => {
     <section id="features" className="flex flex-col mt-10">
       <div className="text-center gap-y-4 md:flex md:flex-col md:mb-10">
         <h2
-          className={`md:font-bold md:font-inter lg:text-4xl text-2xl text-3xl font-inter text-blue-juli-color ${styles.h2} mb-4`}
+          className={`md:font-bold md:font-inter lg:text-4xl text-2xl  font-inter text-blue-juli-color ${styles.h2} mb-4`}
         >
           Lo Que Ofrecemos
         </h2>
-        <h5
-          className={` text-lg font-semibold text-black font-[400] mb-10 text-lg font-inter`}
-        >
+        <h5 className={`  font-semibold text-black mb-10  font-inter`}>
           Nuestro Diferenciadores.
         </h5>
       </div>
@@ -23,12 +21,12 @@ export const FeaturesSection = () => {
         </div>
         <div className="relative grid grid-cols-1 grid-rows-2 rounded-xl bg-gradient-to-r from-[#5F5CF4] to-[#C49FE0] w-[90%] h-[20rem]">
           <img
-            src="./public/jus-removebg-preview_1.png"
+            src="./jus-removebg-preview_1.png"
             alt="image-landing-page"
             className="absolute top-0 left-0 w-[35%] h-auto lg:w-[20%]"
           />
           <img
-            src="./public/Ellipse_136.png"
+            src="./Ellipse_136.png"
             alt="image-landing-page"
             className="absolute bottom-0 right-0 w-[35%] h-auto lg:w-[20%]"
           />
@@ -38,12 +36,12 @@ export const FeaturesSection = () => {
       <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
         <div className="md:rounded-xl md:bg-gradient-to-r md:from-[#5F5CF4] md:to-[#C49FE0] md:w-[33%] md:h-[17rem] md:ml-36">
           <img
-            src="./public/jus-removebg-preview_1.png"
+            src="./jus-removebg-preview_1.png"
             alt="image-landing-page"
             className="md:relative md:bottom-auto xl:left-10 md:left-auto md:w-28 lg:w-36 xl:w-36"
           />
           <img
-            src="./public/Ellipse_136.png"
+            src="./Ellipse_136.png"
             alt="image-landing-page"
             className="md:relative md:bottom-auto md:left-40 xl:left-60 xl:bottom-3 lg:left-40  md:w-28 lg:w-32 xl:w-36"
           />
@@ -69,7 +67,7 @@ export const FeaturesSection = () => {
           </h4>
         </div>
         <img
-          src="./public/CenterContent.png"
+          src="./CenterContent.png"
           alt="image-landing-page"
           className="md:mr-20 w-[90%]"
         />
@@ -87,7 +85,7 @@ export const FeaturesSection = () => {
           </h5>
         </div>
         <img
-          src="./public/CenterContent.png"
+          src="./CenterContent.png"
           alt="image-landing-page"
           className="md:mr-20"
         />
@@ -100,18 +98,14 @@ export const FeaturesSection = () => {
           </h4>
         </div>
         <img
-          src="./public/image.png"
+          src="./image.png"
           alt="image-landing-page"
           className="md:ml-32 w-[90%]"
         />
       </div>
 
       <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
-        <img
-          src="./public/image.png"
-          alt="image-landing-page"
-          className="md:ml-32"
-        />
+        <img src="./image.png" alt="image-landing-page" className="md:ml-32" />
         <div className="md:flex md:flex-col md:pr-20 md:w-[45%]">
           <h4 className="lg:text-4xl text-2xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10">
             Interfaz Amigable y Accesible
