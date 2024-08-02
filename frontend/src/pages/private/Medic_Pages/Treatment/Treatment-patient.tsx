@@ -1,12 +1,15 @@
-import { Tab, Tabs } from '@nextui-org/react';
-import { useEffect, useState } from 'react';
-import { ContentMedicines, Patient } from '../../../../Interfaces/interfaces';
-import { Link, useParams } from 'react-router-dom';
-import { fetchMedicines, fetchPatientSingle } from '../../../../Context/AuthContext';
-import FormTreatment from '../../../../components/FormTreatment';
-import { FormTreamentVoice } from '../../../../components/FormTreamentVoice';
-import FormTraining from '../../../../components/FormTraining';
-import { HeaderProfile } from '../../../../components/HeaderProfile';
+// import { Tab, Tabs } from "@nextui-org/react";
+// import { useEffect, useState } from "react";
+// import { ContentMedicines, Patient } from "../../../../Interfaces/interfaces";
+// import { Link, useParams } from "react-router-dom";
+// import {
+//   fetchMedicines,
+//   fetchPatientSingle,
+// } from "../../../../Context/AuthContext";
+// import FormTreatment from "../../../../Components/FormTreatment";
+// import FormTraining from "../../../../Components/FormTraining";
+// import { FormTreamentVoice } from "../../../../Components/FormTreamentVoice";
+// // import { HeaderProfile } from "../../../../Components/HeaderProfile";
 
 
 export const TreatmentPatient = () => {
