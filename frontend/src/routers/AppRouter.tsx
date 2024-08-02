@@ -17,7 +17,7 @@ import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patient
 // import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
 import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
 import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
-import Donations from "../pages/private/Medic_Pages/Donations/Donations";
+// import Donations from "../pages/private/Medic_Pages/Donations/Donations";
 import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
 
 import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfilePatient";
@@ -26,9 +26,9 @@ import History from "../pages/private/Patients_Pages/HistoryClinic/History";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import Statistics from "../pages/private/Medic_Pages/Statistics/Statistics";
 import { Donation_Registre } from "../pages/private/Medic_Pages/Donations/Donation_Registre/Donation_Registre";
-import SignUp from "../pages/SignUp/SignUp";
-import { Landing } from "../pages/Landing/Landing";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
+import SignUp from "../pages/signup/SignUp";
+import LandingView from "../pages/landing/LandingView";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 
 function AppRouter() {
   return (
@@ -43,7 +43,7 @@ function AppRouter() {
               <Route path="/onboarding" element={<Onboarding />} />
             </Route>
             {/* </Route> */}
-            <Route index path="/" element={<Landing />} />
+            <Route index path="/" element={<LandingView />} />
             <Route path="/active-account" element={<ActiveAccount />}></Route>
             <Route element={<PrivateRoute allowedRoles={["ROLE_MEDICO"]} />}>
               <Route path="/dashboard" index element={<Home />} />
@@ -59,7 +59,7 @@ function AppRouter() {
                 path="/patient/:id/treatment"
                 element={<TreatmentPatient />}
               />
-              <Route path="/donations" element={<Donations />} />
+              {/* <Route path="/donations" element={<Donations />} /> */}
               <Route path="/donationRegistre" element={<Donation_Registre />} />
             </Route>
             <Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
