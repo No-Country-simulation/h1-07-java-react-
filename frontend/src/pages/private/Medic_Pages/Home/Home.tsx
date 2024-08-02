@@ -1,55 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowBlackIcon,
-  CalendarIcon,
-  CampanaIcon,
-  ChevronIcon,
-  LapizIcon,
-  MenuHambuerguesa,
-  RelojIcon,
-} from "../../../../../public/icons/Icons";
-import { ContentPatient, Medic } from "../../../../Interfaces/interfaces";
-import { fetchMedicData, fetchPatient } from "../../../../Context/AuthContext";
-import { AsideMenu } from "../../../../Components/AsideMenu";
-import { PopoverMessage } from "../../../../Components/PopoverMessage";
-
-import { Avatar } from "@nextui-org/react";
-
-// import { AuthContext } from '../../../../Context/AuthContext';
-
-export interface Message {
-  id: number;
-  name: string;
-  time: string;
-  message: string;
-  src: string;
-  color: string;
-}
+import { fetchMedicData } from "../../../../Context/AuthContext";
+import { AsideMenu } from "../../../../components/AsideMenu";
+import Header from "./Header.tsx/Header";
+import Shifts from "./Shifts/Shifts";
+import { Medic } from "../../../../Interfaces/interfaces";
+import ListPatients from "./ListPatients/ListPatients";
 
 export function Home(): JSX.Element {
-  const [searchQuery, setSearchQuery] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [medicInfo, setMedicInfo] = useState<Medic>();
-  const [patients, setPatients] = useState<ContentPatient>();
-  const [loading, setLoading] = useState(false);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const fetchPatientData = async () => {
-    setLoading(true);
+  const fetchMedic = async () => {
     try {
-      setPatients(await fetchPatient());
+      setMedicInfo(await fetchMedicData());
     } catch (err) {
       console.log(err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -57,16 +27,8 @@ export function Home(): JSX.Element {
   console.log(patients?.idPaciente)
 
   useEffect(() => {
-    const fetchMedic = async () => {
-      try {
-        setMedicInfo(await fetchMedicData());
-      } catch (err) {
-        console.log(err);
-      }
-    };
 
     fetchMedic();
-    fetchPatientData();
 
     const storedMedic = localStorage.getItem("MEDIC-DATA");
     if (storedMedic) {
@@ -245,7 +207,7 @@ export function Home(): JSX.Element {
             </Link>
           </div>
         </div>
-        <div className="mt-5 flex justify-center items-center flex-col">
+        <footer className="mt-5 flex justify-center items-center flex-col">
           <h2 className="text-center font-inter font-bold text-2xl">
             Donaciones
           </h2>
@@ -255,9 +217,7 @@ export function Home(): JSX.Element {
               Acceder
             </button>
           </Link>
-        </div>
-        {/* <footer className="mt-4">
-				</footer> */}
+        </footer>
       </div>
     </main>
   );

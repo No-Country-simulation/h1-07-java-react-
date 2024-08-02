@@ -1,5 +1,5 @@
-import { Footer } from "../../Components/FooterLanding";
-import { NavBar } from "../../Components/NavbarLanding";
+import { Footer } from "../../components/FooterLanding";
+import { NavBar } from "../../components/NavbarLanding";
 import { AboutSection } from "./About/About";
 import { FaqSection } from "./Faq/Faq";
 import { FeaturesSection } from "./Features/Features";

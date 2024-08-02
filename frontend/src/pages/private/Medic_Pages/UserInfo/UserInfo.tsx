@@ -8,16 +8,19 @@ import {
   IconPassword,
   LapizIcon,
   MapIcon,
+  MenuHambuerguesa,
   PhoneIcon,
 } from "../../../../../public/icons/Icons";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { useAuthContext } from "../../../../Context/AuthContext";
+import { AsideMenu } from "../../../../components/AsideMenu";
+import { Logout } from "../../../../components/Logout";
 
 export function UserInfo(): JSX.Element {
   const [curriculum, setCurriculum] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [medicInfo, setMedicInfo] = useState<Medic>();
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { authTokens } = useAuthContext();
   useEffect(() => {
     const storedCurriculum = localStorage.getItem("curriculum");
@@ -45,14 +48,14 @@ export function UserInfo(): JSX.Element {
     setCurriculum(e.target.value);
   };
 
-  // const toggleSidebar = () => {
-  //   setIsSidebarOpen(!isSidebarOpen);
-  // };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
       <div className="w-full xl:max-w-7xl max-w-md bg-white rounded-lg shadow-lg  max-md:m-auto">
-        {/* <AsideMenu
+        <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
         /> */}
@@ -69,6 +72,9 @@ export function UserInfo(): JSX.Element {
                 <h1 className="text-xl font-semibold text-light-color">
                   Detalles de paciente
                 </h1>
+                <button onClick={toggleSidebar} className=" hidden absolute -right-10 max-md:flex">
+                  <MenuHambuerguesa width={24} height={24} stroke="" />
+                </button>
               </div>
             </div>
             <div className="flex flex-row gap-x-4 w-full px-5 py-2 ">
@@ -207,7 +213,9 @@ export function UserInfo(): JSX.Element {
             </button>
           </div>
         </section>
-        <div className="flex flex-row justify-center">{/* <Logout /> */}</div>
+        <div className="flex flex-row justify-center">
+          <Logout />
+        </div>
       </div>
     </main>
   );

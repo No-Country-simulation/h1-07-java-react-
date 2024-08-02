@@ -1,47 +1,32 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { API_URL } from "../api/api";
-import { ContentTreatmentPacient } from "../Interfaces/interfaces";
+import { ContentTreatmentPacient, Patient } from "../Interfaces/interfaces";
 import { tipoTratamientoMap } from "../utils/data/data";
+import { fetchTreatmentPatient } from "../Context/AuthContext";
 
-export default function TreatmentSummary() {
+export default function TreatmentSummary({patient}:{patient:Patient| undefined}){
   const { id } = useParams()
+  console.log(patient)
   const [treatments, setTreaments] = useState<ContentTreatmentPacient>()
-  useEffect(() => {
-    const fetchTreatmentPatient = async () => {
-      const token = localStorage.getItem('TOKEN_KEY');
-      if (id) {
-        try {
-          const res = await fetch(`${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              'Authorization': `Bearer ${token}`
-            },
-          })
-          const data = await res.json()
-          setTreaments(data)
-        } catch (error) {
-          console.log(error)
-        }
+  const fetchTreatments = async () => {
+    if (id) {
+      try {
+        setTreaments(await fetchTreatmentPatient(id))
+      } catch (error: any) {
+        console.log(error)
       }
     }
+  }
 
-    fetchTreatmentPatient()
+  useEffect(() => {
+    fetchTreatments()
   }, []);
 
 
   return (
-    <div className=' mt-8 p-6 flex-col gap-3 flex'>
+    <div className=' p-6 flex-col gap-3 flex'>
       <div className="flex justify-between">
         <h5 className='font-bold text-xl'>Resumen</h5>
-        {/* <Link to={`/patient/${id}/statistics`}>
-          <p className=" cursor-pointer flex items-center justify-center">Ver más...
-            <span>
-              <ArrowBlackIcon width={20} height={20} />
-            </span>
-          </p>
-        </Link> */}
       </div>
       <div className=' justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm'>
         {treatments && treatments.content.map((treatment) => (
@@ -67,7 +52,7 @@ export default function TreatmentSummary() {
         ))
         }
         {treatments?.content.length == 0 &&
-          <h4 className=" text-xl  h-full flex justify-center items-center text-center">"El paciente no tiene un tratamiento registrado"</h4>
+          <h4 className=" text-xl  h-full flex justify-center items-center text-center">El paciente no tiene un tratamiento registrado, registra uno!</h4>
         }
       </div>
       <Link to={`/patient/${id}/treatment`} className="m-auto h-10  mt-6 w-3/4 ">

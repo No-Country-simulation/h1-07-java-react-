@@ -2,9 +2,11 @@ import * as Yup from 'yup';
 
 export const validationSchemaPatient = Yup.object({
   nombre: Yup.string()
+    .matches(/^[A-Za-z]+$/, 'El nombre debe contener solo caracteres')
     .min(2, 'El nombre debe tener al menos 2 caracteres')
     .required('El nombre es obligatoria'),
   apellido: Yup.string()
+    .matches(/^[A-Za-z]+$/, 'El apellido debe contener solo caracteres')
     .min(2, 'El apellido debe tener al menos 2 caracteres')
     .required('El apellido es obligatoria'),
   password: Yup.string()

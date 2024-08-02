@@ -105,7 +105,7 @@ export const FeaturesSection = () => {
       </div>
 
       <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
-        <img src="Image.png" alt="image-landing-page" className="md:ml-32" />
+        <img src="./Image.png" alt="image-landing-page" className="md:ml-32" />
         <div className="md:flex md:flex-col md:pr-20 md:w-[45%]">
           <h4 className="lg:text-4xl text-2xl md:font-inter md:font-semibold text-blue-juli-color md:mb-10">
             Interfaz Amigable y Accesible

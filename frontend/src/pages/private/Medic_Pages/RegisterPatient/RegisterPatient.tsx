@@ -22,19 +22,20 @@ export const RegisterPatient: React.FC = () => {
   const { registerPatient } = useAuthContext();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (values: PatientRegister, { resetForm }: any) => {
+  const handleSubmit = (values: PatientRegister, { setSubmitting }: any) => {
     const patient: PatientRegister = values;
     try {
       setLoading(true);
-      await registerPatient(patient);
-      toast.success("El paciente fue creado correctamente");
-      window.location.href = '/patient-list'
-      resetForm(); // Limpiar el formulario
+      registerPatient(patient);
+      // toast.success("El paciente fue creado correctamente");
+      // window.location.href = '/patient-list'
     } catch (err: any) {
       console.error(err);
       toast.error("Hubo un error al crear el paciente"); // Mostrar mensaje de error
     } finally {
       setLoading(false);
+      setSubmitting(false);
+
     }
   };
 
@@ -58,7 +59,7 @@ export const RegisterPatient: React.FC = () => {
               {dataRegisterPatient.map(({ label, name, type, icon: Icon, placeholder }) => (
                 <div key={name}>
                   <label className="font-semibold flex items-center gap-2 pl-2" htmlFor={name}>
-                    <Icon width={15} height={15} stroke=''/> {label}
+                    <Icon width={15} height={15} stroke='' /> {label}
                   </label>
                   <Field
                     type={type}
@@ -72,7 +73,7 @@ export const RegisterPatient: React.FC = () => {
               ))}
               <div>
                 <label className="font-semibold flex items-center gap-2 pl-2" htmlFor="genero">
-                  <GenderIcon width={15} height={15} stroke=''/>Genero
+                  <GenderIcon width={15} height={15} stroke='' />Genero
                 </label>
                 <Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="genero">
                   <option value={0}>Masculino</option>
@@ -82,7 +83,7 @@ export const RegisterPatient: React.FC = () => {
               </div>
               <div className="">
                 <label className="font-semibold flex items-center gap-2 pl-2" htmlFor="patologiaId">
-                  <HealthIcon width={15} height={15} stroke=''/>Patología
+                  <HealthIcon width={15} height={15} stroke='' />Patología
                 </label>
                 <Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="patologiaId">
                   <option value={1}>Cancer</option>
@@ -101,7 +102,7 @@ export const RegisterPatient: React.FC = () => {
               </div>
               <div>
                 <label className="font-semibold flex items-center gap-2 pl-2" htmlFor="factorSanguineo">
-                  <BloodIcon width={15} height={15} stroke=''/>Factor Sanguineo
+                  <BloodIcon width={15} height={15} stroke='' />Factor Sanguineo
                 </label>
                 <Field as="select" className="w-full p-2 border border-gray-300 rounded mt-1" name="factorSanguineo">
                   <option value={0}>Cero Positivo</option>
