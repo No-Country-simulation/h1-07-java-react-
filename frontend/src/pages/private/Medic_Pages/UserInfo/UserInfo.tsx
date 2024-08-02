@@ -10,7 +10,6 @@ import {
   MapIcon,
   PhoneIcon,
 } from "../../../../../public/icons/Icons";
-import { Logout } from "../../../../components/Logout";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { useAuthContext } from "../../../../Context/AuthContext";
 
@@ -18,7 +17,7 @@ export function UserInfo(): JSX.Element {
   const [curriculum, setCurriculum] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [medicInfo, setMedicInfo] = useState<Medic>();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { authTokens } = useAuthContext();
   useEffect(() => {
     const storedCurriculum = localStorage.getItem("curriculum");
@@ -46,17 +45,17 @@ export function UserInfo(): JSX.Element {
     setCurriculum(e.target.value);
   };
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
 
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
       <div className="w-full xl:max-w-7xl max-w-md bg-white rounded-lg shadow-lg  max-md:m-auto">
-        <AsideMenu
+        {/* <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
-        />
+        /> */}
         <header className="p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl">
           <div className="xl:flex xl:flex-col xl:justify-center xl:items-center">
             <div className="w-full flex flex-col items-start">
@@ -217,9 +216,7 @@ export function UserInfo(): JSX.Element {
             </button>
           </div>
         </section>
-        <div className="flex flex-row justify-center">
-          <Logout />
-        </div>
+        <div className="flex flex-row justify-center">{/* <Logout /> */}</div>
       </div>
     </main>
   );

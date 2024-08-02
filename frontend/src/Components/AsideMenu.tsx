@@ -7,7 +7,8 @@ import {
   PeopleIcon,
   UserIcon,
 } from "../../public/icons/Icons";
-import { Logout } from "./Logout";
+
+// import { Logout } from "./Logout";
 
 const menuItems = [
   { to: "/dashboard", icon: HomeIconTwo, label: "Inicio" },
@@ -56,7 +57,7 @@ export const AsideMenu: React.FC<MenuProps> = ({
               </Link>
             ))}
           </ul>
-          <Logout />
+          {/* <Logout /> */}
         </div>
       </aside>
 

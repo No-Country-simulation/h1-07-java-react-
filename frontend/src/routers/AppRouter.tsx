@@ -11,8 +11,8 @@ import { Home } from "../pages/private/Medic_Pages/Home/Home";
 import { UserInfo } from "../pages/private/Medic_Pages/UserInfo/UserInfo";
 import { RegisterPatient } from "../pages/private/Medic_Pages/RegisterPatient/RegisterPatient";
 import PatientList from "../pages/private/Medic_Pages/PatientsList/PatientList";
-import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
-import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
+// import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
+// import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patients";
 // import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
 import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
@@ -53,12 +53,12 @@ function AppRouter() {
                 element={<RegisterPatient />}
               ></Route>
               <Route path="/patient-list" element={<PatientList />}></Route>
-              <Route path="/patient/:id" element={<PatientDetail />} />
+              {/* <Route path="/patient/:id" element={<PatientDetail />} /> */}
               <Route path="/patient/:id/statistics" element={<Statistics />} />
-              <Route
+              {/* <Route
                 path="/patient/:id/treatment"
                 element={<TreatmentPatient />}
-              />
+              /> */}
               {/* <Route path="/donations" element={<Donations />} /> */}
               <Route path="/donationRegistre" element={<Donation_Registre />} />
             </Route>

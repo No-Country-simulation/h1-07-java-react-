@@ -1,8 +1,8 @@
-import { SearchIcon, SilderIcon } from "../../../../../public/icons/Icons";
 import { useState } from "react";
-import { getAge } from "../../../../utils/functions/functions";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import { Header_Donation } from "../../../../components/Header_Medic_Donation/Header_Donation";
+// import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
+import { SearchIcon, SilderIcon } from "../../../../../../public/icons/Icons";
+import { getAge } from "../../../../../utils/functions/functions";
 
 export interface Donors {
   altura: string;
@@ -72,7 +72,7 @@ export default function Donations() {
   return (
     <main className="flex bg-gray-100 md:flex md:justify-center  ">
       <div className="w-full max-w-md min-h-screen font-inter bg-white rounded-lg shadow-lg  max-md:m-auto">
-        <Header_Donation />
+        {/* <Header_Donation /> */}
         <section className="p-4 flex flex-col gap-8">
           <div className=" relative w-full h-12 flex justify-center items-center">
             <input
