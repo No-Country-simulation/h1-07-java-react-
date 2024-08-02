@@ -243,7 +243,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     registerDoctor,
     registerPatient,
     registerTreatment,
-    createRole: (email, role) => createRole(email, role)
+    createRole: (email, role) => createRole(email, role),
   }), [authTokens, login, logout, registerDoctor, registerPatient, registerTreatment, roles, createRole]);
 
   return <AuthContext.Provider value={value}>
@@ -538,5 +538,29 @@ export const getAllNotifications = async () => {
     } catch (err: any) {
       console.error(err);
     }
+  }
+};
+
+export const crearDonante = async (data: any) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const response = await fetch(`${API_URL}/donante/crear-donante`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error en la solicitud');
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw new Error(`Error al crear donante: `);
   }
 };

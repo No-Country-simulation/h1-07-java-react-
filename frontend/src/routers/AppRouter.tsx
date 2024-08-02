@@ -29,6 +29,9 @@ import { Donation_Registre } from "../pages/private/Medic_Pages/Donations/Donati
 import SignUp from "../pages/signup/SignUp";
 import LandingView from "../pages/landing/LandingView";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
+import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
+import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 
 function AppRouter() {
   return (
@@ -44,22 +47,16 @@ function AppRouter() {
             </Route>
             {/* </Route> */}
             <Route index path="/" element={<LandingView />} />
-            <Route path="/active-account" element={<ActiveAccount />}></Route>
+            <Route path="/active-account" element={<ActiveAccount />} />
             <Route element={<PrivateRoute allowedRoles={["ROLE_MEDICO"]} />}>
               <Route path="/dashboard" index element={<Home />} />
               <Route path="/userInfo" element={<UserInfo />} />
-              <Route
-                path="/patient-register"
-                element={<RegisterPatient />}
-              ></Route>
-              <Route path="/patient-list" element={<PatientList />}></Route>
-              {/* <Route path="/patient/:id" element={<PatientDetail />} /> */}
+              <Route path="/patient-register" element={<RegisterPatient />} />
+              <Route path="/patient-list" element={<PatientList />} />
+              <Route path="/patient/:id" element={<PatientDetail />} />
               <Route path="/patient/:id/statistics" element={<Statistics />} />
-              {/* <Route
-                path="/patient/:id/treatment"
-                element={<TreatmentPatient />}
-              /> */}
-              {/* <Route path="/donations" element={<Donations />} /> */}
+              <Route path="/patient/:id/treatment" element={<TreatmentPatient />}/>
+              <Route path="/donations" element={<Donations />} />
               <Route path="/donationRegistre" element={<Donation_Registre />} />
             </Route>
             <Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>

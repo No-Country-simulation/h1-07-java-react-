@@ -34,7 +34,7 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({ loading, children,
             </Link>
             <div className="flex items-center justify-center">
               <h1 className="text-xl font-bold text-light-color">Listado de pacientes</h1>
-              <button onClick={toggleSidebar} className=' absolute right-0'>
+              <button onClick={toggleSidebar} className='hidden absolute right-0'>
                 <MenuHambuerguesa width={30} height={30} stroke='' />
               </button>
             </div>        </div>

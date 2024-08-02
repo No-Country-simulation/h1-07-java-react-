@@ -6,6 +6,7 @@ import { Button } from "@nextui-org/react";
 // import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { Header_Donation } from "../../../../../Components/Header_Medic_Donation/Header_Donation";
 
 export interface Donors {
   altura: string;
@@ -96,7 +97,7 @@ export default function Donations() {
     <main className="flex bg-gray-100 md:flex md:justify-center">
       <div className="w-full max-w-md min-h-screen font-inter bg-white rounded-lg shadow-lg max-md:m-auto">
         {/* <AsideMenu toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} /> */}
-        {/* <Header_Donation /> */}
+        <Header_Donation />
         <section className="p-4 flex flex-col gap-8">
           <div className="relative w-full h-12 flex justify-center items-center">
             <input

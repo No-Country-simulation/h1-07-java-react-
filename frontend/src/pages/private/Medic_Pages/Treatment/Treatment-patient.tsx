@@ -1,15 +1,16 @@
-// import { Tab, Tabs } from "@nextui-org/react";
-// import { useEffect, useState } from "react";
-// import { ContentMedicines, Patient } from "../../../../Interfaces/interfaces";
-// import { Link, useParams } from "react-router-dom";
-// import {
-//   fetchMedicines,
-//   fetchPatientSingle,
-// } from "../../../../Context/AuthContext";
-// import FormTreatment from "../../../../Components/FormTreatment";
-// import FormTraining from "../../../../Components/FormTraining";
-// import { FormTreamentVoice } from "../../../../Components/FormTreamentVoice";
-// // import { HeaderProfile } from "../../../../Components/HeaderProfile";
+import { Tab, Tabs } from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import { ContentMedicines, Patient } from "../../../../Interfaces/interfaces";
+import { Link, useParams } from "react-router-dom";
+import {
+  fetchMedicines,
+  fetchPatientSingle,
+} from "../../../../Context/AuthContext";
+import FormTreatment from "../../../../Components/FormTreatment";
+import FormTraining from "../../../../Components/FormTraining";
+import { FormTreamentVoice } from "../../../../Components/FormTreamentVoice";
+import { HeaderProfile } from "../../../../Components/HeaderProfile";
+// import { HeaderProfile } from "../../../../Components/HeaderProfile";
 
 
 export const TreatmentPatient = () => {
@@ -43,7 +44,7 @@ export const TreatmentPatient = () => {
   return (
     <section className=" bg-gray-100 min-h-screen m-auto overflow-hidden">
       <div className="w-full max-w-md m-auto  bg-white rounded-lg shadow-lg  max-md:m-auto">
-        <HeaderProfile to={`/patient/${id}`} loading={loading} name={patient?.nombre} lastname={patient?.apellido} typeDocument={patient?.tipoDocumento} financier={patient?.financiador} document={patient?.numeroDocumento} title={'Tratamientos'} >
+        <HeaderProfile  loading={loading} name={patient?.nombre} lastname={patient?.apellido} typeDocument={patient?.tipoDocumento} financier={patient?.financiador} document={patient?.numeroDocumento} title={'Tratamientos'} >
           <div className='absolute -bottom-4 w-full flex justify-center'>
             <div className='flex gap-4'>
               <Link to={`/patient/${id}`} className='px-3  cursor-pointer p-1 rounded-lg border-2 bg-violet-color  border-light-color shadow-xl text-light-color '>Historia clínica</Link>

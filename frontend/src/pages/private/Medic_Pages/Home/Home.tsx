@@ -53,6 +53,9 @@ export function Home(): JSX.Element {
     }
   };
 
+  console.log(medicInfo?.idMedico)
+  console.log(patients?.idPaciente)
+
   useEffect(() => {
     const fetchMedic = async () => {
       try {
@@ -176,7 +179,7 @@ export function Home(): JSX.Element {
                 <LapizIcon width={16} height={16} stroke="" classname="" />
               </div>
             </div>
-            <div className="flex items-center justify-center ">
+            <div className="flex items-center justify-center absolute top-32 left-20">
               <PopoverMessage
                 locate={"top"}
                 title={"Funcionalidad en Desarrollo"}
@@ -185,7 +188,7 @@ export function Home(): JSX.Element {
                 }
                 color={"primary"}
               >
-                <button className=" absolute top-[22rem] z-0  text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm mt-5">
+                <button className="text-inter text-white font-[600] rounded-[8px] border-2 border-solid  border-gray-400  bg-[#5761C8] px-[60px] py-[9.1px] text-sm">
                   Ver detalles
                 </button>
               </PopoverMessage>

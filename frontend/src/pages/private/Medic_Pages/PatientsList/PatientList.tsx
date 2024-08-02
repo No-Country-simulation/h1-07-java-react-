@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { fetchPatient } from "../../../../Context/AuthContext";
+import { AuthContext, fetchPatient } from "../../../../Context/AuthContext";
 import {
   ChevronIcon,
   FlechaIconTwo,
   HamburguerIcon,
   SearchIcon,
 } from "../../../../../public/icons/Icons";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ContentPatient } from "../../../../Interfaces/interfaces";
 import { Avatar } from "@nextui-org/react";
 
@@ -15,6 +15,7 @@ export default function PatientList() {
   const [searchPatient, setSearchPatient] = useState("");
   const [loading, setLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { id } = useParams();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -55,7 +56,7 @@ export default function PatientList() {
           </Link>
           <div className="flex items-center justify-center">
             <h1 className="text-xl font-bold ">Listado de pacientes</h1>
-            <button onClick={toggleSidebar} className=" absolute right-0">
+            <button onClick={toggleSidebar} className=" absolute -right-16">
               <HamburguerIcon width={30} height={30} />
             </button>
           </div>
@@ -106,8 +107,7 @@ export default function PatientList() {
                       {patient.numeroDocumento}
                     </p>
                   </div>
-                  <Link
-                    to={`/patient/${patient.idPaciente}`}
+                  <Link to={`/patient/${patient.idPaciente}`}
                     className=" w-10 h-10 border-2 rounded-full flex justify-center hover:translate-x-1 transition-all duration-300 items-center bg-gray-200 cursor-pointer hover:brightness-90"
                   >
                     <ChevronIcon width={20} height={20} />
