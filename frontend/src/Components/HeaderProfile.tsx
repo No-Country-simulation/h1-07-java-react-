@@ -2,8 +2,8 @@ import { Avatar } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
 import { ArrowWhiteIcon, MenuHambuerguesa } from '../../public/icons/Icons'
 import React, { useState } from 'react'
-import { AsideMenu } from '../Components/AsideMenu'
-import { SkeletonPatientInfo } from '../Components/Skeletons'
+import { AsideMenu } from '../components/AsideMenu'
+import { SkeletonPatientInfo } from '../components/Skeletons'
 
 
 interface HeaderProfileProps {

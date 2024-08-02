@@ -2,12 +2,11 @@ import { useEffect, useState } from "react"
 import { ContentMedicines, Patient } from "../../../../Interfaces/interfaces"
 import { Link, useParams } from "react-router-dom"
 import { fetchMedicines, fetchPatientSingle } from "../../../../Context/AuthContext"
-import { HeaderProfile } from "../../../../Components/HeaderProfile"
 import { Tab, Tabs } from "@nextui-org/react"
-import FormTreatment from "../../../../Components/FormTreatment"
-import FormTraining from "../../../../Components/FormTraining"
-import { FormTreamentVoice } from "../../../../Components/FormTreamentVoice"
-
+import FormTreatment from "../../../../components/FormTreatment"
+import FormTraining from "../../../../components/FormTraining"
+import { FormTreamentVoice } from "../../../../components/FormTreamentVoice"
+import { HeaderProfile } from "../../../../components/HeaderProfile"
 
 
 export const TreatmentPatient = () => {

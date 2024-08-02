@@ -7,7 +7,7 @@ import {
 } from "../../../../../public/icons/Icons";
 // import { Logout } from "../../../../components/Logout";
 import { Paciente } from "../../../../Interfaces/interfaces";
-import { HeaderProfile } from "../../../../Components/HeaderProfile";
+import { HeaderProfile } from "../../../../components/HeaderProfile";
 
 export function ProfilePatient() {
   const [patientInfo, setPatienInfo] = useState<Paciente>();
@@ -31,7 +31,7 @@ export function ProfilePatient() {
             lastname={patientInfo?.apellido}
             typeDocument={patientInfo?.tipoDocumento}
             financier={patientInfo?.financiador}
-            document={patientInfo?.numeroDocumento}>
+            document={patientInfo?.numeroDocumento} link={"/patient-home"}>
           </HeaderProfile>
         </div>
         <section className="ml-4 my-8 min-h-[50vh] flex flex-col gap-1">

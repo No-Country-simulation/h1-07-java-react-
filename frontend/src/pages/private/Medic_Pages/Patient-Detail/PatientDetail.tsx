@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Patient } from "../../../../Interfaces/interfaces";
 import { fetchPatientSingle } from "../../../../Context/AuthContext";
 import { Link, useParams } from "react-router-dom";
-import TreatmentSummary from "../../../../Components/TreatmentSummary";
-import ClinicHistory from "../../../../Components/ClinicHistory";
-import { HeaderProfile } from "../../../../Components/HeaderProfile";
+import TreatmentSummary from "../../../../components/TreatmentSummary";
+import ClinicHistory from "../../../../components/ClinicHistory";
+import { HeaderProfile } from "../../../../components/HeaderProfile";
 
 interface TabInfoProps {
   patient: Patient | undefined; // Asegúrate de que Patient esté definido

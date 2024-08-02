@@ -74,7 +74,7 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
       try {
         const data = await fetchClinicHistory(id);
         // Ordenar el historial clínico por fecha, de más reciente a más antiguo
-        const sortedData = data.content.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+        const sortedData = data.content.sort((a: { fecha: string | number | Date; }, b: { fecha: string | number | Date; }) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
         setClinicHistories({ ...data, content: sortedData });
       } catch (err) {
         console.log(err);

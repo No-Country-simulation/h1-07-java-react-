@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ContentTreatmentPacient, Paciente } from "../../../../Interfaces/interfaces";
-import { HeaderProfile } from "../../../../Components/HeaderProfile";
+import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { API_URL } from "../../../../api/api";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
 
@@ -52,8 +52,7 @@ export default function TreatementPatient() {
           lastname={patientInfo?.apellido}
           typeDocument={patientInfo?.tipoDocumento}
           financier={patientInfo?.financiador}
-          document={patientInfo?.numeroDocumento} 
-          >
+          document={patientInfo?.numeroDocumento} link={"/patient-home"}          >
         </HeaderProfile>
         <div className="p-4">
           <h1 className=" text-xl text-gray-700 font-semibold">Mis tratamientos</h1>

@@ -13,8 +13,8 @@ import {
 } from "../../../../../public/icons/Icons";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { useAuthContext } from "../../../../Context/AuthContext";
-import { AsideMenu } from "../../../../Components/AsideMenu";
-import { Logout } from "../../../../Components/Logout";
+import { AsideMenu } from "../../../../components/AsideMenu";
+import { Logout } from "../../../../components/Logout";
 
 export function UserInfo(): JSX.Element {
   const [curriculum, setCurriculum] = useState("");
@@ -65,7 +65,7 @@ export function UserInfo(): JSX.Element {
               <div className="xl:flex mb-6 flex flex-row items-center gap-x-7 w-full">
                 <Link
                   to={"/dashboard"}
-                  className="text-light-color ml-10 xl:-left-20 -left-8 hover:-translate-x-1 transition-all duration-300"
+                  className="text-light-color ml-10 xl:-left-0 -left-8 hover:-translate-x-1 transition-all duration-300"
                 >
                   <ArrowWhiteIcon width={30} height={30} stroke="" />
                 </Link>

@@ -1,6 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Header_Donation } from "../../../../../Components/Header_Medic_Donation/Header_Donation";
+import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { crearDonante, fetchMedicData, fetchPatient } from '../../../../../Context/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
@@ -34,8 +34,8 @@ const validationSchema = Yup.object({
 
 export function Donation_Registre() {
   const [medicInfo, setMedicInfo] = useState<Medic>();
-  const [loading, setLoading] = useState(false);
-  const [patients, setPatients] = useState<ContentPatient>();
+  const [/*loading, */, setLoading] = useState(false);
+  const [/*patients, */,setPatients] = useState<ContentPatient>();
 
   const fetchPatientData = async () => {
     setLoading(true);
@@ -83,9 +83,9 @@ export function Donation_Registre() {
       "O-": 8
     };
 
-    const generateRandomId = (): number => {
-      return Math.floor(Math.random() * 9000 + 1000);
-    };
+    // const generateRandomId = (): number => {
+    //   return Math.floor(Math.random() * 9000 + 1000);
+    // };
 
     const data = {
       descripcion: 'Higado',

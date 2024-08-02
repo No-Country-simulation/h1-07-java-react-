@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ChevronIcon } from '../../../../../../public/icons/Icons'
 import { Avatar } from '@nextui-org/react'
-import SkeletonsListPatient from '../../../../../Components/Skeletons'
+import SkeletonsListPatient from '../../../../../components/Skeletons'
 import { ContentPatient } from '../../../../../Interfaces/interfaces'
 import React from 'react'
 
