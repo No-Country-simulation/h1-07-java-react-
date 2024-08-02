@@ -83,28 +83,41 @@ export default function ClinicHistory() {
       }
     }
   }
-
-
+  const handleTranscriptChange = (newTranscript: string) => {
+    setTranscript(newTranscript.trimStart());
+  };
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
+    const trimmedTranscript = transcript.trim(); // Eliminar espacios al inicio y al final
 
-    if (transcript.length < 5 || values.titulo.length < 5) {
-      toast.warning("El título y la descripción deben tener mas de 5 caracteres")
-      return
+    if (values.titulo.length < 5) {
+      toast.warning("El título debe tener al menos 5 caracteres");
+      return;
     }
+
+    // if (trimmedTranscript.length < 5) {
+    //   toast.warning("La descripción debe tener al menos 5 caracteres");
+    //   return;
+    // }
+
     if (id) {
-      const historyClinic: ClinicHistoryProps = { ...values, descripcion: transcript.trim(), idPaciente: Number(id) }
+      const historyClinic: ClinicHistoryProps = {
+        ...values,
+        descripcion: trimmedTranscript,
+        idPaciente: Number(id)
+      };
+
       try {
-        await registerClinicHistory(id, historyClinic)
-        toast.success("La historia clinica fue registrada correctamente")
-        fetchDataHistory()
-        onClose()
-        setTranscript("")
+        await registerClinicHistory(id, historyClinic);
+        toast.success("La historia clinica fue registrada correctamente");
+        fetchDataHistory();
+        onClose();
+        setTranscript(""); // Limpiar el transcript después de registrar
       } catch (err: any) {
-        console.error(err)
+        console.error(err);
       }
     }
-  }
+  };
 
   useEffect(() => {
     fetchDataHistory()
@@ -177,7 +190,7 @@ export default function ClinicHistory() {
                             className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Título de la historia clinica"></Field>
                         </div>
-                        <VoiceTranscript onTranscriptChange={setTranscript} label={"Descripción"} />
+                        <VoiceTranscript onTranscriptChange={handleTranscriptChange} label={"Descripción"} />
                         <div className="flex justify-center gap-2" >
                           <Button disabled={isSubmitting} type="submit" className=" w-2/4 mb-10 bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</Button>
                           <Button className=" rounded-md w-2/4 border-2  border-red-300" color="danger" variant="light" onPress={onClose}>Cancelar</Button>

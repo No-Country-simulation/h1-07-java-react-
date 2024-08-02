@@ -30,7 +30,7 @@ export function Onboarding() {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center min-h-screen bg-white overflow-hidden" style={{ backgroundImage: 'url(./public/IMG_FONDO/IMG_FONDO.png)' }}>
+        <div className="flex flex-col justify-center items-center min-h-screen bg-white overflow-hidden" style={{ backgroundImage: 'url(/IMG_FONDO/IMG_FONDO.png)' }}>
             <div className="flex flex-col justify-center items-center rounded-t-[10%]  w-full h-[50%] bg-white xl:bg-transparent fixed top-[30rem] md:relative md:top-[2rem] md:rounded-md" >
                 <div className="flex flex-col items-center w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] xl:text-white bg-white xl:bg-transparent xl:shadow-xl xl:shadow-black p-5 md:p-10 rounded-md shadow-lg mb-20 ">
                     <h1 className="text-center font-bold font-inter text-[20px] md:text-[30px] lg:text-[35px] xl:text-[30px] xl:text-white text-[#1A1A1A] 2xl:w-[80%]">
