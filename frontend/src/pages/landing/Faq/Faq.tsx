@@ -72,7 +72,7 @@ export const FaqSection: React.FC = () => {
     <section
       id="faq"
       className="flex flex-col gap-y-4 lg:h-screen h-full mt-10 lg:mb-10  bg-cover bg-center text-white"
-      style={{ backgroundImage: "url(./public/IMG_FONDO/IMG_FONDO.png)" }}
+      style={{ backgroundImage: "url(./IMG_FONDO/IMG_FONDO.png)" }}
     >
       <div className="flex flex-col  lg:mx-16  items-start lg:mt-16 md:items-center md:flex-row md:gap-y-6">
         <div className="md:flex  lg:mx-0 mx-10 md:flex-col md:pl-10">

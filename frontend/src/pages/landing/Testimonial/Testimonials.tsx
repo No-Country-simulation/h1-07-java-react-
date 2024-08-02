@@ -7,7 +7,6 @@ export const TestimonialsSection = () => {
       id="testimonials"
       className="flex flex-col gap-y-8 items-center px-4 md:px-10 md:mb-32"
     >
-      {/* Mobile View */}
       <div className="md:hidden text-center flex flex-col gap-6">
         <h2 className=" text-3xl mt-14 font-semibold text-[#5F5CF3]">
           Clientes
@@ -25,7 +24,7 @@ export const TestimonialsSection = () => {
           especialmente en casos de trasplantes.”
         </p>
         <img
-          src="./public/IMG_MEDICO/IMG_MEDICO.png"
+          src="./IMG_MEDICO/IMG_MEDICO.png"
           className="w-10 mx-auto"
           alt=""
         />
@@ -44,7 +43,7 @@ export const TestimonialsSection = () => {
             especialmente en casos de trasplantes.”
           </p>
           <img
-            src="./public/IMG_MEDICO/IMG_MEDICO_2.png"
+            src="./IMG_MEDICO/IMG_MEDICO_2.png"
             className="w-10 mx-auto mt-4"
             alt=""
           />
@@ -72,7 +71,7 @@ export const TestimonialsSection = () => {
               pacientes, especialmente en casos de trasplantes.”
             </p>
             <img
-              src="./public/IMG_MEDICO/IMG_MEDICO.png"
+              src="./IMG_MEDICO/IMG_MEDICO.png"
               className="w-10 mt-4"
               alt=""
             />
@@ -94,7 +93,7 @@ export const TestimonialsSection = () => {
               pacientes, especialmente en casos de trasplantes.”
             </p>
             <img
-              src="./public/IMG_MEDICO/IMG_MEDICO_2.png"
+              src="./IMG_MEDICO/IMG_MEDICO_2.png"
               className="w-10 mt-4"
               alt=""
             />

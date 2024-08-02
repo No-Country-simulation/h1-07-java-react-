@@ -26,7 +26,7 @@ export const NavBar = () => {
       <div className="ml-4">
         <a href="#">
           <img
-            src="./public/LOGOS/JustinaLogo_Lading.png"
+            src="./LOGOS/JustinaLogo_Lading.png"
             className="w-20"
             alt="Justina Logo"
           />

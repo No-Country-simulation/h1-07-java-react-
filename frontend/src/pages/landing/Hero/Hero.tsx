@@ -3,7 +3,7 @@ export const HeroSection = () => {
     <section
       id="hero"
       className="flex lg:mt-0 mt-14 flex-col items-center md:flex-row bg-cover md:bg-center h-screen"
-      style={{ backgroundImage: "url(./public/IMG_FONDO/IMG_FONDO.png)" }}
+      style={{ backgroundImage: "url(./IMG_FONDO/IMG_FONDO.png)" }}
     >
       <div className="flex w-full flex-col lg:ml-16 mt-12 md:mt-30 items-center md:items-start md:w-1/2 px-4 md:px-10">
         <h1 className="mt-5 mb-4 lg:mb-0 text-4xl font-semibold md:mt-0 text-white lg:text-5xl text-center md:text-left">
@@ -23,7 +23,7 @@ export const HeroSection = () => {
       </div>
       <div className="flex justify-center items-center w-full lg:mr-20 md:w-1/2">
         <img
-          src="./public/LOGOS/JustinaLogo_Lading.png"
+          src="./LOGOS/JustinaLogo_Lading.png"
           className="md:rounded-lg w-[60%] md:w-[50%] lg:w-[100%]  max-w-sm md:max-w-md"
           alt="image-landing-page"
         />
