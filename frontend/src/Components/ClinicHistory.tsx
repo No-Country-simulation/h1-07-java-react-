@@ -43,15 +43,7 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
     const trimmedTranscript = transcript.trim(); // Eliminar espacios al inicio y al final
     const defaultDescription = "Descripción por defecto"; 
-    if (values.titulo.length < 5) {
-      toast.warning("El título debe tener al menos 5 caracteres");
-      return;
-    }
 
-    // if (trimmedTranscript.length < 5) {
-    //   toast.warning("La descripción debe tener al menos 5 caracteres");
-    //   return;
-    // }
     const description = trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
     if (id) {
       const historyClinic: ClinicHistoryProps = {
@@ -76,12 +68,14 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
     fetchDataHistory();
   }, []);
 
-  
   const fetchDataHistory = async () => {
     if (id) {
       setLoading(true);
       try {
-        setClinicHistories(await fetchClinicHistory(id));
+        const data = await fetchClinicHistory(id);
+        // Ordenar el historial clínico por fecha, de más reciente a más antiguo
+        const sortedData = data.content.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+        setClinicHistories({ ...data, content: sortedData });
       } catch (err) {
         console.log(err);
       } finally {
@@ -91,40 +85,38 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
   }
 
   return (
-    <div className=" p-6 flex-col gap-3 flex">
+    <div className="p-6 flex-col gap-3 flex">
       <h5 className="font-bold text-xl text-violet-color">Datos Personales</h5>
-      <div className=" border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
-        <h6 className="  font-bold text-lg">Datos</h6>
-        <div className=" ml-6 list-disc  tracking-wide ">
-          <p className=" text-medium leading-9"><span className=" font-semibold">Nombre Completo</span>: {patient?.nombre} {patient?.apellido}</p>
-          <p className=" text-medium leading-9"><span className=" font-semibold">Financiador</span>: {patient?.financiador}</p>
-          <p className=" text-medium leading-9"><span className=" font-semibold">Tipo de Documento</span>: {patient?.tipoDocumento} {patient?.numeroDocumento}</p>
-          <p className=" text-medium leading-9"><span className=" font-semibold">Médicos a cargo</span>: {patient?.medicos.map((medico) => (<span>{medico} </span>))}</p>
-          <p className=" text-medium leading-9"><span className=" font-semibold">Hospitales</span>: {patient?.entidades}</p>
+      <div className="border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
+        <h6 className="font-bold text-lg">Datos</h6>
+        <div className="ml-6 list-disc tracking-wide">
+          <p className="text-medium leading-9"><span className="font-semibold">Nombre Completo</span>: {patient?.nombre} {patient?.apellido}</p>
+          <p className="text-medium leading-9"><span className="font-semibold">Financiador</span>: {patient?.financiador}</p>
+          <p className="text-medium leading-9"><span className="font-semibold">Tipo de Documento</span>: {patient?.tipoDocumento} {patient?.numeroDocumento}</p>
+          <p className="text-medium leading-9"><span className="font-semibold">Médicos a cargo</span>: {patient?.medicos.map((medico) => (<span key={medico}>{medico} </span>))}</p>
+          <p className="text-medium leading-9"><span className="font-semibold">Hospitales</span>: {patient?.entidades}</p>
         </div>
       </div>
       <h5 className="font-bold text-xl text-violet-color">Historia Clinica</h5>
-      {clinicHistories && clinicHistories.content.length != 0 && <>
-        <div className=" relative w-full h-12 mb-3 flex justify-center items-center">
+      {clinicHistories && clinicHistories.content.length !== 0 && (
+        <div className="relative w-full h-12 mb-3 flex justify-center items-center">
           <input
             type="text"
             placeholder="Búsqueda"
             onChange={(e) => setHistories(e.target.value)}
-            className="w-full h-full  border-violet-color rounded-md border-1 px-4"
+            className="w-full h-full border-violet-color rounded-md border-1 px-4"
           />
           <span className="right-5 absolute">
             <SearchIcon width={20} height={20} />
           </span>
         </div>
-      </>
-
-      }
-      <div className=" flex flex-col gap-3">
+      )}
+      <div className="flex flex-col gap-3">
         {loading ? (
           <SkeletonAcordion />
         ) : (
           <>
-            {clinicHistories && clinicHistories?.content?.length > 0 ? (
+            {clinicHistories && clinicHistories.content.length > 0 ? (
               clinicHistories.content
                 .filter((msg) =>
                   msg.titulo.toLowerCase().includes(histories.toLowerCase())
@@ -133,19 +125,19 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
                   <Accordion
                     variant="splitted"
                     key={idx}
-                    className=" rounded-md w-full"
+                    className="rounded-md w-full"
                   >
                     <AccordionItem
                       aria-label={history.titulo}
                       title={`${history.titulo} ${history.fecha}`}
-                      className="w-full border-2 border-violet-color "
+                      className="w-full border-2 border-violet-color"
                     >
                       {history.descripcion}
                     </AccordionItem>
                   </Accordion>
                 ))
             ) : (
-              <p className=" text-center my-4 font-semibold">
+              <p className="text-center my-4 font-semibold">
                 No se encontraron historiales clínicos.
               </p>
             )}
@@ -154,7 +146,7 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
       </div>
       <Button
         onPress={onOpen}
-        className="h-10 rounded-lg mt-10 w-3/4  m-auto font-semibold bg-secondary-brand-dark text-white"
+        className="h-10 rounded-lg mt-10 w-3/4 m-auto font-semibold bg-secondary-brand-dark text-white"
       >
         Nuevo Historial
       </Button>
@@ -174,9 +166,9 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
                     onSubmit={handleSubmitHistory}
                   >
                     {({ isSubmitting }) => (
-                      <Form className=" flex flex-col  gap-6">
+                      <Form className="flex flex-col gap-6">
                         <div>
-                          <label htmlFor="titulo" className=" font-bold">
+                          <label htmlFor="titulo" className="font-bold">
                             Título
                           </label>
                           <Field
@@ -188,9 +180,9 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
                           ></Field>
                         </div>
                         <VoiceTranscript onTranscriptChange={handleTranscriptChange} label={"Descripción"} />
-                        <div className="flex justify-center gap-2" >
-                          <Button disabled={isSubmitting} type="submit" className=" w-2/4 mb-10 bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</Button>
-                          <Button className=" rounded-md w-2/4 border-2  border-red-300" color="danger" variant="light" onPress={onClose}>Cancelar</Button>
+                        <div className="flex justify-center gap-2">
+                          <Button disabled={isSubmitting} type="submit" className="w-2/4 mb-10 bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</Button>
+                          <Button className="rounded-md w-2/4 border-2 border-red-300" color="danger" variant="light" onPress={onClose}>Cancelar</Button>
                         </div>
                       </Form>
                     )}

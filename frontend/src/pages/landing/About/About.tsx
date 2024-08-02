@@ -6,7 +6,7 @@ export const AboutSection = () => {
     >
       <div className="flex justify-center md:w-1/2 lg:ml-20 mb-8 md:mb-0">
         <img
-          src="./Imagen-1.2.png"
+          src="/IMG_LADING/Imagen-1.webp"
           alt="image-landing-page"
           className="rounded-xl w-[100%] h-auto shadow-large"
         />

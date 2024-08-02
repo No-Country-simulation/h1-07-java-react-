@@ -269,6 +269,7 @@ export interface Patient {
 }
 
 export interface ContentPatient {
+  idPaciente: number;
   content: Patient[];
   number: number;
   size: number;
@@ -343,6 +344,7 @@ export interface Time {
 }
 
 export interface Medic {
+  idMedico: number;
   nombre: string;
   apellido: string;
   telefono: string;

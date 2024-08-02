@@ -2,8 +2,9 @@ import { Avatar } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
 import { ArrowWhiteIcon, MenuHambuerguesa } from '../../public/icons/Icons'
 import React, { useState } from 'react'
-import { SkeletonPatientInfo } from './Skeletons'
-import { AsideMenu } from './AsideMenu'
+import { AsideMenu } from '../Components/AsideMenu'
+import { SkeletonPatientInfo } from '../Components/Skeletons'
+
 
 interface HeaderProfileProps {
   children?: JSX.Element | JSX.Element[],
@@ -18,7 +19,7 @@ interface HeaderProfileProps {
   link:string
 }
 
-export const HeaderProfile: React.FC<HeaderProfileProps> = ({link, loading,title, children, name, lastname, typeDocument, financier, document }) => {
+export const HeaderProfile: React.FC<HeaderProfileProps> = ({ link ,loading, title, children, name, lastname, typeDocument, financier, document }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -32,11 +33,12 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({link, loading,title
             <Link to={link} className=' text-light-color absolute -left-0 hover:-translate-x-1 transition-all duration-300'>
               <ArrowWhiteIcon width={30} height={30} stroke='' />
             </Link>
-            <h1 className="text-xl font-bold text-light-color">{title}</h1>
-            <button onClick={toggleSidebar} className=' absolute right-0'>
-              <MenuHambuerguesa width={30} height={30} stroke='' />
-            </button>
-          </div>
+            <div className="flex items-center justify-center">
+              <h1 className="text-xl font-bold text-light-color">{title}</h1>
+              <button onClick={toggleSidebar} className='hidden absolute right-0'>
+                <MenuHambuerguesa width={30} height={30} stroke='' />
+              </button>
+            </div>        </div>
           <div className="flex gap-4 items-center">
             {loading
               ? <SkeletonPatientInfo />

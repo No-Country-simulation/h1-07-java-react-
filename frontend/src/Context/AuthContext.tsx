@@ -191,7 +191,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
           console.error('HTTP error', res.status);
           throw new Error('Network response was not ok');
         }
-        
+
         toast.success("El paciente fue creado correctamente");
         window.location.href = '/patient-list'
 
@@ -254,7 +254,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     registerDoctor,
     registerPatient,
     registerTreatment,
-    createRole: (email, role) => createRole(email, role)
+    createRole: (email, role) => createRole(email, role),
   }), [authTokens, login, logout, registerDoctor, registerPatient, registerTreatment, roles, createRole]);
 
   return <AuthContext.Provider value={value}>
@@ -549,6 +549,34 @@ export const getAllNotifications = async () => {
     } catch (err: any) {
       console.error(err);
     }
+  }
+};
+
+export const crearDonante = async (data: any) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  console.log(token)
+  try {
+    const response = await fetch(`${API_URL}/donante/crear-donante`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data),
+    });
+    console.log(response)
+
+    if (!response.ok) {
+      const errorText = await response.text(); // Lee el texto de la respuesta para obtener detalles
+      throw new Error(`Error en la solicitud: ${errorText}`);
+    }
+
+
+    const result = await response.json();
+    console.log(result)
+    return result;
+  } catch (error) {
+    throw new Error(`Error al crear donante: `);
   }
 };
 

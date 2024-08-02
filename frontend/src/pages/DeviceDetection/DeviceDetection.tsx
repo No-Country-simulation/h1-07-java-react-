@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
 import { Outlet } from 'react-router-dom';
-
-
 
 const DeviceDetection: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);

@@ -15,8 +15,8 @@ import {
   fetchPatientConnect,
 } from "../../../../Context/AuthContext";
 import { toast } from "sonner";
-import { AsideMenu } from "../../../../components/AsideMenu";
-import Header from "./Header/Header";
+import { AsideMenu } from "../../../../Components/AsideMenu";
+import { AsideMenuPatients } from "../../../../Components/AsideMenuPatients";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -108,13 +108,54 @@ export function Home_Patients() {
   return (
     <main className="flex bg-gray-100 md:flex md:justify-center  ">
       <div className="w-full max-w-md min-h-screen font-inter bg-white rounded-lg shadow-lg  max-md:m-auto">
-        <AsideMenu
+        <AsideMenuPatients
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
-        ></AsideMenu>
-        <Header toggleSidebar={toggleSidebar} nombre={patientInfo?.nombre} apellido={patientInfo?.apellido} notifications={notifications} >
-          
-        </Header>
+        ></AsideMenuPatients>
+        <header className="flex flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] px-4">
+          <div className="flex flex-row  justify-between w-full ">
+            <Link to="/profile">
+              <div className="flex items-center space-x-2">
+                <Avatar
+                  name={patientInfo?.nombre}
+                  color="primary"
+                  isBordered
+                  size="lg"
+                />
+                <div>
+                  <h1 className="text-lg font-bold text-white">Buenos días,</h1>
+                  <p className="font-bold text-white">
+                    {patientInfo?.nombre} {patientInfo?.apellido}
+                  </p>
+                </div>
+              </div>
+            </Link>
+            <div className="flex items-center space-x-4 mt-2">
+              <Link to={"/notification"}>
+                <Badge
+                  color="danger"
+                  content={notifications?.length}
+                  isInvisible={notifications?.length === 0}
+                  shape="circle"
+                >
+                  <CampanaNotificIcon width={26} height={26} />
+                </Badge>
+              </Link>
+
+              <button onClick={toggleSidebar}>
+                <MenuHambuerguesa width={24} height={24} />
+              </button>
+            </div>
+          </div>
+          <div className="bg-white flex flex-row items-center py-[5px] mt-5 px-4 rounded-3xl ml-3">
+            <SearchIcon width={16} height={16} stroke="" />
+            <input
+              type="text"
+              className="pl-2 py-1 w-full border-none outline-none"
+              placeholder="Buscar"
+            />
+          </div>
+        </header>
         <div className="ml-5 mt-10">
           <h3 className="font-bold font-inter text-2xl">Categorías</h3>
         </div>
@@ -153,7 +194,7 @@ export function Home_Patients() {
                     <p className="font-inter text-gray-400 ">Nutriologa</p>
                   </div>
                   <img
-                    src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.png"
+                    src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.webp"
                     className="rounded-full ml-20 w-16 h-16"
                     alt=""
                   />
@@ -186,7 +227,7 @@ export function Home_Patients() {
           <div className="flex flex-row gap-x-8 justify-center">
             <div className="flex flex-col">
               <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_2.png"
+                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_2.webp"
                 className="rounded-full"
                 alt=""
               />
@@ -194,7 +235,7 @@ export function Home_Patients() {
             </div>
             <div className="flex flex-col">
               <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_3.png"
+                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_3.webp"
                 className="rounded-full"
                 alt=""
               />
@@ -204,7 +245,7 @@ export function Home_Patients() {
             </div>
             <div className="flex flex-col">
               <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_4.png"
+                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_4.webp"
                 className="rounded-full"
                 alt=""
               />
@@ -214,7 +255,7 @@ export function Home_Patients() {
             </div>
             <div className="flex flex-col ">
               <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_5.png"
+                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_5.webp"
                 className="rounded-full w-16 h-16"
                 alt=""
               />

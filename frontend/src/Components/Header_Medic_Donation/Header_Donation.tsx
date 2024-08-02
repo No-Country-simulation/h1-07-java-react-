@@ -3,17 +3,18 @@ import { ArrowWhiteIcon, DonationRegistreIcon, MenuHambuerguesa } from "../../..
 import { useState } from "react";
 
 
-export function Header_Donation() {
+export function Header_Donation(to: any) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    to = "/dashboard";
     return (
         <header className='mb-10 p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-[#FFA4D7] to-[#C23584] rounded-br-[4rem] shadow-2xl'>
             <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
-                <Link to={"/dashboard"} className='text-light-color absolute -left-4 hover:-translate-x-1 transition-all duration-300'>
+                <Link to={to} className='text-light-color absolute -left-4 hover:-translate-x-1 transition-all duration-300'>
                     <ArrowWhiteIcon width={30} height={30} stroke="" />
                 </Link>
                 <div className="flex items-center justify-center">

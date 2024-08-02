@@ -13,8 +13,8 @@ import {
 } from "../../../../../public/icons/Icons";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { useAuthContext } from "../../../../Context/AuthContext";
-import { AsideMenu } from "../../../../components/AsideMenu";
-import { Logout } from "../../../../components/Logout";
+import { AsideMenu } from "../../../../Components/AsideMenu";
+import { Logout } from "../../../../Components/Logout";
 
 export function UserInfo(): JSX.Element {
   const [curriculum, setCurriculum] = useState("");
@@ -58,14 +58,14 @@ export function UserInfo(): JSX.Element {
         <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
-        />
-        <header className="p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl">
-          <div className="xl:flex xl:flex-col xl:justify-center xl:items-center">
-            <div className="w-full flex flex-col items-start">
-              <div className="xl:flex mb-6 text-center relative flex items-center justify-center w-full">
+        /> 
+        <header className="p-3 font-inter h-48 flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl">
+          <div className=" w-full xl:flex xl:flex-col  xl:justify-center xl:items-center">
+            <div className="w-full flex flex-col  ">
+              <div className="xl:flex mb-6 flex flex-row items-center gap-x-7 w-full">
                 <Link
                   to={"/dashboard"}
-                  className="text-light-color absolute xl:-left-20 -left-10 hover:-translate-x-1 transition-all duration-300"
+                  className="text-light-color ml-10 xl:-left-20 -left-8 hover:-translate-x-1 transition-all duration-300"
                 >
                   <ArrowWhiteIcon width={30} height={30} stroke="" />
                 </Link>
@@ -77,10 +77,10 @@ export function UserInfo(): JSX.Element {
                 </button>
               </div>
             </div>
-            <div className=" flex gap-4 items-start w-full">
+            <div className="flex flex-row gap-x-4 w-full px-5 py-2 ">
               <img
-                src="IMG_MEDICO/IMG_MEDICO.png"
-                className=" w-12 h-12"
+                src="IMG_MEDICO/IMG_MEDICO.webp"
+                className="w-12 h-12 "
                 alt="image-medic-profile"
               />
               <div className="">
@@ -92,6 +92,7 @@ export function UserInfo(): JSX.Element {
                 </p>
               </div>
             </div>
+            
           </div>
         </header>
         <section className="ml-4 my-8">
