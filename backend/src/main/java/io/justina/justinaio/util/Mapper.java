@@ -156,6 +156,7 @@ public class Mapper {
         return HorarioTomaResponse.builder()
                 .fecha(horarioToma.getFecha())
                 .hora(horarioToma.getHora())
+                .comentario(horarioToma.getCometario())
                 .estado(horarioToma.getEstadoHorario())
                 .build();
     }
