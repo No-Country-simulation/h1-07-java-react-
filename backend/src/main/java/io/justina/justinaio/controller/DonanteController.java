@@ -28,7 +28,7 @@ public class DonanteController {
             @RequestBody DonanteRequest donanteRequest
     ) {
         donanteService.crearDonante(donanteRequest,token);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Donante Creado con éxito");
     }
 
     /*@GetMapping("/buscar-donantes")
