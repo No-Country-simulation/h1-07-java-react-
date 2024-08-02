@@ -57,7 +57,6 @@ export default function PatientDetail() {
           financier={patient?.financiador}
           document={patient?.numeroDocumento}
           link={`/patient-list`}
-
         >
           <div className="absolute -bottom-4 w-full flex justify-center">
             <div className="flex gap-4">
@@ -84,7 +83,7 @@ export default function PatientDetail() {
             </p>
           </Link>
         </section>
-        <section className="p-4">
+        <section className="">
           {/* Renderiza el componente activo pasando los datos como props */}
           {ActiveComponent && <ActiveComponent patient={patient} />}
         </section>

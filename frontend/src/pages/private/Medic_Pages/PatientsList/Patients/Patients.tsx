@@ -30,6 +30,7 @@ export const Patients: React.FC<PatientProps> = ({ loading, patients, searchPati
                   .toLowerCase()
                   .includes(searchPatient.toLowerCase())
               )
+              .sort((a, b) => b.idPaciente - a.idPaciente)
               .map((patient) => (
                 <div
                   key={patient.idPaciente}
