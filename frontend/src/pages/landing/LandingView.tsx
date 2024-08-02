@@ -1,0 +1,25 @@
+import { Footer } from "../../Components/FooterLanding";
+import { NavBar } from "../../Components/NavbarLanding";
+import { AboutSection } from "./About/About";
+import { FaqSection } from "./Faq/Faq";
+import { FeaturesSection } from "./Features/Features";
+import { HeroSection } from "./Hero/Hero";
+import { ServicesSection } from "./Services/Services";
+import { TestimonialsSection } from "./Testimonial/Testimonials";
+
+const LandingView = () => {
+  return (
+    <main className="lg:w-full md:mx-0 mx-auto md:max-w-full md:p-0">
+      <NavBar />
+      <HeroSection />
+      <AboutSection />
+      <ServicesSection />
+      <FeaturesSection />
+      <FaqSection />
+      <TestimonialsSection />
+      <Footer />
+    </main>
+  );
+};
+
+export default LandingView;
