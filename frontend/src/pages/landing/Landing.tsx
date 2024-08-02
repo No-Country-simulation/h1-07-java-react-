@@ -17,28 +17,28 @@ import {
   TratamentIcon,
   WacthIcon,
 } from "../../../public/icons/Icons";
-import { Nav } from "../../Components/Nav";
+import { Nav } from "../../components/Nav";
 
 const items = [
   {
-    icon: <HistoryIconTwo width={30} height={30} />,
+    icon: <HistoryIconTwo width={30} height={30} stroke="" />,
     text: "Historial Clínico",
   },
   {
-    icon: <DonationIcon width={30} height={30} />,
+    icon: <DonationIcon width={30} height={30} stroke="" />,
     text: "Donaciones",
   },
   {
-    icon: <TratamentIcon width={30} height={30} />,
+    icon: <TratamentIcon width={30} height={30} stroke="" />,
     text: "Tratamientos",
   },
   {
-    icon: <CorIcon width={30} height={30} />,
+    icon: <CorIcon width={30} height={30} stroke="" />,
     text: "Acompañamiento al paciente",
     padding: "md:pt-6",
   },
   {
-    icon: <WacthIcon width={30} height={30} />,
+    icon: <WacthIcon width={30} height={30} stroke="" />,
     text: "Gestión de turnos",
   },
   {
@@ -46,12 +46,12 @@ const items = [
     text: "Protección de datos",
   },
   {
-    icon: <RecordIcon width={30} height={30} />,
+    icon: <RecordIcon width={30} height={30} stroke="" />,
     text: "Recordatorios para Pacientes",
     padding: "md:mt-4",
   },
   {
-    icon: <CheckIconTwo width={30} height={30} />,
+    icon: <CheckIconTwo width={30} height={30} stroke="" />,
     text: "Perfiles verificados",
   },
 ];
@@ -69,14 +69,10 @@ export const Landing = () => {
     "Para programar una cita con su médico se tiene que coordina con el presencial o de manera virtual con el apartado de mensajeria, este mismo turno lo gestion el profecional atraves de la plataforma, a usted como paciente le llega una notificación con el turno, puede confirmar o rechazar el turno.";
 
   return (
-    <main className="w-full md:mx-0 md:max-w-full md:p-0 ">
-      <nav className="hidden   md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small">
+    <main className="xl:w-[1440px] md:mx-0 md:max-w-full md:p-0">
+      <nav className="hidden md:flex md:flex-row md:justify-between font-inter  md:items-center md:w-full md:bg-[#5956E9] md:py-2 md:mb-0 md:text-white  md:border-black  md:shadow-black md:shadow-small">
         <div className="md:ml-4">
-          <img
-            src="./public/LOGOS/JustinaLogo_Lading.png"
-            className="md:w-20"
-            alt=""
-          />
+          <img src="LOGOS/JustinaLogo_Lading.png" className="md:w-20" alt="" />
         </div>
         <div className="md:flex md:items-center">
           <ul className="md:flex md:flex-row">
@@ -109,7 +105,7 @@ export const Landing = () => {
         </div>
         <div>
           <Link to={"/"}>
-            <img src="./public/Avatar.png" className="md:mr-8" alt="" />
+            <img src="Avatar.png" className="md:mr-8" alt="" />
           </Link>
         </div>
       </nav>
@@ -118,7 +114,7 @@ export const Landing = () => {
         {/* Destoks y Mobile */}
         <section
           className="flex flex-col items-center md:gap-y-0 md:flex-row bg-cover md:bg-center md:h-screen  "
-          style={{ backgroundImage: "url(./public/IMG_FONDO/IMG_FONDO.png)" }}
+          style={{ backgroundImage: "url(IMG_FONDO/IMG_FONDO.png)" }}
         >
           <div className="flex  w-full flex-col md:flex-col mt-2 md:mt-30 md:ml-10">
             <h2
@@ -137,7 +133,7 @@ export const Landing = () => {
             </Link>
           </div>
           <img
-            src="./public/LOGOS/JustinaLogo_Lading.png"
+            src="LOGOS/JustinaLogo_Lading.png"
             className="md:rounded-lg min-w-[900px]:hidden w-[60%] mb-4 md:mb-32 md:mr-36 md:w-[30%] md:h-[20rem]"
             alt="image-landing-page"
           />
@@ -167,7 +163,7 @@ export const Landing = () => {
           </h4>
           <div className=" flex justify-center ">
             <img
-              src="./public/Imagen-1.2.png"
+              src="Imagen-1.2.png"
               alt="image-landing-page"
               className="mb-10 mt-10 w-[90%] shadow-large "
             />
@@ -178,7 +174,7 @@ export const Landing = () => {
         <section className="hidden md:flex md:flex-row md:mt-32 md:mb-24 ">
           <div className="md:w-[30rem] md:pl-4 md:ml-10 ">
             <img
-              src="./public/Imagen-1.2.png"
+              src="Imagen-1.2.png"
               className="rounded-xl h-[20em] w-[70em]"
               alt="image-landing-page"
             />
@@ -210,7 +206,7 @@ export const Landing = () => {
         {/* Version Mobile y Destosk */}
         <section
           className="flex flex-col gap-y-8 items-center md:justify-center text-white text-center md:mb-32 md:bg-cover md:bg-center md:h-screen rounded-xl"
-          style={{ backgroundImage: "url(./public/IMG_FONDO/IMG_FONDO.png)" }}
+          style={{ backgroundImage: "url(IMG_FONDO/IMG_FONDO.png)" }}
         >
           <h5
             className={`${styles.h5} text-white font-[500] md:font-semibold font-inter mt-5`}
@@ -266,12 +262,12 @@ export const Landing = () => {
             </div>
             <div className="relative grid grid-cols-1 grid-rows-2 rounded-xl bg-gradient-to-r from-[#5F5CF4] to-[#C49FE0] w-[90%] h-[20rem]">
               <img
-                src="./public/jus-removebg-preview_1.png"
+                src="jus-removebg-preview_1.png"
                 alt="image-landing-page"
                 className="absolute top-0 left-0 w-[35%] h-auto lg:w-[20%]"
               />
               <img
-                src="./public/Ellipse_136.png"
+                src="Ellipse_136.png"
                 alt="image-landing-page"
                 className="absolute bottom-0 right-0 w-[35%] h-auto lg:w-[20%]"
               />
@@ -281,12 +277,12 @@ export const Landing = () => {
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
             <div className="md:rounded-xl md:bg-gradient-to-r md:from-[#5F5CF4] md:to-[#C49FE0] md:w-[33%] md:h-[17rem] md:ml-36">
               <img
-                src="./public/jus-removebg-preview_1.png"
+                src="jus-removebg-preview_1.png"
                 alt="image-landing-page"
                 className="md:relative md:bottom-auto xl:left-10 md:left-auto md:w-28 lg:w-36 xl:w-36"
               />
               <img
-                src="./public/Ellipse_136.png"
+                src="Ellipse_136.png"
                 alt="image-landing-page"
                 className="md:relative md:bottom-auto md:left-40 xl:left-60 xl:bottom-3 lg:left-40  md:w-28 lg:w-32 xl:w-36"
               />
@@ -311,7 +307,7 @@ export const Landing = () => {
               </h4>
             </div>
             <img
-              src="./public/CenterContent.png"
+              src="CenterContent.png"
               alt="image-landing-page"
               className="md:mr-20 w-[90%]"
             />
@@ -329,7 +325,7 @@ export const Landing = () => {
               </h5>
             </div>
             <img
-              src="./public/CenterContent.png"
+              src="CenterContent.png"
               alt="image-landing-page"
               className="md:mr-20"
             />
@@ -342,7 +338,7 @@ export const Landing = () => {
               </h4>
             </div>
             <img
-              src="./public/image.png"
+              src="image.png"
               alt="image-landing-page"
               className="md:ml-32 w-[90%]"
             />
@@ -350,7 +346,7 @@ export const Landing = () => {
 
           <div className="hidden md:flex md:flex-row md:items-center md:justify-between ">
             <img
-              src="./public/image.png"
+              src="image.png"
               alt="image-landing-page"
               className="md:ml-32"
             />
@@ -372,7 +368,7 @@ export const Landing = () => {
         {/*Version Mobile - Preguntas Frecuentes */}
         <section
           className="md:hidden flex flex-col gap-y-4 mt-10  mb-10 bg-cover h-screen bg-center text-white "
-          style={{ backgroundImage: "url(./public/IMG_FONDO/IMG_FONDO.png)" }}
+          style={{ backgroundImage: "url(IMG_FONDO/IMG_FONDO.png)" }}
         >
           <h2
             className={`${styles.h2} ml-3 mt-20 font-inter font-[500] text-[25px] `}
@@ -419,7 +415,7 @@ export const Landing = () => {
         {/* Version Desktop  */}
         <section
           className="hidden md:flex md:flex-row md:gap-y-6 md:items-center md:bg-cover md:bg-center md:h-screen"
-          style={{ backgroundImage: "url(./public/IMG_FONDO/IMG_FONDO.png)" }}
+          style={{ backgroundImage: "url(IMG_FONDO/IMG_FONDO.png)" }}
         >
           <div className="md:flex md:flex-col md:pl-10">
             <h2
@@ -487,11 +483,7 @@ export const Landing = () => {
             especialmente en casos de trasplantes.””
           </p>
 
-          <img
-            src="./public/IMG_MEDICO/IMG_MEDICO.png"
-            className="w-10"
-            alt=""
-          />
+          <img src="IMG_MEDICO/IMG_MEDICO.png" className="w-10" alt="" />
           <p className="font-semibold">Courtney Henry</p>
         </section>
 
@@ -513,11 +505,7 @@ export const Landing = () => {
                 pacientes, especialmente en casos de trasplantes.”
               </p>
               <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
-              <img
-                src="./public/IMG_MEDICO/IMG_MEDICO.png"
-                className="w-10"
-                alt=""
-              />
+              <img src="IMG_MEDICO/IMG_MEDICO.png" className="w-10" alt="" />
               <p className="font-semibold md:w-[25%] w-[40%] mt-3 md:text-gray-500 md:mt-2">
                 Doctor Ortega (Médico internista)
               </p>
@@ -537,7 +525,7 @@ export const Landing = () => {
               </p>
               <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full"></span>
               <img
-                src="./public/IMG_MEDICO/IMG_MEDICO_2.png"
+                src="IMG_MEDICO/IMG_MEDICO_2.png"
                 className="md:w-10"
                 alt=""
               />
@@ -552,9 +540,9 @@ export const Landing = () => {
       {/* Version Mobile */}
       <footer className="flex md:hidden flex-col p-4 bg-[#232233] mt-4">
         <div className="flex flex-row  items-center">
-          <img src="./public/D_1.png" className="w-[50%] h-[50%] " alt="" />
+          <img src="D_1.png" className="w-[50%] h-[50%] " alt="" />
           <img
-            src="./public/LOGOS/JustinaLogo_Lading.png"
+            src="LOGOS/JustinaLogo_Lading.png"
             className="w-[40%] pl-1 ml-6 mb-4 px-2 py-1 h-[50%] md:w-[70%] "
             alt=""
           />
@@ -678,9 +666,9 @@ export const Landing = () => {
         <div className="md:text-white md:w-full md:flex ">
           <section className=" md:flex md:mt-20 md:justify-between md:items-center  md:flex-row md:w-[100%]  ">
             <div className="md:flex md:flex-row  md:w-[20%] ">
-              <img src="./public/D_1.png" alt="" />
+              <img src="D_1.png" alt="" />
               <img
-                src="./public/LOGOS/JustinaLogo_Lading.png"
+                src="LOGOS/JustinaLogo_Lading.png"
                 className="md:w-[70%]"
                 alt=""
               />

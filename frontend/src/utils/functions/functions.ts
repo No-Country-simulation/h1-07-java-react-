@@ -1,7 +1,7 @@
 import { CalendarDate } from "@internationalized/date";
 
 export const getTodayDate = (date: CalendarDate) => {
-  return date.year + "-" + date.month.toString().padStart(2, '0') + "-" + date.day;
+  return date.year + "-" + date.month.toString().padStart(2, '0') + "-" + date.day.toString().padStart(2, '0');
 }
 
 export const generateHours = () => {
@@ -29,13 +29,46 @@ export const getRandomColor = () => {
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
-export function getAge(dateString:string) {
+export function getAge(dateString: string) {
   var today = new Date();
   var birthDate = new Date(dateString);
   var age = today.getFullYear() - birthDate.getFullYear();
   var m = today.getMonth() - birthDate.getMonth();
   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+    age--;
   }
   return age;
+}
+
+export function getHoursAndMinute(date: string) {
+
+  const [hours, minutes] = date.split(':');
+  return `${hours}:${minutes}`;
+
+}
+
+export function getTimeElapsed(hora: string, fecha: string) {
+  const [hours, minutes, seconds] = hora.split(':').map(Number);
+  const [year, month, day] = fecha.split('-').map(Number);
+
+  const targetDate = new Date(year, month - 1, day, hours, minutes, seconds);
+  const now = new Date();
+
+  const timeDifference = now.getTime() - targetDate.getTime();
+
+  if (timeDifference < 0) {
+    return 'Hoy a las ' + getHoursAndMinute(hora)
+  }
+
+  const minutesPassed = Math.floor(timeDifference / (1000 * 60));
+  const hoursPassed = Math.floor(minutesPassed / 60);
+  const daysPassed = Math.floor(hoursPassed / 24);
+
+  if (daysPassed > 0) {
+    return `Hace ${daysPassed} días`;
+  } else if (hoursPassed > 0) {
+    return `Hace ${hoursPassed} horas`
+  } else {
+    return `Hace ${minutesPassed} minutos`;
+  }
 }

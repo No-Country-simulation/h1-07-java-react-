@@ -955,6 +955,7 @@ export const CardIcon = ({
 interface IconProps {
   width: number;
   height: number;
+  stroke?: string;
 }
 
 export const IconCorreo = ({ width, height }: IconProps) => {
@@ -1149,7 +1150,7 @@ export function MenuHambuerguesa({ width, height }: IconProps) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="ml-2"
+      className="mr-20"
     >
       <path
         d="M3 12H21M3 6H21M3 18H21"
@@ -1216,12 +1217,19 @@ export function RelojIcon({ width, height }: IconProps) {
   );
 }
 
-export function LapizIcon({ width, height }: IconProps) {
+interface IconPropsTwo {
+  width: number;
+  height: number;
+  stroke: string;
+  classname: string;
+}
+
+export function LapizIcon({ width, height, classname }: IconPropsTwo) {
   return (
     <svg
       width={width}
       height={height}
-      className="ml-4"
+      className={classname}
       viewBox="0 0 15 15"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1237,7 +1245,7 @@ export function LapizIcon({ width, height }: IconProps) {
   );
 }
 
-export function FlechaIcon({ width, height }: IconProps) {
+export function FlechaIcon({ width, height, stroke }: IconProps) {
   return (
     <svg
       width={width}
@@ -1248,7 +1256,7 @@ export function FlechaIcon({ width, height }: IconProps) {
     >
       <path
         d="M5.625 11.25L9.375 7.5L5.625 3.75"
-        stroke="#ffffff"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1257,7 +1265,7 @@ export function FlechaIcon({ width, height }: IconProps) {
   );
 }
 
-export function ArrowBlackIcon({ width, height }: IconProps) {
+export function ArrowBlackIcon({ width, height, stroke }: IconProps) {
   return (
     <svg
       width={width}
@@ -1268,7 +1276,7 @@ export function ArrowBlackIcon({ width, height }: IconProps) {
     >
       <path
         d="M5.625 11.25L9.375 7.5L5.625 3.75"
-        stroke="#111"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1277,19 +1285,24 @@ export function ArrowBlackIcon({ width, height }: IconProps) {
   );
 }
 
-export function FlechaIconTwo({ width, height }: IconProps) {
+export function FlechaIconTwo({
+  width,
+  height,
+  stroke,
+  classname,
+}: IconPropsTwo) {
   return (
     <svg
       width={width}
       height={height}
-      className="ml-10 text-white hover:relative hover:duration-1000 transition-all  hover:right-1 hover:top-2 "
+      className={classname}
       viewBox="0 0 22 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z"
-        stroke="#1A1A1A"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1303,7 +1316,7 @@ export function ArrowWhiteIcon({ width, height }: IconProps) {
     <svg
       width={width}
       height={height}
-      className="ml-10"
+      className="ml-1"
       viewBox="0 0 22 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -1323,7 +1336,6 @@ export function HomeIconTwo({ width, height }: IconProps) {
   return (
     <svg
       width={width}
-      className="text-red-600"
       height={height}
       viewBox="0 0 24 24"
       fill="none"
@@ -1331,7 +1343,7 @@ export function HomeIconTwo({ width, height }: IconProps) {
     >
       <path
         d="M9 22V12H15V22M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
-        stroke="#F9F9F9"
+        stroke={"#948ABC"}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1552,7 +1564,7 @@ export function HealthIcon({ width, height }: IconProps) {
       width={width}
       height={height}
       viewBox="0 0 24 24"
-      fill="#948ABC"
+      fill="#fff"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
@@ -2068,6 +2080,7 @@ export function CampanaNotificIcon({ width, height }: IconProps) {
     <svg
       width={width}
       height={height}
+      className=""
       viewBox="0 0 25 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -2079,7 +2092,6 @@ export function CampanaNotificIcon({ width, height }: IconProps) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="19.5" cy="5.5" r="5.5" fill="#FF0000" />
     </svg>
   );
 }
@@ -2379,6 +2391,122 @@ export function SilderIcon({ width, height }: IconProps) {
           <rect width="10" height="10" fill="white" />
         </clipPath>
       </defs>
+    </svg>
+  );
+}
+
+export function ShieldIcon({ width, height }: IconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={"#948ABC"}
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      className="feather feather-shield"
+    >
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+    </svg>
+  );
+}
+
+export function HospitalIcon({ width, height }: IconProps) {
+  return (
+    <svg
+      fill={"#948ABC"}
+      width={width}
+      height={height}
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 324.667 324.667"
+      enable-background="new 0 0 324.667 324.667"
+    >
+      <g>
+        <path d="m168.333,69.539v-2.739h2.738c3.313,0 6-2.687 6-6s-2.687-6-6-6h-2.738v-2.738c0-3.313-2.687-6-6-6s-6,2.687-6,6v2.738h-2.738c-3.313,0-6,2.687-6,6s2.687,6 6,6h2.738v2.738c0,3.313 2.687,6 6,6s6-2.686 6-5.999z" />
+        <path d="m54.919,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z" />
+        <path d="m78.748,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z" />
+        <path d="m54.919,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z" />
+        <path d="m78.748,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z" />
+        <path d="m54.919,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.687,6 6,6z" />
+        <path d="m78.748,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.686,6 6,6z" />
+        <path d="m245.919,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z" />
+        <path d="m269.748,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z" />
+        <path d="m245.919,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z" />
+        <path d="m269.748,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z" />
+        <path d="m245.919,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.687,6 6,6z" />
+        <path d="m269.748,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.686,6 6,6z" />
+        <path d="m144.419,155.221v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6z" />
+        <path d="m168.248,155.221v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6z" />
+        <path d="m150.419,178.864c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.686-6-6-6z" />
+        <path d="m174.248,178.864c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.687-6-6-6z" />
+        <path d="m150.419,208.506c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.686-6-6-6z" />
+        <path d="m174.248,208.506c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.687-6-6-6z" />
+        <path d="m318.667,284.144h-12.611v-127.376c0-3.314-2.687-6-6-6h-78v-42.943c0-3.313-2.687-6-6-6h-47.723v-8.747h20.277c3.313,0 6-2.687 6-6v-52.555c0-3.313-2.687-6-6-6h-52.555c-3.313,0-6,2.687-6,6v52.555c0,3.313 2.687,6 6,6h20.277v8.747h-47.723c-3.313,0-6,2.687-6,6v42.943h-78c-3.313,0-6,2.686-6,6v127.376h-12.609c-3.313,0-6,2.687-6,6s2.687,6 6,6h312.667c3.313,0 6-2.687 6-6s-2.687-6-6-6zm-108.611-170.319v170.319h-10.056v-26.374c0-3.313-2.687-6-6-6h-63.333c-3.313,0-6,2.687-6,6v26.375h-10.056v-170.32h95.445zm-22.056,170.319h-51.333v-20.374h51.333v20.374zm106.056,0h-72v-121.376h72v121.376zm-191.445,0h-72v-121.376h72v121.376zm39.445-243.621h40.555v40.555h-40.555v-40.555z" />
+      </g>
+    </svg>
+  );
+}
+
+export function AcceptIcon({ width, height }: IconProps) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 18 13"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M17 1L6 12L1 7"
+        stroke="#1A1A1A"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function CommentIcon({ width, height }: IconProps) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
+        stroke="#1A1A1A"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function DonationRegistreIcon({ width, height }: IconProps) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 20 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13.3333 16.5V14.8333C13.3333 13.9493 12.9821 13.1014 12.357 12.4763C11.7319 11.8512 10.8841 11.5 10 11.5H4.16667C3.28261 11.5 2.43477 11.8512 1.80965 12.4763C1.18453 13.1014 0.833336 13.9493 0.833336 14.8333V16.5M16.6667 5.66667V10.6667M19.1667 8.16667H14.1667M10.4167 4.83333C10.4167 6.67428 8.92428 8.16667 7.08334 8.16667C5.24239 8.16667 3.75 6.67428 3.75 4.83333C3.75 2.99238 5.24239 1.5 7.08334 1.5C8.92428 1.5 10.4167 2.99238 10.4167 4.83333Z"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </svg>
   );
 }
