@@ -147,7 +147,7 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
             </Field>
           </div>
           <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones' />
-          <Link to={`/patient/${id}`} className='mb-10'>
+          
             <div className=" flex items-center flex-col gap-2">
               <button
                 type="submit"
@@ -156,7 +156,7 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
                 Registrar Tratamiento
               </button>
             </div>
-          </Link>
+         
         </Form>
       )}
     </Formik>
