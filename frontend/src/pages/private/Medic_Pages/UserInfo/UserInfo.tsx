@@ -8,9 +8,9 @@ import {
   IconPassword,
   LapizIcon,
   MapIcon,
-  MenuHambuerguesa,
   PhoneIcon,
 } from "../../../../../public/icons/Icons";
+import { Logout } from "../../../../components/Logout";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { useAuthContext } from "../../../../Context/AuthContext";
 
@@ -52,51 +52,50 @@ export function UserInfo(): JSX.Element {
 
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg  max-md:m-auto">
-        {/* <AsideMenu
+      <div className="w-full xl:max-w-7xl max-w-md bg-white rounded-lg shadow-lg  max-md:m-auto">
+        <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
-        /> */}
+        />
         <header className="p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl">
-          <div className="w-full flex flex-col items-start">
-            <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
-              <Link
-                to={"/dashboard"}
-                className=" text-light-color absolute -left-0 hover:-translate-x-1 transition-all duration-300"
-              >
-                <ArrowWhiteIcon width={30} height={30} />
-              </Link>
-              <h1 className="text-xl font-semibold text-light-color">
-                Detalles de paciente
-              </h1>
-              <button onClick={toggleSidebar} className=" absolute right-4">
-                <MenuHambuerguesa width={24} height={24} />
-              </button>
+          <div className="xl:flex xl:flex-col xl:justify-center xl:items-center">
+            <div className="w-full flex flex-col items-start">
+              <div className="xl:flex mb-6 text-center relative flex flex-col items-center justify-center w-full">
+                <Link
+                  to={"/dashboard"}
+                  className="text-light-color absolute xl:-left-20 -left-8 hover:-translate-x-1 transition-all duration-300"
+                >
+                  <ArrowWhiteIcon width={30} height={30} stroke="" />
+                </Link>
+                <h1 className="text-xl font-semibold text-light-color">
+                  Detalles de paciente
+                </h1>
+              </div>
             </div>
-          </div>
-          <div className=" flex gap-4 items-start w-full">
-            <img
-              src="IMG_MEDICO/IMG_MEDICO.png"
-              className=" w-12 h-12"
-              alt="image-medic-profile"
-            />
-            <div className="">
-              <h6 className=" text-light-color text-lg  font-medium">
-                Dr. {medicInfo?.nombre} {medicInfo?.apellido}
-              </h6>
-              <p className=" text-light-color">
-                Especialidad {medicInfo?.especialidad}
-              </p>
+            <div className=" flex gap-4 items-start w-full">
+              <img
+                src="IMG_MEDICO/IMG_MEDICO.png"
+                className=" w-12 h-12"
+                alt="image-medic-profile"
+              />
+              <div className="">
+                <h6 className=" text-light-color text-lg  font-medium">
+                  Dr. {medicInfo?.nombre} {medicInfo?.apellido}
+                </h6>
+                <p className=" text-light-color">
+                  Especialidad {medicInfo?.especialidad}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="absolute -bottom-4 w-full flex justify-center">
-            <div className="flex gap-4">
-              <p className="px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color ">
-                Medicina Interna
-              </p>
-              <p className="px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color ">
-                Medicina General
-              </p>
+            <div className="absolute top-44 left-1 w-full flex justify-center">
+              <div className="flex gap-4 items-center justify-center">
+                <p className="px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color ">
+                  Medicina Interna
+                </p>
+                <p className="px-3  cursor-pointer p-1 rounded-lg border-2 bg-light-color border-violet-color shadow-xl text-violet-color ">
+                  Medicina General
+                </p>
+              </div>
             </div>
           </div>
         </header>
@@ -159,7 +158,7 @@ export function UserInfo(): JSX.Element {
           <div className="flex flex-row items-center">
             <h3 className="text-[24px] font-inter font-bold">Curriculum</h3>
             <button onClick={handleEditClick} className="ml-2">
-              <LapizIcon width={22} height={22} />
+              <LapizIcon width={22} height={22} classname="" stroke="" />
             </button>
             {isEditing && (
               <button
@@ -203,21 +202,24 @@ export function UserInfo(): JSX.Element {
             />
           </div>
           <div className="flex flex-row mt-4 items-center">
-            <IconPassword width={16} height={16} />
+            <IconPassword width={16} height={16} stroke="" />
             <p className="ml-3 font-inter font-bold">Contraseña</p>
           </div>
           <div className="mt-3 w-full relative">
             <input
               type="text"
               placeholder="*************"
+              value={"**********"}
               className="px-5 py-3 border-2 border-solid border-gray-400 rounded-xl w-[95%]"
             />
             <button className="absolute right-10 bottom-[16px]">
-              <LapizIcon width={22} height={22} />
+              <LapizIcon width={22} height={22} classname="" stroke="" />
             </button>
           </div>
         </section>
-        <div className="flex flex-row justify-center">{/* <Logout /> */}</div>
+        <div className="flex flex-row justify-center">
+          <Logout />
+        </div>
       </div>
     </main>
   );

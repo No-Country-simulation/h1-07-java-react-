@@ -8,11 +8,14 @@ import { Medicines, Treatment } from '../Interfaces/interfaces'
 import { initialValuesTreatment } from '../utils/data/data'
 import { validationSchemaTreatment } from '../utils/validation/validation'
 import { VoiceTranscript } from './VoiceTranscript'
+import { Link} from 'react-router-dom'
 
 export default function FormTreatment({ id, medicines }: { id: string | undefined, medicines: Medicines[] | undefined }) {
   const [dayInit, setDayInit] = useState(getTodayDate(today(getLocalTimeZone())))
   const [transcript, setTranscript] = useState<string>('');
   const { registerTreatment } = useAuthContext()
+  
+
 
   const handleSubmitTreatment = async (treatment: Treatment) => {
     const treatementData: Treatment = {
@@ -24,6 +27,8 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
     console.log(treatementData)
     try {
       registerTreatment(treatementData)
+      console.log(registerTreatment);
+
     } catch (err: any) {
       console.log(err)
     }
@@ -31,6 +36,8 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
 
   const handleDateChange = (date: CalendarDate) => {
     setDayInit(getTodayDate(date))
+    console.log(setDayInit);
+
   };
 
   return (
@@ -140,14 +147,16 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
             </Field>
           </div>
           <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones' />
-          <div className=" flex items-center flex-col gap-2">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="flex items-center justify-center text-center w-full h-[30%] py-2 text-white bg-[#E08733] rounded-md hover:bg-[#9b5416] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-              Registrar Tratamiento
-            </button>
-          </div>
+          <Link to={`/patient/${id}`} className='mb-10'>
+            <div className=" flex items-center flex-col gap-2">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex items-center justify-center text-center w-full h-[30%] py-2 text-white bg-[#E08733] rounded-md hover:bg-[#9b5416] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Registrar Tratamiento
+              </button>
+            </div>
+          </Link>
         </Form>
       )}
     </Formik>

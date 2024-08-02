@@ -28,7 +28,7 @@ export const AsideMenu: React.FC<MenuProps> = ({
   return (
     <>
       <aside
-        className={`fixed z-20 top-0 duration-700 left-0 h-full  border-2 bg-white text-white transition-transform transform ${
+        className={`fixed z-50 duration-700 left-0 h-full border-2 bg-white text-white transition-transform transform ${
           isSidebarOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
         }`}
       >
@@ -50,7 +50,7 @@ export const AsideMenu: React.FC<MenuProps> = ({
                       : "text-black hover:bg-[#3445a7] hover:text-white duration-400 border-solid border-1 border-[#3D4DA5]"
                   }`}
                 >
-                  <item.icon width={26} height={26} />
+                  <item.icon width={26} height={26} stroke="" />
                   <p className="font-inter text-xl ml-5">{item.label}</p>
                 </li>
               </Link>

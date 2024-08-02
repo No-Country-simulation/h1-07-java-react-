@@ -31,12 +31,14 @@ export default function PatientDetail() {
     };
     fetchPatient();
   }, []);
+
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <section className="w-full max-w-md   bg-white rounded-lg shadow-lg  max-md:m-auto">
+      <section className="w-full max-w-md  min-h-screen bg-white rounded-lg shadow-lg  max-md:m-auto">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
+          title="Detalles del paciente"
           lastname={patient?.apellido}
           typeDocument={patient?.tipoDocumento}
           financier={patient?.financiador}

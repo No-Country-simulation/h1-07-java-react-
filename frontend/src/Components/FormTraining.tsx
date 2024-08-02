@@ -15,7 +15,7 @@ export default function FormTraining({ id }: { id: string | undefined }) {
     const exercises: Treatment = {
       ...values,
       pacienteId: Number(id),
-      descripcion: transcript,
+      descripcion: transcript.trim(),
     }
     resetForm(); // Limpiar el formulario
     try {
