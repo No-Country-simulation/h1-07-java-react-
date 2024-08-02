@@ -543,7 +543,7 @@ export const getAllNotifications = async () => {
 
 export const crearDonante = async (data: any) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-
+  console.log(token)
   try {
     const response = await fetch(`${API_URL}/donante/crear-donante`, {
       method: 'POST',
@@ -553,12 +553,16 @@ export const crearDonante = async (data: any) => {
       },
       body: JSON.stringify(data),
     });
-
+    console.log(response)
+    
     if (!response.ok) {
-      throw new Error('Error en la solicitud');
+      const errorText = await response.text(); // Lee el texto de la respuesta para obtener detalles
+      throw new Error(`Error en la solicitud: ${errorText}`);
     }
 
+
     const result = await response.json();
+    console.log(result)
     return result;
   } catch (error) {
     throw new Error(`Error al crear donante: `);

@@ -8,7 +8,6 @@ import { Medicines, Treatment } from '../Interfaces/interfaces'
 import { initialValuesTreatment } from '../utils/data/data'
 import { validationSchemaTreatment } from '../utils/validation/validation'
 import { VoiceTranscript } from './VoiceTranscript'
-import { Link} from 'react-router-dom'
 
 export default function FormTreatment({ id, medicines }: { id: string | undefined, medicines: Medicines[] | undefined }) {
   const [dayInit, setDayInit] = useState(getTodayDate(today(getLocalTimeZone())))

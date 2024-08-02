@@ -73,7 +73,7 @@ export function UserInfo(): JSX.Element {
             </div>
             <div className="flex flex-row gap-x-4 w-full px-5 py-2 ">
               <img
-                src="IMG_MEDICO/IMG_MEDICO.png"
+                src="IMG_MEDICO/IMG_MEDICO.webp"
                 className="w-12 h-12 "
                 alt="image-medic-profile"
               />

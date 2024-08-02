@@ -2325,65 +2325,65 @@ export function SilderIcon({ width, height }: IconProps) {
         <path
           d="M8.75001 1.66699H5.83334"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M4.16667 1.66699H1.25"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M8.75 5H5"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M3.33333 5H1.25"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M8.74999 8.33301H6.66666"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M5 8.33301H1.25"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M5.83334 0.833008V2.49967"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M3.33334 4.16699V5.83366"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M6.66666 7.5V9.16667"
           stroke="#767676"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>
@@ -2404,9 +2404,9 @@ export function ShieldIcon({ width, height }: IconProps) {
       viewBox="0 0 24 24"
       fill="none"
       stroke={"#948ABC"}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="feather feather-shield"
     >
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -2463,9 +2463,9 @@ export function AcceptIcon({ width, height }: IconProps) {
       <path
         d="M17 1L6 12L1 7"
         stroke="#1A1A1A"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -2483,9 +2483,9 @@ export function CommentIcon({ width, height }: IconProps) {
       <path
         d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
         stroke="#1A1A1A"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -2503,9 +2503,9 @@ export function DonationRegistreIcon({ width, height }: IconProps) {
       <path
         d="M13.3333 16.5V14.8333C13.3333 13.9493 12.9821 13.1014 12.357 12.4763C11.7319 11.8512 10.8841 11.5 10 11.5H4.16667C3.28261 11.5 2.43477 11.8512 1.80965 12.4763C1.18453 13.1014 0.833336 13.9493 0.833336 14.8333V16.5M16.6667 5.66667V10.6667M19.1667 8.16667H14.1667M10.4167 4.83333C10.4167 6.67428 8.92428 8.16667 7.08334 8.16667C5.24239 8.16667 3.75 6.67428 3.75 4.83333C3.75 2.99238 5.24239 1.5 7.08334 1.5C8.92428 1.5 10.4167 2.99238 10.4167 4.83333Z"
         stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

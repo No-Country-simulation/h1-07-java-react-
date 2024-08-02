@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
   HealthIcon,
   HomeIconTwo,
-  PeopleIcon,
+  
   UserIcon,
 } from "../../public/icons/Icons";
 import { Logout } from "./Logout";
@@ -13,9 +13,8 @@ import { Logout } from "./Logout";
 
 const menuItems = [
   { to: "/dashboard", icon: HomeIconTwo, label: "Inicio" },
-  { to: "/patient-list", icon: PeopleIcon, label: "Pacientes" },
-  { to: "/userInfo", icon: UserIcon, label: "Perfil" },
-  { to: "/donations", icon: HealthIcon, label: "Donaciones" },
+  { to: "/profile", icon: UserIcon, label: "Perfil" },
+  { to: "/chat-cora", icon: HealthIcon, label: "Cora" },
 ];
 
 interface MenuProps {
@@ -23,7 +22,7 @@ interface MenuProps {
   isSidebarOpen: boolean;
 }
 
-export const AsideMenu: React.FC<MenuProps> = ({
+export const AsideMenuPatients: React.FC<MenuProps> = ({
   toggleSidebar,
   isSidebarOpen,
 }) => {

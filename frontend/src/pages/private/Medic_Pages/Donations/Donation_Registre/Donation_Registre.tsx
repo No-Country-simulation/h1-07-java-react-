@@ -69,7 +69,6 @@ export function Donation_Registre() {
   }, []);
 
   console.log(medicInfo?.idMedico)
-  console.log(patients?.idPaciente)
 
   const handleSubmit = async (values: any) => {
 
@@ -84,8 +83,8 @@ export function Donation_Registre() {
       "O-": 8
     };
 
-    const generateRandomId = (): string => {
-      return Math.floor(Math.random() * 9000 + 1000).toString();
+    const generateRandomId = (): number => {
+      return Math.floor(Math.random() * 9000 + 1000);
     };
 
     const pacienteId = patients?.idPaciente || generateRandomId();
@@ -96,8 +95,8 @@ export function Donation_Registre() {
       descripcion: 'Higado',
       nombre: values.nombre,
       apellido: values.apellido,
-      altura: parseFloat(values.altura),
-      peso: parseFloat(values.peso),
+      altura: String(values.altura),
+      peso: String(values.peso),
       genero: values.sexo === 'masculino' ? 1 : values.sexo === 'femenino' ? 2 : 0,
       factorSanguineo: factorSanguineoMap[values.grupoRH] || 0,
       fechaNacimiento: values.fechaNacimiento,
@@ -105,7 +104,8 @@ export function Donation_Registre() {
       provincia: 'Madrid'
     };
 
-    console.log('Datos enviados:', JSON.stringify(data, null, 2)); // Para verificar los datos
+    console.log(medicInfo?.idMedico)
+    console.log('Datos enviados:', JSON.stringify(data, null, 2));
 
     try {
       const result = await crearDonante(data);
@@ -113,7 +113,7 @@ export function Donation_Registre() {
       console.log(result);
 
     } catch (error) {
-      toast.error('Error al registrar. Inténtalo de nuevo.'); // Mensaje de error
+      toast.error('Error al registrar. Inténtalo de nuevo.');
       console.error('Error al enviar los datos:', error);
     }
   };
@@ -148,9 +148,11 @@ export function Donation_Registre() {
                 type="text"
                 name="nombre"
                 placeholder="Nombre"
-                className="pl-3 border-1 border-[#3D4DA5] w-[90%] rounded-md py-3"
+                className="pl-3 border border-[#3D4DA5] w-[90%] rounded-md py-3"
               />
-              <ErrorMessage name="nombre" component="div" className="text-red-600" />
+              <div className="text-red-600 mt-1">
+                <ErrorMessage name="nombre" />
+              </div>
             </div>
 
             <div className="flex flex-col mt-5">
@@ -161,67 +163,75 @@ export function Donation_Registre() {
                 type="text"
                 name="apellido"
                 placeholder="Apellido"
-                className="pl-3 border-1 border-[#3D4DA5] w-[90%] rounded-md py-3"
+                className="pl-3 border border-[#3D4DA5] w-[90%] rounded-md py-3"
               />
-              <ErrorMessage name="apellido" component="div" className="text-red-600" />
+              <div className="text-red-600 mt-1">
+                <ErrorMessage name="apellido" />
+              </div>
             </div>
 
             <div className="flex flex-row gap-x-5 mt-5 mb-4">
-              <div className="flex flex-col">
+              <div className="flex flex-col w-[50%]">
                 <label htmlFor="peso" className="ml-1 font-inter font-bold">
                   Peso
                 </label>
-                <div className="flex items-center flex-row border-1 w-[84%] rounded-md border-[#3D4DA5] py-2">
+                <div className="flex items-center border border-[#3D4DA5] w-full rounded-md py-2">
                   <Field
                     type="number"
                     name="peso"
                     placeholder="Peso"
-                    className="outline-none border-1 w-[60%] py-1 pl-3"
+                    className="outline-none border-none w-[90%] py-1 pl-3"
                     step="0.1"
                     min="0"
                     max="999"
                   />
-                  <p className="ml-5">KG</p>
+                  <p className="-ml-10">KG</p>
                 </div>
-                <ErrorMessage name="peso" component="div" className="text-red-600" />
+                <div className="text-red-600 mt-1">
+                  <ErrorMessage name="peso" />
+                </div>
               </div>
 
-              <div>
+              <div className="flex flex-col w-[50%]">
                 <label htmlFor="altura" className="font-inter font-bold">
                   Altura
                 </label>
-                <div className="flex items-center flex-row border-1 w-[84%] rounded-md border-[#3D4DA5] py-2">
+                <div className="flex items-center border border-[#3D4DA5] w-[80%] rounded-md py-2">
                   <Field
                     type="number"
                     name="altura"
                     placeholder="Altura"
-                    className="outline-none border-1 w-[60%] py-1 pl-3"
+                    className="outline-none border-none w-[90%] py-1 pl-3"
                     step="0.1"
                     min="0"
                     max="999"
                   />
-                  <p className="ml-5">CM</p>
+                  <p className="-ml-5">CM</p>
                 </div>
-                <ErrorMessage name="altura" component="div" className="text-red-600" />
+                <div className="text-red-600 mt-1">
+                  <ErrorMessage name="altura" />
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-row gap-x-5 w-[100%] justify-between">
+            <div className="flex flex-row gap-x-5 w-full justify-between">
               <div className="flex flex-col w-[50%]">
-                <label htmlFor="sexo" className="font-bold flex items-center gap-2">
+                <label htmlFor="sexo" className="font-bold  flex items-center gap-2">
                   Sexo
                 </label>
                 <Field
                   as="select"
                   name="sexo"
-                  className="w-[89%] h-14 p-2 border-1 border-violet-color rounded-lg mt-1"
+                  className="w-full h-14 p-2 border border-violet-color rounded-lg mt-1"
                 >
                   <option value="" label="Selecciona el sexo" />
                   <option value="masculino" label="Masculino" />
                   <option value="femenino" label="Femenino" />
                   <option value="otro" label="Otro" />
                 </Field>
-                <ErrorMessage name="sexo" component="div" className="text-red-600" />
+                <div className="text-red-600 mt-1">
+                  <ErrorMessage name="sexo" />
+                </div>
               </div>
 
               <div className="flex flex-col w-[50%]">
@@ -231,19 +241,19 @@ export function Donation_Registre() {
                 <Field
                   as="select"
                   name="grupoRH"
-                  className="w-[85%] h-14 p-2 border-1 border-violet-color rounded-lg mt-1"
+                  className="w-[80%] h-14 p-2 border border-violet-color rounded-lg mt-1"
                 >
                   <option value="" label="Selecciona" />
                   <option value="A+" label="A+" />
                   <option value="A-" label="A-" />
                   <option value="B+" label="B+" />
                   <option value="B-" label="B-" />
-                  <option value="AB+" label="AB+" />
-                  <option value="AB-" label="AB-" />
                   <option value="O+" label="O+" />
                   <option value="O-" label="O-" />
                 </Field>
-                <ErrorMessage name="grupoRH" component="div" className="text-red-600" />
+                <div className="text-red-600 mt-1">
+                  <ErrorMessage name="grupoRH" />
+                </div>
               </div>
             </div>
 
@@ -255,9 +265,11 @@ export function Donation_Registre() {
                 type="date"
                 name="fechaNacimiento"
                 placeholder="Fecha de nacimiento"
-                className="pl-4 border-1 border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
+                className="pl-4 border border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
               />
-              <ErrorMessage name="fechaNacimiento" component="div" className="text-red-600" />
+              <div className="text-red-600 mt-1">
+                <ErrorMessage name="fechaNacimiento" />
+              </div>
             </div>
 
             <div className="mt-5">
@@ -268,9 +280,11 @@ export function Donation_Registre() {
                 type="text"
                 name="ubicacion"
                 placeholder="Ubicación"
-                className="pl-4 border-1 border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
+                className="pl-4 border border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
               />
-              <ErrorMessage name="ubicacion" component="div" className="text-red-600" />
+              <div className="text-red-600 mt-1">
+                <ErrorMessage name="ubicacion" />
+              </div>
             </div>
 
             <div className="mt-5">
@@ -281,9 +295,11 @@ export function Donation_Registre() {
                 type="text"
                 name="posibleDonacion"
                 placeholder="Ingresar"
-                className="pl-4 border-1 border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
+                className="pl-4 border border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
               />
-              <ErrorMessage name="posibleDonacion" component="div" className="text-red-600" />
+              <div className="text-red-600 mt-1">
+                <ErrorMessage name="posibleDonacion" />
+              </div>
             </div>
 
             <div className="flex flex-row items-center justify-center mb-14 mt-10">

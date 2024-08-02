@@ -52,7 +52,7 @@ export const ServicesSection = () => {
     <section
       id="services"
       className="flex flex-col gap-y-8 items-center md:justify-center text-white text-center md:mb-32 md:bg-cover md:bg-center md:h-screen rounded-xl"
-      style={{ backgroundImage: "url(./IMG_FONDO/IMG_FONDO.png)" }}
+      style={{ backgroundImage: "url(./IMG_FONDO/IMG_FONDO.webp)" }}
     >
       <h5
         className={`text-lg text-white font-[500] -mb-2 font-inter mt-10 lg:mt-5`}

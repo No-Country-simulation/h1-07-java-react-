@@ -42,7 +42,7 @@ export const TreatmentPatient = () => {
   }, []);
   
   return (
-    <section className=" bg-gray-100 min-h-screen m-auto overflow-hidden">
+    <section className="  min-h-screen m-auto overflow-hidden">
       <div className="w-full max-w-md m-auto  bg-white rounded-lg shadow-lg  max-md:m-auto">
         <HeaderProfile  loading={loading} name={patient?.nombre} lastname={patient?.apellido} typeDocument={patient?.tipoDocumento} financier={patient?.financiador} document={patient?.numeroDocumento} title={'Tratamientos'} >
           <div className='absolute -bottom-4 w-full flex justify-center'>
@@ -52,14 +52,14 @@ export const TreatmentPatient = () => {
             </div>
           </div>
         </HeaderProfile>
-        <Tabs fullWidth={true} key="lg" size="lg" aria-label="Tabs sizes" className='shadow-2xl border-3 my-8 mt-16 bg-violet-color border-violet-color  rounded-md' >
+        <Tabs fullWidth={true} key="lg" size="lg" aria-label="Tabs sizes" className=' shadow-2xl border-3 my-8 mt-16 px-1  bg-violet-color border-violet-color  rounded-md' >
           <Tab key="Medicación" title="Medicación" className='' >
             <FormTreatment id={id} medicines={medicines?.content} />
           </Tab>
-          <Tab key="Entrenamientos" title="Entrenamientos" className='' >
+          <Tab key="Entrenamientos" title="Entrenamientos" className='z-1 mr-2' >
             <FormTraining id={id} />
           </Tab>
-          <Tab key="Nutrición" title="Nutrición" className='' >
+          <Tab key="Nutrición" title="Nutrición" className='ml-' >
             <FormTreamentVoice id={id} type={2} label={'Recomendaciones nutricionales'} />
           </Tab>
           <Tab key="Psicológico" title="Psicológico" className='' >

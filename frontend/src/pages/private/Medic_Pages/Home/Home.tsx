@@ -87,7 +87,7 @@ export function Home(): JSX.Element {
             <Link to={"/userInfo"}>
               <div className="w-[12.6rem] h-[5.5rem] ml-2 rounded-full flex flex-row items-center content-center justify-between">
                 <img
-                  src="IMG_MEDICO/IMG_MEDICO.png"
+                  src="IMG_MEDICO/IMG_MEDICO.webp"
                   className="ml-2"
                   alt=""
                   width={56}
