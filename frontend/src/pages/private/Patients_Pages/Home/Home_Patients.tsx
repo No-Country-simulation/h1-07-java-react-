@@ -17,9 +17,9 @@ import {
   fetchNotifications,
   fetchPatientConnect,
 } from "../../../../Context/AuthContext";
-import { AsideMenu } from "../../../../components/AsideMenu";
 import { Avatar, Badge } from "@nextui-org/react";
 import { toast } from "sonner";
+import { AsideMenu } from "../../../../Components/AsideMenu";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -73,7 +73,7 @@ export function Home_Patients() {
   const fetchPatient = async () => {
     try {
       setPatienInfo(await fetchPatientConnect());
-    } catch (err: any) {
+    } catch (err) {
       console.log(err);
     }
   };
@@ -81,7 +81,7 @@ export function Home_Patients() {
   const getNotifications = async () => {
     try {
       setNotifications(await fetchNotifications());
-    } catch (err: any) {
+    } catch (err) {
       console.log(err);
     }
   };
