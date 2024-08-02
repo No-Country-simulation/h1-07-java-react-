@@ -67,6 +67,9 @@ public class Paciente {
     @JoinColumn(name = "financiador_id")
     private Financiador financiador;
 
+    @OneToMany(mappedBy = "paciente")
+    private List<Consulta> consultas;
+
     public String fullName() {
         return getNombre() + " " + getApellido();
     }

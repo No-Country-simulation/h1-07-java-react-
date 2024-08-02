@@ -239,4 +239,59 @@ public class Mapper {
                 .telefono(medico.getTelefono())
                 .build();
     }
+
+    public static Disponibilidad toDisponibilidad(DisponibilidadRequest disponibilidadRequest, Medico medico) {
+        return Disponibilidad.builder()
+                .medico(medico)
+                .entrada(disponibilidadRequest.getEntrada())
+                .salida(disponibilidadRequest.getSalida())
+                .inicioDescanso(disponibilidadRequest.getInicioDescanso())
+                .finDescanso(disponibilidadRequest.getFinDescanso())
+                .dias(disponibilidadRequest.getDias())
+                .build();
+    }
+
+    public static DisponibilidadResponse toDisponibilidadResponse(Disponibilidad disponibilidad){
+        return DisponibilidadResponse.builder()
+                .entrada(disponibilidad.getEntrada())
+                .salida(disponibilidad.getSalida())
+                .inicioDescanso(disponibilidad.getInicioDescanso())
+                .finDescanso(disponibilidad.getFinDescanso())
+                .dias(disponibilidad.getDias())
+                .build();
+    }
+
+    public static Consulta toConsultaMedico(ConsultaRequestMedico consultaRequestMedico, Medico medico, Paciente paciente){
+        return Consulta.builder()
+                .horario(consultaRequestMedico.getHorario())
+                .fecha(consultaRequestMedico.getFecha())
+                .medico(medico)
+                .paciente(paciente)
+                .build();
+    }
+
+    public static Consulta toConsultaPaciente(ConsultaRequestPaciente consultaRequestPaciente, Medico medico, Paciente paciente){
+        return Consulta.builder()
+                .horario(consultaRequestPaciente.getHorario())
+                .fecha(consultaRequestPaciente.getFecha())
+                .medico(medico)
+                .paciente(paciente)
+                .build();
+    }
+
+    public static ConsultaResponse toConsultaResponse(Consulta consulta){
+        return ConsultaResponse.builder()
+                .idConsulta(consulta.getIdConsulta())
+                .horario(consulta.getHorario())
+                .fecha(consulta.getFecha())
+                .idmedico(consulta.getMedico().getIdMedico())
+                .nombreMedico(consulta.getMedico().getNombre())
+                .apellidoMedico(consulta.getMedico().getApellido())
+                .especialidadMedico(consulta.getMedico().getEspecialidad().getNombre())
+                .idPaciente(consulta.getPaciente().getIdPaciente())
+                .nombrePaciente(consulta.getPaciente().getNombre())
+                .apellidoPaciente(consulta.getPaciente().getApellido())
+                .build();
+    }
+
 }
