@@ -47,13 +47,9 @@ export const Footer = () => {
       <div className=" md:w-full md:flex md:flex-col md:items-center">
         <section className="md:flex md:mt-8 md:justify-center md:items-center md:flex-row md:w-full max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-4 mt-10">
+            <img src="./D_1.png" alt="Logo D_1" className="w-32 md:w-48" />
             <img
-              src="./public/D_1.png"
-              alt="Logo D_1"
-              className="w-32 md:w-48"
-            />
-            <img
-              src="./public/LOGOS/JustinaLogo_Lading.png"
+              src="./LOGOS/JustinaLogo_Lading.png"
               className="w-32 md:w-48"
               alt="Justina Logo"
             />
