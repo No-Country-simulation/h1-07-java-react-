@@ -19,19 +19,19 @@ import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_App
 import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
 // import Donations from "../pages/private/Medic_Pages/Donations/Donations";
 import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
-
 import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfilePatient";
 import TreatementPatient from "../pages/private/Patients_Pages/Treatement/TreatementPatient";
 import History from "../pages/private/Patients_Pages/HistoryClinic/History";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import { Donation_Registre } from "../pages/private/Medic_Pages/Donations/Donation_Registre/Donation_Registre";
 import LandingView from "../pages/landing/LandingView";
-import SignUp from "../pages/SignUp/SignUp";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
 import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
 import Adherence from "../pages/private/Medic_Pages/Adherence/Adherence";
 import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/TreatmentAdherence/TreatmentAdherence";
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
+import SignUp from "../pages/signup/SignUp";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
 
 function AppRouter() {
   return (
@@ -63,7 +63,7 @@ function AppRouter() {
                 path="/patient/:id/treatment"
                 element={<TreatmentPatient />}
               />
-              {/* <Route path="/donations" element={<Donations />} /> */}
+              <Route path="/donations" element={<Donations />} />
               <Route path="/donationRegistre" element={<Donation_Registre />} />
             </Route>
             <Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>

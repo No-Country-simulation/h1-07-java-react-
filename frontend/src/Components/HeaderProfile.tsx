@@ -2,8 +2,9 @@ import { Avatar } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
 import { ArrowWhiteIcon, MenuHambuerguesa } from '../../public/icons/Icons'
 import React, { useState } from 'react'
-import { SkeletonPatientInfo } from './Skeletons'
-import { AsideMenu } from './AsideMenu'
+import { AsideMenu } from '../Components/AsideMenu'
+import { SkeletonPatientInfo } from '../Components/Skeletons'
+
 
 interface HeaderProfileProps {
   children?: JSX.Element | JSX.Element[],
@@ -15,9 +16,10 @@ interface HeaderProfileProps {
   loading?: boolean | undefined
   pathology?: string | undefined
   title?: string
+  link:string
 }
 
-export const HeaderProfile: React.FC<HeaderProfileProps> = ({ loading, children, name, lastname, typeDocument, financier, document }) => {
+export const HeaderProfile: React.FC<HeaderProfileProps> = ({ link ,loading, title, children, name, lastname, typeDocument, financier, document }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -32,7 +34,7 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({ loading, children,
               <ArrowWhiteIcon width={30} height={30} stroke='' />
             </Link>
             <div className="flex items-center justify-center">
-              <h1 className="text-xl font-bold text-light-color">Listado de pacientes</h1>
+              <h1 className="text-xl font-bold text-light-color">{title}</h1>
               <button onClick={toggleSidebar} className='hidden absolute right-0'>
                 <MenuHambuerguesa width={30} height={30} stroke='' />
               </button>

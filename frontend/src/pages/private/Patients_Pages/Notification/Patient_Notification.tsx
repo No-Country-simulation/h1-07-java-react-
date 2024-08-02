@@ -6,9 +6,9 @@ import {
   markNotificationsAsRead,
 } from "../../../../Context/AuthContext";
 import { FlechaIconTwo } from "../../../../../public/icons/Icons";
-import { NotificationItem } from "../../../../components/NotificationItem";
-import { SkeletonNotification } from "../../../../components/Skeletons";
-import { HeaderProfile } from "../../../../components/HeaderProfile";
+import { NotificationItem } from "../../../../Components/NotificationItem";
+import { SkeletonNotification } from "../../../../Components/Skeletons";
+import { HeaderProfile } from "../../../../Components/HeaderProfile";
 import { Paciente } from "../../../../Interfaces/interfaces";
 
 const tabOptions = [{ tabName: "No leídas" }, { tabName: "Todos" }];
@@ -94,7 +94,7 @@ export function Patient_Notification(): JSX.Element {
           lastname={patientInfo?.apellido}
           typeDocument={patientInfo?.tipoDocumento}
           financier={patientInfo?.financiador}
-          document={patientInfo?.numeroDocumento} link={"/patient-home"} >
+          document={patientInfo?.numeroDocumento}>
         </HeaderProfile>
         <div className="p-4">
           <section className=" mb-4 relative ">

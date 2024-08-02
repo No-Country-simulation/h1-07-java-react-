@@ -191,7 +191,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
           console.error('HTTP error', res.status);
           throw new Error('Network response was not ok');
         }
-        
+
         toast.success("El paciente fue creado correctamente");
         window.location.href = '/patient-list'
 
@@ -565,7 +565,7 @@ export const crearDonante = async (data: any) => {
       body: JSON.stringify(data),
     });
     console.log(response)
-    
+
     if (!response.ok) {
       const errorText = await response.text(); // Lee el texto de la respuesta para obtener detalles
       throw new Error(`Error en la solicitud: ${errorText}`);
@@ -579,3 +579,26 @@ export const crearDonante = async (data: any) => {
     throw new Error(`Error al crear donante: `);
   }
 };
+
+export const fetchTreatmentPatient = async (id: string) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (id) {
+    try {
+      const res = await fetch(`${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      })
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+
+      const data = await res.json()
+      return data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

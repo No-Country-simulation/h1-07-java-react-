@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ContentTreatmentPacient, Patient } from "../../../../Interfaces/interfaces";
 import { Link, useParams } from "react-router-dom";
 import { fetchPatientSingle, fetchTreatmentPatient } from "../../../../Context/AuthContext";
-import { HeaderProfile } from "../../../../components/HeaderProfile";
+import { HeaderProfile } from "../../../../Components/HeaderProfile";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
 
 export default function Adherence() {

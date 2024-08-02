@@ -87,11 +87,7 @@ export function Donation_Registre() {
       return Math.floor(Math.random() * 9000 + 1000);
     };
 
-    const pacienteId = patients?.idPaciente || generateRandomId();
-
     const data = {
-      medicoId: medicInfo?.idMedico,
-      pacienteId,
       descripcion: 'Higado',
       nombre: values.nombre,
       apellido: values.apellido,

@@ -13,8 +13,8 @@ import {
 } from "../../../../../public/icons/Icons";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { useAuthContext } from "../../../../Context/AuthContext";
-import { AsideMenu } from "../../../../components/AsideMenu";
-import { Logout } from "../../../../components/Logout";
+import { AsideMenu } from "../../../../Components/AsideMenu";
+import { Logout } from "../../../../Components/Logout";
 
 export function UserInfo(): JSX.Element {
   const [curriculum, setCurriculum] = useState("");
@@ -58,7 +58,7 @@ export function UserInfo(): JSX.Element {
         <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
-        /> */}
+        /> 
         <header className="p-3 font-inter h-48 flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl">
           <div className=" w-full xl:flex xl:flex-col  xl:justify-center xl:items-center">
             <div className="w-full flex flex-col  ">

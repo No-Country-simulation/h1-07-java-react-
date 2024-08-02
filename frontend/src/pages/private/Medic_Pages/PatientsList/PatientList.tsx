@@ -5,7 +5,7 @@ import {
 } from "../../../../../public/icons/Icons";
 import { Link, useParams } from "react-router-dom";
 import { ContentPatient } from "../../../../Interfaces/interfaces";
-import { AsideMenu } from "../../../../components/AsideMenu";
+import { AsideMenu } from "../../../../Components/AsideMenu";
 import { Patients } from "./Patients/Patients";
 import Header from "./Header/Header";
 
