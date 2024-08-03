@@ -361,6 +361,8 @@ export const fetchMedicines = async () => {
 export const fetchPatientSingle = async (id: string | undefined) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
+
+
   try {
     const res = await fetch(`${API_URL}/paciente/buscar-paciente-id-medico-conectado?idPaciente=${id}`, {
       method: "GET",
@@ -555,6 +557,7 @@ export const getAllNotifications = async () => {
 export const crearDonante = async (data: any) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   console.log(token)
+  
   try {
     const response = await fetch(`${API_URL}/donante/crear-donante`, {
       method: 'POST',

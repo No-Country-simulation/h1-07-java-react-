@@ -19,7 +19,8 @@ import {
 } from "../../../../Context/AuthContext";
 import { toast } from "sonner";
 import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
-import { Avatar, Badge } from "@nextui-org/react";
+import { Avatar } from "@nextui-org/avatar";
+import { Badge } from "@nextui-org/badge";
 
 export interface NotificationProps {
   idNotificacion: number;

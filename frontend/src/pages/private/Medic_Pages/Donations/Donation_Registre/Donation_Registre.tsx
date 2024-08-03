@@ -1,15 +1,13 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
-import { crearDonante, fetchMedicData, fetchPatient } from '../../../../../Context/AuthContext';
+import { crearDonante, fetchPatient } from '../../../../../Context/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { ContentPatient, Medic } from '../../../../../Interfaces/interfaces';
+import { ContentPatient } from '../../../../../Interfaces/interfaces';
 import { Link } from 'react-router-dom';
 
-
-// Validaciones con Yup
 const validationSchema = Yup.object({
   nombre: Yup.string().required('Nombre es requerido'),
   apellido: Yup.string().required('Apellido es requerido'),
@@ -33,61 +31,46 @@ const validationSchema = Yup.object({
 });
 
 export function Donation_Registre() {
-  const [medicInfo, setMedicInfo] = useState<Medic>();
-  const [/*loading, */, setLoading] = useState(false);
-  const [/*patients, */,setPatients] = useState<ContentPatient>();
+  // const [medicInfo, setMedicInfo] = useState<Medic>();
+  const [patients, setPatienInfo] = useState<ContentPatient>();
+  const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
 
-  const fetchPatientData = async () => {
-    setLoading(true);
-    try {
-      setPatients(await fetchPatient());
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
-    const fetchMedic = async () => {
+    const fetchPatientTwo = async () => {
       try {
-        setMedicInfo(await fetchMedicData());
+        const data = await fetchPatient();
+        console.log(data)
+        setPatienInfo(data)
+
       } catch (err) {
         console.log(err);
       }
     };
 
-    fetchMedic();
-    fetchPatientData();
+    fetchPatientTwo()
+  }, [])
 
 
-    const storedMedic = localStorage.getItem("MEDIC-DATA");
-    if (storedMedic) {
-      const medic: Medic = JSON.parse(storedMedic);
-      setMedicInfo(medic);
-    }
-  }, []);
-
-  console.log(medicInfo?.idMedico)
+  const handlePatientSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedPatientId(Number(event.target.value));
+  };
 
   const handleSubmit = async (values: any) => {
 
+
     const factorSanguineoMap: { [key: string]: number } = {
-      "A+": 1,
-      "A-": 2,
-      "B+": 3,
-      "B-": 4,
-      "AB+": 5,
-      "AB-": 6,
-      "O+": 7,
-      "O-": 8
+      "A+": 0,
+      "A-": 1,
+      "B+": 2,
+      "B-": 3,
+      "O+": 4,
+      "O-": 5
     };
 
-    // const generateRandomId = (): number => {
-    //   return Math.floor(Math.random() * 9000 + 1000);
-    // };
-
     const data = {
+      medicoId: 0,
+      pacienteId: selectedPatientId,
       descripcion: 'Higado',
       nombre: values.nombre,
       apellido: values.apellido,
@@ -100,14 +83,11 @@ export function Donation_Registre() {
       provincia: 'Madrid'
     };
 
-    console.log(medicInfo?.idMedico)
     console.log('Datos enviados:', JSON.stringify(data, null, 2));
 
     try {
-      const result = await crearDonante(data);
+      await crearDonante(data);
       toast.success('Registro exitoso!');
-      console.log(result);
-
     } catch (error) {
       toast.error('Error al registrar. Inténtalo de nuevo.');
       console.error('Error al enviar los datos:', error);
@@ -116,7 +96,7 @@ export function Donation_Registre() {
 
   return (
     <main>
-      <Header_Donation >
+      <Header_Donation>
         <Link to={"/donations"}></Link>
       </Header_Donation>
       <Formik
@@ -136,6 +116,7 @@ export function Donation_Registre() {
       >
         {() => (
           <Form className="flex flex-col ml-4">
+            {/* Campos del formulario */}
             <div className="flex flex-col">
               <label htmlFor="nombre" className="mb-3 font-inter font-bold">
                 Nombre
@@ -212,7 +193,7 @@ export function Donation_Registre() {
 
             <div className="flex flex-row gap-x-5 w-full justify-between">
               <div className="flex flex-col w-[50%]">
-                <label htmlFor="sexo" className="font-bold  flex items-center gap-2">
+                <label htmlFor="sexo" className="font-bold flex items-center gap-2">
                   Sexo
                 </label>
                 <Field
@@ -253,22 +234,21 @@ export function Donation_Registre() {
               </div>
             </div>
 
-            <div className="mt-5">
+            <div className="flex flex-col w-full mt-5">
               <label htmlFor="fechaNacimiento" className="font-inter font-bold">
-                Fecha de nacimiento
+                Fecha de Nacimiento
               </label>
               <Field
                 type="date"
                 name="fechaNacimiento"
-                placeholder="Fecha de nacimiento"
-                className="pl-4 border border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
+                className="pl-3 border border-[#3D4DA5] w-[90%] rounded-md py-3"
               />
               <div className="text-red-600 mt-1">
                 <ErrorMessage name="fechaNacimiento" />
               </div>
             </div>
 
-            <div className="mt-5">
+            <div className="flex flex-col w-full mt-5">
               <label htmlFor="ubicacion" className="font-inter font-bold">
                 Ubicación
               </label>
@@ -276,36 +256,56 @@ export function Donation_Registre() {
                 type="text"
                 name="ubicacion"
                 placeholder="Ubicación"
-                className="pl-4 border border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
+                className="pl-3 border border-[#3D4DA5] w-[90%] rounded-md py-3"
               />
               <div className="text-red-600 mt-1">
                 <ErrorMessage name="ubicacion" />
               </div>
             </div>
 
-            <div className="mt-5">
+            <div className="flex flex-col w-full mt-5">
               <label htmlFor="posibleDonacion" className="font-inter font-bold">
-                Posible donación
+                Posible Donación
               </label>
               <Field
-                type="text"
+                as="select"
                 name="posibleDonacion"
-                placeholder="Ingresar"
-                className="pl-4 border border-[#3D4DA5] w-[90%] py-3 rounded-md mt-3"
-              />
+                className="w-[90%] h-14 p-2 border border-violet-color rounded-lg mt-1"
+              >
+                <option value="" label="Selecciona" />
+                <option value="Sí" label="Sí" />
+                <option value="No" label="No" />
+              </Field>
               <div className="text-red-600 mt-1">
                 <ErrorMessage name="posibleDonacion" />
               </div>
             </div>
 
-            <div className="flex flex-row items-center justify-center mb-14 mt-10">
+            <div className="flex flex-col w-full mt-5">
+              <label htmlFor="paciente" className="font-inter font-bold">
+                Selecciona Paciente
+              </label>
+              <select
+                onChange={handlePatientSelect}
+                className="w-[90%] h-14 p-2 border border-[#3D4DA5] rounded-md mt-1"
+                defaultValue=""
+              >
+                <option value="" label="Selecciona un paciente" />
+                {patients?.content.map((items) => (
+                  <option key={items.idPaciente} value={items.idPaciente}>
+                    {items.nombre} {items.apellido}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className='flex justify-center mb-20 mt-5'>
               <button
                 type="submit"
-                className="bg-[#E08733] px-24 rounded-3xl text-white font-inter py-2"
+                className="w-[70%] bg-orange-500 text-white py-3 rounded-lg mt-5"
               >
-                Añadir nuevo
-              </button>
-            </div>
+                Registrar Donante
+              </button></div>
           </Form>
         )}
       </Formik>

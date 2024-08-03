@@ -21,7 +21,7 @@ export function Home(): JSX.Element {
     } catch (err) {
       console.log(err);
     }
-  };
+  };  
 
   useEffect(() => {
 
@@ -33,6 +33,7 @@ export function Home(): JSX.Element {
       setMedicInfo(medic);
     }
   }, []);
+
 
   return (
     <main className=" bg-gray-100 min-h-screen w-full font-inter">

@@ -32,6 +32,7 @@ export default function PatientDetail() {
         setLoading(true);
         try {
           setPatient(await fetchPatientSingle(id));
+          console.log(patient?.idPaciente)
         } catch (err) {
           console.log(err);
         } finally {
