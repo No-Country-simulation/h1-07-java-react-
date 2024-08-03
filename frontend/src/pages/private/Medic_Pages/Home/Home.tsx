@@ -54,7 +54,7 @@ export function Home(): JSX.Element {
   };
 
   console.log(medicInfo?.idMedico)
-  console.log(patients?.idPaciente)
+  
 
   useEffect(() => {
     const fetchMedic = async () => {
@@ -74,6 +74,8 @@ export function Home(): JSX.Element {
       setMedicInfo(medic);
     }
   }, []);
+
+  console.log(patients?.content)
 
   return (
     <main className=" bg-gray-100 min-h-screen w-full font-inter">

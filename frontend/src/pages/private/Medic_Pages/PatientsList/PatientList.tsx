@@ -25,6 +25,7 @@ export default function PatientList() {
       setLoading(true);
       try {
         setPatients(await fetchPatient());
+        console.log(patients?.content)
       } catch (err) {
         console.log(err);
       } finally {

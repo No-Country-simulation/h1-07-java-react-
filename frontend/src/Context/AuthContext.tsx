@@ -361,6 +361,8 @@ export const fetchMedicines = async () => {
 export const fetchPatientSingle = async (id: string | undefined) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
+
+
   try {
     const res = await fetch(`${API_URL}/paciente/buscar-paciente-id-medico-conectado?idPaciente=${id}`, {
       method: "GET",
@@ -555,6 +557,7 @@ export const getAllNotifications = async () => {
 export const crearDonante = async (data: any) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   console.log(token)
+  
   try {
     const response = await fetch(`${API_URL}/donante/crear-donante`, {
       method: 'POST',
@@ -602,3 +605,29 @@ export const fetchTreatmentPatient = async (id: string) => {
     }
   }
 }
+
+export async function fetchPatient() {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (token) {
+    try {
+      // Usar la información decodificada si es necesario
+      // Por ejemplo, puedes verificar los roles o permisos del usuario aquí
+      const res = await fetch(`${API_URL}/paciente/listar-pacientes-id-medico-conectado`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+
+      const data: ContentPatient = await res.json();
+      return data
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+};

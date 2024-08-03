@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   CaledarIcon,
+  CampanaNotificIcon,
   CerebroIcon,
   DonationIconTwo,
   EjercicioIcon,
   HistoryIconThree,
+  MenuHambuerguesa,
   RelojIcon,
+  SearchIcon,
   TratamentIconTwo,
 } from "../../../../../public/icons/Icons";
 import { Paciente } from "../../../../Interfaces/interfaces";
@@ -15,8 +18,9 @@ import {
   fetchPatientConnect,
 } from "../../../../Context/AuthContext";
 import { toast } from "sonner";
-import { AsideMenu } from "../../../../Components/AsideMenu";
 import { AsideMenuPatients } from "../../../../Components/AsideMenuPatients";
+import { Avatar } from "@nextui-org/avatar";
+import { Badge } from "@nextui-org/badge";
 
 export interface NotificationProps {
   idNotificacion: number;
