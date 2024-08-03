@@ -14,7 +14,7 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
   const [transcript, setTranscript] = useState<string>('');
   const { registerTreatment } = useAuthContext()
   
-  const handleSubmitTreatment = async (treatment: Treatment) => {
+  const handleSubmitTreatment = async (treatment: Treatment, { resetForm }:any) => {
     const treatementData: Treatment = {
       ...treatment,
       pacienteId: Number(id),
@@ -24,8 +24,8 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
     console.log(treatementData)
     try {
       registerTreatment(treatementData)
-      console.log(registerTreatment);
-
+      resetForm();
+      setTranscript("")
     } catch (err: any) {
       console.log(err)
     }

@@ -13,11 +13,6 @@ export interface Adherence {
   totalHorarios: number
 }
 
-
-
-
-
-
 export default function TreatmentAdherence() {
   const { id, idTratamiento } = useParams();
   const [patient, setPatient] = useState<Patient>();
@@ -50,11 +45,14 @@ export default function TreatmentAdherence() {
         throw new Error(`Response status: ${res.status}`);
       }
       const data = await res.json()
+      console.log(data)
       setAdherence(data)
       setData([
         { name: 'Completado', value: data.totalCompletado },
         { name: 'No Completado', value: data.totalNoCompletado },
         { name: 'Retrasados', value: data.totalRetrasados },
+        { name: 'Total Horarios', value: data.totalHorarios }
+
       ]);
       setInfo([
         { name: 'Compleados', datos: data.totalCompletado, amt: data.totalCompletado },

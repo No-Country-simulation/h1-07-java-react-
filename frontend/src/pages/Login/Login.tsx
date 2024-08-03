@@ -14,12 +14,11 @@ export const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
 
 
-  const handleSubmitLogin = (values: AuthenticationRequest, { setSubmitting }: any) => {
+  const handleSubmitLogin = async (values: AuthenticationRequest, { setSubmitting }: any) => {
+    setLoading(true);
     setSubmitting(true);
-
     try {
-      setLoading(true);
-      login(values.email, values.password);
+      await login(values.email, values.password);
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
       toast.error('Error en el inicio de sesión. Por favor, intenta nuevamente.');
@@ -34,7 +33,7 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen xl:overflow-hidden  md:flex md:justify-center 2xl:items-center xl:bg-cover 2xl:bg-cover xl:bg-center 2xl:bg-center " style={{ backgroundImage: 'url(/IMG_FONDO/IMG_FONDO.png)' }}>
+    <div className="flex min-h-screen xl:overflow-hidden  md:flex md:justify-center 2xl:items-center xl:bg-cover 2xl:bg-cover xl:bg-center 2xl:bg-center " style={{ backgroundImage: 'url(/IMG_FONDO/IMG_FONDO.webp)' }}>
       <div className="w-full max-w-md p-8 xl:px-6 xl:py-3 2xl:py-12 bg-white xl:bg-transparent rounded-lg shadow-lg shadow-black  2xl:h-full  ">
         <h2 className="text-[20px] font-[700] mb-[9px] mt-[1.5rem] xl:mt-0 text-gray-900 font-inter xl:text-white 2xl:text-white">Iniciar Sesión</h2>
         <p className="mb-[46px] text-[15px] text-[#948ABC] xl:text-white 2xl:text-white ">Accede con la cuenta que registraste</p>
