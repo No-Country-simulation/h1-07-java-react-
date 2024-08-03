@@ -1,13 +1,18 @@
-HELP.md
-/.idea
-.idea
+# Exclude the .idea folder
+.idea/
+
+# Exclude environment files
 .env
+
+# Exclude build outputs
 target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-### STS ###
+# Spring Tool Suite (STS) files
 .apt_generated
 .classpath
 .factorypath
@@ -16,21 +21,17 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
+# IntelliJ IDEA files
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# NetBeans files
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+# Visual Studio Code files
 .vscode/
