@@ -1,7 +1,9 @@
 package io.justina.justinaio.services;
 
+import io.justina.justinaio.model.HorarioToma;
 import io.justina.justinaio.model.Usuario;
 import io.justina.justinaio.model.enums.EmailTemplateName;
+import io.justina.justinaio.repositories.UsuarioRepository;
 import io.justina.justinaio.security.Token;
 import io.justina.justinaio.security.TokenRepository;
 import jakarta.mail.MessagingException;
@@ -31,6 +33,7 @@ public class EmailService {
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
     private final TokenRepository tokenRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @Value("${application.mailing.frontend.activation-url}")
     private String activationUrl;
@@ -94,4 +97,35 @@ public class EmailService {
         }
         return codeBuilder.toString();
     }
+
+    /*@Async
+    public void sendReminderEmail(HorarioToma horarioToma) {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper;
+
+        Usuario usuarioPaciente = usuarioRepository.findById(horarioToma.getTratamiento().getPaciente().getIdPaciente())
+                .orElseThrow(() -> new NullPointerException("Paciente no encontrado con ese ID"));
+
+        try {
+            helper = new MimeMessageHelper(mimeMessage, true);
+            helper.setFrom("PetNetNoResponder@gmail.com");
+            helper.setTo(usuarioPaciente.getEmail());
+            helper.setSubject("Recordatorio de Toma de Medicamento");
+
+            Map<String, Object> properties = new HashMap<>();
+            properties.put("hora", horarioToma.getHora());
+            properties.put("tratamiento", horarioToma.getTratamiento().getDescripcion());
+            properties.put("idHorario", horarioToma.getIdHorario());
+
+            Context context = new Context();
+            context.setVariables(properties);
+
+            String template = templateEngine.process("reminder-email", context);
+            helper.setText(template, true);
+
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            log.error("Error sending reminder email", e);
+        }
+    }*/
 }

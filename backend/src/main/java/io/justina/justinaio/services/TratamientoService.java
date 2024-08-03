@@ -111,7 +111,7 @@ public class TratamientoService {
         tratamientoRepository.save(tratamiento);
 
         // Desactiva los horarios de toma antiguos en lugar de eliminarlos
-        List<HorarioToma> horariosExistentes = horarioTomaRepository.findByTratamiento(tratamiento);
+        List<HorarioToma> horariosExistentes = horarioTomaRepository.findByTratamientoAndEsActivoTrue(tratamiento);
         for (HorarioToma horario : horariosExistentes) {
                 horario.setEstadoHorario(EstadoHorario.BORRADO);
                 horario.setEsActivo(false); // Desactiva el horario
@@ -135,7 +135,7 @@ public class TratamientoService {
         tratamiento.setEsActivo(false);
         tratamientoRepository.save(tratamiento);
 
-        List<HorarioToma> horarios = horarioTomaRepository.findByTratamiento(tratamiento);
+        List<HorarioToma> horarios = horarioTomaRepository.findByTratamientoAndEsActivoTrue(tratamiento);
         for (HorarioToma horario : horarios) {
             horario.setEsActivo(false);
         }

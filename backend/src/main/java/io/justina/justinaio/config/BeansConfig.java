@@ -62,22 +62,31 @@ public class BeansConfig {
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList("http://localhost:5173"));
+        config.setAllowCredentials(true);  // Permitir credenciales si es necesario
+
+        // Permitir ambos http y https
+        config.setAllowedOrigins(Arrays.asList(
+                "http://localhost:5173",
+                "https://localhost:5173",
+                "http://justina-io.netlify.app",
+                "https://justina-io.netlify.app"
+        ));
+
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.ORIGIN,
                 HttpHeaders.CONTENT_TYPE,
                 HttpHeaders.ACCEPT,
-                HttpHeaders.AUTHORIZATION));
+                HttpHeaders.AUTHORIZATION
+        ));
         config.setAllowedMethods(Arrays.asList(
                 "GET",
                 "POST",
                 "DELETE",
                 "PUT",
-                "PATCH"));
+                "PATCH"
+        ));
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
-
     }
 
     /*

@@ -156,6 +156,7 @@ public class Mapper {
         return HorarioTomaResponse.builder()
                 .fecha(horarioToma.getFecha())
                 .hora(horarioToma.getHora())
+                .comentario(horarioToma.getCometario())
                 .estado(horarioToma.getEstadoHorario())
                 .build();
     }
@@ -204,6 +205,7 @@ public class Mapper {
         return Donante.builder()
                 .paciente(paciente)
                 .medico(medico)
+                .descripcion(donanteRequest.getDescripcion())
                 .nombre(donanteRequest.getNombre())
                 .apellido(donanteRequest.getApellido())
                 .altura(donanteRequest.getAltura())
@@ -219,6 +221,7 @@ public class Mapper {
     public static DonanteResponse toDonanteResponse(Donante donante) {
         return DonanteResponse.builder()
                 .idMedico(donante.getMedico().getIdMedico())
+                .descripcion(donante.getDescripcion())
                 .altura(donante.getAltura())
                 .peso(donante.getPeso())
                 .genero(donante.getGenero().ordinal())
@@ -291,6 +294,18 @@ public class Mapper {
                 .idPaciente(consulta.getPaciente().getIdPaciente())
                 .nombrePaciente(consulta.getPaciente().getNombre())
                 .apellidoPaciente(consulta.getPaciente().getApellido())
+                .build();
+    }
+
+    public static NotificacionResponse toNotificacionResponse(Notificacion notificacion) {
+        return NotificacionResponse.builder()
+                .idNotificacion(notificacion.getIdNotificacion())
+                .horarioTomaId(notificacion.getHorarioToma().getIdHorario())
+                .pacienteId(notificacion.getPaciente().getIdPaciente())
+                .fecha(notificacion.getFecha())
+                .hora(notificacion.getHora())
+                .leido(notificacion.getLeido())
+                .mensaje(notificacion.getMensaje())
                 .build();
     }
 
