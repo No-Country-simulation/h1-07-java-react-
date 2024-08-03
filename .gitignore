@@ -1,0 +1,37 @@
+# Exclude the .idea folder
+.idea/
+
+# Exclude environment files
+h1-07-java-react-/backend/.env
+
+# Exclude build outputs
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Spring Tool Suite (STS) files
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA files
+*.iws
+*.iml
+*.ipr
+
+# NetBeans files
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Visual Studio Code files
+.vscode/
