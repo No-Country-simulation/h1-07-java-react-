@@ -52,7 +52,7 @@ public class ConsultaController {
             @RequestBody ConsultaRequestPaciente consultaRequestPaciente
     ){
         consultaService.crearConsultaComoPaciente(consultaRequestPaciente, token);
-        return ResponseEntity.ok("La consulta con el paciente ha sido creada con exito!");
+        return ResponseEntity.ok("La consulta con el médico ha sido creada con exito!");
     }
 
     @GetMapping("/ver-consultas-de-un-paciente")
