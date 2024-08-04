@@ -22,7 +22,6 @@ import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
 import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfilePatient";
 import TreatementPatient from "../pages/private/Patients_Pages/Treatement/TreatementPatient";
 import History from "../pages/private/Patients_Pages/HistoryClinic/History";
-import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import { Donation_Registre } from "../pages/private/Medic_Pages/Donations/Donation_Registre/Donation_Registre";
 import LandingView from "../pages/landing/LandingView";
 import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
@@ -30,8 +29,9 @@ import Adherence from "../pages/private/Medic_Pages/Adherence/Adherence";
 import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/TreatmentAdherence/TreatmentAdherence";
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
-import SignUp from "../pages/signup/SignUp";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import SignUp from "../pages/signup/SignUp";
+import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 
 function AppRouter() {
   return (

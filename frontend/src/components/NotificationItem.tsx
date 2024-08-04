@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getTimeElapsed } from "../utils/functions/functions";
-import { CommentIcon, EmailIcon, UserIcon } from "../../public/icons/Icons";
+import { CommentIcon, EmailIcon, LoaderIcon, UserIcon } from "../../public/icons/Icons";
 import { Button, Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react";
 import { Field, Form, Formik } from "formik";
 import { initialValuesAdherence } from "../utils/data/data";
@@ -22,7 +22,6 @@ interface NotificationProp {
 export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, leido, fecha, horarioTomaId, idNotificacion, reloadNotifications }) => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [loading, setLoading] = useState(false)
-  //FALTA ACTUALIZAR LOS MENSAJES NO LEIDOS CUANDO SE TOCA EL BOTON DE LEER TODOS LOS MENSAJES Y AGREGAR SKELETON LOS EMAILS
   const handleSubmitAdherence = async (values: AdherenceRequest) => {
     const token = localStorage.getItem('TOKEN_KEY');
     if (token) {
@@ -79,7 +78,7 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
 
   return (
     <>
-      <div className={`${leido && 'border-gray-200 '} flex p-3 cursor-pointer hover:border-blue-500 transition-all duration-300 flex-col mt-4 bg-gray-100 border-2 border-gray-600 w-full rounded-md`}>
+      <div id={String(idNotificacion)} className={`${leido && 'border-gray-200 '} flex p-3 cursor-pointer hover:border-blue-500 transition-all duration-300 flex-col mt-4 bg-gray-100 border-2 border-gray-600 w-full rounded-md`}>
         <div className="flex justify-between mb-1">
           <h3 className="font-inter text-sm font-semibold w-[60%] flex items-center gap-2"><span>{leido ? <p className=" w-3 h-3 bg-gray-400  rounded-full "></p> : <p className=" w-3 h-3 bg-blue-500  rounded-full " />}</span> Notificación</h3>
           <p className="text-sm flex items-center justify-center gap-2">{getTimeElapsed(hora, fecha)}</p>
@@ -131,7 +130,9 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
                           Cancelar
                         </Button>
                         <Button type="submit" disabled={isSubmitting} color="primary">
-                          {loading && 'enviando'} Enviar
+                          {loading && <span className=" animate-spin">
+                            <LoaderIcon width={30} height={30}></LoaderIcon>
+                          </span>} Enviar
                         </Button>
                       </div>
                     </Form>

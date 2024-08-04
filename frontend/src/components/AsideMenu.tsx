@@ -46,9 +46,9 @@ export const AsideMenu: React.FC<MenuProps> = ({
         }`}
       >
         <div className="py-10 flex flex-col ">
-          <h1 className="text-xl font-bold mb-5 text-center text-black">
+          <h3 className="text-xl font-bold mb-5 text-center text-black">
             MENÚ
-          </h1>
+          </h3>
           <span
             className=" absolute right-5 top-9 cursor-pointer transition-all duration-200 hover:scale-105 hover:rotate-90"
             onClick={toggleSidebar}
