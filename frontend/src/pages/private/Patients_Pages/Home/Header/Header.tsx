@@ -21,9 +21,9 @@ export default function Header({
             <Avatar name={nombre} color="primary" isBordered size="lg" />
           </div>
         </Link>
-        <h1 className=" text-2xl font-inter font-bold text-white">
+        <h3 className=" text-2xl font-inter font-bold text-white">
           Buenos días
-        </h1>
+        </h3>
         <div className="relative right-7 flex flex-row gap-2">
           {/* <Link to={"/notification"}>
             <Badge

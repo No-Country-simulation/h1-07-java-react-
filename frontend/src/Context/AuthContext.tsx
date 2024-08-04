@@ -443,22 +443,22 @@ export const fetchClinicHistory = async (id: string | undefined) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   try {
-    const res = await fetch(
-      `${API_URL}/historia-clinica/historia-clinica-por-id-paciente?idPaciente=${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const url = `${API_URL}/historia-clinica/historia-clinica-por-id-paciente?idPaciente=${id}`;
+
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
 
     const data = await res.json();
+
     return data;
   } catch (err) {
     console.log(err);
