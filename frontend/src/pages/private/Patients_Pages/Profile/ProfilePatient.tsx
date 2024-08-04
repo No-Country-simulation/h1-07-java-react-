@@ -5,7 +5,7 @@ import {
   HospitalIcon,
   ShieldIcon,
 } from "../../../../../public/icons/Icons";
-// import { Logout } from "../../../../components/Logout";
+import { Logout } from "../../../../components/Logout";
 import { Paciente } from "../../../../Interfaces/interfaces";
 import { HeaderProfile } from "../../../../components/HeaderProfile";
 
@@ -14,7 +14,7 @@ export function ProfilePatient() {
 
   useEffect(() => {
     const storedMedic = localStorage.getItem("PATIENT-DATA");
-    console.log(storedMedic);
+
     if (storedMedic) {
       const medic: Paciente = JSON.parse(storedMedic);
       setPatienInfo(medic);
@@ -24,7 +24,7 @@ export function ProfilePatient() {
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg max-md:m-auto ">
-        <div className="mt-[-6rem]">
+        <div className="">
           <HeaderProfile
             name={patientInfo?.nombre}
             title="Detalles del paciente"
@@ -87,7 +87,7 @@ export function ProfilePatient() {
           />
         </section>
         <footer className="flex flex-row justify-center">
-          {/* <Logout /> */}
+          <Logout />
         </footer>
       </div>
     </main>

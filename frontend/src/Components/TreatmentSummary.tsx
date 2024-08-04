@@ -11,7 +11,7 @@ export default function TreatmentSummary({
   patient: Patient | undefined;
 }) {
   const { id } = useParams();
-  const patient2 = patient;
+  patient;
   const [treatments, setTreaments] = useState<ContentTreatmentPacient>();
   const [loading, setLoading] = useState(false);
   const fetchTreatments = async () => {

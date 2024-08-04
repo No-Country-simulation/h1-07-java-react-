@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   CaledarIcon,
-  CampanaNotificIcon,
-  CerebroIcon,
-  DonationIconTwo,
-  EjercicioIcon,
-  HistoryIconThree,
+  MenssageIconCora,
   MenuHambuerguesa,
   RelojIcon,
   SearchIcon,
@@ -20,7 +16,6 @@ import {
 import { toast } from "sonner";
 import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
 import { Avatar } from "@nextui-org/avatar";
-import { Badge } from "@nextui-org/badge";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -43,25 +38,25 @@ const patientOptions = [
     icon: <TratamentIconTwo width={45} height={45} />,
     label: "Tratamiento",
   },
+  // {
+  //   to: "/patient-tratamiento",
+  //   icon: <EjercicioIcon width={45} height={45} />,
+  //   label: "Ejercicio",
+  // },
+  // {
+  //   to: "/patient-tratamiento",
+  //   icon: <CerebroIcon width={45} height={45} />,
+  //   label: "Psicologia",
+  // },
+  // {
+  //   to: "/patient-tratamiento",
+  //   icon: <DonationIconTwo width={45} height={45} />,
+  //   label: "Donaciones",
+  // },
   {
-    to: "/patient-tratamiento",
-    icon: <EjercicioIcon width={45} height={45} />,
-    label: "Ejercicio",
-  },
-  {
-    to: "/patient-tratamiento",
-    icon: <CerebroIcon width={45} height={45} />,
-    label: "Psicologia",
-  },
-  {
-    to: "/patient-tratamiento",
-    icon: <DonationIconTwo width={45} height={45} />,
-    label: "Donaciones",
-  },
-  {
-    to: "/history",
-    icon: <HistoryIconThree width={45} height={45} />,
-    label: "Historial",
+    to: "/chat-cora",
+    icon: <MenssageIconCora width={45} height={45} />,
+    label: "Cora",
   },
 ];
 
@@ -135,7 +130,7 @@ export function Home_Patients() {
               </div>
             </Link>
             <div className="flex items-center space-x-4 mt-2">
-              <Link to={"/notification"}>
+              {/* <Link to={"/notification"}>
                 <Badge
                   color="danger"
                   content={notifications?.length}
@@ -144,7 +139,7 @@ export function Home_Patients() {
                 >
                   <CampanaNotificIcon width={26} height={26} />
                 </Badge>
-              </Link>
+              </Link> */}
 
               <button onClick={toggleSidebar}>
                 <MenuHambuerguesa width={24} height={24} />
@@ -185,7 +180,7 @@ export function Home_Patients() {
           <div className="w-[90%] ">
             <div className="flex flex-col ml-2  ">
               <h3 className="font-semibold text-lg text-gray-500 font-inter">
-                Próxima Cita
+                Tú Próxima Cita
               </h3>
             </div>
             <div className="flex flex-col mt-10 p-3 w-full border-1 border-solid border-gray-400 rounded-xl mb-10">
@@ -215,14 +210,14 @@ export function Home_Patients() {
                 <button className="px-6 py-3 font-inter bg-[#8a8d9e] rounded-md">
                   Reagendar
                 </button>
-                <button className="px-6 py-3 font-inter text-white bg-[#D98236] rounded-md">
+                <button className="px-6 py-3  font-inter text-white bg-[#D98236] rounded-md">
                   Confirmar
                 </button>
               </div>
             </div>
           </div>
         </section>
-        <section className="flex ml-5 mb-10 flex-col">
+        {/* <section className="flex ml-5 mb-10 flex-col">
           <div className="mb-5">
             <h3 className="font-bold font-inter text-xl">
               Tus consultas recientes
@@ -268,7 +263,7 @@ export function Home_Patients() {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
     </main>
   );

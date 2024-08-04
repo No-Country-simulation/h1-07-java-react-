@@ -36,7 +36,7 @@ export default function FormTreatment({
       descripcion: transcript,
       fechaInicio: dayInit,
     };
-    console.log(treatementData);
+
     try {
       registerTreatment(treatementData);
       resetForm();
@@ -48,7 +48,6 @@ export default function FormTreatment({
 
   const handleDateChange = (date: CalendarDate) => {
     setDayInit(getTodayDate(date));
-    console.log(setDayInit);
   };
 
   return (
@@ -75,10 +74,10 @@ export default function FormTreatment({
               <option value={0} key={0} selected disabled>
                 Busqueda...
               </option>
-
-              <option value={1}>Cancer</option>
-              <option value={2}>Epilepsia</option>
-              <option value={3}>Asma</option>
+              <option value={1}>Otra</option>
+              <option value={2}>Cancer</option>
+              <option value={3}>Epilepsia</option>
+              <option value={4}>Asma</option>
             </Field>
           </div>
           {/* MEDICAMENTOS */}
