@@ -241,53 +241,6 @@ export function Home_Patients() {
             </div>
           </div>
         </section>
-        {/* <section className="flex ml-5 mb-10 flex-col">
-          <div className="mb-5">
-            <h3 className="font-bold font-inter text-xl">
-              Tus consultas recientes
-            </h3>
-          </div>
-          <div className="flex flex-row gap-x-8 justify-center">
-            <div className="flex flex-col">
-              <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_2.webp"
-                className="rounded-full"
-                alt=""
-              />
-              <p className="font-inter font-bold text-[13px] mt-3">Dr. Gómez</p>
-            </div>
-            <div className="flex flex-col">
-              <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_3.webp"
-                className="rounded-full"
-                alt=""
-              />
-              <p className="font-inter font-bold text-[13px] mt-3">
-                Dra. María
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_4.webp"
-                className="rounded-full"
-                alt=""
-              />
-              <p className="font-inter font-bold text-[13px] mt-3">
-                Dra. Stevi
-              </p>
-            </div>
-            <div className="flex flex-col ">
-              <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_5.webp"
-                className="rounded-full w-16 h-16"
-                alt=""
-              />
-              <p className="font-inter font-bold text-[13px] mt-3">
-                Dra. Felipe
-              </p>
-            </div>
-          </div>
-        </section> */}
       </div>
     </main>
   );
