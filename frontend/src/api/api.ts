@@ -7,7 +7,7 @@ import {
   RegistrationRequest,
   RolRequest,
 } from "../Interfaces/interfaces";
-const API = import.meta.env.VITE_SOME_API;
+//const API = import.meta.env.VITE_SOME_API;
 export const API_URL = "https://h1-07-java-react.onrender.com";
 
 const fetchData = async <T>(
