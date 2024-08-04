@@ -6,10 +6,10 @@ import {
   fetchPatientSingle,
 } from "../../../../Context/AuthContext";
 import { Tab, Tabs } from "@nextui-org/react";
-import FormTreatment from "../../../../Components/FormTreatment";
-import FormTraining from "../../../../Components/FormTraining";
-import { FormTreamentVoice } from "../../../../Components/FormTreamentVoice";
-import { HeaderProfile } from "../../../../Components/HeaderProfile";
+import FormTreatment from "../../../../components/FormTreatment";
+import FormTraining from "../../../../components/FormTraining";
+import { FormTreamentVoice } from "../../../../components/FormTreamentVoice";
+import { HeaderProfile } from "../../../../components/HeaderProfile";
 
 export const TreatmentPatient = () => {
   const [loading, setLoading] = useState(true);

@@ -5,7 +5,7 @@ import {
   RelojIcon,
 } from "../../../../../../public/icons/Icons";
 import { Link } from "react-router-dom";
-import { PopoverMessage } from "../../../../../Components/PopoverMessage";
+import { PopoverMessage } from "../../../../../components/PopoverMessage";
 
 export default function Shifts() {
   return (

@@ -3,7 +3,7 @@ import { fetchPatient } from "../../../../Context/AuthContext";
 import { SearchIcon } from "../../../../../public/icons/Icons";
 import { Link } from "react-router-dom";
 import { ContentPatient } from "../../../../Interfaces/interfaces";
-import { AsideMenu } from "../../../../Components/AsideMenu";
+import { AsideMenu } from "../../../../components/AsideMenu";
 import { Patients } from "./Patients/Patients";
 import Header from "./Header/Header";
 

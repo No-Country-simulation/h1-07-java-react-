@@ -9,8 +9,8 @@ import {
   fetchTreatmentPatient,
 } from "../../../../Context/AuthContext";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
-import { HeaderProfile } from "../../../../Components/HeaderProfile";
-import { TreatmentSkeleton } from "../../../../Components/Skeletons";
+import { HeaderProfile } from "../../../../components/HeaderProfile";
+import { TreatmentSkeleton } from "../../../../components/Skeletons";
 
 export default function Adherence() {
   const { id } = useParams();

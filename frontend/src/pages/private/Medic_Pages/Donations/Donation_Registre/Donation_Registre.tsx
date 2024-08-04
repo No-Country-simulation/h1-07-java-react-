@@ -1,6 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Header_Donation } from "../../../../../Components/Header_Medic_Donation/Header_Donation";
+import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { crearDonante, fetchPatient } from "../../../../../Context/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";

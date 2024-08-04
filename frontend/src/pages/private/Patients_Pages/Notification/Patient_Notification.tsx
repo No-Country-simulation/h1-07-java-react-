@@ -6,9 +6,9 @@ import {
   markNotificationsAsRead,
 } from "../../../../Context/AuthContext";
 import { FlechaIconTwo } from "../../../../../public/icons/Icons";
-import { NotificationItem } from "../../../../Components/NotificationItem";
-import { SkeletonNotification } from "../../../../Components/Skeletons";
-import { HeaderProfile } from "../../../../Components/HeaderProfile";
+import { NotificationItem } from "../../../../components/NotificationItem";
+import { SkeletonNotification } from "../../../../components/Skeletons";
+import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { Paciente } from "../../../../Interfaces/interfaces";
 
 const tabOptions = [{ tabName: "No leídas" }, { tabName: "Todos" }];

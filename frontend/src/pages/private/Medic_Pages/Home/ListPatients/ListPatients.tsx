@@ -4,7 +4,7 @@ import { Avatar } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { ContentPatient } from "../../../../../Interfaces/interfaces";
 import { fetchPatient } from "../../../../../Context/AuthContext";
-import SkeletonsListPatient from "../../../../../Components/Skeletons";
+import SkeletonsListPatient from "../../../../../components/Skeletons";
 
 export default function ListPatients() {
   const [patients, setPatients] = useState<ContentPatient>();

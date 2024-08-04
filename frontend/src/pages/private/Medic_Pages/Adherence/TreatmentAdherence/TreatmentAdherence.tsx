@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HeaderProfile } from "../../../../../Components/HeaderProfile";
+import { HeaderProfile } from "../../../../../components/HeaderProfile";
 import { fetchPatientSingle } from "../../../../../Context/AuthContext";
 import { useParams } from "react-router-dom";
 import { Patient } from "../../../../../Interfaces/interfaces";

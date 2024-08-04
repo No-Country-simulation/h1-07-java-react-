@@ -12,9 +12,9 @@ import {
 import { Paciente } from "../../../../Interfaces/interfaces";
 import { fetchNotifications } from "../../../../Context/AuthContext";
 import { toast } from "sonner";
-import { AsideMenuPatients } from "../../../../Components/AsideMenuPatients";
+import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
 import { Avatar } from "@nextui-org/avatar";
-import { PopoverMessage } from "../../../../Components/PopoverMessage";
+import { PopoverMessage } from "../../../../components/PopoverMessage";
 
 export interface NotificationProps {
   idNotificacion: number;
