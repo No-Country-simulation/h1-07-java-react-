@@ -30,8 +30,8 @@ import Adherence from "../pages/private/Medic_Pages/Adherence/Adherence";
 import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/TreatmentAdherence/TreatmentAdherence";
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
-import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
-import SignUp from "../pages/SignUp/SignUp";
+import SignUp from "../pages/signup/SignUp";
+import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 
 function AppRouter() {
   return (
