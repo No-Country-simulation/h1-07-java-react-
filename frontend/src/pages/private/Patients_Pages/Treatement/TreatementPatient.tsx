@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { ContentTreatmentPacient, Paciente } from "../../../../Interfaces/interfaces";
+import {
+  ContentTreatmentPacient,
+  Paciente,
+} from "../../../../Interfaces/interfaces";
 import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { API_URL } from "../../../../api/api";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
@@ -48,14 +51,17 @@ export default function TreatementPatient() {
       <div className="w-full  min-h-screen max-w-md  bg-white rounded-lg shadow-lg  max-md:m-auto">
         <HeaderProfile
           name={patientInfo?.nombre}
-          title='Tus Tratamientos'
+          title="Tus Tratamientos"
           lastname={patientInfo?.apellido}
           typeDocument={patientInfo?.tipoDocumento}
           financier={patientInfo?.financiador}
-          document={patientInfo?.numeroDocumento} link={"/patient-home"}          >
-        </HeaderProfile>
+          document={patientInfo?.numeroDocumento}
+          link={"/patient-home"}
+        ></HeaderProfile>
         <div className="p-4">
-          <h1 className=" text-xl text-gray-700 font-semibold">Mis tratamientos</h1>
+          <h3 className=" text-xl text-gray-700 font-semibold">
+            Mis tratamientos
+          </h3>
 
           <section className="justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
             {treatments &&
@@ -66,11 +72,18 @@ export default function TreatementPatient() {
                     {tipoTratamientoMap[treatment.tipoTratamientoId] ||
                       "Tipo de tratamiento desconocido"}
                   </h5>
-                  <ul className=" ml-6 list-disc">
+                  <ul className="ml-6 list-disc">
                     <li>
-                      {treatment.nombreMedicamento} {treatment.descripcion}.
+                      <span className="italic">
+                        {treatment.nombreMedicamento} | Descripción:{" "}
+                        {treatment.descripcion}.
+                      </span>
                     </li>
-                    <li>Cantidad: {treatment.dosisDiaria}</li>
+                    <li>
+                      {" "}
+                      <span className="font-semibold">Cantidad:</span>{" "}
+                      {treatment.dosisDiaria}
+                    </li>
                   </ul>
                   {treatment.tipoTratamientoId == 0 && (
                     <>
@@ -78,9 +91,19 @@ export default function TreatementPatient() {
                         Horarios
                       </h6>
                       <ul className=" ml-6 list-disc">
-                        <li>Inicio: {treatment.fechaInicio}</li>
-                        <li>Finalización: {treatment.fechaFin}</li>
-                        <li>Estado: {treatment.estado}</li>
+                        <li>
+                          <span className="font-semibold">Inicio:</span>{" "}
+                          {treatment.fechaInicio}
+                        </li>
+                        <li>
+                          <span className="font-semibold">Finalización:</span>{" "}
+                          {treatment.fechaFin}
+                        </li>
+                        <li>
+                          {" "}
+                          <span className="font-semibold">Estado:</span> En
+                          curso
+                        </li>
                       </ul>
                     </>
                   )}

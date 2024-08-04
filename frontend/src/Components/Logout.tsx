@@ -1,5 +1,5 @@
-import { useAuthContext } from '../Context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const Logout: React.FC = () => {
   const { logout } = useAuthContext();
@@ -7,11 +7,11 @@ export const Logout: React.FC = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
-    <header className=" mb-10 shadow p-4 flex justify-between items-center bg-transparent">
+    <header className=" mb-10  p-4 flex justify-between items-center bg-transparent">
       <button
         onClick={handleLogout}
         className="px-14 py-2 bg-[#E08733] font-inter rounded-xl text-white hover:bg-[#794e0a] duration-700"
@@ -21,5 +21,3 @@ export const Logout: React.FC = () => {
     </header>
   );
 };
-
-
