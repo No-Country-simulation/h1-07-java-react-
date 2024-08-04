@@ -3,7 +3,7 @@ import {
   ContentTreatmentPacient,
   Paciente,
 } from "../../../../Interfaces/interfaces";
-import { HeaderProfile } from "../../../../components/HeaderProfile";
+import { HeaderProfile } from "../../../../Components/HeaderProfile";
 import { API_URL } from "../../../../api/api";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
 

@@ -8,8 +8,8 @@ import {
   MenuHambuerguesa,
 } from "../../../../../public/icons/Icons";
 import { Medic } from "../../../../Interfaces/interfaces";
-import { AsideMenu } from "../../../../components/AsideMenu";
-import { Logout } from "../../../../components/Logout";
+import { AsideMenu } from "../../../../Components/AsideMenu";
+import { Logout } from "../../../../Components/Logout";
 
 export function UserInfo(): JSX.Element {
   // const [curriculum, setCurriculum] = useState("");

@@ -2,8 +2,8 @@ import { Avatar } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { ArrowWhiteIcon, MenuHambuerguesa } from "../../public/icons/Icons";
 import React, { useState } from "react";
-import { AsideMenu } from "../components/AsideMenu";
-import { SkeletonPatientInfo } from "../components/Skeletons";
+import { AsideMenu } from "./AsideMenu";
+import { SkeletonPatientInfo } from "./Skeletons";
 
 interface HeaderProfileProps {
   children?: JSX.Element | JSX.Element[];

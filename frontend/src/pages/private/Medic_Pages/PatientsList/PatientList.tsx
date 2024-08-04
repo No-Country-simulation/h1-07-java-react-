@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { fetchPatient } from "../../../../Context/AuthContext";
-import {
-  SearchIcon,
-} from "../../../../../public/icons/Icons";
+import { SearchIcon } from "../../../../../public/icons/Icons";
 import { Link } from "react-router-dom";
 import { ContentPatient } from "../../../../Interfaces/interfaces";
-import { AsideMenu } from "../../../../components/AsideMenu";
+import { AsideMenu } from "../../../../Components/AsideMenu";
 import { Patients } from "./Patients/Patients";
 import Header from "./Header/Header";
 
@@ -24,7 +22,7 @@ export default function PatientList() {
       setLoading(true);
       try {
         setPatients(await fetchPatient());
-        console.log(patients?.content)
+        console.log(patients?.content);
       } catch (err) {
         console.log(err);
       } finally {

@@ -5,9 +5,9 @@ import {
   HospitalIcon,
   ShieldIcon,
 } from "../../../../../public/icons/Icons";
-import { Logout } from "../../../../components/Logout";
+import { Logout } from "../../../../Components/Logout";
 import { Paciente } from "../../../../Interfaces/interfaces";
-import { HeaderProfile } from "../../../../components/HeaderProfile";
+import { HeaderProfile } from "../../../../Components/HeaderProfile";
 
 export function ProfilePatient() {
   const [patientInfo, setPatienInfo] = useState<Paciente>();

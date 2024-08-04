@@ -6,7 +6,7 @@ import { Button } from "@nextui-org/react";
 // import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
+import { Header_Donation } from "../../../../../Components/Header_Medic_Donation/Header_Donation";
 
 export interface Donors {
   altura: string;

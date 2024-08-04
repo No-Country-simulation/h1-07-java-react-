@@ -6,9 +6,9 @@ import {
   markNotificationsAsRead,
 } from "../../../../Context/AuthContext";
 import { FlechaIconTwo } from "../../../../../public/icons/Icons";
-import { NotificationItem } from "../../../../components/NotificationItem";
-import { SkeletonNotification } from "../../../../components/Skeletons";
-import { HeaderProfile } from "../../../../components/HeaderProfile";
+import { NotificationItem } from "../../../../Components/NotificationItem";
+import { SkeletonNotification } from "../../../../Components/Skeletons";
+import { HeaderProfile } from "../../../../Components/HeaderProfile";
 import { Paciente } from "../../../../Interfaces/interfaces";
 
 const tabOptions = [{ tabName: "No leídas" }, { tabName: "Todos" }];
@@ -90,12 +90,13 @@ export function Patient_Notification(): JSX.Element {
       <div className="w-full relative max-w-md min-h-screen  bg-white rounded-lg shadow-lg max-md:m-auto">
         <HeaderProfile
           name={patientInfo?.nombre}
-          title='Tus Tratamientos'
+          title="Tus Tratamientos"
           lastname={patientInfo?.apellido}
           typeDocument={patientInfo?.tipoDocumento}
           financier={patientInfo?.financiador}
-          document={patientInfo?.numeroDocumento} link={"/patient-home"}>
-        </HeaderProfile>
+          document={patientInfo?.numeroDocumento}
+          link={"/patient-home"}
+        ></HeaderProfile>
         <div className="p-4">
           <section className=" mb-4 relative ">
             <h6
@@ -111,10 +112,11 @@ export function Patient_Notification(): JSX.Element {
                 <button
                   key={tab.tabName}
                   onClick={() => setActiveTab(tab.tabName)}
-                  className={`cursor-pointer px-2 py-1 rounded-md ${activeTab === tab.tabName
-                    ? "border-2 border-gray-400 bg-slate-50"
-                    : "bg-slate-200"
-                    }`}
+                  className={`cursor-pointer px-2 py-1 rounded-md ${
+                    activeTab === tab.tabName
+                      ? "border-2 border-gray-400 bg-slate-50"
+                      : "bg-slate-200"
+                  }`}
                 >
                   {tab.tabName}
                 </button>
@@ -127,16 +129,22 @@ export function Patient_Notification(): JSX.Element {
                     <SkeletonNotification />
                   ) : (
                     <>
-                      {allNotifications.length === 0 ? <p className="mt-4 text-center">No hay notificaciones</p> : allNotifications.map((notification) => (
-                        <NotificationItem
-                          key={notification.horarioTomaId}
-                          hora={notification.hora}
-                          mensaje={notification.mensaje}
-                          leido={notification.leido}
-                          fecha={notification.fecha}
-                          horarioTomaId={notification.horarioTomaId}
-                        />
-                      ))}
+                      {allNotifications.length === 0 ? (
+                        <p className="mt-4 text-center">
+                          No hay notificaciones
+                        </p>
+                      ) : (
+                        allNotifications.map((notification) => (
+                          <NotificationItem
+                            key={notification.horarioTomaId}
+                            hora={notification.hora}
+                            mensaje={notification.mensaje}
+                            leido={notification.leido}
+                            fecha={notification.fecha}
+                            horarioTomaId={notification.horarioTomaId}
+                          />
+                        ))
+                      )}
                     </>
                   )}
                 </>

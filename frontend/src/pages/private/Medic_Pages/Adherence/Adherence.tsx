@@ -1,29 +1,35 @@
 import { useEffect, useState } from "react";
-import { ContentTreatmentPacient, Patient } from "../../../../Interfaces/interfaces";
+import {
+  ContentTreatmentPacient,
+  Patient,
+} from "../../../../Interfaces/interfaces";
 import { Link, useParams } from "react-router-dom";
-import { fetchPatientSingle, fetchTreatmentPatient } from "../../../../Context/AuthContext";
+import {
+  fetchPatientSingle,
+  fetchTreatmentPatient,
+} from "../../../../Context/AuthContext";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
-import { HeaderProfile } from "../../../../components/HeaderProfile";
-import { TreatmentSkeleton } from "../../../../components/Skeletons";
+import { HeaderProfile } from "../../../../Components/HeaderProfile";
+import { TreatmentSkeleton } from "../../../../Components/Skeletons";
 
 export default function Adherence() {
   const { id } = useParams();
   const [patient, setPatient] = useState<Patient>();
   const [loading, setLoading] = useState(false);
-  const [loadingTreat, setLoadingTreat] = useState(false)
-  const [treatments, setTreaments] = useState<ContentTreatmentPacient>()
+  const [loadingTreat, setLoadingTreat] = useState(false);
+  const [treatments, setTreaments] = useState<ContentTreatmentPacient>();
   const fetchTreatments = async () => {
-    setLoadingTreat(true)
+    setLoadingTreat(true);
     if (id) {
       try {
-        setTreaments(await fetchTreatmentPatient(id))
+        setTreaments(await fetchTreatmentPatient(id));
       } catch (error: any) {
-        console.log(error)
+        console.log(error);
       } finally {
-        setLoadingTreat(false)
+        setLoadingTreat(false);
       }
     }
-  }
+  };
 
   const fetchPatient = async () => {
     if (id) {
@@ -39,7 +45,7 @@ export default function Adherence() {
   };
 
   useEffect(() => {
-    fetchTreatments()
+    fetchTreatments();
     fetchPatient();
   }, []);
   return (
@@ -54,8 +60,7 @@ export default function Adherence() {
           financier={patient?.financiador}
           document={patient?.numeroDocumento}
           link={`/patient/${id}`}
-        >
-        </HeaderProfile>
+        ></HeaderProfile>
         <section className="px-6 ">
           <h5 className="mb-4 text-xl font-semibold">Tratamientos</h5>
           <ol className=" flex flex-col gap-2">
@@ -65,35 +70,50 @@ export default function Adherence() {
               </>
             ) : (
               <>
-                {
-                  treatments && treatments?.content.length == 0
-                    ? <>
-                      <p>El paciente no tiene tratamientos</p>
-                      <Link to={`/patient/${id}/treatment`} className=" flex justify-center">
-                        <button className=" rounded-md mt-6 w-2/4 h-16 m-auto font-semibold bg-violet-color text-white">
-                          Añadir Nuevo Tratamiento
-                        </button>
-                      </Link>
-                    </>
-                    : <>
-                      {
-                        treatments && treatments.content.map((treatment) => (
-                          <Link to={`/patient/${id}/adherence/${treatment.idTratamiento}`}>
-                            <li className=" border-2 cursor-pointer p-2 rounded-md border-violet-color">
-                              <h6 className=" text-violet-color font-semibold text-lg">{tipoTratamientoMap[treatment.tipoTratamientoId] || 'Tipo de tratamiento desconocido'} <span className=" text-gray-600 text-medium">{treatment.tipoTratamientoId == 0 && `(${treatment.nombreMedicamento})`}</span></h6>
-                              <p className=" text-gray-800 text-sm">{treatment.descripcion == "" ? "El tratamiento no tiene descripción" : treatment.descripcion}</p>
-                            </li>
-                          </Link>
-                        ))
-                      }
-                    </>
-                }
+                {treatments && treatments?.content.length == 0 ? (
+                  <>
+                    <p>El paciente no tiene tratamientos</p>
+                    <Link
+                      to={`/patient/${id}/treatment`}
+                      className=" flex justify-center"
+                    >
+                      <button className=" rounded-md mt-6 w-2/4 h-16 m-auto font-semibold bg-violet-color text-white">
+                        Añadir Nuevo Tratamiento
+                      </button>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    {treatments &&
+                      treatments.content.map((treatment) => (
+                        <Link
+                          to={`/patient/${id}/adherence/${treatment.idTratamiento}`}
+                        >
+                          <li className=" border-2 cursor-pointer p-2 rounded-md border-violet-color">
+                            <h6 className=" text-violet-color font-semibold text-lg">
+                              {tipoTratamientoMap[
+                                treatment.tipoTratamientoId
+                              ] || "Tipo de tratamiento desconocido"}{" "}
+                              <span className=" text-gray-600 text-medium">
+                                {treatment.tipoTratamientoId == 0 &&
+                                  `(${treatment.nombreMedicamento})`}
+                              </span>
+                            </h6>
+                            <p className=" text-gray-800 text-sm">
+                              {treatment.descripcion == ""
+                                ? "El tratamiento no tiene descripción"
+                                : treatment.descripcion}
+                            </p>
+                          </li>
+                        </Link>
+                      ))}
+                  </>
+                )}
               </>
-            )
-            }
+            )}
           </ol>
         </section>
       </div>
     </main>
-  )
+  );
 }
