@@ -609,7 +609,7 @@ export const crearDonante = async (data: any) => {
     }
 
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     throw new Error(`Error al crear donante: `);
