@@ -85,7 +85,7 @@ export default function Adherence() {
                 ) : (
                   <>
                     {treatments &&
-                      treatments.content.map((treatment) => (
+                      treatments.content.sort((a,b)=> b.idTratamiento - a.idTratamiento).map((treatment) => (
                         <Link
                           to={`/patient/${id}/adherence/${treatment.idTratamiento}`}
                         >

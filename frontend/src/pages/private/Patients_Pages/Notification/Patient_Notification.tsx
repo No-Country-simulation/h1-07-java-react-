@@ -79,12 +79,24 @@ export function Patient_Notification(): JSX.Element {
     };
   }, []);
 
-  const readNotifications = () => {
-    markNotificationsAsRead();
-    fetchUnreadNotifications();
-    fetchAllNotifications();
+  const readNotifications = async () => {
+    try {
+      await markNotificationsAsRead();
+      await fetchUnreadNotifications();
+      await fetchAllNotifications();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
+  const reloadNotifications = async () => {
+    try {
+      await fetchUnreadNotifications();
+      await fetchAllNotifications();
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <main className="  scroll-smooth flex min-h-screen bg-gray-100 md:flex md:justify-center">
       <div className="w-full relative max-w-md min-h-screen  bg-white rounded-lg shadow-lg max-md:m-auto">
@@ -112,11 +124,10 @@ export function Patient_Notification(): JSX.Element {
                 <button
                   key={tab.tabName}
                   onClick={() => setActiveTab(tab.tabName)}
-                  className={`cursor-pointer px-2 py-1 rounded-md ${
-                    activeTab === tab.tabName
-                      ? "border-2 border-gray-400 bg-slate-50"
-                      : "bg-slate-200"
-                  }`}
+                  className={`cursor-pointer px-2 py-1 rounded-md ${activeTab === tab.tabName
+                    ? "border-2 border-gray-400 bg-slate-50"
+                    : "bg-slate-200"
+                    }`}
                 >
                   {tab.tabName}
                 </button>
@@ -134,16 +145,20 @@ export function Patient_Notification(): JSX.Element {
                           No hay notificaciones
                         </p>
                       ) : (
-                        allNotifications.map((notification) => (
-                          <NotificationItem
-                            key={notification.horarioTomaId}
-                            hora={notification.hora}
-                            mensaje={notification.mensaje}
-                            leido={notification.leido}
-                            fecha={notification.fecha}
-                            horarioTomaId={notification.horarioTomaId}
-                          />
-                        ))
+                        allNotifications
+                          .sort((a, b) => Number(b.leido) - Number(a.leido))
+                          .map((notification) => (
+                            <NotificationItem
+                              key={notification.horarioTomaId}
+                              hora={notification.hora}
+                              mensaje={notification.mensaje}
+                              leido={notification.leido}
+                              fecha={notification.fecha}
+                              horarioTomaId={notification.horarioTomaId}
+                              reloadNotifications={reloadNotifications}
+                              idNotificacion={notification.idNotificacion}
+                            />
+                          ))
                       )}
                     </>
                   )}
@@ -159,6 +174,8 @@ export function Patient_Notification(): JSX.Element {
                     leido={notification.leido}
                     fecha={notification.fecha}
                     horarioTomaId={notification.horarioTomaId}
+                    reloadNotifications={reloadNotifications}
+                    idNotificacion={notification.idNotificacion}
                   />
                 ))
               )}

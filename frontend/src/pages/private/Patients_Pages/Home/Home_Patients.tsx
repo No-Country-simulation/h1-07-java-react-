@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   CaledarIcon,
+  CampanaNotificIcon,
   HistoryIconThree,
   MenssageIconCora,
   MenuHambuerguesa,
@@ -15,6 +16,7 @@ import { toast } from "sonner";
 import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
 import { Avatar } from "@nextui-org/avatar";
 import { PopoverMessage } from "../../../../components/PopoverMessage";
+import { Badge } from "@nextui-org/react";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -131,16 +133,17 @@ export function Home_Patients() {
               </div>
             </Link>
             <div className="flex items-center space-x-4 mt-2">
-              {/* <Link to={"/notification"}>
+              <Link to={"/notification"}>
                 <Badge
                   color="danger"
                   content={notifications?.length}
                   isInvisible={notifications?.length === 0}
                   shape="circle"
+                  className=" -z-0"
                 >
-                  <CampanaNotificIcon width={26} height={26} />
+                  <CampanaNotificIcon width={26} height={26} stroke="#fff"/>
                 </Badge>
-              </Link> */}
+              </Link>
 
               <button onClick={toggleSidebar}>
                 <MenuHambuerguesa width={24} height={24} />

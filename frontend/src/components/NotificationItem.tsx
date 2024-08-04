@@ -14,11 +14,13 @@ interface NotificationProp {
   leido: boolean
   fecha: string
   horarioTomaId: number
+  idNotificacion: number
+  reloadNotifications: () => void
 }
 
 
-export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, leido, fecha, horarioTomaId }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, leido, fecha, horarioTomaId, idNotificacion, reloadNotifications }) => {
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [loading, setLoading] = useState(false)
   //FALTA ACTUALIZAR LOS MENSAJES NO LEIDOS CUANDO SE TOCA EL BOTON DE LEER TODOS LOS MENSAJES Y AGREGAR SKELETON LOS EMAILS
   const handleSubmitAdherence = async (values: AdherenceRequest) => {
@@ -33,7 +35,7 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
 
       try {
         const res = await fetch(`${API_URL}/marcar-adherencia-hora-toma?${params}`, {
-          
+
           method: "PUT",
           headers: {
             'Accept': 'application/json',
@@ -45,7 +47,9 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
         }
         const responseData = await res.text();
         toast.success(responseData)
-        onOpen()
+
+        onClose()
+        await markNotificationReadForID(idNotificacion)
       } catch (error) {
         console.log(error)
       } finally {
@@ -54,6 +58,24 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
     }
   }
 
+  const markNotificationReadForID = async (idNotificacion: number) => {
+    const token = localStorage.getItem('TOKEN_KEY');
+    try {
+      const res = await fetch(`${API_URL}/marcar-notificacion-leida-por-id-notificacion?idNotificacion=${idNotificacion}`, {
+        method: "PUT",
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      })
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+      reloadNotifications()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -64,9 +86,15 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
         </div>
         <p className="text-gray-600 text-sm">{mensaje}</p>
         <div className="flex justify-end">
-          <span onClick={onOpen} className=" w-9 cursor-pointer transition-all duration-300  hover:bg-gray-300 h-9 flex justify-center items-center rounded-full ">
-            <CommentIcon width={20} height={20} />
-          </span>
+          {leido ?
+            <span className=" w-9 cursor-not-allowed  h-9 flex justify-center items-center rounded-full ">
+              <CommentIcon width={20} height={20} />
+            </span>
+            :
+            <span onClick={onOpen} className=" w-9 cursor-pointer transition-all duration-300  hover:bg-gray-300 h-9 flex justify-center items-center rounded-full ">
+              <CommentIcon width={20} height={20} />
+            </span>
+          }
         </div>
       </div>
 
@@ -74,6 +102,7 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
         isOpen={isOpen}
         placement={'center'}
         onOpenChange={onOpenChange}
+        hideCloseButton={true}
       >
         <ModalContent>
           {(onClose) => (

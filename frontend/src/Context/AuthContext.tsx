@@ -298,7 +298,7 @@ export const useAuthContext = () => {
 };
 
 async function registerTreatment(treatment: Treatment) {
-  const token = localStorage.getItem("TOKEN_KEY");
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   if (token) {
     try {
@@ -313,6 +313,10 @@ async function registerTreatment(treatment: Treatment) {
       // if (!res.ok) {
       //   throw new Error(`Response status: ${res.status}`);
       // }
+      if (res.status === 200) {
+        toast.success("El tratamiento fue creado correctamente");
+        window.location.href = `/patient/${treatment.pacienteId}/adherence`;
+      }
 
       const data: ResponseRequest = await res.json();
 
@@ -320,9 +324,9 @@ async function registerTreatment(treatment: Treatment) {
         toast.warning("Seleccionar un medicamento");
       }
 
-      if (res.status === 200) {
-        toast.success("El tratamiento fue creado correctamente");
-      }
+ 
+
+
     } catch (err) {
       toast.success("El tratamiento fue creado correctamente");
     }
@@ -621,7 +625,7 @@ export const fetchTreatmentPatient = async (id: string) => {
   if (id) {
     try {
       const res = await fetch(
-        `${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}`,
+        `${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}&page=0&size=100`,
         {
           method: "GET",
           headers: {
