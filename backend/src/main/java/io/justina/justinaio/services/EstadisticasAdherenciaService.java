@@ -95,15 +95,13 @@ public class EstadisticasAdherenciaService {
         LocalDateTime ahora = LocalDateTime.now();
 
         List<HorarioToma> horarios = tratamiento.getHorarios().stream()
-                .filter(HorarioToma::getEsActivo)
-                .filter(horario -> horario.getEstadoHorario() != EstadoHorario.BORRADO)
-                .filter(horario -> LocalDateTime.of(horario.getFecha(), horario.getHora()).isBefore(ahora)) // Filtrar por fecha y hora actuales
+                .filter(HorarioToma::getEsActivo)// Filtrar por fecha y hora actuales
                 .toList();
 
         int totalCompletado = (int) horarios.stream().filter(horario -> horario.getEstadoHorario() == EstadoHorario.COMPLETADO).count();
         int totalNoCompletado = (int) horarios.stream().filter(horario -> horario.getEstadoHorario() == EstadoHorario.NO_COMPLETADO).count();
         int totalRetrasados = (int) horarios.stream().filter(horario -> horario.getEstadoHorario() == EstadoHorario.ATRASADO).count();
-        int totalHorarios = horarios.size();
+        int totalHorarios = totalCompletado + totalNoCompletado + totalRetrasados;
 
         return AdherenciaTotalResponse.builder()
                 .totalCompletado(totalCompletado)
