@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -48,6 +49,14 @@ public class NotificacionController {
             ) {
         horarioTomaService.marcarAdherenciaHoraToma(horarioTomaRequest, token);
         return ResponseEntity.ok("Adherencia marcada");
+    }
+    @PutMapping("/marcar-notificacion-leida-por-id-notificacion")
+    public ResponseEntity<?> marcarNotificacionesLeidasPorHorario(
+            Authentication token,
+            @RequestParam Integer idNotificacion
+    ) {
+        notificacionService.marcarAdherenciaPorIdNotificacion(idNotificacion);
+        return ResponseEntity.ok("Notificacion marcada como leida");
     }
 }
 
