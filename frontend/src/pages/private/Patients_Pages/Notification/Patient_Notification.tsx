@@ -113,7 +113,7 @@ export function Patient_Notification(): JSX.Element {
   const handleShowMoreUnread = () => {
     setVisibleUnreadCount(unreadNotifications.length || 0);
     setShowAllUnread(true);
-  }
+  };
 
   return (
     <main className="  scroll-smooth flex min-h-screen bg-gray-100 md:flex md:justify-center">
@@ -147,33 +147,32 @@ export function Patient_Notification(): JSX.Element {
                         </p>
                       ) : (
                         <>
-                          {
-                            allNotifications
-                              .sort((a, b) => Number(b.leido) - Number(a.leido))
-                              .slice(0, visibleReadCount)
-                              .map((notification) => (
-                                <NotificationItem
-                                  key={notification.horarioTomaId}
-                                  hora={notification.hora}
-                                  mensaje={notification.mensaje}
-                                  leido={notification.leido}
-                                  fecha={notification.fecha}
-                                  horarioTomaId={notification.horarioTomaId}
-                                  reloadNotifications={reloadNotifications}
-                                  idNotificacion={notification.idNotificacion}
-                                />
-                              ))
-                          }
-                          {allNotifications && allNotifications.length > 6 && !showAllRead && (
-                            <button
-                              onClick={handleShowMore}
-                              className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
-                            >
-                              Ver Todos
-                            </button>
-                          )}
+                          {allNotifications
+                            .sort((a, b) => Number(b.leido) - Number(a.leido))
+                            .slice(0, visibleReadCount)
+                            .map((notification) => (
+                              <NotificationItem
+                                key={notification.horarioTomaId}
+                                hora={notification.hora}
+                                mensaje={notification.mensaje}
+                                leido={notification.leido}
+                                fecha={notification.fecha}
+                                horarioTomaId={notification.horarioTomaId}
+                                reloadNotifications={reloadNotifications}
+                                idNotificacion={notification.idNotificacion}
+                              />
+                            ))}
+                          {allNotifications &&
+                            allNotifications.length > 6 &&
+                            !showAllRead && (
+                              <button
+                                onClick={handleShowMore}
+                                className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
+                              >
+                                Ver Todos
+                              </button>
+                            )}
                         </>
-
                       )}
                     </>
                   )}
@@ -182,29 +181,30 @@ export function Patient_Notification(): JSX.Element {
                 <p className="mt-4 text-center">No hay notificaciones</p>
               ) : (
                 <>
-                  {
-                    unreadNotifications.slice(0, visibleUnreadCount)
-                      .map((notification) => (
-                        <NotificationItem
-                          key={notification.horarioTomaId}
-                          hora={notification.hora}
-                          mensaje={notification.mensaje}
-                          leido={notification.leido}
-                          fecha={notification.fecha}
-                          horarioTomaId={notification.horarioTomaId}
-                          reloadNotifications={reloadNotifications}
-                          idNotificacion={notification.idNotificacion}
-                        />
-                      ))
-                  }
-                  {unreadNotifications && unreadNotifications.length > 6 && !showAllUnread && (
-                    <button
-                      onClick={handleShowMoreUnread}
-                      className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
-                    >
-                      Ver Todos
-                    </button>
-                  )}
+                  {unreadNotifications
+                    .slice(0, visibleUnreadCount)
+                    .map((notification) => (
+                      <NotificationItem
+                        key={notification.horarioTomaId}
+                        hora={notification.hora}
+                        mensaje={notification.mensaje}
+                        leido={notification.leido}
+                        fecha={notification.fecha}
+                        horarioTomaId={notification.horarioTomaId}
+                        reloadNotifications={reloadNotifications}
+                        idNotificacion={notification.idNotificacion}
+                      />
+                    ))}
+                  {unreadNotifications &&
+                    unreadNotifications.length > 6 &&
+                    !showAllUnread && (
+                      <button
+                        onClick={handleShowMoreUnread}
+                        className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
+                      >
+                        Ver Todos
+                      </button>
+                    )}
                 </>
               )}
               {activeTab === "No leídas" && unreadNotifications.length > 0 && (
