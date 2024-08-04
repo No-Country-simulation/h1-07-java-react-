@@ -31,11 +31,6 @@ export interface NotificationProps {
 
 const patientOptions = [
   {
-    to: "/Citas",
-    icon: <CaledarIcon width={45} height={45} />,
-    label: "Citas",
-  },
-  {
     to: "/treatement",
     icon: <TratamentIconTwo width={45} height={45} />,
     label: "Tratamiento",
@@ -59,6 +54,11 @@ const patientOptions = [
     to: "/chat-cora",
     icon: <MenssageIconCora width={45} height={45} />,
     label: "Cora",
+  },
+  {
+    to: "/citas",
+    icon: <CaledarIcon width={45} height={45} />,
+    label: "Citas",
   },
 ];
 

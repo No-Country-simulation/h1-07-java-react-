@@ -2,7 +2,6 @@ import React from "react";
 
 const ChatPresentation: React.FC = () => (
   <div>
-    {/* Mensaje de bienvenida */}
     <div className="flex mb-4 cursor-pointer">
       <div className="w-8 h-8 rounded-full flex items-center justify-center mr-2">
         <img
@@ -17,7 +16,7 @@ const ChatPresentation: React.FC = () => (
         </p>
       </div>
     </div>
-    {/* Mensaje de descargo de responsabilidad */}
+
     <div className="flex mb-4 cursor-pointer">
       <div className="w-8 h-8 rounded-full flex items-center justify-center mr-2">
         <img

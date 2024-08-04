@@ -10,6 +10,8 @@ import { tipoTratamientoMap } from "../../../../utils/data/data";
 export default function TreatementPatient() {
   const [patientInfo, setPatienInfo] = useState<Paciente>();
   const [treatments, setTreatments] = useState<ContentTreatmentPacient>();
+  const [visibleCount, setVisibleCount] = useState(5);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const fetchTreatmentPacient = async () => {
@@ -17,7 +19,7 @@ export default function TreatementPatient() {
 
       try {
         const res = await fetch(
-          `${API_URL}/tratamiento/listar-tratamientos-paciente-conectado`,
+          `${API_URL}/tratamiento/listar-tratamientos-paciente-conectado?page=0&size=30`,
           {
             method: "GET",
             headers: {
@@ -27,7 +29,7 @@ export default function TreatementPatient() {
           }
         );
         if (!res.ok) {
-          throw new Error("Failed to login");
+          throw new Error("Failed to fetch treatments");
         }
         const data = await res.json();
         setTreatments(data);
@@ -45,9 +47,14 @@ export default function TreatementPatient() {
     }
   }, []);
 
+  const handleShowMore = () => {
+    setVisibleCount(treatments?.content.length || 0);
+    setShowAll(true);
+  };
+
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center  ">
-      <div className="w-full  min-h-screen max-w-md  bg-white rounded-lg shadow-lg  max-md:m-auto">
+    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
+      <div className="w-full min-h-screen max-w-md bg-white rounded-lg shadow-lg max-md:m-auto">
         <HeaderProfile
           name={patientInfo?.nombre}
           title="Tus Tratamientos"
@@ -58,16 +65,15 @@ export default function TreatementPatient() {
           link={"/patient-home"}
         ></HeaderProfile>
         <div className="p-4">
-          <h3 className=" text-xl text-gray-700 font-semibold">
+          <h3 className="text-xl text-gray-700 font-semibold">
             Mis tratamientos
           </h3>
 
           <section className="justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
             {treatments &&
-              treatments.content.map((treatment) => (
-                <>
-                  <h5 className=" text-violet-color font-bold text-lg">
-                    {" "}
+              treatments.content.slice(0, visibleCount).map((treatment) => (
+                <div key={treatment.idTratamiento}>
+                  <h5 className="text-violet-color font-bold text-lg">
                     {tipoTratamientoMap[treatment.tipoTratamientoId] ||
                       "Tipo de tratamiento desconocido"}
                   </h5>
@@ -79,17 +85,16 @@ export default function TreatementPatient() {
                       </span>
                     </li>
                     <li>
-                      {" "}
                       <span className="font-semibold">Cantidad:</span>{" "}
                       {treatment.dosisDiaria}
                     </li>
                   </ul>
-                  {treatment.tipoTratamientoId == 0 && (
+                  {treatment.tipoTratamientoId === 0 && (
                     <>
-                      <h6 className=" text-violet-color font-bold text-md">
+                      <h6 className="text-violet-color font-bold text-md">
                         Horarios
                       </h6>
-                      <ul className=" ml-6 list-disc">
+                      <ul className="ml-6 list-disc">
                         <li>
                           <span className="font-semibold">Inicio:</span>{" "}
                           {treatment.fechaInicio}
@@ -99,19 +104,26 @@ export default function TreatementPatient() {
                           {treatment.fechaFin}
                         </li>
                         <li>
-                          {" "}
                           <span className="font-semibold">Estado:</span> En
                           curso
                         </li>
                       </ul>
                     </>
                   )}
-                </>
+                </div>
               ))}
-            {treatments?.content.length == 0 && (
-              <h4 className=" text-xl  h-full flex justify-center items-center text-center">
+            {treatments?.content.length === 0 && (
+              <h4 className="text-xl h-full flex justify-center items-center text-center">
                 "El paciente no tiene un tratamiento registrado"
               </h4>
+            )}
+            {treatments && treatments.content.length > 6 && !showAll && (
+              <button
+                onClick={handleShowMore}
+                className="mt-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
+              >
+                Ver Todos
+              </button>
             )}
           </section>
         </div>
