@@ -13,7 +13,7 @@ const ChatMessage: React.FC<{ message: MessageProps }> = ({ message }) => (
     } mb-4 cursor-pointer`}
   >
     {message.sender === "bot" && (
-      <>
+      <div className="">
         <div className="w-8 h-8 rounded-full flex items-center justify-center mr-2">
           <img
             src="Ellipse_136.png"
@@ -25,13 +25,13 @@ const ChatMessage: React.FC<{ message: MessageProps }> = ({ message }) => (
           strings={[message.message]}
           showCursor={false}
           typeSpeed={5}
-          className="flex max-w-80 rounded-lg p-3 gap-3 bg-light-color text-[#1F4A69]"
+          className="flex max-w-80 mb-16  rounded-lg p-3 gap-3 bg-light-color text-[#1F4A69]"
         />
-      </>
+      </div>
     )}
     {message.sender === "user" && (
       <>
-        <div className="flex max-w-80 rounded-lg p-3 gap-3 bg-[#D9FFE3] text-[#1F4A69]'">
+        <div className="flex max-w-80  rounded-lg p-3 gap-3 bg-[#D9FFE3] text-[#1F4A69]'">
           <p>{message.message}</p>
         </div>
         <div className="w-8 h-8 rounded-full flex items-center justify-center ml-2">

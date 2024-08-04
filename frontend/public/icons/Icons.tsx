@@ -2442,7 +2442,7 @@ export function HospitalIcon({ width, height }: IconProps) {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 324.667 324.667"
-      enable-background="new 0 0 324.667 324.667"
+      enableBackground="new 0 0 324.667 324.667"
     >
       <g>
         <path d="m168.333,69.539v-2.739h2.738c3.313,0 6-2.687 6-6s-2.687-6-6-6h-2.738v-2.738c0-3.313-2.687-6-6-6s-6,2.687-6,6v2.738h-2.738c-3.313,0-6,2.687-6,6s2.687,6 6,6h2.738v2.738c0,3.313 2.687,6 6,6s6-2.686 6-5.999z" />

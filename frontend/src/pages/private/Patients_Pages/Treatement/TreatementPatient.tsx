@@ -42,7 +42,6 @@ export default function TreatementPatient() {
     if (storedMedic) {
       const medic: Paciente = JSON.parse(storedMedic);
       setPatienInfo(medic);
-      console.log("hi");
     }
   }, []);
 

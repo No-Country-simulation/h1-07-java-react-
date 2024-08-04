@@ -10,7 +10,10 @@ import {
   TratamentIconTwo,
 } from "../../../../../public/icons/Icons";
 import { Paciente } from "../../../../Interfaces/interfaces";
-import { fetchNotifications } from "../../../../Context/AuthContext";
+import {
+  fetchNotifications,
+  fetchPatientConnect,
+} from "../../../../Context/AuthContext";
 import { toast } from "sonner";
 import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
 import { Avatar } from "@nextui-org/avatar";
@@ -62,37 +65,38 @@ const patientOptions = [
 export function Home_Patients() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const [patientInfo, setPatienInfo] = useState<Paciente | null>(null);
+  const [notifications, setNotifications] = useState<
+    NotificationProps[] | null
+  >(null);
 
-  const [notifications, setNotifications] = useState<NotificationProps[]>();
-
-  const [patientInfo, setPatienInfo] = useState<Paciente>();
-
-  useEffect(() => {
-    const storedMedic = localStorage.getItem("PATIENT-DATA");
-
-    if (storedMedic) {
-      const medic: Paciente = JSON.parse(storedMedic);
-      setPatienInfo(medic);
+  const fetchPatient = async () => {
+    const patientData = await fetchPatientConnect();
+    if (patientData) {
+      setPatienInfo(patientData);
+    } else {
+      console.error("No se pudo obtener la información del paciente");
     }
-  }, []);
+  };
 
   const getNotifications = async () => {
     try {
-      setNotifications(await fetchNotifications());
+      const notificationsData = await fetchNotifications();
+      setNotifications(notificationsData);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
+    fetchPatient();
     getNotifications();
 
-    if (notifications && notifications?.length != 0) {
+    if (notifications && notifications.length !== 0) {
       toast.warning(`Tienes ${notifications.length} notificaciones pendientes`);
     }
 
     const storedNotification = localStorage.getItem("PATIENT-NOTIFICATION");
-
     if (storedNotification) {
       const news: NotificationProps[] = JSON.parse(storedNotification);
       setNotifications(news);
