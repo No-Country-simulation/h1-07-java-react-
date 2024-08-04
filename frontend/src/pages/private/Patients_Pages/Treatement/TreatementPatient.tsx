@@ -53,6 +53,7 @@ export default function TreatementPatient() {
           typeDocument={patientInfo?.tipoDocumento}
           financier={patientInfo?.financiador}
           document={patientInfo?.numeroDocumento} 
+          link=""
           >
         </HeaderProfile>
         <div className="p-4">

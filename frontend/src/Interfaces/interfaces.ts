@@ -208,11 +208,10 @@ export interface AuthenticationRequest {
   password: string;
 }
 
-
 export interface AdherenceRequest {
-  comentario: string
-  horarioId: number
-  estado: number
+  comentario: string;
+  horarioId: number;
+  estado: number;
 }
 
 export interface AuthenticationResponse {
@@ -384,4 +383,24 @@ export interface Paciente {
   medicos: string[];
   entidades: string[];
   imagen: string;
+}
+
+export interface Donante {
+  idMedico: number;
+  altura: string;
+  descripcion: string;
+  peso: string;
+  genero: number;
+  factorSanguineo: number;
+  fechaNacimiento: string;
+  provincia: string;
+  localidad: string;
+}
+
+export interface DonantesResponse {
+  content: Donante[];
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
 }

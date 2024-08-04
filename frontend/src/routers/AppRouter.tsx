@@ -32,6 +32,7 @@ import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatme
 import SignUp from "../pages/signup/SignUp";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
+import { Donation_Detail } from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
 
 function AppRouter() {
   return (
@@ -59,13 +60,11 @@ function AppRouter() {
               <Route path="/patient/:id" element={<PatientDetail />} />
               <Route path="/patient/:id/adherence" element={<Adherence />} />
               <Route path="/patient/:id/adherence/:idTratamiento" element={<TreatmentAdherence />} />
-              <Route
-                path="/patient/:id/treatment"
-                element={<TreatmentPatient />}
-              />
+              <Route path="/patient/:id/treatment" element={<TreatmentPatient />} />
               <Route path="/donations" element={<Donations />} />
               <Route path="/donationRegistre" element={<Donation_Registre />} />
-            </Route>
+              <Route path="/donationDetail/:id" element={<Donation_Detail />} />
+            </Route >
             <Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
               <Route path="/patient-home" element={<Home_Patients />} />
               <Route path="/profile" element={<ProfilePatient />} />

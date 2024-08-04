@@ -22,6 +22,8 @@ export function UserInfo(): JSX.Element {
   const [medicInfo, setMedicInfo] = useState<Medic>();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { authTokens } = useAuthContext();
+  
+  
   useEffect(() => {
     const storedCurriculum = localStorage.getItem("curriculum");
     if (storedCurriculum) {

@@ -5,8 +5,8 @@ import { crearDonante, fetchPatient } from '../../../../../Context/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { ContentPatient, Medic, Paciente } from '../../../../../Interfaces/interfaces';
-import { Link } from 'react-router-dom';
+import { ContentPatient } from '../../../../../Interfaces/interfaces';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   nombre: Yup.string().required('Nombre es requerido'),
@@ -31,7 +31,6 @@ const validationSchema = Yup.object({
 });
 
 export function Donation_Registre() {
-  const [medicInfo, setMedicInfo] = useState<Medic>();
   const [patients, setPatienInfo] = useState<ContentPatient>();
   const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
 
@@ -53,12 +52,48 @@ export function Donation_Registre() {
 
 
   const handlePatientSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPatientId(Number(event.target.value)); 
+    setSelectedPatientId(Number(event.target.value));
   };
 
+  /*  const handleSubmit = async (values: any) => {
+ 
+ 
+     const factorSanguineoMap: { [key: string]: number } = {
+       "A+": 0,
+       "A-": 1,
+       "B+": 2,
+       "B-": 3,
+       "O+": 4,
+       "O-": 5
+     };
+ 
+     const data = {
+       medicoId: 10,
+       pacienteId: selectedPatientId,
+       descripcion: values.posibleDonacion,
+       nombre: values.nombre,
+       apellido: values.apellido,
+       altura: String(values.altura),
+       peso: String(values.peso),
+       genero: values.sexo === 'masculino' ? 2 : values.sexo === 'femenino' ? 1 : 0,
+       factorSanguineo: factorSanguineoMap[values.grupoRH] || 0,
+       fechaNacimiento: values.fechaNacimiento,
+       localidad: values.ubicacion,
+       provincia: null
+     };
+ 
+     console.log('Datos enviados:', JSON.stringify(data, null, 2));
+ 
+     try {
+       await crearDonante(data);
+       toast.success('Registro exitoso!');
+     } catch (error) {
+       toast.error('Error al registrar. Inténtalo de nuevo.');
+       console.error('Error al enviar los datos:', error);
+     }
+   }; */
+
   const handleSubmit = async (values: any) => {
-
-
     const factorSanguineoMap: { [key: string]: number } = {
       "A+": 0,
       "A-": 1,
@@ -69,18 +104,18 @@ export function Donation_Registre() {
     };
 
     const data = {
-      medicoId: 0,
+      medicoId: 10,
       pacienteId: selectedPatientId,
-      descripcion: 'Higado',
+      descripcion: values.posibleDonacion,
       nombre: values.nombre,
       apellido: values.apellido,
       altura: String(values.altura),
       peso: String(values.peso),
-      genero: values.sexo === 'masculino' ? 1 : values.sexo === 'femenino' ? 2 : 0,
+      genero: values.sexo === 'masculino' ? 2 : values.sexo === 'femenino' ? 1 : 0,
       factorSanguineo: factorSanguineoMap[values.grupoRH] || 0,
       fechaNacimiento: values.fechaNacimiento,
       localidad: values.ubicacion,
-      provincia: 'Madrid'
+      provincia: ""
     };
 
     console.log('Datos enviados:', JSON.stringify(data, null, 2));
@@ -88,6 +123,9 @@ export function Donation_Registre() {
     try {
       await crearDonante(data);
       toast.success('Registro exitoso!');
+      setTimeout(() => {
+        Navigate({ to: '/donations' })
+      }, 2000);
     } catch (error) {
       toast.error('Error al registrar. Inténtalo de nuevo.');
       console.error('Error al enviar los datos:', error);
@@ -96,8 +134,8 @@ export function Donation_Registre() {
 
   return (
     <main>
-      <Header_Donation>
-        <Link to={"/donations"}></Link>
+      <Header_Donation link='/donations' src='./public/JustinaLogo_2.png'>
+
       </Header_Donation>
       <Formik
         initialValues={{
@@ -116,7 +154,7 @@ export function Donation_Registre() {
       >
         {() => (
           <Form className="flex flex-col ml-4">
-            {/* Campos del formulario */}
+
             <div className="flex flex-col">
               <label htmlFor="nombre" className="mb-3 font-inter font-bold">
                 Nombre
@@ -268,13 +306,12 @@ export function Donation_Registre() {
                 Posible Donación
               </label>
               <Field
-                as="select"
+                type="text"
                 name="posibleDonacion"
+                placeholder="Higado"
                 className="w-[90%] h-14 p-2 border border-violet-color rounded-lg mt-1"
               >
-                <option value="" label="Selecciona" />
-                <option value="Sí" label="Sí" />
-                <option value="No" label="No" />
+
               </Field>
               <div className="text-red-600 mt-1">
                 <ErrorMessage name="posibleDonacion" />

@@ -2,19 +2,24 @@ import { Link } from "react-router-dom";
 import { ArrowWhiteIcon, DonationRegistreIcon, MenuHambuerguesa } from "../../../public/icons/Icons";
 import { useState } from "react";
 
+interface header_Donation {
+    link: string
+    src: string
+}
 
-export function Header_Donation(to: any) {
+
+export function Header_Donation({link, src} : header_Donation) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
-    to = "/dashboard";
+    
     return (
         <header className='mb-10 p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-[#FFA4D7] to-[#C23584] rounded-br-[4rem] shadow-2xl'>
             <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
-                <Link to={to} className='text-light-color absolute -left-4 hover:-translate-x-1 transition-all duration-300'>
+                <Link to={link} className='text-light-color absolute -left-4 hover:-translate-x-1 transition-all duration-300'>
                     <ArrowWhiteIcon width={30} height={30} stroke="" />
                 </Link>
                 <div className="flex items-center justify-center">
@@ -25,7 +30,7 @@ export function Header_Donation(to: any) {
                 </div>
             </div>
             <div className="flex items-center justify-between">
-                <img src="JustinaLogo.png" alt="logo-justina" className=" w-32" />
+                <img src={src} alt="logo-justina" className=" w-32" />
                 <p className=" text-center text-light-color text-sm">Bienvenido(a) Sistema de búsqueda y localización de Justina</p>
             </div>
             <div className='rounded-lg absolute -bottom-3 left-5 py-1 px-3 shadow-md bg-[#5761C8] text-white text-[14px] border-1 border-solid border-[#948ABC]'>

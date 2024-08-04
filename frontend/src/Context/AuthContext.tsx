@@ -78,7 +78,8 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         body: JSON.stringify({ email, password })
       });
 
-
+      console.log(res);
+      
 
       if (res.status == 401) {
         toast.warning("El email o contraseña son incorrectos")
@@ -172,6 +173,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
 
   const registerPatient = async (patient: PatientRegister) => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
+    console.log(token)
     if (token) {
       try {
         const res = await fetch(`${API_URL}/paciente/crear-paciente`, {
@@ -309,8 +311,7 @@ export async function fetchPatient() {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   if (token) {
     try {
-      // Usar la información decodificada si es necesario
-      // Por ejemplo, puedes verificar los roles o permisos del usuario aquí
+      
       const res = await fetch(`${API_URL}/paciente/listar-pacientes-id-medico-conectado`, {
         method: "GET",
         headers: {
@@ -334,7 +335,7 @@ export async function fetchPatient() {
 export const fetchMedicines = async () => {
 
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-
+  console.log("Toke del medico", token)
   if (token) {
     try {
       const res = await fetch(`${API_URL}/medicamento/buscar-medicamentos-activos`, {
@@ -384,7 +385,6 @@ export const fetchPatientSingle = async (id: string | undefined) => {
 
 export const fetchMedicData = async () => {
   const token = localStorage.getItem("TOKEN_KEY");
-
   try {
     const res = await fetch(`${API_URL}/medico/buscar-medico-conectado`, {
       method: "GET",
@@ -557,7 +557,7 @@ export const getAllNotifications = async () => {
 export const crearDonante = async (data: any) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   console.log(token)
-  
+
   try {
     const response = await fetch(`${API_URL}/donante/crear-donante`, {
       method: 'POST',
@@ -606,13 +606,36 @@ export const fetchTreatmentPatient = async (id: string) => {
   }
 }
 
-export async function fetchPatient() {
+export async function fetchDonationConnect() {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   if (token) {
     try {
-      // Usar la información decodificada si es necesario
-      // Por ejemplo, puedes verificar los roles o permisos del usuario aquí
-      const res = await fetch(`${API_URL}/paciente/listar-pacientes-id-medico-conectado`, {
+      const res = await fetch(`${API_URL}/donante/buscar-donantes`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+
+      const data: ContentPatient = await res.json();
+      return data
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+};
+
+
+export async function fetchDonationDetalle() {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (token) {
+    try {
+      const res = await fetch(`${API_URL}/donante/buscar-medico-por-donante`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

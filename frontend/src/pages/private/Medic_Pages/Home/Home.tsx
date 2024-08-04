@@ -53,7 +53,6 @@ export function Home(): JSX.Element {
     }
   };
 
-  console.log(medicInfo?.idMedico)
   
 
   useEffect(() => {
