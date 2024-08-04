@@ -1,6 +1,6 @@
 # Exclude the .idea folder
 .idea/
-
+/.idea
 # Exclude environment files
 .env
 

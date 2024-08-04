@@ -95,4 +95,11 @@ public class NotificacionService {
         // Guarda las notificaciones actualizadas
         notificacionRepository.saveAll(notificaciones);
     }
+
+    public void marcarAdherenciaPorIdNotificacion(Integer idNotificacion) {
+        Notificacion notificacion = notificacionRepository.findById(idNotificacion).orElseThrow(
+                () -> new NullPointerException("Notificación no encontrada"));
+        notificacion.setLeido(true);
+        notificacionRepository.save(notificacion);
+    }
 }
