@@ -69,7 +69,6 @@ export function Patient_Notification(): JSX.Element {
     if (storedMedic) {
       const medic: Paciente = JSON.parse(storedMedic);
       setPatienInfo(medic);
-      console.log("hi");
     }
 
     const storedNotification = localStorage.getItem("PATIENT-NOTIFICATION");

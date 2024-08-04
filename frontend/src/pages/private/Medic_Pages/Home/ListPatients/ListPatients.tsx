@@ -61,9 +61,9 @@ export default function ListPatients() {
         </div>
       </section>
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="font-bold  font-inter text-violet-color">
+        <h3 className="font-bold  font-inter text-violet-color">
           Lista de pacientes
-        </h2>
+        </h3>
       </div>
 
       <section className="w-[100%]">
@@ -121,7 +121,7 @@ export default function ListPatients() {
       <div className="flex items-center justify-center  mt-2">
         <Link
           to={"/patient-list"}
-          className=" shadow-md px-4 border-2 bg-violet-color cursor-pointer w-32 text-center py-1 rounded-xl text-light-color"
+          className=" shadow-md px-4 py-3 border-2 bg-violet-color cursor-pointer w-32 text-center  rounded-xl text-light-color"
         >
           Ver más
         </Link>

@@ -7,7 +7,6 @@ import {
   MenssageIconCora,
   MenuHambuerguesa,
   RelojIcon,
-  SearchIcon,
   TratamentIconTwo,
 } from "../../../../../public/icons/Icons";
 import { Paciente } from "../../../../Interfaces/interfaces";
@@ -120,23 +119,22 @@ export function Home_Patients() {
         ></AsideMenuPatients>
         <header className="flex flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] px-4">
           <div className="flex flex-row  justify-between w-full ">
-            <Link to="/profile">
-              <div className="flex items-center space-x-2">
+            <div className="flex mt-4 items-center space-x-2">
+              <Link to="/profile">
                 <Avatar
                   name={patientInfo?.nombre}
                   color="primary"
                   isBordered
                   size="lg"
                 />
-                <div className="flex flex-col">
-                  <h3 className="text-lg font-bold text-white">Buenos días,</h3>
-                  <p className="font-bold text-white">
-                    {patientInfo?.nombre} {patientInfo?.apellido}
-                  </p>
-                </div>
+              </Link>
+              <div className="flex flex-col text-lg text-white">
+                <h3 className="font-semibold ">Buenos días,</h3>
+                <p className="font-bold ">{patientInfo?.nombre}</p>
               </div>
-            </Link>
-            <div className="flex items-center space-x-4 mt-2">
+            </div>
+
+            <div className="flex items-center space-x-2 mt-2">
               <Link to={"/notification"}>
                 <Badge
                   color="danger"
@@ -145,22 +143,21 @@ export function Home_Patients() {
                   shape="circle"
                   className=" -z-0"
                 >
-                  <CampanaNotificIcon width={26} height={26} stroke="#fff"/>
+                  <CampanaNotificIcon width={30} height={30} stroke="#fff" />
                 </Badge>
               </Link>
 
               <button onClick={toggleSidebar}>
-                <MenuHambuerguesa width={24} height={24} />
+                <MenuHambuerguesa width={30} height={30} stroke="" />
               </button>
             </div>
           </div>
-          <div className="bg-white flex flex-row items-center py-[5px] mt-5 px-4 rounded-3xl ml-3">
-            <SearchIcon width={16} height={16} stroke="" />
-            <input
-              disabled
-              type="text"
-              className="pl-2 py-1 w-full cursor-not-allowed border-none outline-none"
-              placeholder="Buscar"
+          <div className=" flex  justify-center   mt-0  ">
+            <img
+              src="JustinaLogo_2.png"
+              width={110}
+              height={110}
+              alt="JustinaLogo"
             />
           </div>
         </header>
