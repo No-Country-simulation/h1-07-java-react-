@@ -10,7 +10,6 @@ import {
 const API = import.meta.env.VITE_SOME_API;
 export const API_URL = "https://h1-07-java-react.onrender.com";
 
-// Helper function to make fetch requests
 const fetchData = async <T>(
   url: string,
   method: string,
