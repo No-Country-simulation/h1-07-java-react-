@@ -150,8 +150,9 @@ export function Home_Patients() {
           <div className="bg-white flex flex-row items-center py-[5px] mt-5 px-4 rounded-3xl ml-3">
             <SearchIcon width={16} height={16} stroke="" />
             <input
+              disabled
               type="text"
-              className="pl-2 py-1 w-full border-none outline-none"
+              className="pl-2 py-1 w-full cursor-not-allowed border-none outline-none"
               placeholder="Buscar"
             />
           </div>

@@ -1584,7 +1584,7 @@ export function HealthIcon({ width, height }: IconProps) {
       height={height}
       viewBox="0 0 24 24"
       fill="#fff"
-      stroke="currentColor"
+      stroke="#5761C8"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
