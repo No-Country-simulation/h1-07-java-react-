@@ -3,31 +3,20 @@ import { Link } from "react-router-dom";
 import {
   ArrowWhiteIcon,
   CardIcon,
-  EmailIcon,
   HomeIcon,
-  IconPassword,
-  LapizIcon,
   MapIcon,
   MenuHambuerguesa,
-  PhoneIcon,
 } from "../../../../../public/icons/Icons";
 import { Medic } from "../../../../Interfaces/interfaces";
-import { useAuthContext } from "../../../../Context/AuthContext";
 import { AsideMenu } from "../../../../components/AsideMenu";
 import { Logout } from "../../../../components/Logout";
 
 export function UserInfo(): JSX.Element {
-  const [curriculum, setCurriculum] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
+  // const [curriculum, setCurriculum] = useState("");
   const [medicInfo, setMedicInfo] = useState<Medic>();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { authTokens } = useAuthContext();
+  // const { authTokens } = useAuthContext();
   useEffect(() => {
-    const storedCurriculum = localStorage.getItem("curriculum");
-    if (storedCurriculum) {
-      setCurriculum(storedCurriculum);
-    }
-
     const storedMedic = localStorage.getItem("MEDIC-DATA");
     if (storedMedic) {
       const medic: Medic = JSON.parse(storedMedic);
@@ -35,18 +24,9 @@ export function UserInfo(): JSX.Element {
     }
   }, []);
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleSaveClick = () => {
-    setIsEditing(false);
-    localStorage.setItem("curriculum", curriculum);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCurriculum(e.target.value);
-  };
+  // const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   setCurriculum(e.target.value);
+  // };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -58,7 +38,7 @@ export function UserInfo(): JSX.Element {
         <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
-        /> 
+        />
         <header className="p-3 font-inter h-48 flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl">
           <div className=" w-full xl:flex xl:flex-col  xl:justify-center xl:items-center">
             <div className="w-full flex flex-col  ">
@@ -72,7 +52,10 @@ export function UserInfo(): JSX.Element {
                 <h1 className="text-xl font-semibold text-light-color">
                   Detalles de paciente
                 </h1>
-                <button onClick={toggleSidebar} className=" hidden absolute -right-10 max-md:flex">
+                <button
+                  onClick={toggleSidebar}
+                  className=" hidden absolute -right-10 max-md:flex"
+                >
                   <MenuHambuerguesa width={24} height={24} stroke="" />
                 </button>
               </div>
@@ -92,7 +75,6 @@ export function UserInfo(): JSX.Element {
                 </p>
               </div>
             </div>
-            
           </div>
         </header>
         <section className="ml-4 my-8">
@@ -137,10 +119,10 @@ export function UserInfo(): JSX.Element {
               className="px-5 py-3 border-2 border-solid border-gray-400 rounded-xl w-[95%]"
             />
           </div>
-          <div className="flex flex-row mt-4 items-center">
+          {/* <div className="flex flex-row mt-4 items-center">
             <PhoneIcon width={16} height={16} />
             <p className="ml-3 font-inter font-bold">Teléfono</p>
-          </div>
+          </div> */}
           <div className="mt-3 w-full relative">
             <input
               type="text"
@@ -150,7 +132,7 @@ export function UserInfo(): JSX.Element {
             />
           </div>
         </section>
-        <section className="mt-10 ml-6">
+        {/* <section className="mt-10 ml-6">
           <div className="flex flex-row items-center">
             <h3 className="text-[24px] font-inter font-bold">Curriculum</h3>
             <button onClick={handleEditClick} className="ml-2">
@@ -165,8 +147,8 @@ export function UserInfo(): JSX.Element {
               </button>
             )}
           </div>
-        </section>
-        <section className="mt-5 ml-3 mr-3">
+        </section> */}
+        {/* <section className="mt-5 ml-3 mr-3">
           <div className="border-3 p-3 border-solid rounded-xl border-gray-400">
             {isEditing ? (
               <textarea
@@ -178,8 +160,8 @@ export function UserInfo(): JSX.Element {
               <p className="font-inter text-[15px] min-h-20"> {curriculum}</p>
             )}
           </div>
-        </section>
-        <section className="ml-4 mt-5 mb-10">
+        </section> */}
+        {/* <section className="ml-4 mt-5 mb-10">
           <div>
             <h2 className="font-bold text-[24px] font-inter">
               Datos inicio de sesión
@@ -212,7 +194,7 @@ export function UserInfo(): JSX.Element {
               <LapizIcon width={22} height={22} classname="" stroke="" />
             </button>
           </div>
-        </section>
+        </section> */}
         <div className="flex flex-row justify-center">
           <Logout />
         </div>

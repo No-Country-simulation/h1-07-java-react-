@@ -1,18 +1,37 @@
 import { getLocalTimeZone, today } from "@internationalized/date";
 import { EmailIcon, LockIcon } from "../../../public/icons/Icons";
-import { AdherenceRequest, AuthenticationRequest, ClinicHistoryProps, DoctorRegister, PatientRegister, Treatment } from "../../Interfaces/interfaces";
+import {
+  AdherenceRequest,
+  AuthenticationRequest,
+  ClinicHistoryProps,
+  DoctorRegister,
+  PatientRegister,
+  Treatment,
+} from "../../Interfaces/interfaces";
 
 export const tipoTratamientoMap: Record<number, string> = {
-  0: 'Medicación',
-  1: 'Ejercitación',
-  2: 'Nutrición',
-  3: 'Psicologico'
+  0: "Medicación",
+  1: "Ejercitación",
+  2: "Nutrición",
+  3: "Psicologico",
 };
 
 export const dataLoginUser = [
-  { label: 'Correo Electrónico', name: 'email', type: 'email', icon: EmailIcon, placeholder: 'Ej: tumail@mailito.com' },
-  { label: 'Contraseña', name: 'password', type: 'password', icon: LockIcon, placeholder: 'Introduzca contraseña' },
-]
+  {
+    label: "Correo Electrónico",
+    name: "email",
+    type: "email",
+    icon: EmailIcon,
+    placeholder: "Ej: tumail@mailito.com",
+  },
+  {
+    label: "Contraseña",
+    name: "password",
+    type: "password",
+    icon: LockIcon,
+    placeholder: "Introduzca contraseña",
+  },
+];
 
 //DATOS INICIALES DE LOS PACIENTES
 export const initialValuesPatient: PatientRegister = {
@@ -28,13 +47,13 @@ export const initialValuesPatient: PatientRegister = {
   patologiaId: 1,
   medicosId: [1],
   entidadesId: [1],
-  financiadorId: 1
+  financiadorId: 1,
 };
 
 export const initialValuesHistory: ClinicHistoryProps = {
   titulo: "",
   descripcion: "",
-  idPaciente: 12
+  idPaciente: 12,
 };
 
 export const initialValuesDoctor: DoctorRegister = {
@@ -47,20 +66,19 @@ export const initialValuesDoctor: DoctorRegister = {
   localidad: "",
   licencia: "",
   especialidad: 1,
-  financiadores: []
+  financiadores: [],
 };
 
 export const initialValuesLogin: AuthenticationRequest = {
   email: "",
-  password: ""
-}
+  password: "",
+};
 
 export const initialValuesAdherence: AdherenceRequest = {
   comentario: "",
   horarioId: 1,
-  estado: 2
-}
-
+  estado: 2,
+};
 
 export const initialValuesTreatment: Treatment = {
   pacienteId: 10, //modificar con el id del paciente correspendiente
@@ -71,8 +89,8 @@ export const initialValuesTreatment: Treatment = {
   dosisDiaria: 1,
   horaInicio: "12:00",
   diasTotales: 1,
-  fechaInicio: ""
-}
+  fechaInicio: "",
+};
 
 export const initialValuesOthers: Treatment = {
   pacienteId: 10, //modificar con el id del paciente correspendiente
@@ -83,5 +101,5 @@ export const initialValuesOthers: Treatment = {
   dosisDiaria: 1,
   horaInicio: "12:00",
   diasTotales: 1,
-  fechaInicio: String(today(getLocalTimeZone()))
-}
+  fechaInicio: String(today(getLocalTimeZone())),
+};

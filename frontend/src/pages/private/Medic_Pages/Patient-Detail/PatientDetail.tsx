@@ -13,11 +13,15 @@ interface TabInfoProps {
 const tabInfo = [
   {
     tabName: "Historia clínica",
-    component: (props: TabInfoProps) => <ClinicHistory patient={props.patient} />,
+    component: (props: TabInfoProps) => (
+      <ClinicHistory patient={props.patient} />
+    ),
   },
   {
     tabName: "Tratamientos",
-    component: (props: TabInfoProps) => <TreatmentSummary patient={props.patient} />,
+    component: (props: TabInfoProps) => (
+      <TreatmentSummary patient={props.patient} />
+    ),
   },
 ];
 
@@ -32,7 +36,7 @@ export default function PatientDetail() {
         setLoading(true);
         try {
           setPatient(await fetchPatientSingle(id));
-          console.log(patient?.idPaciente)
+          console.log(patient?.idPaciente);
         } catch (err) {
           console.log(err);
         } finally {
@@ -43,8 +47,9 @@ export default function PatientDetail() {
     fetchPatient();
   }, []);
 
-  const ActiveComponent = tabInfo.find(tab => tab.tabName === activeTab)?.component;
-
+  const ActiveComponent = tabInfo.find(
+    (tab) => tab.tabName === activeTab
+  )?.component;
 
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
@@ -65,10 +70,11 @@ export default function PatientDetail() {
                 <button
                   key={tab.tabName}
                   onClick={() => setActiveTab(tab.tabName)}
-                  className={`px-3  cursor-pointer shadow-xl   p-1 rounded-lg border-2 ${activeTab === tab.tabName
+                  className={`px-3  cursor-pointer shadow-xl   p-1 rounded-lg border-2 ${
+                    activeTab === tab.tabName
                       ? "bg-light-color border-violet-color shadow-xl text-violet-color "
                       : "bg-violet-color  border-light-color shadow-xl text-light-color "
-                    }`}
+                  }`}
                 >
                   {tab.tabName}
                 </button>

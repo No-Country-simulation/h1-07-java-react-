@@ -87,9 +87,10 @@ const SignUp: React.FC = () => {
   const handleSubmit = async (values: DoctorRegister) => {
     const doctor: DoctorRegister = {
       ...values,
-      financiadores: values.financiadores.length > 0 ? [values.financiadores[0]] : [1],
+      financiadores:
+        values.financiadores.length > 0 ? [values.financiadores[0]] : [1],
     };
-    console.log(doctor.financiadores)
+    console.log(doctor.financiadores);
     try {
       setLoading(true);
       registerDoctor(doctor);
@@ -125,10 +126,12 @@ const SignUp: React.FC = () => {
                 />
               </Link>
               <div className=" relative w-full flex flex-col items-center justify-center">
-                <h1 className="text-2xl font-bold tracking-tight xl:text-[2rem] xl:mb-2">
+                <h1 className="text-2xl text-black font-bold tracking-tight xl:text-[2rem] xl:mb-2">
                   Crear cuenta
                 </h1>
-                <p className="text-sm">Introduce la información necesaria</p>
+                <p className="text-sm  text-black">
+                  Introduce la información necesaria
+                </p>
                 <Link
                   to={"/login"}
                   className="text-light-color absolute left-0 transition-all duration-300 hover:translate-x-1 cursor-pointer"
@@ -222,7 +225,7 @@ const SignUp: React.FC = () => {
               <div className="text-center xl:w-[40%]">
                 <Link to="/login">
                   <button
-                    onClick={() => { }}
+                    onClick={() => {}}
                     className="w-full mt-2 p-2  xl:hover:text-orange-400 rounded-xl font-semibold text-secondary-brand-dark xl:hover:border-orange-400 border-secondary-brand-dark border-2 "
                   >
                     Iniciar sesión

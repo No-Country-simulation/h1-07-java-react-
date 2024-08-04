@@ -21,10 +21,9 @@ export function Home(): JSX.Element {
     } catch (err) {
       console.log(err);
     }
-  };  
+  };
 
   useEffect(() => {
-
     fetchMedic();
 
     const storedMedic = localStorage.getItem("MEDIC-DATA");
@@ -34,7 +33,6 @@ export function Home(): JSX.Element {
     }
   }, []);
 
-
   return (
     <main className=" bg-gray-100 min-h-screen w-full font-inter">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg m-auto">
@@ -42,16 +40,21 @@ export function Home(): JSX.Element {
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
         />
-        <Header toggleSidebar={toggleSidebar} nombre={medicInfo?.nombre} apellido={medicInfo?.apellido} especialidad={medicInfo?.especialidad}></Header>
+        <Header
+          toggleSidebar={toggleSidebar}
+          nombre={medicInfo?.nombre}
+          apellido={medicInfo?.apellido}
+          especialidad={medicInfo?.especialidad}
+        ></Header>
         <div className="p-4">
-          <Shifts />
+          {/* <Shifts /> */}
           <ListPatients />
         </div>
         <footer className="mt-5 flex justify-center items-center flex-col">
           <h2 className="text-center font-inter font-bold text-2xl">
             Donaciones
           </h2>
-          <img src="JustinaLogo_2.png" width={250} height={250} alt="" />
+          <img src="JustinaLogo_2.png" width={150} height={150} alt="" />
           <Link to={"/donations"}>
             <button className="my-4 bg-[#E08733] px-24 text-white font-inter py-3 rounded-3xl">
               Acceder

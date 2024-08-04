@@ -27,12 +27,13 @@ export function ProfilePatient() {
         <div className="mt-[-6rem]">
           <HeaderProfile
             name={patientInfo?.nombre}
-            title='Detalles del paciente'
+            title="Detalles del paciente"
             lastname={patientInfo?.apellido}
             typeDocument={patientInfo?.tipoDocumento}
             financier={patientInfo?.financiador}
-            document={patientInfo?.numeroDocumento} link={"/patient-home"}>
-          </HeaderProfile>
+            document={patientInfo?.numeroDocumento}
+            link={"/patient-home"}
+          ></HeaderProfile>
         </div>
         <section className="ml-4 my-8 min-h-[50vh] flex flex-col gap-1">
           <div>
