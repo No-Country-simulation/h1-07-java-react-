@@ -1,5 +1,3 @@
-// api.ts
-
 import {
   AuthenticationRequest,
   AuthenticationResponse,
@@ -9,8 +7,8 @@ import {
   RegistrationRequest,
   RolRequest,
 } from "../Interfaces/interfaces";
-
-export const API_URL = "https://h1-07-java-react.onrender.com";
+const API = import.meta.env.VITE_SOME_API;
+export const API_URL = API;
 
 // Helper function to make fetch requests
 const fetchData = async <T>(
