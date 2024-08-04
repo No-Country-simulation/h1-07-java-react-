@@ -29,7 +29,7 @@ Información del Proyecto
 
   <h2>justina.io | Hackaton h1-07-java-react</h2>
 
-<p>Link -> <a href="https://justina-io.netlify.app/">Deploy</a></p>
+<p>Link -> <a href="https://justina-io-h107.netlify.app">Deploy</a></p>
 </div>
 
 <br>
