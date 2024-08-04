@@ -9,49 +9,51 @@ import { ContentPatient } from '../../../../../Interfaces/interfaces';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
-  nombre: Yup.string().required('Nombre es requerido'),
-  apellido: Yup.string().required('Apellido es requerido'),
+  nombre: Yup.string().required("Nombre es requerido"),
+  apellido: Yup.string().required("Apellido es requerido"),
   peso: Yup.number()
-    .typeError('Peso debe ser un número')
-    .required('Peso es requerido')
-    .positive('Debe ser un número positivo')
-    .integer('Debe ser un número entero')
-    .max(999, 'Peso no puede tener más de tres dígitos'),
+    .typeError("Peso debe ser un número")
+    .required("Peso es requerido")
+    .positive("Debe ser un número positivo")
+    .integer("Debe ser un número entero")
+    .max(999, "Peso no puede tener más de tres dígitos"),
   altura: Yup.number()
-    .typeError('Altura debe ser un número')
-    .required('Altura es requerida')
-    .positive('Debe ser un número positivo')
-    .integer('Debe ser un número entero')
-    .max(999, 'Altura no puede tener más de tres dígitos'),
-  sexo: Yup.string().required('Sexo es requerido'),
-  grupoRH: Yup.string().required('Grupo RH es requerido'),
-  fechaNacimiento: Yup.date().required('Fecha de nacimiento es requerida').nullable(),
-  ubicacion: Yup.string().required('Ubicación es requerida'),
-  posibleDonacion: Yup.string().required('Donación requerida')
+    .typeError("Altura debe ser un número")
+    .required("Altura es requerida")
+    .positive("Debe ser un número positivo")
+    .integer("Debe ser un número entero")
+    .max(999, "Altura no puede tener más de tres dígitos"),
+  sexo: Yup.string().required("Sexo es requerido"),
+  grupoRH: Yup.string().required("Grupo RH es requerido"),
+  fechaNacimiento: Yup.date()
+    .required("Fecha de nacimiento es requerida")
+    .nullable(),
+  ubicacion: Yup.string().required("Ubicación es requerida"),
+  posibleDonacion: Yup.string().required("Donación requerida"),
 });
 
 export function Donation_Registre() {
   const [patients, setPatienInfo] = useState<ContentPatient>();
-  const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
-
+  const [selectedPatientId, setSelectedPatientId] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchPatientTwo = async () => {
       try {
         const data = await fetchPatient();
-        console.log(data)
-        setPatienInfo(data)
-
+        console.log(data);
+        setPatienInfo(data);
       } catch (err) {
         console.log(err);
       }
     };
 
-    fetchPatientTwo()
-  }, [])
-
+    fetchPatientTwo();
+  }, []);
 
   const handlePatientSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedPatientId(Number(event.target.value));
     setSelectedPatientId(Number(event.target.value));
   };
 
@@ -118,7 +120,7 @@ export function Donation_Registre() {
       provincia: ""
     };
 
-    console.log('Datos enviados:', JSON.stringify(data, null, 2));
+    console.log("Datos enviados:", JSON.stringify(data, null, 2));
 
     try {
       await crearDonante(data);
@@ -127,8 +129,8 @@ export function Donation_Registre() {
         Navigate({ to: '/donations' })
       }, 2000);
     } catch (error) {
-      toast.error('Error al registrar. Inténtalo de nuevo.');
-      console.error('Error al enviar los datos:', error);
+      toast.error("Error al registrar. Inténtalo de nuevo.");
+      console.error("Error al enviar los datos:", error);
     }
   };
 
@@ -139,15 +141,15 @@ export function Donation_Registre() {
       </Header_Donation>
       <Formik
         initialValues={{
-          nombre: '',
-          apellido: '',
-          peso: '',
-          altura: '',
-          sexo: '',
-          grupoRH: '',
-          fechaNacimiento: '',
-          ubicacion: '',
-          posibleDonacion: ''
+          nombre: "",
+          apellido: "",
+          peso: "",
+          altura: "",
+          sexo: "",
+          grupoRH: "",
+          fechaNacimiento: "",
+          ubicacion: "",
+          posibleDonacion: "",
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -231,7 +233,10 @@ export function Donation_Registre() {
 
             <div className="flex flex-row gap-x-5 w-full justify-between">
               <div className="flex flex-col w-[50%]">
-                <label htmlFor="sexo" className="font-bold flex items-center gap-2">
+                <label
+                  htmlFor="sexo"
+                  className="font-bold flex items-center gap-2"
+                >
                   Sexo
                 </label>
                 <Field
@@ -336,13 +341,14 @@ export function Donation_Registre() {
               </select>
             </div>
 
-            <div className='flex justify-center mb-20 mt-5'>
+            <div className="flex justify-center mb-20 mt-5">
               <button
                 type="submit"
                 className="w-[70%] bg-orange-500 text-white py-3 rounded-lg mt-5"
               >
                 Registrar Donante
-              </button></div>
+              </button>
+            </div>
           </Form>
         )}
       </Formik>

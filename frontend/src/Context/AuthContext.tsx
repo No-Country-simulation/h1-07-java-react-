@@ -7,31 +7,41 @@ import {
   useState,
 } from "react";
 
-import { AuthContextProps, AuthTokens, ClinicHistoryProps, ContentMedicines, ContentPatient, DoctorRegister, PatientRegister, ResponseRequest, tokenData, Treatment } from "../Interfaces/interfaces";
+import {
+  AuthContextProps,
+  AuthTokens,
+  ClinicHistoryProps,
+  ContentMedicines,
+  ContentPatient,
+  DoctorRegister,
+  PatientRegister,
+  ResponseRequest,
+  tokenData,
+  Treatment,
+} from "../Interfaces/interfaces";
 import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
 
-const AUTH_TOKEN_KEY = "TOKEN_KEY"
-const AUTH_INFO_USER = "USER_INFO"
+const AUTH_TOKEN_KEY = "TOKEN_KEY";
+const AUTH_INFO_USER = "USER_INFO";
 
 export const AuthContext = createContext<AuthContextProps>({
   login: () => { },
   logout: () => { },
   isLoggedIn: false,
   authTokens: null,
-  userName: '',
+  userName: "",
   roles: [],
   registerDoctor: () => { },
   registerPatient: () => { },
   registerTreatment: () => { },
   createRole: async (email: string, role: string): Promise<void> => {
-
     try {
-      const response = await fetch('/api/roles', {
-        method: 'POST',
+      const response = await fetch("/api/roles", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email,
@@ -40,32 +50,38 @@ export const AuthContext = createContext<AuthContextProps>({
       });
 
       if (response.ok) {
-        console.log('Role created successfully!');
+        console.log("Role created successfully!");
       } else {
-        console.error('Failed to create role.');
+        console.error("Failed to create role.");
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error("An error occurred:", error);
     }
   },
 });
 
-
-export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
-
-  const authTokensInLocalStorage = typeof window !== "undefined"
-    ? window.localStorage.getItem(AUTH_INFO_USER) : null;
+export const AuthContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const authTokensInLocalStorage =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem(AUTH_INFO_USER)
+      : null;
 
   const [authTokens, setAuthTokens] = useState<AuthTokens | null>(
     authTokensInLocalStorage ? JSON.parse(authTokensInLocalStorage) : null
   );
 
   const [userName, setUserName] = useState<string>(
-    authTokensInLocalStorage ? JSON.parse(authTokensInLocalStorage).email : ''
+    authTokensInLocalStorage ? JSON.parse(authTokensInLocalStorage).email : ""
   );
 
   const [roles, setRoles] = useState<string[]>(
-    authTokensInLocalStorage ? JSON.parse(authTokensInLocalStorage).authorities : []
+    authTokensInLocalStorage
+      ? JSON.parse(authTokensInLocalStorage).authorities
+      : []
   );
 
   const login = async (email: string, password: string) => {
@@ -73,16 +89,16 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       const res = await fetch(`${API_URL}/auth/autenticar`, {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       console.log(res);
-      
+
 
       if (res.status == 401) {
-        toast.warning("El email o contraseña son incorrectos")
+        toast.warning("El email o contraseña son incorrectos");
       }
 
       if (!res.ok) {
@@ -92,23 +108,22 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       const data = await res.json();
 
       if (data.token) {
-        toast.success('¡Inicio de sesión exitoso!');
-        window.location.href = '/dashboard'
-        const token = data.token
-        const infoToken: tokenData = jwtDecode(token)
+        toast.success("¡Inicio de sesión exitoso!");
+        window.location.href = "/dashboard";
+        const token = data.token;
+        const infoToken: tokenData = jwtDecode(token);
         const dataToken: AuthTokens = {
           token: token,
           email: infoToken.fullName,
           iat: infoToken.iat,
           exp: infoToken.exp,
-          authorities: infoToken.authorities
-        }
+          authorities: infoToken.authorities,
+        };
         setAuthTokens(dataToken);
         window.localStorage.setItem(AUTH_INFO_USER, JSON.stringify(dataToken));
-        window.localStorage.setItem(AUTH_TOKEN_KEY, data.token)
+        window.localStorage.setItem(AUTH_TOKEN_KEY, data.token);
       }
-
-    } catch (err: any) {
+    } catch (err) {
       console.log(err);
     }
   };
@@ -116,34 +131,32 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   const logout = useCallback(() => {
     window.localStorage.removeItem(AUTH_TOKEN_KEY);
     window.localStorage.removeItem(AUTH_INFO_USER);
-    window.localStorage.removeItem('MEDIC-DATA');
-    window.localStorage.removeItem('PATIENT-DATA');
+    window.localStorage.removeItem("MEDIC-DATA");
+    window.localStorage.removeItem("PATIENT-DATA");
 
     setAuthTokens(null);
-    setUserName('');
+    setUserName("");
     setRoles([]);
   }, []);
-
 
   const registerDoctor = async (doctor: DoctorRegister) => {
     try {
       const res = await fetch(`${API_URL}/auth/registrar-medico`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(doctor)
+        body: JSON.stringify(doctor),
       });
 
-
       if (res.status === 202) {
-        window.location.href = '/login'
+        window.location.href = "/login";
       }
 
       if (res.status == 500) {
-        toast.warning("Sucedió un error en el servidor inténtalo mas tarde")
+        toast.warning("Sucedió un error en el servidor inténtalo mas tarde");
       }
 
       if (res.status == 400) {
-        toast.warning("El email ingresado ya existe")
+        toast.warning("El email ingresado ya existe");
       }
 
       if (!res.ok) {
@@ -151,22 +164,24 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       }
 
       const data = await res.json();
-      await createRole(doctor.email, 'DOCTOR');
+      await createRole(doctor.email, "DOCTOR");
 
       if (data) {
         toast.success("Su cuenta fue creada correctamente");
         const userName = data.nombre;
-        window.location.href = '/login'
+        window.location.href = "/login";
         setUserName(userName);
-        localStorage.setItem(AUTH_INFO_USER, JSON.stringify({ email: doctor.email, nombre: userName }));
-        setRoles(prevRoles => [...prevRoles, 'DOCTOR']);
-
+        localStorage.setItem(
+          AUTH_INFO_USER,
+          JSON.stringify({ email: doctor.email, nombre: userName })
+        );
+        setRoles((prevRoles) => [...prevRoles, "DOCTOR"]);
       } else {
         throw new Error("Nombre del doctor no recibido");
       }
-    } catch (err: any) {
-      if (err.status === 400) {
-        toast.error('El email ya está registrado');
+    } catch (err) {
+      if (err) {
+        toast.error("El email ya está registrado");
       }
     }
   };
@@ -180,9 +195,9 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            'Authorization': `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(patient)
+          body: JSON.stringify(patient),
         });
 
         if (res.status === 500) {
@@ -190,17 +205,16 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         }
 
         if (!res.ok) {
-          console.error('HTTP error', res.status);
-          throw new Error('Network response was not ok');
+          console.error("HTTP error", res.status);
+          throw new Error("Network response was not ok");
         }
 
         toast.success("El paciente fue creado correctamente");
-        window.location.href = '/patient-list'
+        window.location.href = "/patient-list";
 
         //await createRole(patient.email, 'PATIENT');
         //setRoles(prevRoles => [...prevRoles, 'PATIENT']);
-
-      } catch (err: any) {
+      } catch (err) {
         console.log(err);
       }
     }
@@ -212,8 +226,11 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       try {
         const res = await fetch(`${API_URL}/rol/crear-rol`, {
           method: "POST",
-          headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${token}` },
-          body: JSON.stringify({ email, role })
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ email, role }),
         });
 
         if (!res.ok) {
@@ -224,7 +241,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         console.log(data);
 
         toast.success("Rol asignado exitosamente");
-      } catch (err: any) {
+      } catch (err) {
         console.error(err);
         toast.error("Error al asignar rol");
       }
@@ -246,36 +263,46 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     };
   }, []);
 
-  const value = useMemo<AuthContextProps>(() => ({
-    login,
-    logout,
-    authTokens,
-    userName,
-    roles,
-    isLoggedIn: !!authTokens,
-    registerDoctor,
-    registerPatient,
-    registerTreatment,
-    createRole: (email, role) => createRole(email, role),
-  }), [authTokens, login, logout, registerDoctor, registerPatient, registerTreatment, roles, createRole]);
+  const value = useMemo<AuthContextProps>(
+    () => ({
+      login,
+      logout,
+      authTokens,
+      userName,
+      roles,
+      isLoggedIn: !!authTokens,
+      registerDoctor,
+      registerPatient,
+      registerTreatment,
+      createRole: (email, role) => createRole(email, role),
+    }),
+    [
+      authTokens,
+      login,
+      logout,
+      registerDoctor,
+      registerPatient,
+      registerTreatment,
+      roles,
+      createRole,
+    ]
+  );
 
-  return <AuthContext.Provider value={value}>
-    {children}
-  </AuthContext.Provider>;
-
-
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuthContext debe ser utilizado dentro de AuthContextProvider");
+    throw new Error(
+      "useAuthContext debe ser utilizado dentro de AuthContextProvider"
+    );
   }
   return context;
 };
 
 async function registerTreatment(treatment: Treatment) {
-  const token = localStorage.getItem('TOKEN_KEY');
+  const token = localStorage.getItem("TOKEN_KEY");
 
   if (token) {
     try {
@@ -283,35 +310,34 @@ async function registerTreatment(treatment: Treatment) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(treatment)
-      })
+        body: JSON.stringify(treatment),
+      });
       // if (!res.ok) {
       //   throw new Error(`Response status: ${res.status}`);
       // }
 
-      const data: ResponseRequest = await res.json()
-      console.log(data)
+      const data: ResponseRequest = await res.json();
+
       if (data.businessErrorCode === 404) {
-        toast.warning("Seleccionar un medicamento")
+        toast.warning("Seleccionar un medicamento");
       }
-      console.log(res)
+
       if (res.status === 200) {
-        toast.success("El tratamiento fue creado correctamente")
+        toast.success("El tratamiento fue creado correctamente");
       }
-    } catch (err: any) {
-      toast.success("El tratamiento fue creado correctamente")
+    } catch (err) {
+      toast.success("El tratamiento fue creado correctamente");
     }
   }
-
 }
 
 export async function fetchPatient() {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   if (token) {
     try {
-      
+
       const res = await fetch(`${API_URL}/paciente/listar-pacientes-id-medico-conectado`, {
         method: "GET",
         headers: {
@@ -325,63 +351,65 @@ export async function fetchPatient() {
       }
 
       const data: ContentPatient = await res.json();
-      return data
-    } catch (err: any) {
+      return data;
+    } catch (err) {
       console.log(err);
     }
   }
-};
+}
 
 export const fetchMedicines = async () => {
-
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   console.log("Toke del medico", token)
   if (token) {
     try {
-      const res = await fetch(`${API_URL}/medicamento/buscar-medicamentos-activos`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
-        },
-      })
+      const res = await fetch(
+        `${API_URL}/medicamento/buscar-medicamentos-activos`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`);
       }
 
-      const data: ContentMedicines = await res.json()
-      return data
-
-    } catch (err: any) {
-      console.log(err)
+      const data: ContentMedicines = await res.json();
+      return data;
+    } catch (err) {
+      console.log(err);
     }
   }
-}
+};
 
 export const fetchPatientSingle = async (id: string | undefined) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
-
-
   try {
-    const res = await fetch(`${API_URL}/paciente/buscar-paciente-id-medico-conectado?idPaciente=${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`
-      },
-    })
+    const res = await fetch(
+      `${API_URL}/paciente/buscar-paciente-id-medico-conectado?idPaciente=${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
-    const data = await res.json()
-    return data
-  } catch (err: any) {
-    console.log(err)
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
 export const fetchMedicData = async () => {
   const token = localStorage.getItem("TOKEN_KEY");
@@ -390,70 +418,76 @@ export const fetchMedicData = async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
-    const data = await res.json()
-    localStorage.setItem("MEDIC-DATA", JSON.stringify(data))
+    const data = await res.json();
+    localStorage.setItem("MEDIC-DATA", JSON.stringify(data));
 
-    return data
-  } catch (err: any) {
-    console.error(err)
+    return data;
+  } catch (err) {
+    console.error(err);
   }
-}
+};
 
 export const fetchClinicHistory = async (id: string | undefined) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   try {
-    const res = await fetch(`${API_URL}/historia-clinica/historia-clinica-por-id-paciente?idPaciente=${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`
-      },
-    })
-
+    const res = await fetch(
+      `${API_URL}/historia-clinica/historia-clinica-por-id-paciente?idPaciente=${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
 
-    const data = await res.json()
-    return data
-
-  } catch (err: any) {
-    console.log(err)
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
-export
-  const registerClinicHistory = async (id: string, historyClinic: ClinicHistoryProps) => {
-    const token = localStorage.getItem(AUTH_TOKEN_KEY);
+export const registerClinicHistory = async (
+  id: string,
+  historyClinic: ClinicHistoryProps
+) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
-    try {
-      const res = await fetch(`${API_URL}/historia-clinica/crear-caso?idPaciente=${id}`, {
+  try {
+    const res = await fetch(
+      `${API_URL}/historia-clinica/crear-caso?idPaciente=${id}`,
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(historyClinic)
-      })
-
-      if (!res.ok) {
-        throw new Error("Fail:" + res.status);
+        body: JSON.stringify(historyClinic),
       }
-      const data = await res.json()
-      console.log(data)
-    } catch (err: any) {
-      console.log(err)
+    );
+
+    if (!res.ok) {
+      throw new Error("Fail:" + res.status);
     }
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.log(err);
   }
+};
 
 export const fetchPatientConnect = async () => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
@@ -463,21 +497,21 @@ export const fetchPatientConnect = async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
-    const data = await res.json()
-    localStorage.setItem("PATIENT-DATA", JSON.stringify(data))
+    const data = await res.json();
+    localStorage.setItem("PATIENT-DATA", JSON.stringify(data));
 
-    return data
-  } catch (err: any) {
-    console.error(err)
+    return data;
+  } catch (err) {
+    console.error(err);
   }
-}
+};
 
 export const fetchNotifications = async () => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
@@ -488,7 +522,7 @@ export const fetchNotifications = async () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -496,15 +530,15 @@ export const fetchNotifications = async () => {
         throw new Error("Sucedio un error");
       }
 
-      const data = await res.json()
-      localStorage.setItem('PATIENT-NOTIFICATION', JSON.stringify(data))
+      const data = await res.json();
+      localStorage.setItem("PATIENT-NOTIFICATION", JSON.stringify(data));
 
-      return data
-    } catch (err: any) {
-      console.log(err)
+      return data;
+    } catch (err) {
+      console.log(err);
     }
   }
-}
+};
 
 export const markNotificationsAsRead = async () => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
@@ -514,7 +548,7 @@ export const markNotificationsAsRead = async () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -523,12 +557,11 @@ export const markNotificationsAsRead = async () => {
       }
 
       toast.success("Las notificaciones fueron leídas correctamente");
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
     }
   }
 };
-
 
 export const getAllNotifications = async () => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
@@ -538,7 +571,7 @@ export const getAllNotifications = async () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -547,8 +580,8 @@ export const getAllNotifications = async () => {
       }
 
       const data = await res.json();
-      return data
-    } catch (err: any) {
+      return data;
+    } catch (err) {
       console.error(err);
     }
   }
@@ -560,23 +593,22 @@ export const crearDonante = async (data: any) => {
 
   try {
     const response = await fetch(`${API_URL}/donante/crear-donante`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
     });
-    console.log(response)
+    console.log(response);
 
     if (!response.ok) {
       const errorText = await response.text(); // Lee el texto de la respuesta para obtener detalles
       throw new Error(`Error en la solicitud: ${errorText}`);
     }
 
-
     const result = await response.json();
-    console.log(result)
+
     return result;
   } catch (error) {
     throw new Error(`Error al crear donante: `);
@@ -587,19 +619,22 @@ export const fetchTreatmentPatient = async (id: string) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   if (id) {
     try {
-      const res = await fetch(`${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
-        },
-      })
+      const res = await fetch(
+        `${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`);
       }
 
-      const data = await res.json()
-      return data
+      const data = await res.json();
+      return data;
     } catch (error) {
       console.log(error)
     }

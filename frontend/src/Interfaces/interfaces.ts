@@ -212,6 +212,9 @@ export interface AdherenceRequest {
   comentario: string;
   horarioId: number;
   estado: number;
+  comentario: string;
+  horarioId: number;
+  estado: number;
 }
 
 export interface AuthenticationResponse {

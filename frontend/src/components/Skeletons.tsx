@@ -87,7 +87,67 @@ export const SkeletonNotification = () => {
         </div>
       </div>
     </>
-
   )
 }
 
+export const TreatmentSkeleton = () => {
+  return (
+    <>
+      <div className="animate-pulse">
+        <div className="border-2 p-2 rounded-md border-violet-color mb-4">
+          <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded-md"></div>
+        </div>
+      </div>
+      <div className="animate-pulse">
+        <div className="border-2 p-2 rounded-md border-violet-color mb-4">
+          <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded-md"></div>
+        </div>
+      </div>
+      <div className="animate-pulse">
+        <div className="border-2 p-2 rounded-md border-violet-color mb-4">
+          <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded-md"></div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const TreatmentSkeletonSummary = () => {
+  return (
+    <>
+      <div className="animate-pulse border-2 p-2 rounded-md border-violet-color mb-4">
+        <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
+        <ul className="ml-6 list-disc">
+          <li className="h-4 bg-gray-300 rounded-md mb-2 w-3/4"></li>
+          <li className="h-4 bg-gray-300 rounded-md mb-2 w-1/2"></li>
+        </ul>
+        <div className="mt-4">
+          <div className="h-5 bg-gray-300 rounded-md mb-2 w-1/4"></div>
+          <ul className="ml-6 list-disc">
+            <li className="h-4 bg-gray-300 rounded-md mb-2 w-3/4"></li>
+            <li className="h-4 bg-gray-300 rounded-md mb-2 w-1/2"></li>
+            <li className="h-4 bg-gray-300 rounded-md w-1/4"></li>
+          </ul>
+        </div>
+      </div>
+      <div className="animate-pulse border-2 p-2 rounded-md border-violet-color mb-4">
+        <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
+        <ul className="ml-6 list-disc">
+          <li className="h-4 bg-gray-300 rounded-md mb-2 w-3/4"></li>
+          <li className="h-4 bg-gray-300 rounded-md mb-2 w-1/2"></li>
+        </ul>
+        <div className="mt-4">
+          <div className="h-5 bg-gray-300 rounded-md mb-2 w-1/4"></div>
+          <ul className="ml-6 list-disc">
+            <li className="h-4 bg-gray-300 rounded-md mb-2 w-3/4"></li>
+            <li className="h-4 bg-gray-300 rounded-md mb-2 w-1/2"></li>
+            <li className="h-4 bg-gray-300 rounded-md w-1/4"></li>
+          </ul>
+        </div>
+      </div>
+    </>
+  );
+};

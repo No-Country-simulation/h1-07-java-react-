@@ -29,6 +29,7 @@ import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDe
 import Adherence from "../pages/private/Medic_Pages/Adherence/Adherence";
 import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/TreatmentAdherence/TreatmentAdherence";
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
+import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
 import SignUp from "../pages/signup/SignUp";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
@@ -82,7 +83,6 @@ function AppRouter() {
           </RoutesWithNotFound>
         </BrowserRouter>
         <Toaster richColors></Toaster>
-
       </AuthContextProvider>
     </>
   );

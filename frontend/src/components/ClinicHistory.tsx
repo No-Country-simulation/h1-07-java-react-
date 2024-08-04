@@ -23,11 +23,16 @@ import {
 import { Field, Form, Formik } from "formik";
 import { initialValuesHistory } from "../utils/data/data";
 import { validationHistoryClinic } from "../utils/validation/validation";
-import { VoiceTranscript } from "./VoiceTranscript";
+
 import { toast } from "sonner";
 import { SkeletonAcordion } from "./Skeletons";
+import { VoiceTranscript } from "./VoiceTranscript";
 
-export default function ClinicHistory({ patient }: { patient: Patient | undefined }) {
+export default function ClinicHistory({
+  patient,
+}: {
+  patient: Patient | undefined;
+}) {
   const { id } = useParams();
   const [clinicHistories, setClinicHistories] =
     useState<ContentClinicHistory>();
@@ -41,15 +46,16 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
   };
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
-    const trimmedTranscript = transcript.trim(); // Eliminar espacios al inicio y al final
-    const defaultDescription = "Descripción por defecto"; 
+    const trimmedTranscript = transcript.trim();
+    const defaultDescription = "Descripción por defecto";
 
-    const description = trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
+    const description =
+      trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
     if (id) {
       const historyClinic: ClinicHistoryProps = {
         ...values,
         descripcion: description,
-        idPaciente: Number(id)
+        idPaciente: Number(id),
       };
 
       try {
@@ -57,8 +63,8 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
         toast.success("La historia clinica fue registrada correctamente");
         fetchDataHistory();
         onClose();
-        setTranscript(""); // Limpiar el transcript después de registrar
-      } catch (err: any) {
+        setTranscript("");
+      } catch (err) {
         console.error(err);
       }
     }
@@ -73,8 +79,13 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
       setLoading(true);
       try {
         const data = await fetchClinicHistory(id);
-        // Ordenar el historial clínico por fecha, de más reciente a más antiguo
-        const sortedData = data.content.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+
+        const sortedData = data.content.sort(
+          (
+            a: { fecha: string | number | Date },
+            b: { fecha: string | number | Date }
+          ) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
+        );
         setClinicHistories({ ...data, content: sortedData });
       } catch (err) {
         console.log(err);
@@ -82,7 +93,7 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
         setLoading(false);
       }
     }
-  }
+  };
 
   return (
     <div className="p-6 flex-col gap-3 flex">
@@ -90,11 +101,28 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
       <div className="border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
         <h6 className="font-bold text-lg">Datos</h6>
         <div className="ml-6 list-disc tracking-wide">
-          <p className="text-medium leading-9"><span className="font-semibold">Nombre Completo</span>: {patient?.nombre} {patient?.apellido}</p>
-          <p className="text-medium leading-9"><span className="font-semibold">Financiador</span>: {patient?.financiador}</p>
-          <p className="text-medium leading-9"><span className="font-semibold">Tipo de Documento</span>: {patient?.tipoDocumento} {patient?.numeroDocumento}</p>
-          <p className="text-medium leading-9"><span className="font-semibold">Médicos a cargo</span>: {patient?.medicos.map((medico) => (<span key={medico}>{medico} </span>))}</p>
-          <p className="text-medium leading-9"><span className="font-semibold">Hospitales</span>: {patient?.entidades}</p>
+          <p className="text-medium leading-9">
+            <span className="font-semibold">Nombre Completo</span>:{" "}
+            {patient?.nombre} {patient?.apellido}
+          </p>
+          <p className="text-medium leading-9">
+            <span className="font-semibold">Financiador</span>:{" "}
+            {patient?.financiador}
+          </p>
+          <p className="text-medium leading-9">
+            <span className="font-semibold">Tipo de Documento</span>:{" "}
+            {patient?.tipoDocumento} {patient?.numeroDocumento}
+          </p>
+          <p className="text-medium leading-9">
+            <span className="font-semibold">Médicos a cargo</span>:{" "}
+            {patient?.medicos.map((medico) => (
+              <span key={medico}>{medico} </span>
+            ))}
+          </p>
+          <p className="text-medium leading-9">
+            <span className="font-semibold">Hospitales</span>:{" "}
+            {patient?.entidades}
+          </p>
         </div>
       </div>
       <h5 className="font-bold text-xl text-violet-color">Historia Clinica</h5>
@@ -130,7 +158,7 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
                     <AccordionItem
                       aria-label={history.titulo}
                       title={`${history.titulo} ${history.fecha}`}
-                      className="w-full border-2 border-violet-color"
+                      className="w-full  border-2 border-violet-color"
                     >
                       {history.descripcion}
                     </AccordionItem>
@@ -173,16 +201,33 @@ export default function ClinicHistory({ patient }: { patient: Patient | undefine
                           </label>
                           <Field
                             id="titulo"
+                            required
                             type="text"
                             name="titulo"
                             className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Título de la historia clinica"
                           ></Field>
                         </div>
-                        <VoiceTranscript onTranscriptChange={handleTranscriptChange} label={"Descripción"} />
+                        <VoiceTranscript
+                          onTranscriptChange={handleTranscriptChange}
+                          label={"Descripción"}
+                        />
                         <div className="flex justify-center gap-2">
-                          <Button disabled={isSubmitting} type="submit" className="w-2/4 mb-10 bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color">Registrar</Button>
-                          <Button className="rounded-md w-2/4 border-2 border-red-300" color="danger" variant="light" onPress={onClose}>Cancelar</Button>
+                          <Button
+                            disabled={isSubmitting}
+                            type="submit"
+                            className="w-2/4 mb-10 bg-secondary-brand-dark font-semibold h-10 rounded-md text-light-color"
+                          >
+                            Registrar
+                          </Button>
+                          <Button
+                            className="rounded-md w-2/4 border-2 border-red-300"
+                            color="danger"
+                            variant="light"
+                            onPress={onClose}
+                          >
+                            Cancelar
+                          </Button>
                         </div>
                       </Form>
                     )}

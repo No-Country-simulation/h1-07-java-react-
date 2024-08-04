@@ -19,7 +19,7 @@ export const Footer = () => {
           </h6>
           <ul className="flex flex-col list-none text-gray-400 leading-8 font-normal">
             <li>
-              <a href="/faq">Preguntas frecuentes</a>
+              <a href="/#faq">Preguntas frecuentes</a>
             </li>
           </ul>
         </div>

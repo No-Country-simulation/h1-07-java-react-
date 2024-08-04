@@ -2,25 +2,19 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   CaledarIcon,
-  CampanaNotificIcon,
-  CerebroIcon,
-  DonationIconTwo,
-  EjercicioIcon,
   HistoryIconThree,
+  MenssageIconCora,
   MenuHambuerguesa,
   RelojIcon,
   SearchIcon,
   TratamentIconTwo,
 } from "../../../../../public/icons/Icons";
 import { Paciente } from "../../../../Interfaces/interfaces";
-import {
-  fetchNotifications,
-  fetchPatientConnect,
-} from "../../../../Context/AuthContext";
+import { fetchNotifications } from "../../../../Context/AuthContext";
 import { toast } from "sonner";
-import { AsideMenuPatients } from "../../../../Components/AsideMenuPatients";
+import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
 import { Avatar } from "@nextui-org/avatar";
-import { Badge } from "@nextui-org/badge";
+import { PopoverMessage } from "../../../../components/PopoverMessage";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -44,40 +38,43 @@ const patientOptions = [
     label: "Tratamiento",
   },
   {
-    to: "/patient-tratamiento",
-    icon: <EjercicioIcon width={45} height={45} />,
-    label: "Ejercicio",
-  },
-  {
-    to: "/patient-tratamiento",
-    icon: <CerebroIcon width={45} height={45} />,
-    label: "Psicologia",
-  },
-  {
-    to: "/patient-tratamiento",
-    icon: <DonationIconTwo width={45} height={45} />,
-    label: "Donaciones",
-  },
-  {
     to: "/history",
     icon: <HistoryIconThree width={45} height={45} />,
     label: "Historial",
+  },
+  // {
+  //   to: "/patient-tratamiento",
+  //   icon: <CerebroIcon width={45} height={45} />,
+  //   label: "Psicologia",
+  // },
+  // {
+  //   to: "/patient-tratamiento",
+  //   icon: <DonationIconTwo width={45} height={45} />,
+  //   label: "Donaciones",
+  // },
+  {
+    to: "/chat-cora",
+    icon: <MenssageIconCora width={45} height={45} />,
+    label: "Cora",
   },
 ];
 
 export function Home_Patients() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const [patientInfo, setPatienInfo] = useState<Paciente>();
+
   const [notifications, setNotifications] = useState<NotificationProps[]>();
 
-  const fetchPatient = async () => {
-    try {
-      setPatienInfo(await fetchPatientConnect());
-    } catch (err) {
-      console.log(err);
+  const [patientInfo, setPatienInfo] = useState<Paciente>();
+
+  useEffect(() => {
+    const storedMedic = localStorage.getItem("PATIENT-DATA");
+
+    if (storedMedic) {
+      const medic: Paciente = JSON.parse(storedMedic);
+      setPatienInfo(medic);
     }
-  };
+  }, []);
 
   const getNotifications = async () => {
     try {
@@ -88,7 +85,6 @@ export function Home_Patients() {
   };
 
   useEffect(() => {
-    fetchPatient();
     getNotifications();
 
     if (notifications && notifications?.length != 0) {
@@ -126,8 +122,8 @@ export function Home_Patients() {
                   isBordered
                   size="lg"
                 />
-                <div>
-                  <h1 className="text-lg font-bold text-white">Buenos días,</h1>
+                <div className="flex flex-col">
+                  <h3 className="text-lg font-bold text-white">Buenos días,</h3>
                   <p className="font-bold text-white">
                     {patientInfo?.nombre} {patientInfo?.apellido}
                   </p>
@@ -135,7 +131,7 @@ export function Home_Patients() {
               </div>
             </Link>
             <div className="flex items-center space-x-4 mt-2">
-              <Link to={"/notification"}>
+              {/* <Link to={"/notification"}>
                 <Badge
                   color="danger"
                   content={notifications?.length}
@@ -144,7 +140,7 @@ export function Home_Patients() {
                 >
                   <CampanaNotificIcon width={26} height={26} />
                 </Badge>
-              </Link>
+              </Link> */}
 
               <button onClick={toggleSidebar}>
                 <MenuHambuerguesa width={24} height={24} />
@@ -154,8 +150,9 @@ export function Home_Patients() {
           <div className="bg-white flex flex-row items-center py-[5px] mt-5 px-4 rounded-3xl ml-3">
             <SearchIcon width={16} height={16} stroke="" />
             <input
+              disabled
               type="text"
-              className="pl-2 py-1 w-full border-none outline-none"
+              className="pl-2 py-1 w-full cursor-not-allowed border-none outline-none"
               placeholder="Buscar"
             />
           </div>
@@ -163,7 +160,7 @@ export function Home_Patients() {
         <div className="ml-5 mt-10">
           <h3 className="font-bold font-inter text-2xl">Categorías</h3>
         </div>
-        <section className="px-4 py-2 grid grid-cols-3 gap-4">
+        <section className="px-4 py-2 grid grid-cols-2  gap-4">
           {patientOptions.map((option, index) => (
             <Link
               to={option.to}
@@ -171,9 +168,9 @@ export function Home_Patients() {
               className="flex flex-col items-center"
             >
               <div
-                className={` bg-slate-100 w-[7rem] h-[7rem] rounded-3xl flex items-center justify-center`}
+                className={` bg-slate-100 hover:bg-slate-200  transition-all duration-[250ms] ease-out   hover:w-[7.2rem] hover:h-[7.2rem] w-[7rem] h-[7rem] rounded-3xl flex items-center justify-center`}
               >
-                <div className="w-[6.5rem] h-[6.5rem] rounded-full flex  justify-center items-center">
+                <div className="w-[6.5rem]  h-[6.5rem] rounded-full flex  justify-center items-center">
                   {option.icon}
                 </div>
               </div>
@@ -185,25 +182,25 @@ export function Home_Patients() {
           <div className="w-[90%] ">
             <div className="flex flex-col ml-2  ">
               <h3 className="font-semibold text-lg text-gray-500 font-inter">
-                Próxima Cita
+                Tú Próxima Cita
               </h3>
             </div>
             <div className="flex flex-col mt-10 p-3 w-full border-1 border-solid border-gray-400 rounded-xl mb-10">
-              <Link to={"/Medic_Appointment"} className="">
-                <div className="flex flex-row ">
-                  <div className="flex flex-col">
-                    <h3 className="text-2xl font-inter font-bold ">
-                      Dra. Peters
-                    </h3>
-                    <p className="font-inter text-gray-400 ">Nutriologa</p>
-                  </div>
-                  <img
-                    src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.webp"
-                    className="rounded-full ml-20 w-16 h-16"
-                    alt=""
-                  />
+              {/* <Link to={"/Medic_Appointment"} className=""> */}
+              <div className="flex flex-row ">
+                <div className="flex flex-col">
+                  <h3 className="text-2xl font-inter font-bold ">
+                    Dra. Peters
+                  </h3>
+                  <p className="font-inter text-gray-400 ">Nutriologa</p>
                 </div>
-              </Link>
+                <img
+                  src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.webp"
+                  className="rounded-full ml-20 w-16 h-16"
+                  alt=""
+                />
+              </div>
+              {/* </Link> */}
               <div className="flex flex-row items-center">
                 <RelojIcon width={16} height={16} stroke="" />
                 <div className="flex flex-col ml-4">
@@ -212,17 +209,35 @@ export function Home_Patients() {
                 </div>
               </div>
               <div className="flex flex-row justify-center gap-x-5 mt-5 mb-5">
-                <button className="px-6 py-3 font-inter bg-[#8a8d9e] rounded-md">
-                  Reagendar
-                </button>
-                <button className="px-6 py-3 font-inter text-white bg-[#D98236] rounded-md">
-                  Confirmar
-                </button>
+                <PopoverMessage
+                  locate={"top"}
+                  title={"Funcionalidad en Desarrollo"}
+                  content={
+                    "Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!"
+                  }
+                  color={"primary"}
+                >
+                  <button className="px-6 py-3 font-inter bg-[#8a8d9e] rounded-md">
+                    Reagendar
+                  </button>
+                </PopoverMessage>
+                <PopoverMessage
+                  locate={"top"}
+                  title={"Funcionalidad en Desarrollo"}
+                  content={
+                    "Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!"
+                  }
+                  color={"primary"}
+                >
+                  <button className="px-6 py-3  font-inter text-white bg-[#D98236] rounded-md">
+                    Confirmar
+                  </button>
+                </PopoverMessage>
               </div>
             </div>
           </div>
         </section>
-        <section className="flex ml-5 mb-10 flex-col">
+        {/* <section className="flex ml-5 mb-10 flex-col">
           <div className="mb-5">
             <h3 className="font-bold font-inter text-xl">
               Tus consultas recientes
@@ -268,7 +283,7 @@ export function Home_Patients() {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
     </main>
   );

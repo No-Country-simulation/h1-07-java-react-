@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { AuthContext, fetchPatient } from "../../../../Context/AuthContext";
-import {
-  SearchIcon,
-} from "../../../../../public/icons/Icons";
-import { Link, useParams } from "react-router-dom";
+import { fetchPatient } from "../../../../Context/AuthContext";
+import { SearchIcon } from "../../../../../public/icons/Icons";
+import { Link } from "react-router-dom";
 import { ContentPatient } from "../../../../Interfaces/interfaces";
-import { AsideMenu } from "../../../../Components/AsideMenu";
+import { AsideMenu } from "../../../../components/AsideMenu";
 import { Patients } from "./Patients/Patients";
 import Header from "./Header/Header";
 
@@ -14,7 +12,6 @@ export default function PatientList() {
   const [searchPatient, setSearchPatient] = useState("");
   const [loading, setLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { id } = useParams();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -25,7 +22,7 @@ export default function PatientList() {
       setLoading(true);
       try {
         setPatients(await fetchPatient());
-        console.log(patients?.content)
+        console.log(patients?.content);
       } catch (err) {
         console.log(err);
       } finally {

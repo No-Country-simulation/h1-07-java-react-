@@ -67,9 +67,9 @@ Información del Proyecto
   </tr>
   <tr>
     <td>Ismael</td>
-    <td>Miranda</td>
+    <td>Arias Miranda</td>
     <td>UX/UI</td>
-    <td><a href="https://www.behance.net/ismaelmiranda4" target="_blank">Ver Portfolio</a></td>
+    <td><a href="https://www.behance.net/ia-miranda" target="_blank">Ver Portfolio</a></td>
   </tr>
     <tr>
     <td>Andrea</td>
@@ -85,7 +85,7 @@ Información del Proyecto
   </tr>
   <tr>
     <td>Pablo</td>
-    <td>Magnavachi Pablo</td>
+    <td>Magnavachi</td>
     <td>Programador BackEnd</td>
     <td><a href="https://pablomagna.github.io/" target="_blank">Ver Portfolio</a></td>
   </tr>

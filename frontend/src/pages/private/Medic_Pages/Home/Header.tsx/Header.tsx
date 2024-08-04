@@ -8,7 +8,7 @@ export default function Header({ toggleSidebar, nombre, apellido, especialidad }
         <Link to={"/userInfo"}>
           <div className=" ml-2 rounded-full flex flex-row items-center content-center justify-between">
             <img
-              src="IMG_MEDICO/IMG_MEDICO.png"
+              src="IMG_MEDICO/IMG_MEDICO.webp"
               className="ml-2"
               alt=""
               width={56}

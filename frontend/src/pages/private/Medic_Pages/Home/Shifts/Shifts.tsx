@@ -1,6 +1,11 @@
-import { PopoverMessage } from '../../../../../components/PopoverMessage'
-import { ArrowBlackIcon, CalendarIcon, LapizIcon, RelojIcon } from '../../../../../../public/icons/Icons'
-import { Link } from 'react-router-dom'
+import {
+  ArrowBlackIcon,
+  CalendarIcon,
+  LapizIcon,
+  RelojIcon,
+} from "../../../../../../public/icons/Icons";
+import { Link } from "react-router-dom";
+import { PopoverMessage } from "../../../../../components/PopoverMessage";
 
 export default function Shifts() {
   return (
@@ -61,5 +66,5 @@ export default function Shifts() {
         </div>
       </section>
     </>
-  )
+  );
 }
