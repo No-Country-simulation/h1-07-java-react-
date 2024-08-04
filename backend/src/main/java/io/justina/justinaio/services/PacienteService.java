@@ -185,7 +185,7 @@ public class PacienteService {
 
     public PageResponse<PacienteResponse> encontrarPacientesDeMedico(int page, int size, Authentication token) {
         Usuario user = ((Usuario) token.getPrincipal());
-        Pageable pageable = PageRequest.of(page, size, Sort.by("apellido").ascending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("idPaciente").descending());
         Page<Paciente> pacientes = pacienteRepository.findAllByMedicosIdMedico(pageable, user.getId());
         List<PacienteResponse> listaResponse = pacientes.stream()
                 .map(Mapper::toPacienteResponse)
