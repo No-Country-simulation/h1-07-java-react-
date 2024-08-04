@@ -31,7 +31,7 @@ import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/Treatment
 import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
-import SignUp from "../pages/signUp/SignUp";
+import SignUp from "../pages/signup/SignUp";
 
 function AppRouter() {
   return (
