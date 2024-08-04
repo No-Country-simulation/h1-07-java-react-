@@ -115,7 +115,7 @@ const SignUp: React.FC = () => {
           <Form className=" w-full max-w-[40rem] xl:shadow-xl xl:shadow-black 2xl:h-[70%] 2xl:max-w-[60rem] p-8 bg-white xl:bg-transparent 2xl:mt-[10rem] xl:text-white rounded-lg shadow-lg  max-md:m-auto flex flex-col gap-y-4 ">
             <div className="mb-6 text-center relative flex flex-col items-center justify-center xl:items-center ">
               <Link
-                to={"/login"}
+                to={"/onboarding"}
                 className=" absolute -left-0 hover:-translate-x-1 transition-all duration-300"
               >
                 <FlechaIconTwo
@@ -133,7 +133,7 @@ const SignUp: React.FC = () => {
                   Introduce la información necesaria
                 </p>
                 <Link
-                  to={"/login"}
+                  to={"/onboarding"}
                   className="text-light-color absolute left-0 transition-all duration-300 hover:translate-x-1 cursor-pointer"
                 >
                   <FlechaIconTwo

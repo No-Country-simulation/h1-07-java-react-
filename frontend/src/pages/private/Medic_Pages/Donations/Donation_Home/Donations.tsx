@@ -4,7 +4,7 @@ import { getAge } from "../../../../../utils/functions/functions";
 import { Button } from "@nextui-org/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Header_Donation } from "../../../../../Components/Header_Medic_Donation/Header_Donation";
+import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { fetchDonationConnect } from "../../../../../Context/AuthContext";
 import { DonantesResponse } from "../../../../../Interfaces/interfaces";
 import { Link } from "react-router-dom";
@@ -55,7 +55,7 @@ export default function Donations() {
         setTotalPages(Math.ceil((data?.totalElements || 0) / ITEMS_PER_PAGE));
 
         setDonation(data)
-      } catch (error) { 
+      } catch (error) {
         console.error("Error al recibir los datos")
       }
     }
@@ -108,93 +108,93 @@ export default function Donations() {
                 console.log(values);
               }}
             >
-             {({ handleSubmit }) => ( 
-              <Form className="p-3 grid grid-cols-2 gap-4 rounded-r-xl rounded-md border-2 border-gray-500 shadow-xl overflow-hidden">
-                <div className="">
-                  <label htmlFor="genero" className="text-sm ">
-                    Edad
-                  </label>
-                  <Field
-                    type="number"
-                    name="edad"
-                    placeholder="Edad"
-                    className="px-3 w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
-                  />
-                  <ErrorMessage
-                    name="edad"
-                    component="div"
-                    className="text-red-500 text-sm "
-                  />
-                </div>
-                <div className="">
-                  <label htmlFor="genero" className="text-sm ">
-                    Peso
-                  </label>
-                  <Field
-                    type="number"
-                    name="peso"
-                    placeholder="Peso"
-                    className="px-3 input-class w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
-                  />
-                  <ErrorMessage
-                    name="peso"
-                    component="div"
-                    className="text-red-500 text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="genero" className="text-sm ">
-                    Altura
-                  </label>
-                  <Field
-                    type="number"
-                    name="altura"
-                    placeholder="Altura"
-                    className="input-class px-3 input-class w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
-                  />
-                  <ErrorMessage
-                    name="altura"
-                    component="div"
-                    className="text-red-500 text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="genero" className="text-sm ">
-                    Género
-                  </label>
-                  <Field as="select" name="genero" className="input-class">
-                    <option value="" label="Seleccionar" />
-                    <option value="Masculino" label="Masculino" />
-                    <option value="Femenino" label="Femenino" />
-                  </Field>
-                  <ErrorMessage
-                    name="genero"
-                    component="div"
-                    className="text-red-500 text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="rh" className="text-sm">
-                    Grupo RH
-                  </label>
-                  <Field as="select" name="rh" className="input-class">
-                    <option value="" label="Seleccionar" />
-                    
-                  </Field>
-                  <ErrorMessage
-                    name="rh"
-                    component="div"
-                    className="text-red-500 text-sm"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  className="h-10 w-full font-semibold bg-secondary-brand-dark text-white"
-                >
-                  Buscar
-                </Button>
-              </Form>
-              )} 
+              {({ handleSubmit }) => (
+                <Form className="p-3 grid grid-cols-2 gap-4 rounded-r-xl rounded-md border-2 border-gray-500 shadow-xl overflow-hidden">
+                  <div className="">
+                    <label htmlFor="genero" className="text-sm ">
+                      Edad
+                    </label>
+                    <Field
+                      type="number"
+                      name="edad"
+                      placeholder="Edad"
+                      className="px-3 w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
+                    />
+                    <ErrorMessage
+                      name="edad"
+                      component="div"
+                      className="text-red-500 text-sm "
+                    />
+                  </div>
+                  <div className="">
+                    <label htmlFor="genero" className="text-sm ">
+                      Peso
+                    </label>
+                    <Field
+                      type="number"
+                      name="peso"
+                      placeholder="Peso"
+                      className="px-3 input-class w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
+                    />
+                    <ErrorMessage
+                      name="peso"
+                      component="div"
+                      className="text-red-500 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="genero" className="text-sm ">
+                      Altura
+                    </label>
+                    <Field
+                      type="number"
+                      name="altura"
+                      placeholder="Altura"
+                      className="input-class px-3 input-class w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
+                    />
+                    <ErrorMessage
+                      name="altura"
+                      component="div"
+                      className="text-red-500 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="genero" className="text-sm ">
+                      Género
+                    </label>
+                    <Field as="select" name="genero" className="input-class">
+                      <option value="" label="Seleccionar" />
+                      <option value="Masculino" label="Masculino" />
+                      <option value="Femenino" label="Femenino" />
+                    </Field>
+                    <ErrorMessage
+                      name="genero"
+                      component="div"
+                      className="text-red-500 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="rh" className="text-sm">
+                      Grupo RH
+                    </label>
+                    <Field as="select" name="rh" className="input-class">
+                      <option value="" label="Seleccionar" />
+
+                    </Field>
+                    <ErrorMessage
+                      name="rh"
+                      component="div"
+                      className="text-red-500 text-sm"
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="h-10 w-full font-semibold bg-secondary-brand-dark text-white"
+                  >
+                    Buscar
+                  </Button>
+                </Form>
+              )}
             </Formik>
           )}
           <div className="rounded-r-xl rounded-xl border-2 border-gray-500 shadow-xl overflow-hidden">
@@ -206,16 +206,17 @@ export default function Donations() {
             <ol>
               {donation?.content.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((donor: any, idx: number) => (
                 <Link to={`/donationDetail/${donor.idMedico}`}>
+                  { }
                   <li
                     key={idx}
                     className="flex hover:bg-gray-200 transition-all duration-300 cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500"
                   >
                     <div className="flex flex-row items-center w-full p-1">
-                      <img src={"IMG_MEDICO/IMG_MEDICO_2.webp"} alt="imagen_paciente" />
+                      <img src={`${donor.genero === 2 ? "IMG_MEDICO/IMG_Pacientes_2.png" : "IMG_MEDICO/IMG_Pacientes_3.png"}`} alt="imagen_paciente" />
                       <div className="flex flex-col ml-3 w-full">
                         <div className="flex flex-row justify-between">
                           <p className="font-semibold text-sm">
-                            {donor.genero === 0 ? "Masculino" : "Femenino"} de{" "}
+                            {donor.genero === 2 ? "Masculino" : "Femenino"} de{" "}
                             {getAge(donor.fechaNacimiento)} años
                           </p>
                         </div>

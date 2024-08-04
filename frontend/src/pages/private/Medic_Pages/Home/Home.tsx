@@ -33,6 +33,7 @@ export function Home(): JSX.Element {
       const medic: Medic = JSON.parse(storedMedic);
       setMedicInfo(medic);
     }
+    console.log(storedMedic)
   }, []);
 
   return (

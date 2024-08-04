@@ -5,8 +5,11 @@ import { useAuthContext } from "../../Context/AuthContext";
 import { toast } from "sonner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import {
+
+  ArrowWhiteIcon,
   ClosePasswordIcon,
   EmailIcon,
+
   LoaderIcon,
   LockIcon,
   OpenPasswordIcon,
@@ -48,9 +51,14 @@ export const LoginPage: React.FC = () => {
       style={{ backgroundImage: "url(/IMG_FONDO/IMG_FONDO.webp)" }}
     >
       <div className="w-full max-w-md p-8 xl:px-6 xl:py-3 2xl:py-12 bg-white xl:bg-transparent rounded-lg shadow-lg shadow-black  2xl:h-full  ">
-        <h2 className="text-[20px] font-[700] mb-[9px] mt-[1.5rem] xl:mt-0 text-gray-900 font-inter xl:text-white 2xl:text-white">
-          Iniciar Sesión
-        </h2>
+        <div className="">
+          <Link to={"/onboarding"} className="flex flex-row items-center gap-x-2  mb-2 ">
+            <ArrowWhiteIcon width={30} height={30} stroke="#000000" />
+            <h2 className="text-[20px] pb-3 font-[700] mb-[9px] mt-[1.5rem] xl:mt-0 text-gray-900 font-inter xl:text-white 2xl:text-white">
+              Iniciar Sesión
+            </h2>
+          </Link>
+        </div>
         <p className="mb-[46px] text-[15px] text-[#948ABC] xl:text-white 2xl:text-white ">
           Accede con la cuenta que registraste
         </p>

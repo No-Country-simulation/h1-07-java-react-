@@ -6,6 +6,7 @@ import {
   HomeIcon,
   MapIcon,
   MenuHambuerguesa,
+  PhoneIcon,
 } from "../../../../../public/icons/Icons";
 import { Medic } from "../../../../Interfaces/interfaces";
 import { AsideMenu } from "../../../../components/AsideMenu";
@@ -15,9 +16,9 @@ export function UserInfo(): JSX.Element {
   // const [curriculum, setCurriculum] = useState("");
   const [medicInfo, setMedicInfo] = useState<Medic>();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { authTokens } = useAuthContext();
-  
-  
+
+
+
   useEffect(() => {
     const storedMedic = localStorage.getItem("MEDIC-DATA");
     if (storedMedic) {
@@ -49,7 +50,7 @@ export function UserInfo(): JSX.Element {
                   to={"/dashboard"}
                   className="text-light-color ml-10 xl:-left-0 -left-8 hover:-translate-x-1 transition-all duration-300"
                 >
-                  <ArrowWhiteIcon width={30} height={30} stroke="" />
+                  <ArrowWhiteIcon width={30} height={30} stroke="#ffffff" />
                 </Link>
                 <h1 className="text-xl font-semibold text-light-color">
                   Detalles de paciente
@@ -125,7 +126,11 @@ export function UserInfo(): JSX.Element {
             <PhoneIcon width={16} height={16} />
             <p className="ml-3 font-inter font-bold">Teléfono</p>
           </div> */}
-          <div className="mt-3 w-full relative">
+          <div className="mt-4 w-full relative ">
+            <div className="flex flex-row items-center gap-x-3 mb-2">
+              <PhoneIcon width={16} height={16} />
+              <label htmlFor="" className="font-inter font-bold ">Telefono</label>
+            </div>
             <input
               type="text"
               placeholder="Rosario"

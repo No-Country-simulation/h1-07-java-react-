@@ -43,7 +43,7 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({
               to={link}
               className=" text-light-color absolute -left-0 hover:-translate-x-1 transition-all duration-300"
             >
-              <ArrowWhiteIcon width={30} height={30} stroke="" />
+              <ArrowWhiteIcon width={30} height={30} stroke="#ffffff" />
             </Link>
             <div className="flex items-center justify-center">
               <h1 className="text-xl font-bold text-light-color">{title}</h1>

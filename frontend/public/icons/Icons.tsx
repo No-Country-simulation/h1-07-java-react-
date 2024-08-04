@@ -1311,7 +1311,7 @@ export function FlechaIconTwo({
   );
 }
 
-export function ArrowWhiteIcon({ width, height }: IconProps) {
+export function ArrowWhiteIcon({ width, height, stroke }: IconProps) {
   return (
     <svg
       width={width}
@@ -1323,7 +1323,7 @@ export function ArrowWhiteIcon({ width, height }: IconProps) {
     >
       <path
         d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z"
-        stroke="#F9F9F9"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom'
 import { CampanaIcon, MenuHambuerguesa } from '../../../../../../public/icons/Icons'
 
-export default function Header({ toggleSidebar, nombre, apellido, especialidad }: { toggleSidebar: () => void, nombre: string | undefined, apellido: string | undefined, especialidad: string | undefined }) {
+interface type {
+  nombre: string | undefined;
+  apellido: string | undefined;
+  toggleSidebar: () => void;
+  especialidad: string | undefined;
+
+}
+
+export default function Header({ toggleSidebar, nombre, apellido, especialidad }: type) {
   return (
     <header className="flex shadow-2xl flex-col justify-between h-[9.7rem] mb-4 relative  w-[100%] bg-[#D9D9D9]  rounded-br-[3rem] bg-gradient-to-r from-indigo-300 to-indigo-500">
       <div className="flex  items-center pt-4   justify-between">
@@ -28,7 +36,7 @@ export default function Header({ toggleSidebar, nombre, apellido, especialidad }
         </div>
 
       </div>
-      <div className=" m-auto text-center">
+      <div className="m-auto ml-2 w-full">
         <p className="font-inter font-bold text-white">
           Dr. {nombre} {apellido}
         </p>

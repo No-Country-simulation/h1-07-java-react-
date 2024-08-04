@@ -45,12 +45,12 @@ export default function ClinicHistory({
     setTranscript(newTranscript.trimStart());
   };
 
-  const handleSubmitHistory = async (values: ClinicHistoryProps) => {
+ /*  const handleSubmitHistory = async (values: ClinicHistoryProps) => {
+    // trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
     const trimmedTranscript = transcript.trim();
-    const defaultDescription = "Descripción por defecto";
+    const defaultDescription = "Descripción";
 
-    const description =
-      trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
+    const description = trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
     if (id) {
       const historyClinic: ClinicHistoryProps = {
         ...values,
@@ -61,6 +61,7 @@ export default function ClinicHistory({
       try {
         await registerClinicHistory(id, historyClinic);
         toast.success("La historia clinica fue registrada correctamente");
+        
         fetchDataHistory();
         onClose();
         setTranscript("");
@@ -69,6 +70,33 @@ export default function ClinicHistory({
       }
     }
   };
+ */
+
+  const handleSubmitHistory = async (values: ClinicHistoryProps) => {
+    const trimmedTranscript = transcript.trim(); 
+    
+
+    const description = trimmedTranscript.length > 0 ? trimmedTranscript : "";
+
+    if (id) {
+      const historyClinic: ClinicHistoryProps = {
+        ...values,
+        descripcion: description,
+        idPaciente: Number(id)
+      };
+
+      try {
+        await registerClinicHistory(id, historyClinic);
+        toast.success("La historia clinica fue registrada correctamente");
+        fetchDataHistory();
+        onClose();
+        
+      } catch (err: any) {
+        console.error(err);
+      }
+    }
+  };
+
 
   useEffect(() => {
     fetchDataHistory();
