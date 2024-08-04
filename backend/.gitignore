@@ -2,7 +2,7 @@
 .idea/
 
 # Exclude environment files
-h1-07-java-react-/backend/.env
+.env
 
 # Exclude build outputs
 target/
