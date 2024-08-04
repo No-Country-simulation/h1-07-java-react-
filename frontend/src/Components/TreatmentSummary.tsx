@@ -1,73 +1,71 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { API_URL } from "../api/api";
-import { ContentTreatmentPacient } from "../Interfaces/interfaces";
+import { ContentTreatmentPacient, Patient } from "../Interfaces/interfaces";
 import { tipoTratamientoMap } from "../utils/data/data";
+import { fetchTreatmentPatient } from "../Context/AuthContext";
+import { TreatmentSkeletonSummary } from "./Skeletons";
 
-export default function TreatmentSummary() {
+export default function TreatmentSummary({ patient }: { patient: Patient | undefined }) {
   const { id } = useParams()
+  console.log(patient)
   const [treatments, setTreaments] = useState<ContentTreatmentPacient>()
-  useEffect(() => {
-    const fetchTreatmentPatient = async () => {
-      const token = localStorage.getItem('TOKEN_KEY');
-      if (id) {
-        try {
-          const res = await fetch(`${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              'Authorization': `Bearer ${token}`
-            },
-          })
-          const data = await res.json()
-          setTreaments(data)
-        } catch (error) {
-          console.log(error)
-        }
+  const [loading, setLoading] = useState(false)
+  const fetchTreatments = async () => {
+    if (id) {
+      setLoading(false)
+      try {
+        setTreaments(await fetchTreatmentPatient(id))
+      } catch (error: any) {
+        console.log(error)
+      } finally {
+        setLoading(false)
       }
     }
+  }
 
-    fetchTreatmentPatient()
+  useEffect(() => {
+    fetchTreatments()
   }, []);
 
 
   return (
-    <div className=' mt-8 p-6 flex-col gap-3 flex'>
+    <div className=' p-6 flex-col gap-3 flex'>
       <div className="flex justify-between">
         <h5 className='font-bold text-xl'>Resumen</h5>
-        {/* <Link to={`/patient/${id}/statistics`}>
-          <p className=" cursor-pointer flex items-center justify-center">Ver más...
-            <span>
-              <ArrowBlackIcon width={20} height={20} />
-            </span>
-          </p>
-        </Link> */}
       </div>
       <div className=' justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm'>
-        {treatments && treatments.content.map((treatment) => (
-          <>
-            <h5 className=' text-violet-color font-bold text-lg'> {tipoTratamientoMap[treatment.tipoTratamientoId] || 'Tipo de tratamiento desconocido'}
-            </h5>
-            <ul className=' ml-6 list-disc'>
-              <li>{treatment.nombreMedicamento} {treatment.descripcion}.</li>
-              <li>Cantidad: {treatment.dosisDiaria}</li>
-            </ul>
-            {treatment.tipoTratamientoId == 0 &&
-              (<>
-                <h6 className=' text-violet-color font-bold text-md'>Horarios</h6>
-                <ul className=' ml-6 list-disc'>
-                  <li>Inicio: {treatment.fechaInicio}</li>
-                  <li>Finalización: {treatment.fechaFin}</li>
-                  <li>Estado: {treatment.estado}</li>
-                </ul>
-              </>
-              )
+        {loading
+          ? (<>
+            <TreatmentSkeletonSummary />
+          </>)
+          : (<>
+            {
+              treatments && treatments.content.map((treatment) => (
+                <div>
+                  <h5 className=' text-violet-color font-bold text-lg'> {tipoTratamientoMap[treatment.tipoTratamientoId] || 'Tipo de tratamiento desconocido'}
+                  </h5>
+                  <ul className=' ml-6 list-disc'>
+                    <li>{treatment.nombreMedicamento} {treatment.descripcion}.</li>
+                    <li>Cantidad: {treatment.dosisDiaria}</li>
+                  </ul>
+                  {treatment.tipoTratamientoId == 0 &&
+                    (<>
+                      <h6 className=' text-violet-color font-bold text-md'>Horarios</h6>
+                      <ul className=' ml-6 list-disc'>
+                        <li>Inicio: {treatment.fechaInicio}</li>
+                        <li>Finalización: {treatment.fechaFin}</li>
+                        <li>Estado: {treatment.estado}</li>
+                      </ul>
+                    </>
+                    )
+                  }
+                </div>
+              ))
             }
-          </>
-        ))
+          </>)
         }
         {treatments?.content.length == 0 &&
-          <h4 className=" text-xl  h-full flex justify-center items-center text-center">"El paciente no tiene un tratamiento registrado"</h4>
+          <h4 className=" text-xl  h-full flex justify-center items-center text-center">El paciente no tiene un tratamiento registrado, registra uno!</h4>
         }
       </div>
       <Link to={`/patient/${id}/treatment`} className="m-auto h-10  mt-6 w-3/4 ">

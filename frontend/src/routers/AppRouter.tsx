@@ -19,16 +19,19 @@ import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_App
 import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
 // import Donations from "../pages/private/Medic_Pages/Donations/Donations";
 import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
-
 import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfilePatient";
 import TreatementPatient from "../pages/private/Patients_Pages/Treatement/TreatementPatient";
 import History from "../pages/private/Patients_Pages/HistoryClinic/History";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
-import Statistics from "../pages/private/Medic_Pages/Statistics/Statistics";
 import { Donation_Registre } from "../pages/private/Medic_Pages/Donations/Donation_Registre/Donation_Registre";
-import SignUp from "../pages/signup/SignUp";
 import LandingView from "../pages/landing/LandingView";
-import { ActiveAccount } from "../pages/active-account/ActiveAccount";
+import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
+import Adherence from "../pages/private/Medic_Pages/Adherence/Adherence";
+import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/TreatmentAdherence/TreatmentAdherence";
+import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
+import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
+import SignUp from "../pages/SignUp/SignUp";
+import { ActiveAccount } from "../pages/Active-account/ActiveAccount";
 
 function AppRouter() {
   return (
@@ -44,7 +47,7 @@ function AppRouter() {
             </Route>
             {/* </Route> */}
             <Route index path="/" element={<LandingView />} />
-            <Route path="/active-account" element={<ActiveAccount />}></Route>
+            <Route path="/active-account" element={<ActiveAccount />} />
             <Route element={<PrivateRoute allowedRoles={["ROLE_MEDICO"]} />}>
               <Route path="/dashboard" index element={<Home />} />
               <Route path="/userInfo" element={<UserInfo />} />
@@ -53,13 +56,14 @@ function AppRouter() {
                 element={<RegisterPatient />}
               ></Route>
               <Route path="/patient-list" element={<PatientList />}></Route>
-              {/* <Route path="/patient/:id" element={<PatientDetail />} /> */}
-              <Route path="/patient/:id/statistics" element={<Statistics />} />
-              {/* <Route
+              <Route path="/patient/:id" element={<PatientDetail />} />
+              <Route path="/patient/:id/adherence" element={<Adherence />} />
+              <Route path="/patient/:id/adherence/:idTratamiento" element={<TreatmentAdherence />} />
+              <Route
                 path="/patient/:id/treatment"
                 element={<TreatmentPatient />}
-              /> */}
-              {/* <Route path="/donations" element={<Donations />} /> */}
+              />
+              <Route path="/donations" element={<Donations />} />
               <Route path="/donationRegistre" element={<Donation_Registre />} />
             </Route>
             <Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
@@ -78,8 +82,9 @@ function AppRouter() {
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>
         </BrowserRouter>
+        <Toaster richColors></Toaster>
+
       </AuthContextProvider>
-      <Toaster richColors></Toaster>
     </>
   );
 }

@@ -8,16 +8,13 @@ import { Medicines, Treatment } from '../Interfaces/interfaces'
 import { initialValuesTreatment } from '../utils/data/data'
 import { validationSchemaTreatment } from '../utils/validation/validation'
 import { VoiceTranscript } from './VoiceTranscript'
-import { Link} from 'react-router-dom'
 
 export default function FormTreatment({ id, medicines }: { id: string | undefined, medicines: Medicines[] | undefined }) {
   const [dayInit, setDayInit] = useState(getTodayDate(today(getLocalTimeZone())))
   const [transcript, setTranscript] = useState<string>('');
   const { registerTreatment } = useAuthContext()
   
-
-
-  const handleSubmitTreatment = async (treatment: Treatment) => {
+  const handleSubmitTreatment = async (treatment: Treatment, { resetForm }:any) => {
     const treatementData: Treatment = {
       ...treatment,
       pacienteId: Number(id),
@@ -27,8 +24,8 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
     console.log(treatementData)
     try {
       registerTreatment(treatementData)
-      console.log(registerTreatment);
-
+      resetForm();
+      setTranscript("")
     } catch (err: any) {
       console.log(err)
     }
@@ -61,20 +58,6 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
 
             </Field>
           </div>
-          {/* Tratamiento */}
-          {/* <div className="">
-            <label className="font-bold flex items-center gap-2 " htmlFor="tipoTratamiento">
-              Tipo de Tratamiento
-            </label>
-            <Field as="select" className="w-full h-14 p-2 border-1 border-violet-color rounded-lg mt-1" name="tipoTratamiento">
-              <option value={""} key={""} selected disabled  >Busqueda...</option>
-              <option value={0}>Medicamento</option>
-              <option value={1}>Entrenamiento</option>
-              <option value={2}>Psicologico</option>
-              <option value={3}>Nutricional</option>
-              <option value={4}>Otro</option>
-            </Field>
-          </div> */}
           {/* MEDICAMENTOS */}
           <div className="">
             <label className="font-bold flex items-center gap-2 " htmlFor="medicamentoId">
@@ -127,7 +110,7 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
               minValue={today(getLocalTimeZone())}
               color="warning"
               calendarWidth="100%"
-              className='flex justify-center scale-125 shadow-none bg-transparent z-[10]'
+              className='flex justify-center scale-125 shadow-none bg-transparent  z-0'
               onChange={handleDateChange}
             />
 
@@ -147,7 +130,7 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
             </Field>
           </div>
           <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones' />
-          <Link to={`/patient/${id}`} className='mb-10'>
+          
             <div className=" flex items-center flex-col gap-2">
               <button
                 type="submit"
@@ -156,7 +139,7 @@ export default function FormTreatment({ id, medicines }: { id: string | undefine
                 Registrar Tratamiento
               </button>
             </div>
-          </Link>
+         
         </Form>
       )}
     </Formik>

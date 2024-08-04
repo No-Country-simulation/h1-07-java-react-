@@ -17,9 +17,10 @@ import {
   fetchNotifications,
   fetchPatientConnect,
 } from "../../../../Context/AuthContext";
-import { Avatar, Badge } from "@nextui-org/react";
 import { toast } from "sonner";
-import { AsideMenu } from "../../../../Components/AsideMenu";
+import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
+import { Avatar } from "@nextui-org/avatar";
+import { Badge } from "@nextui-org/badge";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -111,10 +112,10 @@ export function Home_Patients() {
   return (
     <main className="flex bg-gray-100 md:flex md:justify-center  ">
       <div className="w-full max-w-md min-h-screen font-inter bg-white rounded-lg shadow-lg  max-md:m-auto">
-        <AsideMenu
+        <AsideMenuPatients
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
-        ></AsideMenu>
+        ></AsideMenuPatients>
         <header className="flex flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] px-4">
           <div className="flex flex-row  justify-between w-full ">
             <Link to="/profile">
@@ -197,7 +198,7 @@ export function Home_Patients() {
                     <p className="font-inter text-gray-400 ">Nutriologa</p>
                   </div>
                   <img
-                    src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.png"
+                    src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.webp"
                     className="rounded-full ml-20 w-16 h-16"
                     alt=""
                   />
@@ -230,7 +231,7 @@ export function Home_Patients() {
           <div className="flex flex-row gap-x-8 justify-center">
             <div className="flex flex-col">
               <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_2.png"
+                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_2.webp"
                 className="rounded-full"
                 alt=""
               />
@@ -238,7 +239,7 @@ export function Home_Patients() {
             </div>
             <div className="flex flex-col">
               <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_3.png"
+                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_3.webp"
                 className="rounded-full"
                 alt=""
               />
@@ -248,7 +249,7 @@ export function Home_Patients() {
             </div>
             <div className="flex flex-col">
               <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_4.png"
+                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_4.webp"
                 className="rounded-full"
                 alt=""
               />
@@ -258,7 +259,7 @@ export function Home_Patients() {
             </div>
             <div className="flex flex-col ">
               <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_5.png"
+                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_5.webp"
                 className="rounded-full w-16 h-16"
                 alt=""
               />

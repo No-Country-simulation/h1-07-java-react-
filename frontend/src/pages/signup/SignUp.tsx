@@ -1,5 +1,5 @@
 import { DoctorRegister } from "../../Interfaces/interfaces";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button } from "@nextui-org/react";
@@ -81,26 +81,25 @@ const dataRegisterDoctor = [
 ];
 
 const SignUp: React.FC = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { registerDoctor } = useAuthContext();
 
   const handleSubmit = async (values: DoctorRegister) => {
     const doctor: DoctorRegister = {
       ...values,
-      financiadores: new Array(values.financiadores),
+      financiadores: values.financiadores.length > 0 ? [values.financiadores[0]] : [1],
     };
+    console.log(doctor.financiadores)
     try {
       setLoading(true);
       registerDoctor(doctor);
-      navigate("/login");
     } catch (err) {
       console.log(err);
     } finally {
       setLoading(false);
     }
   };
-  //FALTA VALIDAR LOS SELECT HAY ALGUNOS QUE NO LOS ACEPTA
+
   return (
     <section
       className="flex min-h-screen bg-gray-100 md:flex md:justify-center  "
@@ -125,10 +124,23 @@ const SignUp: React.FC = () => {
                   classname={""}
                 />
               </Link>
-              <h1 className="text-2xl font-bold tracking-tight xl:text-[2rem] xl:mb-2">
-                Crear cuenta
-              </h1>
-              <p className="text-sm">Introduce la información necesaria</p>
+              <div className=" relative w-full flex flex-col items-center justify-center">
+                <h1 className="text-2xl font-bold tracking-tight xl:text-[2rem] xl:mb-2">
+                  Crear cuenta
+                </h1>
+                <p className="text-sm">Introduce la información necesaria</p>
+                <Link
+                  to={"/login"}
+                  className="text-light-color absolute left-0 transition-all duration-300 hover:translate-x-1 cursor-pointer"
+                >
+                  <FlechaIconTwo
+                    width={30}
+                    height={30}
+                    stroke="#000000"
+                    classname=""
+                  />
+                </Link>
+              </div>
             </div>
             <div className="xl:w-[100%] xl:text-black xl:grid xl:grid-cols-2 xl:grid-rows-5 flex-wrap grid grid-rows-10 gap-6  grid-flow-col  max-md:gap-1 max-md:gap-y-3">
               {dataRegisterDoctor.map(
@@ -210,7 +222,7 @@ const SignUp: React.FC = () => {
               <div className="text-center xl:w-[40%]">
                 <Link to="/login">
                   <button
-                    onClick={() => {}}
+                    onClick={() => { }}
                     className="w-full mt-2 p-2  xl:hover:text-orange-400 rounded-xl font-semibold text-secondary-brand-dark xl:hover:border-orange-400 border-secondary-brand-dark border-2 "
                   >
                     Iniciar sesión
