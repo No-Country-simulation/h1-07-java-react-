@@ -98,25 +98,28 @@ export default function Donations() {
   // };
 
   const handleSubmitFilterDonation = async (values: any) => {
-    const token = localStorage.getItem('TOKEN_KEY');
+    const token = localStorage.getItem("TOKEN_KEY");
 
-    console.log(values)
+    console.log(values);
     try {
-      const res = await fetch(`${API_URL}/donante/buscar-donantes?textoBusqueda=higado&page=0&size=100`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      const res = await fetch(
+        `${API_URL}/donante/buscar-donantes?textoBusqueda=higado&page=0&size=100`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      const data = await res.json()
-      setDonors(data)
-      console.log(data)
-    } catch (err: any) {
-      console.log(err)
+      const data = await res.json();
+      setDonors(data);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   return (
     <main className="flex bg-gray-100 md:flex md:justify-center">
@@ -250,8 +253,8 @@ export default function Donations() {
               </button>
             </div>
             <ol>
-              {
-                donors && donors.content.map((donor, idx) => (
+              {donors &&
+                donors.content.map((donor, idx) => (
                   <li
                     key={idx}
                     className="flex hover:bg-gray-200 transition-all duration-300 cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500"
@@ -270,8 +273,7 @@ export default function Donations() {
                       </div>
                     </div>
                   </li>
-                ))
-              }
+                ))}
             </ol>
           </div>
         </section>
