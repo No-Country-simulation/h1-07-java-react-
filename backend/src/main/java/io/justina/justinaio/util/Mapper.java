@@ -220,6 +220,7 @@ public class Mapper {
 
     public static DonanteResponse toDonanteResponse(Donante donante) {
         return DonanteResponse.builder()
+                .idDonante(donante.getIdDonante())
                 .idMedico(donante.getMedico().getIdMedico())
                 .descripcion(donante.getDescripcion())
                 .altura(donante.getAltura())
