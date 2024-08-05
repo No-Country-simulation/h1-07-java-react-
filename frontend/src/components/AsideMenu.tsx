@@ -45,10 +45,10 @@ export const AsideMenu: React.FC<MenuProps> = ({
           isSidebarOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
         }`}
       >
-        <div className="py-10 flex flex-col ">
-          <h1 className="text-xl font-bold mb-5 text-center text-black">
+        <div className="py-10  flex flex-col ">
+          <h3 className="text-xl font-bold mb-5 text-center text-black">
             MENÚ
-          </h1>
+          </h3>
           <span
             className=" absolute right-5 top-9 cursor-pointer transition-all duration-200 hover:scale-105 hover:rotate-90"
             onClick={toggleSidebar}

@@ -84,13 +84,13 @@ export default function Donations() {
         },
       })
 
-      const data = await res.json()
-      setDonors(data)
-      console.log(data)
-    } catch (err: any) {
-      console.log(err)
+      const data = await res.json();
+      setDonors(data);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   return (
     <main className="flex bg-gray-100 md:flex md:justify-center">
@@ -233,8 +233,7 @@ export default function Donations() {
                       </div>
                     </div>
                   </li>
-                ))
-              }
+                ))}
             </ol>
           </div>
         </section>
