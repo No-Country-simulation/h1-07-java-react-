@@ -4,17 +4,36 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm i && vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "openapi" : "openapi-generator-cli generate -i ./src/openapi.json -g typescript-fetch -o ./src/output"
+    "openapi": "openapi-generator-cli generate -i ./src/openapi.json -g typescript-fetch -o ./src/output"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@internationalized/date": "^3.5.4",
+    "@mui/material": "^5.16.5",
+    "@mui/x-date-pickers": "^7.11.1",
+    "@nextui-org/react": "^2.4.2",
+    "@react-aria/i18n": "^3.12.1",
+    "dayjs": "^1.11.12",
+    "formik": "^2.4.6",
+    "framer-motion": "^11.2.13",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
+    "react-toastify": "^10.0.5",
+    "react-typed": "^2.0.12",
+    "recharts": "^2.12.7",
+    "sonner": "^1.5.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",

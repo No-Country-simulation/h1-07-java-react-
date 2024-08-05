@@ -1,11 +1,12 @@
-import './App.css'
+import { NextUIProvider } from "@nextui-org/react"
+import AppRouter from "./routers/AppRouter"
+
 
 function App() {
-
   return (
-    <>
-      <h1 className=' text-4xl'>Hola</h1>
-    </>
+    <NextUIProvider>
+      <AppRouter />
+    </NextUIProvider>
   )
 }
 
