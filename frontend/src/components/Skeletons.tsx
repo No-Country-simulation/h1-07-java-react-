@@ -151,3 +151,12 @@ export const TreatmentSkeletonSummary = () => {
     </>
   );
 };
+
+
+export const SkeletonInput = ({label}:{label:string}) => (
+  <div className='animate-pulse'>
+    <label className='font-semibold block mb-2'>{label}</label>
+    <div className='border-1 h-10 px-4 rounded-md border-gray-color bg-gray-300'>
+    </div>
+  </div>
+);

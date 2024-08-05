@@ -308,6 +308,7 @@ export interface ContentDonations {
 }
 
 export interface Donor {
+  idDonante: number
   idMedico: number
   altura: string
   descripcion: string
