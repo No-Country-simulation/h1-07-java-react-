@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { crearDonante, fetchPatient } from "../../../../../Context/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import { ContentPatient, Medic } from "../../../../../Interfaces/interfaces";
 
@@ -66,7 +66,7 @@ export function Donation_Registre() {
     setSelectedPatientId(Number(event.target.value));
   };
 
-  const handleSubmit = async (values: any, {resetForm}: any) => {
+  const handleSubmit = async (values: any, { resetForm }: any) => {
     const factorSanguineoMap: { [key: string]: number } = {
       "A+": 0,
       "A-": 1,
@@ -91,12 +91,11 @@ export function Donation_Registre() {
       provincia: "Madrid",
     };
 
-    console.log("Datos enviados:", JSON.stringify(data, null, 2));
+    // console.log("Datos enviados:", JSON.stringify(data, null, 2));
     resetForm();
 
     try {
       await crearDonante(data);
-      toast.success("Registro exitoso!");
     } catch (error) {
       // toast.error("Error al registrar. Inténtalo de nuevo.");
       console.error("Error al enviar los datos:", error);
