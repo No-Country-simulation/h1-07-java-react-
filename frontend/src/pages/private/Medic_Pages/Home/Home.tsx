@@ -45,9 +45,8 @@ export function Home(): JSX.Element {
           nombre={medicInfo?.nombre}
           apellido={medicInfo?.apellido}
           especialidad={medicInfo?.especialidad}
-        ></Header>
+        />
         <div className="p-4">
-          {/* <Shifts /> */}
           <ListPatients />
         </div>
         <footer className="mt-5 flex justify-center items-center flex-col">
@@ -61,7 +60,7 @@ export function Home(): JSX.Element {
             alt="JustinaLogo"
           />
           <Link to={"/donations"}>
-            <button className="my-4 bg-[#E08733] px-24 text-white font-inter py-3 rounded-3xl">
+            <button className="my-4 bg-[#E08733] px-24 text-white font-inter py-3 rounded-lg">
               Acceder
             </button>
           </Link>

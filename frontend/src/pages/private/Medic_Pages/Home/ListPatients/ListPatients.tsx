@@ -35,7 +35,6 @@ export default function ListPatients() {
         )
       : [];
 
-  // Limit to 4 patients if no search query is active
   const displayedPatients = searchQuery
     ? filteredPatients
     : filteredPatients.slice(0, 4);
@@ -47,7 +46,7 @@ export default function ListPatients() {
   return (
     <>
       <section className=" m-auto">
-        <div className=" relative flex justify-center items-center">
+        <div className=" -mt-4 relative flex justify-center items-center">
           <input
             type="text"
             value={searchQuery}
@@ -118,10 +117,10 @@ export default function ListPatients() {
           )}
         </div>
       </section>
-      <div className="flex items-center justify-center  mt-2">
+      <div className="flex items-center justify-center  mt-4">
         <Link
           to={"/patient-list"}
-          className=" shadow-md px-4 py-3 border-2 bg-violet-color cursor-pointer w-32 text-center  rounded-xl text-light-color"
+          className=" shadow-md px-4 py-3 border-2 bg-violet-color cursor-pointer w-32 text-center  rounded-lg text-light-color"
         >
           Ver más
         </Link>
