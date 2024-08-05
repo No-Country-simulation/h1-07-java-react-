@@ -27,3 +27,22 @@ h4 {
 p {
   text-wrap: pretty;
 }
+
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.pulse {
+  animation: heartbeat 1s infinite;
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+}
