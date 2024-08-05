@@ -2340,66 +2340,66 @@ export function SilderIcon({ width, height }: IconProps) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_736_3842)">
+      <g clipPath="url(#clip0_736_3842)">
         <path
           d="M8.75001 1.66699H5.83334"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M4.16667 1.66699H1.25"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M8.75 5H5"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M3.33333 5H1.25"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M8.74999 8.33301H6.66666"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M5 8.33301H1.25"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M5.83334 0.833008V2.49967"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M3.33334 4.16699V5.83366"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M6.66666 7.5V9.16667"
-          stroke="#767676"
+          stroke="#112"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -2442,7 +2442,7 @@ export function HospitalIcon({ width, height }: IconProps) {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 324.667 324.667"
-      enable-background="new 0 0 324.667 324.667"
+      enableBackground="new 0 0 324.667 324.667"
     >
       <g>
         <path d="m168.333,69.539v-2.739h2.738c3.313,0 6-2.687 6-6s-2.687-6-6-6h-2.738v-2.738c0-3.313-2.687-6-6-6s-6,2.687-6,6v2.738h-2.738c-3.313,0-6,2.687-6,6s2.687,6 6,6h2.738v2.738c0,3.313 2.687,6 6,6s6-2.686 6-5.999z" />

@@ -1,40 +1,37 @@
-import { SearchIcon, SilderIcon } from "../../../../../../public/icons/Icons";
-import { useEffect, useState } from "react";
-import { getAge } from "../../../../../utils/functions/functions";
-import { Button } from "@nextui-org/react";
+import { useState } from "react";
+// import { AsideMenu } from "../../../../../components/AsideMenu";
+// import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
-import { fetchDonationConnect } from "../../../../../Context/AuthContext";
-import { DonantesResponse } from "../../../../../Interfaces/interfaces";
-import { Link } from "react-router-dom";
+import { API_URL } from "../../../../../api/api";
+import { ContentDonations } from "../../../../../Interfaces/interfaces";
+import { initialValuesFilter } from "../../../../../utils/data/data";
+import { LoaderIcon, SilderIcon } from "../../../../../../public/icons/Icons";
+import { Donors } from "./Donors/Donors";
 
-export interface Donors {
-  altura: string;
-  descripcion: string;
-  peso: string;
-  genero: number;
-  factorSanguineo: number;
-  fechaNacimiento: string;
-  provincia: string;
-  localidad: string;
-  src: string;
+export interface Donation {
+  textoBusqueda: string
+  edad: string
+  peso: string
+  altura: string
+  generoOrdinal: "0" | "1" | "2" | ""
+  factorSanguineoOrdinal: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "",
+  edadFiltro: "mayor" | "menor" | "igual" | ""
+  pesoFiltro: "mayor" | "menor" | "igual" | ""
+  alturaFiltro: "mayor" | "menor" | "igual" | ""
 }
 
 
 const validationSchema = Yup.object({
+  textoBusqueda: Yup.string(),
   edad: Yup.number()
     .min(0, "Edad no puede ser negativa")
-    .max(99, "Edad no puede ser mayor de 99")
-    .required("Edad es requerida"),
+    .max(99, "Edad no puede ser mayor de 99"),
   peso: Yup.number()
-    .min(0, "Peso no puede ser negativo")
-    .required("Peso es requerido"),
+    .min(0, "Peso no puede ser negativo"),
   altura: Yup.number()
-    .min(0, "Altura no puede ser negativa")
-    .required("Altura es requerida"),
-  genero: Yup.string().required("Género es requerido"),
-  rh: Yup.string().required("Grupo RH es requerido"),
+    .min(0, "Altura no puede ser negativa"),
 });
 
 
@@ -42,192 +39,203 @@ const ITEMS_PER_PAGE = 5;
 
 
 export default function Donations() {
-  const [filters, setFilters] = useState(false);
-  const [donation, setDonation] = useState<DonantesResponse | any>();
-  const [totalPages, setTotalPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [donors, setDonors] = useState<ContentDonations>();
+  const [isOpenFilter, setIsOpenFilter] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const buildUrl = (values: Donation) => {
+    const params = new URLSearchParams();
 
-  useEffect(() => {
-    const fecthConnectDonation = async () => {
-      try {
-        const data = await fetchDonationConnect();
-        console.log(data?.content)
-        setTotalPages(Math.ceil((data?.totalElements || 0) / ITEMS_PER_PAGE));
-
-        setDonation(data)
-      } catch (error) {
-        console.error("Error al recibir los datos")
-      }
+    if (values.textoBusqueda) params.append('textoBusqueda', values.textoBusqueda);
+    if (values.generoOrdinal) params.append('generoOrdinal', values.generoOrdinal);
+    if (values.factorSanguineoOrdinal) params.append('factorSanguineoOrdinal', values.factorSanguineoOrdinal);
+    if (values.edad) {
+      params.append('edad', values.edad);
+      if (values.edadFiltro) params.append('edadFiltro', values.edadFiltro);
+    }
+    if (values.peso) {
+      params.append('peso', values.peso);
+      if (values.pesoFiltro) params.append('pesoFiltro', values.pesoFiltro);
+    }
+    if (values.altura) {
+      params.append('altura', values.altura);
+      if (values.alturaFiltro) params.append('alturaFiltro', values.alturaFiltro);
     }
 
-    fecthConnectDonation()
-  }, [])
+    params.append('page', '0');
+    params.append('size', '100');
 
-
-
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
+    return `${API_URL}/donante/buscar-donantes?${params.toString()}`;
   };
 
+  const handleSubmitFilterDonation = async (values: any) => {
+    const token = localStorage.getItem('TOKEN_KEY');
+    const url = buildUrl(values);
+
+    try {
+      setLoading(true)
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const data = await res.json();
+      setDonors(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false)
+    }
+  };
 
   return (
     <main className="flex bg-gray-100 md:flex md:justify-center">
       <div className="w-full max-w-md min-h-screen font-inter bg-white rounded-lg shadow-lg max-md:m-auto">
         {/* <AsideMenu toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} /> */}
-        <Header_Donation link="/dashboard" src="./public/JustinaLogo_2.png" />
+        <Header_Donation link="/dashboard" />
         <section className="p-4 flex flex-col gap-8">
-          <div className="relative w-full h-12 flex justify-center items-center">
-            <input
-              type="text"
-              placeholder="Búsqueda"
-              className="w-full h-full border-violet-color rounded-md border-1 px-4"
-            />
-            <span className="right-12 absolute">
-              <SearchIcon width={20} height={20} stroke="#000000" />
-            </span>
-            <span
-              className="right-5 absolute cursor-pointer"
-              onClick={() => setFilters(!filters)}
-            >
-              <SilderIcon width={20} height={20} stroke="" />
-            </span>
-          </div>
-          {filters && (
-            <Formik
-              initialValues={{
-                edad: "",
-                peso: "",
-                altura: "",
-                genero: "",
-                rh: "",
-              }}
-              validationSchema={validationSchema}
-              onSubmit={(values) => {
-                console.log(values);
-              }}
-            >
-              {({ handleSubmit }) => (
+          <h1 className=" -mb-4 font-semibold flex justify-between items-center">Filtro de Busqueda: <span className=" w-10 h-10 rounded-full flex justify-center hover:brightness-75 transition-all duration-300 items-center bg-gray-200 border-2  cursor-pointer" onClick={() => setIsOpenFilter(!isOpenFilter)}><SilderIcon width={20} height={20} stroke="" /></span></h1>
+          {isOpenFilter &&
+            (<>
+              <Formik
+                initialValues={initialValuesFilter}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmitFilterDonation}
+              >
                 <Form className="p-3 grid grid-cols-2 gap-4 rounded-r-xl rounded-md border-2 border-gray-500 shadow-xl overflow-hidden">
-                  <div className="">
-                    <label htmlFor="genero" className="text-sm ">
-                      Edad
-                    </label>
+                  <div>
+                    <label htmlFor="textoBusqueda" className="text-sm">Búsqueda</label>
+                    <Field
+                      type="text"
+                      name="textoBusqueda"
+                      placeholder="Texto de búsqueda"
+                      className="px-3 w-[90%] rounded-md h-10 py-1 input-class outline-none border-1 border-solid border-black"
+                    />
+                    <ErrorMessage name="textoBusqueda" component="div" className="text-red-500 text-sm" />
+                  </div>
+                  <div>
+                    <label htmlFor="edad" className="text-sm">Edad</label>
                     <Field
                       type="number"
                       name="edad"
                       placeholder="Edad"
-                      className="px-3 w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
+                      className="px-3 w-[90%] rounded-md h-10 py-1 input-class outline-none border-1 border-solid border-black"
                     />
-                    <ErrorMessage
-                      name="edad"
-                      component="div"
-                      className="text-red-500 text-sm "
-                    />
+                    <ErrorMessage name="edad" component="div" className="text-red-500 text-sm" />
                   </div>
-                  <div className="">
-                    <label htmlFor="genero" className="text-sm ">
-                      Peso
-                    </label>
+                  <div>
+                    <label htmlFor="peso" className="text-sm">Peso</label>
                     <Field
                       type="number"
                       name="peso"
                       placeholder="Peso"
-                      className="px-3 input-class w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
+                      className="px-3 w-[90%] rounded-md h-10 py-1 input-class outline-none border-1 border-solid border-black"
                     />
-                    <ErrorMessage
-                      name="peso"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
+                    <ErrorMessage name="peso" component="div" className="text-red-500 text-sm" />
                   </div>
                   <div>
-                    <label htmlFor="genero" className="text-sm ">
-                      Altura
-                    </label>
+                    <label htmlFor="altura" className="text-sm">Altura</label>
                     <Field
                       type="number"
                       name="altura"
                       placeholder="Altura"
-                      className="input-class px-3 input-class w-[90%] rounded-md py-1 input-class outline-none border-1 border-solid border-black"
+                      className="input-class px-3 w-[90%] rounded-md h-10 py-1 input-class outline-none border-1 border-solid border-black"
                     />
-                    <ErrorMessage
-                      name="altura"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
+                    <ErrorMessage name="altura" component="div" className="text-red-500 text-sm" />
+                  </div>
+                  <div className="flex flex-col">
+                    <label htmlFor="generoOrdinal" className="text-sm">Género</label>
+                    <Field as="select" name="generoOrdinal" className="input-class h-10 border-1 rounded-md border-gray-color">
+                      <option value="">Seleccionar</option>
+                      <option value="0">Masculino</option>
+                      <option value="1">Femenino</option>
+                      <option value="2">Otro</option>
+                    </Field>
+                    <ErrorMessage name="generoOrdinal" component="div" className="text-red-500 text-sm" />
+                  </div>
+                  <div className="flex flex-col">
+                    <label htmlFor="factorSanguineoOrdinal" className="text-sm">Grupo RH</label>
+                    <Field as="select" name="factorSanguineoOrdinal" className="input-class h-10 border-1 rounded-md border-gray-color">
+                      <option value="">Seleccionar</option>
+                      <option value="0">O+</option>
+                      <option value="1">O-</option>
+                      <option value="2">A+</option>
+                      <option value="3">A-</option>
+                      <option value="4">B+</option>
+                      <option value="5">B-</option>
+                      <option value="6">AB+</option>
+                      <option value="7">AB-</option>
+                    </Field>
+                    <ErrorMessage name="factorSanguineoOrdinal" component="div" className="text-red-500 text-sm" />
                   </div>
                   <div>
-                    <label htmlFor="genero" className="text-sm ">
-                      Género
-                    </label>
-                    <Field as="select" name="genero" className="input-class">
-                      <option value="" label="Seleccionar" />
-                      <option value="Masculino" label="Masculino" />
-                      <option value="Femenino" label="Femenino" />
+                    <label htmlFor="edadFiltro" className="text-sm">Filtro de Edad</label>
+                    <Field as="select" name="edadFiltro" className="input-class h-10 border-1 rounded-md border-gray-color w-full">
+                      <option value="">Seleccionar</option>
+                      <option value="mayor">Mayor</option>
+                      <option value="menor">Menor</option>
+                      <option value="igual">Igual</option>
                     </Field>
-                    <ErrorMessage
-                      name="genero"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
+                    <ErrorMessage name="edadFiltro" component="div" className="text-red-500 text-sm" />
                   </div>
                   <div>
-                    <label htmlFor="rh" className="text-sm">
-                      Grupo RH
-                    </label>
-                    <Field as="select" name="rh" className="input-class">
-                      <option value="" label="Seleccionar" />
-
+                    <label htmlFor="pesoFiltro" className="text-sm">Filtro de Peso</label>
+                    <Field as="select" name="pesoFiltro" className="input-class h-10 border-1 rounded-md border-gray-color w-full">
+                      <option value="">Seleccionar</option>
+                      <option value="mayor">Mayor</option>
+                      <option value="menor">Menor</option>
+                      <option value="igual">Igual</option>
                     </Field>
-                    <ErrorMessage
-                      name="rh"
-                      component="div"
-                      className="text-red-500 text-sm"
-                    />
+                    <ErrorMessage name="pesoFiltro" component="div" className="text-red-500 text-sm" />
                   </div>
-                  <Button
-                    type="submit"
-                    className="h-10 w-full font-semibold bg-secondary-brand-dark text-white"
-                  >
+                  <div>
+                    <label htmlFor="alturaFiltro" className="text-sm">Filtro de Altura</label>
+                    <Field as="select" name="alturaFiltro" className="input-class  h-10 border-1 rounded-md border-gray-color w-full">
+                      <option value="">Seleccionar</option>
+                      <option value="mayor">Mayor</option>
+                      <option value="menor">Menor</option>
+                      <option value="igual">Igual</option>
+                    </Field>
+                    <ErrorMessage name="alturaFiltro" component="div" className="text-red-500 text-sm" />
+                  </div>
+                  <button type="submit" disabled={loading} className="h-10 gap-1 flex justify-center items-center text-center  col-span-2 w-full font-semibold rounded-md bg-secondary-brand-dark text-white">
+                    <span className=" animate-spin">
+                      {loading && (
+                        <LoaderIcon width={30} height={30}></LoaderIcon>
+                      )}
+                    </span>
                     Buscar
-                  </Button>
+                  </button>
                 </Form>
-              )}
-            </Formik>
-          )}
+              </Formik>
+            </>)
+          }
           <div className="rounded-r-xl rounded-xl border-2 border-gray-500 shadow-xl overflow-hidden">
-            <div className="flex border-b-2 border-gray-500 rounded-lg mb-2 p-1">
-              <button className="px-4 w-1/3 py-2 text-sm bg-[#5761C8] text-white rounded-[8px] border-solid border-[1px] border-gray-500">
+            <div className="flex border-b-2 border-gray-500 rounded-lg mb-2 p-1 ">
+              <button className="rounded-lg px-4 w-1/3 py-2 text-sm bg-[#5761C8] text-white border-solid border-[1px] border-gray-500">
                 Donantes
               </button>
             </div>
             <ol>
-              {donation?.content.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((donor: any, idx: number) => (
-                <Link to={`/donationDetail/${donor.idMedico}`}>
-                  { }
-                  <li
-                    key={idx}
-                    className="flex hover:bg-gray-200 transition-all duration-300 cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500"
-                  >
-                    <div className="flex flex-row items-center w-full p-1">
-                      <img src={`${donor.genero === 2 ? "IMG_MEDICO/IMG_Pacientes_2.png" : "IMG_MEDICO/IMG_Pacientes_3.png"}`} alt="imagen_paciente" />
-                      <div className="flex flex-col ml-3 w-full">
-                        <div className="flex flex-row justify-between">
-                          <p className="font-semibold text-sm">
-                            {donor.genero === 2 ? "Masculino" : "Femenino"} de{" "}
-                            {getAge(donor.fechaNacimiento)} años
-                          </p>
-                        </div>
-                        <p className="text-gray-700 text-sm">
-                          {donor.descripcion}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                </Link>
-              ))}
+              {donors == undefined ?
+                <p className=" text-center py-4">Completa el formulario para buscar donantes</p> :
+                <>
+                  {donors.content.length == 0 ?
+                    (<p className=" p-4 text-center">No se encontraron donantes que coincidan con los criterios de búsqueda</p>) : (
+                      donors.content.map((donor) => (
+                        <Donors idDonante={donor.idDonante}
+                          genero={donor.genero}
+                          fechaNacimiento={donor.fechaNacimiento}
+                          descripcion={donor.descripcion}>
+                        </Donors>
+                      ))
+                    )
+
+                  }
+                </>
+              }
             </ol>
             <div className="flex justify-between p-3">
               <button
@@ -248,7 +256,9 @@ export default function Donations() {
               </button>
             </div>
           </div>
+
         </section>
+
       </div>
     </main>
   );

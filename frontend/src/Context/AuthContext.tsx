@@ -302,7 +302,7 @@ export const useAuthContext = () => {
 };
 
 async function registerTreatment(treatment: Treatment) {
-  const token = localStorage.getItem("TOKEN_KEY");
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   if (token) {
     try {
@@ -317,6 +317,10 @@ async function registerTreatment(treatment: Treatment) {
       // if (!res.ok) {
       //   throw new Error(`Response status: ${res.status}`);
       // }
+      if (res.status === 200) {
+        toast.success("El tratamiento fue creado correctamente");
+        window.location.href = `/patient/${treatment.pacienteId}/adherence`;
+      }
 
       const data: ResponseRequest = await res.json();
 
@@ -324,9 +328,9 @@ async function registerTreatment(treatment: Treatment) {
         toast.warning("Seleccionar un medicamento");
       }
 
-      if (res.status === 200) {
-        toast.success("El tratamiento fue creado correctamente");
-      }
+
+
+
     } catch (err) {
       toast.success("El tratamiento fue creado correctamente");
     }
@@ -438,22 +442,22 @@ export const fetchClinicHistory = async (id: string | undefined) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   try {
-    const res = await fetch(
-      `${API_URL}/historia-clinica/historia-clinica-por-id-paciente?idPaciente=${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const url = `${API_URL}/historia-clinica/historia-clinica-por-id-paciente?idPaciente=${id}`;
+
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}`);
     }
 
     const data = await res.json();
+
     return data;
   } catch (err) {
     console.log(err);
@@ -589,8 +593,6 @@ export const getAllNotifications = async () => {
 
 export const crearDonante = async (data: any) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-  console.log(token)
-
   try {
     const response = await fetch(`${API_URL}/donante/crear-donante`, {
       method: "POST",
@@ -600,18 +602,25 @@ export const crearDonante = async (data: any) => {
       },
       body: JSON.stringify(data),
     });
-    console.log(response);
+
+    if (response.status === 200) {
+      toast.success("El donante fue creado correctamente")
+    }
 
     if (!response.ok) {
-      const errorText = await response.text(); // Lee el texto de la respuesta para obtener detalles
-      throw new Error(`Error en la solicitud: ${errorText}`);
+      const result = await response.json();
+      if (result.businessErrorCode == 400) {
+        toast.warning("El paciente ya tiene un donante asignado")
+      }else{
+        throw new Error('Error fetching data');
+      }
     }
 
     const result = await response.json();
 
     return result;
-  } catch (error) {
-    throw new Error(`Error al crear donante: `);
+  } catch (error: any) {
+    console.error("Error al enviar los datos:", error);
   }
 };
 
@@ -620,7 +629,7 @@ export const fetchTreatmentPatient = async (id: string) => {
   if (id) {
     try {
       const res = await fetch(
-        `${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}`,
+        `${API_URL}/tratamiento/listar-tratamientos-paciente-medico-conectado?idPaciente=${id}&page=0&size=100`,
         {
           method: "GET",
           headers: {

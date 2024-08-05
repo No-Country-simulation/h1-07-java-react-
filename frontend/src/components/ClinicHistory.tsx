@@ -207,7 +207,7 @@ export default function ClinicHistory({
         Nuevo Historial
       </Button>
 
-      <Modal isOpen={isOpen} placement={"auto"} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} placement={"auto"} onOpenChange={onOpenChange}  hideCloseButton={true}>
         <ModalContent>
           {(onClose) => (
             <>

@@ -2,19 +2,23 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   CaledarIcon,
+  CampanaNotificIcon,
   HistoryIconThree,
   MenssageIconCora,
   MenuHambuerguesa,
   RelojIcon,
-  SearchIcon,
   TratamentIconTwo,
 } from "../../../../../public/icons/Icons";
 import { Paciente } from "../../../../Interfaces/interfaces";
-import { fetchNotifications } from "../../../../Context/AuthContext";
+import {
+  fetchNotifications,
+  fetchPatientConnect,
+} from "../../../../Context/AuthContext";
 import { toast } from "sonner";
 import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
 import { Avatar } from "@nextui-org/avatar";
 import { PopoverMessage } from "../../../../components/PopoverMessage";
+import { Badge } from "@nextui-org/react";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -27,11 +31,6 @@ export interface NotificationProps {
 }
 
 const patientOptions = [
-  {
-    to: "/Citas",
-    icon: <CaledarIcon width={45} height={45} />,
-    label: "Citas",
-  },
   {
     to: "/treatement",
     icon: <TratamentIconTwo width={45} height={45} />,
@@ -57,42 +56,48 @@ const patientOptions = [
     icon: <MenssageIconCora width={45} height={45} />,
     label: "Cora",
   },
+  {
+    to: "/citas",
+    icon: <CaledarIcon width={45} height={45} />,
+    label: "Citas",
+  },
 ];
 
 export function Home_Patients() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const [patientInfo, setPatienInfo] = useState<Paciente | null>(null);
+  const [notifications, setNotifications] = useState<
+    NotificationProps[] | null
+  >(null);
 
-  const [notifications, setNotifications] = useState<NotificationProps[]>();
-
-  const [patientInfo, setPatienInfo] = useState<Paciente>();
-
-  useEffect(() => {
-    const storedMedic = localStorage.getItem("PATIENT-DATA");
-
-    if (storedMedic) {
-      const medic: Paciente = JSON.parse(storedMedic);
-      setPatienInfo(medic);
+  const fetchPatient = async () => {
+    const patientData = await fetchPatientConnect();
+    if (patientData) {
+      setPatienInfo(patientData);
+    } else {
+      console.error("No se pudo obtener la información del paciente");
     }
-  }, []);
+  };
 
   const getNotifications = async () => {
     try {
-      setNotifications(await fetchNotifications());
+      const notificationsData = await fetchNotifications();
+      setNotifications(notificationsData);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
+    fetchPatient();
     getNotifications();
 
-    if (notifications && notifications?.length != 0) {
+    if (notifications && notifications.length !== 0) {
       toast.warning(`Tienes ${notifications.length} notificaciones pendientes`);
     }
 
     const storedNotification = localStorage.getItem("PATIENT-NOTIFICATION");
-
     if (storedNotification) {
       const news: NotificationProps[] = JSON.parse(storedNotification);
       setNotifications(news);
@@ -114,46 +119,45 @@ export function Home_Patients() {
         ></AsideMenuPatients>
         <header className="flex flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] px-4">
           <div className="flex flex-row  justify-between w-full ">
-            <Link to="/profile">
-              <div className="flex items-center space-x-2">
+            <div className="flex mt-4 items-center space-x-2">
+              <Link to="/profile">
                 <Avatar
                   name={patientInfo?.nombre}
                   color="primary"
                   isBordered
                   size="lg"
                 />
-                <div className="flex flex-col">
-                  <h3 className="text-lg font-bold text-white">Buenos días,</h3>
-                  <p className="font-bold text-white">
-                    {patientInfo?.nombre} {patientInfo?.apellido}
-                  </p>
-                </div>
+              </Link>
+              <div className="flex flex-col text-lg text-white">
+                <h3 className="font-semibold ">Buenos días,</h3>
+                <p className="font-bold ">{patientInfo?.nombre}</p>
               </div>
-            </Link>
-            <div className="flex items-center space-x-4 mt-2">
-              {/* <Link to={"/notification"}>
+            </div>
+
+            <div className="flex items-center space-x-2 mt-2">
+              <Link to={"/notification"}>
                 <Badge
                   color="danger"
                   content={notifications?.length}
                   isInvisible={notifications?.length === 0}
                   shape="circle"
+                  className=" -z-0"
                 >
-                  <CampanaNotificIcon width={26} height={26} />
+                  <CampanaNotificIcon width={30} height={30} stroke="#fff" />
                 </Badge>
-              </Link> */}
+              </Link>
 
               <button onClick={toggleSidebar}>
-                <MenuHambuerguesa width={24} height={24} />
+                <MenuHambuerguesa width={30} height={30} stroke="" />
               </button>
             </div>
           </div>
-          <div className="bg-white flex flex-row items-center py-[5px] mt-5 px-4 rounded-3xl ml-3">
-            <SearchIcon width={16} height={16} stroke="" />
-            <input
-              disabled
-              type="text"
-              className="pl-2 py-1 w-full cursor-not-allowed border-none outline-none"
-              placeholder="Buscar"
+          <div className=" flex  justify-center   mt-0  ">
+            <img
+              src="JustinaLogo_2.png"
+              width={110}
+              height={110}
+              alt="JustinaLogo"
             />
           </div>
         </header>
@@ -237,53 +241,6 @@ export function Home_Patients() {
             </div>
           </div>
         </section>
-        {/* <section className="flex ml-5 mb-10 flex-col">
-          <div className="mb-5">
-            <h3 className="font-bold font-inter text-xl">
-              Tus consultas recientes
-            </h3>
-          </div>
-          <div className="flex flex-row gap-x-8 justify-center">
-            <div className="flex flex-col">
-              <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_2.webp"
-                className="rounded-full"
-                alt=""
-              />
-              <p className="font-inter font-bold text-[13px] mt-3">Dr. Gómez</p>
-            </div>
-            <div className="flex flex-col">
-              <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_3.webp"
-                className="rounded-full"
-                alt=""
-              />
-              <p className="font-inter font-bold text-[13px] mt-3">
-                Dra. María
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_4.webp"
-                className="rounded-full"
-                alt=""
-              />
-              <p className="font-inter font-bold text-[13px] mt-3">
-                Dra. Stevi
-              </p>
-            </div>
-            <div className="flex flex-col ">
-              <img
-                src="IMG_PATIENTS/IMG_PATIENS_MEDICO_5.webp"
-                className="rounded-full w-16 h-16"
-                alt=""
-              />
-              <p className="font-inter font-bold text-[13px] mt-3">
-                Dra. Felipe
-              </p>
-            </div>
-          </div>
-        </section> */}
       </div>
     </main>
   );

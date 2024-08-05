@@ -8,6 +8,7 @@ import {
   PatientRegister,
   Treatment,
 } from "../../Interfaces/interfaces";
+import { Donation } from "../../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
 
 export const tipoTratamientoMap: Record<number, string> = {
   0: "Medicación",
@@ -49,6 +50,19 @@ export const initialValuesPatient: PatientRegister = {
   entidadesId: [1],
   financiadorId: 1,
 };
+
+export const initialValuesFilter: Donation = {
+  textoBusqueda: "",
+  edad: "",
+  peso: "",
+  altura: "",
+  generoOrdinal: "",
+  factorSanguineoOrdinal: "",
+  edadFiltro: "",
+  pesoFiltro: "",
+  alturaFiltro: ""
+}
+
 
 export const initialValuesHistory: ClinicHistoryProps = {
   titulo: "",

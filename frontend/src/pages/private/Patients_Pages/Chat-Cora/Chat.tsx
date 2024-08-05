@@ -18,7 +18,6 @@ export default function Chat() {
   const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
-    // Cargar mensajes desde localStorage al montar el componente
     const savedMessages = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (savedMessages) {
       setMessages(JSON.parse(savedMessages));
@@ -70,8 +69,8 @@ export default function Chat() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="w-full max-w-md min-h-screen bg-white rounded-lg shadow-lg flex flex-col">
+    <main className="lg:min-h-screen  bg-gray-100 flex justify-center items-center">
+      <div className="w-full max-w-md h-screen  bg-white rounded-lg shadow-lg flex flex-col">
         <ChatHeader />
         <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-t from-pink-300 to-indigo-500">
           <ChatPresentation />
