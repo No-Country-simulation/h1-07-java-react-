@@ -10,6 +10,7 @@ import { NotificationItem } from "../../../../components/NotificationItem";
 import { SkeletonNotification } from "../../../../components/Skeletons";
 import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { Paciente } from "../../../../Interfaces/interfaces";
+import NotificationTab from "./NotificationTab/NotificationTab";
 
 const tabOptions = [{ tabName: "No leídas" }, { tabName: "Todos" }];
 
@@ -24,6 +25,12 @@ export function Patient_Notification(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [patientInfo, setPatienInfo] = useState<Paciente>();
+
+  const [visibleReadCount, setVisibleReadCount] = useState<number>(5);
+  const [showAllRead, setShowAllRead] = useState<boolean>(false);
+
+  const [visibleUnreadCount, setVisibleUnreadCount] = useState<number>(5);
+  const [showAllUnread, setShowAllUnread] = useState<boolean>(false);
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
@@ -62,7 +69,6 @@ export function Patient_Notification(): JSX.Element {
     if (storedMedic) {
       const medic: Paciente = JSON.parse(storedMedic);
       setPatienInfo(medic);
-      console.log("hi");
     }
 
     const storedNotification = localStorage.getItem("PATIENT-NOTIFICATION");
@@ -79,10 +85,33 @@ export function Patient_Notification(): JSX.Element {
     };
   }, []);
 
-  const readNotifications = () => {
-    markNotificationsAsRead();
-    fetchUnreadNotifications();
-    fetchAllNotifications();
+  const readNotifications = async () => {
+    try {
+      await markNotificationsAsRead();
+      await fetchUnreadNotifications();
+      await fetchAllNotifications();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const reloadNotifications = async () => {
+    try {
+      await fetchUnreadNotifications();
+      await fetchAllNotifications();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleShowMore = () => {
+    setVisibleReadCount(allNotifications.length || 0);
+    setShowAllRead(true);
+  };
+
+  const handleShowMoreUnread = () => {
+    setVisibleUnreadCount(unreadNotifications.length || 0);
+    setShowAllUnread(true);
   };
 
   return (
@@ -98,30 +127,12 @@ export function Patient_Notification(): JSX.Element {
           link={"/patient-home"}
         ></HeaderProfile>
         <div className="p-4">
-          <section className=" mb-4 relative ">
-            <h6
-              className=" font-semibold text-2xl text-left"
-              id="inicio-notificacion"
-            >
-              Notificaciones
-            </h6>
-          </section>
-          <section className="flex flex-col">
-            <div className="bg-slate-200 p-2 rounded-md gap-4 w-2/4  flex justify-center items-center">
-              {tabOptions.map((tab) => (
-                <button
-                  key={tab.tabName}
-                  onClick={() => setActiveTab(tab.tabName)}
-                  className={`cursor-pointer px-2 py-1 rounded-md ${
-                    activeTab === tab.tabName
-                      ? "border-2 border-gray-400 bg-slate-50"
-                      : "bg-slate-200"
-                  }`}
-                >
-                  {tab.tabName}
-                </button>
-              ))}
-            </div>
+          <section className="flex flex-col rela">
+            <NotificationTab
+              tabOptions={tabOptions}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
             <div className="mt-4">
               {activeTab === "Todos" ? (
                 <>
@@ -134,16 +145,33 @@ export function Patient_Notification(): JSX.Element {
                           No hay notificaciones
                         </p>
                       ) : (
-                        allNotifications.map((notification) => (
-                          <NotificationItem
-                            key={notification.horarioTomaId}
-                            hora={notification.hora}
-                            mensaje={notification.mensaje}
-                            leido={notification.leido}
-                            fecha={notification.fecha}
-                            horarioTomaId={notification.horarioTomaId}
-                          />
-                        ))
+                        <>
+                          {allNotifications
+                            .sort((a, b) => Number(b.leido) - Number(a.leido))
+                            .slice(0, visibleReadCount)
+                            .map((notification) => (
+                              <NotificationItem
+                                key={notification.horarioTomaId}
+                                hora={notification.hora}
+                                mensaje={notification.mensaje}
+                                leido={notification.leido}
+                                fecha={notification.fecha}
+                                horarioTomaId={notification.horarioTomaId}
+                                reloadNotifications={reloadNotifications}
+                                idNotificacion={notification.idNotificacion}
+                              />
+                            ))}
+                          {allNotifications &&
+                            allNotifications.length > 6 &&
+                            !showAllRead && (
+                              <button
+                                onClick={handleShowMore}
+                                className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
+                              >
+                                Ver Todos
+                              </button>
+                            )}
+                        </>
                       )}
                     </>
                   )}
@@ -151,16 +179,32 @@ export function Patient_Notification(): JSX.Element {
               ) : unreadNotifications.length === 0 ? (
                 <p className="mt-4 text-center">No hay notificaciones</p>
               ) : (
-                unreadNotifications.map((notification) => (
-                  <NotificationItem
-                    key={notification.horarioTomaId}
-                    hora={notification.hora}
-                    mensaje={notification.mensaje}
-                    leido={notification.leido}
-                    fecha={notification.fecha}
-                    horarioTomaId={notification.horarioTomaId}
-                  />
-                ))
+                <>
+                  {unreadNotifications
+                    .slice(0, visibleUnreadCount)
+                    .map((notification) => (
+                      <NotificationItem
+                        key={notification.horarioTomaId}
+                        hora={notification.hora}
+                        mensaje={notification.mensaje}
+                        leido={notification.leido}
+                        fecha={notification.fecha}
+                        horarioTomaId={notification.horarioTomaId}
+                        reloadNotifications={reloadNotifications}
+                        idNotificacion={notification.idNotificacion}
+                      />
+                    ))}
+                  {unreadNotifications &&
+                    unreadNotifications.length > 6 &&
+                    !showAllUnread && (
+                      <button
+                        onClick={handleShowMoreUnread}
+                        className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
+                      >
+                        Ver Todos
+                      </button>
+                    )}
+                </>
               )}
               {activeTab === "No leídas" && unreadNotifications.length > 0 && (
                 <button
@@ -173,7 +217,7 @@ export function Patient_Notification(): JSX.Element {
               {visible && (
                 <a
                   href="#inicio-notificacion"
-                  className=" rotate-180  z-30 bg-grays-400 border-2 items-center justify-center flex animate-bounce w-10 rounded-full h-10 fixed right-5 bottom-5"
+                  className=" rotate-180  bg-white z-30 bg-grays-400 border-2 items-center justify-center flex animate-bounce w-10 rounded-full h-10 fixed right-5 bottom-5"
                 >
                   <span className=" rotate-90">
                     <FlechaIconTwo

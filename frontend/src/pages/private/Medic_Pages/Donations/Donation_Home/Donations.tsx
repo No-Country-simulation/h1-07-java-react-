@@ -7,65 +7,67 @@ import { Button } from "@nextui-org/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
+import { API_URL } from "../../../../../api/api";
+import { ContentDonations } from "../../../../../Interfaces/interfaces";
 
-export interface Donors {
-  altura: string;
-  descripcion: string;
-  peso: string;
-  genero: number;
-  factorSanguineo: number;
-  fechaNacimiento: string;
-  provincia: string;
-  localidad: string;
-  src: string;
-}
+// export interface Donors {
+//   altura: string;
+//   descripcion: string;
+//   peso: string;
+//   genero: number;
+//   factorSanguineo: number;
+//   fechaNacimiento: string;
+//   provincia: string;
+//   localidad: string;
+//   src: string;
+// }
 
-const donors: Donors[] = [
-  {
-    altura: "175",
-    descripcion: "Donante regular con buena salud.",
-    peso: "70",
-    genero: 1,
-    factorSanguineo: 0,
-    fechaNacimiento: "1990-01-01",
-    provincia: "Madrid",
-    localidad: "Madrid",
-    src: "IMG_MEDICO/IMG_Pacientes.png",
-  },
-  {
-    altura: "165",
-    descripcion: "Primer donante, antecedentes familiares de diabetes.",
-    peso: "65",
-    genero: 0,
-    factorSanguineo: 1,
-    fechaNacimiento: "1985-05-12",
-    provincia: "Barcelona",
-    localidad: "Barcelona",
-    src: "IMG_MEDICO/IMG_Pacientes_2.png",
-  },
-  {
-    altura: "180",
-    descripcion: "Atleta con historial de donación frecuente.",
-    peso: "75",
-    genero: 1,
-    factorSanguineo: 2,
-    fechaNacimiento: "1992-03-21",
-    provincia: "Valencia",
-    localidad: "Valencia",
-    src: "IMG_MEDICO/IMG_Pacientes_3.png",
-  },
-  {
-    altura: "158",
-    descripcion: "Estudiante universitaria, donante por primera vez.",
-    peso: "50",
-    genero: 0,
-    factorSanguineo: 3,
-    fechaNacimiento: "2000-07-08",
-    provincia: "Sevilla",
-    localidad: "Sevilla",
-    src: "IMG_MEDICO/IMG_Pacientes_2.png",
-  },
-];
+// const donors: Donors[] = [
+//   {
+//     altura: "175",
+//     descripcion: "Donante regular con buena salud.",
+//     peso: "70",
+//     genero: 1,
+//     factorSanguineo: 0,
+//     fechaNacimiento: "1990-01-01",
+//     provincia: "Madrid",
+//     localidad: "Madrid",
+//     src: "IMG_MEDICO/IMG_Pacientes.png",
+//   },
+//   {
+//     altura: "165",
+//     descripcion: "Primer donante, antecedentes familiares de diabetes.",
+//     peso: "65",
+//     genero: 0,
+//     factorSanguineo: 1,
+//     fechaNacimiento: "1985-05-12",
+//     provincia: "Barcelona",
+//     localidad: "Barcelona",
+//     src: "IMG_MEDICO/IMG_Pacientes_2.png",
+//   },
+//   {
+//     altura: "180",
+//     descripcion: "Atleta con historial de donación frecuente.",
+//     peso: "75",
+//     genero: 1,
+//     factorSanguineo: 2,
+//     fechaNacimiento: "1992-03-21",
+//     provincia: "Valencia",
+//     localidad: "Valencia",
+//     src: "IMG_MEDICO/IMG_Pacientes_3.png",
+//   },
+//   {
+//     altura: "158",
+//     descripcion: "Estudiante universitaria, donante por primera vez.",
+//     peso: "50",
+//     genero: 0,
+//     factorSanguineo: 3,
+//     fechaNacimiento: "2000-07-08",
+//     provincia: "Sevilla",
+//     localidad: "Sevilla",
+//     src: "IMG_MEDICO/IMG_Pacientes_2.png",
+//   },
+// ];
 
 const donorRH = {
   rh: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
@@ -88,10 +90,36 @@ const validationSchema = Yup.object({
 
 export default function Donations() {
   const [filters, setFilters] = useState(false);
+  const [donors, setDonors] = useState<ContentDonations>();
+
   //   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // const toggleSidebar = () => {
   //   setIsSidebarOpen(!isSidebarOpen);
   // };
+
+  const handleSubmitFilterDonation = async (values: any) => {
+    const token = localStorage.getItem("TOKEN_KEY");
+
+    console.log(values);
+    try {
+      const res = await fetch(
+        `${API_URL}/donante/buscar-donantes?textoBusqueda=higado&page=0&size=100`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await res.json();
+      setDonors(data);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <main className="flex bg-gray-100 md:flex md:justify-center">
@@ -125,9 +153,7 @@ export default function Donations() {
                 rh: "",
               }}
               validationSchema={validationSchema}
-              onSubmit={(values) => {
-                console.log(values);
-              }}
+              onSubmit={handleSubmitFilterDonation}
             >
               {/* {({ handleSubmit }) => ( */}
               <Form className="p-3 grid grid-cols-2 gap-4 rounded-r-xl rounded-md border-2 border-gray-500 shadow-xl overflow-hidden">
@@ -227,27 +253,27 @@ export default function Donations() {
               </button>
             </div>
             <ol>
-              {donors.map((donor, idx) => (
-                <li
-                  key={idx}
-                  className="flex hover:bg-gray-200 transition-all duration-300 cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500"
-                >
-                  <div className="flex flex-row items-center w-full p-1">
-                    <img src={donor.src} alt="imagen_paciente" />
-                    <div className="flex flex-col ml-3 w-full">
-                      <div className="flex flex-row justify-between">
-                        <p className="font-semibold text-sm">
-                          {donor.genero === 0 ? "Masculino" : "Femenino"} de{" "}
-                          {getAge(donor.fechaNacimiento)} años
+              {donors &&
+                donors.content.map((donor, idx) => (
+                  <li
+                    key={idx}
+                    className="flex hover:bg-gray-200 transition-all duration-300 cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500"
+                  >
+                    <div className="flex flex-row items-center w-full p-1">
+                      <div className="flex flex-col ml-3 w-full">
+                        <div className="flex flex-row justify-between">
+                          <p className="font-semibold text-sm">
+                            {donor.genero === 0 ? "Masculino" : "Femenino"} de{" "}
+                            {getAge(donor.fechaNacimiento)} años
+                          </p>
+                        </div>
+                        <p className="text-gray-700 text-sm">
+                          {donor.descripcion}
                         </p>
                       </div>
-                      <p className="text-gray-700 text-sm">
-                        {donor.descripcion}
-                      </p>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                ))}
             </ol>
           </div>
         </section>

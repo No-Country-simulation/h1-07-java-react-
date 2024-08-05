@@ -297,6 +297,29 @@ export interface Treatment {
   fechaInicio: string;
 }
 
+export interface ContentDonations {
+  content: Donor[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface Donor {
+  idMedico: number
+  altura: string
+  descripcion: string
+  peso: string
+  genero: number
+  factorSanguineo: number
+  fechaNacimiento: string
+  provincia?: string
+  localidad: string
+}
+
+
 export interface ContentMedicines {
   content: Medicines[];
   number: number;

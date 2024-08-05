@@ -2340,7 +2340,7 @@ export function SilderIcon({ width, height }: IconProps) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_736_3842)">
+      <g clipPath="url(#clip0_736_3842)">
         <path
           d="M8.75001 1.66699H5.83334"
           stroke="#767676"
