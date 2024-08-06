@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NotificationProps } from "../Home/Home_Patients";
+import { NotificationProps } from "../Home/HomeView";
 import {
   fetchNotifications,
   getAllNotifications,
@@ -8,9 +8,9 @@ import {
 import { FlechaIconTwo } from "../../../../../public/icons/Icons";
 import { NotificationItem } from "../../../../components/NotificationItem";
 import { SkeletonNotification } from "../../../../components/Skeletons";
-import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { Paciente } from "../../../../Interfaces/interfaces";
 import NotificationTab from "./NotificationTab/NotificationTab";
+import { HeaderPatient } from "../Profile/HeaderPatient/HeaderPatient";
 
 const tabOptions = [{ tabName: "No leídas" }, { tabName: "Todos" }];
 
@@ -115,18 +115,16 @@ export function Patient_Notification(): JSX.Element {
   };
 
   return (
-    <main className="  scroll-smooth flex min-h-screen bg-gray-100 md:flex md:justify-center">
-      <div className="w-full relative max-w-md min-h-screen  bg-white rounded-lg shadow-lg max-md:m-auto">
-        <HeaderProfile
+    <main className="container mx-auto border-1 shadow-xl">
+      <div className="max-w-screen-xl mx-auto min-h-screen">
+        <HeaderPatient
           name={patientInfo?.nombre}
-          title="Tus Tratamientos"
           lastname={patientInfo?.apellido}
           typeDocument={patientInfo?.tipoDocumento}
-          financier={patientInfo?.financiador}
           document={patientInfo?.numeroDocumento}
-          link={"/patient-home"}
-        ></HeaderProfile>
-        <div className="p-4">
+          link={"/patient-home"}>
+        </HeaderPatient>
+        <div className="px-32 max-lg:px-16 max-md:px-8 ">
           <section className="flex flex-col rela">
             <NotificationTab
               tabOptions={tabOptions}
