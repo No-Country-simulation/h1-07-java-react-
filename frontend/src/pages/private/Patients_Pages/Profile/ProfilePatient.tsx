@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Logout } from "../../../../components/Logout";
 import { Paciente } from "../../../../Interfaces/interfaces";
 import { Personal } from "./PersonalData/Personal";
-import { HeaderPatient } from "./HeaderPatient/HeaderPatient";
 
 export function ProfilePatient() {
   const [patientInfo, setPatienInfo] = useState<Paciente>();
@@ -17,15 +16,8 @@ export function ProfilePatient() {
   }, []);
 
   return (
-    <main className="container mx-auto border-1 shadow-xl">
+    <main className="container mx-auto  shadow-xl">
       <div className="max-w-screen-xl mx-auto">
-        <HeaderPatient
-          name={patientInfo?.nombre}
-          lastname={patientInfo?.apellido}
-          typeDocument={patientInfo?.tipoDocumento}
-          document={patientInfo?.numeroDocumento}
-          link={"/patient-home"}>
-        </HeaderPatient>
         <Personal
           numeroDocumento={patientInfo?.numeroDocumento}
           patologia={patientInfo?.patologia}

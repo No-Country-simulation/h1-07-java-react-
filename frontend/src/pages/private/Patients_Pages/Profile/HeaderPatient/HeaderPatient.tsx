@@ -31,15 +31,18 @@ export const HeaderPatient: React.FC<HeaderProfileProps> = ({
         <div className="w-full  flex items-center justify-between">
           <div className="flex gap-2 items-center flex-col">
             <div className=" flex gap-4 items-center">
-              <Avatar name={name} color="primary" className=" cursor-pointer" isBordered size="lg" />
-              <div className="text-left">
-                <h6 className="font-bold text-light-color">
-                  {name} {lastname}
-                </h6>
-                <p className="text-sm text-light-color font-semibold">
-                  {typeDocument} {document}
-                </p>
-              </div>
+              <Link to={"/profile"} className="flex gap-4 items-center">
+                <Avatar name={name} color="primary" className=" cursor-pointer" isBordered size="lg" />
+                <div className="text-left">
+                  <h6 className="font-bold text-light-color">
+                    {name} {lastname}
+                  </h6>
+                  <p className="text-sm text-light-color font-semibold">
+                    {typeDocument} {document}
+                  </p>
+                </div>
+              </Link>
+
             </div>
           </div>
           <a href="/patient-home"><img src="logo-justina.webp" width={200} alt="logo-justina" className=" max-md:hidden" /></a>

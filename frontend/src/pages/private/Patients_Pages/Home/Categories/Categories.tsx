@@ -5,6 +5,7 @@ import {
   HistoryIconThree,
   MenssageIconCora,
   TratamentIconTwo,
+  UserIcon,
 } from "../../../../../../public/icons/Icons";
 
 const patientOptions = [
@@ -29,12 +30,12 @@ const patientOptions = [
     label: "Citas",
   },
   {
-    to: "/citas",
-    icon: <CaledarIcon width={45} height={45} />,
-    label: "Mi medico",
+    to: "/profile",
+    icon: <UserIcon width={45} height={45} />,
+    label: "Mi perfil",
   },
   {
-    to: "/citas",
+    to: "/notification",
     icon: <CampanaNotificIcon stroke='#948ABC' width={45} height={45} />,
     label: "Notificaciones",
   },

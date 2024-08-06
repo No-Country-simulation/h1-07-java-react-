@@ -8,9 +8,7 @@ import {
 import { FlechaIconTwo } from "../../../../../public/icons/Icons";
 import { NotificationItem } from "../../../../components/NotificationItem";
 import { SkeletonNotification } from "../../../../components/Skeletons";
-import { Paciente } from "../../../../Interfaces/interfaces";
 import NotificationTab from "./NotificationTab/NotificationTab";
-import { HeaderPatient } from "../Profile/HeaderPatient/HeaderPatient";
 
 const tabOptions = [{ tabName: "No leídas" }, { tabName: "Todos" }];
 
@@ -24,7 +22,6 @@ export function Patient_Notification(): JSX.Element {
   );
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState<boolean>(false);
-  const [patientInfo, setPatienInfo] = useState<Paciente>();
 
   const [visibleReadCount, setVisibleReadCount] = useState<number>(5);
   const [showAllRead, setShowAllRead] = useState<boolean>(false);
@@ -64,12 +61,6 @@ export function Patient_Notification(): JSX.Element {
   useEffect(() => {
     fetchUnreadNotifications();
     fetchAllNotifications();
-
-    const storedMedic = localStorage.getItem("PATIENT-DATA");
-    if (storedMedic) {
-      const medic: Paciente = JSON.parse(storedMedic);
-      setPatienInfo(medic);
-    }
 
     const storedNotification = localStorage.getItem("PATIENT-NOTIFICATION");
     if (storedNotification) {
@@ -115,15 +106,8 @@ export function Patient_Notification(): JSX.Element {
   };
 
   return (
-    <main className="container mx-auto border-1 shadow-xl">
+    <main className="container mx-auto shadow-xl">
       <div className="max-w-screen-xl mx-auto min-h-screen">
-        <HeaderPatient
-          name={patientInfo?.nombre}
-          lastname={patientInfo?.apellido}
-          typeDocument={patientInfo?.tipoDocumento}
-          document={patientInfo?.numeroDocumento}
-          link={"/patient-home"}>
-        </HeaderPatient>
         <div className="px-32 max-lg:px-16 max-md:px-8 ">
           <section className="flex flex-col rela">
             <NotificationTab

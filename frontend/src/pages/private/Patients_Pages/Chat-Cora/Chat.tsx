@@ -69,10 +69,10 @@ export default function Chat() {
   };
 
   return (
-    <main className="lg:min-h-screen  bg-gray-100 flex justify-center items-center">
-      <div className="w-full max-w-md h-screen  bg-white rounded-lg shadow-lg flex flex-col">
+    <main className="container mx-auto shadow-xl">
+      <div className="max-w-screen-xl mx-auto min-h-screen">
         <ChatHeader />
-        <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-t from-pink-300 to-indigo-500">
+        <div className="flex-1  h-[90vh] overflow-y-auto p-4 bg-gradient-to-t from-pink-300 to-indigo-500">
           <ChatPresentation />
           {messages.map((message, index) => (
             <ChatMessage key={index} message={message} />
