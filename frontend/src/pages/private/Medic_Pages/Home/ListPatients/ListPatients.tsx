@@ -44,7 +44,7 @@ export default function ListPatients() {
   }, []);
 
   return (
-    <>
+    <div className=" p-4">
       <section className=" m-auto">
         <div className=" -mt-4 relative flex justify-center items-center">
           <input
@@ -125,6 +125,6 @@ export default function ListPatients() {
           Ver más
         </Link>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import {
   ContentTreatmentPacient,
-  Paciente,
 } from "../../../../Interfaces/interfaces";
-import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { API_URL } from "../../../../api/api";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
 
 export default function TreatementPatient() {
-  const [patientInfo, setPatienInfo] = useState<Paciente>();
   const [treatments, setTreatments] = useState<ContentTreatmentPacient>();
   const [visibleCount, setVisibleCount] = useState(5);
   const [showAll, setShowAll] = useState(false);
@@ -39,12 +36,6 @@ export default function TreatementPatient() {
     };
 
     fetchTreatmentPacient();
-
-    const storedMedic = localStorage.getItem("PATIENT-DATA");
-    if (storedMedic) {
-      const medic: Paciente = JSON.parse(storedMedic);
-      setPatienInfo(medic);
-    }
   }, []);
 
   const handleShowMore = () => {
@@ -53,19 +44,10 @@ export default function TreatementPatient() {
   };
 
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
-      <div className="w-full min-h-screen max-w-md bg-white rounded-lg shadow-lg max-md:m-auto">
-        <HeaderProfile
-          name={patientInfo?.nombre}
-          title="Tus Tratamientos"
-          lastname={patientInfo?.apellido}
-          typeDocument={patientInfo?.tipoDocumento}
-          financier={patientInfo?.financiador}
-          document={patientInfo?.numeroDocumento}
-          link={"/patient-home"}
-        ></HeaderProfile>
-        <div className="p-4">
-          <h3 className="text-xl text-gray-700 font-semibold">
+    <main className="container mx-auto shadow-xl">
+      <div className="max-w-screen-xl mx-auto min-h-screen">
+        <div className="px-32 max-lg:px-16 max-md:px-8 mt-8">
+          <h3 className="font-bold font-inter text-2xl mb-4">
             Mis tratamientos
           </h3>
 

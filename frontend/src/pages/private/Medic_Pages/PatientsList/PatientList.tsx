@@ -22,7 +22,6 @@ export default function PatientList() {
       setLoading(true);
       try {
         setPatients(await fetchPatient());
-        console.log(patients?.content);
       } catch (err) {
         console.log(err);
       } finally {
@@ -33,8 +32,8 @@ export default function PatientList() {
   }, []);
 
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md p-6  bg-white rounded-lg shadow-lg  max-md:m-auto">
+    <main className="flex min-h-screen bg-gray-100 justify-center">
+      <div className="w-full max-w-5xl  max-md:max-w-md  p-6 bg-white rounded-lg shadow-lg m-auto md:w-3/4 lg:w-2/4 xl:w-1/3">
         <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}
