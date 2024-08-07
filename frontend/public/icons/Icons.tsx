@@ -217,9 +217,11 @@ export const TabletIcon = ({
 export const UserIcon = ({
   width,
   height,
+  stroke
 }: {
   width: number;
   height: number;
+  stroke:string
 }) => {
   return (
     <svg
@@ -231,7 +233,7 @@ export const UserIcon = ({
     >
       <path
         d="M12.5 13.125V11.875C12.5 11.212 12.2366 10.5761 11.7678 10.1072C11.2989 9.63839 10.663 9.375 10 9.375H5C4.33696 9.375 3.70107 9.63839 3.23223 10.1072C2.76339 10.5761 2.5 11.212 2.5 11.875V13.125M10 4.375C10 5.75571 8.88071 6.875 7.5 6.875C6.11929 6.875 5 5.75571 5 4.375C5 2.99429 6.11929 1.875 7.5 1.875C8.88071 1.875 10 2.99429 10 4.375Z"
-        stroke="#948ABC"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -2528,4 +2530,14 @@ export function DonationRegistreIcon({ width, height }: IconProps) {
       />
     </svg>
   );
+}
+
+
+export function IconLogout({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 17L15 12L10 7V17Z" fill="currentColor" />
+      <path d="M20 3H4C2.89 3 2 3.89 2 5V19C2 20.11 2.89 21 4 21H20C21.11 21 22 20.11 22 19V5C22 3.89 21.11 3 20 3ZM20 19H4V5H20V19Z" fill="currentColor" />
+    </svg>
+  )
 }

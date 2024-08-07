@@ -32,6 +32,7 @@ import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Dona
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import SignUp from "../pages/signup/SignUp";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
+import { Donation_Detail } from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
 
 function AppRouter() {
   return (

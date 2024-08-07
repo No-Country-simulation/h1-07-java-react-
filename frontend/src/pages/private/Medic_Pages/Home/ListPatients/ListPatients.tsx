@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ContentPatient } from "../../../../../Interfaces/interfaces";
 import { fetchPatient } from "../../../../../Context/AuthContext";
 import SkeletonsListPatient from "../../../../../components/Skeletons";
+import { ClassNames } from "@emotion/react";
 
 export default function ListPatients() {
   const [patients, setPatients] = useState<ContentPatient>();
@@ -29,10 +30,10 @@ export default function ListPatients() {
   const filteredPatients =
     patients && patients.content
       ? patients.content.filter((patient) =>
-          (patient.nombre + patient.apellido)
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase())
-        )
+        (patient.nombre + patient.apellido)
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase())
+      )
       : [];
 
   const displayedPatients = searchQuery
@@ -44,9 +45,9 @@ export default function ListPatients() {
   }, []);
 
   return (
-    <>
-      <section className=" m-auto">
-        <div className=" -mt-4 relative flex justify-center items-center">
+    <div className="xl:flex xl:flex-col xl:justify-center">
+      <section className="m-auto xl:w-[50%]">
+        <div className="relative flex justify-center  items-center  ">
           <input
             type="text"
             value={searchQuery}
@@ -59,14 +60,14 @@ export default function ListPatients() {
           </span>
         </div>
       </section>
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="font-bold  font-inter text-violet-color">
+      <div className="mb-4 flex items-center justify-between xl:justify-center xl:mt-5">
+        <h3 className="font-bold xl:text-center font-inter text-violet-color">
           Lista de pacientes
         </h3>
       </div>
 
-      <section className="w-[100%]">
-        <div className=" border-1 border-violet-color rounded-md min-h-[20rem]  shadow-xl ">
+      <section className="w-[100%]  xl:items-center xl:flex xl:flex-col xl:justify-center">
+        <div className=" border-1 border-violet-color rounded-md min-h-[20rem] xl:w-[50%] shadow-xl ">
           {loading ? (
             <>
               <SkeletonsListPatient />
@@ -125,6 +126,6 @@ export default function ListPatients() {
           Ver más
         </Link>
       </div>
-    </>
+    </div>
   );
 }

@@ -105,8 +105,7 @@ export function Donation_Registre() {
 
   return (
     <main>
-      <Header_Donation link="/donations">
-      </Header_Donation>
+      <Header_Donation src='JustinaLogo_2.png' link="/donations" />
       <Formik
         initialValues={{
           nombre: "",

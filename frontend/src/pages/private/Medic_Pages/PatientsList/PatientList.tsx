@@ -34,7 +34,7 @@ export default function PatientList() {
 
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md p-6  bg-white rounded-lg shadow-lg  max-md:m-auto">
+      <div className="w-full max-w-md p-6  bg-white rounded-lg shadow-lg ">
         <AsideMenu
           isSidebarOpen={isSidebarOpen}
           toggleSidebar={toggleSidebar}

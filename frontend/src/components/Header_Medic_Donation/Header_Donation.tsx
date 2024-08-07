@@ -8,7 +8,7 @@ interface header_Donation {
 }
 
 
-export function Header_Donation({link}: {link:string}) {
+export function Header_Donation({ link, src }: header_Donation) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
@@ -18,8 +18,8 @@ export function Header_Donation({link}: {link:string}) {
     return (
         <header className='mb-10 p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-[#FFA4D7] to-[#C23584] rounded-br-[4rem] shadow-2xl'>
             <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
-                <Link to={link} className='text-light-color absolute -left-4 hover:-translate-x-1 transition-all duration-300'>
-                    <ArrowWhiteIcon width={30} height={30} stroke="" />
+                <Link to={link} className='text-light-color absolute left-4 hover:-translate-x-1 transition-all duration-300'>
+                    <ArrowWhiteIcon width={30} height={30} stroke="#ffffff" />
                 </Link>
                 <div className="flex items-center justify-center">
                     <h1 className="text-xl font-bold text-light-color">Donaciones</h1>

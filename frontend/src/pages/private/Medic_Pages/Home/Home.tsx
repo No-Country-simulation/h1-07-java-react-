@@ -6,6 +6,7 @@ import Header from "./Header.tsx/Header";
 
 import { Medic } from "../../../../Interfaces/interfaces";
 import ListPatients from "./ListPatients/ListPatients";
+import { Side_Menu } from "../../../../components/Side_Menu/Side_Menu";
 
 export function Home(): JSX.Element {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,9 +22,10 @@ export function Home(): JSX.Element {
     } catch (err) {
       console.log(err);
     }
+
   };
 
-  
+
 
   useEffect(() => {
     fetchMedic();
@@ -33,41 +35,62 @@ export function Home(): JSX.Element {
       const medic: Medic = JSON.parse(storedMedic);
       setMedicInfo(medic);
     }
-    console.log(storedMedic)
+
   }, []);
 
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  const toggleMenu = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <main className=" bg-gray-100 min-h-screen w-full font-inter">
-      <div className="w-full  max-w-md bg-white rounded-lg shadow-lg m-auto">
-        <AsideMenu
-          isSidebarOpen={isSidebarOpen}
-          toggleSidebar={toggleSidebar}
-        />
-        <Header
-          toggleSidebar={toggleSidebar}
-          nombre={medicInfo?.nombre}
-          apellido={medicInfo?.apellido}
-          especialidad={medicInfo?.especialidad}
-        />
-        <div className="p-4">
-          <ListPatients />
+    <main className="min-h-screen w-full font-inter flex xl:flex-row flex-col overflow-y-auto">
+      <Side_Menu
+        classname={`hidden xl:block h-[61rem] 2xl:h-[68rem] bg-[#fff]  bg-gradient-to-r from-indigo-500 to-indigo-300 text-[#000] font-mono ${isExpanded ? 'w-[300px]' : 'w-[130px]'} transition-width duration-300 z-10`}
+        isExpanded={isExpanded}
+        toggleMenu={toggleMenu}
+      />
+      <div className={`flex-1 xl:ml-${isExpanded ? '325px' : '90px'} transition-margin duration-300 ease-in-out`}>
+        <div className="xl:grid xl:grid-cols-1 xl:justify-center w-full xl:max-w-full max-w-md bg-white rounded-lg shadow-lg m-auto ">
+          <div className="">
+            <AsideMenu
+              isSidebarOpen={isSidebarOpen}
+              toggleSidebar={toggleSidebar}
+            />
+          </div>
+          <div className="xl:w-full ">
+            <div className="xl:flex xl:justify-center">
+              <Header
+                toggleSidebar={toggleSidebar}
+                nombre={medicInfo?.nombre}
+                apellido={medicInfo?.apellido}
+                especialidad={medicInfo?.especialidad}
+              />
+            </div>
+
+            <div className="2xl:-ml-[20rem] p-4">
+              <ListPatients />
+            </div>
+
+            <footer className="mt-5 flex justify-center items-center flex-col 2xl:-ml-[20rem]">
+              <h2 className="text-center font-inter font-bold text-2xl">
+                Donaciones
+              </h2>
+              <img
+                src="JustinaLogo_2.png"
+                width={150}
+                height={150}
+                alt="JustinaLogo"
+              />
+              <Link to={"/donations"}>
+                <button className="my-4 bg-[#E08733] px-24 text-white font-inter py-3 rounded-lg">
+                  Acceder
+                </button>
+              </Link>
+            </footer>
+          </div>
         </div>
-        <footer className="mt-5 flex justify-center items-center flex-col">
-          <h2 className="text-center font-inter font-bold text-2xl">
-            Donaciones
-          </h2>
-          <img
-            src="JustinaLogo_2.png"
-            width={150}
-            height={150}
-            alt="JustinaLogo"
-          />
-          <Link to={"/donations"}>
-            <button className="my-4 bg-[#E08733] px-24 text-white font-inter py-3 rounded-lg">
-              Acceder
-            </button>
-          </Link>
-        </footer>
       </div>
     </main>
   );
