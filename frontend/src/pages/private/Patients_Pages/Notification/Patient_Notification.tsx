@@ -3,7 +3,6 @@ import { NotificationProps } from "../Home/HomeView";
 import {
   fetchNotifications,
   getAllNotifications,
-  markNotificationsAsRead,
 } from "../../../../Context/AuthContext";
 import { SkeletonNotification } from "../../../../components/Skeletons";
 import NotificationTab from "./NotificationTab/NotificationTab";
@@ -50,15 +49,15 @@ export function Patient_Notification(): JSX.Element {
     }
   }, []);
 
-  const readNotifications = async () => {
-    try {
-      await markNotificationsAsRead();
-      await fetchUnreadNotifications();
-      await fetchAllNotifications();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // const readNotifications = async () => {
+  //   try {
+  //     await markNotificationsAsRead();
+  //     await fetchUnreadNotifications();
+  //     await fetchAllNotifications();
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   const reloadNotifications = async () => {
     try {
@@ -85,14 +84,14 @@ export function Patient_Notification(): JSX.Element {
                 <>
                   {activeTab === "Todos" ? (
                     allNotifications.length === 0 ? (
-                      <p className="mt-4 text-center">No hay notificaciones</p>
+                      <p className="mt-4 text-center font-medium text-light-color">No hay notificaciones</p>
                     ) : (
                       <RenderNotifications
                         notifications={allNotifications}
                         reloadNotifications={reloadNotifications} />
                     )
                   ) : unreadNotifications.length === 0 ? (
-                    <p className="mt-4 text-center">No hay notificaciones</p>
+                    <p className="mt-4 text-center font-medium text-light-color">No hay notificaciones</p>
                   ) : (
                     <RenderNotifications
                       notifications={unreadNotifications}
@@ -100,14 +99,14 @@ export function Patient_Notification(): JSX.Element {
                   }
                 </>
               )}
-              {activeTab === "No leídas" && unreadNotifications.length > 0 && (
+              {/* {activeTab === "No leídas" && unreadNotifications.length > 0 && (
                 <button
                   onClick={readNotifications}
                   className="border-2 py-2 m-auto flex px-4 mt-4 font-semibold text-center border-gray-400 rounded-md"
                 >
                   Marcar todas como leídas
                 </button>
-              )}
+              )} */}
               <ArrowUp />
             </div>
           </section>
