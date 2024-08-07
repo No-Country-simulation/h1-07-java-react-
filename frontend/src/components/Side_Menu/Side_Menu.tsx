@@ -32,36 +32,37 @@ export function Side_Menu({ classname, isExpanded, toggleMenu }: SideMenuProps) 
     const location = useLocation();
 
     return (
-        <aside className={`${classname}  transition-all duration-300 ${isExpanded ? 'w-[13rem]' : 'w-[60px]'}`}>
-            <nav className="flex flex-col w-full h-full ">
+        <aside className={`${classname}   duration-300 ${isExpanded ? 'w-[13rem]' : 'w-[60px]'}`}>
+            <nav className="flex flex-col w-full h-full justify-center items-center">
                 <button
                     onClick={toggleMenu}
                     className="flex justify-end p-2 text-[#fff] rounded-md m-2 pr-3 w-full"
                 >
                     <FlechaIconTwo width={26} height={26} stroke="#000000" classname="" />
                 </button>
-                <ul className="flex flex-col w-full">
+                <ul className="flex flex-col w-full duration-700">
                     {(authTokens && authTokens.authorities[0] === "ROLE_PACIENTE" ? menuPatient : menuItems).map((item, index) => (
-                        <Link to={item.to} key={index} className="flex flex-col items-center">
+                        <Link to={item.to} key={index} className="flex flex-col items-center ">
                             <li
                                 className={`mb-5 flex items-center p-3 rounded-lg text-white ${location.pathname === item.to
                                     ? "bg-[#5761C8]"
-                                    : "text-black hover:bg-[#3445a7] hover:text-white duration-400  border-[#3D4DA5]"
+                                    : "text-black hover:bg-[#3445a7] hover:text-white   border-[#3D4DA5]"
                                     } flex-row transition-all duration-300 ${isExpanded ? 'w-full' : 'w-[60px]'}`}
                             >
-                                <item.icon width={26} height={26} stroke="#000000" />
+                                <item.icon width={26} height={26} stroke="#ffffff" />
                                 {isExpanded && <p className="font-inter text-xl ml-5 text-white">{item.label}</p>}
                             </li>
                         </Link>
                     ))}
                 </ul>
                 <div className='flex flex-row justify-center items-center mt-auto mb-4'>
-                    <button
-                        className={`flex items-center p-3 rounded-lg ${isExpanded ? 'w-full' : 'w-[60px]'} justify-center ${isExpanded ? 'bg-[#7445C7] text-[#fff]' : 'text-black hover:bg-[#3445a7] hover:text-white'}`}
+                    <div
+                        className={`flex items-center  rounded-lg ${isExpanded ? 'w-full' : 'w-[60px]'} justify-center ${isExpanded ? '' : 'text-black hover:bg-[#3445a7] hover:text-white'}`}
                     >
-                        <IconLogout width={26} height={26} />
-                        {isExpanded && <p className="ml-3 text-[#fff] font-montserrat font-[700]">Salir</p>}
-                    </button>
+                        {isExpanded && <div className="">
+                            <Logout />
+                        </div>}
+                    </div>
                 </div>
             </nav>
         </aside>

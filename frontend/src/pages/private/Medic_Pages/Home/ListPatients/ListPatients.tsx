@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { ContentPatient } from "../../../../../Interfaces/interfaces";
 import { fetchPatient } from "../../../../../Context/AuthContext";
 import SkeletonsListPatient from "../../../../../components/Skeletons";
-import { ClassNames } from "@emotion/react";
 
 export default function ListPatients() {
   const [patients, setPatients] = useState<ContentPatient>();
@@ -127,6 +126,5 @@ export default function ListPatients() {
         </Link>
       </div>
     </div>
-    </div>
-  );
+  )
 }

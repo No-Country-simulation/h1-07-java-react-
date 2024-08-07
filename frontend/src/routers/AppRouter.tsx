@@ -33,6 +33,7 @@ import SignUp from "../pages/signup/SignUp";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import { HomeView } from "../pages/private/Patients_Pages/Home/HomeView";
 import HeaderLayout from "../components/HeaderLayout";
+import { Donation_Detail } from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
 
 function AppRouter() {
   return (

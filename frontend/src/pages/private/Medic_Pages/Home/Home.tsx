@@ -6,6 +6,7 @@ import Header from "./Header.tsx/Header";
 import { Medic } from "../../../../Interfaces/interfaces";
 import ListPatients from "./ListPatients/ListPatients";
 import { Side_Menu } from "../../../../components/Side_Menu/Side_Menu";
+import { Link } from "react-router-dom";
 
 export function Home(): JSX.Element {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -46,7 +47,7 @@ export function Home(): JSX.Element {
   return (
     <main className="min-h-screen w-full font-inter flex xl:flex-row flex-col overflow-y-auto">
       <Side_Menu
-        classname={`hidden xl:block h-[61rem] 2xl:h-[68rem] bg-[#fff]  bg-gradient-to-r from-indigo-500 to-indigo-300 text-[#000] font-mono ${isExpanded ? 'w-[300px]' : 'w-[130px]'} transition-width duration-300 z-10`}
+        classname={`hidden xl:block h-[61rem] 2xl:h-[68rem] bg-[#fff]  bg-gradient-to-r from-indigo-500 to-indigo-300 text-[#000] font-mono ${isExpanded ? 'w-[300px]' : 'w-[130px]'} `}
         isExpanded={isExpanded}
         toggleMenu={toggleMenu}
       />
