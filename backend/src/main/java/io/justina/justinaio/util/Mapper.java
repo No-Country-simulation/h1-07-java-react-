@@ -156,6 +156,7 @@ public class Mapper {
         return HorarioTomaResponse.builder()
                 .fecha(horarioToma.getFecha())
                 .hora(horarioToma.getHora())
+                .comentario(horarioToma.getCometario())
                 .estado(horarioToma.getEstadoHorario())
                 .build();
     }
@@ -219,6 +220,7 @@ public class Mapper {
 
     public static DonanteResponse toDonanteResponse(Donante donante) {
         return DonanteResponse.builder()
+                .idDonante(donante.getIdDonante())
                 .idMedico(donante.getMedico().getIdMedico())
                 .descripcion(donante.getDescripcion())
                 .altura(donante.getAltura())
@@ -241,4 +243,71 @@ public class Mapper {
                 .telefono(medico.getTelefono())
                 .build();
     }
+
+    public static NotificacionResponse toNotificacionResponse(Notificacion notificacion) {
+        return NotificacionResponse.builder()
+                .idNotificacion(notificacion.getIdNotificacion())
+                .horarioTomaId(notificacion.getHorarioToma().getIdHorario())
+                .pacienteId(notificacion.getPaciente().getIdPaciente())
+                .fecha(notificacion.getFecha())
+                .hora(notificacion.getHora())
+                .leido(notificacion.getLeido())
+                .mensaje(notificacion.getMensaje())
+                .build();
+    }
+
+    public static Disponibilidad toDisponibilidad(DisponibilidadRequest disponibilidadRequest, Medico medico) {
+        return Disponibilidad.builder()
+                .medico(medico)
+                .entrada(disponibilidadRequest.getEntrada())
+                .salida(disponibilidadRequest.getSalida())
+                .inicioDescanso(disponibilidadRequest.getInicioDescanso())
+                .finDescanso(disponibilidadRequest.getFinDescanso())
+                .dias(disponibilidadRequest.getDias())
+                .build();
+    }
+
+    public static DisponibilidadResponse toDisponibilidadResponse(Disponibilidad disponibilidad){
+        return DisponibilidadResponse.builder()
+                .entrada(disponibilidad.getEntrada())
+                .salida(disponibilidad.getSalida())
+                .inicioDescanso(disponibilidad.getInicioDescanso())
+                .finDescanso(disponibilidad.getFinDescanso())
+                .dias(disponibilidad.getDias())
+                .build();
+    }
+
+    public static Consulta toConsultaMedico(ConsultaRequestMedico consultaRequestMedico, Medico medico, Paciente paciente){
+        return Consulta.builder()
+                .horario(consultaRequestMedico.getHorario())
+                .fecha(consultaRequestMedico.getFecha())
+                .medico(medico)
+                .paciente(paciente)
+                .build();
+    }
+
+    public static Consulta toConsultaPaciente(ConsultaRequestPaciente consultaRequestPaciente, Medico medico, Paciente paciente){
+        return Consulta.builder()
+                .horario(consultaRequestPaciente.getHorario())
+                .fecha(consultaRequestPaciente.getFecha())
+                .medico(medico)
+                .paciente(paciente)
+                .build();
+    }
+
+    public static ConsultaResponse toConsultaResponse(Consulta consulta){
+        return ConsultaResponse.builder()
+                .idConsulta(consulta.getIdConsulta())
+                .horario(consulta.getHorario())
+                .fecha(consulta.getFecha())
+                .idmedico(consulta.getMedico().getIdMedico())
+                .nombreMedico(consulta.getMedico().getNombre())
+                .apellidoMedico(consulta.getMedico().getApellido())
+                .especialidadMedico(consulta.getMedico().getEspecialidad().getNombre())
+                .idPaciente(consulta.getPaciente().getIdPaciente())
+                .nombrePaciente(consulta.getPaciente().getNombre())
+                .apellidoPaciente(consulta.getPaciente().getApellido())
+                .build();
+    }
+
 }

@@ -17,4 +17,5 @@ public class HorarioTomaResponse {
     private LocalDate fecha;
     private LocalTime hora;
     private EstadoHorario estado;
+    private String comentario;
 }

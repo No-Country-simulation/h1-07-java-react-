@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class DonanteResponse {
 
+    private Integer idDonante;
     private Integer idMedico;
     private String altura;
     private String descripcion;
