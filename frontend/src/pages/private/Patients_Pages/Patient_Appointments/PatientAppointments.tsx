@@ -23,7 +23,7 @@ const data = [
 
 export function PatientAppointments() {
   return (
-    <main className="container mx-auto shadow-xl">
+    <main className="container mx-auto ">
       <div className="max-w-screen-xl mx-auto min-h-screen">
         <section className="px-32 max-lg:px-16 max-md:px-8 mt-8 ">
           <h1 className="font-bold font-inter text-2xl mb-4">Agendar Cita</h1>

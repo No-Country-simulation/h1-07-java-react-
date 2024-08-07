@@ -44,7 +44,7 @@ export default function TreatementPatient() {
   };
 
   return (
-    <main className="container mx-auto shadow-xl">
+    <main className="container mx-auto">
       <div className="max-w-screen-xl mx-auto min-h-screen">
         <div className="px-32 max-lg:px-16 max-md:px-8 mt-8">
           <h3 className="font-bold font-inter text-2xl mb-4">

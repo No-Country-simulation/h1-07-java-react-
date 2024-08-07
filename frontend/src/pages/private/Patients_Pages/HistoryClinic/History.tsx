@@ -17,7 +17,7 @@ export default function History() {
     fetchPatient();
   });
   return (
-    <main className="container mx-auto shadow-xl">
+    <main className="container mx-auto">
       <div className="max-w-screen-xl mx-auto min-h-screen pb-10">
         <DataHistory idPaciente={patientInfo?.idPaciente} />
       </div>

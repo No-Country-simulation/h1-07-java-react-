@@ -12,20 +12,20 @@ const patientOptions = [
   {
     to: "/treatement",
     icon: <TratamentIconTwo width={45} height={45} />,
-    label: "Tratamiento",
+    label: "Tratamientos",
   },
   {
     to: "/history",
     icon: <HistoryIconThree width={45} height={45} />,
-    label: "Historial",
+    label: "Historia Clínica",
   },
   {
     to: "/chat-cora",
     icon: <MenssageIconCora width={45} height={45} />,
-    label: "Cora",
+    label: "Chat Cora",
   },
   {
-    to: "/citas",
+    to: "/shift",
     icon: <CaledarIcon width={45} height={45} />,
     label: "Citas",
   },

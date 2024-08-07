@@ -13,7 +13,7 @@ export default function HeaderLayout() {
     }
   }, [])
   return (
-    <div className="container mx-auto  shadow-xl">
+    <div className="container mx-auto">
       <div className="max-w-screen-xl mx-auto">
         <HeaderPatient
           name={patientInfo?.nombre}

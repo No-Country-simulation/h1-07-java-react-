@@ -16,7 +16,7 @@ export function ProfilePatient() {
   }, []);
 
   return (
-    <main className="container mx-auto  shadow-xl">
+    <main className="container mx-auto ">
       <div className="max-w-screen-xl mx-auto">
         <Personal
           numeroDocumento={patientInfo?.numeroDocumento}

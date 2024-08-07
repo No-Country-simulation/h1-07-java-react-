@@ -69,7 +69,7 @@ export default function Chat() {
   };
 
   return (
-    <main className="container mx-auto shadow-xl">
+    <main className="container mx-auto">
       <div className="max-w-screen-xl mx-auto min-h-screen">
         <ChatHeader />
         <div className="flex-1  h-[90vh] overflow-y-auto p-4 bg-gradient-to-t from-pink-300 to-indigo-500">
