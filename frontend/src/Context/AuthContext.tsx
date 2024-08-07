@@ -19,9 +19,9 @@ import {
   tokenData,
   Treatment,
 } from "../Interfaces/interfaces";
+import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
-import { API_URL } from "../api/api";
 
 const AUTH_TOKEN_KEY = "TOKEN_KEY";
 const AUTH_INFO_USER = "USER_INFO";

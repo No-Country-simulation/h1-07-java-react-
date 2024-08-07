@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const Logout: React.FC = () => {
   const { logout } = useAuthContext();

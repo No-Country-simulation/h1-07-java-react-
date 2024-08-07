@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { ErrorPage } from "../pages/NotFound/ErrorPage";
 import { LoginPage } from "../pages/Login/Login";
 import { Onboarding } from "../pages/OnBoarding/OnBoarding";
+import { AuthContextProvider } from "../Context/AuthContext";
 import { RoutesWithNotFound } from "./RoutesWithNotFound";
 import { PublicRoute } from "./PublicRoute";
 import { Home } from "../pages/private/Medic_Pages/Home/Home";
@@ -32,7 +33,6 @@ import SignUp from "../pages/signup/SignUp";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import { HomeView } from "../pages/private/Patients_Pages/Home/HomeView";
 import HeaderLayout from "../components/HeaderLayout";
-import { AuthContextProvider } from "../Context/AuthContext";
 
 function AppRouter() {
   return (

@@ -2,8 +2,8 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { ContentClinicHistory } from "../Interfaces/interfaces";
 import { SearchIcon } from "../../public/icons/Icons";
-import { SkeletonAcordion } from "./Skeletons";
 import { fetchClinicHistory } from "../Context/AuthContext";
+import { SkeletonAcordion } from "./Skeletons";
 
 export default function ClinicHistoryClient({
   idPaciente,
