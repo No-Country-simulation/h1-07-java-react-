@@ -70,6 +70,7 @@ export const RegisterPatient: React.FC = () => {
 
   const handleSubmit = (values: PatientRegister, { setSubmitting }: any) => {
     const patient: PatientRegister = values;
+    console.log(patient)
     try {
       setLoading(true);
       registerPatient(patient);

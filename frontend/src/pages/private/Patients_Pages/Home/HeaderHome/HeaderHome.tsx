@@ -25,8 +25,8 @@ export default function HeaderHome({
               isBordered
               size="lg"
             />
-            <div className="flex flex-col text-lg text-white">
-              <h3 className="font-semibold text-xl ">Buenos días,</h3>
+            <div className="flex flex-col text-md text-white items-start justify-center">
+              <h3 className="font-semibold text-m ">Buenos días,</h3>
               <p className="font-bold ">{name} {lastname}</p>
             </div>
           </Link>
