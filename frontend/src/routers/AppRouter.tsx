@@ -13,10 +13,9 @@ import { RegisterPatient } from "../pages/private/Medic_Pages/RegisterPatient/Re
 import PatientList from "../pages/private/Medic_Pages/PatientsList/PatientList";
 // import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
 // import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
-import { Home_Patients } from "../pages/private/Patients_Pages/Home/Home_Patients";
 // import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
 import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
-import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
+// import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
 // import Donations from "../pages/private/Medic_Pages/Donations/Donations";
 import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
 import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfilePatient";
@@ -32,7 +31,8 @@ import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Dona
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import SignUp from "../pages/signup/SignUp";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
-import { Donation_Detail } from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
+import { HomeView } from "../pages/private/Patients_Pages/Home/HomeView";
+import HeaderLayout from "../components/HeaderLayout";
 
 function AppRouter() {
   return (
@@ -66,17 +66,21 @@ function AppRouter() {
               <Route path="/donationDetail/:id" element={<Donation_Detail />} />
             </Route >
             <Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
-              <Route path="/patient-home" element={<Home_Patients />} />
-              <Route path="/profile" element={<ProfilePatient />} />
-              <Route path="/treatement" element={<TreatementPatient />} />
-              <Route path="/history" element={<History />} />
+              <Route path="/patient-home" element={<HomeView />} />
               <Route path="/chat-cora" element={<Chat></Chat>}></Route>
-              <Route path="/notification" element={<Patient_Notification />} />
-              <Route path="/citas" element={<PatientAppointments />} />
-              <Route
+              <Route element={<HeaderLayout />}>
+                <Route path="/profile" element={<ProfilePatient />} />
+                <Route path="/treatement" element={<TreatementPatient />} />
+                <Route path="/history" element={<History />} />
+                <Route path="/notification" element={<Patient_Notification />} />
+                <Route path="/citas" element={<PatientAppointments />} />
+              </Route>
+
+
+              {/* <Route
                 path="/Medic_Appointment"
                 element={<Medic_Appointment />}
-              />
+              /> */}
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>

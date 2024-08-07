@@ -127,5 +127,6 @@ export default function ListPatients() {
         </Link>
       </div>
     </div>
+    </div>
   );
 }

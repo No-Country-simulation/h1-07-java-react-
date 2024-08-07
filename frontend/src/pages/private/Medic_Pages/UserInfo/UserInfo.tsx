@@ -11,9 +11,10 @@ import {
 import { Medic } from "../../../../Interfaces/interfaces";
 import { AsideMenu } from "../../../../components/AsideMenu";
 import { Logout } from "../../../../components/Logout";
+import { DataUser } from "./DataUser/DataUser";
+import Header from "../Home/Header.tsx/Header";
 
 export function UserInfo(): JSX.Element {
-  // const [curriculum, setCurriculum] = useState("");
   const [medicInfo, setMedicInfo] = useState<Medic>();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -27,9 +28,6 @@ export function UserInfo(): JSX.Element {
     }
   }, []);
 
-  // const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //   setCurriculum(e.target.value);
-  // };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

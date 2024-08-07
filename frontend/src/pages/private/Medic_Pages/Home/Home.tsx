@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { fetchMedicData } from "../../../../Context/AuthContext";
 import { AsideMenu } from "../../../../components/AsideMenu";
 import Header from "./Header.tsx/Header";

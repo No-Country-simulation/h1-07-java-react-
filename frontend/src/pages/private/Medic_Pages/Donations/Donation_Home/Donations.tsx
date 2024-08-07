@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { AsideMenu } from "../../../../../components/AsideMenu";
 // import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -98,6 +98,24 @@ export default function Donations() {
       setLoading(false)
     }
   };
+
+  const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 500);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (isLoading) {
+    return (
+      <main className="bg-gradient-to-r from-[#FFA4D7] to-[#C23584] min-h-screen w-screen flex justify-center items-center">
+        <img src="JustinaLogo_2.png" className="pulse responsive-img"></img>
+      </main>
+    )
+  }
 
   return (
     <main className="flex bg-gray-100 md:flex md:justify-center">
