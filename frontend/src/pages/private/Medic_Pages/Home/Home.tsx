@@ -59,7 +59,7 @@ export function Home(): JSX.Element {
               toggleSidebar={toggleSidebar}
             />
           </div>
-          <div className="xl:w-full ">
+          <div className="xl:w-full">
             <div className="xl:flex xl:justify-center">
               <Header
                 toggleSidebar={toggleSidebar}
