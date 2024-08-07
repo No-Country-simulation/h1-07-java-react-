@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthenticationRequest } from "../../Interfaces/interfaces";
-import { useAuthContext } from "../../Context/AuthContext";
 import { toast } from "sonner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import {
@@ -13,6 +12,7 @@ import {
 } from "../../../public/icons/Icons";
 import { initialValuesLogin } from "../../utils/data/data";
 import { validationSchemaLogin } from "../../utils/validation/validation";
+import { useAuthContext } from "../../Context/AuthContext";
 
 export const LoginPage: React.FC = () => {
   const { login } = useAuthContext();

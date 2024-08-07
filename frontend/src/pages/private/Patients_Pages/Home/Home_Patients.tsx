@@ -10,15 +10,13 @@ import {
   TratamentIconTwo,
 } from "../../../../../public/icons/Icons";
 import { Paciente } from "../../../../Interfaces/interfaces";
-import {
-  fetchNotifications,
-  fetchPatientConnect,
-} from "../../../../Context/AuthContext";
+
 import { toast } from "sonner";
 import { AsideMenuPatients } from "../../../../components/AsideMenuPatients";
 import { Avatar } from "@nextui-org/avatar";
 import { PopoverMessage } from "../../../../components/PopoverMessage";
 import { Badge } from "@nextui-org/react";
+import { fetchNotifications, fetchPatientConnect } from "../../../../Context/AuthContext";
 
 export interface NotificationProps {
   idNotificacion: number;
