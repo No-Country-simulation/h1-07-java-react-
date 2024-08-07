@@ -1,13 +1,11 @@
+
 import { useEffect, useState } from "react";
 import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { Medic } from "../../../../../Interfaces/interfaces";
 import { Link } from "react-router-dom";
+import React from 'react';
 
-
-
-
-
-export function Donation_Detail() {
+export default function Donation_Detail() {
     const [curriculum, setCurriculum] = useState("");
     const [medicInfo, setMedicInfo] = useState<Medic>();
 

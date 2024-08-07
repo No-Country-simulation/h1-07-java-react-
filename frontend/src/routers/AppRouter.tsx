@@ -11,12 +11,7 @@ import { Home } from "../pages/private/Medic_Pages/Home/Home";
 import { UserInfo } from "../pages/private/Medic_Pages/UserInfo/UserInfo";
 import { RegisterPatient } from "../pages/private/Medic_Pages/RegisterPatient/RegisterPatient";
 import PatientList from "../pages/private/Medic_Pages/PatientsList/PatientList";
-// import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
-// import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
-// import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
 import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
-// import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
-// import Donations from "../pages/private/Medic_Pages/Donations/Donations";
 import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
 import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfilePatient";
 import TreatementPatient from "../pages/private/Patients_Pages/Treatement/TreatementPatient";
@@ -32,8 +27,8 @@ import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import SignUp from "../pages/signup/SignUp";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import { HomeView } from "../pages/private/Patients_Pages/Home/HomeView";
+import Donation_Detail from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
 import HeaderLayout from "../components/HeaderLayout";
-import { Donation_Detail } from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
 
 function AppRouter() {
   return (

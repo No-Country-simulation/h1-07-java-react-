@@ -2,19 +2,21 @@ import { Link } from "react-router-dom";
 import { MenuHambuerguesa } from "../../../../../../public/icons/Icons";
 import { Avatar } from "@nextui-org/react";
 
+interface Type {
+  toggleSidebar: () => void;
+  nombre: string | undefined;
+  apellido: string | undefined;
+  especialidad: string | undefined;
+}
+
 export function Header_Home({
   toggleSidebar,
   nombre,
   apellido,
   especialidad,
-}: {
-  toggleSidebar: () => void;
-  nombre: string | undefined;
-  apellido: string | undefined;
-  especialidad: string | undefined;
-}) {
+}: Type) {
   return (
-    <header className="flex shadow-2xl xl:justify-evenly flex-col justify-between h-[9.7rem] mb-4 relative   w-[100%] bg-[#D9D9D9] xl:rounded-0 rounded-br-[3rem] bg-gradient-to-r from-indigo-300 to-indigo-500">
+    <header className="flex xl:shadow-none shadow-2xl xl:justify-evenly flex-col justify-between h-[9.7rem] mb-4 relative   w-[100%] bg-[#D9D9D9] xl:rounded-0 rounded-br-[3rem] bg-gradient-to-r from-indigo-300 to-indigo-500">
       <div className="xl:flex xl:flex-row xl:items-center xl:justify-center xl:content-center  xl:w-[30%] md:w-[30]">
         <div className="flex items-center pt-4 justify-between xl:flex-row ">
           <Link to={"/userInfo"}>

@@ -67,7 +67,7 @@ export default function PatientList() {
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
       <Side_Menu
-        classname={`hidden xl:block h-[61rem] 2xl:h-[68rem] bg-[#fff]  bg-gradient-to-r from-indigo-500 to-indigo-300 text-[#000] font-mono ${isExpanded ? 'w-[300px]' : 'w-[130px]'} `}
+        classname={`hidden xl:block h-[50rem] xl1:h-[56.5rem] 2xl:h-[68rem] bg-[#fff]  bg-gradient-to-r from-indigo-500 to-indigo-300 text-[#000] font-mono ${isExpanded ? 'w-[300px]' : 'w-[130px]'} `}
         isExpanded={isExpanded}
         toggleMenu={toggleMenu}
       />

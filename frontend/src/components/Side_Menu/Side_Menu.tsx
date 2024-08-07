@@ -32,7 +32,7 @@ export function Side_Menu({ classname, isExpanded, toggleMenu }: SideMenuProps) 
     const location = useLocation();
 
     return (
-        <aside className={`${classname}   duration-300 ${isExpanded ? 'w-[13rem]' : 'w-[60px]'}`}>
+        <aside className={`${classname} duration-300 ${isExpanded ? 'w-[13rem]' : 'w-[60px]'}`}>
             <nav className="flex flex-col w-full h-full justify-center items-center">
                 <button
                     onClick={toggleMenu}
