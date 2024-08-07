@@ -63,7 +63,7 @@ export const AsideMenu: React.FC<MenuProps> = ({
                         : "text-black hover:bg-[#3445a7] hover:text-white duration-400 border-solid border-1 border-[#3D4DA5]"
                         }`}
                     >
-                      <item.icon width={26} height={26} stroke="" />
+                      <item.icon width={26} height={26} stroke="#fff" />
                       <p className="font-inter text-xl ml-5">{item.label}</p>
                     </li>
                   </Link>
@@ -79,7 +79,7 @@ export const AsideMenu: React.FC<MenuProps> = ({
                         : "text-black hover:bg-[#3445a7] hover:text-white duration-400 border-solid border-1 border-[#3D4DA5]"
                         }`}
                     >
-                      <item.icon width={26} height={26} stroke="" />
+                      <item.icon width={26} height={26} stroke="#000000" />
                       <p className="font-inter text-xl ml-5">{item.label}</p>
                     </li>
                   </Link>

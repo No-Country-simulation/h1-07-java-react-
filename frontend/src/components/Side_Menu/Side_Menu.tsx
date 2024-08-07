@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import { CalendarIcon, FlechaIconTwo, HealthIcon, HomeIconTwo, HospitalIcon, IconLogout, PeopleIcon, UserIcon } from "../../../public/icons/Icons";
+import { CalendarIcon, FlechaIconTwo, HealthIcon, HomeIconTwo, HospitalIcon,  PeopleIcon, UserIcon } from "../../../public/icons/Icons";
 import { useAuthContext } from "../../Context/AuthContext";
 import { Logout } from "../Logout";
 

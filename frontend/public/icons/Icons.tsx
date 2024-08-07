@@ -221,7 +221,7 @@ export const UserIcon = ({
 }: {
   width: number;
   height: number;
-  stroke:string
+  stroke: string;
 }) => {
   return (
     <svg
@@ -1580,7 +1580,7 @@ export function SearchIcon({ width, height }: IconProps) {
     </svg>
   );
 }
-export function HealthIcon({ width, height }: IconProps) {
+export function HealthIcon({ width, height, stroke }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -1588,7 +1588,7 @@ export function HealthIcon({ width, height }: IconProps) {
       height={height}
       viewBox="0 0 24 24"
       fill="#fff"
-      stroke="#5761C8"
+      stroke={stroke}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

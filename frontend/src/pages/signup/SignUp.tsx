@@ -153,7 +153,7 @@ const SignUp: React.FC = () => {
                       className="font-semibold flex items-center gap-2 pl-2"
                       htmlFor={name}
                     >
-                      <Icon width={15} height={15} /> {label}
+                      <Icon width={15} height={15} stroke=""/> {label}
                     </label>
                     <Field
                       type={type}

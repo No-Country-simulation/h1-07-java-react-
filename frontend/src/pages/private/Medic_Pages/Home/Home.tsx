@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchMedicData } from "../../../../Context/AuthContext";
 import { AsideMenu } from "../../../../components/AsideMenu";
-import Header from "./Header.tsx/Header";
+import { Header_Home } from "./Header.tsx/Header";
 
 import { Medic } from "../../../../Interfaces/interfaces";
 import ListPatients from "./ListPatients/ListPatients";
@@ -61,7 +61,7 @@ export function Home(): JSX.Element {
           </div>
           <div className="xl:w-full">
             <div className="xl:flex xl:justify-center">
-              <Header
+              <Header_Home
                 toggleSidebar={toggleSidebar}
                 nombre={medicInfo?.nombre}
                 apellido={medicInfo?.apellido}

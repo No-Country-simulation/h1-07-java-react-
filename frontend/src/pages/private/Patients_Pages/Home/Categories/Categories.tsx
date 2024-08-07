@@ -31,7 +31,7 @@ const patientOptions = [
   },
   {
     to: "/profile",
-    icon: <UserIcon width={45} height={45} />,
+    icon: <UserIcon width={45} height={45} stroke=''/>,
     label: "Mi perfil",
   },
   {

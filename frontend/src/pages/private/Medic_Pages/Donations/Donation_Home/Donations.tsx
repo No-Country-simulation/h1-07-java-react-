@@ -35,7 +35,6 @@ const validationSchema = Yup.object({
 });
 
 
-const ITEMS_PER_PAGE = 5;
 
 
 export default function Donations() {
@@ -101,15 +100,15 @@ export default function Donations() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-		}, 500);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
 
-		return () => clearTimeout(timer);
-	}, []);
+    return () => clearTimeout(timer);
+  }, []);
 
-	if (isLoading) {
+  if (isLoading) {
     return (
       <main className="bg-gradient-to-r from-[#FFA4D7] to-[#C23584] min-h-screen w-screen flex justify-center items-center">
         <img src="JustinaLogo_2.png" className="pulse responsive-img"></img>
@@ -121,7 +120,7 @@ export default function Donations() {
     <main className="flex bg-gray-100 md:flex md:justify-center">
       <div className="w-full max-w-md min-h-screen font-inter bg-white rounded-lg shadow-lg max-md:m-auto">
         {/* <AsideMenu toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} /> */}
-        <Header_Donation link="/dashboard" src="JustinaLogo_2.png"/>
+        <Header_Donation link="/dashboard" src="JustinaLogo_2.png" />
         <section className="p-4 flex flex-col gap-8">
           <h1 className=" -mb-4 font-semibold flex justify-between items-center">Filtro de Busqueda: <span className=" w-10 h-10 rounded-full flex justify-center hover:brightness-75 transition-all duration-300 items-center bg-gray-200 border-2  cursor-pointer" onClick={() => setIsOpenFilter(!isOpenFilter)}><SilderIcon width={20} height={20} stroke="" /></span></h1>
           {isOpenFilter &&

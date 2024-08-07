@@ -11,8 +11,6 @@ import {
 import { Medic } from "../../../../Interfaces/interfaces";
 import { AsideMenu } from "../../../../components/AsideMenu";
 import { Logout } from "../../../../components/Logout";
-import { DataUser } from "./DataUser/DataUser";
-import Header from "../Home/Header.tsx/Header";
 
 export function UserInfo(): JSX.Element {
   const [medicInfo, setMedicInfo] = useState<Medic>();

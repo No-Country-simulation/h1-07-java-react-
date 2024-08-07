@@ -424,3 +424,11 @@ export interface DonantesResponse {
   first: boolean;
   last: boolean;
 }
+
+
+export interface AdherenceRequest{
+  comentario: string;
+  horarioId: number;
+  estado: number;
+}
+

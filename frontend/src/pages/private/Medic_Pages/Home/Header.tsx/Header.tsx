@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MenuHambuerguesa } from "../../../../../../public/icons/Icons";
 import { Avatar } from "@nextui-org/react";
 
-export default function Header({
+export function Header_Home({
   toggleSidebar,
   nombre,
   apellido,
