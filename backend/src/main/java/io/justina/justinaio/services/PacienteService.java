@@ -185,7 +185,7 @@ public class PacienteService {
 
     public PageResponse<PacienteResponse> encontrarPacientesDeMedico(int page, int size, Authentication token) {
         Usuario user = ((Usuario) token.getPrincipal());
-        Pageable pageable = PageRequest.of(page, size, Sort.by("apellido").ascending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("idPaciente").descending());
         Page<Paciente> pacientes = pacienteRepository.findAllByMedicosIdMedico(pageable, user.getId());
         List<PacienteResponse> listaResponse = pacientes.stream()
                 .map(Mapper::toPacienteResponse)
@@ -226,5 +226,11 @@ public class PacienteService {
         return Mapper.toPacienteResponse(paciente);
     }
 
+
+    public Paciente obtenerModeloPacienteConectado(Authentication token) {
+        Usuario usuarioPaciente = ((Usuario) token.getPrincipal());
+        return pacienteRepository.findByIdPaciente(usuarioPaciente.getId()).orElseThrow(() ->
+                new NullPointerException("Paciente no encontrado con ese ID"));
+    }
 }
 
