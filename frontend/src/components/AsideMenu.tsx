@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  CalendarIcon,
+  CaledarIcon,
   HealthIcon,
+  HistoryIconThree,
   HomeIconTwo,
-  HospitalIcon,
+  MenssageIconCora,
   PeopleIcon,
+  TratamentIconTwo,
   UserIcon,
 } from "../../public/icons/Icons";
 import { Logout } from "./Logout";
@@ -22,10 +24,11 @@ const menuItems = [
 
 const menuPatient = [
   { to: "/patient-home", icon: HomeIconTwo, label: "Inicio" },
+  { to: "/history", icon: HistoryIconThree, label: "Historia Clínica" },
+  { to: "/chat-cora", icon: MenssageIconCora, label: "Cora" },
+  { to: "/shift", icon: CaledarIcon, label: "Citas" },
+  { to: "/treatement", icon: TratamentIconTwo, label: "Tratamientos" },
   { to: "/profile", icon: UserIcon, label: "Perfil" },
-  { to: "/treatement", icon: HospitalIcon, label: "Tratamientos" },
-  { to: "/chat-cora", icon: HealthIcon, label: "Cora" },
-  { to: "/Citas", icon: CalendarIcon, label: "Citas" },
 ];
 
 interface MenuProps {

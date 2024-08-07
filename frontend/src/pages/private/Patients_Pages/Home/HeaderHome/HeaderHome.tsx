@@ -15,7 +15,7 @@ export default function HeaderHome({
   notifications: NotificationProps[] | null;
 }) {
   return (
-    <header className=" px-32 max-lg:px-16 max-md:px-8 flex border-none flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] ">
+    <header className=" px-32 max-lg:px-16 max-md:px-8 flex rounded-bl-xl border-none flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] ">
       <div className=" flex border-none justify-between  items-center">
         <div className="flex mt-4 items-center space-x-2 border-none">
           <Link to="/profile" className=" flex gap-4">
@@ -25,8 +25,8 @@ export default function HeaderHome({
               isBordered
               size="lg"
             />
-            <div className="flex flex-col text-lg text-white">
-              <h3 className="font-semibold text-xl ">Buenos días,</h3>
+            <div className="flex flex-col text-md text-white items-start justify-center">
+              <h3 className="font-semibold text-m ">Buenos días,</h3>
               <p className="font-bold ">{name} {lastname}</p>
             </div>
           </Link>

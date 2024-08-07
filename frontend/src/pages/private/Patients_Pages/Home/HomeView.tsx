@@ -68,7 +68,7 @@ export function HomeView() {
   }, []);
 
   return (
-    <main className="container mx-auto shadow-xl">
+    <main className="container mx-auto ">
       <div className="max-w-screen-xl mx-auto">
         <AsideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <HeaderHome

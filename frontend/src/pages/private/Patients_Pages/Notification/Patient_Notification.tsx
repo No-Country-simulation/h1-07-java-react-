@@ -5,38 +5,18 @@ import {
   getAllNotifications,
   markNotificationsAsRead,
 } from "../../../../Context/AuthContext";
-import { FlechaIconTwo } from "../../../../../public/icons/Icons";
-import { NotificationItem } from "../../../../components/NotificationItem";
 import { SkeletonNotification } from "../../../../components/Skeletons";
 import NotificationTab from "./NotificationTab/NotificationTab";
+import { ArrowUp } from "./ArrowUp/ArrowUp";
+import { RenderNotifications } from "./RenderNotifications/RenderNotifications";
 
 const tabOptions = [{ tabName: "No leídas" }, { tabName: "Todos" }];
 
 export function Patient_Notification(): JSX.Element {
   const [activeTab, setActiveTab] = useState(tabOptions[0].tabName);
-  const [unreadNotifications, setUnreadNotifications] = useState<
-    NotificationProps[]
-  >([]);
-  const [allNotifications, setAllNotifications] = useState<NotificationProps[]>(
-    []
-  );
+  const [unreadNotifications, setUnreadNotifications] = useState<NotificationProps[]>([]);
+  const [allNotifications, setAllNotifications] = useState<NotificationProps[]>([]);
   const [loading, setLoading] = useState(false);
-  const [visible, setVisible] = useState<boolean>(false);
-
-  const [visibleReadCount, setVisibleReadCount] = useState<number>(5);
-  const [showAllRead, setShowAllRead] = useState<boolean>(false);
-
-  const [visibleUnreadCount, setVisibleUnreadCount] = useState<number>(5);
-  const [showAllUnread, setShowAllUnread] = useState<boolean>(false);
-
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
-      setVisible(true);
-    } else if (scrolled <= 300) {
-      setVisible(false);
-    }
-  };
 
   const fetchUnreadNotifications = async () => {
     try {
@@ -68,12 +48,6 @@ export function Patient_Notification(): JSX.Element {
         JSON.parse(storedNotification);
       setUnreadNotifications(savedNotifications);
     }
-
-    window.addEventListener("scroll", toggleVisible);
-
-    return () => {
-      window.removeEventListener("scroll", toggleVisible);
-    };
   }, []);
 
   const readNotifications = async () => {
@@ -88,104 +62,42 @@ export function Patient_Notification(): JSX.Element {
 
   const reloadNotifications = async () => {
     try {
+      setLoading(true)
       await fetchUnreadNotifications();
       await fetchAllNotifications();
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false)
     }
   };
 
-  const handleShowMore = () => {
-    setVisibleReadCount(allNotifications.length || 0);
-    setShowAllRead(true);
-  };
-
-  const handleShowMoreUnread = () => {
-    setVisibleUnreadCount(unreadNotifications.length || 0);
-    setShowAllUnread(true);
-  };
-
   return (
-    <main className="container mx-auto shadow-xl">
-      <div className="max-w-screen-xl mx-auto min-h-screen">
-        <div className="px-32 max-lg:px-16 max-md:px-8 ">
-          <section className="flex flex-col rela">
-            <NotificationTab
-              tabOptions={tabOptions}
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            />
+    <main className="container mx-auto">
+      <div className="max-w-screen-xl mx-auto min-h-screen pb-4">
+        <div className="px-32 max-lg:px-16 max-md:px-8">
+          <section className="flex flex-col">
+            <NotificationTab tabOptions={tabOptions} activeTab={activeTab} setActiveTab={setActiveTab} />
             <div className="mt-4">
-              {activeTab === "Todos" ? (
-                <>
-                  {loading ? (
-                    <SkeletonNotification />
-                  ) : (
-                    <>
-                      {allNotifications.length === 0 ? (
-                        <p className="mt-4 text-center">
-                          No hay notificaciones
-                        </p>
-                      ) : (
-                        <>
-                          {allNotifications
-                            .sort((a, b) => Number(b.leido) - Number(a.leido))
-                            .slice(0, visibleReadCount)
-                            .map((notification) => (
-                              <NotificationItem
-                                key={notification.horarioTomaId}
-                                hora={notification.hora}
-                                mensaje={notification.mensaje}
-                                leido={notification.leido}
-                                fecha={notification.fecha}
-                                horarioTomaId={notification.horarioTomaId}
-                                reloadNotifications={reloadNotifications}
-                                idNotificacion={notification.idNotificacion}
-                              />
-                            ))}
-                          {allNotifications &&
-                            allNotifications.length > 6 &&
-                            !showAllRead && (
-                              <button
-                                onClick={handleShowMore}
-                                className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
-                              >
-                                Ver Todos
-                              </button>
-                            )}
-                        </>
-                      )}
-                    </>
-                  )}
-                </>
-              ) : unreadNotifications.length === 0 ? (
-                <p className="mt-4 text-center">No hay notificaciones</p>
+              {loading ? (
+                <SkeletonNotification />
               ) : (
                 <>
-                  {unreadNotifications
-                    .slice(0, visibleUnreadCount)
-                    .map((notification) => (
-                      <NotificationItem
-                        key={notification.horarioTomaId}
-                        hora={notification.hora}
-                        mensaje={notification.mensaje}
-                        leido={notification.leido}
-                        fecha={notification.fecha}
-                        horarioTomaId={notification.horarioTomaId}
-                        reloadNotifications={reloadNotifications}
-                        idNotificacion={notification.idNotificacion}
-                      />
-                    ))}
-                  {unreadNotifications &&
-                    unreadNotifications.length > 6 &&
-                    !showAllUnread && (
-                      <button
-                        onClick={handleShowMoreUnread}
-                        className="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-400"
-                      >
-                        Ver Todos
-                      </button>
-                    )}
+                  {activeTab === "Todos" ? (
+                    allNotifications.length === 0 ? (
+                      <p className="mt-4 text-center">No hay notificaciones</p>
+                    ) : (
+                      <RenderNotifications
+                        notifications={allNotifications}
+                        reloadNotifications={reloadNotifications} />
+                    )
+                  ) : unreadNotifications.length === 0 ? (
+                    <p className="mt-4 text-center">No hay notificaciones</p>
+                  ) : (
+                    <RenderNotifications
+                      notifications={unreadNotifications}
+                      reloadNotifications={reloadNotifications} />)
+                  }
                 </>
               )}
               {activeTab === "No leídas" && unreadNotifications.length > 0 && (
@@ -196,21 +108,7 @@ export function Patient_Notification(): JSX.Element {
                   Marcar todas como leídas
                 </button>
               )}
-              {visible && (
-                <a
-                  href="#inicio-notificacion"
-                  className=" rotate-180  bg-white z-30 bg-grays-400 border-2 items-center justify-center flex animate-bounce w-10 rounded-full h-10 fixed right-5 bottom-5"
-                >
-                  <span className=" rotate-90">
-                    <FlechaIconTwo
-                      width={40}
-                      height={40}
-                      stroke={"#111"}
-                      classname={""}
-                    />
-                  </span>
-                </a>
-              )}
+              <ArrowUp />
             </div>
           </section>
         </div>

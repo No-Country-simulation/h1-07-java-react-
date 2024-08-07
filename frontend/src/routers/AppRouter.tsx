@@ -74,7 +74,7 @@ function AppRouter() {
                 <Route path="/treatement" element={<TreatementPatient />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/notification" element={<Patient_Notification />} />
-                <Route path="/citas" element={<PatientAppointments />} />
+                <Route path="/shift" element={<PatientAppointments />} />
               </Route>
 
 
