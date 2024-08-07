@@ -24,10 +24,7 @@ const menuPatient = [
     { to: "/Citas", icon: CalendarIcon, label: "Citas" },
 ];
 
-interface MenuProps {
-    toggleSidebar: () => void;
-    isSidebarOpen: boolean;
-}
+
 
 export function Side_Menu({ classname, isExpanded, toggleMenu }: SideMenuProps) {
 
