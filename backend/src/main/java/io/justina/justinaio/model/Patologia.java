@@ -18,5 +18,6 @@ public class Patologia {
     private Integer idPatologia;
     private String nombre;
     private String descripcion;
+    private Boolean esActivo;
 
 }

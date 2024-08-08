@@ -310,4 +310,20 @@ public class Mapper {
                 .build();
     }
 
+    public static Patologia toPatologia(PatologiaRequest patologiaRequest){
+        return Patologia.builder()
+                .nombre(patologiaRequest.getNombre())
+                .descripcion(patologiaRequest.getDescripcion())
+                .esActivo(true)
+                .build();
+    }
+
+    public static PatologiaResponse toPatologiaResponse(Patologia patologia){
+        return PatologiaResponse.builder()
+                .idPatologia(patologia.getIdPatologia())
+                .nombre(patologia.getNombre())
+                .descripcion(patologia.getDescripcion())
+                .build();
+    }
+
 }
