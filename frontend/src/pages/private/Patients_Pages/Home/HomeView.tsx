@@ -9,6 +9,7 @@ import Categories from "./Categories/Categories";
 import HeaderHome from "./HeaderHome/HeaderHome";
 import Shifts from "./Shifts/Shifts";
 import { AsideMenu } from "../../../../components/AsideMenu";
+import Medics from "./Medics/Medics";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -78,6 +79,7 @@ export function HomeView() {
           notifications={notifications}>
         </HeaderHome>
         <Categories />
+        <Medics></Medics>
         <Shifts />
       </div >
     </main >

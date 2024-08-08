@@ -45,7 +45,9 @@ export const HeaderPatient: React.FC<HeaderProfileProps> = ({
 
             </div>
           </div>
-          <a href="/patient-home"><img src="logo-justina.webp" width={200} alt="logo-justina" className=" max-md:hidden" /></a>
+          <a href="/patient-home">
+            <img src="logo-justina.webp" width={200} alt="logo-justina" className="max-md:hidden" />
+          </a>
           <div className=" flex gap-4">
             <Link to={"/patient-home"} className=" hover:brightness-90 transition-all duration-300 w-12 h-12  bg-[#006FEE]  rounded-full flex justify-center items-center">
               <HomeIcon width={30} height={30} stroke="#fff" />

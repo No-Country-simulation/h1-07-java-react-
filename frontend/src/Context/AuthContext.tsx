@@ -22,6 +22,7 @@ import {
 import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
+import { MedicsContent } from "../utils/hooks/useMedics";
 
 const AUTH_TOKEN_KEY = "TOKEN_KEY";
 const AUTH_INFO_USER = "USER_INFO";
@@ -613,7 +614,7 @@ export const crearDonante = async (data: any) => {
       const result = await response.json();
       if (result.businessErrorCode == 400) {
         toast.warning("El paciente ya tiene un donante asignado")
-      }else{
+      } else {
         throw new Error('Error fetching data');
       }
     }
@@ -651,3 +652,24 @@ export const fetchTreatmentPatient = async (id: string) => {
     }
   }
 };
+
+export const fetchMedicsData = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  try {
+    const res = await fetch(`${API_URL}/medico/buscar-medico-id-paciente-conectado`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+
+    const data: MedicsContent = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -80,12 +80,6 @@ function AppRouter() {
                 <Route path="/notification" element={<Patient_Notification />} />
                 <Route path="/shift" element={<PatientAppointments />} />
               </Route>
-
-
-              {/* <Route
-                path="/Medic_Appointment"
-                element={<Medic_Appointment />}
-              /> */}
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>
