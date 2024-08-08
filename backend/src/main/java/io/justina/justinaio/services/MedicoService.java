@@ -1,15 +1,13 @@
 
 package io.justina.justinaio.services;
 
-import io.justina.justinaio.dto.BajaRequest;
-import io.justina.justinaio.dto.MedicoRequest;
-import io.justina.justinaio.dto.MedicoResponse;
-import io.justina.justinaio.dto.PasswordRequest;
+import io.justina.justinaio.dto.*;
 import io.justina.justinaio.model.*;
 import io.justina.justinaio.repositories.EspecialidadRepository;
 import io.justina.justinaio.repositories.FinanciadorRepository;
 import io.justina.justinaio.repositories.MedicoRepository;
 import io.justina.justinaio.repositories.UsuarioRepository;
+import io.justina.justinaio.util.Dias;
 import io.justina.justinaio.util.Mapper;
 import io.justina.justinaio.util.PageResponse;
 import lombok.AllArgsConstructor;
@@ -22,6 +20,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,6 +36,9 @@ public class MedicoService {
     private final PasswordEncoder passwordEncoder;
     private final EspecialidadRepository especialidadRepository;
     private final FinanciadorRepository financiadorRepository;
+
+    private final DisponibilidadService disponibilidadService;
+    private final ConsultaService consultaService;
 
     @Transactional
     public void crearMedico(MedicoRequest medicoRequest, Authentication token) {
@@ -64,6 +68,7 @@ public class MedicoService {
         medicoRepository.save(medico);
     }
 
+    @Transactional
     public void modificarMedico(MedicoRequest medicoRequest, Authentication token) {
         Usuario usuario = (Usuario) token.getPrincipal();
         Medico medico = medicoRepository.findById(usuario.getId()).orElseThrow(
@@ -104,6 +109,7 @@ public class MedicoService {
         medicoRepository.save(medico);
     }
 
+    @Transactional
     public void modificarPassword(PasswordRequest passwordRequest, Authentication token) {
         Usuario usuario = (Usuario) token.getPrincipal();
         if(usuario == null) {
@@ -152,5 +158,114 @@ public class MedicoService {
         Medico medico = medicoRepository.findById(userMedico.getId()).orElseThrow(() -> new NullPointerException("Medico no encontrado"));
         return Mapper.toMedicoResponse(medico);
     }
+
+    @Transactional
+    public void crearDisponibilidad(DisponibilidadRequest disponibilidadRequest, Authentication token) {
+        Usuario usuario = (Usuario) token.getPrincipal();
+        Medico medico = medicoRepository.findById(usuario.getId()).orElseThrow(
+                () -> new NullPointerException("Medico no encontrado"));
+
+        if(medico.getDisponibilidad() != null){
+            throw new NullPointerException("Ya tiene datos de disponibilidad creados");
+        }
+        if(disponibilidadRequest.getEntrada() < 1 || disponibilidadRequest.getEntrada() > 24){
+            throw new NullPointerException("Horario de entrada por fuera de los parámetros.");
+        }
+        if(disponibilidadRequest.getSalida() < 1 || disponibilidadRequest.getSalida() > 24){
+            throw new NullPointerException("Horario de salida por fuera de los parámetros.");
+        }
+        if(disponibilidadRequest.getInicioDescanso() < 1 || disponibilidadRequest.getInicioDescanso() > 24){
+            throw new NullPointerException("Horario de inicio del descanso por fuera de los parámetros.");
+        }
+        if(disponibilidadRequest.getFinDescanso() < 1 || disponibilidadRequest.getFinDescanso() > 24){
+            throw new NullPointerException("Horario de fin del descanso por fuera de los parámetros.");
+        }
+
+        medico.setDisponibilidad(disponibilidadService.crearDisponibilidad(disponibilidadRequest, medico));
+        medicoRepository.save(medico);
+    }
+
+    @Transactional
+    public void modificarDisponibilidad(DisponibilidadRequest disponibilidadRequest, Authentication token) {
+        Usuario usuario = (Usuario) token.getPrincipal();
+        Medico medico = medicoRepository.findById(usuario.getId()).orElseThrow(
+                () -> new NullPointerException("Medico no encontrado"));
+
+        if(medico.getDisponibilidad() == null){
+            throw new NullPointerException("No tiene datos guardados sobre su disponibilidad");
+        }
+        if(disponibilidadRequest.getEntrada() < 1 || disponibilidadRequest.getEntrada() > 24){
+            throw new NullPointerException("Horario de entrada por fuera de los parámetros.");
+        }
+        if(disponibilidadRequest.getSalida() < 1 || disponibilidadRequest.getSalida() > 24){
+            throw new NullPointerException("Horario de salida por fuera de los parámetros.");
+        }
+        if(disponibilidadRequest.getInicioDescanso() < 1 || disponibilidadRequest.getInicioDescanso() > 24){
+            throw new NullPointerException("Horario de inicio del descanso por fuera de los parámetros.");
+        }
+        if(disponibilidadRequest.getFinDescanso() < 1 || disponibilidadRequest.getFinDescanso() > 24){
+            throw new NullPointerException("Horario de fin del descanso por fuera de los parámetros.");
+        }
+
+        medico.setDisponibilidad(disponibilidadService.modificarDisponibilidad(disponibilidadRequest, medico.getDisponibilidad()));
+        medicoRepository.save(medico);
+
+    }
+
+    public DisponibilidadResponse buscarDisponibilidad(Authentication token) {
+        Usuario usuario = (Usuario) token.getPrincipal();
+        Medico medico = medicoRepository.findById(usuario.getId()).orElseThrow(
+                () -> new NullPointerException("Medico no encontrado"));
+
+        return disponibilidadService.buscarDisponibilidad(medico.getIdMedico());
+    }
+
+    public ArrayList<String> fechaDisponibilidad(Integer idMedico) {
+
+        Medico medico = medicoRepository.findById(idMedico).orElseThrow(
+                () -> new NullPointerException("Medico no encontrado"));
+
+        ArrayList<String> listaFechas = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+        Dias dias = new Dias(medico.getDisponibilidad().getDias());
+        for (LocalDate date = today; date.isBefore(today.plusDays(91)); date = date.plusDays(1)) {
+            if (dias.comprobar(date.getDayOfWeek())) {
+                listaFechas.add(date.format(formatter));
+            }
+        }
+        Long nTurnos = medico.getDisponibilidad().totalDeTurnos();
+        List<String> listaQuitarDias = consultaService.listarConsultasDeUnMedico(medico, nTurnos);
+        for (String item : listaQuitarDias) {
+            listaFechas.remove(item);
+        }
+
+        return listaFechas;
+    }
+
+    public ArrayList<Integer> horarioDisponibilidad(Integer idMedico, String fecha) {
+
+        Medico medico = medicoRepository.findById(idMedico).orElseThrow(
+                () -> new NullPointerException("Medico no encontrado"));
+
+        ArrayList<Integer> listaHorarios = new ArrayList<>();
+        Integer entrada = medico.getDisponibilidad().getEntrada();
+        Integer inicioDescanso = medico.getDisponibilidad().getInicioDescanso();
+        for (int i = entrada; i < inicioDescanso; i++) {
+            listaHorarios.add(i);
+        }
+        Integer finDescanso = medico.getDisponibilidad().getFinDescanso();
+        Integer salida = medico.getDisponibilidad().getSalida();
+        for (int i = finDescanso; i < salida; i++) {
+            listaHorarios.add(i);
+        }
+        List<Integer> listaQuitarHorarios = consultaService.listarHorariosDeUnMedico(medico, fecha);
+        for (Integer item : listaQuitarHorarios) {
+            listaHorarios.remove(item);
+        }
+
+        return listaHorarios;
+    }
+
 }
 

@@ -50,7 +50,7 @@ export default function Categories() {
       <div className=" py-2 grid grid-cols-3 max-xl:grid-cols-2  max-md:grid-cols-1  gap-y-4 gap-x-8">
         {patientOptions.map((option, index) => (
           <Link to={option.to} key={index} className=''>
-            <div className=" border-1 hover:brightness-90 cursor-pointer hover:scale-105 transition-all duration-300 border-gray-400 w-full text-center flex flex-col justify-center items-center h-32 rounded-md bg-gray-200 ">
+            <div className=" border-1 hover:brightness-90 cursor-pointer shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.38)]  hover:scale-105 transition-all duration-300 border-gray-400 bg-light-color w-full text-center flex flex-col justify-center items-center h-32 rounded-md  ">
               <span>{option.icon}</span>
               <p className="mt-1 font-semibold">{option.label}</p>
             </div>

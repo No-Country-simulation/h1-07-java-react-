@@ -53,7 +53,7 @@ public class HistoriaClinicaService {
             throw new SecurityException("Acceso denegado");
         }
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by("fecha").descending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("idCasoClinico").descending());
         Page <CasoClinico> historia = historiaClinicaRepository.findByPacienteIdPaciente(idPaciente, pageable);
 
         List<CasoClinicoResponse> historiaResponse = historia.stream().map(Mapper::toCasoClinicoResponse).toList();
