@@ -210,23 +210,29 @@ public class TratamientoService {
      return Mapper.toTratamientoResponse(tratamiento);
 
  }
-        private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
-            LocalDate fechaInicio;
+    private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
+        LocalDate fechaInicio;
 
-            if (fechaInicioRequest == null || fechaInicioRequest.isBefore(LocalDate.now())) {
-                fechaInicio = LocalDate.now();
-            } else {
-                fechaInicio = fechaInicioRequest;
-            }
+        // Si la fecha de inicio solicitada es nula o es anterior a hoy, comenzamos hoy
+        if (fechaInicioRequest == null || fechaInicioRequest.isBefore(LocalDate.now())) {
+            fechaInicio = LocalDate.now();
+        } else {
+            fechaInicio = fechaInicioRequest;
+        }
 
-            // Ajusta la fecha de inicio si la hora es menor a la hora actual y es el mismo día
-            LocalTime currentTime = LocalTime.now();
-            if (fechaInicio.isEqual(LocalDate.now()) && horaInicioRequest != null && horaInicioRequest.isBefore(currentTime)) {
+        // Si la fecha de inicio es hoy y la hora de inicio solicitada es antes que la hora actual, movemos al día siguiente
+        LocalTime currentTime = LocalTime.now();
+        if (fechaInicio.isEqual(LocalDate.now())) {
+            if (horaInicioRequest != null && horaInicioRequest.isBefore(currentTime)) {
                 fechaInicio = fechaInicio.plusDays(1);
             }
-
-            return fechaInicio;
+            // Si la hora de inicio es después de la hora actual, mantenemos la fecha actual
+        } else if (horaInicioRequest.isAfter(currentTime)) {
+            fechaInicio = LocalDate.now(); // Mantener la fecha actual si la hora es posterior a la hora actual
         }
+
+        return fechaInicio;
+    }
 
     private List<HorarioToma> crearHorariosToma(Tratamiento tratamiento, LocalTime horaInicio, Integer dosisDiaria, Integer diasTotales) {
         List<HorarioToma> horarios = new ArrayList<>();
@@ -246,13 +252,15 @@ public class TratamientoService {
                     .build();
             horarios.add(horarioToma);
 
+            // Guarda la hora anterior antes de incrementar la horaActual
+            LocalTime horaAnterior = horaActual;
+
             horaActual = horaActual.plusHours(intervaloHoras);
             totalDosis--;
 
-            // Incrementa la fecha cada vez que se supera 23:59
-            if (horaActual.isAfter(LocalTime.of(23, 59)) || horaActual.equals(LocalTime.of(0, 0))) {
+            // Verifica si la horaActual cruza la medianoche en comparación con la horaAnterior
+            if (horaActual.isBefore(horaAnterior)) {
                 fechaActual = fechaActual.plusDays(1);
-                horaActual = horaActual.minusHours(24); // Ajusta la hora al siguiente ciclo del día
             }
         }
         return horarios;
