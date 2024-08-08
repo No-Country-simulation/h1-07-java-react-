@@ -130,6 +130,7 @@ export const AuthContextProvider = ({
     window.localStorage.removeItem(AUTH_INFO_USER);
     window.localStorage.removeItem("MEDIC-DATA");
     window.localStorage.removeItem("PATIENT-DATA");
+    window.localStorage.removeItem("PATIENT-NOTIFICATION");
 
     setAuthTokens(null);
     setUserName("");

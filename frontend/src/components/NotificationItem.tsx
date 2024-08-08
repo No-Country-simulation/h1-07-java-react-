@@ -78,7 +78,7 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
 
   return (
     <>
-      <div id={String(idNotificacion)} className={`${leido && 'border-gray-200 '} hover:brightness-90 flex p-3 cursor-pointer  transition-all duration-300 flex-col mt-4 bg-[#FFFAEC] border-1 border-gray-600 w-full rounded-md`}>
+      <div id={String(idNotificacion)} className={`${leido && 'border-gray-200 '} shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.38)] hover:brightness-90 flex p-3 cursor-pointer  transition-all duration-300 flex-col mt-4 bg-[#FFFAEC] border-1 border-gray-600 w-full rounded-md`}>
         <div className="flex justify-between mb-1">
           <h3 className="font-inter text-sm font-semibold w-[60%] flex items-center gap-2"><span>{leido ? <p className=" w-3 h-3 bg-gray-400  rounded-full "></p> : <p className=" w-3 h-3 bg-blue-500  rounded-full " />}</span> Notificación</h3>
           <p className="text-sm flex items-center justify-center gap-2">{getTimeElapsed(hora, fecha)}</p>

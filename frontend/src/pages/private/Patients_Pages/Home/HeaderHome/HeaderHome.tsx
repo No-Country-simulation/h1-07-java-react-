@@ -16,8 +16,8 @@ export default function HeaderHome({
 }) {
   return (
     <header className=" px-32 max-lg:px-16 max-md:px-8 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] flex rounded-bl-xl border-none flex-col justify-center h-[12rem] mb-4 w-full bg-[#5761C8]   rounded-br-[3rem] ">
-      <div className=" flex border-none justify-between  items-center">
-        <div className="flex mt-4 items-center space-x-2 border-none">
+      <div className="flex  items-center  justify-between  ">
+        <div className="flex items-center space-x-2 border-none">
           <Link to="/profile" className=" flex gap-4">
             <Avatar
               name={name}
@@ -25,9 +25,9 @@ export default function HeaderHome({
               isBordered
               size="lg"
             />
-            <div className="flex flex-col text-md text-white items-start justify-center">
+            <div className="flex flex-col text-md text-white items justify-center flex-wrap">
               <h3 className="font-semibold text-m ">Buenos días,</h3>
-              <p className="font-bold ">{name} {lastname}</p>
+              <p className="font-bold max-md:text-sm">{name} {lastname} </p>
             </div>
           </Link>
 
