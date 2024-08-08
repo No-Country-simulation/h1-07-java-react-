@@ -45,13 +45,13 @@ export default function ListPatients() {
 
   return (
     <div className="xl:flex xl:flex-col xl:justify-center">
-      <section className="m-auto xl:w-[50%]">
+      <section className="m-auto xl:w-[50%] ">
         <div className="relative flex justify-center  items-center  ">
           <input
             type="text"
             value={searchQuery}
             onChange={handleSearchChange}
-            className="border rounded-md py-2 font-semibold px-4 w-full text-[16px] border-violet-color my-4"
+            className="border rounded-md py-2  font-semibold px-4 w-full text-[16px] border-violet-color my-4"
             placeholder="Búsqueda"
           />
           <span className=" absolute  right-5">

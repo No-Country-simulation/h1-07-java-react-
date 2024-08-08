@@ -35,10 +35,10 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({
   };
   return (
     <>
-      <AsideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <header className="p-6 mb-8 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] shadow-2xl">
-        <div className="w-full flex flex-col items-start">
-          <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
+      <AsideMenu src="../../public/JustinaLogo_2.png" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <header className="p-6 mb-8 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-br-[4rem] rounded-es-[4rem] shadow-2xl">
+        <div className="w-full flex flex-col items-start xl:h-[14rem] xl:max-w-4xl">
+          <div className=" mb-6 text-center relative flex flex-col items-center justify-center w-full">
             <Link
               to={link}
               className=" text-light-color absolute -left-0 hover:-translate-x-1 transition-all duration-300"
@@ -49,7 +49,7 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({
               <h1 className="text-xl font-bold text-light-color">{title}</h1>
               <button
                 onClick={toggleSidebar}
-                className="hidden absolute right-0"
+                className="absolute -right-20 xl:left-[30rem] xl:top-[3rem]"
               >
                 <MenuHambuerguesa width={30} height={30} stroke="" />
               </button>

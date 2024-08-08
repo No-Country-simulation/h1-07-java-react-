@@ -46,6 +46,8 @@ export default function Donations() {
   const buildUrl = (values: Donation) => {
     const params = new URLSearchParams();
 
+    console.log(setTotalPages)
+
     if (values.textoBusqueda) params.append('textoBusqueda', values.textoBusqueda);
     if (values.generoOrdinal) params.append('generoOrdinal', values.generoOrdinal);
     if (values.factorSanguineoOrdinal) params.append('factorSanguineoOrdinal', values.factorSanguineoOrdinal);

@@ -18,7 +18,7 @@ export default function Header({
         <FlechaIconTwo width={30} height={30} stroke="#000000" classname="" />
       </Link>
       <h1 className="text-xl font-bold ">Listado de pacientes</h1>
-      <button onClick={toggleSidebar} className=" absolute right-0">
+      <button onClick={toggleSidebar} className="absolute right-0 xl:hidden xl:">
         <HamburguerIcon width={30} height={30} />
       </button>
     </div>

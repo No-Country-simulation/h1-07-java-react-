@@ -45,36 +45,36 @@ export default function ClinicHistory({
     setTranscript(newTranscript.trimStart());
   };
 
- /*  const handleSubmitHistory = async (values: ClinicHistoryProps) => {
-    // trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
-    const trimmedTranscript = transcript.trim();
-    const defaultDescription = "Descripción";
-
-    const description = trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
-    if (id) {
-      const historyClinic: ClinicHistoryProps = {
-        ...values,
-        descripcion: description,
-        idPaciente: Number(id),
-      };
-
-      try {
-        await registerClinicHistory(id, historyClinic);
-        toast.success("La historia clinica fue registrada correctamente");
-        
-        fetchDataHistory();
-        onClose();
-        setTranscript("");
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  };
- */
+  /*  const handleSubmitHistory = async (values: ClinicHistoryProps) => {
+     // trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
+     const trimmedTranscript = transcript.trim();
+     const defaultDescription = "Descripción";
+ 
+     const description = trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
+     if (id) {
+       const historyClinic: ClinicHistoryProps = {
+         ...values,
+         descripcion: description,
+         idPaciente: Number(id),
+       };
+ 
+       try {
+         await registerClinicHistory(id, historyClinic);
+         toast.success("La historia clinica fue registrada correctamente");
+         
+         fetchDataHistory();
+         onClose();
+         setTranscript("");
+       } catch (err) {
+         console.error(err);
+       }
+     }
+   };
+  */
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
-    const trimmedTranscript = transcript.trim(); 
-    
+    const trimmedTranscript = transcript.trim();
+
 
     const description = trimmedTranscript.length > 0 ? trimmedTranscript : "";
 
@@ -90,7 +90,7 @@ export default function ClinicHistory({
         toast.success("La historia clinica fue registrada correctamente");
         fetchDataHistory();
         onClose();
-        
+
       } catch (err: any) {
         console.error(err);
       }
@@ -124,9 +124,9 @@ export default function ClinicHistory({
   };
 
   return (
-    <div className="p-6 flex-col gap-3 flex">
+    <div className="p-6 flex-col gap-3 flex xl:items-center xl:mt-10">
       <h5 className="font-bold text-xl text-violet-color">Datos Personales</h5>
-      <div className="border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
+      <div className="border-2 border-gray-color xl:w-[50%] rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
         <h6 className="font-bold text-lg">Datos</h6>
         <div className="ml-6 list-disc tracking-wide">
           <p className="text-medium leading-9">
@@ -160,9 +160,9 @@ export default function ClinicHistory({
             type="text"
             placeholder="Búsqueda"
             onChange={(e) => setHistories(e.target.value)}
-            className="w-full h-full border-violet-color rounded-md border-1 px-4"
+            className="w-full h-full border-violet-color rounded-md border-1 px-4 xl:w-[50%]"
           />
-          <span className="right-5 absolute">
+          <span className="right-5 absolute xl:right-[20rem]">
             <SearchIcon width={20} height={20} />
           </span>
         </div>
@@ -202,12 +202,12 @@ export default function ClinicHistory({
       </div>
       <Button
         onPress={onOpen}
-        className="h-10 rounded-lg mt-10 w-3/4 m-auto font-semibold bg-secondary-brand-dark text-white"
+        className="h-10 xl:w-[50%] rounded-lg mt-10 w-3/4 m-auto font-semibold bg-secondary-brand-dark text-white"
       >
         Nuevo Historial
       </Button>
 
-      <Modal isOpen={isOpen} placement={"auto"} onOpenChange={onOpenChange}  hideCloseButton={true}>
+      <Modal isOpen={isOpen} placement={"auto"} onOpenChange={onOpenChange} hideCloseButton={true}>
         <ModalContent>
           {(onClose) => (
             <>

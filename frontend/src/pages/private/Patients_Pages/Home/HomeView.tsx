@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import Categories from "./Categories/Categories";
 import HeaderHome from "./HeaderHome/HeaderHome";
 import Shifts from "./Shifts/Shifts";
-import { AsideMenu } from "../../../../components/AsideMenu";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -70,7 +69,6 @@ export function HomeView() {
   return (
     <main className="container mx-auto ">
       <div className="max-w-screen-xl mx-auto">
-        <AsideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <HeaderHome
           toggleSidebar={toggleSidebar}
           name={patientInfo?.nombre}

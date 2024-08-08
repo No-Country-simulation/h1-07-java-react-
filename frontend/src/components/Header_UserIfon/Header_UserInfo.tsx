@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowWhiteIcon, MenuHambuerguesa } from "../../../public/icons/Icons";
+import { MenuHambuerguesa } from "../../../public/icons/Icons";
 import { Avatar } from "@nextui-org/react";
 
 
@@ -14,15 +14,12 @@ interface Type {
 export function Header_UserInfo({ toggleSidebar, nombre, apellido, especialidad }: Type) {
 
 
-
-
-
     return (
-        <header className="flex xl:shadow-none shadow-2xl xl:justify-evenly flex-col justify-between h-[9.7rem] mb-4 relative   w-[100%] bg-[#D9D9D9] xl:rounded-0 rounded-br-[3rem] bg-gradient-to-r from-indigo-300 to-indigo-500">
-            <div className="xl:flex xl:flex-row xl:items-center xl:justify-center xl:content-center  xl:w-[30%] md:w-[30]">
+        <header className="flex xl:shadow-none shadow-2xl xl:w-full xl:justify-evenly flex-col justify-between h-[9.7rem] mb-4 relative w-[100%] bg-[#D9D9D9] xl:rounded-0 rounded-br-[3rem] bg-gradient-to-r from-indigo-300 to-indigo-500">
+            <div className="xl:flex xl:flex-row xl:items-center xl:justify-center xl:content-center  xl:w-[40%] md:w-[30]">
                 <div className="flex items-center pt-4 justify-between xl:flex-row ">
                     <Link to={"/userInfo"}>
-                        <div className=" ml-2 xl:p-0 xl:-mt-3 xl:items-center xl:ml-6 pt-3 rounded-full flex flex-row items-center content-center justify-between">
+                        <div className="ml-2 xl:p-0 xl:-mt-3 xl:items-center xl:ml-56 pt-3 rounded-full flex flex-row items-center content-center justify-between">
                             <Avatar
                                 src="IMG_MEDICO/IMG_MEDICO.webp"
                                 color="secondary"
@@ -31,8 +28,8 @@ export function Header_UserInfo({ toggleSidebar, nombre, apellido, especialidad 
                             />
                         </div>
                     </Link>
-                    <div className="relative right-7  flex flex-row gap-2 xl:absolute xl:left-[70rem] xl:hidden">
-                        <button onClick={toggleSidebar} className=" scale-110">
+                    <div className="relative right-7 flex flex-row gap-2 xl1:-ml-24 xl:absolute xl:left-[70rem] 2xl:left-[99rem]">
+                        <button onClick={toggleSidebar} className="">
                             <MenuHambuerguesa width={30} height={30} stroke="" />
                         </button>
                     </div>

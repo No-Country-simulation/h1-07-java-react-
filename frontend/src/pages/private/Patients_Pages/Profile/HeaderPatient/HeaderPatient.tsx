@@ -1,6 +1,5 @@
 import { Avatar } from "@nextui-org/react";
 import React, { useState } from "react";
-import { AsideMenu } from "../../../../../components/AsideMenu";
 import { HomeIcon, MenuHambuerguesa } from "../../../../../../public/icons/Icons";
 import { Link } from "react-router-dom";
 
@@ -26,7 +25,7 @@ export const HeaderPatient: React.FC<HeaderProfileProps> = ({
   };
   return (
     <>
-      <AsideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      
       <header className="rounded-bl-xl  px-32 max-lg:px-16 max-md:px-8 flex border-none flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] ">
         <div className="w-full  flex items-center justify-between">
           <div className="flex gap-2 items-center flex-col">
