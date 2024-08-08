@@ -210,28 +210,23 @@ public class TratamientoService {
      return Mapper.toTratamientoResponse(tratamiento);
 
  }
-    private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
-        LocalDate fechaInicio;
+        private LocalDate calcularFechaInicio(LocalDate fechaInicioRequest, LocalTime horaInicioRequest) {
+            LocalDate fechaInicio;
 
-        if(fechaInicioRequest.isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException("La fecha de inicio no puede ser anterior a la fecha actual");
+            if (fechaInicioRequest == null || fechaInicioRequest.isBefore(LocalDate.now())) {
+                fechaInicio = LocalDate.now();
+            } else {
+                fechaInicio = fechaInicioRequest;
+            }
+
+            // Ajusta la fecha de inicio si la hora es menor a la hora actual y es el mismo día
+            LocalTime currentTime = LocalTime.now();
+            if (fechaInicio.isEqual(LocalDate.now()) && horaInicioRequest != null && horaInicioRequest.isBefore(currentTime)) {
+                fechaInicio = fechaInicio.plusDays(1);
+            }
+
+            return fechaInicio;
         }
-
-        if (fechaInicioRequest == null) {
-            fechaInicio = LocalDate.now();
-        } else {
-            fechaInicio = fechaInicioRequest;
-        }
-
-
-        // Ajusta la fecha de inicio si la hora es menor a la hora actual y es el mismo día
-        LocalTime currentTime = LocalTime.now();
-        if (fechaInicio.isEqual(LocalDate.now()) && horaInicioRequest != null && horaInicioRequest.isBefore(currentTime)) {
-            fechaInicio = fechaInicio.plusDays(1);
-        }
-
-        return fechaInicio;
-    }
 
     private List<HorarioToma> crearHorariosToma(Tratamiento tratamiento, LocalTime horaInicio, Integer dosisDiaria, Integer diasTotales) {
         List<HorarioToma> horarios = new ArrayList<>();
