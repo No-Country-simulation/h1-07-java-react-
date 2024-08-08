@@ -220,19 +220,22 @@ public class TratamientoService {
             fechaInicio = fechaInicioRequest;
         }
 
-        // Si la fecha de inicio es hoy y la hora de inicio solicitada es antes que la hora actual, movemos al día siguiente
-        LocalTime currentTime = LocalTime.now();
+        // Si la fecha de inicio es hoy
         if (fechaInicio.isEqual(LocalDate.now())) {
-            if (horaInicioRequest != null && horaInicioRequest.isBefore(currentTime)) {
-                fechaInicio = fechaInicio.plusDays(1);
+            // Si la hora de inicio solicitada es después de la hora actual, usamos la fecha de hoy
+            if (horaInicioRequest != null && horaInicioRequest.isAfter(LocalTime.now())) {
+                return fechaInicio;
             }
-            // Si la hora de inicio es después de la hora actual, mantenemos la fecha actual
-        } else if (horaInicioRequest.isAfter(currentTime)) {
-            fechaInicio = LocalDate.now(); // Mantener la fecha actual si la hora es posterior a la hora actual
+            // Si la hora de inicio es antes de la hora actual, movemos al día siguiente
+            else if (horaInicioRequest != null && horaInicioRequest.isBefore(LocalTime.now())) {
+                return fechaInicio.plusDays(1);
+            }
         }
 
+        // Si la fecha de inicio solicitada no es hoy, mantenemos la fecha solicitada
         return fechaInicio;
     }
+
 
     private List<HorarioToma> crearHorariosToma(Tratamiento tratamiento, LocalTime horaInicio, Integer dosisDiaria, Integer diasTotales) {
         List<HorarioToma> horarios = new ArrayList<>();
