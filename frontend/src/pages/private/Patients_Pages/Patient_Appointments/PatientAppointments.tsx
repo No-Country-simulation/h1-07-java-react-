@@ -23,7 +23,7 @@ const data = [
 
 export function PatientAppointments() {
   return (
-    <main className="container mx-auto shadow-xl">
+    <main className="container mx-auto ">
       <div className="max-w-screen-xl mx-auto min-h-screen">
         <section className="px-32 max-lg:px-16 max-md:px-8 mt-8 ">
           <h1 className="font-bold font-inter text-2xl mb-4">Agendar Cita</h1>
@@ -42,9 +42,9 @@ export function PatientAppointments() {
           <h3 className="font-bold font-inter text-1xl">
             Tú Próxima Cita
           </h3>
-          <div className=" grid grid-cols-2 gap-2 max-md:grid-cols-1">
+          <div className=" grid grid-cols-2 gap-2 max-md:grid-cols-1 ">
             {data.map((datas) => (
-              <div className="flex flex-col  mt-4 p-3  w-full  border-1 border-solid border-gray-400 rounded-xl mb-4">
+              <div className="flex bg-light-color shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] flex-col  mt-4 p-3  w-full  border-1 border-solid border-gray-400 rounded-xl mb-4">
                 <div className=" flex justify-center flex-col items-center">
                   <div className="flex flex-row ">
                     <div className="flex flex-col">

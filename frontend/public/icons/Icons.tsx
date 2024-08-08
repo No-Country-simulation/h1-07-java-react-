@@ -232,7 +232,7 @@ export const UserIcon = ({
       <path
         d="M12.5 13.125V11.875C12.5 11.212 12.2366 10.5761 11.7678 10.1072C11.2989 9.63839 10.663 9.375 10 9.375H5C4.33696 9.375 3.70107 9.63839 3.23223 10.1072C2.76339 10.5761 2.5 11.212 2.5 11.875V13.125M10 4.375C10 5.75571 8.88071 6.875 7.5 6.875C6.11929 6.875 5 5.75571 5 4.375C5 2.99429 6.11929 1.875 7.5 1.875C8.88071 1.875 10 2.99429 10 4.375Z"
         stroke="#948ABC"
-        strokeWidth="2"
+        strokeWidth="1"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -931,9 +931,11 @@ export const MapIcon = ({
 export const CardIcon = ({
   width,
   height,
+  stroke = "#948ABC"
 }: {
   width: number;
   height: number;
+  stroke?: string
 }) => {
   return (
     <svg
@@ -945,7 +947,7 @@ export const CardIcon = ({
     >
       <path
         d="M1 10H23M3 4H21C22.1046 4 23 4.89543 23 6V18C23 19.1046 22.1046 20 21 20H3C1.89543 20 1 19.1046 1 18V6C1 4.89543 1.89543 4 3 4Z"
-        stroke="#948ABC"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1453,7 +1455,7 @@ export function UserIconTwo2({ width, height }: IconProps) {
   );
 }
 
-export function BloodIcon({ width, height }: IconProps) {
+export function BloodIcon({ width, height, stroke = "#948ABC" }: IconProps) {
   return (
     <svg
       width={width}
@@ -1464,7 +1466,7 @@ export function BloodIcon({ width, height }: IconProps) {
     >
       <path
         d="M11.9999 2.68994L17.6599 8.34994C18.7792 9.46855 19.5417 10.894 19.8508 12.446C20.1599 13.998 20.0018 15.6068 19.3964 17.0689C18.7911 18.531 17.7657 19.7808 16.45 20.66C15.1343 21.5393 13.5874 22.0086 12.0049 22.0086C10.4224 22.0086 8.87549 21.5393 7.55978 20.66C6.24407 19.7808 5.2187 18.531 4.61335 17.0689C4.008 15.6068 3.84988 13.998 4.15899 12.446C4.46809 10.894 5.23054 9.46855 6.34989 8.34994L11.9999 2.68994Z"
-        stroke="#948ABC"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -2416,7 +2418,7 @@ export function SilderIcon({ width, height }: IconProps) {
   );
 }
 
-export function ShieldIcon({ width, height }: IconProps) {
+export function ShieldIcon({ width, height, stroke = "#948ABC" }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -2424,7 +2426,7 @@ export function ShieldIcon({ width, height }: IconProps) {
       height={height}
       viewBox="0 0 24 24"
       fill="none"
-      stroke={"#948ABC"}
+      stroke={stroke}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -2435,10 +2437,10 @@ export function ShieldIcon({ width, height }: IconProps) {
   );
 }
 
-export function HospitalIcon({ width, height }: IconProps) {
+export function HospitalIcon({ width, height, stroke = "#948ABC"}: IconProps) {
   return (
     <svg
-      fill={"#948ABC"}
+      fill={stroke}
       width={width}
       height={height}
       version="1.1"

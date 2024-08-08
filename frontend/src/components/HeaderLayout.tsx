@@ -13,8 +13,8 @@ export default function HeaderLayout() {
     }
   }, [])
   return (
-    <div className="container mx-auto  shadow-xl">
-      <div className="max-w-screen-xl mx-auto">
+    <div className="w-full min-h-screen bg-gradient-to-t from-[#C2C6EE] to-[#5460D9]">
+      <div className="container mx-auto max-w-screen-xl">
         <HeaderPatient
           name={patientInfo?.nombre}
           lastname={patientInfo?.apellido}

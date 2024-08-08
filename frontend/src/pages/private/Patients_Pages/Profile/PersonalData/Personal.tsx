@@ -18,48 +18,48 @@ export const Personal: React.FC<PersonalProps> = ({ numeroDocumento, patologia, 
         </h2>
       </div>
       <div className="flex flex-row mt-4 items-center">
-        <CardIcon width={16} height={16} />
-        <p className="ml-4 font-inter font-bold">Documento</p>
+        <CardIcon width={16} height={16} stroke='#111'/>
+        <p className="ml-2 font-inter font-bold">Documento</p>
       </div>
       <input
         type="text"
         disabled
         placeholder="Documento"
         value={numeroDocumento}
-        className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%]"
+        className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%] bg-light-color"
       />
       <div className="flex flex-row mt-4 items-center">
-        <BloodIcon width={16} height={16} />
-        <p className="ml-3 font-inter font-bold">Patologia</p>
+        <BloodIcon width={16} height={16} stroke='#111'/>
+        <p className="ml-2 font-inter font-bold">Patologia</p>
       </div>
       <input
         type="text"
         disabled
         placeholder="Patologia"
         value={patologia}
-        className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%]"
+        className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%] bg-light-color"
       />
       <div className="flex flex-row mt-4 items-center">
-        <ShieldIcon width={16} height={16} />
-        <p className="ml-3 font-inter font-bold">Medicos</p>
+        <ShieldIcon width={16} height={16} stroke='#111'/>
+        <p className="ml-2 font-inter font-bold">Medicos</p>
       </div>
       <input
         type="text"
         disabled
         placeholder="Medicos"
         value={medicos}
-        className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%]"
+        className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%] bg-light-color"
       />
       <div className="flex flex-row mt-4 items-center">
-        <HospitalIcon width={20} height={20} />
-        <p className="ml-3 font-inter font-bold">Hospital</p>
+        <HospitalIcon width={20} height={20} stroke='#111'/>
+        <p className="ml-2 font-inter font-bold">Hospital</p>
       </div>
       <input
         type="text"
         disabled
         placeholder="Medicos"
         value={entidades}
-        className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%]"
+        className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%] bg-light-color"
       />
     </section>
   )
