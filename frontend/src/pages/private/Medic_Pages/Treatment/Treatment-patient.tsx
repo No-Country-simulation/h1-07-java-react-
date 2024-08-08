@@ -40,7 +40,7 @@ export const TreatmentPatient = () => {
 
   return (
     <section className="  min-h-screen m-auto overflow-hidden">
-      <div className="w-full max-w-md m-auto  bg-white rounded-lg shadow-lg  max-md:m-auto">
+      <div className="w-full max-w-md m-auto xl:max-w-full bg-white rounded-lg shadow-lg  max-md:m-auto">
         <HeaderProfile
           link={`/patient/${id}`}
           loading={loading}
@@ -51,7 +51,7 @@ export const TreatmentPatient = () => {
           document={patient?.numeroDocumento}
           title={"Tratamientos"}
         >
-          <div className="absolute -bottom-4 w-full flex justify-center">
+          <div className="absolute -bottom-4 w-full flex justify-center ">
             <div className="flex gap-4">
               <Link
                 to={`/patient/${id}`}
@@ -65,30 +65,32 @@ export const TreatmentPatient = () => {
             </div>
           </div>
         </HeaderProfile>
-        <Tabs
-          fullWidth={true}
-          key="lg"
-          size="lg"
-          aria-label="Tabs sizes"
-          className="  shadow-2xl border-3   bg-violet-color border-violet-color  rounded-md"
-        >
-          <Tab key="Medicación" title="Medicación" className="">
-            <FormTreatment id={id} medicines={medicines?.content} />
-          </Tab>
-          <Tab key="Ejercicios" title="Ejercicios" className="">
-            <FormTraining id={id} />
-          </Tab>
-          <Tab key="Nutrición" title="Nutrición" className="ml-">
-            <FormTreamentVoice
-              id={id}
-              type={2}
-              label={"Recomendaciones nutricionales"}
-            />
-          </Tab>
-          <Tab key="Psicológico" title="Psicológico" className="">
-            <FormTreamentVoice id={id} type={3} label={"Recomendaciones"} />
-          </Tab>
-        </Tabs>
+        <div className="xl:flex xl:flex-col xl:justify-center xl:items-center  ">
+          <Tabs
+            fullWidth={true}
+            key="lg"
+            size="lg"
+            aria-label="Tabs sizes"
+            className="xl:w-[50%] shadow-2xl border-3   bg-violet-color  rounded-md"
+          >
+            <Tab key="Medicación" title="Medicación" className="xl:max-w-2xl  xl:w-[50%]">
+              <FormTreatment id={id} medicines={medicines?.content} />
+            </Tab>
+            <Tab key="Ejercicios" title="Ejercicios" className="xl:w-[50%]">
+              <FormTraining id={id} />
+            </Tab>
+            <Tab key="Nutrición" title="Nutrición" className="xl:w-[50%]">
+              <FormTreamentVoice
+                id={id}
+                type={2}
+                label={"Recomendaciones nutricionales"}
+              />
+            </Tab>
+            <Tab key="Psicológico" title="Psicológico" className="xl:w-[50%]">
+              <FormTreamentVoice id={id} type={3} label={"Recomendaciones"} />
+            </Tab>
+          </Tabs>
+        </div>
       </div>
     </section>
   );

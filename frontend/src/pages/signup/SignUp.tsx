@@ -103,8 +103,8 @@ const SignUp: React.FC = () => {
 
   return (
     <section
-      className="flex min-h-screen bg-gray-100 md:flex md:justify-center  "
-      style={{ backgroundImage: "url(/IMG_FONDO/IMG_FONDO.png)" }}
+      className="flex min-h-screen bg-gray-100 md:flex md:justify-center 2xl:text-white "
+      style={{ backgroundImage: "url(/IMG_FONDO/IMG_FONDO.webp)" }}
     >
       <Formik
         initialValues={initialValuesDoctor}
@@ -112,10 +112,10 @@ const SignUp: React.FC = () => {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className=" w-full max-w-[40rem] xl:shadow-md my-4 xl:shadow-gray-600 2xl:h-[70%] 2xl:max-w-[60rem] p-8 bg-white xl:bg-transparent 2xl:mt-[10rem] xl:text-white rounded-lg shadow-lg  max-md:m-auto flex flex-col gap-y-4 ">
+          <Form className=" w-full max-w-[40rem] xl:shadow-xl xl:bg-white xl:shadow-black 2xl:h-[70%] xl:max-w-[50rem] 2xl:max-w-[60rem] p-8 bg-white xl:bg-transparent 2xl:mt-[2rem] xl:text-white rounded-lg shadow-lg  max-md:m-auto flex flex-col gap-y-4 ">
             <div className="mb-6 text-center relative flex flex-col items-center justify-center xl:items-center ">
               <Link
-                to={"/login"}
+                to={"/onboarding"}
                 className=" absolute -left-0 hover:-translate-x-1 transition-all duration-300"
               >
                 <FlechaIconTwo
@@ -126,15 +126,15 @@ const SignUp: React.FC = () => {
                 />
               </Link>
               <div className=" relative w-full flex flex-col items-center justify-center">
-                <h1 className="text-2xl text-black font-bold tracking-tight xl:text-[2rem] xl:mb-2">
+                <h1 className="text-2xl  text-black font-bold tracking-tight xl:text-[2rem] xl:mb-2">
                   Crear cuenta
                 </h1>
-                <p className="text-sm  text-black">
+                <p className="text-sm  text-black ">
                   Introduce la información necesaria
                 </p>
                 <Link
-                  to={"/login"}
-                  className="text-light-color absolute left-0 transition-all duration-300 hover:-translate-x-1 cursor-pointer"
+                  to={"/onboarding"}
+                  className="text-light-color absolute left-0 transition-all duration-300 hover:translate-x-1 cursor-pointer"
                 >
                   <FlechaIconTwo
                     width={30}
@@ -153,14 +153,14 @@ const SignUp: React.FC = () => {
                       className="font-semibold flex items-center gap-2 pl-2"
                       htmlFor={name}
                     >
-                      <Icon width={15} height={15} /> {label}
+                      <Icon width={15} height={15} stroke=""/> {label}
                     </label>
                     <Field
                       type={type}
                       id={name}
                       name={name}
                       placeholder={placeholder}
-                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                      className="w-full p-2 border border-gray-300 xl:border-gray-700 rounded mt-1"
                     />
                     <ErrorMessage
                       name={name}
@@ -180,7 +180,7 @@ const SignUp: React.FC = () => {
                 </label>
                 <Field
                   as="select"
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 xl:border-gray-700 rounded mt-1"
                   name="especialidad"
                 >
                   <option value={1}>Cardiología</option>
@@ -198,7 +198,7 @@ const SignUp: React.FC = () => {
                 </label>
                 <Field
                   as="select"
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 xl:border-gray-700 rounded mt-1"
                   name="financiadores"
                 >
                   <option value={1}>OSDE</option>
@@ -225,7 +225,7 @@ const SignUp: React.FC = () => {
               <div className="text-center xl:w-[40%]">
                 <Link to="/login">
                   <button
-                    onClick={() => {}}
+                    onClick={() => { }}
                     className="w-full mt-2 p-2  xl:hover:text-orange-400 rounded-xl font-semibold text-secondary-brand-dark xl:hover:border-orange-400 border-secondary-brand-dark border-2 "
                   >
                     Iniciar sesión

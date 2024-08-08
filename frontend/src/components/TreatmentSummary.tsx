@@ -32,17 +32,17 @@ export default function TreatmentSummary({
   }, []);
 
   return (
-    <div className=" p-6 flex-col gap-3 flex">
+    <div className="p-6 flex-col gap-3 flex xl:items-center">
       <div className="flex justify-between">
         <h5 className="font-bold text-xl">Resumen</h5>
       </div>
-      <div className=" justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
+      <div className="xl:w-[50%] justify-center min-h-80 border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
         {loading ? (
           <>
             <TreatmentSkeletonSummary />
           </>
         ) : (
-          <>
+          <div>
             {treatments &&
               treatments.content.map((treatment) => (
                 <div>
@@ -71,7 +71,7 @@ export default function TreatmentSummary({
                   )} */}
                 </div>
               ))}
-          </>
+          </div>
         )}
         {treatments?.content.length == 0 && (
           <h4 className=" text-xl  h-full flex justify-center items-center text-center">
@@ -81,7 +81,7 @@ export default function TreatmentSummary({
       </div>
       <Link
         to={`/patient/${id}/treatment`}
-        className="m-auto h-10  mt-6 w-3/4 "
+        className="m-auto h-10  mt-6 w-3/4 xl:w-[40%]"
       >
         <button className="w-full rounded-lg h-full m-auto font-semibold bg-violet-color text-white">
           Nuevo Registro

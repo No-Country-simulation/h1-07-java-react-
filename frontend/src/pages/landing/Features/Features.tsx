@@ -98,7 +98,7 @@ export const FeaturesSection = () => {
           </h4>
         </div>
         <img
-          src="./image.png"
+          src="./Image.png"
           alt="image-landing-page"
           className="md:ml-32 w-[90%]"
         />

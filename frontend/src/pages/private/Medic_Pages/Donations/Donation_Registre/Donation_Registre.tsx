@@ -1,5 +1,5 @@
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import { Header_Donation } from "../../../../../components/Header_Medic_Donation/Header_Donation";
 import { crearDonante, fetchPatient } from "../../../../../Context/AuthContext";
 import "react-toastify/dist/ReactToastify.css";
@@ -64,6 +64,7 @@ export function Donation_Registre() {
 
   const handlePatientSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPatientId(Number(event.target.value));
+    setSelectedPatientId(Number(event.target.value));
   };
 
   const handleSubmit = async (values: any, { resetForm }: any) => {
@@ -73,7 +74,7 @@ export function Donation_Registre() {
       "B+": 2,
       "B-": 3,
       "O+": 4,
-      "O-": 5,
+      "O-": 5
     };
 
     const data = {
@@ -88,7 +89,7 @@ export function Donation_Registre() {
       factorSanguineo: factorSanguineoMap[values.grupoRH] || 0,
       fechaNacimiento: values.fechaNacimiento,
       localidad: values.ubicacion,
-      provincia: "Madrid",
+      provincia: ""
     };
 
     // console.log("Datos enviados:", JSON.stringify(data, null, 2));
@@ -104,8 +105,7 @@ export function Donation_Registre() {
 
   return (
     <main>
-      <Header_Donation link="/donations">
-      </Header_Donation>
+      <Header_Donation src='JustinaLogo_2.png' link="/donations" />
       <Formik
         initialValues={{
           nombre: "",
@@ -124,7 +124,7 @@ export function Donation_Registre() {
       >
         {() => (
           <Form className="flex flex-col ml-4">
-            {/* Campos del formulario */}
+
             <div className="flex flex-col">
               <label htmlFor="nombre" className="mb-3 font-inter font-bold">
                 Nombre
@@ -279,13 +279,12 @@ export function Donation_Registre() {
                 Posible Donación
               </label>
               <Field
-                as="select"
+                type="text"
                 name="posibleDonacion"
+                placeholder="Higado"
                 className="w-[90%] h-14 p-2 border border-violet-color rounded-lg mt-1"
               >
-                <option value="" label="Selecciona" />
-                <option value="Sí" label="Sí" />
-                <option value="No" label="No" />
+
               </Field>
               <div className="text-red-600 mt-1">
                 <ErrorMessage name="posibleDonacion" />

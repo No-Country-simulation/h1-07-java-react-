@@ -217,9 +217,11 @@ export const TabletIcon = ({
 export const UserIcon = ({
   width,
   height,
+  stroke
 }: {
   width: number;
   height: number;
+  stroke: string;
 }) => {
   return (
     <svg
@@ -231,8 +233,8 @@ export const UserIcon = ({
     >
       <path
         d="M12.5 13.125V11.875C12.5 11.212 12.2366 10.5761 11.7678 10.1072C11.2989 9.63839 10.663 9.375 10 9.375H5C4.33696 9.375 3.70107 9.63839 3.23223 10.1072C2.76339 10.5761 2.5 11.212 2.5 11.875V13.125M10 4.375C10 5.75571 8.88071 6.875 7.5 6.875C6.11929 6.875 5 5.75571 5 4.375C5 2.99429 6.11929 1.875 7.5 1.875C8.88071 1.875 10 2.99429 10 4.375Z"
-        stroke="#948ABC"
-        strokeWidth="1"
+        stroke={stroke}
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -1315,7 +1317,7 @@ export function FlechaIconTwo({
   );
 }
 
-export function ArrowWhiteIcon({ width, height }: IconProps) {
+export function ArrowWhiteIcon({ width, height, stroke }: IconProps) {
   return (
     <svg
       width={width}
@@ -1327,7 +1329,7 @@ export function ArrowWhiteIcon({ width, height }: IconProps) {
     >
       <path
         d="M11 7L7 11M7 11L11 15M7 11H15M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z"
-        stroke="#F9F9F9"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1336,7 +1338,7 @@ export function ArrowWhiteIcon({ width, height }: IconProps) {
   );
 }
 
-export function HomeIconTwo({ width, height }: IconProps) {
+export function HomeIconTwo({ width, height, stroke }: IconProps) {
   return (
     <svg
       width={width}
@@ -1347,7 +1349,7 @@ export function HomeIconTwo({ width, height }: IconProps) {
     >
       <path
         d="M9 22V12H15V22M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"
-        stroke={"#948ABC"}
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1356,7 +1358,7 @@ export function HomeIconTwo({ width, height }: IconProps) {
   );
 }
 
-export function PeopleIcon({ width, height }: IconProps) {
+export function PeopleIcon({ width, height, stroke }: IconProps) {
   return (
     <svg
       width={width}
@@ -1367,7 +1369,7 @@ export function PeopleIcon({ width, height }: IconProps) {
     >
       <path
         d="M17 19V17C17 15.9391 16.5786 14.9217 15.8284 14.1716C15.0783 13.4214 14.0609 13 13 13H5C3.93913 13 2.92172 13.4214 2.17157 14.1716C1.42143 14.9217 1 15.9391 1 17V19M23 19V17C22.9993 16.1137 22.7044 15.2528 22.1614 14.5523C21.6184 13.8519 20.8581 13.3516 20 13.13M16 1.13C16.8604 1.3503 17.623 1.8507 18.1676 2.55231C18.7122 3.25392 19.0078 4.11683 19.0078 5.005C19.0078 5.89317 18.7122 6.75608 18.1676 7.45769C17.623 8.1593 16.8604 8.6597 16 8.88M13 5C13 7.20914 11.2091 9 9 9C6.79086 9 5 7.20914 5 5C5 2.79086 6.79086 1 9 1C11.2091 1 13 2.79086 13 5Z"
-        stroke="#1A1A1A"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1580,7 +1582,7 @@ export function SearchIcon({ width, height }: IconProps) {
     </svg>
   );
 }
-export function HealthIcon({ width, height }: IconProps) {
+export function HealthIcon({ width, height, stroke }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -1588,7 +1590,7 @@ export function HealthIcon({ width, height }: IconProps) {
       height={height}
       viewBox="0 0 24 24"
       fill="#fff"
-      stroke="#5761C8"
+      stroke={stroke}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -2532,4 +2534,14 @@ export function DonationRegistreIcon({ width, height }: IconProps) {
       />
     </svg>
   );
+}
+
+
+export function IconLogout({ width, height }: IconProps) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 17L15 12L10 7V17Z" fill="currentColor" />
+      <path d="M20 3H4C2.89 3 2 3.89 2 5V19C2 20.11 2.89 21 4 21H20C21.11 21 22 20.11 22 19V5C22 3.89 21.11 3 20 3ZM20 19H4V5H20V19Z" fill="currentColor" />
+    </svg>
+  )
 }
