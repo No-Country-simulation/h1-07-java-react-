@@ -20,7 +20,7 @@ export interface Donation {
   factorSanguineoOrdinal: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "",
   edadFiltro: "mayor" | "menor" | "igual" | ""
   pesoFiltro: "mayor" | "menor" | "igual" | ""
-  alturaFiltro: "mayor" | "menor" | "igual" | " "
+  alturaFiltro: "mayor" | "menor" | "igual" | ""
 }
 
 
@@ -32,7 +32,7 @@ const validationSchema = Yup.object({
   peso: Yup.number()
     .min(0, "Peso no puede ser negativo"),
   altura: Yup.number()
-    .min(0, "Altura no puede ser negativa"),
+    .min(0, "Altura no puede ser negativa "),
 });
 
 
