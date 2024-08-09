@@ -20,7 +20,7 @@ export interface Donation {
   factorSanguineoOrdinal: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "",
   edadFiltro: "mayor" | "menor" | "igual" | ""
   pesoFiltro: "mayor" | "menor" | "igual" | ""
-  alturaFiltro: "mayor" | "menor" | "igual" | ""
+  alturaFiltro: "mayor" | "menor" | "igual" | " "
 }
 
 
