@@ -118,7 +118,7 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
                         <Field as='textarea' name="comentario" id="comentario" placeholder="Ingresar mensaje" className=" border-1 border-gray-color p-2 rounded-md min-h-28"></Field>
                       </div>
                       <div className=" flex flex-col gap-1">
-                        <label htmlFor="estado" className=" flex items-center gap-1"><UserIcon width={15} height={15} /> Motivo</label>
+                        <label htmlFor="estado" className=" flex items-center gap-1"><UserIcon width={15} height={15} stroke="#948ABC"/> Motivo</label>
                         <Field as="select" name="estado" className=" h-12 border-1 rounded-md border-gray-color" id="estado">
                           <option value="2">Completado</option>
                           <option value="3">No Completado</option>

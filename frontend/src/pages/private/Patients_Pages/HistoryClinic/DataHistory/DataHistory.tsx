@@ -43,8 +43,8 @@ export default function DataHistory({
   };
 
   return (
-    <section className=" px-32 max-lg:px-16 max-md:px-8 ">
-      <h3 className="font-bold font-inter text-2xl mb-4">
+    <section className=" px-32 max-lg:px-16 max-md:px-8 py-6">
+      <h3 className="font-bold font-inter text-2xl mb-4 text-light-color">
         Historia Clínica
       </h3>
       {clinicHistories && clinicHistories.content.length !== 0 && (

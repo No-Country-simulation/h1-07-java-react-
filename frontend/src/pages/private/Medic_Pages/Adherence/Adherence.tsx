@@ -49,8 +49,8 @@ export default function Adherence() {
     fetchPatient();
   }, []);
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md  min-h-screen pb-4  bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
+    <main className="flex min-h-screen xl:max-w-full  bg-gray-100 md:flex md:justify-center ">
+      <div className="w-full max-w-md  min-h-screen pb-4 xl:max-w-full bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -61,8 +61,8 @@ export default function Adherence() {
           document={patient?.numeroDocumento}
           link={`/patient/${id}`}
         ></HeaderProfile>
-        <section className="px-6 ">
-          <h5 className="mb-4 text-xl font-semibold">Tratamientos</h5>
+        <section className="px-6 xl:w-full">
+          <h5 className="mb-4   xl:flex xl:flex-col xl:items-center xl:justify-center text-xl font-semibold">Tratamientos</h5>
           <ol className=" flex flex-col gap-2">
             {loadingTreat ? (
               <>
@@ -72,7 +72,7 @@ export default function Adherence() {
               <>
                 {treatments && treatments?.content.length == 0 ? (
                   <>
-                    <p>El paciente no tiene tratamientos</p>
+                    <p className="xl:text-center">El paciente no tiene tratamientos</p>
                     <Link
                       to={`/patient/${id}/treatment`}
                       className=" flex justify-center"
@@ -83,10 +83,10 @@ export default function Adherence() {
                     </Link>
                   </>
                 ) : (
-                  <>
+                  <div className="xl:flex xl:flex-col xl:justify-center xl:items-center xl:w-full">
                     {treatments &&
-                      treatments.content.sort((a,b)=> b.idTratamiento - a.idTratamiento).map((treatment) => (
-                        <Link
+                      treatments.content.sort((a, b) => b.idTratamiento - a.idTratamiento).map((treatment) => (
+                        <Link className="xl:w-[50%]"
                           to={`/patient/${id}/adherence/${treatment.idTratamiento}`}
                         >
                           <li className=" border-2 cursor-pointer p-2 rounded-md border-violet-color">
@@ -107,7 +107,7 @@ export default function Adherence() {
                           </li>
                         </Link>
                       ))}
-                  </>
+                  </div>
                 )}
               </>
             )}

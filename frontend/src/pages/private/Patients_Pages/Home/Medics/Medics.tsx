@@ -4,9 +4,9 @@ export default function Medics() {
   const { medics, loading } = useMedics();
 
   return (
-    <section className="justify-center flex flex-col font-inter mt-5 px-32 max-lg:px-16 max-md:px-8  w-full ">
-      <h3 className="font-bold font-inter text-1xl">
-        Tús Medicos
+    <section className="justify-center flex flex-col font-inter mt-5 px-32 max-lg:px-16 max-md:px-8  w-full max-md:items-center ">
+      <h3 className="font-bold font-inter text-1xl text-light-color">
+        Mis Medicos
       </h3>
       <ol className=' flex gap-2 py-2'>
         {loading ? (<li className='flex flex-col justify-center items-center'>

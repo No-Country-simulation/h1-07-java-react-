@@ -59,7 +59,7 @@ export default function FormTreatment({
       onSubmit={handleSubmitTreatment}
     >
       {({ isSubmitting }) => (
-        <Form className="flex flex-col gap-y-6 px-4">
+        <Form className="flex flex-col gap-y-6 px-4 xl:max-w-2xl">
           <h2 className=" text-xl font-bold">Tratamientos</h2>
           <div className="">
             <label

@@ -48,10 +48,10 @@ export function PatientAppointments() {
   //   );
 
   return (
-    <main className="container mx-auto ">
-      <div className="max-w-screen-xl mx-auto min-h-screen">
+    <main className="w-full min-h-screen bg-gradient-to-t from-[#FFD460] to-[#5A67D9] py-8">
+      <div className="container mx-auto max-w-screen-xl">
         <section className="px-32 max-lg:px-16 max-md:px-8 mt-8 ">
-          <h1 className="font-bold font-inter text-2xl mb-4">Agendar Cita</h1>
+          <h3 className="font-bold font-inter text-2xl mb-4 text-light-color">Agendar Cita</h3>
           <div className="w-full m-auto flex items-center justify-center">
             <Calendar
               aria-label="Date (Min Date Value)"

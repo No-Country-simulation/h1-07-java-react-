@@ -64,7 +64,7 @@ export const TreatmentPatient = () => {
 
   return (
     <section className="  min-h-screen m-auto overflow-hidden">
-      <div className="w-full max-w-md m-auto  bg-white rounded-lg shadow-lg  max-md:m-auto">
+      <div className="w-full max-w-md m-auto xl:max-w-full bg-white rounded-lg shadow-lg  max-md:m-auto">
         <HeaderProfile
           link={`/patient/${id}`}
           loading={loading}
@@ -75,7 +75,7 @@ export const TreatmentPatient = () => {
           document={patient?.numeroDocumento}
           title={"Tratamientos"}
         >
-          <div className="absolute -bottom-4 w-full flex justify-center">
+          <div className="absolute -bottom-4 w-full flex justify-center ">
             <div className="flex gap-4">
               <Link
                 to={`/patient/${id}`}
