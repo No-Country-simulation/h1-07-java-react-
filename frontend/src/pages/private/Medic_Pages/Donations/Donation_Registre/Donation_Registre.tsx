@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { ContentPatient, Medic } from "../../../../../Interfaces/interfaces";
 
 const validationSchema = Yup.object({
-  nombre: Yup.string().required("Nombre es requerido"),
+  nombre: Yup.string().required("Nombre es requerido "),
   apellido: Yup.string().required("Apellido es requerido"),
   peso: Yup.number()
     .typeError("Peso debe ser un número")
