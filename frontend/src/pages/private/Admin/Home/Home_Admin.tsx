@@ -1,7 +1,4 @@
-import { Logout } from "../../../components/Logout";
-
-
-
+import { Logout } from "../../../../components/Logout";
 
 export function Home_Admin() {
     return (

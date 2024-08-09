@@ -59,10 +59,9 @@ export default function PatientList() {
 
 
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-
-      <div className={`flex-1 transition-margin duration-300 ease-in-out`}>
-        <div className=" xl:flex xl:flex-col xl:max-w-full xl:items-center xl:-mt-5 xl:ml-0 w-full max-w-md p-6  bg-white rounded-lg shadow-lg ">
+    <main className="flex min-h-screen ">
+      <div className={`flex-1 transition-margin duration-300 ease-in-out `}>
+        <div className=" xl:flex xl:flex-col xl:max-w-full xl:items-center xl:p-0 xl:m-0 w-full max-w-md p-6  bg-white rounded-lg shadow-lg ">
           <div>
             <AsideMenu
               src="public/JustinaLogo_2.png"

@@ -16,35 +16,40 @@ export function Header_Home({
   especialidad,
 }: Type) {
   return (
-    <header className="flex xl:shadow-none xl:border-none shadow-2xl xl:justify-evenly flex-col justify-between h-[9.7rem] mb-4 relative   w-[100%] bg-[#D9D9D9]  rounded-ee-[3rem] xl:rounded-es-[3rem] bg-gradient-to-r from-indigo-300 to-indigo-500">
-      <div className="xl:flex xl:flex-row xl:items-center xl:justify-center xl:content-center xl1:w-[50%] xl:w-[45%] md:w-[30] 2xl:w-[40%]">
-        <div className="flex items-center pt-4 justify-between xl:flex-row ">
+    <header className="flex shadow-2xl flex-col justify-between h-[11.9rem] mb-4 relative rounded-ee-[3rem] bg-gradient-to-r from-[#050AAE] to-[#5168FF] || xl:rounded-es-[3rem] xl:w-full xl:max-w-full  ">
+      <div className="flex flex-col justify-between h-full || xl:items-center xl:justify-center xl:max-h-dvh">
+        <div className="flex flex-row justify-around mt-3 w-full || xl:w-[90%] xl:bg-green-500 xl:h-0">
           <Link to={"/userInfo"}>
-            <div className=" ml-2 xl1:ml-[1rem] xl:p-0 xl:-mt-3 xl:items-center xl:ml-60 2xl:ml-[32rem] pt-3 rounded-full flex flex-row items-center content-center justify-between">
+            <div className="">
               <Avatar
                 src="IMG_MEDICO/IMG_MEDICO.webp"
                 color="secondary"
                 isBordered
                 size="lg"
+                className="w-[40px] h-[40px] || xl:w-[80px] xl:h-[80px]"
               />
             </div>
           </Link>
-          <div className="relative right-7 flex flex-row gap-2 xl1:-ml-24 xl:absolute xl:left-[62rem] 2xl:left-[99rem] xl1:left-[70rem]">
+          <h3 className="xl:hidden || text-center text-2xl font-inter font-bold text-white w-[30%] py-1 ">
+            Buenos días
+          </h3>
+          <div className="">
             <button onClick={toggleSidebar}>
-              <MenuHambuerguesa width={30} height={30} stroke="#ffffff" />
+              <MenuHambuerguesa width={30} height={30} stroke="#ffffff" classname="" />
             </button>
           </div>
         </div>
 
-        <div className="m-auto -mt-10 text-center xl:text-start xl:mt-0">
-          <h3 className="text-center xl:text-start text-2xl font-inter font-bold text-white">
+        <div className="h-full justify-center flex flex-col items-center w-full  ||  xl:h-20 xl:items-start xl:w-[35%] ">
+          <h3 className="hidden || xl:flex xl:text-2xl xl:font-inter xl:font-bold xl:text-white ">
             Buenos días
           </h3>
-          <p className="font-inter font-bold text-white">
+          <p className="font-inter text-center xl:text-start font-bold w-[50%] text-white">
             Dr/a. {nombre} {apellido}
           </p>
           <p className="font-bold text-white">Especialidad: {especialidad}</p>
         </div>
+
       </div>
     </header>
   );
