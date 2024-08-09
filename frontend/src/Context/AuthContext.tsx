@@ -611,7 +611,7 @@ export const crearDonante = async (data: any) => {
       const result = await response.json();
       if (result.businessErrorCode == 400) {
         toast.warning("El paciente ya tiene un donante asignado")
-      }else{
+      } else {
         throw new Error('Error fetching data');
       }
     }

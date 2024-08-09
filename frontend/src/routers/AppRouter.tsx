@@ -29,6 +29,7 @@ import { Patient_Notification } from "../pages/private/Patients_Pages/Notificati
 import { HomeView } from "../pages/private/Patients_Pages/Home/HomeView";
 import Donation_Detail from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
 import HeaderLayout from "../components/HeaderLayout";
+import { Home_Admin } from "../pages/private/Admin/Home_Admin";
 
 function AppRouter() {
   return (
@@ -71,12 +72,11 @@ function AppRouter() {
                 <Route path="/notification" element={<Patient_Notification />} />
                 <Route path="/shift" element={<PatientAppointments />} />
               </Route>
+            </Route>
+            <Route element={<PrivateRoute allowedRoles={["ROLE_ADMIN"]} />}>
+              <Route path="/admin" element={<Home_Admin />} />
 
 
-              {/* <Route
-                path="/Medic_Appointment"
-                element={<Medic_Appointment />}
-              /> */}
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>

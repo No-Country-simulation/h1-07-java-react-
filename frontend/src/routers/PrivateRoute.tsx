@@ -9,25 +9,19 @@ interface PrivateRouteProps {
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ allowedRoles }) => {
   const { isLoggedIn, roles } = useAuthContext();
 
+  const adminRole = "Administrador";
+
+  const extendedAllowedRoles = [...allowedRoles, adminRole];
+
+
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }
 
-  const hasAccess = roles.some((role) => allowedRoles.includes(role));
+  const hasAccess = roles.some((role) => extendedAllowedRoles.includes(role));
 
   return hasAccess ? <Outlet /> : <Navigate to="/patient-home" />;
 };
 
 export default PrivateRoute;
 
-/* import { Navigate, Outlet } from "react-router-dom";
-import { useAuthContext } from "../Context/AuthContext";
-
-const PrivateRoute: React.FC = () => {
-
-  const { isLoggedIn } = useAuthContext();
-
-  return isLoggedIn ? <Outlet /> : <Navigate to="/login" replace />;
-};
-
-export default PrivateRoute; */
