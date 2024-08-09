@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ContentMedicines, Patient } from "../../../../Interfaces/interfaces";
+import { ContentMedicines, ContentPathologies, Patient } from "../../../../Interfaces/interfaces";
 import { Link, useParams } from "react-router-dom";
 import {
   fetchMedicines,
@@ -10,30 +10,54 @@ import FormTreatment from "../../../../components/FormTreatment";
 import FormTraining from "../../../../components/FormTraining";
 import { FormTreamentVoice } from "../../../../components/FormTreamentVoice";
 import { HeaderProfile } from "../../../../components/HeaderProfile";
+import { API_URL } from "../../../../api/api";
 
 export const TreatmentPatient = () => {
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [patient, setPatient] = useState<Patient>();
   const [medicines, setMedicines] = useState<ContentMedicines>();
+  const [pathologies, setPathologies] = useState<ContentPathologies>()
 
-  const { id } = useParams();
-  useEffect(() => {
-    const fetchPatient = async () => {
-      if (id) {
-        try {
-          setPatient(await fetchPatientSingle(id));
-        } catch (err) {
-          console.log(err);
-        } finally {
-          setLoading(false);
-        }
+  const fetchPathologiesData = async () => {
+    const token = localStorage.getItem('TOKEN_KEY');
+
+    try {
+      const res = await fetch(`${API_URL}/patologias/listar-patologias`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
       }
-    };
+      const data = await res.json()
+      setPathologies(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
+  const fetchPatient = async () => {
+    if (id) {
+      try {
+        setPatient(await fetchPatientSingle(id));
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  useEffect(() => {
     const fetchMedicinesData = async () => {
       setMedicines(await fetchMedicines());
     };
 
+    fetchPathologiesData()
     fetchMedicinesData();
     fetchPatient();
   }, []);
@@ -65,32 +89,30 @@ export const TreatmentPatient = () => {
             </div>
           </div>
         </HeaderProfile>
-        <div className="xl:flex xl:flex-col xl:justify-center xl:items-center  ">
-          <Tabs
-            fullWidth={true}
-            key="lg"
-            size="lg"
-            aria-label="Tabs sizes"
-            className="xl:w-[50%] shadow-2xl border-3   bg-violet-color  rounded-md"
-          >
-            <Tab key="Medicación" title="Medicación" className="xl:max-w-2xl  xl:w-[50%]">
-              <FormTreatment id={id} medicines={medicines?.content} />
-            </Tab>
-            <Tab key="Ejercicios" title="Ejercicios" className="xl:w-[50%]">
-              <FormTraining id={id} />
-            </Tab>
-            <Tab key="Nutrición" title="Nutrición" className="xl:w-[50%]">
-              <FormTreamentVoice
-                id={id}
-                type={2}
-                label={"Recomendaciones nutricionales"}
-              />
-            </Tab>
-            <Tab key="Psicológico" title="Psicológico" className="xl:w-[50%]">
-              <FormTreamentVoice id={id} type={3} label={"Recomendaciones"} />
-            </Tab>
-          </Tabs>
-        </div>
+        <Tabs
+          fullWidth={true}
+          key="lg"
+          size="lg"
+          aria-label="Tabs sizes"
+          className="  shadow-2xl border-3   bg-violet-color border-violet-color  rounded-md"
+        >
+          <Tab key="Medicación" title="Medicación" className="">
+            <FormTreatment id={id} medicines={medicines?.content} pathologies={pathologies?.content}/>
+          </Tab>
+          <Tab key="Ejercicios" title="Ejercicios" className="">
+            <FormTraining id={id} />
+          </Tab>
+          <Tab key="Nutrición" title="Nutrición" className="ml-">
+            <FormTreamentVoice
+              id={id}
+              type={2}
+              label={"Recomendaciones nutricionales"}
+            />
+          </Tab>
+          <Tab key="Psicológico" title="Psicológico" className="">
+            <FormTreamentVoice id={id} type={3} label={"Recomendaciones"} />
+          </Tab>
+        </Tabs>
       </div>
     </section>
   );

@@ -405,6 +405,22 @@ export interface Paciente {
   imagen: string;
 }
 
+
+export interface ContentPathologies {
+  content: Pathologies[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface Pathologies {
+  idPatologia: number
+  nombre: string
+  descripcion: string
+}
 export interface Donante {
   idMedico: number;
   altura: string;
