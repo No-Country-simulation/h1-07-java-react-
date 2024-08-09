@@ -9,7 +9,7 @@ import { ContentDonations } from "../../../../../Interfaces/interfaces";
 import { initialValuesFilter } from "../../../../../utils/data/data";
 import { LoaderIcon, SilderIcon } from "../../../../../../public/icons/Icons";
 import { Donors } from "./Donors/Donors";
-import { AsideMenu } from "../../../../../components/AsideMenu";
+// import { AsideMenu } from "../../../../../components/AsideMenu";
 
 export interface Donation {
   textoBusqueda: string
