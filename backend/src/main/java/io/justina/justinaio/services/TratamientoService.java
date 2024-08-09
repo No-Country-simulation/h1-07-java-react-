@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,10 +35,51 @@ public class TratamientoService {
     private final PatologiaRepository patologiaRepository;
     private final MedicamentoRepository medicamentoRepository;
     private final HorarioTomaRepository horarioTomaRepository;
+    private final ImagenRepository imagenRepository;
 
 
     @Transactional
-    public void crearTratamiento(NuevoTratamientoRequest request, Authentication token) {
+    public void crearTratamientoConImagen(NuevoTratamientoRequest request, MultipartFile imagen, Authentication token) {
+        Usuario userMedico = (Usuario) token.getPrincipal();
+
+        Patologia patologia = null;
+        Medicamento medicamento = null;
+        TipoTratamiento tipoTratamiento = TipoTratamiento.values()[request.getTipoTratamiento()];
+        if (tipoTratamiento == TipoTratamiento.MEDICAMENTO) {
+            patologia = obtenerPatologiaPorId(request.getPatologiaId());
+            medicamento = obtenerMedicamentoPorId(request.getMedicamentoId());
+        }
+
+        // Sube la imagen a Cloudinary y obtén la URL
+        //String urlImagen = cloudinaryService.subirImagen(imagen);
+
+        // Calcula la fecha de inicio y finalización del tratamiento
+        LocalDate fechaInicio = calcularFechaInicio(request.getFechaInicio(), request.getHoraInicio());
+        LocalDate fechaFin = fechaInicio.plusDays(request.getDiasTotales());
+
+        Tratamiento tratamiento = Tratamiento.builder()
+                .medico(obtenerMedicoPorId(userMedico.getId()))
+                .paciente(obtenerPacientePorId(request.getPacienteId()))
+                .patologia(patologia)
+                .medicamento(medicamento)
+                .tipoTratamiento(tipoTratamiento)
+                .descripcion(request.getDescripcion())
+                .dosisDiaria(request.getDosisDiaria())
+                .fechaInicio(fechaInicio)
+                .fechaFin(fechaFin)
+                .estado(EstadoTratamiento.EN_CURSO)
+                .esActivo(true)
+                //.imagenUrl(urlImagen) // Guarda la URL de la imagen en el tratamiento
+                .build();
+
+        tratamientoRepository.save(tratamiento);
+
+        List<HorarioToma> horarios = crearHorariosToma(tratamiento, request.getHoraInicio(), request.getDosisDiaria(), request.getDiasTotales());
+        tratamiento.setHorarios(horarios);
+        horarioTomaRepository.saveAll(horarios);
+    }
+    @Transactional
+    public Integer crearTratamiento(NuevoTratamientoRequest request, Authentication token) {
         Usuario userMedico = (Usuario) token.getPrincipal();
 
         Patologia patologia = null;
@@ -71,6 +113,8 @@ public class TratamientoService {
         List<HorarioToma> horarios = crearHorariosToma(tratamiento, request.getHoraInicio(), request.getDosisDiaria(), request.getDiasTotales());
         tratamiento.setHorarios(horarios);
         horarioTomaRepository.saveAll(horarios);
+
+        return tratamiento.getIdTratamiento();
     }
 
     @Transactional
@@ -290,4 +334,12 @@ public class TratamientoService {
     }
 
 
+    public void cargarImagenATratamientoPorId(Integer idTratamiento, Integer idImagen) {
+        Tratamiento tratamiento = tratamientoRepository.findById(idTratamiento)
+                .orElseThrow(() -> new NullPointerException("No se encuentra el tratamiento en la DB con ese ID"));
+        Imagen imagen = imagenRepository.findById(idImagen)
+                .orElseThrow(() -> new NullPointerException("No se encuentra la imagen en la DB con ese ID"));
+        tratamiento.setImagen(imagen);
+        tratamientoRepository.save(tratamiento);
+    }
 }

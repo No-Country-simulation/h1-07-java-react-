@@ -56,5 +56,9 @@ public class Tratamiento {
     @Enumerated(EnumType.ORDINAL)
     private EstadoTratamiento estado;
 
+    @OneToOne
+    @JoinColumn(name = "imagen_id")
+    private Imagen imagen;
+
     private Boolean esActivo;
 }
