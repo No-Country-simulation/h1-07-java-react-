@@ -2,38 +2,24 @@ import { useEffect, useState } from "react";
 import {
   ContentTreatmentPacient,
 } from "../../../../Interfaces/interfaces";
-import { API_URL } from "../../../../api/api";
 import { tipoTratamientoMap } from "../../../../utils/data/data";
+import { fetchTreatmentPatientConect } from "../../../../Context/AuthContext";
 
 export default function TreatementPatient() {
-  const [treatments, setTreatments] = useState<ContentTreatmentPacient>();
+  const [treatments, setTreatments] = useState<ContentTreatmentPacient | undefined>();
   const [visibleCount, setVisibleCount] = useState(5);
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
-    const fetchTreatmentPacient = async () => {
-      const token = localStorage.getItem("TOKEN_KEY");
+  const fetchTreatmentPacient = async () => {
+    try {
+      setTreatments(await fetchTreatmentPatientConect())
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-      try {
-        const res = await fetch(
-          `${API_URL}/tratamiento/listar-tratamientos-paciente-conectado?page=0&size=30`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (!res.ok) {
-          throw new Error("Failed to fetch treatments");
-        }
-        const data = await res.json();
-        setTreatments(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  useEffect(() => {
+
 
     fetchTreatmentPacient();
   }, []);
@@ -44,9 +30,9 @@ export default function TreatementPatient() {
   };
 
   return (
-    <main className="container mx-auto">
-      <div className="max-w-screen-xl mx-auto min-h-screen">
-        <div className="px-32 max-lg:px-16 max-md:px-8 mt-8 pb-4">
+    <main className="w-full min-h-screen bg-gradient-to-t from-[#02FFFF] to-[#5561D9] py-8">
+      <div className="container mx-auto max-w-screen-xl">
+        <div className="px-32 max-lg:px-16 max-md:px-8 pb-4">
           <h3 className="font-bold font-inter text-2xl mb-4">
             Mis tratamientos
           </h3>

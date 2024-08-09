@@ -21,7 +21,7 @@ const data = [
 export default function Shifts() {
   return (
     <section className="justify-center flex flex-col font-inter mt-5 px-32 max-lg:px-16 max-md:px-8  w-full ">
-      <h3 className="font-bold font-inter text-1xl">
+      <h3 className="font-bold font-inter text-1xl text-light-color">
         Tú Próxima Cita
       </h3>
       <div className=" grid grid-cols-2 gap-2 max-md:grid-cols-1">

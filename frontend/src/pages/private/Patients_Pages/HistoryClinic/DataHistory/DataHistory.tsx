@@ -43,12 +43,12 @@ export default function DataHistory({
   };
 
   return (
-    <section className=" px-32 max-lg:px-16 max-md:px-8 ">
-      <h3 className="font-bold font-inter text-2xl mb-4">
+    <section className=" px-32 max-lg:px-16 max-md:px-8 py-6">
+      <h3 className="font-bold font-inter text-2xl mb-4 text-light-color">
         Historia Clínica
       </h3>
       {clinicHistories && clinicHistories.content.length !== 0 && (
-        <div className="relative w-full h-12 mb-3 flex justify-center items-center">
+        <div className="relative w-full h-12 mb-3 flex justify-center items-center ">
           <input
             type="text"
             placeholder="Búsqueda"
@@ -60,31 +60,37 @@ export default function DataHistory({
           </span>
         </div>
       )}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-y-3">
         {loading ? (
           <SkeletonAcordion />
         ) : (
           <>
             {clinicHistories && clinicHistories.content.length > 0 ? (
-              clinicHistories.content
-                .filter((msg) =>
-                  msg.titulo.toLowerCase().includes(histories.toLowerCase())
-                )
-                .map((history, idx) => (
-                  <Accordion
-                    variant="splitted"
-                    key={idx}
-                    className="rounded-md w-full"
-                  >
-                    <AccordionItem
-                      aria-label={history.titulo}
-                      title={`${history.titulo} ${history.fecha}`}
-                      className="w-full border-2 border-violet-color"
-                    >
-                      {history.descripcion}
-                    </AccordionItem>
-                  </Accordion>
-                ))
+              <>
+                <Accordion
+                  variant="splitted"
+                  fullWidth={true}
+                  className=" w-full px-0 "
+                >
+                  {
+                    clinicHistories.content
+                      .filter((msg) =>
+                        msg.titulo.toLowerCase().includes(histories.toLowerCase())
+                      )
+                      .map((history, idx) => (
+                        <AccordionItem
+                          aria-label={history.titulo}
+                          tabIndex={idx}
+                          title={`${history.titulo} ${history.fecha}`}
+                          className="w-full border-2 border-violet-color shadow-[1.0px_2.0px_2.0px_rgba(0,0,0,0.38)]"
+                        >
+                          {history.descripcion}
+                        </AccordionItem>
+                      ))
+                  }
+                </Accordion>
+
+              </>
             ) : (
               <SkeletonAcordion />
             )}

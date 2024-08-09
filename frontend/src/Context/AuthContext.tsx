@@ -13,6 +13,7 @@ import {
   ClinicHistoryProps,
   ContentMedicines,
   ContentPatient,
+  ContentTreatmentPacient,
   DoctorRegister,
   PatientRegister,
   ResponseRequest,
@@ -22,6 +23,7 @@ import {
 import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
+import { MedicsContent } from "../utils/hooks/useMedics";
 
 const AUTH_TOKEN_KEY = "TOKEN_KEY";
 const AUTH_INFO_USER = "USER_INFO";
@@ -133,6 +135,7 @@ export const AuthContextProvider = ({
     window.localStorage.removeItem(AUTH_INFO_USER);
     window.localStorage.removeItem("MEDIC-DATA");
     window.localStorage.removeItem("PATIENT-DATA");
+    window.localStorage.removeItem("PATIENT-NOTIFICATION");
 
     setAuthTokens(null);
     setUserName("");
@@ -306,7 +309,7 @@ async function registerTreatment(treatment: Treatment) {
 
   if (token) {
     try {
-      const res = await fetch(`${API_URL}/tratamiento/crear-tratamiento`, {
+      const res = await fetch(`${API_URL}/tratamiento/crear-tratamiento-retorna-id-tratamiento`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -611,7 +614,7 @@ export const crearDonante = async (data: any) => {
       const result = await response.json();
       if (result.businessErrorCode == 400) {
         toast.warning("El paciente ya tiene un donante asignado")
-      }else{
+      } else {
         throw new Error('Error fetching data');
       }
     }
@@ -696,5 +699,50 @@ export async function fetchDonationDetalle() {
     } catch (err: any) {
       console.log(err);
     }
+  }
+};
+
+export const fetchMedicsData = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  try {
+    const res = await fetch(`${API_URL}/medico/buscar-medico-id-paciente-conectado`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+
+    const data: MedicsContent = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const fetchTreatmentPatientConect= async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/tratamiento/listar-tratamientos-paciente-conectado?page=0&size=30`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch treatments");
+    }
+    const data:ContentTreatmentPacient = await res.json();
+    return data
+  } catch (err) {
+    console.log(err);
   }
 };

@@ -18,16 +18,15 @@ const NotificationTab: React.FC<NotificationTabProps> = ({
     >
       Notificaciones
     </h6>
-    <div className="p-2 rounded-md gap-4 w-full flex justify-center items-center bg-light-color">
+    <div className="p-2 rounded-md gap-4 w-full flex justify-center items-center bg-light-color shadow-[1.0px_2.0px_2.0px_rgba(0,0,0,0.38)] ">
       {tabOptions.map((tab) => (
         <button
           key={tab.tabName}
           onClick={() => setActiveTab(tab.tabName)}
-          className={`cursor-pointer px-2 py-1 rounded-md ${
-            activeTab === tab.tabName
+          className={`cursor-pointer px-2 py-1 rounded-md ${activeTab === tab.tabName
               ? "border-2 border-gray-500 bg-slate-50"
               : "bg-slate-300"
-          }`}
+            }`}
         >
           {tab.tabName}
         </button>

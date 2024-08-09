@@ -45,7 +45,7 @@ export function Home(): JSX.Element {
         <div className="xl:grid xl:grid-cols-1 xl:justify-center w-full  xl:max-w-full max-w-md bg-white rounded-lg shadow-lg m-auto ">
           <div className="">
             <AsideMenu
-            src="public/JustinaLogo_2.png"
+            src="JustinaLogo_2.png"
               isSidebarOpen={isSidebarOpen}
               toggleSidebar={toggleSidebar}
             />

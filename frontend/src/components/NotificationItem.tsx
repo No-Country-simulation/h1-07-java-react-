@@ -78,7 +78,7 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
 
   return (
     <>
-      <div id={String(idNotificacion)} className={`${leido && 'border-gray-200 '} hover:brightness-90 flex p-3 cursor-pointer  transition-all duration-300 flex-col mt-4 bg-[#FFFAEC] border-1 border-gray-600 w-full rounded-md`}>
+      <div id={String(idNotificacion)} className={`${leido && 'border-gray-200 '} shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.38)] hover:brightness-90 flex p-3 cursor-pointer  transition-all duration-300 flex-col mt-4 bg-[#FFFAEC] border-1 border-gray-600 w-full rounded-md`}>
         <div className="flex justify-between mb-1">
           <h3 className="font-inter text-sm font-semibold w-[60%] flex items-center gap-2"><span>{leido ? <p className=" w-3 h-3 bg-gray-400  rounded-full "></p> : <p className=" w-3 h-3 bg-blue-500  rounded-full " />}</span> Notificación</h3>
           <p className="text-sm flex items-center justify-center gap-2">{getTimeElapsed(hora, fecha)}</p>
@@ -118,7 +118,7 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
                         <Field as='textarea' name="comentario" id="comentario" placeholder="Ingresar mensaje" className=" border-1 border-gray-color p-2 rounded-md min-h-28"></Field>
                       </div>
                       <div className=" flex flex-col gap-1">
-                        <label htmlFor="estado" className=" flex items-center gap-1"><UserIcon width={15} height={15} stroke=""/> Motivo</label>
+                        <label htmlFor="estado" className=" flex items-center gap-1"><UserIcon width={15} height={15} stroke="#948ABC"/> Motivo</label>
                         <Field as="select" name="estado" className=" h-12 border-1 rounded-md border-gray-color" id="estado">
                           <option value="2">Completado</option>
                           <option value="3">No Completado</option>

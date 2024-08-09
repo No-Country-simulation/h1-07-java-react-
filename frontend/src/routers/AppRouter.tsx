@@ -29,6 +29,9 @@ import { Patient_Notification } from "../pages/private/Patients_Pages/Notificati
 import { HomeView } from "../pages/private/Patients_Pages/Home/HomeView";
 import Donation_Detail from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
 import HeaderLayout from "../components/HeaderLayout";
+import Exercises from "../pages/private/Patients_Pages/Exercises/Exercises";
+import Mental from "../pages/private/Patients_Pages/Mental/Mental";
+import Nutrition from "../pages/private/Patients_Pages/Nutrition/Nutrition";
 
 function AppRouter() {
   return (
@@ -70,13 +73,10 @@ function AppRouter() {
                 <Route path="/history" element={<History />} />
                 <Route path="/notification" element={<Patient_Notification />} />
                 <Route path="/shift" element={<PatientAppointments />} />
+                <Route path="/exercises" element={<Exercises />} />
+                <Route path="/nutrition" element={<Nutrition />} />
+                <Route path="/mental" element={<Mental />} />
               </Route>
-
-
-              {/* <Route
-                path="/Medic_Appointment"
-                element={<Medic_Appointment />}
-              /> */}
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>

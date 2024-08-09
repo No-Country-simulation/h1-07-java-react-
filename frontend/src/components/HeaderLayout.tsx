@@ -13,8 +13,9 @@ export default function HeaderLayout() {
     }
   }, [])
   return (
-    <div className="w-full min-h-screen bg-gradient-to-t from-[#C2C6EE] to-[#5460D9]">
-      <div className="container mx-auto max-w-screen-xl">
+
+    <>
+      <div className=" bg-[#5761C8]">
         <HeaderPatient
           name={patientInfo?.nombre}
           lastname={patientInfo?.apellido}
@@ -22,10 +23,11 @@ export default function HeaderLayout() {
           document={patientInfo?.numeroDocumento}
           link={"/patient-home"}>
         </HeaderPatient>
-        <main>
-          <Outlet />
-        </main>
       </div>
-    </div>
+      <main>
+        <Outlet />
+      </main>
+    </>
+
   )
 }
