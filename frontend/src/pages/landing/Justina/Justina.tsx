@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 interface CardProps {
   image: string;
   title: string;
@@ -6,16 +8,20 @@ interface CardProps {
 }
 
 const Card = ({ image, title, subtitle, url }: CardProps) => (
-  <a
+  <motion.a
     href={url}
     target="_blank"
     rel="noopener noreferrer"
     className="bg-[#ffffff] hover:bg-[#f1f1f1] p-3 border-2 border-[#C23584] rounded-lg flex flex-col items-center w-80 lg:w-72"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
+    viewport={{ once: true }}
   >
     <img src={image} alt={title} className="mb-4 w-full h-full object-cover" />
     <h5 className="text-xl mb-3 text-[#11AAE3] font-bold">{title}</h5>
     <p className="text-sm mb-3 font-normal text-[#605DF6]">{subtitle}</p>
-  </a>
+  </motion.a>
 );
 
 const JustinaSection = () => {
@@ -51,7 +57,7 @@ const JustinaSection = () => {
   return (
     <section className="mt-10 bg-[#5956E9] h-full text-white text-center">
       <div className="pt-12">
-        <h3 className="text-[3.25rem] font-semibold ">
+        <h3 className="text-[3.25rem] font-semibold">
           Justina Y La Ley Justina
         </h3>
         <h4 className="text-2xl font-normal uppercase mt-4">
@@ -59,7 +65,7 @@ const JustinaSection = () => {
         </h4>
       </div>
 
-      <div className="flex flex-col items-center mt-8 space-y-4 md:space-y-0  lg:-space-y-4">
+      <div className="flex flex-col items-center mt-8 space-y-4 md:space-y-0 lg:-space-y-4">
         <div className="flex flex-col md:flex-row justify-center mb-6 gap-4 lg:gap-12">
           {cards.slice(0, 2).map((card, index) => (
             <Card
