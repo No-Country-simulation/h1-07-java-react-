@@ -2344,7 +2344,7 @@ export function AdressIcon({ width, height }: IconProps) {
   );
 }
 
-export function SilderIcon({ width, height }: IconProps) {
+export function SilderIcon({ width, height, stroke, classname }: IconProps) {
   return (
     <svg
       width={width}
@@ -2352,67 +2352,68 @@ export function SilderIcon({ width, height }: IconProps) {
       viewBox="0 0 10 10"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={classname}
     >
       <g clipPath="url(#clip0_736_3842)">
         <path
           d="M8.75001 1.66699H5.83334"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M4.16667 1.66699H1.25"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M8.75 5H5"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M3.33333 5H1.25"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M8.74999 8.33301H6.66666"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M5 8.33301H1.25"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M5.83334 0.833008V2.49967"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M3.33334 4.16699V5.83366"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M6.66666 7.5V9.16667"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
