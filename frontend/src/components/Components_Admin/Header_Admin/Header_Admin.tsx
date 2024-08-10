@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import { MenuHambuerguesaAdmin, UserIconTwoAdmin } from "../../../../public/icons/Icons";
 
 
+interface Type {
+    toggleSidebar: () => void;
+    
+}
 
 
-
-export function Header_Admin() {
+export function Header_Admin({toggleSidebar} : Type) {
     return (
         <header className="flex shadow-2xl flex-col justify-between h-[11.9rem] mb-4 relative rounded-ee-[3rem] bg-gradient-to-r from-[#FFB278] to-[#FBEB5C] || xl:rounded-es-[3rem] xl:w-full xl:max-w-full  ">
             <div className="flex flex-col justify-between h-full || xl:items-center xl:justify-center xl:max-h-dvh">
@@ -19,7 +22,7 @@ export function Header_Admin() {
                         Buenos días
                     </h3>
                     <div className="">
-                        <button >
+                        <button onClick={toggleSidebar}>
                             <MenuHambuerguesaAdmin width={40} height={40} stroke="#000" classname="" />
                         </button>
                     </div>

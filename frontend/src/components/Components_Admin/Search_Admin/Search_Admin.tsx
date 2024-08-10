@@ -14,14 +14,12 @@ export function Search_Admin() {
                 aria-label="Tabs sizes"
                 className=" shadow-2xl border-3 flex flex-row gap-x-4  hover:bg-[#fa8d45] bg-[#FF8D35] border-[#FF8D35]  rounded-md"
             >
-                <Tab key="MInstituciones" title="Instituciones" className=" w-[150%]">
+                <Tab key="Instituciones" title="Instituciones" className=" w-[100%]">
                     <Institucion_Admin />
                 </Tab>
-                <Tab key="Ejercicios" title="Medicamentos" className="">
-
-                </Tab>
-                <Tab key="Nutrición" title="Patologias" className="ml-">
-
+                <Tab key="" title="" className="m-0 w-0 p-0"></Tab>
+                <Tab key="Nutrición" title="Patologias" className="">
+                    
                 </Tab>
                 <Tab key="Psicológico" title="Psicológico" className="">
                 </Tab>
