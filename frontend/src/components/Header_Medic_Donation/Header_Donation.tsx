@@ -19,12 +19,12 @@ export function Header_Donation({ link, src }: header_Donation) {
         <header className='mb-10 p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-[#FFA4D7] to-[#C23584] rounded-br-[4rem] shadow-2xl'>
             <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
                 <Link to={link} className='text-light-color absolute xl:left-80 left-4 hover:-translate-x-1 transition-all duration-300'>
-                    <ArrowWhiteIcon width={30} height={30} stroke="#ffffff" />
+                    <ArrowWhiteIcon width={30} height={30} stroke="#ffffff" classname=""/>
                 </Link>
                 <div className="flex items-center justify-center">
                     <h1 className="text-xl font-bold text-light-color">Donaciones</h1>
                     <button onClick={toggleSidebar} className='absolute right-0 hidden'>
-                        <MenuHambuerguesa width={30} height={30} stroke="" />
+                        <MenuHambuerguesa width={30} height={30} stroke="" classname=""/>
                     </button>
                 </div>
             </div>
@@ -34,7 +34,7 @@ export function Header_Donation({ link, src }: header_Donation) {
             </div>
             <div className='rounded-lg absolute xl:left-[20rem] xl:-bottom-5 -bottom-3 left-5 py-1 px-3 shadow-md bg-[#5761C8] text-white text-[14px] border-1 border-solid border-[#948ABC]'>
                 <Link to={"/donationRegistre"} className="flex flex-row items-center">
-                    <DonationRegistreIcon width={20} height={20} stroke="" />
+                    <DonationRegistreIcon width={20} height={20} stroke="" classname=""/>
                     <button className="ml-2">Añadir posible donante</button>
                 </Link>
             </div>

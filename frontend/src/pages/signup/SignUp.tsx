@@ -175,7 +175,7 @@ const SignUp: React.FC = () => {
                   className="font-semibold flex items-center gap-2 pl-2"
                   htmlFor="especialidad"
                 >
-                  <JobIcon width={15} height={15} stroke={""} />
+                  <JobIcon width={15} height={15} stroke={""} classname=""/>
                   Especialidad
                 </label>
                 <Field

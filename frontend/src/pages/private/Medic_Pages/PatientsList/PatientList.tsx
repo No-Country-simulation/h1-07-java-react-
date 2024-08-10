@@ -93,7 +93,7 @@ export default function PatientList() {
               className="w-full h-full  border-violet-color rounded-md border-1 px-4 xl:w-[80%]"
             />
             <span className="right-5 absolute xl:right-36">
-              <SearchIcon width={20} height={20} stroke="" />
+              <SearchIcon width={20} height={20} stroke="" classname=""/>
             </span>
           </section>
 

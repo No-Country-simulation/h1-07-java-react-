@@ -12,24 +12,24 @@ import {
 
 const items = [
   {
-    icon: <HistoryIconTwo width={30} height={30} />,
+    icon: <HistoryIconTwo width={30} height={30} classname=""/>,
     text: "Historial Clínico",
   },
   {
-    icon: <DonationIcon width={30} height={30} />,
+    icon: <DonationIcon width={30} height={30} classname=""/>,
     text: "Donaciones",
   },
   {
-    icon: <TratamentIcon width={30} height={30} />,
+    icon: <TratamentIcon width={30} height={30} classname=""/>,
     text: "Tratamientos",
   },
   {
-    icon: <CorIcon width={30} height={30} />,
+    icon: <CorIcon width={30} height={30} classname=""/>,
     text: "Acompañamiento al paciente",
     padding: "md:pt-6",
   },
   {
-    icon: <WacthIcon width={30} height={30} />,
+    icon: <WacthIcon width={30} height={30} classname=""/>,
     text: "Gestión de turnos",
   },
   {
@@ -37,12 +37,12 @@ const items = [
     text: "Protección de datos",
   },
   {
-    icon: <RecordIcon width={30} height={30} />,
+    icon: <RecordIcon width={30} height={30} classname=""/>,
     text: "Recordatorios para Pacientes",
     padding: "md:mt-4",
   },
   {
-    icon: <CheckIconTwo width={30} height={30} />,
+    icon: <CheckIconTwo width={30} height={30} classname=""/>,
     text: "Perfiles verificados",
   },
 ];

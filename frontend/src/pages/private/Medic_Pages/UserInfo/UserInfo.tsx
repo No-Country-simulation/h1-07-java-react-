@@ -11,7 +11,7 @@ import {
 import { Medic } from "../../../../Interfaces/interfaces";
 import { AsideMenu } from "../../../../components/AsideMenu";
 import { Logout } from "../../../../components/Logout";
-import { Header_UserInfo } from "../../../../components/Header_UserIfon/Header_UserInfo";
+// import { Header_UserInfo } from "../../../../components/Header_UserIfon/Header_UserInfo";
 import { Header_Home } from "../Home/Header.tsx/Header";
 
 export function UserInfo(): JSX.Element {

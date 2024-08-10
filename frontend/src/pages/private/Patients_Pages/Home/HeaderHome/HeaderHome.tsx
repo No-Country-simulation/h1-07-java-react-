@@ -51,12 +51,12 @@ export default function HeaderHome({
               className=" -z-0"
             >
               <span className=" hover:brightness-90 transition-all duration-300 w-12 h-12  bg-[#006FEE]  rounded-full flex justify-center items-center">
-                <CampanaNotificIcon width={30} height={30} stroke="#fff" />
+                <CampanaNotificIcon width={30} height={30} stroke="#fff" classname=''/>
               </span>
             </Badge>
           </Link>
           <button onClick={toggleSidebar} className=" hover:brightness-90 transition-all duration-300 w-12 h-12  bg-[#006FEE]  rounded-full flex justify-center items-center">
-            <MenuHambuerguesa width={30} height={30} stroke="" />
+            <MenuHambuerguesa width={30} height={30} stroke="" classname=''/>
           </button>
         </div>
       </div>

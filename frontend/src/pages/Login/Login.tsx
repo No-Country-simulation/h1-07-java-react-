@@ -53,7 +53,7 @@ export const LoginPage: React.FC = () => {
       <div className="w-full max-w-md p-8 xl:px-6 xl:py-3 2xl:py-8 bg-white xl:text-black xl:bg-white rounded-lg shadow-lg shadow-black  2xl:h-full  ">
         <div className="xl:mt-14 2xl:mt-0">
           <Link to={"/onboarding"} className="flex flex-row items-center  gap-x-5  mb-2 ">
-            <ArrowWhiteIcon width={30} height={30} stroke="#000000" />
+            <ArrowWhiteIcon width={30} height={30} stroke="#000000" classname=""/>
 
           </Link>
           <h2 className="text-[20px] pb-3 font-[700] mb-[9px] mt-[1.5rem] xl:mt-0 text-gray-900 font-inter xl:text-black 2xl:text-black 2xl:top-3 xl:top-3">
