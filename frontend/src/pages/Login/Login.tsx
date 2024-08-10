@@ -51,7 +51,7 @@ export const LoginPage: React.FC = () => {
       <div className="lg:w-full w-[340px]  max-w-md mt-4 lg:mt-2 p-8 xl:px-6 xl:py-3 2xl:py-8 bg-white xl:text-black xl:bg-white rounded-lg shadow-lg shadow-black h-[620px]  lg:h-[600px]  ">
         <div className="2xl:mt-0">
           <Link to={"/onboarding"} className="flex z-10 w-10 lg:mt-4 flex-row items-center gap-x-5 mb-2 ">
-            <ArrowWhiteIcon width={30} height={30} stroke="#000000" />
+            <ArrowWhiteIcon width={30} height={30} stroke="#000000" classname=""/>
           </Link>
         <div className="-mt-9">
           <img src="JustinaLogo_2.png" className="m-auto flex" width={130} alt="Justina Logo" /> 
