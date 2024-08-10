@@ -25,6 +25,10 @@ public class Medico {
     private String localidad;
     private String licencia;
 
+    @OneToOne
+    @JoinColumn(name = "disponibilidad_id", referencedColumnName = "idDisponibilidad", unique = true)
+    private Disponibilidad disponibilidad;
+
     @ManyToOne
     @JoinColumn(name = "especialidad_id", referencedColumnName = "idEspecialidad")
     private Especialidad especialidad;
@@ -39,6 +43,9 @@ public class Medico {
 
     @ManyToMany(mappedBy = "medicos")
     private List<Paciente> pacientes;
+
+    @OneToMany(mappedBy = "medico")
+    private List<Consulta> consultas;
 
     public String fullName() {
         return getNombre() + " " + getApellido();

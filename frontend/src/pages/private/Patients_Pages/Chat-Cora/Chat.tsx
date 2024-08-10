@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { API_URL } from "../../../../api/api";
 import ChatHeader from "./components/ChatHeader";
 import ChatMessage from "./components/ChatMessage";
@@ -68,22 +68,33 @@ export default function Chat() {
     }
   };
 
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+
   return (
-    <main className="lg:min-h-screen  bg-gray-100 flex justify-center items-center">
-      <div className="w-full max-w-md h-screen  bg-white rounded-lg shadow-lg flex flex-col">
-        <ChatHeader />
-        <div className="flex-1 overflow-y-auto p-4 bg-gradient-to-t from-pink-300 to-indigo-500">
-          <ChatPresentation />
-          {messages.map((message, index) => (
-            <ChatMessage key={index} message={message} />
-          ))}
+    <main className="w-full h-screen bg-gradient-to-t from-pink-300 to-indigo-500">
+      <div className="container mx-auto max-w-screen-xl h-full">
+        <div className="flex flex-col h-full">
+          <ChatHeader />
+          <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-4 bg-gradient-to-t from-pink-300 to-indigo-500">
+            <ChatPresentation />
+            {messages.map((message, index) => (
+              <ChatMessage key={index} message={message} />
+            ))}
+          </div>
+          <ChatFooter
+            isTyping={isTyping}
+            newMessage={newMessage}
+            setNewMessage={setNewMessage}
+            submitMessageUser={submitMessageUser}
+          />
         </div>
-        <ChatFooter
-          isTyping={isTyping}
-          newMessage={newMessage}
-          setNewMessage={setNewMessage}
-          submitMessageUser={submitMessageUser}
-        />
       </div>
     </main>
   );

@@ -1,89 +1,107 @@
-import { FlechaIconTwo, RelojIcon } from "../../../../../public/icons/Icons";
-import { Link } from "react-router-dom";
-import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { PopoverMessage } from "../../../../components/PopoverMessage";
+import { Calendar } from "@nextui-org/react";
+import { today, getLocalTimeZone } from "@internationalized/date";
+import Shifts from "../Home/Shifts/Shifts";
+
+
+
 
 export function PatientAppointments() {
+  // const { medics } = useMedics();
+
+  // const handleSubmit = () => {
+  //   console.log("hola")
+  // }
+
+  // const getWorkDaysMedic = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   const id = (e.target.value)
+  //   const token = localStorage.getItem('TOKEN_KEY');
+
+  //   try {
+  //     const res = await fetch(`${API_URL}/medico/fecha-disponibilidad?idMedico=${id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //     const data = await res.json()
+  //     console.log(data)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
+  // let now = today(getLocalTimeZone());
+
+  // let disabledRanges = [
+  //   [now, now.add({days: 5})],
+  //   [now.add({days: 14}), now.add({days: 16})],
+  //   [now.add({days: 23}), now.add({days: 24})],
+  // ];
+
+  // let { locale } = useLocale();
+
+  // const isDateUnavailable = (date: DateValue) =>
+  //   isWeekend(date, locale) ||
+  //   disabledRanges.some(
+  //     (interval) => date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0,
+  //   );
+
   return (
-    <main className="flex flex-col">
-      <Link to={"/patient-home"}>
-        <section className="flex flex-row items-center mt-6 mb-5 ">
-          <FlechaIconTwo
-            width={30}
-            height={30}
-            stroke="#000000"
-            classname="ml-12"
-          />
-          <h3 className="ml-20 font-inter font-bold">Citas</h3>
+    <main className="w-full min-h-screen bg-gradient-to-t from-[#FFD460] to-[#5A67D9] py-8">
+      <div className="container mx-auto max-w-screen-xl">
+        <section className="px-32 max-lg:px-16 max-md:px-8 mt-8 ">
+          <h3 className="font-bold font-inter text-2xl mb-4 text-light-color">Agendar Cita</h3>
+          <div className="w-full m-auto flex items-center justify-center">
+            <Calendar
+              aria-label="Date (Min Date Value)"
+              defaultValue={today(getLocalTimeZone())}
+              minValue={today(getLocalTimeZone())}
+              color="warning"
+              visibleMonths={2}
+
+            />
+          </div>
         </section>
-      </Link>
-      <section>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateCalendar />
-        </LocalizationProvider>
-      </section>
-      <section className="flex justify-center font-inter px-2 ">
-        <PopoverMessage
-          locate={"top"}
-          title={"Funcionalidad en Desarrollo"}
-          content={
-            "Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!"
-          }
-          color={"primary"}
-        >
-          <div className="w-[100%]">
-            <div className="flex flex-col ml-2">
-              <h3 className="font-semibold text-lg text-gray-500 font-inter">
-                Próxima Cita
-              </h3>
-            </div>
-            <div className="flex flex-col mt-5 p-3 w-full border-1 border-solid border-gray-400 rounded-xl mb-10">
-              <div className="flex flex-row">
-                <div className="flex flex-col">
-                  <h3 className="text-2xl font-inter font-bold ">
-                    Dra. Peters
-                  </h3>
-                  <p className="font-inter text-gray-400 ">Nutriologa</p>
-                </div>
-                <img
-                  src="IMG_PATIENTS/IMG_PATIENS_MEDICO_1.webp"
-                  className="rounded-full ml-20 w-16 h-16"
-                  alt=""
+        <section className="px-32 max-lg:px-16 max-md:px-8 mt-8 ">
+          {/* <h1>CREAR TURNO</h1>
+          <Formik
+            initialValues={{ name: "" }}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting }) => (
+              <Form className="flex flex-col gap-2">
+                <label
+                  className="font-semibold flex items-center gap-2 "
+                  htmlFor="especialidad"
+                >
+                  Medicos
+                </label>
+                <Field
+                  as="select"
+                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  name="especialidad"
+                  onChange={getWorkDaysMedic}
+                >
+                  {medics && medics.content.map((medic) => (
+                    <option value={medic.idMedico}>{medic.apellido} {medic.nombre} | {medic.especialidad}</option>
+
+                  ))
+                  }
+                </Field>
+                <Calendar
+                  aria-label="Date (Unavailable)"
+                  color="warning"
+                  minValue={today(getLocalTimeZone())}
+                  // isDateUnavailable={isDateUnavailable}
                 />
-              </div>
-              <div className="flex flex-row items-center">
-                <RelojIcon width={16} height={16} stroke="" />
-                <div className="flex flex-col ml-4">
-                  <p className="font-inter font-semibold">01/08/2024</p>
-                  <p className="font-inter font-semibold">10:00 AM</p>
-                </div>
-              </div>
-              <div className="flex flex-row justify-center gap-x-5 mt-5 mb-5">
-                <button className="px-6 py-3  bg-[#8a8d9e] rounded-md">
-                  Reagendar
-                </button>
-                <button className="px-6 py-3 text-white bg-[#D98236] rounded-md">
-                  Confirmar
-                </button>
-              </div>
-            </div>
-          </div>
-        </PopoverMessage>
-      </section>
-      {/* <h4 className="font-inter text-xl ml-5 mb-4 text-gray-400">Anteriores</h4>
-      <section className="flex flex-col items-center mb-10">
-        <div className="flex items-center flex-col py-3 bg-gray-300 w-[90%] rounded-xl mb-10">
-          <h2 className="font-inter font-semibold text-md text-gray-600 mb-4">
-            Control de seguimiento
-          </h2>
-          <div className="flex flex-row justify-evenly w-[80%] items-center">
-            <CaledarIcon width={36} height={36} stroke="" />
-            <p>11/03/2024</p>
-            <p>Psicólogo</p>
-          </div>
-        </div>
-      </section> */}
+                <button className="border-2 border-black bg-white p-2" disabled={isSubmitting}>Crear Turno</button>
+              </Form>
+            )}
+          </Formik> */}
+        </section>
+        <Shifts />
+      </div>
     </main>
   );
 }

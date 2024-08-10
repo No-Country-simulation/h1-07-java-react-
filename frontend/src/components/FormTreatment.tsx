@@ -8,7 +8,7 @@ import {
   getTodayDate,
 } from "../utils/functions/functions";
 import { useAuthContext } from "../Context/AuthContext";
-import { Medicines, Treatment } from "../Interfaces/interfaces";
+import { Medicines, Pathologies, Treatment } from "../Interfaces/interfaces";
 import { initialValuesTreatment } from "../utils/data/data";
 import { validationSchemaTreatment } from "../utils/validation/validation";
 import { VoiceTranscript } from "./VoiceTranscript";
@@ -16,9 +16,11 @@ import { VoiceTranscript } from "./VoiceTranscript";
 export default function FormTreatment({
   id,
   medicines,
+  pathologies
 }: {
   id: string | undefined;
   medicines: Medicines[] | undefined;
+  pathologies: Pathologies[] | undefined;
 }) {
   const [dayInit, setDayInit] = useState(
     getTodayDate(today(getLocalTimeZone()))
@@ -57,7 +59,7 @@ export default function FormTreatment({
       onSubmit={handleSubmitTreatment}
     >
       {({ isSubmitting }) => (
-        <Form className="flex flex-col gap-y-6 px-4">
+        <Form className="flex flex-col gap-y-6 px-4 xl:max-w-2xl">
           <h2 className=" text-xl font-bold">Tratamientos</h2>
           <div className="">
             <label
@@ -74,10 +76,15 @@ export default function FormTreatment({
               <option value={0} key={0} selected disabled>
                 Busqueda...
               </option>
-              <option value={1}>Otra</option>
-              <option value={2}>Cancer</option>
-              <option value={3}>Epilepsia</option>
-              <option value={4}>Asma</option>
+              {pathologies &&
+                pathologies.map((pathology) => (
+                  <option
+                    value={pathology.idPatologia}
+                    key={pathology.idPatologia}
+                  >
+                    {pathology.nombre}
+                  </option>
+                ))}
             </Field>
           </div>
           {/* MEDICAMENTOS */}

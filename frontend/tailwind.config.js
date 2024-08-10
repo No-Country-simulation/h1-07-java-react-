@@ -29,6 +29,9 @@ export default {
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
       },
+      screens: {
+        'xl1': '1440px', 
+      },
     },
   },
   darkMode: "class",

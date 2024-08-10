@@ -69,7 +69,8 @@ public class BeansConfig {
                 "http://localhost:5173",
                 "https://localhost:5173",
                 "http://justina-io.netlify.app",
-                "https://justina-io.netlify.app"
+                "https://justina-io.netlify.app",
+                "https://justina-io-h107.netlify.app"
         ));
 
         config.setAllowedHeaders(Arrays.asList(

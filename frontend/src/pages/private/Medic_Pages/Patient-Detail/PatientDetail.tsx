@@ -36,7 +36,7 @@ export default function PatientDetail() {
         setLoading(true);
         try {
           setPatient(await fetchPatientSingle(id));
-          console.log(patient?.idPaciente);
+
         } catch (err) {
           console.log(err);
         } finally {
@@ -53,7 +53,7 @@ export default function PatientDetail() {
 
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md  min-h-screen bg-white rounded-lg shadow-lg  max-md:m-auto">
+      <div className="w-full max-w-md xl:max-w-full min-h-screen bg-white rounded-lg shadow-lg ">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -70,11 +70,10 @@ export default function PatientDetail() {
                 <button
                   key={tab.tabName}
                   onClick={() => setActiveTab(tab.tabName)}
-                  className={`px-3  cursor-pointer shadow-xl   p-1 rounded-lg border-2 ${
-                    activeTab === tab.tabName
-                      ? "bg-light-color border-violet-color shadow-xl text-violet-color "
-                      : "bg-violet-color  border-light-color shadow-xl text-light-color "
-                  }`}
+                  className={`px-3  cursor-pointer shadow-xl   p-1 rounded-lg border-2 ${activeTab === tab.tabName
+                    ? "bg-light-color border-violet-color shadow-xl text-violet-color "
+                    : "bg-violet-color  border-light-color shadow-xl text-light-color "
+                    }`}
                 >
                   {tab.tabName}
                 </button>

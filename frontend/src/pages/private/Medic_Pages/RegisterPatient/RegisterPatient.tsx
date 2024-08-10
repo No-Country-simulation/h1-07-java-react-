@@ -17,6 +17,7 @@ import {
   LoaderIcon,
   LockIcon,
   UserIcon,
+
 } from "../../../../../public/icons/Icons";
 import { initialValuesPatient } from "../../../../utils/data/data";
 
@@ -26,6 +27,7 @@ const dataRegisterPatient = [
     name: "nombre",
     type: "text",
     icon: UserIcon,
+
     placeholder: "Ej: Mario",
   },
   {
@@ -61,7 +63,7 @@ const dataRegisterPatient = [
     name: "fechaNacimiento",
     type: "date",
     icon: CalendarIcon,
-  }, //cambiar icono
+  },
 ];
 
 export const RegisterPatient: React.FC = () => {
@@ -70,6 +72,7 @@ export const RegisterPatient: React.FC = () => {
 
   const handleSubmit = (values: PatientRegister, { setSubmitting }: any) => {
     const patient: PatientRegister = values;
+    console.log(patient)
     try {
       setLoading(true);
       registerPatient(patient);
@@ -85,18 +88,18 @@ export const RegisterPatient: React.FC = () => {
   };
 
   return (
-    <section className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
+    <section className="flex min-h-screen bg-gray-100 md:flex xl:justify-center ">
       <Formik
         initialValues={initialValuesPatient}
         validationSchema={validationSchemaPatient}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg max-md:m-auto flex flex-col gap-y-4">
+          <Form className="w-full max-w-md xl:max-w-full p-8 bg-white rounded-lg shadow-lg max-md:m-auto flex flex-col gap-y-4">
             <div className="mb-6 text-center relative flex flex-col items-center justify-center">
               <Link
                 to="/dashboard"
-                className="absolute -left-0 hover:-translate-x-1 transition-all duration-300"
+                className="absolute -left-0 xl:left-64 hover:-translate-x-1 transition-all duration-300"
               >
                 <FlechaIconTwo
                   width={30}
@@ -110,110 +113,112 @@ export const RegisterPatient: React.FC = () => {
               </h3>
               <p className="text-sm">Introduzca la información necesaria</p>
             </div>
-            <div className="flex-wrap grid grid-rows-10 gap-6  max-md:gap-1 grid-flow-col max-md:gap-y-3">
-              {dataRegisterPatient.map(
-                ({ label, name, type, icon: Icon, placeholder }) => (
-                  <div key={name}>
-                    <label
-                      className="font-semibold flex items-center gap-2 pl-2"
-                      htmlFor={name}
-                    >
-                      <Icon width={15} height={15} stroke="" /> {label}
-                    </label>
-                    <Field
-                      type={type}
-                      id={name}
-                      name={name}
-                      placeholder={placeholder}
-                      className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
-                    <ErrorMessage
-                      name={name}
-                      component="div"
-                      className="flex-wrap text-red-500"
-                    />
-                  </div>
-                )
-              )}
-              <div>
-                <label
-                  className="font-semibold flex items-center gap-2 pl-2"
-                  htmlFor="genero"
-                >
-                  <GenderIcon width={15} height={15} stroke="" />
-                  Genero
-                </label>
-                <Field
-                  as="select"
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  name="genero"
-                >
-                  <option value={0}>Masculino</option>
-                  <option value={1}>Femenino</option>
-                  {/* <option value={2}>Otro</option> */}
-                </Field>
-              </div>
-              <div className="">
-                <label
-                  className="font-semibold flex items-center gap-2 pl-2"
-                  htmlFor="patologiaId"
-                >
-                  <HealthIcon width={15} height={15} stroke="" />
-                  Patología
-                </label>
-                <Field
-                  as="select"
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  name="patologiaId"
-                >
-                  <option value={1}>Cancer</option>
-                  <option value={2}>Epilepsia</option>
-                  <option value={3}>Asma</option>
-                </Field>
-              </div>
-              <div className="">
-                <label
-                  className="font-semibold flex items-center gap-2 pl-2"
-                  htmlFor="financiadorId"
-                >
-                  <CardIcon width={15} height={15} />
-                  Financiador
-                </label>
-                <Field
-                  as="select"
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  name="financiadorId"
-                >
-                  <option value={1}>OSDE</option>
-                  <option value={2}>Swiss Medical</option>
-                </Field>
-              </div>
-              <div>
-                <label
-                  className="font-semibold flex items-center gap-2 pl-2"
-                  htmlFor="factorSanguineo"
-                >
-                  <BloodIcon width={15} height={15} stroke="" />
-                  Factor Sanguineo
-                </label>
-                <Field
-                  as="select"
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  name="factorSanguineo"
-                >
-                  <option value={0}>Cero Positivo</option>
-                  <option value={1}>Cero Negativo</option>
-                  <option value={2}>A Positivo</option>
-                  <option value={3}>A Negativo</option>
-                  <option value={4}>B Positivo</option>
-                  <option value={5}>B Negativo</option>
-                </Field>
+            <div className="xl:flex xl:flex-col xl:w-full xl:items-center">
+              <div className="grid grid-cols-1 gap-6 xl:grid-cols-2 xl:gap-8 xl:w-[60%]">
+                {dataRegisterPatient.map(
+                  ({ label, name, type, icon: Icon, placeholder }) => (
+                    <div key={name} className="flex flex-col">
+                      <label
+                        className="font-semibold flex items-center gap-2 pl-2"
+                        htmlFor={name}
+                      >
+                        <Icon width={15} height={15} stroke="#948ABC" /> {label}
+                      </label>
+                      <Field
+                        type={type}
+                        id={name}
+                        name={name}
+                        placeholder={placeholder}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                      />
+                      <ErrorMessage
+                        name={name}
+                        component="div"
+                        className="text-red-500 mt-1"
+                      />
+                    </div>
+                  )
+                )}
+                <div className="flex flex-col">
+                  <label
+                    className="font-semibold flex items-center gap-2 pl-2"
+                    htmlFor="genero"
+                  >
+                    <GenderIcon width={15} height={15} stroke="" />
+                    Genero
+                  </label>
+                  <Field
+                    as="select"
+                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                    name="genero"
+                  >
+                    <option value={0}>Masculino</option>
+                    <option value={1}>Femenino</option>
+                  </Field>
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="font-semibold flex items-center gap-2 pl-2"
+                    htmlFor="patologiaId"
+                  >
+                    <HealthIcon width={15} height={15} stroke="" />
+                    Patología
+                  </label>
+                  <Field
+                    as="select"
+                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                    name="patologiaId"
+                  >
+                    <option value={1}>Cancer</option>
+                    <option value={2}>Epilepsia</option>
+                    <option value={3}>Asma</option>
+                  </Field>
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="font-semibold flex items-center gap-2 pl-2"
+                    htmlFor="financiadorId"
+                  >
+                    <CardIcon width={15} height={15} />
+                    Financiador
+                  </label>
+                  <Field
+                    as="select"
+                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                    name="financiadorId"
+                  >
+                    <option value={1}>OSDE</option>
+                    <option value={2}>Swiss Medical</option>
+                  </Field>
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="font-semibold flex items-center gap-2 pl-2"
+                    htmlFor="factorSanguineo"
+                  >
+                    <BloodIcon width={15} height={15} stroke="" />
+                    Factor Sanguineo
+                  </label>
+                  <Field
+                    as="select"
+                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                    name="factorSanguineo"
+                  >
+                    <option value={0}>Cero Positivo</option>
+                    <option value={1}>Cero Negativo</option>
+                    <option value={2}>A Positivo</option>
+                    <option value={3}>A Negativo</option>
+                    <option value={4}>B Positivo</option>
+                    <option value={5}>B Negativo</option>
+                  </Field>
+                </div>
               </div>
             </div>
-            <div>
+
+            <div className="xl:flex xl:flex-col xl:items-center xl:mt-20">
               <Button
                 type="submit"
-                className="h-10 w-full font-semibold bg-secondary-brand-dark text-white"
+                className="h-10 w-full font-semibold bg-secondary-brand-dark text-white xl:w-[30%]"
                 disabled={isSubmitting}
               >
                 {loading ? <LoaderIcon width={30} height={30} /> : "Registrar"}

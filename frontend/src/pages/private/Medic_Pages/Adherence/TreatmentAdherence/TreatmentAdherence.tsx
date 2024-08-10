@@ -8,7 +8,7 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Legend,
+  Cell,
   Pie,
   PieChart,
   ResponsiveContainer,
@@ -24,21 +24,34 @@ export interface Adherence {
   totalHorarios: number;
 }
 
+export interface GraficProp {
+  total: number
+  data: ValuesGraphic[]
+}
+
+interface ValuesGraphic {
+  name: string
+  value: number
+}
+
+const COLORS = ['#E08733', '#3563E9', '#3C8505'];
+
 export default function TreatmentAdherence() {
   const { id, idTratamiento } = useParams();
   const [patient, setPatient] = useState<Patient>();
   const [loading, setLoading] = useState(false);
   const [adherence, setAdherence] = useState<Adherence>();
-  const [info, setInfo] = useState([
-    { name: "Page A", datos: 2400, amt: 2400 },
-    { name: "Page B", uv: 3000, datos: 1398, amt: 2210 },
-    { name: "Page C", uv: 2000, datos: 9800, amt: 2290 },
-  ]);
-  const [data, setData] = useState([
-    { name: "Completado", value: 0 },
-    { name: "No Completado", value: 0 },
-    { name: "Retrasados", value: 0 },
-  ]);
+  const [info, setInfo] = useState<GraficProp>(
+    {
+      total: 10000,
+      data: [
+        { name: "Completado", value: 2400 },
+        { name: "Page B", value: 1398 },
+        { name: "Page C", value: 9800 },
+      ]
+    }
+
+  );
 
   const fetchTreatmentAdherence = async () => {
     const token = localStorage.getItem("TOKEN_KEY");
@@ -58,30 +71,17 @@ export default function TreatmentAdherence() {
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`);
       }
-      const data = await res.json();
-      setAdherence(data);
-      setData([
-        { name: "Completado", value: data.totalCompletado },
-        { name: "No Completado", value: data.totalNoCompletado },
-        { name: "Retrasados", value: data.totalRetrasados },
-      ]);
-      setInfo([
-        {
-          name: "Compleados",
-          datos: data.totalCompletado,
-          amt: data.totalCompletado,
-        },
-        {
-          name: "No compleados",
-          datos: data.totalNoCompletado,
-          amt: data.totalNoCompletado,
-        },
-        {
-          name: "Retrasados",
-          datos: data.totalRetrasados,
-          amt: data.totalRetrasados,
-        },
-      ]);
+      const data: Adherence = await res.json();
+      setAdherence(data)
+      setInfo({
+        total: data.totalHorarios,
+        data: [
+          { name: "Completado", value: data.totalCompletado },
+          { name: "No Completado", value: data.totalNoCompletado },
+          { name: "Retrasados", value: data.totalRetrasados },
+        ]
+      });
+
     } catch (error: any) {
       console.log(error);
     }
@@ -106,7 +106,7 @@ export default function TreatmentAdherence() {
   }, []);
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md  min-h-screen pb-4  bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
+      <div className="w-full max-w-md xl:max-w-full min-h-screen pb-4  bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -118,7 +118,7 @@ export default function TreatmentAdherence() {
           link={`/patient/${id}/adherence`}
         ></HeaderProfile>
         <section className="px-6 h-[120vh] ">
-          <h1 className=" mb-4 text-violet-color font-bold text-lg">
+          <h1 className=" mb-4 text-violet-color font-bold text-lg xl:text-center">
             Adherencia a la medicación
           </h1>
           <div className=" flex justify-centeri justify-around">
@@ -143,7 +143,7 @@ export default function TreatmentAdherence() {
               <BarChart
                 width={500}
                 height={300}
-                data={info}
+                data={info.data}
                 margin={{
                   top: 5,
                   right: 40,
@@ -157,15 +157,18 @@ export default function TreatmentAdherence() {
                   scale="point"
                   padding={{ left: 10, right: 10 }}
                 />
-                <YAxis />
+                <YAxis domain={[0, info.total]} />
                 <Tooltip />
-                <Legend />
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="4 4" />
                 <Bar
-                  dataKey="datos"
+                  dataKey="value"
                   fill="#8884d8"
                   background={{ fill: "#eee" }}
-                />
+                >
+                  {info.data.map((entry, index) => (
+                    <Cell cursor="pointer" fill={COLORS[index % COLORS.length]} key={`cell-${entry.name}`} />
+                  ))}
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
             <ResponsiveContainer width="100%" height="100%">
@@ -173,13 +176,17 @@ export default function TreatmentAdherence() {
                 <Pie
                   dataKey="value"
                   isAnimationActive={false}
-                  data={data}
-                  cx="50%"
+                  data={info.data}
+                  cx="50% "
                   cy="50%"
                   outerRadius={80}
                   fill="#8884d8"
                   label
-                />
+                >
+                  {info.data.map((entry, index) => (
+                    <Cell className=" text-black" key={`cell-${entry.name}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>

@@ -1,15 +1,14 @@
 package io.justina.justinaio.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.justina.justinaio.model.enums.EstadoTratamiento;
 import io.justina.justinaio.model.enums.TipoTratamiento;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -37,9 +36,10 @@ public class Tratamiento {
     private TipoTratamiento tipoTratamiento;
 
     private String descripcion;
-    private Integer dosisDiaria; // ver si queda en descripcion
+    private Integer dosisDiaria;
 
     @OneToMany(mappedBy = "tratamiento", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<HorarioToma> horarios = new ArrayList<>();
 
     private LocalDate fechaInicio;
