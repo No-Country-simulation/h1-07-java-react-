@@ -1129,7 +1129,7 @@ export function UserIconTwo({ width, height }: IconProps) {
   );
 }
 
-export function CampanaIcon({ width, height, stroke="#ffffff" }: IconProps) {
+export function CampanaIcon({ width, height, stroke = "#ffffff" }: IconProps) {
   return (
     <svg
       width={width}
@@ -1148,6 +1148,11 @@ export function CampanaIcon({ width, height, stroke="#ffffff" }: IconProps) {
     </svg>
   );
 }
+
+
+
+
+
 
 export function MenuHambuerguesa({ width, height }: IconProps) {
   return (
@@ -2339,7 +2344,7 @@ export function AdressIcon({ width, height }: IconProps) {
   );
 }
 
-export function SilderIcon({ width, height }: IconProps) {
+export function SilderIcon({ width, height, stroke, classname }: IconProps) {
   return (
     <svg
       width={width}
@@ -2347,67 +2352,68 @@ export function SilderIcon({ width, height }: IconProps) {
       viewBox="0 0 10 10"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={classname}
     >
       <g clipPath="url(#clip0_736_3842)">
         <path
           d="M8.75001 1.66699H5.83334"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M4.16667 1.66699H1.25"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M8.75 5H5"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M3.33333 5H1.25"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M8.74999 8.33301H6.66666"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M5 8.33301H1.25"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M5.83334 0.833008V2.49967"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M3.33334 4.16699V5.83366"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M6.66666 7.5V9.16667"
-          stroke="#112"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -2557,7 +2563,7 @@ export function TurneraIcon({ width, height, stroke = "#FDEEA3" }: IconProps) {
           <path d="M389.712 375.266H122.288C112.216 375.266 104.051 367.101 104.051 357.029V180.58C104.051 170.508 112.216 162.343 122.288 162.343H389.712C399.784 162.343 407.949 170.508 407.949 180.58V357.029C407.949 367.101 399.784 375.266 389.712 375.266Z" fill="white" />
           <path d="M389.712 162.343H374.986V375.265H389.712C399.784 375.265 407.949 367.1 407.949 357.029V180.58C407.949 170.508 399.784 162.343 389.712 162.343Z" fill="#D3E6F8" />
           <path d="M389.713 381.266H122.289C108.925 381.266 98.0527 370.393 98.0527 357.029V180.58C98.0527 167.216 108.925 156.343 122.289 156.343H389.713C403.077 156.343 413.949 167.216 413.949 180.58V357.028C413.949 370.393 403.077 381.266 389.713 381.266ZM122.289 168.343C115.542 168.343 110.053 173.832 110.053 180.58V357.028C110.053 363.776 115.542 369.265 122.289 369.265H389.713C396.46 369.265 401.949 363.776 401.949 357.028V180.58C401.949 173.832 396.46 168.343 389.713 168.343H122.289Z" fill="#100056" />
-          <path d="M246.991 199.009H137.016V338.6H246.991V199.009Z" fill={stroke}  />
+          <path d="M246.991 199.009H137.016V338.6H246.991V199.009Z" fill={stroke} />
           <path d="M246.991 338.6H137.016V308.741C137.016 298.447 145.361 290.103 155.654 290.103H228.352C238.646 290.103 246.99 298.448 246.99 308.741L246.991 338.6Z" fill="white" />
           <path d="M246.991 344.6H137.016C133.703 344.6 131.016 341.913 131.016 338.6V308.74C131.016 295.155 142.069 284.102 155.655 284.102H228.353C241.939 284.102 252.992 295.155 252.992 308.74V338.6C252.991 341.913 250.305 344.6 246.991 344.6ZM143.016 332.6H240.992V308.74C240.992 301.771 235.322 296.102 228.353 296.102H155.655C148.686 296.102 143.016 301.771 143.016 308.74V332.6Z" fill="#100056" />
           <path d="M191.991 311.491C183.933 311.491 177.4 304.958 177.4 296.9V270.898H206.582V296.9C206.583 304.958 200.05 311.491 191.991 311.491Z" fill="#D3E6F8" />
@@ -2724,6 +2730,100 @@ export function MentalIcon({ width, height }: IconProps) {
       <path d="M271.828 266.258C268.515 266.258 265.828 263.571 265.828 260.258C265.828 245.684 253.971 233.826 239.396 233.826C236.083 233.826 233.396 231.139 233.396 227.826C233.396 224.513 236.083 221.826 239.396 221.826C260.587 221.826 277.828 239.066 277.828 260.258C277.828 263.571 275.142 266.258 271.828 266.258Z" fill="#0F004F" />
       <path d="M311.571 240.32C310.036 240.32 308.5 239.734 307.329 238.562C297.023 228.258 280.257 228.256 269.949 238.562C267.607 240.906 263.806 240.906 261.465 238.562C259.121 236.219 259.121 232.42 261.465 230.078C276.447 215.095 300.831 215.093 315.814 230.078C318.158 232.421 318.158 236.22 315.814 238.562C314.643 239.734 313.106 240.32 311.571 240.32Z" fill="#0F004F" />
       <path d="M220.569 195.255C219.034 195.255 217.498 194.669 216.327 193.497C206.02 183.192 189.254 183.194 178.947 193.497C176.605 195.841 172.804 195.841 170.463 193.497C168.119 191.154 168.119 187.355 170.463 185.013C185.446 170.029 209.83 170.03 224.812 185.013C227.156 187.356 227.156 191.155 224.812 193.497C223.641 194.669 222.104 195.255 220.569 195.255Z" fill="#0F004F" />
+    </svg>
+
+  )
+}
+
+// Iconos para el administrador 
+
+interface IconPropsAdmin {
+  width: number;
+  height: number;
+  stroke: string;
+  classname: string;
+}
+
+export function MenuHambuerguesaAdmin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={classname}
+    >
+      <path
+        d="M3 12H21M3 6H21M3 18H21"
+        stroke={stroke}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+
+export function UserIconTwoAdmin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 44 44"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={classname}
+    >
+      <g clipPath="url(#clip0_259_774)">
+        <circle
+          cx="22"
+          cy="22"
+          r="20"
+          fill="white"
+          stroke="#fff"
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+        <path
+          d="M31.625 33.6875V33.6875C31.625 30.6499 29.1626 28.1875 26.125 28.1875H17.875C14.8374 28.1875 12.375 30.6499 12.375 33.6875V33.6875"
+          stroke={stroke}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M22 24.0625C25.797 24.0625 28.875 20.9845 28.875 17.1875C28.875 13.3905 25.797 10.3125 22 10.3125C18.203 10.3125 15.125 13.3905 15.125 17.1875C15.125 20.9845 18.203 24.0625 22 24.0625Z"
+          stroke={stroke}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_259_774">
+          <rect width="44" height="44" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
+export function InstitucionIcon({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 40 40" className={classname} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_1543_10076)">
+        <path d="M35.7144 1.42871H4.28585C2.7079 1.42871 1.42871 2.7079 1.42871 4.28585V35.7144C1.42871 37.2924 2.7079 38.5716 4.28585 38.5716H35.7144C37.2924 38.5716 38.5716 37.2924 38.5716 35.7144V4.28585C38.5716 2.7079 37.2924 1.42871 35.7144 1.42871Z" stroke="#F9F9F9" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M14.2856 12.8574V27.1431" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M25.7144 12.8574V27.1431" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M14.2856 20H25.7142" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_1543_10076">
+          <rect width="40" height="40" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
 
   )
