@@ -18,10 +18,12 @@ export function Search_Admin() {
                     <Institucion_Admin />
                 </Tab>
                 <Tab key="" title="" className="m-0 w-0 p-0"></Tab>
-                <Tab key="Nutrición" title="Patologias" className="">
-                    
+                <Tab key="Nutrición" title="Medicamentos" className="w-[100%]">
+
                 </Tab>
-                <Tab key="Psicológico" title="Psicológico" className="">
+                <Tab className="w-0 p-0 m-0"></Tab>
+                <Tab key="Patalogia" title="Medicamentos" className="w-[100%]">
+
                 </Tab>
             </Tabs>
         </>

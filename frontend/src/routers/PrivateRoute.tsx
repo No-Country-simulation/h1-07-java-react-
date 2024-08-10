@@ -15,14 +15,15 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ allowedRoles }) => {
     return <Navigate to="/login" />;
   }
 
-
+  console.log(allowedRoles)
+  console.log(roles)
 
   const hasAccess = roles.some((role) => allowedRoles.includes(role));
 
-  if (!hasAccess) {
-    return hasAccess ? <Outlet /> : <Navigate to="/admin_page" />;
+  if(roles.includes("ROLE_ADMIN") && !hasAccess) {
+    return <Navigate to="/admin_page" />
   }
-
+  
   return hasAccess ? <Outlet /> : <Navigate to="/patient-home" />;
 };
 

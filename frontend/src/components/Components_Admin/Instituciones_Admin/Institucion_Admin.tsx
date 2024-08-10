@@ -67,8 +67,8 @@ export function Institucion_Admin() {
                 </div>
             
             </section>
-            <div className="mt-2 mb-5 flex justify-end w-full">
-                    <button className="bg-orange-600 px-7 py-1 rounded-lg text-white font-inter">
+            <div className="mt-3 mb-5 flex justify-end w-full">
+                    <button className="bg-orange-600 px-7 py-2 rounded-lg text-white font-inter">
                         Ver más
                     </button>
                 </div>
