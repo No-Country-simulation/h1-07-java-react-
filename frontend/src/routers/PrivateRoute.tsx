@@ -10,10 +10,12 @@ interface PrivateRouteProps {
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ allowedRoles }) => {
   const { isLoggedIn, roles } = useAuthContext();
 
-  
+
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }
+
+
 
   const hasAccess = roles.some((role) => allowedRoles.includes(role));
 

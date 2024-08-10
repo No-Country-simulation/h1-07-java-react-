@@ -1149,6 +1149,11 @@ export function CampanaIcon({ width, height, stroke="#ffffff" }: IconProps) {
   );
 }
 
+
+
+
+
+
 export function MenuHambuerguesa({ width, height }: IconProps) {
   return (
     <svg
@@ -2727,4 +2732,79 @@ export function MentalIcon({ width, height }: IconProps) {
     </svg>
 
   )
+}
+
+// Iconos para el administrador 
+
+interface IconPropsAdmin {
+  width: number;
+  height: number;
+  stroke: string;
+  classname: string;
+}
+
+export function MenuHambuerguesaAdmin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={classname}
+    >
+      <path
+        d="M3 12H21M3 6H21M3 18H21"
+        stroke={stroke}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+
+export function UserIconTwoAdmin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 44 44"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={classname}
+    >
+      <g clipPath="url(#clip0_259_774)">
+        <circle
+          cx="22"
+          cy="22"
+          r="20"
+          fill="white"
+          stroke="#fff"
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+        <path
+          d="M31.625 33.6875V33.6875C31.625 30.6499 29.1626 28.1875 26.125 28.1875H17.875C14.8374 28.1875 12.375 30.6499 12.375 33.6875V33.6875"
+          stroke={stroke}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M22 24.0625C25.797 24.0625 28.875 20.9845 28.875 17.1875C28.875 13.3905 25.797 10.3125 22 10.3125C18.203 10.3125 15.125 13.3905 15.125 17.1875C15.125 20.9845 18.203 24.0625 22 24.0625Z"
+          stroke={stroke}
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_259_774">
+          <rect width="44" height="44" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
 }
