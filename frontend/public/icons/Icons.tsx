@@ -1129,7 +1129,7 @@ export function UserIconTwo({ width, height }: IconProps) {
   );
 }
 
-export function CampanaIcon({ width, height, stroke="#ffffff" }: IconProps) {
+export function CampanaIcon({ width, height, stroke = "#ffffff" }: IconProps) {
   return (
     <svg
       width={width}
@@ -2563,7 +2563,7 @@ export function TurneraIcon({ width, height, stroke = "#FDEEA3" }: IconProps) {
           <path d="M389.712 375.266H122.288C112.216 375.266 104.051 367.101 104.051 357.029V180.58C104.051 170.508 112.216 162.343 122.288 162.343H389.712C399.784 162.343 407.949 170.508 407.949 180.58V357.029C407.949 367.101 399.784 375.266 389.712 375.266Z" fill="white" />
           <path d="M389.712 162.343H374.986V375.265H389.712C399.784 375.265 407.949 367.1 407.949 357.029V180.58C407.949 170.508 399.784 162.343 389.712 162.343Z" fill="#D3E6F8" />
           <path d="M389.713 381.266H122.289C108.925 381.266 98.0527 370.393 98.0527 357.029V180.58C98.0527 167.216 108.925 156.343 122.289 156.343H389.713C403.077 156.343 413.949 167.216 413.949 180.58V357.028C413.949 370.393 403.077 381.266 389.713 381.266ZM122.289 168.343C115.542 168.343 110.053 173.832 110.053 180.58V357.028C110.053 363.776 115.542 369.265 122.289 369.265H389.713C396.46 369.265 401.949 363.776 401.949 357.028V180.58C401.949 173.832 396.46 168.343 389.713 168.343H122.289Z" fill="#100056" />
-          <path d="M246.991 199.009H137.016V338.6H246.991V199.009Z" fill={stroke}  />
+          <path d="M246.991 199.009H137.016V338.6H246.991V199.009Z" fill={stroke} />
           <path d="M246.991 338.6H137.016V308.741C137.016 298.447 145.361 290.103 155.654 290.103H228.352C238.646 290.103 246.99 298.448 246.99 308.741L246.991 338.6Z" fill="white" />
           <path d="M246.991 344.6H137.016C133.703 344.6 131.016 341.913 131.016 338.6V308.74C131.016 295.155 142.069 284.102 155.655 284.102H228.353C241.939 284.102 252.992 295.155 252.992 308.74V338.6C252.991 341.913 250.305 344.6 246.991 344.6ZM143.016 332.6H240.992V308.74C240.992 301.771 235.322 296.102 228.353 296.102H155.655C148.686 296.102 143.016 301.771 143.016 308.74V332.6Z" fill="#100056" />
           <path d="M191.991 311.491C183.933 311.491 177.4 304.958 177.4 296.9V270.898H206.582V296.9C206.583 304.958 200.05 311.491 191.991 311.491Z" fill="#D3E6F8" />
@@ -2808,4 +2808,23 @@ export function UserIconTwoAdmin({ width, height, stroke, classname }: IconProps
       </defs>
     </svg>
   );
+}
+
+export function InstitucionIcon({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 40 40" className={classname} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_1543_10076)">
+        <path d="M35.7144 1.42871H4.28585C2.7079 1.42871 1.42871 2.7079 1.42871 4.28585V35.7144C1.42871 37.2924 2.7079 38.5716 4.28585 38.5716H35.7144C37.2924 38.5716 38.5716 37.2924 38.5716 35.7144V4.28585C38.5716 2.7079 37.2924 1.42871 35.7144 1.42871Z" stroke="#F9F9F9" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M14.2856 12.8574V27.1431" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M25.7144 12.8574V27.1431" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M14.2856 20H25.7142" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_1543_10076">
+          <rect width="40" height="40" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+
+  )
 }

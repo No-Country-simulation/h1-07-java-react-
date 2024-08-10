@@ -12,15 +12,15 @@ export function Header_Admin() {
                 <div className="flex flex-row justify-around mt-3 w-full || xl:w-[90%] xl:bg-green-500 xl:h-0">
                     <Link to={"/userInfo"}>
                         <div className="">
-                            <UserIconTwoAdmin width={50} height={40} stroke="#FF6600" classname="" />
+                            <UserIconTwoAdmin width={50} height={50} stroke="#FF6600" classname="" />
                         </div>
                     </Link>
-                    <h3 className="xl:hidden || text-center text-2xl font-inter font-bold text-black w-[30%] py-1 ">
+                    <h3 className="xl:hidden || text-center text-3xl font-inter font-bold text-black w-[30%] py-1 ">
                         Buenos días
                     </h3>
                     <div className="">
                         <button >
-                            <MenuHambuerguesaAdmin width={30} height={30} stroke="#000" classname="" />
+                            <MenuHambuerguesaAdmin width={40} height={40} stroke="#000" classname="" />
                         </button>
                     </div>
                 </div>
