@@ -32,6 +32,8 @@ import HeaderLayout from "../components/HeaderLayout";
 import Exercises from "../pages/private/Patients_Pages/Exercises/Exercises";
 import Mental from "../pages/private/Patients_Pages/Mental/Mental";
 import Nutrition from "../pages/private/Patients_Pages/Nutrition/Nutrition";
+import { Home_Admin } from "../pages/private/Admin/Home/Home_Admin";
+import { Hospitals_Registre } from "../pages/private/Admin/Hospital_Registro/Hospital_Registre";
 
 function AppRouter() {
   return (
@@ -77,6 +79,10 @@ function AppRouter() {
                 <Route path="/nutrition" element={<Nutrition />} />
                 <Route path="/mental" element={<Mental />} />
               </Route>
+            </Route>
+            <Route element={<PrivateRoute allowedRoles={['ROLE_ADMIN']} />}>
+              <Route path="/admin_page" element={<Home_Admin />} />
+              <Route path="/hospitals_registre" element={<Hospitals_Registre />} />
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>

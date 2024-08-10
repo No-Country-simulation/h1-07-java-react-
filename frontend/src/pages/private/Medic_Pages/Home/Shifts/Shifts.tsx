@@ -28,19 +28,19 @@ export default function Shifts() {
             Siguiente cita programada
           </h2>
           <span className=" cursor-pointer">
-            <ArrowBlackIcon width={16} height={16} stroke="#111" />
+            <ArrowBlackIcon width={16} height={16} stroke="#111" classname=""/>
           </span>
         </div>
         <div className="flex mb-2  items-center justify-between">
           <div className="flex flex-col">
             <div className="flex flex-row items-center mt-1 ">
-              <CalendarIcon width={15} height={15} stroke="" />
+              <CalendarIcon width={15} height={15} stroke="" classname=""/>
               <p className="font-inter text-black font-[500] ml-4 text-sm">
                 20 Julio 2024
               </p>
             </div>
             <div className="flex flex-row items-center mt-[15px]">
-              <RelojIcon width={15} height={15} stroke="" />
+              <RelojIcon width={15} height={15} stroke="" classname=""/>
               <p className=" font-inter font-[500] text-black ml-4 text-sm ">
                 10:00-11:00 AM
               </p>

@@ -87,11 +87,11 @@ export const NotificationItem: React.FC<NotificationProp> = ({ hora, mensaje, le
         <div className="flex justify-end">
           {leido ?
             <span className=" w-9 cursor-not-allowed bg-gray-200 c h-9 flex justify-center items-center rounded-full ">
-              <CommentIcon width={20} height={20} />
+              <CommentIcon width={20} height={20} classname=""/>
             </span>
             :
             <span onClick={onOpen} className=" w-9 bursor-pointer bg-gray-200 transition-all duration-300  hover:bg-gray-300 h-9 flex justify-center items-center rounded-full ">
-              <CommentIcon width={20} height={20} />
+              <CommentIcon width={20} height={20} classname=""/>
             </span>
           }
         </div>

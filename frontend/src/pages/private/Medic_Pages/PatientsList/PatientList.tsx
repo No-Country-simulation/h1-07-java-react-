@@ -59,10 +59,9 @@ export default function PatientList() {
 
 
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-
-      <div className={`flex-1 transition-margin duration-300 ease-in-out`}>
-        <div className=" xl:flex xl:flex-col xl:max-w-full xl:items-center xl:-mt-5 xl:ml-0 w-full max-w-md p-6  bg-white rounded-lg shadow-lg ">
+    <main className="flex min-h-screen ">
+      <div className={`flex-1 transition-margin duration-300 ease-in-out `}>
+        <div className=" xl:flex xl:flex-col xl:max-w-full xl:items-center xl:p-0 xl:m-0 w-full max-w-md p-6  bg-white rounded-lg shadow-lg ">
           <div>
             <AsideMenu
               src="public/JustinaLogo_2.png"
@@ -94,7 +93,7 @@ export default function PatientList() {
               className="w-full h-full  border-violet-color rounded-md border-1 px-4 xl:w-[80%]"
             />
             <span className="right-5 absolute xl:right-36">
-              <SearchIcon width={20} height={20} stroke="" />
+              <SearchIcon width={20} height={20} stroke="" classname=""/>
             </span>
           </section>
 

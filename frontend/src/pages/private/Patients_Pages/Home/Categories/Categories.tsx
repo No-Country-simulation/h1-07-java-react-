@@ -12,47 +12,47 @@ import {
 const patientOptions = [
   {
     to: "/treatement",
-    icon: <TratamientoIcon width={60} height={60} />,
+    icon: <TratamientoIcon width={60} height={60} classname=''/>,
     label: "Tratamientos",
     bgColor: "bg-[#0BF1FC]",
   },
   {
     to: "/history",
-    icon: <HistorialIcon width={60} height={60} />,
+    icon: <HistorialIcon width={60} height={60} classname=''/>,
     label: "Historia Clínica",
     bgColor: "bg-[#398894]",
   },
   {
     to: "/chat-cora",
-    icon: <CoraIcon width={60} height={60} />,
+    icon: <CoraIcon width={60} height={60} classname=''/>,
     label: "Chat Cora",
     bgColor: "bg-[#C769B4]",
 
   },
   {
     to: "/shift",
-    icon: <TurneraIcon width={60} height={60} />,
+    icon: <TurneraIcon width={60} height={60} classname='' />,
     label: "Citas",
     bgColor: "bg-[#FDEEA3]",
 
   },
   {
     to: "/exercises",
-    icon: <EjericioIcon width={60} height={60} />,
+    icon: <EjericioIcon width={60} height={60} classname='' />,
     label: "Ejercicio",
     bgColor: "bg-[#C7FBA4]",
 
   },
   {
     to: "/mental",
-    icon: <MentalIcon width={60} height={60} />,
+    icon: <MentalIcon width={60} height={60} classname='' />,
     label: "Salud Mental",
     bgColor: "bg-[#FFD0D0]",
 
   },
   {
     to: "/nutrition",
-    icon: <NutricionIcon width={60} height={60} />,
+    icon: <NutricionIcon width={60} height={60} classname='' />,
     label: "Nutrición",
     bgColor: "bg-[#CB7A4B]",
   },

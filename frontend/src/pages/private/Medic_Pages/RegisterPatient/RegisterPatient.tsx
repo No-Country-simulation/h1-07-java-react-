@@ -122,7 +122,7 @@ export const RegisterPatient: React.FC = () => {
                         className="font-semibold flex items-center gap-2 pl-2"
                         htmlFor={name}
                       >
-                        <Icon width={15} height={15} stroke="#948ABC" /> {label}
+                        <Icon width={15} height={15} stroke="#948ABC" classname=""/> {label}
                       </label>
                       <Field
                         type={type}
@@ -144,7 +144,7 @@ export const RegisterPatient: React.FC = () => {
                     className="font-semibold flex items-center gap-2 pl-2"
                     htmlFor="genero"
                   >
-                    <GenderIcon width={15} height={15} stroke="" />
+                    <GenderIcon width={15} height={15} stroke="" classname=""/>
                     Genero
                   </label>
                   <Field
@@ -161,7 +161,7 @@ export const RegisterPatient: React.FC = () => {
                     className="font-semibold flex items-center gap-2 pl-2"
                     htmlFor="patologiaId"
                   >
-                    <HealthIcon width={15} height={15} stroke="" />
+                    <HealthIcon width={15} height={15} stroke="" classname=""/>
                     Patología
                   </label>
                   <Field
@@ -196,7 +196,7 @@ export const RegisterPatient: React.FC = () => {
                     className="font-semibold flex items-center gap-2 pl-2"
                     htmlFor="factorSanguineo"
                   >
-                    <BloodIcon width={15} height={15} stroke="" />
+                    <BloodIcon width={15} height={15} stroke="" classname=""/>
                     Factor Sanguineo
                   </label>
                   <Field

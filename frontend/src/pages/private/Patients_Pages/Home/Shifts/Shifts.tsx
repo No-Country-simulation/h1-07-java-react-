@@ -43,7 +43,7 @@ export default function Shifts() {
               </div>
               {/* </Link> */}
               <div className="flex flex-row items-center">
-                <RelojIcon width={16} height={16} stroke="" />
+                <RelojIcon width={16} height={16} stroke="" classname=''/>
                 <div className="flex flex-col ml-4">
                   <p className="font-inter font-semibold">{datas.date}</p>
                   <p className="font-inter font-semibold">{datas.time}</p>

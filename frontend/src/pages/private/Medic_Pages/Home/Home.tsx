@@ -41,11 +41,11 @@ export function Home(): JSX.Element {
 
   return (
     <main className="min-h-screen w-full font-inter flex xl:flex-row flex-col  ">
-      <div className={`flex-1 transition-margin duration-300 ease-in-out `}>
-        <div className="xl:grid xl:grid-cols-1 xl:justify-center w-full  xl:max-w-full max-w-md bg-white rounded-lg shadow-lg m-auto ">
+      <div className={`flex-1 transition-margin duration-300 ease-in-out xl:max-w-full `}>
+        <div className=" w-full  xl:max-w-full max-w-md bg-white rounded-lg shadow-lg m-auto | xl:grid xl:grid-cols-1 xl:justify-center">
           <div className="">
             <AsideMenu
-            src="JustinaLogo_2.png"
+              src="./public/JustinaLogo_2.png"
               isSidebarOpen={isSidebarOpen}
               toggleSidebar={toggleSidebar}
             />

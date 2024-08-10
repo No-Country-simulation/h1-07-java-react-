@@ -11,7 +11,8 @@ import {
 import { Medic } from "../../../../Interfaces/interfaces";
 import { AsideMenu } from "../../../../components/AsideMenu";
 import { Logout } from "../../../../components/Logout";
-import { Header_UserInfo } from "../../../../components/Header_UserIfon/Header_UserInfo";
+// import { Header_UserInfo } from "../../../../components/Header_UserIfon/Header_UserInfo";
+import { Header_Home } from "../Home/Header.tsx/Header";
 
 export function UserInfo(): JSX.Element {
   const [medicInfo, setMedicInfo] = useState<Medic>();
@@ -31,34 +32,35 @@ export function UserInfo(): JSX.Element {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  
+
 
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center">
+    <main className="min-h-screen">
 
-      <div className={`flex-1  transition-margin duration-300 ease-in-out`}>
-        <div className="w-full xl:max-w-full max-w-md bg-white rounded-lg shadow-lg xl:shadow-none  max-md:m-auto">
+      <div className={`flex-1 transition-margin duration-300 ease-in-out`}>
+        <div className="w-full xl:max-w-full max-w-md  shadow-lg xl:shadow-none ">
           <AsideMenu
             src="public/JustinaLogo_2.png"
             isSidebarOpen={isSidebarOpen}
             toggleSidebar={toggleSidebar}
           />
 
-          <Header_UserInfo
+
+          <Header_Home
             toggleSidebar={toggleSidebar}
             nombre={medicInfo?.nombre}
             apellido={medicInfo?.apellido}
             especialidad={medicInfo?.especialidad}
           />
 
-          <section className="xl1:mt-32 xl:flex xl:flex-col xl:justify-center xl:w-full xl:items-center ml-4 my-8 xl:mb-20">
+          <section className="ml-4 my-8 ||  xl:flex xl:flex-col xl:justify-center xl:w-full xl:items-center">
             <div>
-              <h2 className="font-bold text-[24px] font-inter">
+              <h2 className="font-bold text-[24px] font-inter || ">
                 Datos Personales
               </h2>
             </div>
-            <div className="xl:w-[70%] xl:grid xl:grid-cols-2 xl:grid-rows-1 xl:gap-y-10">
 
+            <div className="xl:w-[50%] xl:grid xl:grid-cols-2 xl:grid-rows-1 xl:gap-y-10">
               <div>
                 <div className="flex flex-row mt-4 items-center">
                   <CardIcon width={16} height={16} />
@@ -120,8 +122,10 @@ export function UserInfo(): JSX.Element {
             </div>
           </section>
 
-          <div className="flex flex-row justify-center xl:hidden">
-            <Logout />
+          <div className="flex flex-col justify-center items-center">
+            <div>
+              <Logout />
+            </div>
           </div>
         </div>
       </div>

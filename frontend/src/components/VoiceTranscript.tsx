@@ -96,7 +96,7 @@ export const VoiceTranscript: React.FC<VoiceTranscriptProps> = ({
             className="w-10 border-black bg-black h-10 p-2 m-auto flex justify-center items-center border-2 rounded-full"
             onClick={handleStop}
           >
-            <MicrophoneOpen width={30} height={30} stroke="" />
+            <MicrophoneOpen width={30} height={30} stroke="" classname=""/>
           </button>
         ) : (
           <button
@@ -104,7 +104,7 @@ export const VoiceTranscript: React.FC<VoiceTranscriptProps> = ({
             className="w-10 border-black bg-black h-10 p-2 m-auto flex justify-center items-center border-2 rounded-full"
             onClick={handleStart}
           >
-            <MicrophoneClose width={30} height={30} stroke="" />
+            <MicrophoneClose width={30} height={30} stroke="" classname=""/>
           </button>
         )}
       </div>
