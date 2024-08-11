@@ -2735,7 +2735,7 @@ export function MentalIcon({ width, height }: IconProps) {
   )
 }
 
-// Iconos para el administrador 
+//! Iconos para el administrador 
 
 interface IconPropsAdmin {
   width: number;
@@ -2826,5 +2826,55 @@ export function InstitucionIcon({ width, height, stroke, classname }: IconPropsA
       </defs>
     </svg>
 
+  )
+}
+
+
+export function Medicament_admin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg width={width} height={height} className={classname} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_1543_10071)">
+        <path d="M8.94287 22.4857L22.4857 8.94287" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M17.5144 31.0571L31.0573 17.5142" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M22.2572 35.7719C24.0493 37.5639 26.4799 38.5708 29.0144 38.5708C31.5486 38.5708 33.9792 37.5639 35.7715 35.7719C37.5635 33.9799 38.5704 31.5491 38.5704 29.0148C38.5704 26.4804 37.5635 24.0498 35.7715 22.2576L17.7429 4.22907C15.9508 2.43697 13.5202 1.43018 10.9857 1.43018C8.4513 1.43018 6.0207 2.43697 4.22858 4.22907C2.43648 6.02118 1.42969 8.45181 1.42969 10.9862C1.42969 13.5206 2.43648 15.9513 4.22858 17.7434L22.2572 35.7719Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_1543_10071">
+          <rect width="40" height="40" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+
+  )
+}
+
+export function IconPatalogia_Admin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg width={width} height={height} className={classname} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.28564 1.42871V35.7144" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M4.28564 1.42871H20.7142C25.0536 1.42871 28.5714 4.94648 28.5714 9.28585C28.5714 13.6252 25.0536 17.143 20.7142 17.143H4.28564" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M12.8572 17.1426L35.7143 38.5712" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M17.1428 38.5714L35.7143 20" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+export function IconFarmaceutica_Admin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 40 40" className={classname} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.37822 23.9555L3.74482 18.326C3.55425 16.6322 4.87959 15.1494 6.58405 15.1494H33.4159C35.1202 15.1494 36.4457 16.6322 36.2551 18.326L35.6217 23.9555C35.2042 27.6654 33.0411 30.7941 30.0071 32.5598C30.4917 33.4327 30.8294 34.403 30.9848 35.4401C31.1782 36.7316 30.1779 37.8927 28.8722 37.8927H11.1277C9.82191 37.8927 8.82165 36.7316 9.01508 35.4401C9.17042 34.403 9.50811 33.4327 9.99262 32.5598C6.9588 30.7941 4.79565 27.6654 4.37822 23.9555Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M21.3394 15.0891L28.1202 4.46102C29.1293 2.87931 31.2236 2.40492 32.8159 3.39742C34.4416 4.41079 34.919 6.56108 33.875 8.16722L29.3753 15.0891" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M15.0034 26.5215H24.9964" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M20 21.5244V31.5173" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+
+export function IconFinaciadores_Admin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg width={width} height={height} className={classname} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 1.66699V38.3337M28.3333 8.33366H15.8333C14.2862 8.33366 12.8025 8.94824 11.7085 10.0422C10.6146 11.1362 10 12.6199 10 14.167C10 15.7141 10.6146 17.1978 11.7085 18.2918C12.8025 19.3857 14.2862 20.0003 15.8333 20.0003H24.1667C25.7138 20.0003 27.1975 20.6149 28.2915 21.7089C29.3854 22.8028 30 24.2866 30 25.8337C30 27.3808 29.3854 28.8645 28.2915 29.9584C27.1975 31.0524 25.7138 31.667 24.1667 31.667H10" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
   )
 }

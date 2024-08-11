@@ -13,7 +13,7 @@ export function Header_Admin({toggleSidebar} : Type) {
         <header className="flex shadow-2xl flex-col justify-between h-[11.9rem] mb-4 relative rounded-ee-[3rem] bg-gradient-to-r from-[#FFB278] to-[#FBEB5C] || xl:rounded-es-[3rem] xl:w-full xl:max-w-full  ">
             <div className="flex flex-col justify-between h-full || xl:items-center xl:justify-center xl:max-h-dvh">
                 <div className="flex flex-row justify-around mt-3 w-full || xl:w-[90%] xl:bg-green-500 xl:h-0">
-                    <Link to={"/userInfo"}>
+                    <Link to={"/user_admin"}>
                         <div className="">
                             <UserIconTwoAdmin width={50} height={50} stroke="#FF6600" classname="" />
                         </div>
