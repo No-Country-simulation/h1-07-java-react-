@@ -70,7 +70,7 @@ export function HomeView() {
 
   return (
     <>
-      <div className=" bg-[#5761C8]">
+      <div className=" bg-[#8778D7]">
         <AsideMenu src="" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <HeaderHome
           toggleSidebar={toggleSidebar}
@@ -79,7 +79,7 @@ export function HomeView() {
           notifications={notifications}>
         </HeaderHome>
       </div>
-      <main className="w-full min-h-screen bg-gradient-to-t from-[rgb(194,198,238)] to-[#5460D9]">
+      <main className="w-full min-h-screen bg-gradient-to-t from-[#B5ACE3] to-[#8778D7]">
         <div className="container mx-auto max-w-screen-xl">
 
           <Categories />

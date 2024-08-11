@@ -10,7 +10,7 @@ export function ProfilePatient() {
     logout();
   };
   return (
-    <main className="w-full min-h-screen bg-gradient-to-t from-[#C2C6EE] to-[#5460D9]">
+    <main className="w-full min-h-screen bg-gradient-to-t from-[#B4ACE3] to-[#8778D7]">
       <div className="container mx-auto max-w-screen-xl">
         <Personal
           numeroDocumento={patient?.numeroDocumento}

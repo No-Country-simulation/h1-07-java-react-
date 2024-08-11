@@ -16,7 +16,7 @@ export default function HeaderHome({
 }) {
   return (
 
-    <header className="  z-10 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] flex rounded-bl-xl border-none flex-col justify-center h-[12rem]  w-full bg-[#5761C8]   rounded-br-[3rem] ">
+    <header className="  z-10 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] flex rounded-bl-xl border-none flex-col justify-center h-[12rem]  w-full bg-[#8778D7]   rounded-br-[3rem] ">
       <div className="w-full flex items-center justify-between max-w-screen-xl m-auto px-32 max-lg:px-16 max-md:px-8">
         <div className="flex items-center space-x-2 border-none">
           <Link to="/profile" className=" flex gap-4">

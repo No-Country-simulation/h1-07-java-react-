@@ -28,7 +28,7 @@ export const HeaderPatient: React.FC<HeaderProfileProps> = ({
     <>
       <AsideMenu src="" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-      <header className="  z-10 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] flex rounded-bl-xl border-none flex-col justify-center h-[12rem]  w-full bg-[#5761C8]   rounded-br-[3rem] ">
+      <header className="  z-10 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] flex rounded-bl-xl border-none flex-col justify-center h-[12rem]  w-full bg-[#8778D7]   rounded-br-[3rem] ">
         <div className="w-full flex items-center justify-between max-w-screen-xl m-auto px-32 max-lg:px-16 max-md:px-8">
           <div className="flex gap-2 items-center flex-col">
             <div className=" flex gap-4 items-center">

@@ -10,7 +10,7 @@ const ChatPresentation: React.FC = () => (
           className="w-4 h-4 rounded-full"
         />
       </div>
-      <div className="flex max-w-80 bg-white rounded-lg p-3 gap-3">
+      <div className="flex w-2/4  max-md:w-full bg-white rounded-lg p-3 gap-3">
         <p className="text-[#1F4A69]">
           ¡Hola! 💫 Qué gusto verte por aquí, mi nombre es Cora!
         </p>
@@ -25,7 +25,7 @@ const ChatPresentation: React.FC = () => (
           className="w-4 h-4 rounded-full"
         />
       </div>
-      <div className="flex max-w-80 bg-white rounded-lg p-3 gap-3">
+      <div className="flex w-2/4  max-md:w-full bg-white rounded-lg p-3 gap-3">
         <p className="text-[#1F4A69]">
           No soy un reemplazo de un profesional de la salud. No puedo
           diagnosticar ni recomendar medicaciones. No estoy capacitado para

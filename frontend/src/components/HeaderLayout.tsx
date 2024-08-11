@@ -15,7 +15,7 @@ export default function HeaderLayout() {
   return (
 
     <>
-      <div className=" bg-[#5761C8]">
+      <div className=" bg-[#8778D7]">
         <HeaderPatient
           name={patientInfo?.nombre}
           lastname={patientInfo?.apellido}

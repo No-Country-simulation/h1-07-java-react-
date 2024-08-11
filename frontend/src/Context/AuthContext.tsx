@@ -345,7 +345,7 @@ export async function fetchPatient() {
   if (token) {
     try {
 
-      const res = await fetch(`${API_URL}/paciente/listar-pacientes-id-medico-conectado`, {
+      const res = await fetch(`${API_URL}/paciente/listar-pacientes-id-medico-conectado?page=0&size=100`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
