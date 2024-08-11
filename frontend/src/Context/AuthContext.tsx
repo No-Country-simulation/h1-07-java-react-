@@ -51,6 +51,8 @@ export const AuthContext = createContext<AuthContextProps>({
         }),
       });
 
+      console.log(response)
+
       if (response.ok) {
         console.log("Role created successfully!");
       } else {
@@ -95,7 +97,7 @@ export const AuthContextProvider = ({
         },
         body: JSON.stringify({ email, password }),
       });
-
+      
       console.log(res);
 
 

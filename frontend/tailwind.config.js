@@ -32,6 +32,11 @@ export default {
       screens: {
         'xl1': '1440px', 
       },
+      boxShadow: {
+        'custom-right': '5px 5px 15px rgba(0, 0, 0, 0.5)', // Sombra hacia la derecha y abajo
+        'custom-left': '-10px -10px 15px rgba(0, 0, 0, 0.5)', // Sombra hacia la izquierda y arriba
+        'custom-inset': 'inset 5px 5px 10px rgba(0, 0, 0, 0.3)', // Sombra interna
+      },
     },
   },
   darkMode: "class",

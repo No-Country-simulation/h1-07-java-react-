@@ -18,23 +18,23 @@ export function Header_Donation({ link, src }: header_Donation) {
     return (
         <header className='mb-10 p-6 font-inter h-48 relative flex flex-col items-center justify-center bg-gradient-to-r from-[#FFA4D7] to-[#C23584] rounded-br-[4rem] shadow-2xl'>
             <div className="mb-6 text-center relative flex flex-col items-center justify-center w-full">
-                <Link to={link} className='text-light-color absolute left-4 hover:-translate-x-1 transition-all duration-300'>
-                    <ArrowWhiteIcon width={30} height={30} stroke="#ffffff" />
+                <Link to={link} className='text-light-color absolute xl:left-80 left-4 hover:-translate-x-1 transition-all duration-300'>
+                    <ArrowWhiteIcon width={30} height={30} stroke="#ffffff" classname=""/>
                 </Link>
                 <div className="flex items-center justify-center">
                     <h1 className="text-xl font-bold text-light-color">Donaciones</h1>
                     <button onClick={toggleSidebar} className='absolute right-0 hidden'>
-                        <MenuHambuerguesa width={30} height={30} stroke="" />
+                        <MenuHambuerguesa width={30} height={30} stroke="" classname=""/>
                     </button>
                 </div>
             </div>
-            <div className="flex items-center justify-between">
-                <img src={src} alt="logo-justina" className=" w-32" />
-                <p className=" text-center text-light-color text-sm">Bienvenido(a) Sistema de búsqueda y localización de Justina</p>
+            <div className="flex items-center justify-between xl:w-[29%]">
+                <img src={src} alt="logo-justina" className=" w-32 " />
+                <p className=" text-center text-light-color text-sm  xl:mr-20 xl:w-[40%]">Bienvenido(a) Sistema de búsqueda y localización de Justina</p>
             </div>
-            <div className='rounded-lg absolute -bottom-3 left-5 py-1 px-3 shadow-md bg-[#5761C8] text-white text-[14px] border-1 border-solid border-[#948ABC]'>
+            <div className='rounded-lg absolute xl:left-[20rem] xl:-bottom-5 -bottom-3 left-5 py-1 px-3 shadow-md bg-[#5761C8] text-white text-[14px] border-1 border-solid border-[#948ABC]'>
                 <Link to={"/donationRegistre"} className="flex flex-row items-center">
-                    <DonationRegistreIcon width={20} height={20} stroke="" />
+                    <DonationRegistreIcon width={20} height={20} stroke="" classname=""/>
                     <button className="ml-2">Añadir posible donante</button>
                 </Link>
             </div>

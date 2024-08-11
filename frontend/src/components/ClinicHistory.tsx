@@ -163,7 +163,7 @@ export default function ClinicHistory({
             className="w-full h-full border-violet-color rounded-md border-1 px-4 xl:w-[50%]"
           />
           <span className="right-5 absolute xl:right-[20rem]">
-            <SearchIcon width={20} height={20} />
+            <SearchIcon width={20} height={20} classname=""/>
           </span>
         </div>
       )}

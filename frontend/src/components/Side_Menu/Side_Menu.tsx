@@ -54,7 +54,7 @@ export function Side_Menu({ classname, isExpanded, toggleMenu }: SideMenuProps) 
                                     } flex-row  transition-all ${isExpanded ? 'w-full' : 'w-[60px]'}`}
                             >
                                 <Link to={item.to} className=" 2xl:scale-110 2xl:pl-2">
-                                    <item.icon width={26} height={26} stroke="#ffffff" />
+                                    <item.icon width={26} height={26} stroke="#ffffff" classname=""/>
                                 </Link>
                                 {isExpanded && <p className="font-inter text-xl ml-5 text-white ">{item.label}</p>}
                             </li>

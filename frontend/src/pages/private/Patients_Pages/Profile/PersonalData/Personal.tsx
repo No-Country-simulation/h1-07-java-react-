@@ -29,7 +29,7 @@ export const Personal: React.FC<PersonalProps> = ({ numeroDocumento, patologia, 
         className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%] bg-light-color"
       />
       <div className="flex flex-row mt-4 items-center">
-        <BloodIcon width={16} height={16} stroke='#111' />
+        <BloodIcon width={16} height={16} stroke='#111' classname='' />
         <p className="ml-2 font-inter font-bold">Patologia</p>
       </div>
       <input
@@ -40,7 +40,7 @@ export const Personal: React.FC<PersonalProps> = ({ numeroDocumento, patologia, 
         className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%] bg-light-color"
       />
       <div className="flex flex-row mt-4 items-center">
-        <ShieldIcon width={16} height={16} stroke='#111' />
+        <ShieldIcon width={16} height={16} stroke='#111' classname=''/>
         <p className="ml-2 font-inter font-bold">Medicos</p>
       </div>
       <input
@@ -51,7 +51,7 @@ export const Personal: React.FC<PersonalProps> = ({ numeroDocumento, patologia, 
         className="p-3 border-2 border-solid border-gray-400 rounded-xl w-[100%] bg-light-color"
       />
       <div className="flex flex-row mt-4 items-center">
-        <HospitalIcon width={20} height={20} stroke='#111' />
+        <HospitalIcon width={20} height={20} stroke='#111' classname=''/>
         <p className="ml-2 font-inter font-bold">Hospital</p>
       </div>
       <input

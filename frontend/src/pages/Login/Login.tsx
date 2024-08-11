@@ -5,11 +5,9 @@ import { useAuthContext } from "../../Context/AuthContext";
 import { toast } from "sonner";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import {
-
   ArrowWhiteIcon,
   ClosePasswordIcon,
   EmailIcon,
-
   LoaderIcon,
   LockIcon,
   OpenPasswordIcon,
@@ -46,21 +44,22 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div
-      className="flex min-h-screen xl:overflow-hidden  md:flex md:justify-center 2xl:items-center xl:bg-cover 2xl:bg-cover xl:bg-center 2xl:bg-center "
+    <section
+      className="flex min-h-screen xl:overflow-hidden  md:flex justify-center 2xl:items-center xl:bg-cover 2xl:bg-cover xl:bg-center 2xl:bg-center "
       style={{ backgroundImage: "url(/IMG_FONDO/IMG_FONDO.webp)" }}
     >
-      <div className="w-full max-w-md p-8 xl:px-6 xl:py-3 2xl:py-8 bg-white xl:text-black xl:bg-white rounded-lg shadow-lg shadow-black  2xl:h-full  ">
-        <div className="xl:mt-14 2xl:mt-0">
-          <Link to={"/onboarding"} className="flex flex-row items-center  gap-x-5  mb-2 ">
-            <ArrowWhiteIcon width={30} height={30} stroke="#000000" />
-
+      <div className="lg:w-full w-[340px]  max-w-md mt-4 lg:mt-2 p-8 xl:px-6 xl:py-3 2xl:py-8 bg-white xl:text-black xl:bg-white rounded-lg shadow-lg shadow-black h-[620px]  lg:h-[600px]  ">
+        <div className="2xl:mt-0">
+          <Link to={"/onboarding"} className="flex z-10 w-10 lg:mt-4 flex-row items-center gap-x-5 mb-2 ">
+            <ArrowWhiteIcon width={30} height={30} stroke="#000000" classname=""/>
           </Link>
-          <h2 className="text-[20px] pb-3 font-[700] mb-[9px] mt-[1.5rem] xl:mt-0 text-gray-900 font-inter xl:text-black 2xl:text-black 2xl:top-3 xl:top-3">
+        <div className="-mt-9">
+          <img src="JustinaLogo_2.png" className="m-auto flex" width={130} alt="Justina Logo" /> 
+          <h3 className="text-[20px] uppercase text-center pb-0 font-[700] mb-[9px]   text-gray-900 font-inter xl:text-black 2xl:text-black ">
             Iniciar Sesión
-          </h2>
+          </h3></div>
         </div>
-        <p className="mb-[46px] text-[15px] text-[#948ABC] xl:text-black 2xl:text-black ">
+        <p className="mb-4 text-[15px] text-center text-[#948ABC] xl:text-black 2xl:text-black ">
           Accede con la cuenta que registraste
         </p>
         <Formik
@@ -128,11 +127,11 @@ export const LoginPage: React.FC = () => {
                   component="div"
                   className=" flex-wrap text-red-500"
                 />
-                <p className="mt-1 text-end text-[#948ABC] cursor-pointer xl:text-black 2xl:text-black">
+                {/* <p className="mt-1 text-end text-[#948ABC] cursor-pointer xl:text-black 2xl:text-black">
                   ¿Olvidaste tu contraseña?
-                </p>
+                </p> */}
               </div>
-              <img src="JustinaLogo_2.png" className=" m-auto flex" width={200} alt="logo-justina" />
+         
               <div className=" flex items-center h-[10rem] min-[1440px]:h-[10rem] flex-col gap-2">
                 <button
                   type="submit"
@@ -157,6 +156,6 @@ export const LoginPage: React.FC = () => {
           )}
         </Formik>
       </div>
-    </div>
+    </section>
   );
 };

@@ -55,7 +55,7 @@ export default function ListPatients() {
             placeholder="Búsqueda"
           />
           <span className=" absolute  right-5">
-            <SearchIcon width={20} height={20} />
+            <SearchIcon width={20} height={20} classname=""/>
           </span>
         </div>
       </section>

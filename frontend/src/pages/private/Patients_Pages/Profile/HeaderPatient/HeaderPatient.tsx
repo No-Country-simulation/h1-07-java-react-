@@ -54,7 +54,7 @@ export const HeaderPatient: React.FC<HeaderProfileProps> = ({
               <HomeIcon width={30} height={30} stroke="#fff" />
             </Link>
             <button onClick={toggleSidebar} className=" hover:brightness-90 transition-all duration-300 w-12 h-12  bg-[#006FEE]  rounded-full flex justify-center items-center">
-              <MenuHambuerguesa width={30} height={30} stroke="" />
+              <MenuHambuerguesa width={30} height={30} stroke="" classname=""/>
             </button>
           </div>
         </div>

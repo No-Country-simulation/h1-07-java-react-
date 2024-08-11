@@ -30,7 +30,7 @@ export function Header_UserInfo({ toggleSidebar, nombre, apellido, especialidad 
                     </Link>
                     <div className="relative right-7 flex flex-row gap-2 xl1:-ml-24 xl:absolute xl:left-[70rem] 2xl:left-[99rem]">
                         <button onClick={toggleSidebar} className="">
-                            <MenuHambuerguesa width={30} height={30} stroke="" />
+                            <MenuHambuerguesa width={30} height={30} stroke="" classname=""/>
                         </button>
                     </div>
                 </div>

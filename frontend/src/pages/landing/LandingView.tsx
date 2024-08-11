@@ -4,6 +4,7 @@ import { AboutSection } from "./About/About";
 import { FaqSection } from "./Faq/Faq";
 import { FeaturesSection } from "./Features/Features";
 import { HeroSection } from "./Hero/Hero";
+import JustinaSection from "./Justina/Justina";
 import { ServicesSection } from "./Services/Services";
 import { TestimonialsSection } from "./Testimonial/Testimonials";
 
@@ -15,6 +16,7 @@ const LandingView = () => {
       <AboutSection />
       <ServicesSection />
       <FeaturesSection />
+      <JustinaSection />
       <FaqSection />
       <TestimonialsSection />
       <Footer />

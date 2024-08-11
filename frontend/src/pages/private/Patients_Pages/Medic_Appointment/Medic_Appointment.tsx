@@ -10,11 +10,11 @@ export function Medic_Appointment() {
           <h2 className="mt-7 font-inter font-bold">Control y Seguimiento</h2>
           <div className="flex flex-row items-center justify-center gap-x-4 w-full mt-5">
             <div className="flex flex-row items-center">
-              <CaledarIcon width={20} height={20} stroke="" />
+              <CaledarIcon width={20} height={20} stroke="" classname=""/>
               <p className="font-inter font-semibold ml-1">01/08/2024</p>
             </div>
             <div className="flex flex-row items-center ml-4">
-              <RelojIcon width={16} height={16} stroke="" />
+              <RelojIcon width={16} height={16} stroke="" classname=""/>
               <p className="font-inter font-semibold ml-1">10:00 AM</p>
             </div>
 
@@ -35,7 +35,7 @@ export function Medic_Appointment() {
         <div className="mb-2 py-5 bg-gray-300 w-[90%] rounded-xl">
           <p className="text-center mb-3">Dirrección</p>
           <p className="flex flex-row gap-x-3 ml-5 font-inter font-semibold ">
-            <AdressIcon width={20} height={20} stroke="" />
+            <AdressIcon width={20} height={20} stroke="" classname=""/>
             Av. Rio Salado #301, B.A, Argentina
           </p>
           <p className="flex flex-row gap-x-3 ml-5 mt-2 font-inter font-semibold ">
