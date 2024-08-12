@@ -32,7 +32,7 @@ import Exercises from "../pages/private/Patients_Pages/Exercises/Exercises";
 import Mental from "../pages/private/Patients_Pages/Mental/Mental";
 import Nutrition from "../pages/private/Patients_Pages/Nutrition/Nutrition";
 import { Home_Admin } from "../pages/private/Admin/Home/Home_Admin";
-import { Hospitals_Registre } from "../pages/private/Admin/Hospital_Registro/Hospital_Registre";
+// import { Hospitals_Registre } from "../pages/private/Admin/Hospital_Registro/Hospital_Registre";
 import { RegisterTreatmentView } from "../pages/private/Medic_Pages/RegisterTreatment/RegisterTreatmentView";
 import { User_Admin } from "../pages/private/Admin/User_Admin/User_Admin";
 

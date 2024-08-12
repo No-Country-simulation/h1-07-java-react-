@@ -44,7 +44,10 @@ export function Search_Admin() {
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
+        console.log(event)
     };
+
+   
 
     return (
         <Box sx={{ width: '100%' }}>

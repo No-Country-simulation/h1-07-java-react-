@@ -2890,3 +2890,4 @@ export function IconFinaciadores_Admin({ width, height, stroke, classname }: Ico
     </svg>
   )
 }
+

@@ -1,4 +1,4 @@
-import { IconFarmaceutica_Admin, InstitucionIcon, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
+import { IconFarmaceutica_Admin, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
 
 
 

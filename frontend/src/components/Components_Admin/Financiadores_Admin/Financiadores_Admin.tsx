@@ -1,4 +1,4 @@
-import { IconFinaciadores_Admin, InstitucionIcon, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
+import { IconFinaciadores_Admin, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
 
 
 
