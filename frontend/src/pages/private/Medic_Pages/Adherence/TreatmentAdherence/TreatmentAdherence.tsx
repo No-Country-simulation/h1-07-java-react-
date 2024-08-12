@@ -106,7 +106,7 @@ export default function TreatmentAdherence() {
   }, []);
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md xl:max-w-full min-h-screen pb-4  bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
+      <div className="w-full max-w-md xl:max-w-full min-h-screen pb-4   bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -117,7 +117,7 @@ export default function TreatmentAdherence() {
           document={patient?.numeroDocumento}
           link={`/patient/${id}/adherence`}
         ></HeaderProfile>
-        <section className="px-6 h-[120vh] ">
+        <section className="px-6 h-[120vh] w-[50%] max-lg:w-full m-auto">
           <h1 className=" mb-4 text-violet-color font-bold text-lg xl:text-center">
             Adherencia a la medicación
           </h1>

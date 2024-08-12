@@ -198,9 +198,9 @@ export default function ClinicHistory({
                 </Accordion>
               </>
             ) : (
-              <p className="text-center my-4 font-semibold">
+              <h4 className=" text-xl my-4 h-full flex justify-center items-center text-center">
                 No se encontraron historiales clínicos.
-              </p>
+              </h4>
             )}
           </>
         )}

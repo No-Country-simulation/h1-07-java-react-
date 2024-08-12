@@ -6,13 +6,13 @@ import {
   fetchPatientSingle,
 } from "../../../../Context/AuthContext";
 import { Tab, Tabs } from "@nextui-org/react";
-import FormTreatment from "../../../../components/FormTreatment";
-import FormTraining from "../../../../components/FormTraining";
-import { FormTreamentVoice } from "../../../../components/FormTreamentVoice";
 import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { API_URL } from "../../../../api/api";
+import FormTreatment from "./FormTreatment/FormTreatment";
+import FormTraining from "./FormTraining/FormTraining";
+import { FormTreamentVoice } from "./FormOthers/FormTreamentVoice";
 
-export const TreatmentPatient = () => {
+export const RegisterTreatmentView = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [patient, setPatient] = useState<Patient>();
@@ -94,7 +94,7 @@ export const TreatmentPatient = () => {
           key="lg"
           size="lg"
           aria-label="Tabs sizes"
-          className="  shadow-2xl border-3   bg-violet-color border-violet-color  rounded-md"
+          className="  shadow-2xl border-3    border-violet-color  rounded-md flex flex-col gap-y-6 px-4 xl:max-w-2xl m-auto"
         >
           <Tab key="Medicación" title="Medicación" className="">
             <FormTreatment id={id} medicines={medicines?.content} pathologies={pathologies?.content}/>
@@ -110,7 +110,7 @@ export const TreatmentPatient = () => {
             />
           </Tab>
           <Tab key="Psicológico" title="Psicológico" className="">
-            <FormTreamentVoice id={id} type={3} label={"Recomendaciones"} />
+            <FormTreamentVoice id={id} type={3} label={"Recomendaciones psicologicas"} />
           </Tab>
         </Tabs>
       </div>

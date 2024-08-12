@@ -1,6 +1,6 @@
 import React from 'react'
 import { tipoTratamientoMap } from '../../../../../utils/data/data'
-import { Button, Modal, ModalBody, ModalContent, ModalFooter, useDisclosure } from '@nextui-org/react'
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, useDisclosure, Image } from '@nextui-org/react'
 
 interface PropsTreatmentSingle {
   tipoTratamientoId: number
@@ -15,7 +15,7 @@ export const SingleTreatment: React.FC<PropsTreatmentSingle> = ({ tipoTratamient
 
   return (
     <>
-      <div className="p-2 border-gray-600 border-1 rounded-md">
+      <div className="p-2 border-gray-600 border-1 rounded-md shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.38)]">
         <h5 className=" text-violet-color font-bold text-lg">
           {" "}
           {tipoTratamientoMap[tipoTratamientoId] ||
@@ -23,7 +23,7 @@ export const SingleTreatment: React.FC<PropsTreatmentSingle> = ({ tipoTratamient
         </h5>
         <ul className=" ml-6 list-disc">
           <li>
-            {nombreMedicamento} {descripcion}.
+            {nombreMedicamento} | {descripcion?.length == 0 ? "No tiene descripción" : descripcion}.
           </li>
           <li>Cantidad: {dosisDiaria}</li>
         </ul>
@@ -33,9 +33,19 @@ export const SingleTreatment: React.FC<PropsTreatmentSingle> = ({ tipoTratamient
           {onClose => (
             <>
               <ModalBody>
-                <img src={imagen ?? undefined} alt="Treatment Image" className="w-full h-auto rounded-md" />
+                <Image
+                  width={"700"}
+                  height={"500"}
+                  alt="image-treatment"
+                  src={`https://app.requestly.io/delay/1000/${imagen ?? undefined}`}
+                />
               </ModalBody>
               <ModalFooter>
+                <a href={imagen ?? undefined} target="_blank">
+                  <Button color='primary'>
+                    Ver
+                  </Button>
+                </a>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Cerrar
                 </Button>

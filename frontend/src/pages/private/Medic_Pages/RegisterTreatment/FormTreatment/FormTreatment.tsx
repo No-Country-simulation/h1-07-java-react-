@@ -6,14 +6,14 @@ import {
   generateFrecuency,
   generateHours,
   getTodayDate,
-} from "../utils/functions/functions";
-import { registerTreatment, submitImageTreatment } from "../Context/AuthContext";
-import { Medicines, Pathologies, Treatment } from "../Interfaces/interfaces";
-import { initialValuesTreatment } from "../utils/data/data";
-import { validationSchemaTreatment } from "../utils/validation/validation";
-import { VoiceTranscript } from "./VoiceTranscript";
-import { DownloadIcon } from "../../public/icons/Icons";
-import { API_URL } from "../api/api";
+} from "../../../../../utils/functions/functions";
+import { registerTreatment, submitImageTreatment } from "../../../../../Context/AuthContext";
+import { Medicines, Pathologies, Treatment } from "../../../../../Interfaces/interfaces";
+import { initialValuesTreatment } from "../../../../../utils/data/data";
+import { validationSchemaTreatment } from "../../../../../utils/validation/validation";
+import { VoiceTranscript } from "../../../../../components/VoiceTranscript";
+import { DownloadIcon } from "../../../../../../public/icons/Icons";
+import { API_URL } from "../../../../../api/api";
 import { toast } from "sonner";
 
 interface PropsImage {
@@ -115,7 +115,7 @@ export default function FormTreatment({
       onSubmit={handleSubmitTreatment}
     >
       {({ isSubmitting }) => (
-        <Form className="flex flex-col gap-y-6 px-4 xl:max-w-2xl">
+        <Form className="flex flex-col gap-y-6 px-4 xl:max-w-2xl m-auto">
           <h2 className=" text-xl font-bold">Tratamientos</h2>
           <div className="">
             <label

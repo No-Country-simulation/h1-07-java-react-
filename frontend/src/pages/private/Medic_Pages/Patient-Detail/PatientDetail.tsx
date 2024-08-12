@@ -53,8 +53,8 @@ export default function PatientDetail() {
   )?.component;
 
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md xl:max-w-full min-h-screen bg-white rounded-lg shadow-lg ">
+    <main className=" min-h-screen">
+      <div className=" flex-col">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -65,7 +65,7 @@ export default function PatientDetail() {
           document={patient?.numeroDocumento}
           link={`/patient-list`}
         >
-          <TabDetail tabInfo={tabInfo} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <TabDetail tabInfo={tabInfo} activeTab={activeTab} setActiveTab={setActiveTab}></TabDetail>
         </HeaderProfile>
 
         <section className="flex justify-center mt-10">

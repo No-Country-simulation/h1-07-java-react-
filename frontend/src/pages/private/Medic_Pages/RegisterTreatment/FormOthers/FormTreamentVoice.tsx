@@ -1,11 +1,12 @@
 import { Form, Formik } from 'formik'
 import React, { useState } from 'react'
-import { initialValuesOthers } from '../utils/data/data'
-import { validationSchemaExercises } from '../utils/validation/validation'
-import { Treatment } from '../Interfaces/interfaces'
-import { VoiceTranscript } from './VoiceTranscript'
 import { toast } from 'sonner'
-import { registerTreatment } from '../Context/AuthContext'
+import { Treatment } from '../../../../../Interfaces/interfaces'
+import { registerTreatment } from '../../../../../Context/AuthContext'
+import { validationSchemaExercises } from '../../../../../utils/validation/validation'
+import { initialValuesOthers } from '../../../../../utils/data/data'
+import { VoiceTranscript } from '../../../../../components/VoiceTranscript'
+
 
 interface FormTreatmentProps {
   id: string | undefined
@@ -40,7 +41,7 @@ export const FormTreamentVoice: React.FC<FormTreatmentProps> = ({ id, type, labe
       onSubmit={handleSubmitTreatment}
     >
       {({ isSubmitting }) => (
-        <Form className='flex flex-col gap-y-6 px-4 min-h-[60vh]'>
+        <Form className='flex flex-col gap-y-6 px-4 xl:max-w-2xl m-auto min-h-[60vh]'>
           <h2 className=' text-xl font-bold'>{label}</h2>
           <VoiceTranscript onTranscriptChange={setTranscript} label={''} />
           <div className=" flex items-center flex-col gap-2 ">
