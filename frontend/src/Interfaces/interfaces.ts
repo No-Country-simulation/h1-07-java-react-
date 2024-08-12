@@ -199,7 +199,6 @@ export interface AuthContextProps {
   roles: string[];
   registerDoctor: (doctor: DoctorRegister) => void;
   registerPatient: (patient: PatientRegister) => void;
-  registerTreatment: (treatment: Treatment) => void;
   createRole: (email: string, role: string) => Promise<void>;
 }
 
@@ -354,6 +353,8 @@ export interface TreatmentPacient {
   estado: string;
   tipoTratamientoId: number;
   horarios: Time[];
+  imagen: string | null
+  urlImagen: null
 }
 
 export interface Time {

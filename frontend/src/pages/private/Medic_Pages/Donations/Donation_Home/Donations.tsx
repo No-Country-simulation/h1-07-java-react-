@@ -131,7 +131,12 @@ export default function Donations() {
       <div className="w-full max-w-md xl:max-w-full min-h-screen font-inter bg-white rounded-lg shadow-lg max-md:m-auto">
         <Header_Donation link="/dashboard" src="JustinaLogo_2.png" />
         <section className="p-4 flex flex-col gap-8 xl:flex xl:flex-col xl:items-center xl:w-full ">
-          <h1 className=" -mb-4 font-semibold flex justify-between items-center">Filtro de Busqueda: <span className=" w-10 h-10 rounded-full flex justify-center hover:brightness-75 transition-all duration-300 items-center bg-gray-200 border-2  cursor-pointer" onClick={() => setIsOpenFilter(!isOpenFilter)}><SilderIcon width={20} height={20} stroke="" classname=""/></span></h1>
+          <h1 className=" -mb-4 font-semibold flex justify-between items-center">Filtro de Busqueda:
+            <span className=" w-10 h-10 rounded-full flex justify-center hover:brightness-75 transition-all duration-300 items-center bg-gray-200 border-2  cursor-pointer"
+              onClick={() => setIsOpenFilter(!isOpenFilter)}>
+              <SilderIcon width={20} height={20} stroke="#111" classname="" />
+            </span>
+          </h1>
           {isOpenFilter &&
             (<>
               <Formik
