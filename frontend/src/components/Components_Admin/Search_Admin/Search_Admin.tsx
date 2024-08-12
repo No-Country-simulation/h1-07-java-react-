@@ -58,6 +58,7 @@ export function Search_Admin() {
                     sx={{
                         width: '100%',
                         borderBottom: 'none',
+                        color: 'white',
                         '& .MuiTabs-indicator': {
                             display: 'none',
                             color: 'white'
