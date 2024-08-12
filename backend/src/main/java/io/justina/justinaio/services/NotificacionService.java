@@ -5,6 +5,7 @@ import io.justina.justinaio.model.HorarioToma;
 import io.justina.justinaio.model.Notificacion;
 import io.justina.justinaio.model.Paciente;
 import io.justina.justinaio.model.Usuario;
+import io.justina.justinaio.model.enums.TipoTratamiento;
 import io.justina.justinaio.repositories.HorarioTomaRepository;
 import io.justina.justinaio.repositories.NotificacionRepository;
 import io.justina.justinaio.repositories.PacienteRepository;
@@ -37,19 +38,28 @@ public class NotificacionService {
         for (HorarioToma horario : proximosHorarios) {
             boolean existeNotificacion = notificacionRepository.existsByHorarioToma(horario);
             if (!existeNotificacion) {
+                String mensaje = horario.getTratamiento().getDescripcion();
+
+                // Verifica si el tratamiento es de tipo MEDICAMENTO y añade el nombre del medicamento
+                if (horario.getTratamiento().getTipoTratamiento()  == TipoTratamiento.MEDICAMENTO) {
+                    String nombreMedicamento = horario.getTratamiento().getMedicamento().getNombre();
+                    mensaje = nombreMedicamento +  " - " + horario.getTratamiento().getDescripcion() ;
+                }
+
                 Notificacion notificacion = Notificacion.builder()
                         .horarioToma(horario)
                         .paciente(horario.getTratamiento().getPaciente())
                         .fecha(horario.getFecha())
                         .hora(horario.getHora())
                         .leido(false)
-                        .mensaje(horario.getTratamiento().getDescripcion())
+                        .mensaje(mensaje)
                         .build();
 
                 notificacionRepository.save(notificacion);
             }
         }
     }
+
 
     private List<HorarioToma> obtenerProximosHorarios() {
         // Lógica para obtener los horarios de toma de los próximos 20 minutos

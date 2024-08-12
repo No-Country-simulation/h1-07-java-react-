@@ -1,16 +1,18 @@
 package io.justina.justinaio.services;
 
-import io.justina.justinaio.dto.AdherenciaResponse;
-import io.justina.justinaio.dto.AdherenciaTotalResponse;
+import io.justina.justinaio.dto.*;
 import io.justina.justinaio.model.*;
 import io.justina.justinaio.model.enums.EstadoHorario;
-import io.justina.justinaio.repositories.MedicoRepository;
-import io.justina.justinaio.repositories.PacienteRepository;
-import io.justina.justinaio.repositories.TratamientoRepository;
+import io.justina.justinaio.model.enums.Genero;
+import io.justina.justinaio.model.enums.TipoTratamiento;
+import io.justina.justinaio.repositories.*;
+import io.justina.justinaio.util.Mapper;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +24,8 @@ public class EstadisticasAdherenciaService {
     private final TratamientoRepository tratamientoRepository;
     private final PacienteRepository pacienteRepository;
     private final MedicoRepository medicoRepository;
+    private final HorarioTomaRepository horarioTomaRepository;
+    private final MedicamentoRepository medicamentoRepository;
 
     public AdherenciaResponse obtenerEstadisticasPorTratamiento(Integer idTratamiento, EstadoHorario estadoHorario) {
         Tratamiento tratamiento = tratamientoRepository.findById(idTratamiento).orElseThrow();
@@ -110,4 +114,65 @@ public class EstadisticasAdherenciaService {
                 .totalHorarios(totalHorarios)
                 .build();
     }
+
+    public AdherenciaGlobalResponse obtenerEstadisticasGlobalesPorCriterios(AdherenciaTotalRequest request) {
+        Specification<HorarioToma> spec = Specification.where(null);
+
+        Medicamento medicamento = medicamentoRepository.findById(request.getIdMedicamento()).orElseThrow(
+                () -> new NullPointerException("Medicamento no encontrado con ese ID")
+        );
+
+        if (medicamento.getIdMedicamento() != null) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("tratamiento").get("medicamento").get("idMedicamento"), request.getIdMedicamento()));
+        }
+
+        if (request.getGenero() != null) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("tratamiento").get("paciente").get("genero"), Genero.values()[request.getGenero()]));
+        }
+
+        if (request.getIdPatologia() != null) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("tratamiento").get("patologia").get("idPatologia"), request.getIdPatologia()));
+        }
+
+        if (request.getIdFinanciador() != null) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("tratamiento").get("paciente").get("financiador").get("idPrepagaObraSocial"), request.getIdFinanciador()));
+        }
+
+        if (request.getEdad() != null) {
+            LocalDate today = LocalDate.now();
+            LocalDate birthDate = request.getMayorEdad() ? today.minusYears(request.getEdad()) : today.minusYears(request.getEdad() + 1);
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.lessThanOrEqualTo(root.get("tratamiento").get("paciente").get("fechaNacimiento"), birthDate));
+        }
+
+        List<HorarioToma> horarios = horarioTomaRepository.findAll(spec);
+
+        // Calcular las estadísticas acumuladas
+        Integer totalCompletado = Math.toIntExact(horarios.stream()
+                .filter(h -> h.getEstadoHorario() == EstadoHorario.COMPLETADO)
+                .count());
+
+        Integer totalNoCompletado = Math.toIntExact(horarios.stream()
+                .filter(h -> h.getEstadoHorario() == EstadoHorario.NO_COMPLETADO)
+                .count());
+
+        Integer totalAtrasado = Math.toIntExact(horarios.stream()
+                .filter(h -> h.getEstadoHorario() == EstadoHorario.ATRASADO)
+                .count());
+
+        Integer totalHorarios = horarios.size();
+
+        return AdherenciaGlobalResponse.builder()
+                .medicamento(Mapper.toMedicamentoResponse(medicamento))
+                .totalCompletado(totalCompletado)
+                .totalNoCompletado(totalNoCompletado)
+                .totalRetrasados(totalAtrasado)
+                .totalHorarios(totalHorarios)
+                .build();
+    }
+
 }
