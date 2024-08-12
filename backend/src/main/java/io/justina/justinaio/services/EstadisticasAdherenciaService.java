@@ -164,7 +164,7 @@ public class EstadisticasAdherenciaService {
                 .filter(h -> h.getEstadoHorario() == EstadoHorario.ATRASADO)
                 .count());
 
-        Integer totalHorarios = horarios.size();
+        Integer totalHorarios = totalAtrasado + totalCompletado + totalNoCompletado;
 
         return AdherenciaGlobalResponse.builder()
                 .medicamento(Mapper.toMedicamentoResponse(medicamento))
