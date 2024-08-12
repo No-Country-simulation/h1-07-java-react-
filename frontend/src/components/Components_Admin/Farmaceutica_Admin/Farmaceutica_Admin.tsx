@@ -1,8 +1,8 @@
-import { InstitucionIcon, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
+import { IconFarmaceutica_Admin, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
 
 
 
-export function Institucion_Admin() {
+export function Farmaceuticas_Admin() {
 
     
 
@@ -20,7 +20,7 @@ export function Institucion_Admin() {
             <form action="" className="mt-10 ml-2">
                 <h2 className="font-inter font-bold text-xl">Añadir nueva</h2>
                 <div className="mt-1">
-                    <h2 className="font-inter ">Nombre de la institución</h2>
+                    <h2 className="font-inter ">Nombre de la farmaceutica</h2>
                     <input type="text" placeholder="Ej: Hospital Angeles" className="outline-none pl-2 font-inter shadow-custom-right py-3 w-full rounded-lg mt-2   border-orange-500 border-1" />
                 </div>
                 <div className="mt-5">
@@ -41,29 +41,36 @@ export function Institucion_Admin() {
             <section className="mb-2 w-full shadow-custom-right rounded-xl border-1 border-solid border-orange-600 py-2 px-1">
 
                 <div className="flex flex-row items-center pl-2 pt-1 border-b-3 border-orange-400 rounded-xl pb-4 mt-2">
-                    <InstitucionIcon width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
+                    <IconFarmaceutica_Admin width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
                     <div className="ml-2">
-                        <h2 className="font-inter text-lg font-bold">Hospital Angeles</h2>
+                        <h2 className="font-inter text-lg font-bold">Equs Farma</h2>
                         <p className="font-inter">Ver Detalles</p>
                     </div>
                 </div>
 
                 <div className="flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2">
-                    <InstitucionIcon width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
+                    <IconFarmaceutica_Admin width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
                     <div className="ml-2">
-                        <h2 className="font-inter text-lg font-bold">Hospital Angeles</h2>
+                        <h2 className="font-inter text-lg font-bold">Novartis Argentina</h2>
+                        <p className="font-inter">Ver Detalles</p>
+                    </div>
+                </div>
+
+                <div className="flex flex-row items-center pl-2 pt-2 border-b-3 pb-3 border-orange-400 rounded-xl  mt-2">
+                    <IconFarmaceutica_Admin width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
+                    <div className="ml-2">
+                        <h2 className="font-inter text-lg font-bold">Merck</h2>
                         <p className="font-inter">Ver Detalles</p>
                     </div>
                 </div>
 
                 <div className="flex flex-row items-center pl-2 pt-2 border-orange-400 rounded-xl  mt-2">
-                    <InstitucionIcon width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
+                    <IconFarmaceutica_Admin width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
                     <div className="ml-2">
-                        <h2 className="font-inter text-lg font-bold">Hospital Angeles</h2>
+                        <h2 className="font-inter text-lg font-bold">Pfizer</h2>
                         <p className="font-inter">Ver Detalles</p>
                     </div>
                 </div>
-            
             </section>
             <div className="mt-3 mb-5 flex justify-end w-full">
                     <button className="bg-orange-600 px-7 py-2 rounded-lg text-white font-inter">
