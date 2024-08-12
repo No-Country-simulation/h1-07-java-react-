@@ -14,19 +14,19 @@ import {
   ClinicHistoryProps,
   ContentClinicHistory,
   Patient,
-} from "../Interfaces/interfaces";
-import { SearchIcon } from "../../public/icons/Icons";
+} from "../../../../../Interfaces/interfaces";
+import { SearchIcon } from "../../../../../../public/icons/Icons";
 import {
   fetchClinicHistory,
   registerClinicHistory,
-} from "../Context/AuthContext";
+} from "../../../../../Context/AuthContext";
 import { Field, Form, Formik } from "formik";
-import { initialValuesHistory } from "../utils/data/data";
-import { validationHistoryClinic } from "../utils/validation/validation";
+import { initialValuesHistory } from "../../../../../utils/data/data";
+import { validationHistoryClinic } from "../../../../../utils/validation/validation";
 
 import { toast } from "sonner";
-import { SkeletonAcordion } from "./Skeletons";
-import { VoiceTranscript } from "./VoiceTranscript";
+import { SkeletonAcordion } from "../../../../../components/Skeletons";
+import { VoiceTranscript } from "../../../../../components/VoiceTranscript";
 
 export default function ClinicHistory({
   patient,
@@ -44,33 +44,6 @@ export default function ClinicHistory({
   const handleTranscriptChange = (newTranscript: string) => {
     setTranscript(newTranscript.trimStart());
   };
-
-  /*  const handleSubmitHistory = async (values: ClinicHistoryProps) => {
-     // trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
-     const trimmedTranscript = transcript.trim();
-     const defaultDescription = "Descripción";
- 
-     const description = trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
-     if (id) {
-       const historyClinic: ClinicHistoryProps = {
-         ...values,
-         descripcion: description,
-         idPaciente: Number(id),
-       };
- 
-       try {
-         await registerClinicHistory(id, historyClinic);
-         toast.success("La historia clinica fue registrada correctamente");
-         
-         fetchDataHistory();
-         onClose();
-         setTranscript("");
-       } catch (err) {
-         console.error(err);
-       }
-     }
-   };
-  */
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
     const trimmedTranscript = transcript.trim();
@@ -125,7 +98,7 @@ export default function ClinicHistory({
 
   return (
     <div className="p-6 flex-col gap-3 flex xl:items-center xl:mt-10">
-      <h5 className="font-bold text-xl text-violet-color">Datos Personales</h5>
+      <h5 className="font-bold text-xl text-violet-color">Datos Generales</h5>
       <div className="border-2 border-gray-color xl:w-[50%] rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
         <h6 className="font-bold text-lg">Datos</h6>
         <div className="ml-6 list-disc tracking-wide">
@@ -207,7 +180,7 @@ export default function ClinicHistory({
       </div>
       <Button
         onPress={onOpen}
-        className="h-10 xl:w-[50%] rounded-lg mt-10 w-3/4 m-auto font-semibold bg-secondary-brand-dark text-white"
+        className="h-10 xl:w-[50%] rounded-md mt-10 w-3/4 m-auto font-semibold bg-secondary-brand-dark text-white"
       >
         Nuevo Historial
       </Button>

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Patient } from "../../../../Interfaces/interfaces";
 import { fetchPatientSingle } from "../../../../Context/AuthContext";
 import { Link, useParams } from "react-router-dom";
-import TreatmentSummary from "../../../../components/TreatmentSummary";
-import ClinicHistory from "../../../../components/ClinicHistory";
+import ClinicHistory from "./ClinicHistory/ClinicHistory";
 import { HeaderProfile } from "../../../../components/HeaderProfile";
 import { TabDetail } from "./TabDetail/TabDetail";
+import TreatmentSummary from "./TreatmentSummary/TreatmentSummary";
 
 interface TabInfoProps {
   patient: Patient | undefined; // Asegúrate de que Patient esté definido
@@ -64,6 +64,8 @@ export default function PatientDetail() {
           financier={patient?.financiador}
           document={patient?.numeroDocumento}
           link={`/patient-list`}
+          bgColor={"bg-gradient-to-r from-[#A1AAFF] to-[#5761C8]" }// Default gradient
+          bgHamburger={"bg-[#5761C8]"}
         >
           <TabDetail tabInfo={tabInfo} activeTab={activeTab} setActiveTab={setActiveTab}></TabDetail>
         </HeaderProfile>
@@ -75,10 +77,8 @@ export default function PatientDetail() {
             </p>
           </Link>
         </section>
-        <section className="">
-          {/* Renderiza el componente activo pasando los datos como props */}
-          {ActiveComponent && <ActiveComponent patient={patient} />}
-        </section>
+        {/* Renderiza el componente activo pasando los datos como props */}
+        {ActiveComponent && <ActiveComponent patient={patient} />}
       </div>
     </main>
   );

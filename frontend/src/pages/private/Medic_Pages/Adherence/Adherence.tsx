@@ -48,9 +48,10 @@ export default function Adherence() {
     fetchTreatments();
     fetchPatient();
   }, []);
+
   return (
-    <main className="flex min-h-screen xl:max-w-full  bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md  min-h-screen pb-4 xl:max-w-full bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
+    <main className=" min-h-screen">
+      <div className=" flex-col">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -60,14 +61,16 @@ export default function Adherence() {
           financier={patient?.financiador}
           document={patient?.numeroDocumento}
           link={`/patient/${id}`}
+          bgColor={"bg-gradient-to-r from-[#A1AAFF] to-[#5761C8]" }// Default gradient
+          bgHamburger={"bg-[#5761C8]"}
         ></HeaderProfile>
         <section className="px-6 xl:w-full">
-          <h5 className="mb-4   xl:flex xl:flex-col xl:items-center xl:justify-center font-bold text-xl text-violet-color">Adherencia al Tratamiento</h5>
+          <h5 className="mb-4  text-center max-md:text-left  xl:flex xl:flex-col xl:items-center xl:justify-center font-bold text-xl text-violet-color">Adherencia al Tratamiento</h5>
           <ol className=" flex flex-col gap-2 w-[50%] max-lg:w-full m-auto">
             {loadingTreat ? (
-              <>
+              <div className=" flex  flex-col gap-4">
                 <TreatmentSkeleton />
-              </>
+              </div>
             ) : (
               <>
                 {treatments && treatments?.content.length == 0 ? (
