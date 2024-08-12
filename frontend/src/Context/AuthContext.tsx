@@ -37,7 +37,6 @@ export const AuthContext = createContext<AuthContextProps>({
   roles: [],
   registerDoctor: () => { },
   registerPatient: () => { },
-  registerTreatment: () => { },
   createRole: async (email: string, role: string): Promise<void> => {
     try {
       const response = await fetch("/api/roles", {
@@ -97,7 +96,7 @@ export const AuthContextProvider = ({
         },
         body: JSON.stringify({ email, password }),
       });
-      
+
       console.log(res);
 
 
@@ -278,7 +277,6 @@ export const AuthContextProvider = ({
       isLoggedIn: !!authTokens,
       registerDoctor,
       registerPatient,
-      registerTreatment,
       createRole: (email, role) => createRole(email, role),
     }),
     [
@@ -287,7 +285,6 @@ export const AuthContextProvider = ({
       logout,
       registerDoctor,
       registerPatient,
-      registerTreatment,
       roles,
       createRole,
     ]
@@ -306,41 +303,6 @@ export const useAuthContext = () => {
   return context;
 };
 
-async function registerTreatment(treatment: Treatment) {
-  const token = localStorage.getItem(AUTH_TOKEN_KEY);
-
-  if (token) {
-    try {
-      const res = await fetch(`${API_URL}/tratamiento/crear-tratamiento-retorna-id-tratamiento`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(treatment),
-      });
-      // if (!res.ok) {
-      //   throw new Error(`Response status: ${res.status}`);
-      // }
-      if (res.status === 200) {
-        toast.success("El tratamiento fue creado correctamente");
-        window.location.href = `/patient/${treatment.pacienteId}/adherence`;
-      }
-
-      const data: ResponseRequest = await res.json();
-
-      if (data.businessErrorCode === 404) {
-        toast.warning("Seleccionar un medicamento");
-      }
-
-
-
-
-    } catch (err) {
-      toast.success("El tratamiento fue creado correctamente");
-    }
-  }
-}
 
 export async function fetchPatient() {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
@@ -373,7 +335,7 @@ export const fetchMedicines = async () => {
   if (token) {
     try {
       const res = await fetch(
-        `${API_URL}/medicamento/buscar-medicamentos-activos`,
+        `${API_URL}/medicamento/buscar-medicamentos-activos?page=0&size=100`,
         {
           method: "GET",
           headers: {
@@ -725,7 +687,7 @@ export const fetchMedicsData = async () => {
   }
 }
 
-export const fetchTreatmentPatientConect= async () => {
+export const fetchTreatmentPatientConect = async () => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   try {
@@ -742,9 +704,75 @@ export const fetchTreatmentPatientConect= async () => {
     if (!res.ok) {
       throw new Error("Failed to fetch treatments");
     }
-    const data:ContentTreatmentPacient = await res.json();
+    const data: ContentTreatmentPacient = await res.json();
     return data
   } catch (err) {
     console.log(err);
   }
 };
+
+export const registerTreatment = async (treatment: Treatment): Promise<string | void> => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  if (token) {
+    try {
+      const res = await fetch(`${API_URL}/tratamiento/crear-tratamiento-retorna-id-tratamiento`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(treatment),
+      });
+      // if (!res.ok) {
+      //   throw new Error(`Response status: ${res.status}`);
+      // }
+      if (res.status === 200) {
+        toast.success("El tratamiento fue creado correctamente");
+        const data: string = await res.text()
+        return data
+      }
+
+      const data: ResponseRequest = await res.json();
+
+      if (data.businessErrorCode === 404) {
+        toast.warning("Seleccionar un medicamento");
+      }
+
+
+
+    } catch (err) {
+      toast.success("El tratamiento fue creado correctamente");
+    }
+  }
+}
+
+
+export const submitImageTreatment = async (treatmentId: string | void, id: string | undefined, idImage: string | undefined) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (treatmentId && id && idImage) {
+    try {
+      const res = await fetch(
+        `${API_URL}/tratamiento/cargar-imagen-a-tratamiento-por-id?idTratamiento=${treatmentId}&idImagen=${idImage}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+  
+
+      if (res.status === 200) {
+        window.location.href = `/patient/${id}/adherence`;
+      }
+      // const data = await res.json();
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}

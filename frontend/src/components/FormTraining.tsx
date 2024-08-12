@@ -5,11 +5,10 @@ import { validationSchemaExercises } from '../utils/validation/validation'
 import { Treatment } from '../Interfaces/interfaces'
 import { VoiceTranscript } from './VoiceTranscript'
 import { useState } from 'react'
-import { useAuthContext } from '../Context/AuthContext'
+import { registerTreatment } from '../Context/AuthContext'
 
 export default function FormTraining({ id }: { id: string | undefined }) {
   const [transcript, setTranscript] = useState<string>('');
-  const { registerTreatment } = useAuthContext()
 
   const handleSubmitTreatment = (values: Treatment, { resetForm }: any) => {
     const exercises: Treatment = {

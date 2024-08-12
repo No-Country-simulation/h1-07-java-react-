@@ -155,43 +155,48 @@ export default function ClinicHistory({
       </div>
       <h5 className="font-bold text-xl text-violet-color">Historia Clinica</h5>
       {clinicHistories && clinicHistories.content.length !== 0 && (
-        <div className="relative w-full h-12 mb-3 flex justify-center items-center">
+        <div className="relative max-xl:w-full h-12 w-[50%] mb-3 flex justify-center items-center ">
           <input
             type="text"
             placeholder="Búsqueda"
             onChange={(e) => setHistories(e.target.value)}
-            className="w-full h-full border-violet-color rounded-md border-1 px-4 xl:w-[50%]"
+            className="w-full h-full border-violet-color rounded-md border-1 px-2"
           />
-          <span className="right-5 absolute xl:right-[20rem]">
-            <SearchIcon width={20} height={20} classname=""/>
+          <span className="right-5 absolute">
+            <SearchIcon width={20} height={20} classname="" />
           </span>
         </div>
       )}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-y-3 w-[50%] max-xl:w-full">
         {loading ? (
           <SkeletonAcordion />
         ) : (
           <>
             {clinicHistories && clinicHistories.content.length > 0 ? (
-              clinicHistories.content
-                .filter((msg) =>
-                  msg.titulo.toLowerCase().includes(histories.toLowerCase())
-                )
-                .map((history, idx) => (
-                  <Accordion
-                    variant="splitted"
-                    key={idx}
-                    className="rounded-md w-full"
-                  >
-                    <AccordionItem
-                      aria-label={history.titulo}
-                      title={`${history.titulo} ${history.fecha}`}
-                      className="w-full  border-2 border-violet-color"
-                    >
-                      {history.descripcion}
-                    </AccordionItem>
-                  </Accordion>
-                ))
+              <>
+                <Accordion
+                  variant="splitted"
+                  fullWidth={true}
+                  className=" w-full px-0 "
+                >
+                  {
+                    clinicHistories.content
+                      .filter((msg) =>
+                        msg.titulo.toLowerCase().includes(histories.toLowerCase())
+                      )
+                      .map((history, idx) => (
+                        <AccordionItem
+                          aria-label={history.titulo}
+                          tabIndex={idx}
+                          title={`${history.titulo} ${history.fecha}`}
+                          className="w-full border-2 border-violet-color shadow-[1.0px_2.0px_2.0px_rgba(0,0,0,0.38)]"
+                        >
+                          {history.descripcion}
+                        </AccordionItem>
+                      ))
+                  }
+                </Accordion>
+              </>
             ) : (
               <p className="text-center my-4 font-semibold">
                 No se encontraron historiales clínicos.

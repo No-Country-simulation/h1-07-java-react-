@@ -30,7 +30,7 @@ export default function TreatementPatient() {
   };
 
   return (
-    <main className="w-full min-h-screen bg-gradient-to-t from-[#02FFFF] to-[#5561D9] py-8">
+    <main className="w-full min-h-screen bg-gradient-to-t from-[#02FFFF] to-[#8778D7] py-8">
       <div className="container mx-auto max-w-screen-xl">
         <div className="px-32 max-lg:px-16 max-md:px-8 pb-4">
           <h3 className="font-bold font-inter text-2xl mb-4 text-light-color">

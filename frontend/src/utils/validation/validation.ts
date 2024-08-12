@@ -54,19 +54,14 @@ export const validationSchema = Yup.object({
     .required("La licencia es obligatoria"),
 });
 
-export const validationSchemaTreatment = Yup.object({
-  // tipoTratamiento: Yup.number()
-  //   .required('El tipo de tratamiento es obligatorio'),
-
-  // dosisDiaria: Yup.number()
-  //   .min(1, 'La dosis diaria debe ser al menos 1')
-  //   .required('La dosis diaria es obligatoria'),
-  medicamentoId: Yup.string().required("Selecciona un medicamento"),
-  // diasTotales: Yup.number()
-  //   .required('Los días totales son obligatorios'),
-  // fechaInicio: Yup.date()
-  //   .required('La fecha de inicio es obligatoria')
-});
+export const validationSchemaTreatment = Yup.object().shape({
+  medicamentoId: Yup.number()
+    .required("Selecciona un medicamento")
+    .min(1, "Selecciona un medicamento válido"),
+  patologiaId: Yup.number()
+    .required("Selecciona una patología")
+    .min(1, "Selecciona una patología válida"),
+})
 
 export const validationSchemaExercises = Yup.object({});
 

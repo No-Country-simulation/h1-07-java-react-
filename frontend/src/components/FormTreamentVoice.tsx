@@ -5,17 +5,16 @@ import { validationSchemaExercises } from '../utils/validation/validation'
 import { Treatment } from '../Interfaces/interfaces'
 import { VoiceTranscript } from './VoiceTranscript'
 import { toast } from 'sonner'
-import { useAuthContext } from '../Context/AuthContext'
+import { registerTreatment } from '../Context/AuthContext'
 
 interface FormTreatmentProps {
-  id:string | undefined
-  type:number
+  id: string | undefined
+  type: number
   label: string
 }
 
-export const FormTreamentVoice:React.FC<FormTreatmentProps> = ({ id, type, label})=> {
+export const FormTreamentVoice: React.FC<FormTreatmentProps> = ({ id, type, label }) => {
   const [transcript, setTranscript] = useState<string>('');
-  const { registerTreatment } = useAuthContext()
 
   const handleSubmitTreatment = (values: Treatment) => {
     if (transcript.length < 10) {

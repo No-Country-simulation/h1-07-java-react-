@@ -23,7 +23,7 @@ export const TreatmentPatient = () => {
     const token = localStorage.getItem('TOKEN_KEY');
 
     try {
-      const res = await fetch(`${API_URL}/patologias/listar-patologias`, {
+      const res = await fetch(`${API_URL}/patologias/listar-patologias?page=0&size=100`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
