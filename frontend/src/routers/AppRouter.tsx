@@ -21,7 +21,6 @@ import LandingView from "../pages/landing/LandingView";
 import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
 import Adherence from "../pages/private/Medic_Pages/Adherence/Adherence";
 import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/TreatmentAdherence/TreatmentAdherence";
-import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import SignUp from "../pages/signup/SignUp";
@@ -33,6 +32,8 @@ import Exercises from "../pages/private/Patients_Pages/Exercises/Exercises";
 import Mental from "../pages/private/Patients_Pages/Mental/Mental";
 import Nutrition from "../pages/private/Patients_Pages/Nutrition/Nutrition";
 import { Home_Admin } from "../pages/private/Admin/Home/Home_Admin";
+import { Hospitals_Registre } from "../pages/private/Admin/Hospital_Registro/Hospital_Registre";
+import { RegisterTreatmentView } from "../pages/private/Medic_Pages/RegisterTreatment/RegisterTreatmentView";
 import { User_Admin } from "../pages/private/Admin/User_Admin/User_Admin";
 
 function AppRouter() {
@@ -61,7 +62,7 @@ function AppRouter() {
               <Route path="/patient/:id" element={<PatientDetail />} />
               <Route path="/patient/:id/adherence" element={<Adherence />} />
               <Route path="/patient/:id/adherence/:idTratamiento" element={<TreatmentAdherence />} />
-              <Route path="/patient/:id/treatment" element={<TreatmentPatient />} />
+              <Route path="/patient/:id/treatment-register" element={<RegisterTreatmentView />} />
               <Route path="/donations" element={<Donations />} />
               <Route path="/donationRegistre" element={<Donation_Registre />} />
               <Route path="/donationDetail/:id" element={<Donation_Detail />} />

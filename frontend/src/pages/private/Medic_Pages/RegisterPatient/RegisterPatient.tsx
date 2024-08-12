@@ -72,12 +72,9 @@ export const RegisterPatient: React.FC = () => {
 
   const handleSubmit = (values: PatientRegister, { setSubmitting }: any) => {
     const patient: PatientRegister = values;
-    console.log(patient)
     try {
       setLoading(true);
       registerPatient(patient);
-      // toast.success("El paciente fue creado correctamente");
-      // window.location.href = '/patient-list'
     } catch (err) {
       console.error(err);
       toast.error("Hubo un error al crear el paciente"); // Mostrar mensaje de error

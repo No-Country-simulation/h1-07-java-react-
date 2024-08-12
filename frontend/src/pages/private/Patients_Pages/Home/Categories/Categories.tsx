@@ -4,7 +4,7 @@ import {
   EjericioIcon,
   HistorialIcon,
   MentalIcon,
-  NutricionIcon,
+  // NutricionIcon,
   TratamientoIcon,
   TurneraIcon,
 } from "../../../../../../public/icons/Icons";
@@ -50,12 +50,12 @@ const patientOptions = [
     bgColor: "bg-[#FFD0D0]",
 
   },
-  {
-    to: "/nutrition",
-    icon: <NutricionIcon width={60} height={60} classname='' />,
-    label: "Nutrición",
-    bgColor: "bg-[#CB7A4B]",
-  },
+  // {
+  //   to: "/nutrition",
+  //   icon: <NutricionIcon width={60} height={60} />,
+  //   label: "Nutrición",
+  //   bgColor: "bg-[#CB7A4B]",
+  // },
 ];
 
 export default function Categories() {

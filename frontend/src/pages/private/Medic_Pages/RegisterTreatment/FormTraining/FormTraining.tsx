@@ -1,15 +1,15 @@
 import { Form, Formik } from 'formik'
-import { generateFrecuency, generateHours } from '../utils/functions/functions'
-import { initialValuesOthers } from '../utils/data/data'
-import { validationSchemaExercises } from '../utils/validation/validation'
-import { Treatment } from '../Interfaces/interfaces'
-import { VoiceTranscript } from './VoiceTranscript'
-import { useState } from 'react'
-import { useAuthContext } from '../Context/AuthContext'
+import { Treatment } from '../../../../../Interfaces/interfaces';
+import { useState } from 'react';
+import { initialValuesOthers } from '../../../../../utils/data/data';
+import { validationSchemaExercises } from '../../../../../utils/validation/validation';
+import { registerTreatment } from '../../../../../Context/AuthContext';
+import { VoiceTranscript } from '../../../../../components/VoiceTranscript';
+import { generateFrecuency, generateHours } from '../../../../../utils/functions/functions';
+
 
 export default function FormTraining({ id }: { id: string | undefined }) {
   const [transcript, setTranscript] = useState<string>('');
-  const { registerTreatment } = useAuthContext()
 
   const handleSubmitTreatment = (values: Treatment, { resetForm }: any) => {
     const exercises: Treatment = {
@@ -32,7 +32,7 @@ export default function FormTraining({ id }: { id: string | undefined }) {
       onSubmit={handleSubmitTreatment}
     >
       {({ isSubmitting }) => (
-        <Form className='flex flex-col gap-y-6 px-4 min-h-[60vh]'>
+        <Form className='flex flex-col gap-y-6 px-4 xl:max-w-2xl m-auto min-h-[60vh]'>
           <h2 className=' text-xl font-bold'>Ejercicios</h2>
           <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones' />
           <div className="">

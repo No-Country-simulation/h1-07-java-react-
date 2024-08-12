@@ -46,7 +46,7 @@ export const initialValuesPatient: PatientRegister = {
   genero: "1",
   factorSanguineo: 1,
   patologiaId: 1,
-  medicosId: [1],
+  medicosId: [],
   entidadesId: [1],
   financiadorId: 1,
 };
@@ -95,8 +95,8 @@ export const initialValuesAdherence: AdherenceRequest = {
 };
 
 export const initialValuesTreatment: Treatment = {
-  pacienteId: 10, //modificar con el id del paciente correspendiente
-  patologiaId: 1,
+  pacienteId: 0, //modificar con el id del paciente correspendiente
+  patologiaId: 0,
   medicamentoId: 0,
   tipoTratamiento: 0,
   descripcion: "",

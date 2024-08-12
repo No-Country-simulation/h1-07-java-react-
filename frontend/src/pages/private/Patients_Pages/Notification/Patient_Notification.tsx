@@ -72,7 +72,7 @@ export function Patient_Notification(): JSX.Element {
   };
 
   return (
-    <main className="w-full min-h-screen bg-gradient-to-t from-[rgb(194,198,238)] to-[#5460D9]">
+    <main className="w-full min-h-screen bg-gradient-to-t from-[rgb(194,198,238)] to-[#8778D7]">
       <div className="container mx-auto max-w-screen-xl py-6">
         <div className="px-32 max-lg:px-16 max-md:px-8">
           <section className="flex flex-col">

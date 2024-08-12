@@ -56,7 +56,7 @@ export default function DataHistory({
             className="w-full h-full border-violet-color rounded-md border-1 px-2"
           />
           <span className="right-5 absolute">
-            <SearchIcon width={20} height={20} classname=""/>
+            <SearchIcon width={20} height={20} classname="" />
           </span>
         </div>
       )}
@@ -92,8 +92,9 @@ export default function DataHistory({
 
               </>
             ) : (
-              <SkeletonAcordion />
-            )}
+              <p className="text-center my-4 font-semibold">
+                No se encontraron historiales clínicos.
+              </p>)}
           </>
         )}
       </div>

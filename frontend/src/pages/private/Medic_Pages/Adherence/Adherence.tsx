@@ -62,8 +62,8 @@ export default function Adherence() {
           link={`/patient/${id}`}
         ></HeaderProfile>
         <section className="px-6 xl:w-full">
-          <h5 className="mb-4   xl:flex xl:flex-col xl:items-center xl:justify-center text-xl font-semibold">Tratamientos</h5>
-          <ol className=" flex flex-col gap-2">
+          <h5 className="mb-4   xl:flex xl:flex-col xl:items-center xl:justify-center font-bold text-xl text-violet-color">Adherencia al Tratamiento</h5>
+          <ol className=" flex flex-col gap-2 w-[50%] max-lg:w-full m-auto">
             {loadingTreat ? (
               <>
                 <TreatmentSkeleton />
@@ -77,16 +77,16 @@ export default function Adherence() {
                       to={`/patient/${id}/treatment`}
                       className=" flex justify-center"
                     >
-                      <button className=" rounded-md mt-6 w-2/4 h-16 m-auto font-semibold bg-violet-color text-white">
+                      <button className=" rounded-md mt-6 w-2/4 h-12 m-auto font-semibold bg-violet-color text-white">
                         Añadir Nuevo Tratamiento
                       </button>
                     </Link>
                   </>
                 ) : (
-                  <div className="xl:flex xl:flex-col xl:justify-center xl:items-center xl:w-full">
+                  <div className="xl:flex xl:flex-col xl:justify-center xl:items-center xl:w-full flex flex-col gap-4 ">
                     {treatments &&
                       treatments.content.sort((a, b) => b.idTratamiento - a.idTratamiento).map((treatment) => (
-                        <Link className="xl:w-[50%]"
+                        <Link className="w-full  hover:brightness-150 transition-all duration-300 shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.38)]"
                           to={`/patient/${id}/adherence/${treatment.idTratamiento}`}
                         >
                           <li className=" border-2 cursor-pointer p-2 rounded-md border-violet-color">

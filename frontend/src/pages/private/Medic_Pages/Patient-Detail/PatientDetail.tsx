@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import TreatmentSummary from "../../../../components/TreatmentSummary";
 import ClinicHistory from "../../../../components/ClinicHistory";
 import { HeaderProfile } from "../../../../components/HeaderProfile";
+import { TabDetail } from "./TabDetail/TabDetail";
 
 interface TabInfoProps {
   patient: Patient | undefined; // Asegúrate de que Patient esté definido
@@ -52,8 +53,8 @@ export default function PatientDetail() {
   )?.component;
 
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md xl:max-w-full min-h-screen bg-white rounded-lg shadow-lg ">
+    <main className=" min-h-screen">
+      <div className=" flex-col">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -64,22 +65,7 @@ export default function PatientDetail() {
           document={patient?.numeroDocumento}
           link={`/patient-list`}
         >
-          <div className="absolute -bottom-4 w-full flex justify-center">
-            <div className="flex gap-4">
-              {tabInfo.map((tab) => (
-                <button
-                  key={tab.tabName}
-                  onClick={() => setActiveTab(tab.tabName)}
-                  className={`px-3  cursor-pointer shadow-xl   p-1 rounded-lg border-2 ${activeTab === tab.tabName
-                    ? "bg-light-color border-violet-color shadow-xl text-violet-color "
-                    : "bg-violet-color  border-light-color shadow-xl text-light-color "
-                    }`}
-                >
-                  {tab.tabName}
-                </button>
-              ))}
-            </div>
-          </div>
+          <TabDetail tabInfo={tabInfo} activeTab={activeTab} setActiveTab={setActiveTab}></TabDetail>
         </HeaderProfile>
 
         <section className="flex justify-center mt-10">
