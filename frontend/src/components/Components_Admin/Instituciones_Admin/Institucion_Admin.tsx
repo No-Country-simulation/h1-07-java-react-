@@ -19,6 +19,7 @@ const validationSchema = Yup.object({
 export function Institucion_Admin() {
     const [info, setInfo] = useState<PagedResponse<Institution> | undefined>(undefined);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     const hadlerSubmit = async (values: any, { resetForm }: any) => {
         const data = {
@@ -30,7 +31,13 @@ export function Institucion_Admin() {
         resetForm();
 
         try {
-            await RegitrarIntitucion_Admin(data);
+            const newInstitution = await RegitrarIntitucion_Admin(data);
+            if (info) {
+                setInfo({
+                    ...info,
+                    content: [newInstitution, ...info.content]
+                });
+            }
         } catch (error) {
             console.error("Error al enviar los datos:", error);
         }
@@ -51,11 +58,24 @@ export function Institucion_Admin() {
         fetchData();
     }, [])
 
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value.toLowerCase());
+    };
+
+    const filteredInstitutions = info?.content.filter(institution =>
+        institution.nombre.toLowerCase().includes(searchTerm)
+    );
+
     return (
         <main>
             <h2 className="font-inter font-bold text-xl mt-2 mb-2 ml-2">Búsqueda</h2>
             <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1">
-                <input type="text" placeholder="Buscar por nombre" className="outline-none pl-2 py-1 font-inter" />
+                <input
+                    type="text"
+                    placeholder="Buscar por nombre"
+                    className="outline-none pl-2 py-1 font-inter"
+                    onChange={handleSearchChange}
+                />
                 <div className="flex flex-row gap-x-4">
                     <SearchIcon width={20} height={20} classname="" stroke="" />
                     <SilderIcon width={20} height={20} stroke="#767676" classname="mr-2" />
@@ -115,11 +135,11 @@ export function Institucion_Admin() {
             {loading ? (
                 <SkeletonLoader />
             ) : (
-                info?.content && info.content.length > 0 ? (
+                filteredInstitutions && filteredInstitutions.length > 0 ? (
                     <>
                         <h2 className="font-inter font-bold text-xl ml-2 mb-5">Listado</h2>
                         <section className="mb-2 w-full shadow-custom-right rounded-xl border-1 border-solid border-orange-600 py-2 px-1">
-                            {info.content.slice(0, 4).map((institution, index) => (
+                            {filteredInstitutions.slice(0, 4).map((institution, index) => (
                                 <div key={index} className="flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2">
                                     <InstitucionIcon width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
                                     <div className="ml-2">
