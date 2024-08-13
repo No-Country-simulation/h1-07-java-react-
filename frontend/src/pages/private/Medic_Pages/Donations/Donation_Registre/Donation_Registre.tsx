@@ -31,16 +31,16 @@ const validationSchema = Yup.object({
   // posibleDonacion: Yup.string().required("Donación requerida"),
   descripcion: Yup.string()
     .required("Descripción requerida")
-    .min(5, "La descripción debe tener mas de 5 caracteres")
+    .min(5, "La descripción debe tener mas de 5 caracteres"),
+  pacienteId: Yup.number()
+    .required("Selecciona una paciente")
+    .min(1, "Selecciona una paciente válido"),
 
 });
 
 export function Donation_Registre() {
   const [medicInfo, setMedicInfo] = useState<Medic>();
   const [patients, setPatienInfo] = useState<ContentPatient>();
-  const [selectedPatientId, setSelectedPatientId] = useState<number | null>(
-    null
-  );
 
   useEffect(() => {
     const fetchPatientTwo = async () => {
@@ -61,12 +61,8 @@ export function Donation_Registre() {
     }
   }, []);
 
-  const handlePatientSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPatientId(Number(event.target.value));
-    setSelectedPatientId(Number(event.target.value));
-  };
 
-  const handleSubmit = async (values: any, { resetForm }: any) => {
+  const handleSubmit = async (values: any) => {
     const factorSanguineoMap: { [key: string]: number } = {
       "A+": 0,
       "A-": 1,
@@ -78,7 +74,7 @@ export function Donation_Registre() {
 
     const data = {
       medicoId: medicInfo?.idMedico,
-      pacienteId: selectedPatientId,
+      pacienteId: values.pacienteId,
       descripcion: values.descripcion,
       nombre: values.nombre,
       apellido: values.apellido,
@@ -90,9 +86,6 @@ export function Donation_Registre() {
       localidad: "",
       provincia: ""
     };
-
-
-    resetForm();
 
     try {
       await crearDonante(data);
@@ -111,6 +104,7 @@ export function Donation_Registre() {
           peso: "",
           altura: "",
           sexo: "",
+          pacienteId: 0,
           grupoRH: "",
           fechaNacimiento: "",
           ubicacion: "",
@@ -293,21 +287,23 @@ export function Donation_Registre() {
               </div> */}
 
               <div className="flex flex-col w-full mt-5">
-                <label htmlFor="paciente" className="font-inter font-bold">
+                <label htmlFor="pacienteId" className="font-inter font-bold">
                   Selecciona Paciente
                 </label>
-                <select
-                  onChange={handlePatientSelect}
+                <Field as="select"
                   className="w-[90%] h-14 p-2 border border-[#3D4DA5] rounded-md mt-1"
-                  defaultValue=""
+                  name="pacienteId"
                 >
-                  <option value="" label="Selecciona un paciente" />
+                  <option value={0} label="Selecciona un paciente" />
                   {patients?.content.map((items) => (
                     <option key={items.idPaciente} value={items.idPaciente}>
                       {items.nombre} {items.apellido}
                     </option>
                   ))}
-                </select>
+                </Field>
+                <div className="text-red-600 mt-1">
+                  <ErrorMessage name="pacienteId" />
+                </div>
               </div>
 
               <div className="flex flex-col w-full mt-5">

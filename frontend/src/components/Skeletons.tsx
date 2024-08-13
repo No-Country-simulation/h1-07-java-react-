@@ -210,5 +210,52 @@ export const SkeletonTreatments = () => (
     </div>
   </>
 );
-
+export const SkeletonDonors = () => (
+  <>
+    <li
+      className="flex animate-pulse cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500">
+      <div className="flex flex-row items-center w-full p-1">
+        <div className="flex flex-col ml-3 w-full">
+          <div className="flex  flex-col gap-2">
+            <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      className="flex animate-pulse cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500">
+      <div className="flex flex-row items-center w-full p-1">
+        <div className="flex flex-col ml-3 w-full">
+          <div className="flex  flex-col gap-2">
+            <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      className="flex animate-pulse cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500">
+      <div className="flex flex-row items-center w-full p-1">
+        <div className="flex flex-col ml-3 w-full">
+          <div className="flex  flex-col gap-2">
+            <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      className="flex animate-pulse cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500">
+      <div className="flex flex-row items-center w-full p-1">
+        <div className="flex flex-col ml-3 w-full">
+          <div className="flex  flex-col gap-2">
+            <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </>
+)
 

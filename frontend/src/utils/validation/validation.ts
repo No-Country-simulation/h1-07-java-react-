@@ -82,3 +82,14 @@ export const validationSchemaLogin = Yup.object({
     .min(6, "La contraseña debe tener mas de 6 caracteres")
     .required("La contraseña es obligatoria"),
 });
+
+export const validationSchemaDonor = Yup.object({
+  textoBusqueda: Yup.string(),
+  edad: Yup.number()
+    .min(0, "Edad no puede ser negativa")
+    .max(99, "Edad no puede ser mayor de 99"),
+  peso: Yup.number()
+    .min(0, "Peso no puede ser negativo"),
+  altura: Yup.number()
+    .min(0, "Altura no puede ser negativa "),
+});

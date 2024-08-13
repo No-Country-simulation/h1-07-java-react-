@@ -449,3 +449,14 @@ export interface AdherenceRequest{
   estado: number;
 }
 
+export interface DonationForm {
+  textoBusqueda: string
+  edad: string
+  peso: string
+  altura: string
+  generoOrdinal: "0" | "1" | "2" | ""
+  factorSanguineoOrdinal: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "",
+  edadFiltro: "mayor" | "menor" | "igual" | ""
+  pesoFiltro: "mayor" | "menor" | "igual" | ""
+  alturaFiltro: "mayor" | "menor" | "igual" | ""
+}
