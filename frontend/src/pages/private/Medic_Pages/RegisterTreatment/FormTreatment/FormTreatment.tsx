@@ -281,7 +281,7 @@ export default function FormTreatment({
             </Field>
           </div>
           <VoiceTranscript
-            onTranscriptChange={setTranscript}
+            onTextChange={setTranscript}
             label="Recomendaciones"
           />
 

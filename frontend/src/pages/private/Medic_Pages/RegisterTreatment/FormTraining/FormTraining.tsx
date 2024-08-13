@@ -34,7 +34,7 @@ export default function FormTraining({ id }: { id: string | undefined }) {
       {({ isSubmitting }) => (
         <Form className='flex flex-col gap-y-6 px-4 xl:max-w-2xl m-auto min-h-[60vh]'>
           <h2 className=' text-xl font-bold'>Ejercicios</h2>
-          <VoiceTranscript onTranscriptChange={setTranscript} label='Recomendaciones' />
+          <VoiceTranscript onTextChange={setTranscript} label='Recomendaciones' />
           <div className="">
             <label className="font-bold flex items-center gap-2 " htmlFor="dosis">
               Tiempo

@@ -41,16 +41,10 @@ export default function ClinicHistory({
   const [loading, setLoading] = useState(false);
   const [transcript, setTranscript] = useState("");
 
-  const handleTranscriptChange = (newTranscript: string) => {
-    setTranscript(newTranscript.trimStart());
-  };
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
     const trimmedTranscript = transcript.trim();
-
-
     const description = trimmedTranscript.length > 0 ? trimmedTranscript : "";
-
     if (id) {
       const historyClinic: ClinicHistoryProps = {
         ...values,
@@ -185,7 +179,7 @@ export default function ClinicHistory({
         Nuevo Historial
       </Button>
 
-      <Modal isOpen={isOpen} placement={"auto"} onOpenChange={onOpenChange} hideCloseButton={true}>
+      <Modal isOpen={isOpen} placement={"center"} onOpenChange={onOpenChange} hideCloseButton={true}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -215,7 +209,7 @@ export default function ClinicHistory({
                           ></Field>
                         </div>
                         <VoiceTranscript
-                          onTranscriptChange={handleTranscriptChange}
+                          onTextChange={setTranscript}
                           label={"Descripción"}
                         />
                         <div className="flex justify-center gap-2">
