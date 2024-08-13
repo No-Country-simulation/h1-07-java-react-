@@ -18,7 +18,7 @@ public class PatologiaController {
 
     @PostMapping("crear-patologia")
     public ResponseEntity<?> crearPatologia(
-            PatologiaRequest patologiaRequest
+            @RequestBody PatologiaRequest patologiaRequest
     ) {
         patologiaService.crearPatologia(patologiaRequest);
         return ResponseEntity.ok("Patologias Creadas");
