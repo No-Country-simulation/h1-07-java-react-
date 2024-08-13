@@ -1,3 +1,4 @@
+
 export default function SkeletonsListPatient() {
   return (
     <>
@@ -210,5 +211,7 @@ export const SkeletonTreatments = () => (
     </div>
   </>
 );
+
+
 
 

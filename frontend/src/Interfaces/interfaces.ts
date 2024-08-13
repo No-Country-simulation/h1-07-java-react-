@@ -449,3 +449,97 @@ export interface AdherenceRequest{
   estado: number;
 }
 
+// ? Interfaces de Administrador
+
+// * Intituciones
+
+export interface Institution {
+  nombre: string;
+  direccion: string;
+  emailContacto: string;
+}
+
+
+export interface PagedResponse<T> {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+
+// *Medicamentos 
+
+export interface Medicamento {
+  idMedicamento: number | undefined;
+  nombre: string;
+  descripcion: string;
+}
+
+export interface PaginaMedicamentos<T> {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+//* Patalogias 
+
+export interface Patologia {
+  idPatologia: number;
+  nombre: string;
+  descripcion: string;
+}
+
+export interface PaginaPatologias<T>  {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+
+//* Farmacia 
+
+export interface Farmacia {
+  idPatologia: number;
+  nombre: string;
+  dirrecion: string;
+}
+
+export interface PaginaFarmacia<T>  {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+// * Finaziadores 
+
+export interface Financiador{
+  idPatologia: number;
+  nombre: string;
+  dirrecion: string;
+}
+
+export interface PaginaFinanciador<T>  {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
