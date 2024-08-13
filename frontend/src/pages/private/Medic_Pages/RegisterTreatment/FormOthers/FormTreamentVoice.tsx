@@ -17,7 +17,7 @@ interface FormTreatmentProps {
 export const FormTreamentVoice: React.FC<FormTreatmentProps> = ({ id, type, label }) => {
   const [transcript, setTranscript] = useState<string>('');
 
-  const handleSubmitTreatment = (values: Treatment) => {
+  const handleSubmitTreatment = async (values: Treatment) => {
     if (transcript.length < 10) {
       toast.warning("La descripción debe tener más de 10 caracteres")
       return
@@ -29,7 +29,11 @@ export const FormTreamentVoice: React.FC<FormTreatmentProps> = ({ id, type, labe
       tipoTratamiento: type
     }
     try {
-      registerTreatment(valuesForm)
+      const res = await registerTreatment(valuesForm)
+      if (res && res) {
+        window.location.href = `/patient/${id}/adherence`;
+        return
+      }
     } catch (err: any) {
       console.log(err)
     }

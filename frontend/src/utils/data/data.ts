@@ -117,3 +117,15 @@ export const initialValuesOthers: Treatment = {
   diasTotales: 1,
   fechaInicio: String(today(getLocalTimeZone())),
 };
+
+export const initialValuesExercises: Treatment = {
+  pacienteId: 10, //modificar con el id del paciente correspendiente
+  patologiaId: 1,
+  medicamentoId: 5,
+  tipoTratamiento: 1,
+  descripcion: "",
+  dosisDiaria: 0,
+  horaInicio: "",
+  diasTotales: 1,
+  fechaInicio: String(today(getLocalTimeZone())),
+};

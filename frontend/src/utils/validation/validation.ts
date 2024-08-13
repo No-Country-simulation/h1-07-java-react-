@@ -63,7 +63,14 @@ export const validationSchemaTreatment = Yup.object().shape({
     .min(1, "Selecciona una patología válida"),
 })
 
-export const validationSchemaExercises = Yup.object({});
+export const validationSchemaExercises = Yup.object().shape({
+  horaInicio: Yup.string()
+    .required("Selecciona la hora de inicio")
+    .min(1, "Selecciona la hora de inicio válido"),
+  dosisDiaria: Yup.number()
+    .required("Selecciona una frecuencia")
+    .min(1, "Selecciona una frecuencia válida"),
+})
 
 export const validationHistoryClinic = Yup.object({});
 

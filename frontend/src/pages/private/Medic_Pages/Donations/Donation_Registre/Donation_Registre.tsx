@@ -27,8 +27,8 @@ const validationSchema = Yup.object({
   fechaNacimiento: Yup.date()
     .required("Fecha de nacimiento es requerida")
     .nullable(),
-  ubicacion: Yup.string().required("Ubicación es requerida"),
-  posibleDonacion: Yup.string().required("Donación requerida"),
+  // ubicacion: Yup.string().required("Ubicación es requerida"),
+  // posibleDonacion: Yup.string().required("Donación requerida"),
   descripcion: Yup.string()
     .required("Descripción requerida")
     .min(5, "La descripción debe tener mas de 5 caracteres")
@@ -87,7 +87,7 @@ export function Donation_Registre() {
       genero: values.sexo,
       factorSanguineo: factorSanguineoMap[values.grupoRH] || 0,
       fechaNacimiento: values.fechaNacimiento,
-      localidad: values.ubicacion,
+      localidad: "",
       provincia: ""
     };
 
@@ -97,7 +97,6 @@ export function Donation_Registre() {
     try {
       await crearDonante(data);
     } catch (error) {
-
       console.error("Error al enviar los datos:", error);
     }
   };
@@ -106,7 +105,6 @@ export function Donation_Registre() {
     <main className=''>
       <Header_Donation src='JustinaLogo_2.png' link="/donations" />
       <Formik
-
         initialValues={{
           nombre: "",
           apellido: "",
@@ -262,7 +260,7 @@ export function Donation_Registre() {
                 </div>
               </div>
 
-              <div className="flex flex-col w-full mt-5">
+              {/* <div className="flex flex-col w-full mt-5">
                 <label htmlFor="ubicacion" className="font-inter font-bold">
                   Ubicación
                 </label>
@@ -275,9 +273,9 @@ export function Donation_Registre() {
                 <div className="text-red-600 mt-1">
                   <ErrorMessage name="ubicacion" />
                 </div>
-              </div>
+              </div> */}
 
-              <div className="flex flex-col w-full mt-5">
+              {/* <div className="flex flex-col w-full mt-5">
                 <label htmlFor="posibleDonacion" className="font-inter font-bold">
                   Posible Donación
                 </label>
@@ -292,7 +290,7 @@ export function Donation_Registre() {
                 <div className="text-red-600 mt-1">
                   <ErrorMessage name="posibleDonacion" />
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex flex-col w-full mt-5">
                 <label htmlFor="paciente" className="font-inter font-bold">
