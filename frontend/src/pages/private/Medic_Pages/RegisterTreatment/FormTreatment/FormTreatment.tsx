@@ -238,16 +238,25 @@ export default function FormTreatment({
               onChange={handleDateChange}
             />
           </div>
-          <div className=" bg-secondary-brand-dark border-dashed border-2 border-gray-800 h-max  text-zinc-200 font-semibold w-3/5 m-auto rounded-lg ">
-            <input disabled={imageData.uploadState} accept="image/*" onChange={handleChangedImage} id="upload-image" name="picture" type="file" defaultValue={""} className=' hidden' />
-            <label htmlFor="upload-image" className='w-full '>
-              <span className={`${imageData.uploadState ? 'cursor-not-allowed' : ' cursor-pointer'} flex justify-center flex-col items-center h-16  x`} >
-                <DownloadIcon width={30} height={30} stroke="#fff" />
-                <p className=" text-sm text-center font-medium">Agregar imagen aquí.</p>
-              </span>
+          <div className="">
+            <label
+              className="font-bold flex items-center gap-2 "
+              htmlFor="upload-image"
+            >
+              Adjuntar Imagen
             </label>
+            <p className=" text-sm text-gray-500 mb-4"><span className=" text-red-600">Aviso</span>: Por el momento solo se pueden subir imágenes en formato PNG.</p>
+            <div className=" bg-secondary-brand-dark border-dashed border-2 border-gray-800 h-max  text-zinc-200 font-semibold w-3/5 m-auto rounded-lg ">
+              <input disabled={imageData.uploadState} accept="image/*" onChange={handleChangedImage} id="upload-image" name="picture" type="file" defaultValue={""} className=' hidden' />
+              <label htmlFor="upload-image" className='w-full '>
+                <span className={`${imageData.uploadState ? 'cursor-not-allowed' : ' cursor-pointer'} flex justify-center flex-col items-center h-16  x`} >
+                  <DownloadIcon width={30} height={30} stroke="#fff" />
+                  <p className=" text-sm text-center font-medium">Agregar imagen aquí.</p>
+                </span>
+              </label>
+            </div>
+            {imageData.picture != null && <p className=' text-center font-semibold '>{imageData.picture.name}</p>}
           </div>
-          {imageData.picture != null && <p className=' text-center font-semibold '>{imageData.picture.name}</p>}
 
           <div className="">
             <label
@@ -272,7 +281,7 @@ export default function FormTreatment({
             </Field>
           </div>
           <VoiceTranscript
-            onTranscriptChange={setTranscript}
+            onTextChange={setTranscript}
             label="Recomendaciones"
           />
 

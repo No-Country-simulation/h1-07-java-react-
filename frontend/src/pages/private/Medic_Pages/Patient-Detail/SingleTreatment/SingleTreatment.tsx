@@ -1,6 +1,7 @@
 import React from 'react'
 import { tipoTratamientoMap } from '../../../../../utils/data/data'
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, useDisclosure, Image } from '@nextui-org/react'
+import { SearchIcon } from '../../../../../../public/icons/Icons'
 
 interface PropsTreatmentSingle {
   tipoTratamientoId: number
@@ -28,7 +29,7 @@ export const SingleTreatment: React.FC<PropsTreatmentSingle> = ({ tipoTratamient
           <li>Cantidad: {dosisDiaria}</li>
         </ul>
       </div>
-      <Modal isOpen={isOpen} size='md' onOpenChange={onOpenChange} placement="center" hideCloseButton>
+      <Modal isOpen={isOpen} size='lg' onOpenChange={onOpenChange} placement="center" hideCloseButton>
         <ModalContent>
           {onClose => (
             <>
@@ -40,13 +41,15 @@ export const SingleTreatment: React.FC<PropsTreatmentSingle> = ({ tipoTratamient
                   src={`https://app.requestly.io/delay/1000/${imagen ?? undefined}`}
                 />
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className='flex justify-center items-center gap-4'>
                 <a href={imagen ?? undefined} target="_blank">
-                  <Button color='primary'>
-                    Ver
+                  <Button color='default' className=' bg-[#5AA8A9] text-[#fff]'>
+                    <span><SearchIcon width={15} height={15} stroke='#fff'></SearchIcon></span>
+
+                    Ver Completo
                   </Button>
                 </a>
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button color="danger" className=' border-1 border-pink-400 bg-[#FFE9E9] text-[#F91919]' variant="light" onPress={onClose}>
                   Cerrar
                 </Button>
               </ModalFooter>
