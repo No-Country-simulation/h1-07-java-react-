@@ -1563,7 +1563,7 @@ export function MicrophoneClose({ width, height }: IconProps) {
   );
 }
 
-export function SearchIcon({ width, height }: IconProps) {
+export function SearchIcon({ width, height, stroke = "#767676" }: IconProps) {
   return (
     <svg
       width={width}
@@ -1575,7 +1575,7 @@ export function SearchIcon({ width, height }: IconProps) {
       <g clipPath="url(#clip0_518_588)">
         <path
           d="M13.1252 13.125L10.4065 10.4063M11.875 6.875C11.875 9.63642 9.63642 11.875 6.875 11.875C4.11358 11.875 1.875 9.63642 1.875 6.875C1.875 4.11358 4.11358 1.875 6.875 1.875C9.63642 1.875 11.875 4.11358 11.875 6.875Z"
-          stroke="#767676"
+          stroke={stroke}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"

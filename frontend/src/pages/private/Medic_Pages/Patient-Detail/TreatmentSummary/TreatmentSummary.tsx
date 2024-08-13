@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ContentTreatmentPacient, Patient } from "../Interfaces/interfaces";
-import { fetchTreatmentPatient } from "../Context/AuthContext";
-import { SingleTreatment } from "../pages/private/Medic_Pages/Treatment/SingleTreatment/SingleTreatment";
-import { TreatmentSkeleton } from "./Skeletons";
+import { ContentTreatmentPacient, Patient } from "../../../../../Interfaces/interfaces";
+import { fetchTreatmentPatient } from "../../../../../Context/AuthContext";
+import { TreatmentSkeleton } from "../../../../../components/Skeletons";
+import { SingleTreatment } from "../SingleTreatment/SingleTreatment";
+
 
 export default function TreatmentSummary({
   patient,
@@ -14,6 +15,14 @@ export default function TreatmentSummary({
   patient;
   const [treatments, setTreaments] = useState<ContentTreatmentPacient>();
   const [loading, setLoading] = useState(false)
+  const [visibleReadCount, setVisibleReadCount] = useState<number>(5);
+  const [showAllRead, setShowAllRead] = useState<boolean>(false);
+
+  const handleShowMore = () => {
+    setVisibleReadCount(treatments?.content.length || 0);
+    setShowAllRead(true);
+  };
+
   const fetchTreatments = async () => {
     if (id) {
       try {
@@ -37,13 +46,12 @@ export default function TreatmentSummary({
         <div className="flex justify-between">
           <h5 className="font-bold text-xl text-violet-color">Resumen</h5>
         </div>
-        <div className="xl:w-[50%]  min-h-60   leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
-
+        <div className="xl:w-[50%]  min-h-60   leading-6 flex flex-col  font-inter text-sm">
           <div className=" flex flex-col gap-4 ">
             {loading ? <TreatmentSkeleton /> :
               (<>
                 {treatments &&
-                  treatments.content.sort((a, b) => b.idTratamiento - a.idTratamiento).map((treatment) => (
+                  treatments.content.sort((a, b) => b.idTratamiento - a.idTratamiento).slice(0, visibleReadCount).map((treatment) => (
                     <SingleTreatment
                       tipoTratamientoId={treatment.tipoTratamientoId}
                       imagen={treatment.imagen}
@@ -52,8 +60,17 @@ export default function TreatmentSummary({
                       dosisDiaria={treatment.dosisDiaria}>
                     </SingleTreatment>
                   ))}
+                {treatments && treatments.content.length > 5 && !showAllRead && (
+                  <div className="flex justify-end items-center w-full">
+                    <button
+                      onClick={handleShowMore}
+                      className=" cursor-pointer transition-all duration-300 hover:brightness-90 -mt-3 h-8 flex items-center justify-center w-32 bg-secondary-brand-dark text-white py-2 px-4 rounded-2xl "
+                    >
+                      Ver Todos
+                    </button>
+                  </div>
+                )}
               </>)
-
             }
           </div>
 

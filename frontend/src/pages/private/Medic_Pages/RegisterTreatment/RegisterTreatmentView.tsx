@@ -74,6 +74,8 @@ export const RegisterTreatmentView = () => {
           financier={patient?.financiador}
           document={patient?.numeroDocumento}
           title={"Tratamientos"}
+          bgColor={"bg-gradient-to-r from-[#A1AAFF] to-[#5761C8]" }// Default gradient
+          bgHamburger={"bg-[#5761C8]"}
         >
           <div className="absolute -bottom-4 w-full flex justify-center ">
             <div className="flex gap-4">

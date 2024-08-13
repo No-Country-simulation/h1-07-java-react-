@@ -43,7 +43,7 @@ export const FormTreamentVoice: React.FC<FormTreatmentProps> = ({ id, type, labe
       {({ isSubmitting }) => (
         <Form className='flex flex-col gap-y-6 px-4 xl:max-w-2xl m-auto min-h-[60vh]'>
           <h2 className=' text-xl font-bold'>{label}</h2>
-          <VoiceTranscript onTranscriptChange={setTranscript} label={''} />
+          <VoiceTranscript onTextChange={setTranscript} label={''} />
           <div className=" flex items-center flex-col gap-2 ">
             <button
               type="submit"

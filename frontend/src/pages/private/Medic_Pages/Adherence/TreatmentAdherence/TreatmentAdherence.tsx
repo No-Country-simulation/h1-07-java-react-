@@ -116,6 +116,8 @@ export default function TreatmentAdherence() {
           financier={patient?.financiador}
           document={patient?.numeroDocumento}
           link={`/patient/${id}/adherence`}
+          bgColor={"bg-gradient-to-r from-[#A1AAFF] to-[#5761C8]" }// Default gradient
+          bgHamburger={"bg-[#5761C8]"}
         ></HeaderProfile>
         <section className="px-6 h-[120vh] w-[50%] max-lg:w-full m-auto">
           <h1 className=" mb-4 text-violet-color font-bold text-lg xl:text-center">
