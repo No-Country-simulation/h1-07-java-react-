@@ -1,3 +1,4 @@
+
 export default function SkeletonsListPatient() {
   return (
     <>
@@ -93,22 +94,22 @@ export const SkeletonNotification = () => {
 export const TreatmentSkeleton = () => {
   return (
     <>
-      <div className="animate-pulse">
-        <div className="border-2 p-2 rounded-md border-violet-color">
+      <div className="animate-pulse h bg-light-color rounded-md">
+        <div className="border-2 p-2 rounded-md border-violet-color h-20">
           <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
-          <div className="h-4 bg-gray-300 rounded-md"></div>
+          <div className="h-6 bg-gray-300 rounded-md"></div>
         </div>
       </div>
-      <div className="animate-pulse">
-        <div className="border-2 p-2 rounded-md border-violet-color">
+      <div className="animate-pulse h bg-light-color rounded-md">
+        <div className="border-2 p-2 rounded-md border-violet-color h-20">
           <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
-          <div className="h-4 bg-gray-300 rounded-md"></div>
+          <div className="h-6 bg-gray-300 rounded-md"></div>
         </div>
       </div>
-      <div className="animate-pulse">
-        <div className="border-2 p-2 rounded-md border-violet-color">
+      <div className="animate-pulse h bg-light-color rounded-md">
+        <div className="border-2 p-2 rounded-md border-violet-color h-20">
           <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
-          <div className="h-4 bg-gray-300 rounded-md"></div>
+          <div className="h-6 bg-gray-300 rounded-md"></div>
         </div>
       </div>
     </>
@@ -258,4 +259,6 @@ export const SkeletonDonors = () => (
     </li>
   </>
 )
+
+
 

@@ -8,22 +8,26 @@ export default function Medics() {
       <h3 className="font-bold font-inter text-1xl text-light-color">
         Mis Medicos
       </h3>
-      <ol className=' flex gap-2 py-2'>
-        {loading ? (<li className='flex flex-col justify-center items-center'>
-          <div className='w-16 h-16 rounded-full bg-gray-300 animate-pulse'></div>
-          <div className='mt-2 w-24 h-4 bg-gray-300 animate-pulse'></div>
-        </li>) :
+      <ol className=' flex gap-4 py-2'>
+        {loading ? (<>
+          <li className='flex flex-col justify-center items-center'>
+            <div className='w-16 h-16 rounded-full bg-gray-300 animate-pulse'></div>
+            <div className='mt-2 w-24 h-4 bg-gray-300 animate-pulse'></div>
+          </li>
+          <li className='flex flex-col justify-center items-center'>
+            <div className='w-16 h-16 rounded-full bg-gray-300 animate-pulse'></div>
+            <div className='mt-2 w-24 h-4 bg-gray-300 animate-pulse'></div>
+          </li>
+        </>) :
           (<>
-            {medics &&
-              // <Link to={`/medic/${medics.content[0].idMedico}`}>
+            {medics && medics.content.map((medic) => (
               <li className=' flex flex-col justify-center items-center'>
                 <img src="IMG_MEDICO/IMG_MEDICO.webp" alt="image-medic" className='w-16 h-16  rounded-full' />
-                <p className=' font-medium text-sm'>{medics.content[0].nombre} {medics.content[0].apellido}</p>
+                <p className=' font-medium text-sm'>{medic.nombre} {medic.apellido}</p>
               </li>
-              // </Link>
+            ))
             }
           </>)
-
         }
       </ol>
     </section>

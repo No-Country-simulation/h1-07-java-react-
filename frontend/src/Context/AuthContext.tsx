@@ -15,6 +15,10 @@ import {
   ContentPatient,
   ContentTreatmentPacient,
   DoctorRegister,
+  Institution,
+  Medicamento,
+  PagedResponse,
+  PaginaMedicamentos,
   PatientRegister,
   ResponseRequest,
   tokenData,
@@ -579,7 +583,7 @@ export const crearDonante = async (data: any) => {
     if (!response.ok) {
       const result = await response.json();
       if (result.businessErrorCode == 400) {
-        toast.warning("El paciente ya tiene un donante asignado")
+        toast.warning(`El paciente ${data.nombre} ya tiene un donante asignado`)
       } else {
         throw new Error('Error fetching data');
       }
@@ -726,9 +730,7 @@ export const registerTreatment = async (treatment: Treatment): Promise<string | 
         },
         body: JSON.stringify(treatment),
       });
-      // if (!res.ok) {
-      //   throw new Error(`Response status: ${res.status}`);
-      // }
+
       if (res.status === 200) {
         toast.success("El tratamiento fue creado correctamente");
         const data: string = await res.text()
@@ -766,15 +768,357 @@ export const submitImageTreatment = async (treatmentId: string | void, id: strin
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`);
       }
-  
+
 
       if (res.status === 200) {
         window.location.href = `/patient/${id}/adherence`;
+
       }
-      // const data = await res.json();
+
 
     } catch (error) {
       console.log(error);
     }
   }
 }
+
+//! --------------------------------
+// ? Conexiones para el Administrador 
+//! --------------------------------
+
+
+// * Instituciones Administrador 
+
+export const RegitrarIntitucion_Admin = async (values: { nombre: string; direccion: string; emailContacto: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  console.log(token)
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/institucion-de-salud/crear-institucion-de-salud`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(values),
+    });
+
+
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+
+    }
+
+
+    toast.success("La institución fue creada correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear la institución:", error);
+
+  }
+};
+
+
+
+
+export const Searchactiveinstitution_Admin = async (): Promise<PagedResponse<Institution> | undefined> => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/institucion-de-salud/buscar-instituciones-de-salud-activas`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data: PagedResponse<Institution> = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+    return undefined; // Asegúrate de manejar el caso en que no se devuelvan datos
+  }
+};
+
+// Medicamentos Administrador 
+
+// POST
+export const CreateMedicament_Admin = async (value: { nombre: string, descripcion: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  console.log(token)
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/medicamento/crear-medicamento`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(value),
+    });
+
+
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+
+    }
+
+
+    toast.success("La institución fue creada correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear la institución:", error);
+
+  }
+};
+
+
+// *GET
+export const SearchMedicamentActive_Admin = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/medicamento/buscar-medicamentos-activos`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data: PaginaMedicamentos<Medicamento> = await res.json();
+    console.log(data);
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+
+
+// ? Patalogia Adminstrador 
+
+//? Crear Patalogia Administrador 
+export const CreatePatology_Admin = async (value: { nombre: string, descripcion: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  console.log(token)
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/patologias/crear-patologia`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(value),
+    });
+
+    console.log(res)
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+
+    }
+
+    toast.success("La institución fue creada correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear la institución:", error);
+
+  }
+};
+
+
+//? Ver Patologias Administrador 
+export const SearchPatalogy_Admin = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/patologias/listar-patologias`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+
+
+// ? Farmaceutica Administrador 
+// * POST > Enviar informacion
+
+// * Crear Farmacia
+export const CreateFarmeceutica_Admin = async (value: { nombre: string; direccion: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  console.log(token)
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/farmacia/crear-farmacia`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(value),
+    });
+
+    console.log(res)
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+
+    }
+
+
+    toast.success("La institución fue creada correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear la institución:", error);
+
+  }
+};
+
+// * Ver farmacias Administrator
+export const SearchFarmeceuty_Admin = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/farmacia/buscar-farmacias-activas`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+
+// ? Financiadores Administradores 
+
+export const  CreateFinanzas_Admin = async (value: { nombre: string; descripcion: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  console.log(token)
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/financiador/crear-financiador`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(value),
+    });
+
+    console.log(res)
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+    }
+  
+    toast.success("El financiador fue creado correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear la institución:", error);
+
+  }
+};
+
+
+// * Ver Financiadores Administrador 
+
+export const SearchFinanciador_Admin = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/financiador/buscar-financiadores-activos`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+

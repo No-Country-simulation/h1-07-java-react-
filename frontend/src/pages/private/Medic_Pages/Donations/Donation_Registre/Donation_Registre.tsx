@@ -38,6 +38,8 @@ const validationSchema = Yup.object({
 
 });
 
+
+
 export function Donation_Registre() {
   const [medicInfo, setMedicInfo] = useState<Medic>();
   const [patients, setPatienInfo] = useState<ContentPatient>();
@@ -47,6 +49,7 @@ export function Donation_Registre() {
       try {
         const data = await fetchPatient();
         setPatienInfo(data);
+
       } catch (err) {
         console.log(err);
       }
@@ -87,10 +90,12 @@ export function Donation_Registre() {
       provincia: ""
     };
 
-    try {
-      await crearDonante(data);
-    } catch (error) {
-      console.error("Error al enviar los datos:", error);
+    if (data) {
+      try {
+        await crearDonante(data);
+      } catch (error) {
+        console.error("Error al enviar los datos:", error);
+      }
     }
   };
 
