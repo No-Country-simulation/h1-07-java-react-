@@ -47,6 +47,7 @@ export function Donation_Registre() {
       try {
         const data = await fetchPatient();
         setPatienInfo(data);
+      
       } catch (err) {
         console.log(err);
       }

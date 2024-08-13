@@ -61,10 +61,10 @@ export function Search_Admin() {
                     sx={{
                         width: '100%',
                         borderBottom: 'none',
-                        color: 'white',
+                        
                         '& .MuiTabs-indicator': {
                             display: 'none',
-                            color: 'white'
+                            color: 'white',
                         },
                         '& .MuiTab-root': {
                             flexGrow: 1,
@@ -85,7 +85,7 @@ export function Search_Admin() {
                     <Tab label="Medicamentos" {...a11yProps(1)} />
                     <Tab label="Patologias" {...a11yProps(2)} />
                     <Tab label="Farmaceutica" {...a11yProps(3)} />
-                    <Tab label="Financiadores" {...a11yProps(3)} />
+                    <Tab label="Financiadores" {...a11yProps(4)} />
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
