@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Header_Admin } from "../../../../components/Components_Admin/Header_Admin/Header_Admin";
 import { Aside_Admin } from "../../../../components/Components_Admin/Aside_Admin/Aside_Admin";
-import { EmailIcon, IconPassword, LapizIcon, LapizIcon_Admin } from "../../../../../public/icons/Icons";
+import { EmailIcon, IconPassword,  LapizIcon_Admin } from "../../../../../public/icons/Icons";
 
 export function User_Admin() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);

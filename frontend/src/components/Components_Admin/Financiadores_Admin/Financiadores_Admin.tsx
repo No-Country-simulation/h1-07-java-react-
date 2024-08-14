@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { IconFinaciadores_Admin, SearchIcon, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
+import { IconFinaciadores_Admin,  SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import * as Yup from 'yup';
 import { CreateFinanzas_Admin, SearchFinanciador_Admin } from "../../../Context/AuthContext";
 import { useEffect, useState } from "react";

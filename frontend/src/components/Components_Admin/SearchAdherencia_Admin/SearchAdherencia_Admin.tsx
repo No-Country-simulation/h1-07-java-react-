@@ -8,7 +8,8 @@ export function SearchAdherencia_Admin() {
     const [info, setInfo] = useState(null); 
     const [loading, setLoading] = useState(true); 
 
-    
+    console.log(info)
+    console.log(loading)
 
     useEffect(() => {
         if (id) { 
