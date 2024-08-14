@@ -78,13 +78,12 @@ export function Medicament_Admin() {
             <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1">
                 <input
                     type="text"
-                    placeholder="Buscar por nombre"
+                    placeholder="Búsqueda por nombre"
                     className="outline-none pl-2 py-1 font-inter"
                     onChange={handleSearchChange}
                 />
-                <div className="flex flex-row gap-x-3 mr-2
-                ">
-                    <SearchIcon_Admin width={20} height={20} stroke="#767676" classname=""/>
+                <div className="flex flex-row gap-x-3 mr-2">
+                    <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
                     <SilderIcon width={20} height={20} stroke="#767676" />
                 </div>
             </div>
@@ -96,7 +95,7 @@ export function Medicament_Admin() {
             >
                 {({ isSubmitting }) => (
                     <Form className="mt-10 ml-2">
-                        <h2 className="font-inter font-bold text-xl mb-2">Añadir nuevo medicamento</h2>
+                        <h2 className="font-inter font-bold text-xl mb-2">Añadir nuevo </h2>
                         <div>
                             <h2 className="font-inter">Nombre del medicamento</h2>
                             <Field

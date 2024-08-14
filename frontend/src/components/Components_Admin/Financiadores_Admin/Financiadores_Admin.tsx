@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { IconFinaciadores_Admin, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
+import { IconFinaciadores_Admin, SearchIcon, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import * as Yup from 'yup';
 import { CreateFinanzas_Admin, SearchFinanciador_Admin } from "../../../Context/AuthContext";
 import { useEffect, useState } from "react";
@@ -57,14 +57,14 @@ export function Financiadores_Admin() {
             <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1">
                 <input
                     type="text"
-                    placeholder="Buscar por nombre"
+                    placeholder="Búsqueda por nombre"
                     className="outline-none pl-2 py-1 font-inter"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <div className="flex flex-row gap-x-4">
-                    <SearchIcon width={20} height={20} classname="" stroke="" />
-                    <SilderIcon width={20} height={20} stroke="#767676" classname="mr-2" />
+                <div className="flex flex-row gap-x-3 mr-2">
+                    <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
+                    <SilderIcon width={20} height={20} stroke="#767676" />
                 </div>
             </div>
             <Formik
@@ -107,7 +107,7 @@ export function Financiadores_Admin() {
                     </Form>
                 )}
             </Formik>
-            
+
             {loading ? (
                 <SkeletonLoader />
             ) : (

@@ -47,62 +47,64 @@ export function Search_Admin() {
         console.log(event)
     };
 
-   
+
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'orange' }}>
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="basic tabs example"
-                    scrollButtons
-                    variant="scrollable"
-                    sx={{
-                        width: '100%',
-                        borderBottom: 'none',
-                        
-                        '& .MuiTabs-indicator': {
-                            display: 'none',
-                            color: 'white',
-                        },
-                        '& .MuiTab-root': {
-                            flexGrow: 1,
-                            
-                        },
-                        '& .Mui-selected': {
-                            backgroundColor: 'orange',
-                            color: 'white',
-                            borderRadius: 1,
-                        },
-                        '& .MuiTab-root:not(.Mui-selected)': {
-                            backgroundColor: 'transparent',
-                            
-                        },
-                    }}
-                >
-                    <Tab label="Instituciones" {...a11yProps(0)} />
-                    <Tab label="Medicamentos" {...a11yProps(1)} />
-                    <Tab label="Patologias" {...a11yProps(2)} />
-                    <Tab label="Farmaceutica" {...a11yProps(3)} />
-                    <Tab label="Financiadores" {...a11yProps(4)} />
-                </Tabs>
+        <div className='xl:w-[70%]'>
+            <Box sx={{ width: '100%' }} >
+                <Box sx={{ borderBottom: 1, borderColor: 'orange' }}>
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        aria-label="basic tabs example"
+                        scrollButtons
+                        variant="scrollable"
+                        sx={{
+                            width: '100%',
+                            borderBottom: 'none',
+
+                            '& .MuiTabs-indicator': {
+                                display: 'none',
+                                color: 'white',
+                            },
+                            '& .MuiTab-root': {
+                                flexGrow: 1,
+
+                            },
+                            '& .Mui-selected': {
+                                backgroundColor: 'orange',
+                                color: 'white',
+                                borderRadius: 1,
+                            },
+                            '& .MuiTab-root:not(.Mui-selected)': {
+                                backgroundColor: 'transparent',
+
+                            },
+                        }}
+                    >
+                        <Tab label="Instituciones" {...a11yProps(0)} />
+                        <Tab label="Medicamentos" {...a11yProps(1)} />
+                        <Tab label="Patologias" {...a11yProps(2)} />
+                        <Tab label="Farmaceutica" {...a11yProps(3)} />
+                        <Tab label="Financiadores" {...a11yProps(4)} />
+                    </Tabs>
+                </Box>
+                <CustomTabPanel value={value} index={0}>
+                    <Institucion_Admin />
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={1}>
+                    <Medicament_Admin />
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={2}>
+                    <Patalogia_Admin />
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={3}>
+                    <Farmaceuticas_Admin />
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={4}>
+                    <Financiadores_Admin />
+                </CustomTabPanel>
             </Box>
-            <CustomTabPanel value={value} index={0}>
-                <Institucion_Admin />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-                <Medicament_Admin />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-                <Patalogia_Admin />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={3}>
-                <Farmaceuticas_Admin />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={4}>
-               <Financiadores_Admin />
-            </CustomTabPanel>
-        </Box>
+        </div>
     );
 }

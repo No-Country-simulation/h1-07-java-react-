@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Formik, Form } from "formik";
-import { IconFarmaceutica_Admin, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
+import { IconFarmaceutica_Admin, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import * as Yup from 'yup';
 import { CreateFarmeceutica_Admin, SearchFarmeceuty_Admin } from "../../../Context/AuthContext";
 import { useEffect, useState } from "react";
@@ -67,9 +67,9 @@ export function Farmaceuticas_Admin() {
                     onChange={handleSearchChange}
                     className="outline-none pl-2 py-1 font-inter"
                 />
-                <div className="flex flex-row gap-x-4">
-                    <SearchIcon width={20} height={20} />
-                    <SilderIcon width={20} height={20} stroke="#767676" classname="mr-2" />
+                <div className="flex flex-row gap-x-3 mr-2">
+                        <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
+                        <SilderIcon width={20} height={20} stroke="#767676" />
                 </div>
             </div>
             <Formik

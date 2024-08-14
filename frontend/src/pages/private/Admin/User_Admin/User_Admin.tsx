@@ -40,60 +40,66 @@ export function User_Admin() {
         <>
             <Aside_Admin src="" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
             <Header_Admin toggleSidebar={toggleSidebar} />
-            <section className="ml-2">
-                <h2 className="font-inter font-bold text-lg">Datos inicio de sesión</h2>
+            <section className="ml-2 xl:w-full  xl:flex xl:flex-col xl:items-center">
+                <div className="xl:w-[70%] ">
+                    <h2 className="font-inter font-bold text-lg">Datos inicio de sesión</h2>
+                    <div>
+                        <div className="">
+                            <div className="flex flex-row items-center gap-x-2 mt-5">
+                                <EmailIcon width={20} height={20} />
+                                <h3 className="font-inter font-semibold">Correo</h3>
+                            </div>
 
-                <div>
-                    <div className="flex flex-row items-center gap-x-2 mt-5">
-                        <EmailIcon width={20} height={20} />
-                        <h3 className="font-inter font-semibold">Correo</h3>
+                            <div className="flex items-center border-orange-500 border-1 rounded-lg py-1 mt-2 w-[95%]">
+                                <input
+                                    type="text"
+                                    className="mt-3 pl-2 h-full w-[90%] font-inter outline-none"
+                                    value={email}
+                                    onChange={handleEmailChange}
+                                    disabled={!isEditingEmail}
+                                />
+                                {isEditingEmail ? (
+                                    <button onClick={handleSave} className="ml-2 text-blue-500">Guardar</button>
+                                ) : (
+                                    <LapizIcon_Admin
+                                        width={20}
+                                        height={20}
+                                        stroke=""
+                                        classname="cursor-pointer"
+                                        onclick={handleEmailEdit}
+                                    />
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="">
+                            <div className="flex flex-row items-center gap-x-2 mt-7">
+                                <IconPassword width={20} height={20} />
+                                <h3 className="font-inter font-semibold">Contraseña</h3>
+                            </div>
+                            <div className="flex items-center border-orange-500 border-1 rounded-lg py-1 mt-2 w-[95%]">
+                                <input
+                                    type="text"
+                                    className="mt-3 pl-2 h-full w-[90%] font-inter outline-none"
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    disabled={!isEditingPassword}
+                                />
+                                {isEditingPassword ? (
+                                    <button onClick={handleSave} className="absolutet top-12 -left-2 text-blue-500">Guardar</button>
+                                ) : (
+                                    <LapizIcon_Admin
+                                        width={20}
+                                        height={20}
+                                        stroke="#948ABC"
+                                        classname="cursor-pointer"
+                                        onclick={handlePasswordEdit}
+                                    />
+                                )}
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex items-center border-orange-500 border-1 rounded-lg py-1 mt-2 w-[95%]">
-                        <input
-                            type="text"
-                            className="mt-3 pl-2 h-full w-[90%] font-inter outline-none"
-                            value={email}
-                            onChange={handleEmailChange}
-                            disabled={!isEditingEmail}
-                        />
-                        {isEditingEmail ? (
-                            <button onClick={handleSave} className="ml-2 text-blue-500">Guardar</button>
-                        ) : (
-                            <LapizIcon_Admin
-                                width={20}
-                                height={20}
-                                stroke=""
-                                classname="cursor-pointer"
-                                onclick={handleEmailEdit}
-                            />
-                        )}
-                    </div>
-                </div>
-                <div className="">
-                    <div className="flex flex-row items-center gap-x-2 mt-7">
-                        <IconPassword width={20} height={20} />
-                        <h3 className="font-inter font-semibold">Contraseña</h3>
-                    </div>
-                    <div className="flex items-center border-orange-500 border-1 rounded-lg py-1 mt-2 w-[95%]">
-                        <input
-                            type="text"
-                            className="mt-3 pl-2 h-full w-[90%] font-inter outline-none"
-                            value={password}
-                            onChange={handlePasswordChange}
-                            disabled={!isEditingPassword}
-                        />
-                        {isEditingPassword ? (
-                            <button onClick={handleSave} className="absolutet top-12 -left-2 text-blue-500">Guardar</button>
-                        ) : (
-                            <LapizIcon_Admin
-                                width={20}
-                                height={20}
-                                stroke="#948ABC"
-                                classname="cursor-pointer"
-                                onclick={handlePasswordEdit}
-                            />
-                        )}
-                    </div>
+
                 </div>
             </section>
         </>

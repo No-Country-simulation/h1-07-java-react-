@@ -1,4 +1,4 @@
-import { IconPatalogia_Admin, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
+import { IconPatalogia_Admin, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useEffect, useState } from "react";
 import * as Yup from 'yup';
@@ -70,15 +70,15 @@ export function Patalogia_Admin(): JSX.Element {
             <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1">
                 <input
                     type="text"
-                    placeholder="Buscar por nombre"
+                    placeholder="Búsqueda por nombre"
                     className="outline-none pl-2 py-1 font-inter"
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />
-                <div className="flex flex-row gap-x-4">
-                    <SearchIcon width={20} height={20} />
-                    <SilderIcon width={20} height={20} stroke="#767676" />
-                </div>
+                 <div className="flex flex-row gap-x-3 mr-2">
+                        <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
+                        <SilderIcon width={20} height={20} stroke="#767676" />
+                    </div>
             </div>
             <Formik
                 initialValues={{ nombre: '', descripcion: '' }}
@@ -86,7 +86,7 @@ export function Patalogia_Admin(): JSX.Element {
                 onSubmit={hadlerSubmit}
             >
                 {() => (
-                    <Form className="mt-6 ml-2">
+                    <Form className="mt-10 ml-2">
                         <h2 className="font-inter font-bold text-xl mb-2">Añadir nuevo</h2>
                         <div>
                             <h2 className="font-inter">Nombre de la patalogía</h2>
