@@ -64,11 +64,11 @@ export function Search_Admin() {
                         
                         '& .MuiTabs-indicator': {
                             display: 'none',
-                            
+                            color: 'white',
                         },
                         '& .MuiTab-root': {
                             flexGrow: 1,
-
+                            
                         },
                         '& .Mui-selected': {
                             backgroundColor: 'orange',

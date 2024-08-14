@@ -16,15 +16,13 @@ const validationSchema = Yup.object({
 export function Farmaceuticas_Admin() {
     const [info, setInfo] = useState<PaginaFarmacia<Farmacia> | undefined>(undefined);
     const [loading, setLoading] = useState(true);
-
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleSubmit = async (values: any, { resetForm }: any) => {
         const data = {
             nombre: values.nombre,
             direccion: values.direccion,
         };
-
-        
 
         resetForm();
 
@@ -48,13 +46,27 @@ export function Farmaceuticas_Admin() {
             }
         }
         fetchData();
-    }, [])
+    }, []);
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const filteredFarmacias = info?.content.filter((farmacia) =>
+        farmacia.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <main>
-            <h2 className="font-inter font-bold text-xl mt-2 mb-2 ml-2">Búsquedad</h2>
+            <h2 className="font-inter font-bold text-xl mt-2 mb-2 ml-2">Búsqueda</h2>
             <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1">
-                <input type="text" placeholder="Busquedad por nombre" className="outline-none pl-2 py-1 font-inter" />
+                <input
+                    type="text"
+                    placeholder="Búsqueda por nombre"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className="outline-none pl-2 py-1 font-inter"
+                />
                 <div className="flex flex-row gap-x-4">
                     <SearchIcon width={20} height={20} />
                     <SilderIcon width={20} height={20} stroke="#767676" classname="mr-2" />
@@ -104,17 +116,16 @@ export function Farmaceuticas_Admin() {
             {loading ? (
                 <SkeletonLoader />
             ) : (
-                info?.content && info.content.length > 0 ? (
+                filteredFarmacias && filteredFarmacias.length > 0 ? (
                     <>
                         <h2 className="font-inter font-bold text-xl ml-2 mb-5">Listado</h2>
                         <section className="mb-2 w-full shadow-custom-right rounded-xl border-1 border-solid border-orange-600 py-2 px-1">
-                            {info.content.slice(0, 4).map((farmacia) => (
+                            {filteredFarmacias.slice(0, 4).map((farmacia) => (
                                 <div
-                                    key={farmacia.idPatologia}
-                                    className=" flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2"
+                                    key={farmacia.idFarmacia} // Cambia esto si el ID es diferente
+                                    className="flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2"
                                 >
                                     <IconFarmaceutica_Admin width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
-
                                     <div className="ml-4 w-[75%]">
                                         <h2 className="font-inter text-lg font-bold">{farmacia.nombre}</h2>
                                         <p className="font-inter">
@@ -126,7 +137,7 @@ export function Farmaceuticas_Admin() {
                         </section>
                     </>
                 ) : (
-                    <p className="font-inter text-lg text-gray-600 ml-2">No hay medicamentos disponibles</p>
+                    <p className="font-inter text-lg text-gray-600 ml-2">No hay farmacias disponibles</p>
                 )
             )}
 

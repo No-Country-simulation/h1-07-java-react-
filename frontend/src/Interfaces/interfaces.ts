@@ -511,7 +511,7 @@ export interface PaginaPatologias<T>  {
 //* Farmacia 
 
 export interface Farmacia {
-  idPatologia: number;
+  idFarmacia: number;
   nombre: string;
   dirrecion: string;
 }
@@ -529,9 +529,9 @@ export interface PaginaFarmacia<T>  {
 // * Finaziadores 
 
 export interface Financiador{
-  idPatologia: number;
+  idFinanciador: number;
   nombre: string;
-  dirrecion: string;
+  descripcion: string;
 }
 
 export interface PaginaFinanciador<T>  {

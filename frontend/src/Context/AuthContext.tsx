@@ -823,8 +823,6 @@ export const RegitrarIntitucion_Admin = async (values: { nombre: string; direcci
 };
 
 
-
-
 export const Searchactiveinstitution_Admin = async (): Promise<PagedResponse<Institution> | undefined> => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
@@ -1057,7 +1055,7 @@ export const SearchFarmeceuty_Admin = async () => {
 
 // ? Financiadores Administradores 
 
-export const  CreateFinanzas_Admin = async (value: { nombre: string; descripcion: string }) => {
+export const CreateFinanzas_Admin = async (value: { nombre: string; descripcion: string }) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   console.log(token)
 
@@ -1080,7 +1078,7 @@ export const  CreateFinanzas_Admin = async (value: { nombre: string; descripcion
     if (res.status === 200) {
       console.log('La institucion fue creada con exito')
     }
-  
+
     toast.success("El financiador fue creado correctamente");
     return await res.json();
   }
@@ -1120,3 +1118,33 @@ export const SearchFinanciador_Admin = async () => {
   }
 };
 
+// * Conencion con datos para la Adherencia
+
+//?  Medicamentos globales
+
+export const AdherenciaMedicament_Admin = async (id: string | undefined) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/adherencia/datos-globales-por-medicamento/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
