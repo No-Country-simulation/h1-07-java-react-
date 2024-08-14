@@ -45,9 +45,9 @@ export default function TreatmentAdherence() {
     {
       total: 10000,
       data: [
-        { name: "Completado", value: 2400 },
-        { name: "Page B", value: 1398 },
-        { name: "Page C", value: 9800 },
+        { name: "Completado", value: 0 },
+        { name: "Page B", value: 0 },
+        { name: "Page C", value: 0 },
       ]
     }
 

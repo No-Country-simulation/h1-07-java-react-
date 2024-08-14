@@ -35,7 +35,7 @@ const buildUrl = (values: DonationForm, page: Number, pageSize: number) => {
 
 export default function Donations() {
   const [donors, setDonors] = useState<ContentDonations>();
-  const [isOpenFilter, setIsOpenFilter] = useState(true)
+  const [isOpenFilter, setIsOpenFilter] = useState(false)
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);

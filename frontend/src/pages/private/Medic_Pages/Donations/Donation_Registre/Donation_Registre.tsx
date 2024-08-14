@@ -122,7 +122,25 @@ export function Donation_Registre() {
         {() => (
           <Form className="flex flex-col ml-4 xl:flex xl:flex-col xl:items-center xl:justify-center xl:content-center xl:w-full">
             <div className='xl:w-[50%]'>
-
+              <div className="flex flex-col w-full mt-5">
+                <label htmlFor="pacienteId" className="font-inter font-bold">
+                  Selecciona Paciente
+                </label>
+                <Field as="select"
+                  className="w-[90%] h-14 p-2 border border-[#3D4DA5] rounded-md mt-1"
+                  name="pacienteId"
+                >
+                  <option value={0} label="Selecciona un paciente" />
+                  {patients?.content.map((items) => (
+                    <option key={items.idPaciente} value={items.idPaciente}>
+                      {items.nombre} {items.apellido}
+                    </option>
+                  ))}
+                </Field>
+                <div className="text-red-600 mt-1">
+                  <ErrorMessage name="pacienteId" />
+                </div>
+              </div>
               <div className='xl:flex xl:flex-row  xl:w-full xl:mb-10  xl:justify-center xl:items-center'>
                 <div className="flex flex-col xl:w-[50%]">
                   <label htmlFor="nombre" className="mb-3 font-inter font-bold">
@@ -291,25 +309,7 @@ export function Donation_Registre() {
                 </div>
               </div> */}
 
-              <div className="flex flex-col w-full mt-5">
-                <label htmlFor="pacienteId" className="font-inter font-bold">
-                  Selecciona Paciente
-                </label>
-                <Field as="select"
-                  className="w-[90%] h-14 p-2 border border-[#3D4DA5] rounded-md mt-1"
-                  name="pacienteId"
-                >
-                  <option value={0} label="Selecciona un paciente" />
-                  {patients?.content.map((items) => (
-                    <option key={items.idPaciente} value={items.idPaciente}>
-                      {items.nombre} {items.apellido}
-                    </option>
-                  ))}
-                </Field>
-                <div className="text-red-600 mt-1">
-                  <ErrorMessage name="pacienteId" />
-                </div>
-              </div>
+
 
               <div className="flex flex-col w-full mt-5">
                 <label htmlFor="descripcion" className="font-inter font-bold">

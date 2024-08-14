@@ -15,7 +15,7 @@ export default function Exercises() {
           </span> */}
           <section className=" flex flex-col gap-4">
             <div className="flex flex-col justify-center items-center">
-              <img src="exercise_walking.png" width={300} alt="image-mental" />
+              <img src="exercise_walking.png" width={200} alt="image-mental" />
               <p className="mt-4 text-xl font-semibold text-center px-60 max-lg:px-40 max-md:px-12 text-light-color">Ejericicios asignados por su especialista para complementar su tratamiento</p>
             </div>
             <ol className=" items-center flex justify-center m-auto max-md:w-full flex-col gap-2">
