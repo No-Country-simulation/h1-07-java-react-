@@ -63,7 +63,14 @@ export const validationSchemaTreatment = Yup.object().shape({
     .min(1, "Selecciona una patología válida"),
 })
 
-export const validationSchemaExercises = Yup.object({});
+export const validationSchemaExercises = Yup.object().shape({
+  horaInicio: Yup.string()
+    .required("Selecciona la hora de inicio")
+    .min(1, "Selecciona la hora de inicio válido"),
+  dosisDiaria: Yup.number()
+    .required("Selecciona una frecuencia")
+    .min(1, "Selecciona una frecuencia válida"),
+})
 
 export const validationHistoryClinic = Yup.object({});
 
@@ -74,4 +81,15 @@ export const validationSchemaLogin = Yup.object({
   password: Yup.string()
     .min(6, "La contraseña debe tener mas de 6 caracteres")
     .required("La contraseña es obligatoria"),
+});
+
+export const validationSchemaDonor = Yup.object({
+  textoBusqueda: Yup.string(),
+  edad: Yup.number()
+    .min(0, "Edad no puede ser negativa")
+    .max(99, "Edad no puede ser mayor de 99"),
+  peso: Yup.number()
+    .min(0, "Peso no puede ser negativo"),
+  altura: Yup.number()
+    .min(0, "Altura no puede ser negativa "),
 });
