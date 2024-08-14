@@ -4,39 +4,37 @@ import { MenuHambuerguesaAdmin, UserIconTwoAdmin } from "../../../../public/icon
 
 interface Type {
     toggleSidebar: () => void;
-    
+
 }
 
 
-export function Header_Admin({toggleSidebar} : Type) {
+export function Header_Admin({ toggleSidebar }: Type) {
     return (
-        <header className="flex shadow-2xl flex-col justify-between h-[11.9rem] mb-4 relative rounded-ee-[3rem] bg-gradient-to-r from-[#FFB278] to-[#FBEB5C] || xl:rounded-es-[3rem] xl:w-full xl:max-w-full  ">
-            <div className="flex flex-col justify-between h-full || xl:items-center xl:justify-center xl:max-h-dvh">
-                <div className="flex flex-row justify-around mt-3 w-full || xl:w-[90%] xl:bg-green-500 xl:h-0">
+        <header className="flex shadow-2xl flex-col justify-between h-[11.9rem] mb-4 relative rounded-ee-[3rem] bg-gradient-to-r from-[#FFB278] to-[#FBEB5C] || xl:rounded-es-[3rem] xl:w-full xl:max-w-full xl:items-center ">
+            <div className="flex flex-col justify-center items-baseline h-full ||  xl:items-center xl:h-28 xl:justify-center xl:w-[70%]">
+                <div className="flex flex-row mt-3 w-full || xl:w-[90%] xl:bg-green-500 xl:h-0">
                     <Link to={"/user_admin"}>
-                        <div className="">
+                        <div className="ml-1 xl:m-0">
                             <UserIconTwoAdmin width={50} height={50} stroke="#FF6600" classname="" />
                         </div>
                     </Link>
-                    <h3 className="xl:hidden || text-center text-3xl font-inter font-bold text-black w-[30%] py-1 ">
-                        Buenos días
-                    </h3>
-                    <div className="">
+                    <div className="h-full flex flex-col items-center w-[70%] || xl:w-full  ">
+                        <h3 className="text-3xl w-[50%] text-center mb-2 ml-2 font-inter font-bold ||  xl:m-0 xl:w-[100%] xl:ml-10">
+                            Buenos días
+                        </h3>
+                        <p className="font-inter ml-2 xl:ml-8 font-bold text-center w-[50%]  xl:w-[50%] text-lg  xl:p-0">
+                            Modalidad Administrador
+                        </p>
+
+                    </div>
+                    <div className=" mr-2 xl:m-0">
                         <button onClick={toggleSidebar}>
                             <MenuHambuerguesaAdmin width={40} height={40} stroke="#000" classname="" />
                         </button>
                     </div>
                 </div>
 
-                <div className="h-full justify-center flex flex-col items-center w-full  ||  xl:h-20 xl:items-start xl:w-[35%] ">
-                    <h3 className="hidden || xl:flex xl:text-2xl xl:font-inter xl:font-bold  ">
-                        Buenos días
-                    </h3>
-                    <p className="font-inter text-center xl:text-start font-bold w-[50] text-xl">
-                        Modalidad
-                    </p>
-                    <p className="font-bold text-xl">Administrador</p>
-                </div>
+
 
             </div>
         </header>

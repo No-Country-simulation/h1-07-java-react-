@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
+  AdherenciasIcon_Admin,
   HomeIconTwo,
   PeopleIcon,
   UserIcon,
@@ -13,6 +14,7 @@ import { Logout } from "../../Logout";
 const menuItems = [
   { to: "/admin_page", icon: HomeIconTwo, label: "Inicio" },
   { to: "/user_Admin", icon: PeopleIcon, label: "Perfil" },
+  {to: "/adherencias_admin" , icon: AdherenciasIcon_Admin, label: "Adherencias" },
 ];
 
 interface MenuProps {

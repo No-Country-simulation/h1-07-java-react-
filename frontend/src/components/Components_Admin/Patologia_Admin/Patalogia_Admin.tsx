@@ -1,7 +1,6 @@
-import { IconPatalogia_Admin, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
+import { IconPatalogia_Admin, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useEffect, useState } from "react";
-
 import * as Yup from 'yup';
 import { CreatePatology_Admin, SearchPatalogy_Admin } from "../../../Context/AuthContext";
 import SkeletonLoader from "../Skeletor_Admin/Skeletor_Admin";
@@ -12,29 +11,26 @@ const validationSchema = Yup.object({
     descripcion: Yup.string().required('La descripción es obligatoria'),
 });
 
-
 export function Patalogia_Admin(): JSX.Element {
 
     const [info, setInfo] = useState<PaginaPatologias<Patologia> | undefined>(undefined);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState<string>(''); // Estado para el término de búsqueda
 
     const hadlerSubmit = async (values: any, { resetForm }: any) => {
         const data = {
             nombre: values.nombre,
             descripcion: values.descripcion,
-
         };
 
         resetForm();
 
         try {
             await CreatePatology_Admin(data);
-
         } catch (error) {
             console.error("Error al enviar los datos:", error);
-
         }
-    }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,35 +43,50 @@ export function Patalogia_Admin(): JSX.Element {
             } finally {
                 setLoading(false);
             }
-        }
+        };
         fetchData();
-    }, [])
+    }, []);
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value.toLowerCase());
+    };
+
+    const filteredPatologias = info?.content.filter(patologia =>
+        patologia.nombre.toLowerCase().includes(searchTerm)
+    );
 
     const MAX_DESCRIPTION_LENGTH = 39;
 
     const truncateText = (text: string | null | undefined, maxLength: number): string => {
         if (!text) {
-            return ''; 
+            return '';
         }
         return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
     };
 
     return (
-        <main className="">
-            <h2 className="font-inter font-bold text-xl mt-2 ml-2 mb-2">Búsquedad</h2>
+        <main>
+            <h2 className="font-inter font-bold text-xl mt-2 ml-2 mb-2">Búsqueda</h2>
             <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1">
-                <input type="text" placeholder="Busquedad por nombre" className="outline-none pl-2 py-1 font-inter" />
-                <div className="flex flex-row gap-x-4">
-                    <SearchIcon width={20} height={20} classname="" stroke="" />
-                    <SilderIcon width={20} height={20} stroke="#767676" classname="mr-2" />
-                </div>
+                <input
+                    type="text"
+                    placeholder="Búsqueda por nombre"
+                    className="outline-none pl-2 py-1 font-inter"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+                 <div className="flex flex-row gap-x-3 mr-2">
+                        <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
+                        <SilderIcon width={20} height={20} stroke="#767676" />
+                    </div>
             </div>
             <Formik
                 initialValues={{ nombre: '', descripcion: '' }}
                 validationSchema={validationSchema}
-                onSubmit={hadlerSubmit}>
+                onSubmit={hadlerSubmit}
+            >
                 {() => (
-                    <Form className="mt-6 ml-2">
+                    <Form className="mt-10 ml-2">
                         <h2 className="font-inter font-bold text-xl mb-2">Añadir nuevo</h2>
                         <div>
                             <h2 className="font-inter">Nombre de la patalogía</h2>
@@ -85,7 +96,6 @@ export function Patalogia_Admin(): JSX.Element {
                                 placeholder="Ej: Whippie"
                                 className="outline-none pl-2 font-inter shadow-custom-right py-3 w-full rounded-lg mt-2 border-orange-500 border-1"
                             />
-
                             <ErrorMessage name="nombre" component="div" className="absolute text-red-500" />
                         </div>
                         <div className="mt-7">
@@ -113,20 +123,20 @@ export function Patalogia_Admin(): JSX.Element {
             {loading ? (
                 <SkeletonLoader />
             ) : (
-                info?.content && info.content.length > 0 ? (
+                filteredPatologias && filteredPatologias.length > 0 ? (
                     <>
                         <h2 className="font-inter font-bold text-xl ml-2 mb-5">Listado</h2>
                         <section className="mb-2 w-full shadow-custom-right rounded-xl border-1 border-solid border-orange-600 py-2 px-1">
-                            {info.content.slice(0, 4).map((institution) => (
+                            {filteredPatologias.slice(0, 4).map((patologia) => (
                                 <div
-                                    key={institution.idPatologia}
-                                    className=" flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2"
+                                    key={patologia.idPatologia}
+                                    className="flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2"
                                 >
                                     <IconPatalogia_Admin width={60} height={60} stroke="#fff" classname="bg-orange-600 p-2 border-1 border-white border-solid" />
-                                    <div className="ml-4  w-[75%]">
-                                        <h2 className="font-inter text-lg font-bold">{institution.nombre}</h2>
+                                    <div className="ml-4 w-[75%]">
+                                        <h2 className="font-inter text-lg font-bold">{patologia.nombre}</h2>
                                         <p className="font-inter">
-                                            {truncateText(institution.descripcion, MAX_DESCRIPTION_LENGTH)}
+                                            {truncateText(patologia.descripcion, MAX_DESCRIPTION_LENGTH)}
                                         </p>
                                     </div>
                                 </div>
@@ -134,7 +144,7 @@ export function Patalogia_Admin(): JSX.Element {
                         </section>
                     </>
                 ) : (
-                    <p className="font-inter text-lg text-gray-600 ml-2">No hay medicamentos disponibles</p>
+                    <p className="font-inter text-lg text-gray-600 ml-2">No hay patologías disponibles</p>
                 )
             )}
 

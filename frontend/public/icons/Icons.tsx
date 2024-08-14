@@ -2919,6 +2919,48 @@ export function SearchIcon_Admin({ width, height, stroke, classname }: IconProps
   );
 }
 
+export function AdherenciasIcon_Admin({ width, height, stroke, classname }: IconPropsAdmin) {
+  return (
+    <svg width={width} height={height} className={classname} viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.2549 1C13.7815 1 13.3977 1.38376 13.3977 1.85714V4.26791H10.987C10.5136 4.26791 10.1299 4.65165 10.1299 5.12505V7.91077C10.1299 8.38415 10.5136 8.76791 10.987 8.76791H13.3977V11.1786C13.3977 11.652 13.7815 12.0357 14.2549 12.0357H17.0406C17.514 12.0357 17.8977 11.652 17.8977 11.1786V8.76791H20.3085C20.7818 8.76791 21.1656 8.38415 21.1656 7.91077V5.12505C21.1656 4.65165 20.7818 4.26791 20.3085 4.26791H17.8977V1.85714C17.8977 1.38376 17.514 1 17.0406 1H14.2549Z" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M1 17.7144L5.18925 21.2055C5.80542 21.7189 6.58209 22.0002 7.38417 22.0002H18.4286C19.2175 22.0002 19.8571 21.3606 19.8571 20.5716C19.8571 18.9936 18.5779 17.7144 17 17.7144H9.32164" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M6.14286 16.0001L7.42857 17.2857C8.13865 17.9959 9.28991 17.9959 10 17.2857C10.7101 16.5756 10.7101 15.4244 10 14.7144L8.0042 12.7186C7.36122 12.0756 6.48915 11.7144 5.57984 11.7144H1" stroke={stroke} stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+
+  )
+}
+
+interface IconPropsThree {
+  width: number;
+  height: number;
+  stroke: string;
+  classname: string;
+  onclick: () => void;
+}
+
+export function LapizIcon_Admin({ width, height, stroke, classname, onclick }: IconPropsThree) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      className={classname}
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      onClick={onclick}
+      
+    >
+      <path
+        d="M7.5 12.5001H13.125M10.3125 2.18764C10.5611 1.939 10.8984 1.79932 11.25 1.79932C11.4241 1.79932 11.5965 1.83361 11.7574 1.90024C11.9182 1.96687 12.0644 2.06453 12.1875 2.18764C12.3106 2.31076 12.4083 2.45691 12.4749 2.61777C12.5415 2.77863 12.5758 2.95103 12.5758 3.12514C12.5758 3.29925 12.5415 3.47166 12.4749 3.63251C12.4083 3.79337 12.3106 3.93953 12.1875 4.06264L4.375 11.8751L1.875 12.5001L2.5 10.0001L10.3125 2.18764Z"
+        stroke={stroke}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function ClipIcon({ width, height, stroke }: IconPropsAdmin) {
   return (
     <svg width={width} height={height} viewBox="0 0 8 8" fill={stroke} xmlns="http://www.w3.org/2000/svg">
@@ -2944,4 +2986,3 @@ export function ImageIcon({ width, height, stroke }: IconPropsAdmin) {
     </svg>
   );
 }
-

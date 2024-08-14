@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { IconFinaciadores_Admin, SearchIcon, SilderIcon } from "../../../../public/icons/Icons";
+import { IconFinaciadores_Admin,  SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import * as Yup from 'yup';
 import { CreateFinanzas_Admin, SearchFinanciador_Admin } from "../../../Context/AuthContext";
 import { useEffect, useState } from "react";
@@ -16,12 +16,12 @@ const validationSchema = Yup.object({
 export function Financiadores_Admin() {
     const [info, setInfo] = useState<PaginaFinanciador<Financiador> | undefined>(undefined);
     const [loading, setLoading] = useState(true);
-
+    const [searchQuery, setSearchQuery] = useState<string>("");
 
     const handleSubmit = async (values: any, { resetForm }: any) => {
         const data = {
             nombre: values.nombre,
-            descripcion: values.descripcion, // Corrección aquí
+            descripcion: values.descripcion,
         };
 
         resetForm();
@@ -38,7 +38,6 @@ export function Financiadores_Admin() {
             try {
                 const data = await SearchFinanciador_Admin();
                 setInfo(data);
-                console.log(data);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -48,14 +47,24 @@ export function Financiadores_Admin() {
         fetchData();
     }, [])
 
+    const filteredFinanciadores = info?.content.filter(financiador =>
+        financiador.nombre.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <main>
             <h2 className="font-inter font-bold text-xl mt-2 mb-2 ml-2">Búsqueda</h2>
             <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1">
-                <input type="text" placeholder="Búsqueda por nombre" className="outline-none pl-2 py-1 font-inter" />
-                <div className="flex flex-row gap-x-4">
-                    <SearchIcon width={20} height={20} classname="" stroke="" />
-                    <SilderIcon width={20} height={20} stroke="#767676" classname="mr-2" />
+                <input
+                    type="text"
+                    placeholder="Búsqueda por nombre"
+                    className="outline-none pl-2 py-1 font-inter"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <div className="flex flex-row gap-x-3 mr-2">
+                    <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
+                    <SilderIcon width={20} height={20} stroke="#767676" />
                 </div>
             </div>
             <Formik
@@ -98,24 +107,24 @@ export function Financiadores_Admin() {
                     </Form>
                 )}
             </Formik>
-            
+
             {loading ? (
                 <SkeletonLoader />
             ) : (
-                info?.content && info.content.length > 0 ? (
+                filteredFinanciadores && filteredFinanciadores.length > 0 ? (
                     <>
                         <h2 className="font-inter font-bold text-xl ml-2 mb-5">Listado</h2>
                         <section className="mb-2 w-full shadow-custom-right rounded-xl border-1 border-solid border-orange-600 border-b-0 py-0 px-0">
-                            {info.content.slice(0, 4).map((farmacia) => (
+                            {filteredFinanciadores.slice(0, 4).map((financiador) => (
                                 <div
-                                    key={farmacia.idPatologia}
-                                    className=" flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2"
+                                    key={financiador.idFinanciador}
+                                    className="flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2"
                                 >
                                     <IconFinaciadores_Admin width={66} height={66} classname="rounded-lg bg-orange-600 p-2" stroke="#fff" />
                                     <div className="ml-4 w-[75%]">
-                                        <h2 className="font-inter text-lg font-bold">{farmacia.nombre}</h2>
+                                        <h2 className="font-inter text-lg font-bold">{financiador.nombre}</h2>
                                         <p className="font-inter">
-                                            {farmacia.dirrecion}
+                                            {financiador.descripcion}
                                         </p>
                                     </div>
                                 </div>
@@ -123,7 +132,7 @@ export function Financiadores_Admin() {
                         </section>
                     </>
                 ) : (
-                    <p className="font-inter text-lg text-gray-600 ml-2">No hay medicamentos disponibles</p>
+                    <p className="font-inter text-lg text-gray-600 ml-2">No hay financiadores disponibles</p>
                 )
             )}
 
