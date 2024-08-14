@@ -1,8 +1,10 @@
 package io.justina.justinaio.services;
 
 import io.justina.justinaio.model.HorarioToma;
+import io.justina.justinaio.model.Notificacion;
 import io.justina.justinaio.model.enums.EstadoHorario;
 import io.justina.justinaio.repositories.HorarioTomaRepository;
+import io.justina.justinaio.repositories.NotificacionRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,6 +18,7 @@ import java.util.List;
 public class ActualizacionEstadoHorarioService {
 
     private final HorarioTomaRepository horarioTomaRepository;
+    private final NotificacionRepository notificacionRepository;
 
     @Transactional
     @Scheduled(fixedRate = 3600000) // Ejecución cada 60 minutos
@@ -30,6 +33,14 @@ public class ActualizacionEstadoHorarioService {
             LocalDateTime fechaHoraHorario = LocalDateTime.of(horario.getFecha(), horario.getHora());
             if (fechaHoraHorario.isBefore(haceUnDia)) {
                 horario.setEstadoHorario(EstadoHorario.NO_COMPLETADO);
+
+                // Verificar si existe una notificación asociada
+                Notificacion notificacion = notificacionRepository.findByHorarioToma(horario);
+                if (notificacion != null && !notificacion.getLeido()) {
+                    // Marcar la notificación como leída
+                    notificacion.setLeido(true);
+                    notificacionRepository.save(notificacion);
+                }
             }
         }
 
@@ -37,4 +48,5 @@ public class ActualizacionEstadoHorarioService {
         horarioTomaRepository.saveAll(horariosEnCurso);
     }
 }
+
 

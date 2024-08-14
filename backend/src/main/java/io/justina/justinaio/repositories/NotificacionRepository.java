@@ -27,6 +27,8 @@ public interface NotificacionRepository extends JpaRepository<Notificacion, Inte
 
     // Encuentra todas las notificaciones para un paciente dentro de un rango de fechas
     List<Notificacion> findByPacienteAndFechaBetween(Paciente paciente, LocalDate startDate, LocalDate endDate);
+
+    Notificacion findByHorarioToma(HorarioToma horario);
 }
 
 
