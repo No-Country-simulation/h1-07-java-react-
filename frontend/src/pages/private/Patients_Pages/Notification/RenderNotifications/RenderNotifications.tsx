@@ -21,7 +21,7 @@ export const RenderNotifications: React.FC<Notifications> = ({ notifications, re
     <>
       {notifications
         .sort((a, b) => {
-          const notifyRead = Number(b.leido) - Number(a.leido) //OBTINE SI ESTA LEIDO O NO
+          const notifyRead = Number(b.leido) - Number(a.leido) //OBTIENE SI ESTA LEIDO O NO
           if (notifyRead !== 0) return notifyRead //RETORNA SI ESTA LEIDO
           const dateA = new Date(`${a.fecha}T${a.hora}`) // TRANSFORMA EN DATE LA HORA Y FECHA
           const dateB = new Date(`${b.fecha}T${b.hora}`)

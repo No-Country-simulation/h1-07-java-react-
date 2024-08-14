@@ -12,7 +12,7 @@ export default function Mental() {
           </h3>
           <section className=" flex flex-col gap-4">
             <div className="flex flex-col justify-center items-center">
-              <img src="meditation.png" width={300} alt="image-mental" />
+              <img src="meditation.png" width={250} alt="image-mental" />
               <p className=" text-xl font-semibold text-center px-60 max-lg:px-40 max-md:px-12 text-light-color">Tareas asignadas por su especialista para complementar su tratamiento</p>
             </div>
             <ol className=" items-center flex justify-center m-auto max-md:w-full flex-col gap-2">
