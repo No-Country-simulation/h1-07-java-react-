@@ -36,8 +36,8 @@ const buildUrl = (values: DonationForm, page: Number, pageSize: number) => {
 export default function Donations() {
   const [donors, setDonors] = useState<ContentDonations>();
   const [isOpenFilter, setIsOpenFilter] = useState(true)
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
   const [loading, setLoading] = useState(false)
   const pageSize = 5; // Número de elementos por página
@@ -68,7 +68,7 @@ export default function Donations() {
   };
 
   const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
+    if (page >= 0 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
@@ -83,7 +83,7 @@ export default function Donations() {
 
   useEffect(() => {
     if (donors && donors?.content.length === 0) {
-      setCurrentPage(1)
+      setCurrentPage(0)
     }
   }, [donors && donors.content]);
 
