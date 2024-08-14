@@ -5,10 +5,10 @@ import {
   AuthenticationRequest,
   ClinicHistoryProps,
   DoctorRegister,
+  DonationForm,
   PatientRegister,
   Treatment,
 } from "../../Interfaces/interfaces";
-import { Donation } from "../../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
 
 export const tipoTratamientoMap: Record<number, string> = {
   0: "Medicación",
@@ -51,7 +51,7 @@ export const initialValuesPatient: PatientRegister = {
   financiadorId: 1,
 };
 
-export const initialValuesFilter: Donation = {
+export const initialValuesFilter: DonationForm = {
   textoBusqueda: "",
   edad: "",
   peso: "",
@@ -114,6 +114,18 @@ export const initialValuesOthers: Treatment = {
   descripcion: "",
   dosisDiaria: 1,
   horaInicio: "12:00",
+  diasTotales: 1,
+  fechaInicio: String(today(getLocalTimeZone())),
+};
+
+export const initialValuesExercises: Treatment = {
+  pacienteId: 10, //modificar con el id del paciente correspendiente
+  patologiaId: 1,
+  medicamentoId: 5,
+  tipoTratamiento: 1,
+  descripcion: "",
+  dosisDiaria: 0,
+  horaInicio: "",
   diasTotales: 1,
   fechaInicio: String(today(getLocalTimeZone())),
 };

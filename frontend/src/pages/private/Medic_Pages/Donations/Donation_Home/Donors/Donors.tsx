@@ -37,7 +37,6 @@ export const Donors: React.FC<DonorProps> = ({ idDonante, genero, fechaNacimient
           Authorization: `Bearer ${token}`,
         },
       })
-
       const data = await res.json()
       setMedic(data)
     } catch (error) {
@@ -50,7 +49,6 @@ export const Donors: React.FC<DonorProps> = ({ idDonante, genero, fechaNacimient
 
   return (
     <>
-
       <li
         key={idDonante}
         onClick={fetchDataMedicForDonor}

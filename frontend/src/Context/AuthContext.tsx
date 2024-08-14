@@ -321,6 +321,7 @@ export async function fetchPatient() {
         },
       });
 
+
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`);
       }
@@ -576,12 +577,13 @@ export const crearDonante = async (data: any) => {
 
     if (response.status === 200) {
       toast.success("El donante fue creado correctamente")
+      window.location.href = `/donations`;
     }
 
     if (!response.ok) {
       const result = await response.json();
       if (result.businessErrorCode == 400) {
-        toast.warning("El paciente ya tiene un donante asignado")
+        toast.warning(`El paciente ${data.nombre} ya tiene un donante asignado`)
       } else {
         throw new Error('Error fetching data');
       }

@@ -94,22 +94,22 @@ export const SkeletonNotification = () => {
 export const TreatmentSkeleton = () => {
   return (
     <>
-      <div className="animate-pulse">
-        <div className="border-2 p-2 rounded-md border-violet-color">
+      <div className="animate-pulse h bg-light-color rounded-md">
+        <div className="border-2 p-2 rounded-md border-violet-color h-20">
           <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
-          <div className="h-4 bg-gray-300 rounded-md"></div>
+          <div className="h-6 bg-gray-300 rounded-md"></div>
         </div>
       </div>
-      <div className="animate-pulse">
-        <div className="border-2 p-2 rounded-md border-violet-color">
+      <div className="animate-pulse h bg-light-color rounded-md">
+        <div className="border-2 p-2 rounded-md border-violet-color h-20">
           <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
-          <div className="h-4 bg-gray-300 rounded-md"></div>
+          <div className="h-6 bg-gray-300 rounded-md"></div>
         </div>
       </div>
-      <div className="animate-pulse">
-        <div className="border-2 p-2 rounded-md border-violet-color">
+      <div className="animate-pulse h bg-light-color rounded-md">
+        <div className="border-2 p-2 rounded-md border-violet-color h-20">
           <div className="h-6 bg-gray-300 rounded-md mb-2"></div>
-          <div className="h-4 bg-gray-300 rounded-md"></div>
+          <div className="h-6 bg-gray-300 rounded-md"></div>
         </div>
       </div>
     </>
@@ -211,7 +211,54 @@ export const SkeletonTreatments = () => (
     </div>
   </>
 );
-
+export const SkeletonDonors = () => (
+  <>
+    <li
+      className="flex animate-pulse cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500">
+      <div className="flex flex-row items-center w-full p-1">
+        <div className="flex flex-col ml-3 w-full">
+          <div className="flex  flex-col gap-2">
+            <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      className="flex animate-pulse cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500">
+      <div className="flex flex-row items-center w-full p-1">
+        <div className="flex flex-col ml-3 w-full">
+          <div className="flex  flex-col gap-2">
+            <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      className="flex animate-pulse cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500">
+      <div className="flex flex-row items-center w-full p-1">
+        <div className="flex flex-col ml-3 w-full">
+          <div className="flex  flex-col gap-2">
+            <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      className="flex animate-pulse cursor-pointer justify-between py-1 px-2 border-b-1 border-gray-500">
+      <div className="flex flex-row items-center w-full p-1">
+        <div className="flex flex-col ml-3 w-full">
+          <div className="flex  flex-col gap-2">
+            <div className="h-4 bg-gray-200 rounded w-2/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </>
+)
 
 
 
