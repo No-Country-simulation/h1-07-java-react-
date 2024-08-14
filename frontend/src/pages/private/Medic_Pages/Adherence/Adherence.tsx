@@ -77,7 +77,7 @@ export default function Adherence() {
                   <>
                     <p className="xl:text-center">El paciente no tiene tratamientos</p>
                     <Link
-                      to={`/patient/${id}/treatment`}
+                      to={`/patient/${id}/treatment-register`}
                       className=" flex justify-center"
                     >
                       <button className=" rounded-md mt-6 w-2/4 h-12 m-auto font-semibold bg-violet-color text-white">
