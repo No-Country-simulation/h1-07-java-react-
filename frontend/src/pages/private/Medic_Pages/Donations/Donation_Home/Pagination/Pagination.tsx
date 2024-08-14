@@ -33,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         type="button"
         className={`py-2 px-4 rounded-lg bg-blue-500 text-white`}
       >
-        {currentPage}
+        {currentPage+1}
       </button>
 
       {/* Botón "Siguiente" */}
