@@ -5,17 +5,19 @@ import { Search_Admin } from "../../../../components/Components_Admin/Search_Adm
 
 export function Home_Admin() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
 
-    return (
-        <>
-           <Aside_Admin src="" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>           
-           <Header_Admin toggleSidebar={toggleSidebar}/>
-           <Search_Admin />
-        </>
-    )
+  return (
+    <>
+      <Aside_Admin src="" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <Header_Admin toggleSidebar={toggleSidebar} />
+      <div className="xl:flex xl:flex-col xl:items-center">
+        <Search_Admin />
+      </div>
+    </>
+  )
 }
