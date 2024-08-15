@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Formik, Form } from "formik";
 import { IconFarmaceutica_Admin, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import * as Yup from 'yup';
 import { CreateFarmeceutica_Admin, SearchFarmeceuty_Admin } from "../../../Context/AuthContext";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Farmacia, PaginaFarmacia } from "../../../Interfaces/interfaces";
 import SkeletonLoader from "../Skeletor_Admin/Skeletor_Admin";
 
@@ -16,7 +16,7 @@ const validationSchema = Yup.object({
 export function Farmaceuticas_Admin() {
     const [info, setInfo] = useState<PaginaFarmacia<Farmacia> | undefined>(undefined);
     const [loading, setLoading] = useState(true);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     const handleSubmit = async (values: any, { resetForm }: any) => {
         const data = {
@@ -38,7 +38,6 @@ export function Farmaceuticas_Admin() {
             try {
                 const data = await SearchFarmeceuty_Admin();
                 setInfo(data);
-                console.log(data);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -52,9 +51,15 @@ export function Farmaceuticas_Admin() {
         setSearchTerm(e.target.value);
     };
 
-    const filteredFarmacias = info?.content.filter((farmacia) =>
-        farmacia.nombre.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+
+
+    const filteredFarmacias = useMemo(() => {
+        if (!info || !info.content) return []; // Asegúrate de que info y info.content existan
+
+        return info.content.filter(institution =>
+            institution.nombre && institution.nombre.toLowerCase().includes(searchTerm) // Asegúrate de que institution.nombre esté definido
+        );
+    }, [info, searchTerm]);
 
     return (
         <main>
@@ -68,8 +73,8 @@ export function Farmaceuticas_Admin() {
                     className="outline-none pl-2 py-1 font-inter"
                 />
                 <div className="flex flex-row gap-x-3 mr-2">
-                        <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
-                        <SilderIcon width={20} height={20} stroke="#767676" />
+                    <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
+                    <SilderIcon width={20} height={20} stroke="#767676" />
                 </div>
             </div>
             <Formik

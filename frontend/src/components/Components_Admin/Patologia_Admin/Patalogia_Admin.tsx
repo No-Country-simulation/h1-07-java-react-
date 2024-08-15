@@ -1,6 +1,6 @@
 import { IconPatalogia_Admin, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import * as Yup from 'yup';
 import { CreatePatology_Admin, SearchPatalogy_Admin } from "../../../Context/AuthContext";
 import SkeletonLoader from "../Skeletor_Admin/Skeletor_Admin";
@@ -15,7 +15,7 @@ export function Patalogia_Admin(): JSX.Element {
 
     const [info, setInfo] = useState<PaginaPatologias<Patologia> | undefined>(undefined);
     const [loading, setLoading] = useState(true);
-    const [searchTerm, setSearchTerm] = useState<string>(''); // Estado para el término de búsqueda
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     const hadlerSubmit = async (values: any, { resetForm }: any) => {
         const data = {
@@ -37,7 +37,6 @@ export function Patalogia_Admin(): JSX.Element {
             try {
                 const data = await SearchPatalogy_Admin();
                 setInfo(data);
-                console.log(data);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -51,9 +50,14 @@ export function Patalogia_Admin(): JSX.Element {
         setSearchTerm(event.target.value.toLowerCase());
     };
 
-    const filteredPatologias = info?.content.filter(patologia =>
-        patologia.nombre.toLowerCase().includes(searchTerm)
-    );
+  
+    const filteredPatologias = useMemo(() => {
+        if (!info || !info.content) return []; // Asegúrate de que info y info.content existan
+
+        return info.content.filter(institution =>
+            institution.nombre && institution.nombre.toLowerCase().includes(searchTerm) // Asegúrate de que institution.nombre esté definido
+        );
+    }, [info, searchTerm]);
 
     const MAX_DESCRIPTION_LENGTH = 39;
 
@@ -75,10 +79,10 @@ export function Patalogia_Admin(): JSX.Element {
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />
-                 <div className="flex flex-row gap-x-3 mr-2">
-                        <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
-                        <SilderIcon width={20} height={20} stroke="#767676" />
-                    </div>
+                <div className="flex flex-row gap-x-3 mr-2">
+                    <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
+                    <SilderIcon width={20} height={20} stroke="#767676" />
+                </div>
             </div>
             <Formik
                 initialValues={{ nombre: '', descripcion: '' }}

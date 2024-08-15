@@ -148,10 +148,10 @@ export function Institucion_Admin() {
     };
 
     const filteredInstitutions = useMemo(() => {
-        if (!info || !info.content) return []; // Asegúrate de que info y info.content existan
+        if (!info || !info.content) return []; 
 
         return info.content.filter(institution =>
-            institution.nombre && institution.nombre.toLowerCase().includes(searchTerm) // Asegúrate de que institution.nombre esté definido
+            institution.nombre && institution.nombre.toLowerCase().includes(searchTerm) 
         );
     }, [info, searchTerm]);
 

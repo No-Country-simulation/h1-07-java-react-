@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { IconFinaciadores_Admin,  SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
+import { IconFinaciadores_Admin, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import * as Yup from 'yup';
 import { CreateFinanzas_Admin, SearchFinanciador_Admin } from "../../../Context/AuthContext";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SkeletonLoader from "../Skeletor_Admin/Skeletor_Admin";
 import { Financiador, PaginaFinanciador } from "../../../Interfaces/interfaces";
 
@@ -16,7 +16,8 @@ const validationSchema = Yup.object({
 export function Financiadores_Admin() {
     const [info, setInfo] = useState<PaginaFinanciador<Financiador> | undefined>(undefined);
     const [loading, setLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState<string>("");
+    // const [searchQuery, setSearchQuery] = useState<string>("");
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     const handleSubmit = async (values: any, { resetForm }: any) => {
         const data = {
@@ -47,9 +48,17 @@ export function Financiadores_Admin() {
         fetchData();
     }, [])
 
-    const filteredFinanciadores = info?.content.filter(financiador =>
-        financiador.nombre.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value.toLowerCase());
+    };
+
+    const filteredFinanciadores = useMemo(() => {
+        if (!info || !info.content) return [];
+
+        return info.content.filter(institution =>
+            institution.nombre && institution.nombre.toLowerCase().includes(searchTerm)
+        );
+    }, [info, searchTerm]);
 
     return (
         <main>
@@ -59,8 +68,8 @@ export function Financiadores_Admin() {
                     type="text"
                     placeholder="Búsqueda por nombre"
                     className="outline-none pl-2 py-1 font-inter"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    value={searchTerm}
+                    onChange={handleSearchChange}
                 />
                 <div className="flex flex-row gap-x-3 mr-2">
                     <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
@@ -115,7 +124,7 @@ export function Financiadores_Admin() {
                     <>
                         <h2 className="font-inter font-bold text-xl ml-2 mb-5">Listado</h2>
                         <section className="mb-2 w-full shadow-custom-right rounded-xl border-1 border-solid border-orange-600 border-b-0 py-0 px-0">
-                            {filteredFinanciadores.slice(0, 4).map((financiador) => (
+                            {filteredFinanciadores.slice(0, 5).map((financiador) => (
                                 <div
                                     key={financiador.idFinanciador}
                                     className="flex flex-row items-center pl-2 pt-2 border-b-3 border-orange-400 rounded-xl pb-4 mt-2"

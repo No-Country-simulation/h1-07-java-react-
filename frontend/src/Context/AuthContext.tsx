@@ -52,7 +52,7 @@ export const AuthContext = createContext<AuthContextProps>({
         }),
       });
 
-      console.log(response)
+
 
       if (response.ok) {
         console.log("Role created successfully!");
@@ -99,7 +99,7 @@ export const AuthContextProvider = ({
         body: JSON.stringify({ email, password }),
       });
 
-      console.log(res);
+
 
 
       if (res.status == 401) {
@@ -194,7 +194,7 @@ export const AuthContextProvider = ({
 
   const registerPatient = async (patient: PatientRegister) => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
-    console.log(token)
+
     if (token) {
       try {
         const res = await fetch(`${API_URL}/paciente/crear-paciente`, {
@@ -240,13 +240,13 @@ export const AuthContextProvider = ({
         });
 
         if (!res.ok) {
+          toast.success("Rol asignado exitosamente");
           throw new Error("Failed to assign role");
         }
 
         const data = await res.json();
-        console.log(data);
+        return data;
 
-        toast.success("Rol asignado exitosamente");
       } catch (err) {
         console.error(err);
         toast.error("Error al asignar rol");
@@ -334,7 +334,7 @@ export async function fetchPatient() {
 
 export const fetchMedicines = async () => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-  console.log("Toke del medico", token)
+
   if (token) {
     try {
       const res = await fetch(
@@ -457,7 +457,7 @@ export const registerClinicHistory = async (
       throw new Error("Fail:" + res.status);
     }
     const data = await res.json();
-    console.log(data);
+    return data;
   } catch (err) {
     console.log(err);
   }
@@ -785,78 +785,12 @@ export const submitImageTreatment = async (treatmentId: string | void, id: strin
 //! --------------------------------
 
 
-// *Crear Instituciones Administrador 
 
-/* export const RegitrarIntitucion_Admin = async (values: { nombre : any; direccion: any; emailContacto: any }) => {
-  const token = localStorage.getItem(AUTH_TOKEN_KEY);
-  
-  if (!token) {
-    throw new Error("Token de autenticación no encontrado");
-  }
-
-  try {
-    const res = await fetch(`${API_URL}/institucion-de-salud/crear-institucion-de-salud`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(values),
-    });
-
-
-    if (res.ok) {
-      console.log('La institucion fue creada con exito')
-
-    }
-
-
-    toast.success("La institución fue creada correctamente");
-    return await res.json();
-  }
-  catch (error) {
-    console.error("Error al crear la institución:", error);
-
-  }
-}; */
-
-/* interface SearchParams {
-  size: number;
-}
-
-export const Searchactiveinstitution_Admin = async ({ size }: SearchParams): Promise<PagedResponse<Institution> | undefined> => {
-  const token = localStorage.getItem(AUTH_TOKEN_KEY);
-
-  try {
-    const res = await fetch(
-      `${API_URL}/institucion-de-salud/buscar-instituciones-de-salud-activas?page=1&size=${size}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch institutions");
-    }
-
-    const data: PagedResponse<Institution> = await res.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-    return undefined; // Asegúrate de manejar el caso en que no se devuelvan datos
-  }
-}; */
-
-// Medicamentos Administrador 
 
 // POST
 export const CreateMedicament_Admin = async (value: { nombre: string, descripcion: string }) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-  console.log(token)
+
 
   if (!token) {
     throw new Error("Token de autenticación no encontrado");
@@ -880,23 +814,23 @@ export const CreateMedicament_Admin = async (value: { nombre: string, descripcio
     }
 
 
-    toast.success("La institución fue creada correctamente");
+    toast.success("El medicamento fue creada correctamente");
     return await res.json();
   }
   catch (error) {
-    console.error("Error al crear la institución:", error);
+    console.error("Error al crear el medicamento:", error);
 
   }
 };
 
 
-// *GET
+// * Ver medicamentos 
 export const SearchMedicamentActive_Admin = async () => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   try {
     const res = await fetch(
-      `${API_URL}/medicamento/buscar-medicamentos-activos`,
+      `${API_URL}/medicamento/buscar-medicamentos-activos?size=20`,
       {
         method: "GET",
         headers: {
@@ -907,11 +841,11 @@ export const SearchMedicamentActive_Admin = async () => {
     );
 
     if (!res.ok) {
-      throw new Error("Failed to fetch institutions");
+      throw new Error("Failed to fetch medicament");
     }
 
     const data: PaginaMedicamentos<Medicamento> = await res.json();
-    console.log(data);
+
     return data;
   } catch (err) {
     console.log(err);
@@ -925,7 +859,7 @@ export const SearchMedicamentActive_Admin = async () => {
 //? Crear Patalogia Administrador 
 export const CreatePatology_Admin = async (value: { nombre: string, descripcion: string }) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-  console.log(token)
+
 
   if (!token) {
     throw new Error("Token de autenticación no encontrado");
@@ -941,18 +875,18 @@ export const CreatePatology_Admin = async (value: { nombre: string, descripcion:
       body: JSON.stringify(value),
     });
 
-    console.log(res)
+
 
     if (res.status === 200) {
       console.log('La institucion fue creada con exito')
 
     }
 
-    toast.success("La institución fue creada correctamente");
+    toast.success("La patalogia fue creada correctamente");
     return await res.json();
   }
   catch (error) {
-    console.error("Error al crear la institución:", error);
+    console.error("Error al crear la patalogia:", error);
 
   }
 };
@@ -964,7 +898,7 @@ export const SearchPatalogy_Admin = async () => {
 
   try {
     const res = await fetch(
-      `${API_URL}/patologias/listar-patologias`,
+      `${API_URL}/patologias/listar-patologias?size=20`,
       {
         method: "GET",
         headers: {
@@ -993,7 +927,7 @@ export const SearchPatalogy_Admin = async () => {
 // * Crear Farmacia
 export const CreateFarmeceutica_Admin = async (value: { nombre: string; direccion: string }) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-  console.log(token)
+
 
   if (!token) {
     throw new Error("Token de autenticación no encontrado");
@@ -1009,7 +943,7 @@ export const CreateFarmeceutica_Admin = async (value: { nombre: string; direccio
       body: JSON.stringify(value),
     });
 
-    console.log(res)
+
 
     if (res.status === 200) {
       console.log('La institucion fue creada con exito')
@@ -1017,11 +951,11 @@ export const CreateFarmeceutica_Admin = async (value: { nombre: string; direccio
     }
 
 
-    toast.success("La institución fue creada correctamente");
+    toast.success("La farmacia fue creada correctamente");
     return await res.json();
   }
   catch (error) {
-    console.error("Error al crear la institución:", error);
+    console.error("Error al crear la farmacia:", error);
 
   }
 };
@@ -1032,7 +966,7 @@ export const SearchFarmeceuty_Admin = async () => {
 
   try {
     const res = await fetch(
-      `${API_URL}/farmacia/buscar-farmacias-activas`,
+      `${API_URL}/farmacia/buscar-farmacias-activas?size=20`,
       {
         method: "GET",
         headers: {
@@ -1058,7 +992,7 @@ export const SearchFarmeceuty_Admin = async () => {
 
 export const CreateFinanzas_Admin = async (value: { nombre: string; descripcion: string }) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-  console.log(token)
+
 
   if (!token) {
     throw new Error("Token de autenticación no encontrado");
@@ -1074,7 +1008,7 @@ export const CreateFinanzas_Admin = async (value: { nombre: string; descripcion:
       body: JSON.stringify(value),
     });
 
-    console.log(res)
+
 
     if (res.status === 200) {
       console.log('La institucion fue creada con exito')
@@ -1084,7 +1018,7 @@ export const CreateFinanzas_Admin = async (value: { nombre: string; descripcion:
     return await res.json();
   }
   catch (error) {
-    console.error("Error al crear la institución:", error);
+    console.error("Error al crear al finaciador:", error);
 
   }
 };
@@ -1097,7 +1031,7 @@ export const SearchFinanciador_Admin = async () => {
 
   try {
     const res = await fetch(
-      `${API_URL}/financiador/buscar-financiadores-activos`,
+      `${API_URL}/financiador/buscar-financiadores-activos?size=10`,
       {
         method: "GET",
         headers: {
@@ -1139,7 +1073,7 @@ export const AdherenciaMedicament_Admin = async (id: string | undefined) => {
     );
 
     if (!res.ok) {
-      throw new Error("Failed to fetch institutions");
+      throw new Error("Failed to fetch medicament");
     }
 
     const data = await res.json();

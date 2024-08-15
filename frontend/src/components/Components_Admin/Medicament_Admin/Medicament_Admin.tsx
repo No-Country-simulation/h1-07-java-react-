@@ -2,13 +2,13 @@ import { Medicament_admin, SearchIcon_Admin, SilderIcon } from "../../../../publ
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { CreateMedicament_Admin, SearchMedicamentActive_Admin } from "../../../Context/AuthContext";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Medicamento, PaginaMedicamentos } from "../../../Interfaces/interfaces";
 import SkeletonLoader from "../Skeletor_Admin/Skeletor_Admin";
 
 
-// Definición del esquema de validación
+
 const validationSchema = Yup.object({
     nombre: Yup.string()
         .required('El nombre del medicamento es obligatorio'),
@@ -34,10 +34,10 @@ export function Medicament_Admin() {
 
         try {
             await CreateMedicament_Admin(data);
-            toast("Agregado con éxito");
+            toast.success("Agregado con éxito");
         } catch (error) {
             console.error("Error al enviar los datos:", error);
-            toast("Error al enviar los datos");
+            toast.error("Error al enviar los datos");
         }
     }
 
@@ -54,7 +54,7 @@ export function Medicament_Admin() {
             try {
                 const data = await SearchMedicamentActive_Admin();
                 setInfo(data);
-                console.log(data);
+
             } catch (error) {
                 console.log(error);
             } finally {
@@ -68,9 +68,14 @@ export function Medicament_Admin() {
         setSearchTerm(e.target.value.toLowerCase());
     };
 
-    const filteredMedicaments = info?.content.filter(medicament =>
-        medicament.nombre.toLowerCase().includes(searchTerm)
-    );
+
+    const filteredMedicaments = useMemo(() => {
+        if (!info || !info.content) return [];
+
+        return info.content.filter(institution =>
+            institution.nombre && institution.nombre.toLowerCase().includes(searchTerm)
+        );
+    }, [info, searchTerm]);
 
     return (
         <main>
