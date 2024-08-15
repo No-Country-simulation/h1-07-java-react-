@@ -30,7 +30,7 @@ interface ValuesGraphic {
     value: number;
 }
 
-const COLORS = ['#F00', '#FF8819', '#000'];
+const COLORS = ['#F00', '#FF8819', '#000000'];
 
 export function AdherenciaGrafica_Admin() {
     const [info, setInfo] = useState<AdherenceData<Medicamento>>();
