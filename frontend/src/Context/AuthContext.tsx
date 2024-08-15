@@ -457,7 +457,7 @@ export const registerClinicHistory = async (
       throw new Error("Fail:" + res.status);
     }
     const data = await res.json();
-
+    return data;
   } catch (err) {
     console.log(err);
   }
