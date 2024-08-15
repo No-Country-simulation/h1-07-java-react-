@@ -53,6 +53,8 @@ export default function TreatmentAdherence() {
 
   );
 
+    console.log(id)
+
   const fetchTreatmentAdherence = async () => {
     const token = localStorage.getItem("TOKEN_KEY");
 
@@ -104,6 +106,7 @@ export default function TreatmentAdherence() {
     fetchPatient();
     fetchTreatmentAdherence();
   }, []);
+  
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
       <div className="w-full max-w-md xl:max-w-full min-h-screen pb-4   bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
