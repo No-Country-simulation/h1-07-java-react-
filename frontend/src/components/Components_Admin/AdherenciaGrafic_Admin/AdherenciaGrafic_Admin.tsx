@@ -71,12 +71,12 @@ export function AdherenciaGrafica_Admin() {
                     { name: "Retrasados", value: data.totalRetrasados },
                 ]
             });
-            console.log(grafic_info)
+           
 
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
-            setLoading(false); // Actualiza el estado de carga al finalizar
+            setLoading(false);
         }
     };
 
@@ -165,7 +165,7 @@ export function AdherenciaGrafica_Admin() {
                                         label
                                     >
                                         {grafic_info.data.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            <Cell key={`cell-${index}`} className={`${entry}`} fill={COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>
                                     <Tooltip />

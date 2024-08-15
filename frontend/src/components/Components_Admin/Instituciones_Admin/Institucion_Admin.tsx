@@ -23,7 +23,7 @@ interface SearchParams {
     size: number;
 }
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 30;
 
 export function Institucion_Admin() {
     const [info, setInfo] = useState<PagedResponse<Institution> | undefined>(undefined);
@@ -60,15 +60,15 @@ export function Institucion_Admin() {
             }
 
             if (res.ok) {
-                console.log("Nueva institución:", responseData);
+                
                 toast.success("La institución fue creada correctamente");
                 return responseData;
             } else {
-                console.error("Error en la respuesta del servidor:", responseData);
+                
                 throw new Error("No se pudo crear la institución: " + responseData);
             }
         } catch (error) {
-            console.error("Error al crear la institución:", error);
+            
             toast.error("Error al crear la institución");
         }
     };
@@ -100,7 +100,6 @@ export function Institucion_Admin() {
             const data: PagedResponse<Institution> = await res.json();
             return data;
         } catch (err) {
-            console.error("Error al cargar las instituciones activas:", err);
             toast.error("Error al cargar las instituciones activas");
             return undefined;
         }
