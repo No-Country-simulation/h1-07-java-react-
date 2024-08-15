@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import { AdherenciaMedicament_Admin } from "../../../Context/AuthContext";
 import { toast } from "sonner";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export function SearchAdherencia_Admin() {
     const { id } = useParams();
-    const [info, setInfo] = useState(null); 
-    const [loading, setLoading] = useState(true); 
+    const [info, setInfo] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     console.log(info)
     console.log(loading)
 
     useEffect(() => {
-        if (id) { 
+        if (id) {
             const fetchData = async () => {
                 try {
                     const response = await AdherenciaMedicament_Admin(id);
                     setInfo(response);
-                    setLoading(false); 
+                    setLoading(false);
                 } catch (error) {
                     toast.error("Error al recibir los datos");
-                    setLoading(false); 
+                    setLoading(false);
                 }
             };
 
@@ -28,7 +28,7 @@ export function SearchAdherencia_Admin() {
         }
     }, [id]);
 
-    
+
 
     return (
         <main className="w-[98%]">
@@ -44,7 +44,7 @@ export function SearchAdherencia_Admin() {
                 <h2 className="font-inter font-bold mb-2">Patalogia</h2>
                 <div className="w-full">
                     <select className="outline-none border-orange-500 shadow-custom-right border-1 w-full rounded-md py-4 p-1" value="Selecionar" name="Selecionar" aria-placeholder="Selecionar" id="">
-                        <option value="">Selecionar</option>
+                        <option >Selecionar</option>
                     </select>
                 </div>
 
@@ -52,14 +52,14 @@ export function SearchAdherencia_Admin() {
                     <div className="flex flex-col w-full">
                         <h2 className="mb-2 font-inter font-bold">Sexo</h2>
                         <select name="" id="" className="shadow-custom-right py-4 rounded-lg border-orange-500 border-1">
-                            <option value="">Selecionar</option>
+                            <option >Selecionar</option>
                         </select>
                     </div>
 
                     <div className="flex flex-col w-full">
                         <h2 className="mb-2 font-inter font-bold">Financiador</h2>
                         <select name="" id="" className="shadow-custom-right py-4 rounded-lg border-orange-500 border-1">
-                            <option value="">Selecionar</option>
+                            <option >Selecionar</option>
                         </select>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ export function SearchAdherencia_Admin() {
                     <div className="flex flex-col w-full">
                         <h2 className="mb-2 font-inter font-bold">Edad</h2>
                         <select name="" id="" className="shadow-custom-right py-4 rounded-lg border-orange-500 border-1">
-                            <option value="">Selecionar</option>
+                            <option >Selecionar</option>
                         </select>
                     </div>
 
@@ -80,11 +80,11 @@ export function SearchAdherencia_Admin() {
                     </div>
                 </div>
 
-                <div className="flex justify-center w-full">
-                    <button className="w-[100%] py-2 font-bold rounded-xl bg-orange-600 text-white font-inter border-orange-500 border-1 mt-10">
+                <button className="w-[100%] py-2 font-bold rounded-xl bg-orange-600 text-white font-inter border-orange-500 border-1 mt-10">
+                    <Link to={"/adherenciasGrafic_admin"} className="flex justify-center w-full">
                         Buscar
-                    </button>
-                </div>
+                    </Link>
+                </button>
             </section>
         </main>
     );

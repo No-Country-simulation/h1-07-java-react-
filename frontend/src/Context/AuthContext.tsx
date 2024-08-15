@@ -787,12 +787,11 @@ export const submitImageTreatment = async (treatmentId: string | void, id: strin
 //! --------------------------------
 
 
-// * Instituciones Administrador 
+// *Crear Instituciones Administrador 
 
-export const RegitrarIntitucion_Admin = async (values: { nombre: string; direccion: string; emailContacto: string }) => {
+/* export const RegitrarIntitucion_Admin = async (values: { nombre : any; direccion: any; emailContacto: any }) => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
-  console.log(token)
-
+  
   if (!token) {
     throw new Error("Token de autenticación no encontrado");
   }
@@ -808,8 +807,7 @@ export const RegitrarIntitucion_Admin = async (values: { nombre: string; direcci
     });
 
 
-
-    if (res.status === 200) {
+    if (res.ok) {
       console.log('La institucion fue creada con exito')
 
     }
@@ -822,15 +820,18 @@ export const RegitrarIntitucion_Admin = async (values: { nombre: string; direcci
     console.error("Error al crear la institución:", error);
 
   }
-};
+}; */
 
+/* interface SearchParams {
+  size: number;
+}
 
-export const Searchactiveinstitution_Admin = async (): Promise<PagedResponse<Institution> | undefined> => {
+export const Searchactiveinstitution_Admin = async ({ size }: SearchParams): Promise<PagedResponse<Institution> | undefined> => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   try {
     const res = await fetch(
-      `${API_URL}/institucion-de-salud/buscar-instituciones-de-salud-activas`,
+      `${API_URL}/institucion-de-salud/buscar-instituciones-de-salud-activas?page=1&size=${size}`,
       {
         method: "GET",
         headers: {
@@ -850,7 +851,7 @@ export const Searchactiveinstitution_Admin = async (): Promise<PagedResponse<Ins
     console.log(err);
     return undefined; // Asegúrate de manejar el caso en que no se devuelvan datos
   }
-};
+}; */
 
 // Medicamentos Administrador 
 

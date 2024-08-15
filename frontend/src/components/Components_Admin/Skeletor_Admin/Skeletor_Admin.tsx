@@ -24,3 +24,37 @@ const SkeletonLoader = () => (
 );
 
 export default SkeletonLoader;
+
+export const SkeletonLoaderAdherencia_admin = () => (
+  <div className="space-y-4">
+  {/* Títulos */}
+  <div className="text-center mb-4">
+    <div className="bg-gray-300 h-8 w-3/4 mx-auto rounded mb-2"></div>
+    <div className="bg-gray-300 h-6 w-1/2 mx-auto rounded"></div>
+  </div>
+
+  {/* Sección de medicamentos y promedio */}
+  <div className="flex flex-row mt-10 gap-x-10">
+    <div className="flex flex-col w-full max-w-xs">
+      <div className="bg-gray-300 h-6 w-3/4 rounded mb-2"></div>
+      <div className="bg-gray-300 h-4 w-2/3 rounded mb-2"></div>
+      <div className="bg-gray-300 h-4 w-3/4 rounded mb-2"></div>
+      <div className="bg-gray-300 h-4 w-5/6 rounded mb-2"></div>
+    </div>
+    
+    <div className="w-full max-w-xs">
+      <div className="bg-gray-300 h-6 w-3/4 rounded mb-2"></div>
+      <div className="bg-gray-300 h-4 w-2/3 rounded mb-2"></div>
+      <div className="bg-gray-300 h-4 w-5/6 rounded mb-2"></div>
+    </div>
+  </div>
+
+  {/* Sección de muestra */}
+  <div className="mt-5">
+    <div className="bg-gray-300 h-6 w-3/4 rounded mb-2"></div>
+    <div className="bg-gray-300 h-4 w-2/3 rounded mb-2"></div>
+    <div className="bg-gray-300 h-4 w-5/6 rounded mb-2"></div>
+  </div>
+</div>
+);
+

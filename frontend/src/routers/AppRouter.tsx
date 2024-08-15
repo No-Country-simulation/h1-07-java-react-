@@ -36,6 +36,7 @@ import { Home_Admin } from "../pages/private/Admin/Home/Home_Admin";
 import { RegisterTreatmentView } from "../pages/private/Medic_Pages/RegisterTreatment/RegisterTreatmentView";
 import { User_Admin } from "../pages/private/Admin/User_Admin/User_Admin";
 import { Adherencia_Admin } from "../pages/private/Admin/Adherencias_Admin/Adherencias_Admin";
+import { AdherenciaGrafica_Admin } from "../components/Components_Admin/AdherenciaGrafic_Admin/AdherenciaGrafic_Admin";
 
 function AppRouter() {
   return (
@@ -86,6 +87,7 @@ function AppRouter() {
               <Route path="/admin_page" element={<Home_Admin />} />
              <Route path="/user_admin" element={<User_Admin />} />
              <Route path="/adherencias_admin" element={<Adherencia_Admin />} />
+             <Route path="/adherenciasGrafic_admin" element={<AdherenciaGrafica_Admin />}/>
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>

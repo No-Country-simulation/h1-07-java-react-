@@ -1,91 +1,182 @@
 import { InstitucionIcon, SearchIcon_Admin, SilderIcon } from "../../../../public/icons/Icons";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { RegitrarIntitucion_Admin, Searchactiveinstitution_Admin } from "../../../Context/AuthContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { PagedResponse, Institution } from "../../../Interfaces/interfaces";
 import SkeletonLoader from "../Skeletor_Admin/Skeletor_Admin";
+import { API_URL } from "../../../api/api";
+import { toast } from "sonner";
+
+interface FormValues {
+    nombre: string;
+    direccion: string;
+    emailContacto: string;
+}
 
 const validationSchema = Yup.object({
-    nombre: Yup.string()
-        .required('El nombre de la institución es obligatorio'),
-    direccion: Yup.string()
-        .required('La dirección es obligatoria'),
-    correo: Yup.string()
-        .email('Correo electrónico inválido')
-        .required('El correo electrónico es obligatorio')
+    nombre: Yup.string().required('El nombre de la institución es obligatorio'),
+    direccion: Yup.string().required('La dirección es obligatoria'),
+    emailContacto: Yup.string().email('Correo electrónico inválido').required('El correo electrónico es obligatorio')
 });
+
+interface SearchParams {
+    size: number;
+}
+
+const PAGE_SIZE = 20;
 
 export function Institucion_Admin() {
     const [info, setInfo] = useState<PagedResponse<Institution> | undefined>(undefined);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState<string>('');
 
-    const hadlerSubmit = async (values: any, { resetForm }: any) => {
+    //? Fetchs
+    const RegistrarInstitucion_Admin = async (values: { nombre: string; direccion: string; emailContacto: string }) => {
+        const token = localStorage.getItem("TOKEN_KEY");
+
+        if (!token) {
+            toast.error("Token de autenticación no encontrado");
+            return;
+        }
+
+        try {
+            const res = await fetch(`${API_URL}/institucion-de-salud/crear-institucion-de-salud`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(values),
+            });
+
+
+            const contentType = res.headers.get("Content-Type");
+            let responseData;
+
+            if (contentType && contentType.includes("application/json")) {
+                responseData = await res.json();
+            } else {
+                responseData = await res.text();
+            }
+
+            if (res.ok) {
+                console.log("Nueva institución:", responseData);
+                toast.success("La institución fue creada correctamente");
+                return responseData;
+            } else {
+                console.error("Error en la respuesta del servidor:", responseData);
+                throw new Error("No se pudo crear la institución: " + responseData);
+            }
+        } catch (error) {
+            console.error("Error al crear la institución:", error);
+            toast.error("Error al crear la institución");
+        }
+    };
+
+    const Searchactiveinstitution_Admin = async ({ size }: SearchParams): Promise<PagedResponse<Institution> | undefined> => {
+        const token = localStorage.getItem("TOKEN_KEY");
+
+        if (!token) {
+            toast.error("Token de autenticación no encontrado");
+            return undefined;
+        }
+
+        try {
+            const res = await fetch(
+                `${API_URL}/institucion-de-salud/buscar-instituciones-de-salud-activas?page=1&size=${size}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            if (!res.ok) {
+                throw new Error("Failed to fetch institutions");
+            }
+
+            const data: PagedResponse<Institution> = await res.json();
+            return data;
+        } catch (err) {
+            console.error("Error al cargar las instituciones activas:", err);
+            toast.error("Error al cargar las instituciones activas");
+            return undefined;
+        }
+    };
+
+    //? Manejo de Informacion
+    const handleSubmit = async (values: FormValues, { resetForm }: { resetForm: () => void }) => {
         const data = {
             nombre: values.nombre,
             direccion: values.direccion,
-            emailContacto: values.correo
+            emailContacto: values.emailContacto
         };
 
-        resetForm();
-
         try {
-            const newInstitution = await RegitrarIntitucion_Admin(data);
-            if (info) {
+            const newInstitution = await RegistrarInstitucion_Admin(data);
+            if (newInstitution && info) {
                 setInfo({
                     ...info,
                     content: [newInstitution, ...info.content]
                 });
+
+                resetForm();
             }
         } catch (error) {
             console.error("Error al enviar los datos:", error);
         }
-    }
+    };
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await Searchactiveinstitution_Admin();
+                const data = await Searchactiveinstitution_Admin({ size: PAGE_SIZE });
                 setInfo(data);
-
             } catch (error) {
                 console.log(error);
             } finally {
                 setLoading(false);
             }
-        }
+        };
         fetchData();
-    }, [])
+    }, []);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value.toLowerCase());
     };
 
-    const filteredInstitutions = info?.content.filter(institution =>
-        institution.nombre.toLowerCase().includes(searchTerm)
-    );
+    const filteredInstitutions = useMemo(() => {
+        if (!info || !info.content) return []; // Asegúrate de que info y info.content existan
+
+        return info.content.filter(institution =>
+            institution.nombre && institution.nombre.toLowerCase().includes(searchTerm) // Asegúrate de que institution.nombre esté definido
+        );
+    }, [info, searchTerm]);
 
     return (
         <main className="xl:flex xl:flex-col xl:items-center xl:justify-center">
             <section className="xl:w-[100%]">
-                <h2 className="font-inter font-bold text-xl mt-2 mb-2 ml-2 || ">Búsqueda</h2>
-                <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1 ||">
+                <h2 className="font-inter font-bold text-xl mt-2 mb-2 ml-2">Búsqueda</h2>
+                <div className="flex flex-row items-center justify-between shadow-custom-right py-3 rounded-lg border-orange-500 border-1">
                     <input
                         type="text"
                         placeholder="Búsqueda por nombre"
                         className="outline-none pl-2 py-1 font-inter"
                         onChange={handleSearchChange}
+                        aria-label="Buscar institución"
                     />
                     <div className="flex flex-row gap-x-3 mr-2">
-                        <SearchIcon_Admin width={20} height={20} stroke="#767676" classname="" />
+                        <SearchIcon_Admin classname="" width={20} height={20} stroke="#767676" />
                         <SilderIcon width={20} height={20} stroke="#767676" />
                     </div>
                 </div>
                 <Formik
-                    initialValues={{ nombre: '', direccion: '', correo: '' }}
+                    initialValues={{ nombre: '', direccion: '', emailContacto: '' }}
                     validationSchema={validationSchema}
-                    onSubmit={hadlerSubmit}
+                    onSubmit={handleSubmit}
                 >
                     {({ isSubmitting }) => (
                         <Form className="mt-10 ml-2">
@@ -114,11 +205,11 @@ export function Institucion_Admin() {
                                 <h2 className="font-inter">Correo</h2>
                                 <Field
                                     type="email"
-                                    name="correo"
+                                    name="emailContacto"
                                     placeholder="Ej: hospitalangeles@gmail.com"
                                     className="outline-none pl-2 font-inter shadow-custom-right py-3 w-full rounded-lg mt-2 border-orange-500 border-1"
                                 />
-                                <ErrorMessage name="correo" component="div" className="text-red-600 mt-1" />
+                                <ErrorMessage name="emailContacto" component="div" className="text-red-600 mt-1" />
                             </div>
                             <div className="flex flex-row justify-end w-full mt-5">
                                 <button
@@ -163,5 +254,5 @@ export function Institucion_Admin() {
                 </div>
             </section>
         </main>
-    )
+    );
 }
