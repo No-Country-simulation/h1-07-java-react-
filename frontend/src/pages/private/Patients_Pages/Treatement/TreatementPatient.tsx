@@ -44,15 +44,25 @@ export default function TreatementPatient() {
             {loading ? <TreatmentSkeleton /> :
               (<>
                 {treatments &&
-                  treatments.content.sort((a, b) => b.idTratamiento - a.idTratamiento).slice(0, visibleCount).map((treatment) => (
-                    <SingleTreatment
-                      tipoTratamientoId={treatment.tipoTratamientoId}
-                      imagen={treatment.imagen}
-                      descripcion={treatment.descripcion}
-                      nombreMedicamento={treatment.nombreMedicamento}
-                      dosisDiaria={treatment.dosisDiaria}>
-                    </SingleTreatment>
-                  ))}
+                  treatments.content.some(treatment => treatment.tipoTratamientoId === 0) &&
+                  <>
+                    {
+                      treatments && treatments.content.sort((a, b) => b.idTratamiento - a.idTratamiento)
+                        .slice(0, visibleCount)
+                        .map((treatment) => (
+                          <>{treatment.tipoTratamientoId !== 0 ? null :
+                            <SingleTreatment
+                              tipoTratamientoId={treatment.tipoTratamientoId}
+                              imagen={treatment.imagen}
+                              descripcion={treatment.descripcion}
+                              nombreMedicamento={treatment.nombreMedicamento}
+                              dosisDiaria={treatment.dosisDiaria}>
+                            </SingleTreatment>
+                          }</>
+                        ))
+                    }
+                  </>
+                }
                 {treatments && treatments.content.length > 5 && !showAll && (
                   <div className="flex justify-end items-center w-full">
                     <button

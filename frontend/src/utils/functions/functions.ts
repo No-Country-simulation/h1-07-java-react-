@@ -64,9 +64,12 @@ export function getTimeElapsed(hora: string, fecha: string) {
   const hoursPassed = Math.floor(minutesPassed / 60);
   const daysPassed = Math.floor(hoursPassed / 24);
 
-  if (daysPassed > 0) {
+  if (daysPassed == 1) {
+    return `Hace ${daysPassed} día`;
+  } else if (daysPassed > 0) {
     return `Hace ${daysPassed} días`;
-  } else if (hoursPassed > 0) {
+  }
+  else if (hoursPassed > 0) {
     return `Hace ${hoursPassed} horas`
   } else {
     return `Hace ${minutesPassed} minutos`;
