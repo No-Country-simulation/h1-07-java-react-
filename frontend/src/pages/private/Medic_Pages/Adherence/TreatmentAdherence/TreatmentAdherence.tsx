@@ -53,8 +53,6 @@ export default function TreatmentAdherence() {
 
   );
 
-    console.log(id)
-
   const fetchTreatmentAdherence = async () => {
     const token = localStorage.getItem("TOKEN_KEY");
 

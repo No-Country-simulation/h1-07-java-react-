@@ -13,7 +13,7 @@ export interface Medicamento {
 }
 
 export interface AdherenceData<T> {
-    medicamento: T[];
+    medicamento: T;
     totalCompletado: number;
     totalNoCompletado: number;
     totalRetrasados: number;
