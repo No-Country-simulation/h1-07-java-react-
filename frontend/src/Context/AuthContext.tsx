@@ -11,7 +11,9 @@ import {
   AuthContextProps,
   AuthTokens,
   ClinicHistoryProps,
+  ContentFinanciers,
   ContentMedicines,
+  ContentPathologies,
   ContentPatient,
   ContentTreatmentPacient,
   DoctorRegister,
@@ -1083,3 +1085,45 @@ export const AdherenciaMedicament_Admin = async (id: string | undefined) => {
 
   }
 };
+
+export const fetchPathologiesData = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(`${API_URL}/patologias/listar-patologias?page=0&size=100`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+    const data: ContentPathologies = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const fetchFinanciersData = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(`${API_URL}/financiador/buscar-financiadores-activos?page=0&size=100`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+    const data: ContentFinanciers = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -422,6 +422,32 @@ export interface Pathologies {
   nombre: string
   descripcion: string
 }
+
+export interface ContentFinanciers {
+  content: Financiers[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface Financiers {
+  idFinanciador: number
+  nombre: string
+  descripcion: string
+}
+
+export interface FilterAdhrenceGlobal {
+  patologiaId: string
+  idMedicamento: string
+  genero: string
+  idFinanciador: string
+  edad: string
+  mayorEdad: string
+}
+
 export interface Donante {
   idMedico: number;
   altura: string;
@@ -443,7 +469,7 @@ export interface DonantesResponse {
 }
 
 
-export interface AdherenceRequest{
+export interface AdherenceRequest {
   comentario: string;
   horarioId: number;
   estado: number;
@@ -508,7 +534,7 @@ export interface Patologia {
   descripcion: string;
 }
 
-export interface PaginaPatologias<T>  {
+export interface PaginaPatologias<T> {
   content: T[];
   number: number;
   size: number;
@@ -527,7 +553,7 @@ export interface Farmacia {
   dirrecion: string;
 }
 
-export interface PaginaFarmacia<T>  {
+export interface PaginaFarmacia<T> {
   content: T[];
   number: number;
   size: number;
@@ -539,13 +565,13 @@ export interface PaginaFarmacia<T>  {
 
 // * Finaziadores 
 
-export interface Financiador{
+export interface Financiador {
   idFinanciador: number;
   nombre: string;
   descripcion: string;
 }
 
-export interface PaginaFinanciador<T>  {
+export interface PaginaFinanciador<T> {
   content: T[];
   number: number;
   size: number;

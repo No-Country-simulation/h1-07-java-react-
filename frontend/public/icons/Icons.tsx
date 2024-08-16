@@ -820,9 +820,11 @@ export const CheckIcon = ({
 export const LoaderIcon = ({
   width,
   height,
+  stroke = "#fff",
 }: {
   width: number;
   height: number;
+  stroke?: string
 }) => {
   return (
     <svg
@@ -834,7 +836,7 @@ export const LoaderIcon = ({
     >
       <path
         d="M12 2V6M12 18V22M4.92969 4.93005L7.75969 7.76005M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.92969 19.07L7.75969 16.24M16.24 7.76L19.07 4.93"
-        stroke="#fff"
+        stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
