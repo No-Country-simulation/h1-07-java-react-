@@ -43,4 +43,8 @@ public class TratamientoMedicoResponse {
 
     @Schema(description = "Lista de horarios de toma asociados al tratamiento")
     private List<HorarioTomaResponse> horarios;
+
+    @Schema(description = "url de la imagen si la hay")
+    private String imagen;
+    private String urlImagen;
 }

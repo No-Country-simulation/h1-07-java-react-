@@ -46,6 +46,14 @@ public class FinanciadorController {
         return ResponseEntity.ok("La baja se ha realizado con éxito!");
     }
 
+    @PutMapping("/baja-financiador-por-id")
+    public ResponseEntity<?> bajaFinanciadorPorId(
+            @RequestParam Integer idFinanciador) {
+        financiadorService.bajaFinanciadorPorId(idFinanciador);
+        return ResponseEntity.ok("La baja se ha realizado con éxito!");
+    }
+
+
     @GetMapping("/buscar-financiadores-activos")
     public PageResponse<FinanciadorResponse> buscarFinanciadores(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,

@@ -54,6 +54,13 @@ public class InstitucionDeSaludController {
                 + " ha sido dada de baja con éxito!");
     }
 
+    @PutMapping("/baja-institucion-de-salud-por-id")
+    public ResponseEntity<?> bajaInstitucionDeSaludPorId(@RequestParam Integer idInstitucionDeSalud) {
+        institucionDeSaludService.bajaInstitucionDeSaludPorId(idInstitucionDeSalud);
+        return ResponseEntity.ok("La institución de salud con id:  " + idInstitucionDeSalud
+                + " ha sido dada de baja con éxito!");
+    }
+
     @GetMapping("/buscar-instituciones-de-salud-activas")
     public PageResponse<InstitucionDeSaludResponse> buscarInstitucionesDeSalud(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,

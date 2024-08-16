@@ -63,6 +63,7 @@ public class Mapper {
 
     public static FinanciadorResponse toFinanciadorResponse(Financiador financiador) {
         return FinanciadorResponse.builder()
+                .idFinanciador(financiador.getIdPrepagaObraSocial())
                 .nombre(financiador.getNombre())
                 .descripcion(financiador.getDescripcion())
                 .build();
@@ -94,6 +95,7 @@ public class Mapper {
 
     public static LaboratorioResponse toLaboratorioResponse(Laboratorio laboratorio) {
         return LaboratorioResponse.builder()
+                .idLaboratorio(laboratorio.getIdLaboratorio())
                 .nombre(laboratorio.getNombre())
                 .descripcion(laboratorio.getDescripcion())
                 .build();
@@ -109,6 +111,7 @@ public class Mapper {
                 .fechaInicio(tratamiento.getFechaInicio())
                 .fechaFin(tratamiento.getFechaFin())
                 .estado(tratamiento.getEstado())
+                .imagen(tratamiento.getImagen() != null ? tratamiento.getImagen().getUrl() : null)
                 .tipoTratamientoId(tratamiento.getTipoTratamiento().ordinal())
                 .horarios(tratamiento.getHorarios().stream()
                         .map(Mapper::toHorarioTomaResponse)
@@ -127,6 +130,7 @@ public class Mapper {
                 .fechaInicio(tratamiento.getFechaInicio())
                 .fechaFin(tratamiento.getFechaFin())
                 .estado(tratamiento.getEstado())
+                .imagen(tratamiento.getImagen() != null ? tratamiento.getImagen().getUrl() : null)
                 .tipoTratamientoId(tratamiento.getTipoTratamiento().ordinal())
                 .horarios(tratamiento.getHorarios().stream()
                         .map(Mapper::toHorarioTomaResponse)
@@ -144,6 +148,7 @@ public class Mapper {
                 .dosisDiaria(tratamiento.getDosisDiaria())
                 .fechaInicio(tratamiento.getFechaInicio())
                 .fechaFin(tratamiento.getFechaFin())
+                .imagen(tratamiento.getImagen() != null ? tratamiento.getImagen().getUrl() : null)
                 .estado(tratamiento.getEstado())
                 .tipoTratamientoId(tratamiento.getTipoTratamiento().ordinal())
                 .horarios(tratamiento.getHorarios().stream()
@@ -171,6 +176,7 @@ public class Mapper {
 
     public static FarmaciaResponse toFarmaciaResponse(Farmacia farmacia) {
         return FarmaciaResponse.builder()
+                .idFarmacia(farmacia.getIdFarmacia())
                 .nombre(farmacia.getNombre())
                 .direccion(farmacia.getDireccion())
                 .build();
@@ -187,7 +193,9 @@ public class Mapper {
 
     public static InstitucionDeSaludResponse toInstitucionDeSaludResponse(InstitucionDeSalud institucionDeSalud) {
         return InstitucionDeSaludResponse.builder()
+                .idInstitucionDeSalud(institucionDeSalud.getIdInstitucion())
                 .nombre(institucionDeSalud.getNombre())
+                .direccion(institucionDeSalud.getDireccion())
                 .direccion(institucionDeSalud.getDireccion())
                 .emailContacto(institucionDeSalud.getEmailContacto())
                 .build();
@@ -307,6 +315,22 @@ public class Mapper {
                 .idPaciente(consulta.getPaciente().getIdPaciente())
                 .nombrePaciente(consulta.getPaciente().getNombre())
                 .apellidoPaciente(consulta.getPaciente().getApellido())
+                .build();
+    }
+
+    public static Patologia toPatologia(PatologiaRequest patologiaRequest){
+        return Patologia.builder()
+                .nombre(patologiaRequest.getNombre())
+                .descripcion(patologiaRequest.getDescripcion())
+                .esActivo(true)
+                .build();
+    }
+
+    public static PatologiaResponse toPatologiaResponse(Patologia patologia){
+        return PatologiaResponse.builder()
+                .idPatologia(patologia.getIdPatologia())
+                .nombre(patologia.getNombre())
+                .descripcion(patologia.getDescripcion())
                 .build();
     }
 

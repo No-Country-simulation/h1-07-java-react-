@@ -5,11 +5,13 @@ import io.justina.justinaio.repositories.MedicamentoRepository;
 import io.justina.justinaio.repositories.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -22,6 +24,8 @@ public class DataLoader implements CommandLineRunner {
     private final PatologiaRepository patologiaRepository;
     private final EntidadRepository entidadRepository;
     private final MedicamentoRepository medicamentoRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -45,7 +49,31 @@ public class DataLoader implements CommandLineRunner {
 
         // Cargar medicamentos
         loadMedicamentos();
+
+       //createAdminUser();
     }
+    // se usa una unica vez por db.
+    /*private void createAdminUser() {
+        // Verificar si ya existe un usuario admin
+        if (usuarioRepository.findByEmail("admin@admin.com").isEmpty()) {
+            // Buscar el rol ROLE_ADMIN
+            Optional<Rol> adminRole = roleRepository.findByNombre("ROLE_ADMIN");
+
+            if (adminRole.isPresent()) {
+                Usuario adminUser = Usuario.builder()
+                        .email("admin@admin.com")
+                        .password(passwordEncoder.encode("admin@admin.com"))
+                        .roles(List.of(adminRole.get()))
+                        .enabled(true)
+                        .accountLocked(false)
+                        .createdDate(LocalDateTime.now())
+                        .lastModifiedDate(LocalDateTime.now())
+                        .build();
+
+                usuarioRepository.save(adminUser);
+            }
+        }
+    }*/
 
     private void loadRoles() {
         List<String> roleNames = Arrays.asList("ROLE_PACIENTE", "ROLE_ADMIN", "ROLE_MEDICO", "ROLE_OTRO");

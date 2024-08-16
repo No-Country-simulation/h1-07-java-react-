@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 public class FarmaciaResponse {
 
+    private Integer idFarmacia;
     private String nombre;
     private String direccion;
 }

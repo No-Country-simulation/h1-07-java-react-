@@ -10,14 +10,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "patologia")
+@Table(name = "imagen")
 @EntityListeners(AuditingEntityListener.class)
-public class Patologia {
+public class Imagen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPatologia;
+    private Integer idImagen;
     private String nombre;
-    private String descripcion;
-    private Boolean esActivo;
-
+    private String url;
+    private String imagenIdCloud;
 }

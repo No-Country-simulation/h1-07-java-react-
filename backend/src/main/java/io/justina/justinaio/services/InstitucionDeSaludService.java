@@ -121,4 +121,18 @@ public class InstitucionDeSaludService {
 
     }
 
+    public void bajaInstitucionDeSaludPorId(Integer idInstitucionDeSalud) {
+        Optional<InstitucionDeSalud> institucionDeSalud = institucionDeSaludRepository.findById(idInstitucionDeSalud);
+
+        if (institucionDeSalud.isEmpty()) {
+            throw new NullPointerException("Institución de salud a dar de baja no encontrada");
+        }
+
+        if (!institucionDeSalud.get().isEsActivo()) {
+            throw new IllegalArgumentException("La institución de salud ya se encuentra dada de baja");
+        }
+
+        institucionDeSalud.get().setEsActivo(false);
+        institucionDeSaludRepository.save(institucionDeSalud.get());
+    }
 }

@@ -1,6 +1,8 @@
 package io.justina.justinaio.controller;
 
+import io.justina.justinaio.dto.AdherenciaGlobalResponse;
 import io.justina.justinaio.dto.AdherenciaResponse;
+import io.justina.justinaio.dto.AdherenciaTotalRequest;
 import io.justina.justinaio.dto.AdherenciaTotalResponse;
 import io.justina.justinaio.model.enums.EstadoHorario;
 import io.justina.justinaio.services.EstadisticasAdherenciaService;
@@ -22,50 +24,30 @@ public class EstadisticasAdherenciaController {
     @Autowired
     private EstadisticasAdherenciaService estadisticasAdherenciaService;
 
-    /*@GetMapping("/completado-a-tiempo/{tratamientoId}")
-    public ResponseEntity<AdherenciaResponse> obtenerCompletadoATiempo(
-            @PathVariable Integer tratamientoId) {
-        return ResponseEntity.ok(estadisticasAdherenciaService.obtenerEstadisticasPorTratamiento(tratamientoId, EstadoHorario.COMPLETADO));
-    }
-
-    @GetMapping("/completado-tarde/{tratamientoId}")
-    public ResponseEntity<AdherenciaResponse> obtenerCompletadoTarde(
-            @PathVariable Integer tratamientoId) {
-        return ResponseEntity.ok(estadisticasAdherenciaService.obtenerEstadisticasPorTratamiento(tratamientoId, EstadoHorario.ATRASADO));
-    }
-
-    @GetMapping("/no-completado/{tratamientoId}")
-    public ResponseEntity<AdherenciaResponse> obtenerNoCompletado(
-            @PathVariable Integer tratamientoId) {
-        return ResponseEntity.ok(estadisticasAdherenciaService.obtenerEstadisticasPorTratamiento(tratamientoId, EstadoHorario.NO_COMPLETADO));
-    }
-
-    @GetMapping("/listar-completados-a-tiempo/{idPaciente}")
-    public ResponseEntity<List<AdherenciaResponse>> listarCompletadoATiempo(
-            @PathVariable Integer idPaciente,
-            Authentication token
+    @GetMapping("/datos-globales-por-medicamento/{idMedicamento}")
+    public ResponseEntity<AdherenciaGlobalResponse> obtenerAdherenciasTotalesPorMedicamento(
+            @PathVariable Integer idMedicamento,
+            @RequestParam(required = false) Integer genero,
+            @RequestParam(required = false) Integer idPatologia,
+            @RequestParam(required = false) Integer idFinanciador,
+            @RequestParam(required = false) Integer edad,
+            @RequestParam(required = false) Boolean mayorEdad
     ) {
-        List<AdherenciaResponse> response = estadisticasAdherenciaService.obtenerEstadisticasPorPacienteYMedico(idPaciente, token, EstadoHorario.COMPLETADO);
+        // Construir AdherenciaTotalRequest usando @Builder
+        AdherenciaTotalRequest adherenciaTotalRequest = AdherenciaTotalRequest.builder()
+                .idMedicamento(idMedicamento)
+                .genero(genero)
+                .idPatologia(idPatologia)
+                .idFinanciador(idFinanciador)
+                .edad(edad)
+                .mayorEdad(mayorEdad)
+                .build();
+
+        // Llamar al servicio con el request construido
+        AdherenciaGlobalResponse response = estadisticasAdherenciaService.obtenerEstadisticasGlobalesPorCriterios(adherenciaTotalRequest);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/listar-completados-tarde/{idPaciente}")
-    public ResponseEntity<List<AdherenciaResponse>> listarCompletadoTarde(
-            @PathVariable Integer idPaciente,
-            Authentication token
-    ) {
-        List<AdherenciaResponse> response = estadisticasAdherenciaService.obtenerEstadisticasPorPacienteYMedico(idPaciente, token, EstadoHorario.ATRASADO);
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping("/listar-no-completados/{idPaciente}")
-    public ResponseEntity<List<AdherenciaResponse>> obtenerNoCompletado(
-            @PathVariable Integer idPaciente,
-            Authentication token
-    ) {
-        List<AdherenciaResponse> response = estadisticasAdherenciaService.obtenerEstadisticasPorPacienteYMedico(idPaciente, token, EstadoHorario.NO_COMPLETADO);
-        return ResponseEntity.ok(response);
-    }*/
 
     @GetMapping("listar-adherencias-totales/{idPaciente}")
     public ResponseEntity<List<AdherenciaTotalResponse>> obtenerAdherenciasTotales(
