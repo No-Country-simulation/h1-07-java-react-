@@ -190,6 +190,7 @@ public class Mapper {
 
     public static InstitucionDeSaludResponse toInstitucionDeSaludResponse(InstitucionDeSalud institucionDeSalud) {
         return InstitucionDeSaludResponse.builder()
+                .idInstitucionDeSalud(institucionDeSalud.getIdInstitucion())
                 .nombre(institucionDeSalud.getNombre())
                 .direccion(institucionDeSalud.getDireccion())
                 .emailContacto(institucionDeSalud.getEmailContacto())

@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class InstitucionDeSaludResponse {
-
+    private Integer idInstitucionDeSalud;
     private String nombre;
     private String direccion;
     private String emailContacto;
