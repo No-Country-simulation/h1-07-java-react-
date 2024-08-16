@@ -106,4 +106,18 @@ public class FinanciadorService {
         return financiadorResponse;
     }
 
+    public void bajaFinanciadorPorId(Integer idFinanciador) {
+        Optional<Financiador> financiador = financiadorRepository.findById(idFinanciador);
+
+        if (financiador.isEmpty()) {
+            throw new NullPointerException("Financiador a dar de baja no encontrado");
+        }
+
+        if (!financiador.get().isEsActivo()) {
+            throw new IllegalArgumentException("El financiador ya se encuentra dado de baja");
+        }
+
+        financiador.get().setEsActivo(false);
+        financiadorRepository.save(financiador.get());
+    }
 }

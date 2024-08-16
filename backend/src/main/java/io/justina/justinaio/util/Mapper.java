@@ -63,6 +63,7 @@ public class Mapper {
 
     public static FinanciadorResponse toFinanciadorResponse(Financiador financiador) {
         return FinanciadorResponse.builder()
+                .idFinanciador(financiador.getIdPrepagaObraSocial())
                 .nombre(financiador.getNombre())
                 .descripcion(financiador.getDescripcion())
                 .build();
@@ -94,6 +95,7 @@ public class Mapper {
 
     public static LaboratorioResponse toLaboratorioResponse(Laboratorio laboratorio) {
         return LaboratorioResponse.builder()
+                .idLaboratorio(laboratorio.getIdLaboratorio())
                 .nombre(laboratorio.getNombre())
                 .descripcion(laboratorio.getDescripcion())
                 .build();
@@ -174,6 +176,7 @@ public class Mapper {
 
     public static FarmaciaResponse toFarmaciaResponse(Farmacia farmacia) {
         return FarmaciaResponse.builder()
+                .idFarmacia(farmacia.getIdFarmacia())
                 .nombre(farmacia.getNombre())
                 .direccion(farmacia.getDireccion())
                 .build();
@@ -192,6 +195,7 @@ public class Mapper {
         return InstitucionDeSaludResponse.builder()
                 .idInstitucionDeSalud(institucionDeSalud.getIdInstitucion())
                 .nombre(institucionDeSalud.getNombre())
+                .direccion(institucionDeSalud.getDireccion())
                 .direccion(institucionDeSalud.getDireccion())
                 .emailContacto(institucionDeSalud.getEmailContacto())
                 .build();

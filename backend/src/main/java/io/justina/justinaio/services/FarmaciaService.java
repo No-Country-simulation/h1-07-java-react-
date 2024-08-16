@@ -114,4 +114,18 @@ public class FarmaciaService {
 
     }
 
+    public void bajaFarmaciaPorId(Integer idFarmacia) {
+        Optional<Farmacia> farmacia = farmaciaRepository.findById(idFarmacia);
+
+        if (farmacia.isEmpty()) {
+            throw new NullPointerException("Farmacia a dar de baja no encontrada");
+        }
+
+        if (!farmacia.get().isEsActivo()) {
+            throw new IllegalArgumentException("La farmacia ya se encuentra dada de baja");
+        }
+
+        farmacia.get().setEsActivo(false);
+        farmaciaRepository.save(farmacia.get());
+    }
 }

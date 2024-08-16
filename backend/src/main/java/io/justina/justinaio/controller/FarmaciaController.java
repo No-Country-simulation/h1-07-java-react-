@@ -50,6 +50,11 @@ public class FarmaciaController {
         farmaciaService.bajaFarmacia(bajaFarmaciaRequest);
         return ResponseEntity.ok("La farmacia " + bajaFarmaciaRequest.getNombre() + " ha sido dada de baja con éxito!");
     }
+    @PutMapping("/baja-farmacia-por-id")
+    public ResponseEntity<?> bajaFarmaciaPorId(@RequestParam Integer idFarmacia) {
+        farmaciaService.bajaFarmaciaPorId(idFarmacia);
+        return ResponseEntity.ok("La farmacia Id: " + idFarmacia + " ha sido dada de baja con éxito!");
+    }
 
     @GetMapping("/buscar-farmacias-activas")
     public PageResponse<FarmaciaResponse> buscarFarmacias(

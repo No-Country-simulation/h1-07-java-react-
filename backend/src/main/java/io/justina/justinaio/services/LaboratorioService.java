@@ -108,4 +108,15 @@ public class LaboratorioService {
 
     }
 
+    public void bajaLaboratorioPorId(Integer idLaboratorio) {
+        Optional<Laboratorio> laboratorio = laboratorioRepository.findById(idLaboratorio);
+        if (laboratorio.isEmpty()) {
+            throw new NullPointerException("Laboratorio a dar de baja no encontrado");
+        }
+        if (!laboratorio.get().isEsActivo()) {
+            throw new IllegalArgumentException("El laboratorio ya se encuentra dado de baja");
+        }
+        laboratorio.get().setEsActivo(false);
+        laboratorioRepository.save(laboratorio.get());
+    }
 }

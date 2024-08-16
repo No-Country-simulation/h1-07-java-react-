@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 public class LaboratorioResponse {
 
+    private Integer idLaboratorio;
     private String nombre;
     private String descripcion;
 }

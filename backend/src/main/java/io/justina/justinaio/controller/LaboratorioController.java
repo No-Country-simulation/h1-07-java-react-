@@ -52,6 +52,13 @@ public class LaboratorioController {
         return ResponseEntity.ok("La baja se ha realizado con éxito!");
     }
 
+    @PutMapping("/baja-laboratorio-por-id")
+    public ResponseEntity<?> bajaLaboratorioPorId(
+            @RequestParam Integer idLaboratorio) {
+        laboratorioService.bajaLaboratorioPorId(idLaboratorio);
+        return ResponseEntity.ok("La baja se ha realizado con éxito!");
+    }
+
     @GetMapping("/buscar-laboratorios-activos")
     public PageResponse<LaboratorioResponse> buscarLaboratorios(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
