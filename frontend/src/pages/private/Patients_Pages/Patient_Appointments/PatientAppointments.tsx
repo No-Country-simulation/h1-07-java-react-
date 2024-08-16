@@ -1,106 +1,106 @@
-import { RelojIcon } from "../../../../../public/icons/Icons";
-import { PopoverMessage } from "../../../../components/PopoverMessage";
 import { Calendar } from "@nextui-org/react";
-import { getLocalTimeZone, today } from "@internationalized/date";
+import { today, getLocalTimeZone } from "@internationalized/date";
+import Shifts from "../Home/Shifts/Shifts";
 
-const data = [
-  {
-    name: "Dra. Peters",
-    specialty: "Nutriologa",
-    image: "IMG_PATIENTS/IMG_PATIENS_MEDICO_1.webp",
-    date: "01/08/2024",
-    time: "10:00 AM"
-  },
-  {
-    name: "Dr. Smith",
-    specialty: "Cardiólogo",
-    image: "IMG_PATIENTS/IMG_PATIENS_MEDICO_2.webp",
-    date: "02/08/2024",
-    time: "11:30 AM"
-  },
-]
+
 
 
 export function PatientAppointments() {
+  // const { medics } = useMedics();
+
+  // const handleSubmit = () => {
+  //   console.log("hola")
+  // }
+
+  // const getWorkDaysMedic = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   const id = (e.target.value)
+  //   const token = localStorage.getItem('TOKEN_KEY');
+
+  //   try {
+  //     const res = await fetch(`${API_URL}/medico/fecha-disponibilidad?idMedico=${id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //     const data = await res.json()
+  //     console.log(data)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
+  // let now = today(getLocalTimeZone());
+
+  // let disabledRanges = [
+  //   [now, now.add({days: 5})],
+  //   [now.add({days: 14}), now.add({days: 16})],
+  //   [now.add({days: 23}), now.add({days: 24})],
+  // ];
+
+  // let { locale } = useLocale();
+
+  // const isDateUnavailable = (date: DateValue) =>
+  //   isWeekend(date, locale) ||
+  //   disabledRanges.some(
+  //     (interval) => date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0,
+  //   );
+
   return (
-    <main className="container mx-auto shadow-xl">
-      <div className="max-w-screen-xl mx-auto min-h-screen">
+    <main className="w-full min-h-screen bg-gradient-to-t from-[#FFD460] to-[#8778D7] py-8">
+      <div className="container mx-auto max-w-screen-xl">
         <section className="px-32 max-lg:px-16 max-md:px-8 mt-8 ">
-          <h1 className="font-bold font-inter text-2xl mb-4">Agendar Cita</h1>
+          <h3 className="font-bold font-inter text-2xl mb-4 text-light-color">Agendar Cita</h3>
           <div className="w-full m-auto flex items-center justify-center">
             <Calendar
               aria-label="Date (Min Date Value)"
               defaultValue={today(getLocalTimeZone())}
               minValue={today(getLocalTimeZone())}
               color="warning"
-              visibleMonths={3} 
-              className=""
+              visibleMonths={2}
+
             />
           </div>
         </section>
-        <section className="justify-center flex flex-col font-inter mt-5 px-32 max-lg:px-16 max-md:px-8  w-full">
-          <h3 className="font-bold font-inter text-1xl">
-            Tú Próxima Cita
-          </h3>
-          <div className=" grid grid-cols-2 gap-2 max-md:grid-cols-1">
-            {data.map((datas) => (
-              <div className="flex flex-col  mt-4 p-3  w-full  border-1 border-solid border-gray-400 rounded-xl mb-4">
-                <div className=" flex justify-center flex-col items-center">
-                  <div className="flex flex-row ">
-                    <div className="flex flex-col">
-                      <h3 className="text-2xl font-inter font-bold ">
-                        {datas.name}
-                      </h3>
-                      <p className="font-inter text-gray-400 ">{datas.specialty}</p>
-                    </div>
-                    <img
-                      src={datas.image}
-                      className="rounded-full ml-20 w-16 h-16"
-                      alt=""
-                    />
-                  </div>
-                  {/* </Link> */}
-                  <div className="flex flex-row items-center">
-                    <RelojIcon width={16} height={16} stroke="" />
-                    <div className="flex flex-col ml-4">
-                      <p className="font-inter font-semibold">{datas.date}</p>
-                      <p className="font-inter font-semibold">{datas.time}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-row justify-center gap-x-5 mt-5 mb-5">
-                  <PopoverMessage
-                    locate={"top"}
-                    title={"Funcionalidad en Desarrollo"}
-                    content={
-                      "Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!"
-                    }
-                    color={"primary"}
-                  >
-                    <button className="px-6 py-3 font-inter bg-[#8a8d9e] rounded-md">
-                      Reagendar
-                    </button>
-                  </PopoverMessage>
-                  <PopoverMessage
-                    locate={"top"}
-                    title={"Funcionalidad en Desarrollo"}
-                    content={
-                      "Esta función está actualmente en desarrollo. ¡Gracias por tu paciencia y comprensión!"
-                    }
-                    color={"primary"}
-                  >
-                    <button className="px-6 py-3  font-inter text-white bg-[#D98236] rounded-md">
-                      Confirmar
-                    </button>
-                  </PopoverMessage>
-                </div>
-              </div>
-            ))
+        <section className="px-32 max-lg:px-16 max-md:px-8 mt-8 ">
+          {/* <h1>CREAR TURNO</h1>
+          <Formik
+            initialValues={{ name: "" }}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting }) => (
+              <Form className="flex flex-col gap-2">
+                <label
+                  className="font-semibold flex items-center gap-2 "
+                  htmlFor="especialidad"
+                >
+                  Medicos
+                </label>
+                <Field
+                  as="select"
+                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  name="especialidad"
+                  onChange={getWorkDaysMedic}
+                >
+                  {medics && medics.content.map((medic) => (
+                    <option value={medic.idMedico}>{medic.apellido} {medic.nombre} | {medic.especialidad}</option>
 
-            }
-
-          </div>
+                  ))
+                  }
+                </Field>
+                <Calendar
+                  aria-label="Date (Unavailable)"
+                  color="warning"
+                  minValue={today(getLocalTimeZone())}
+                  // isDateUnavailable={isDateUnavailable}
+                />
+                <button className="border-2 border-black bg-white p-2" disabled={isSubmitting}>Crear Turno</button>
+              </Form>
+            )}
+          </Formik> */}
         </section>
+        <Shifts />
       </div>
     </main>
   );

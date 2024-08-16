@@ -1,56 +1,73 @@
 import { Link } from 'react-router-dom'
 import {
-  CaledarIcon,
-  CampanaNotificIcon,
-  HistoryIconThree,
-  MenssageIconCora,
-  TratamentIconTwo,
-  UserIcon,
+  CoraIcon,
+  EjericioIcon,
+  HistorialIcon,
+  MentalIcon,
+  // NutricionIcon,
+  TratamientoIcon,
+  TurneraIcon,
 } from "../../../../../../public/icons/Icons";
 
 const patientOptions = [
   {
     to: "/treatement",
-    icon: <TratamentIconTwo width={45} height={45} />,
-    label: "Tratamiento",
+    icon: <TratamientoIcon width={60} height={60} classname=''/>,
+    label: "Tratamientos",
+    bgColor: "bg-[#0BF1FC]",
   },
   {
     to: "/history",
-    icon: <HistoryIconThree width={45} height={45} />,
-    label: "Historial",
+    icon: <HistorialIcon width={60} height={60} classname=''/>,
+    label: "Historia Clínica",
+    bgColor: "bg-[#398894]",
   },
   {
     to: "/chat-cora",
-    icon: <MenssageIconCora width={45} height={45} />,
-    label: "Cora",
+    icon: <CoraIcon width={60} height={60} classname=''/>,
+    label: "Chat Cora",
+    bgColor: "bg-[#C769B4]",
+
   },
   {
-    to: "/citas",
-    icon: <CaledarIcon width={45} height={45} />,
+    to: "/shift",
+    icon: <TurneraIcon width={60} height={60} classname='' />,
     label: "Citas",
+    bgColor: "bg-[#FDEEA3]",
+
   },
   {
-    to: "/profile",
-    icon: <UserIcon width={45} height={45} />,
-    label: "Mi perfil",
+    to: "/exercises",
+    icon: <EjericioIcon width={60} height={60} classname='' />,
+    label: "Ejercicio",
+    bgColor: "bg-[#C7FBA4]",
+
   },
   {
-    to: "/notification",
-    icon: <CampanaNotificIcon stroke='#948ABC' width={45} height={45} />,
-    label: "Notificaciones",
+    to: "/mental",
+    icon: <MentalIcon width={60} height={60} classname='' />,
+    label: "Salud Mental",
+    bgColor: "bg-[#FFD0D0]",
+
   },
+  // {
+  //   to: "/nutrition",
+  //   icon: <NutricionIcon width={60} height={60} />,
+  //   label: "Nutrición",
+  //   bgColor: "bg-[#CB7A4B]",
+  // },
 ];
 
 export default function Categories() {
   return (
     <section className=" px-32 max-lg:px-16 max-md:px-8 ">
-      <div className="mt-10 w-full ">
-        <h3 className="font-bold font-inter text-2xl">Categorías</h3>
+      <div className=" py-6 w-full ">
+        <h3 className="font-bold font-inter text-2xl text-light-color">Categorías</h3>
       </div>
       <div className=" py-2 grid grid-cols-3 max-xl:grid-cols-2  max-md:grid-cols-1  gap-y-4 gap-x-8">
         {patientOptions.map((option, index) => (
           <Link to={option.to} key={index} className=''>
-            <div className=" border-1 hover:brightness-90 cursor-pointer hover:scale-105 transition-all duration-300 border-gray-400 w-full text-center flex flex-col justify-center items-center h-32 rounded-md bg-gray-200 ">
+            <div className={`${option.bgColor} hover:brightness-90 cursor-pointer shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.38)]  hover:scale-105 transition-all duration-300 border-gray-400 w-full text-center flex flex-col justify-center items-center h-32 rounded-md  `}>
               <span>{option.icon}</span>
               <p className="mt-1 font-semibold">{option.label}</p>
             </div>

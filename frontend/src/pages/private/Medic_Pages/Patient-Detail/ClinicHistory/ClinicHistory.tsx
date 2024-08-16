@@ -14,19 +14,19 @@ import {
   ClinicHistoryProps,
   ContentClinicHistory,
   Patient,
-} from "../Interfaces/interfaces";
-import { SearchIcon } from "../../public/icons/Icons";
+} from "../../../../../Interfaces/interfaces";
+import { SearchIcon } from "../../../../../../public/icons/Icons";
 import {
   fetchClinicHistory,
   registerClinicHistory,
-} from "../Context/AuthContext";
+} from "../../../../../Context/AuthContext";
 import { Field, Form, Formik } from "formik";
-import { initialValuesHistory } from "../utils/data/data";
-import { validationHistoryClinic } from "../utils/validation/validation";
+import { initialValuesHistory } from "../../../../../utils/data/data";
+import { validationHistoryClinic } from "../../../../../utils/validation/validation";
 
 import { toast } from "sonner";
-import { SkeletonAcordion } from "./Skeletons";
-import { VoiceTranscript } from "./VoiceTranscript";
+import { SkeletonAcordion } from "../../../../../components/Skeletons";
+import { VoiceTranscript } from "../../../../../components/VoiceTranscript";
 
 export default function ClinicHistory({
   patient,
@@ -41,21 +41,15 @@ export default function ClinicHistory({
   const [loading, setLoading] = useState(false);
   const [transcript, setTranscript] = useState("");
 
-  const handleTranscriptChange = (newTranscript: string) => {
-    setTranscript(newTranscript.trimStart());
-  };
 
   const handleSubmitHistory = async (values: ClinicHistoryProps) => {
     const trimmedTranscript = transcript.trim();
-    const defaultDescription = "Descripción por defecto";
-
-    const description =
-      trimmedTranscript.length > 0 ? trimmedTranscript : defaultDescription;
+    const description = trimmedTranscript.length > 0 ? trimmedTranscript : "";
     if (id) {
       const historyClinic: ClinicHistoryProps = {
         ...values,
         descripcion: description,
-        idPaciente: Number(id),
+        idPaciente: Number(id)
       };
 
       try {
@@ -63,12 +57,13 @@ export default function ClinicHistory({
         toast.success("La historia clinica fue registrada correctamente");
         fetchDataHistory();
         onClose();
-        setTranscript("");
-      } catch (err) {
+
+      } catch (err: any) {
         console.error(err);
       }
     }
   };
+
 
   useEffect(() => {
     fetchDataHistory();
@@ -96,9 +91,9 @@ export default function ClinicHistory({
   };
 
   return (
-    <div className="p-6 flex-col gap-3 flex">
-      <h5 className="font-bold text-xl text-violet-color">Datos Personales</h5>
-      <div className="border-2 border-gray-color rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
+    <div className="p-6 flex-col gap-3 flex xl:items-center xl:mt-10">
+      <h5 className="font-bold text-xl text-violet-color">Datos Generales</h5>
+      <div className="border-2 border-gray-color xl:w-[50%] rounded-lg leading-6 p-2 flex flex-col gap-y-2 font-inter text-sm">
         <h6 className="font-bold text-lg">Datos</h6>
         <div className="ml-6 list-disc tracking-wide">
           <p className="text-medium leading-9">
@@ -127,59 +122,64 @@ export default function ClinicHistory({
       </div>
       <h5 className="font-bold text-xl text-violet-color">Historia Clinica</h5>
       {clinicHistories && clinicHistories.content.length !== 0 && (
-        <div className="relative w-full h-12 mb-3 flex justify-center items-center">
+        <div className="relative max-xl:w-full h-12 w-[50%] mb-3 flex justify-center items-center ">
           <input
             type="text"
             placeholder="Búsqueda"
             onChange={(e) => setHistories(e.target.value)}
-            className="w-full h-full border-violet-color rounded-md border-1 px-4"
+            className="w-full h-full border-violet-color rounded-md border-1 px-2"
           />
           <span className="right-5 absolute">
-            <SearchIcon width={20} height={20} />
+            <SearchIcon width={20} height={20} classname="" />
           </span>
         </div>
       )}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-y-3 w-[50%] max-xl:w-full">
         {loading ? (
           <SkeletonAcordion />
         ) : (
           <>
             {clinicHistories && clinicHistories.content.length > 0 ? (
-              clinicHistories.content
-                .filter((msg) =>
-                  msg.titulo.toLowerCase().includes(histories.toLowerCase())
-                )
-                .map((history, idx) => (
-                  <Accordion
-                    variant="splitted"
-                    key={idx}
-                    className="rounded-md w-full"
-                  >
-                    <AccordionItem
-                      aria-label={history.titulo}
-                      title={`${history.titulo} ${history.fecha}`}
-                      className="w-full  border-2 border-violet-color"
-                    >
-                      {history.descripcion}
-                    </AccordionItem>
-                  </Accordion>
-                ))
+              <>
+                <Accordion
+                  variant="splitted"
+                  fullWidth={true}
+                  className=" w-full px-0 "
+                >
+                  {
+                    clinicHistories.content
+                      .filter((msg) =>
+                        msg.titulo.toLowerCase().includes(histories.toLowerCase())
+                      )
+                      .map((history, idx) => (
+                        <AccordionItem
+                          aria-label={history.titulo}
+                          tabIndex={idx}
+                          title={`${history.titulo} ${history.fecha}`}
+                          className="w-full border-2 border-violet-color shadow-[1.0px_2.0px_2.0px_rgba(0,0,0,0.38)]"
+                        >
+                          {history.descripcion}
+                        </AccordionItem>
+                      ))
+                  }
+                </Accordion>
+              </>
             ) : (
-              <p className="text-center my-4 font-semibold">
+              <h4 className=" text-xl my-4 h-full flex justify-center items-center text-center">
                 No se encontraron historiales clínicos.
-              </p>
+              </h4>
             )}
           </>
         )}
       </div>
       <Button
         onPress={onOpen}
-        className="h-10 rounded-lg mt-10 w-3/4 m-auto font-semibold bg-secondary-brand-dark text-white"
+        className="h-10 xl:w-[50%] rounded-md mt-10 w-3/4 m-auto font-semibold bg-secondary-brand-dark text-white"
       >
         Nuevo Historial
       </Button>
 
-      <Modal isOpen={isOpen} placement={"auto"} onOpenChange={onOpenChange}  hideCloseButton={true}>
+      <Modal isOpen={isOpen} placement={"center"} onOpenChange={onOpenChange} hideCloseButton={true}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -209,7 +209,7 @@ export default function ClinicHistory({
                           ></Field>
                         </div>
                         <VoiceTranscript
-                          onTranscriptChange={handleTranscriptChange}
+                          onTextChange={setTranscript}
                           label={"Descripción"}
                         />
                         <div className="flex justify-center gap-2">

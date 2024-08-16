@@ -48,9 +48,10 @@ export default function Adherence() {
     fetchTreatments();
     fetchPatient();
   }, []);
+
   return (
-    <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md  min-h-screen pb-4  bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
+    <main className=" min-h-screen">
+      <div className=" flex-col">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -60,33 +61,35 @@ export default function Adherence() {
           financier={patient?.financiador}
           document={patient?.numeroDocumento}
           link={`/patient/${id}`}
+          bgColor={"bg-gradient-to-r from-[#A1AAFF] to-[#5761C8]" }// Default gradient
+          bgHamburger={"bg-[#5761C8]"}
         ></HeaderProfile>
-        <section className="px-6 ">
-          <h5 className="mb-4 text-xl font-semibold">Tratamientos</h5>
-          <ol className=" flex flex-col gap-2">
+        <section className="px-6 xl:w-full">
+          <h5 className="mb-4  text-center max-md:text-left  xl:flex xl:flex-col xl:items-center xl:justify-center font-bold text-xl text-violet-color">Adherencia al Tratamiento</h5>
+          <ol className=" flex flex-col gap-2 w-[50%] max-lg:w-full m-auto">
             {loadingTreat ? (
-              <>
+              <div className=" flex  flex-col gap-4">
                 <TreatmentSkeleton />
-              </>
+              </div>
             ) : (
               <>
                 {treatments && treatments?.content.length == 0 ? (
                   <>
-                    <p>El paciente no tiene tratamientos</p>
+                    <p className="xl:text-center">El paciente no tiene tratamientos</p>
                     <Link
-                      to={`/patient/${id}/treatment`}
+                      to={`/patient/${id}/treatment-register`}
                       className=" flex justify-center"
                     >
-                      <button className=" rounded-md mt-6 w-2/4 h-16 m-auto font-semibold bg-violet-color text-white">
+                      <button className=" rounded-md mt-6 w-2/4 h-12 m-auto font-semibold bg-violet-color text-white">
                         Añadir Nuevo Tratamiento
                       </button>
                     </Link>
                   </>
                 ) : (
-                  <>
+                  <div className="xl:flex xl:flex-col xl:justify-center xl:items-center xl:w-full flex flex-col gap-4 ">
                     {treatments &&
-                      treatments.content.sort((a,b)=> b.idTratamiento - a.idTratamiento).map((treatment) => (
-                        <Link
+                      treatments.content.sort((a, b) => b.idTratamiento - a.idTratamiento).map((treatment) => (
+                        <Link className="w-full  hover:brightness-150 transition-all duration-300 shadow-[2.0px_4.0px_4.0px_rgba(0,0,0,0.38)]"
                           to={`/patient/${id}/adherence/${treatment.idTratamiento}`}
                         >
                           <li className=" border-2 cursor-pointer p-2 rounded-md border-violet-color">
@@ -107,7 +110,7 @@ export default function Adherence() {
                           </li>
                         </Link>
                       ))}
-                  </>
+                  </div>
                 )}
               </>
             )}

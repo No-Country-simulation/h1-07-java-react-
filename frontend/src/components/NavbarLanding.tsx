@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
+import { useAuthContext } from "../Context/AuthContext";
+import { Avatar, Button, Card, CardBody, Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
+import usePatientInfo from "../utils/hooks/usePatientInfo";
+import useMedicsInfo from "../utils/hooks/useMedicInfo";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   const [navbarBg, setNavbarBg] = useState("bg-white");
+  const { isLoggedIn, logout } = useAuthContext()
+  const { patient } = usePatientInfo()
+  const { medic } = useMedicsInfo()
+  const displayName = patient?.nombre || medic?.nombre;
+  const displayLink = patient == undefined ? "dashboard" : "patient-home"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -11,7 +21,6 @@ export const NavBar = () => {
         setNavbarBg("bg-white");
       }
     };
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -57,12 +66,31 @@ export const NavBar = () => {
         </ul>
       </div>
       <div className="mr-8">
-        <a
-          href="/onboarding"
-          className="rounded-md py-2 px-4 content-center text-center bg-[#E08733] mt-6 mb-10 drop-shadow-lg w-36 h-12 text-white font-[300] font-inter md:mt-5"
-        >
-          Login
-        </a>
+        {isLoggedIn ? (
+          <Popover showArrow placement="bottom" shouldBlockScroll>
+            <PopoverTrigger>
+              <Avatar name={displayName} color="warning" isBordered className=" cursor-pointer">
+              </Avatar>
+            </PopoverTrigger>
+            <PopoverContent className="p-1 ">
+              <Card shadow="none" className="max-w-[200px] border-none bg-transparent">
+                <CardBody className="px-3 py-2 flex gap-2 flex-col justify-center items-center">
+                  <Link to={`/${displayLink}`} className="w-full">
+                    <Button color="primary" className=" w-full">Inicio</Button>
+                  </Link>
+                  <Button onClick={logout} color="warning">Cerrar Sesión</Button>
+                </CardBody>
+              </Card>
+            </PopoverContent>
+          </Popover>
+        ) : (
+          <a
+            href="/onboarding"
+            className="rounded-md py-2 px-4 content-center text-center bg-[#E08733] mt-6 mb-10 drop-shadow-lg w-36 h-12 text-white font-[300] font-inter md:mt-5"
+          >
+            Login
+          </a>
+        )}
       </div>
     </nav>
   );

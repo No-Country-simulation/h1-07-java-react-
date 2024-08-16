@@ -11,9 +11,14 @@ import {
   AuthContextProps,
   AuthTokens,
   ClinicHistoryProps,
+  ContentFinanciers,
   ContentMedicines,
+  ContentPathologies,
   ContentPatient,
+  ContentTreatmentPacient,
   DoctorRegister,
+  Medicamento,
+  PaginaMedicamentos,
   PatientRegister,
   ResponseRequest,
   tokenData,
@@ -22,6 +27,7 @@ import {
 import { API_URL } from "../api/api";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
+import { MedicsContent } from "../utils/hooks/useMedics";
 
 const AUTH_TOKEN_KEY = "TOKEN_KEY";
 const AUTH_INFO_USER = "USER_INFO";
@@ -35,7 +41,6 @@ export const AuthContext = createContext<AuthContextProps>({
   roles: [],
   registerDoctor: () => { },
   registerPatient: () => { },
-  registerTreatment: () => { },
   createRole: async (email: string, role: string): Promise<void> => {
     try {
       const response = await fetch("/api/roles", {
@@ -48,6 +53,8 @@ export const AuthContext = createContext<AuthContextProps>({
           role,
         }),
       });
+
+
 
       if (response.ok) {
         console.log("Role created successfully!");
@@ -94,6 +101,9 @@ export const AuthContextProvider = ({
         body: JSON.stringify({ email, password }),
       });
 
+
+
+
       if (res.status == 401) {
         toast.warning("El email o contraseña son incorrectos");
       }
@@ -130,6 +140,7 @@ export const AuthContextProvider = ({
     window.localStorage.removeItem(AUTH_INFO_USER);
     window.localStorage.removeItem("MEDIC-DATA");
     window.localStorage.removeItem("PATIENT-DATA");
+    window.localStorage.removeItem("PATIENT-NOTIFICATION");
 
     setAuthTokens(null);
     setUserName("");
@@ -185,6 +196,7 @@ export const AuthContextProvider = ({
 
   const registerPatient = async (patient: PatientRegister) => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
     if (token) {
       try {
         const res = await fetch(`${API_URL}/paciente/crear-paciente`, {
@@ -230,13 +242,13 @@ export const AuthContextProvider = ({
         });
 
         if (!res.ok) {
+          toast.success("Rol asignado exitosamente");
           throw new Error("Failed to assign role");
         }
 
         const data = await res.json();
-        console.log(data);
+        return data;
 
-        toast.success("Rol asignado exitosamente");
       } catch (err) {
         console.error(err);
         toast.error("Error al asignar rol");
@@ -269,7 +281,6 @@ export const AuthContextProvider = ({
       isLoggedIn: !!authTokens,
       registerDoctor,
       registerPatient,
-      registerTreatment,
       createRole: (email, role) => createRole(email, role),
     }),
     [
@@ -278,7 +289,6 @@ export const AuthContextProvider = ({
       logout,
       registerDoctor,
       registerPatient,
-      registerTreatment,
       roles,
       createRole,
     ]
@@ -297,58 +307,20 @@ export const useAuthContext = () => {
   return context;
 };
 
-async function registerTreatment(treatment: Treatment) {
-  const token = localStorage.getItem(AUTH_TOKEN_KEY);
-
-  if (token) {
-    try {
-      const res = await fetch(`${API_URL}/tratamiento/crear-tratamiento`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(treatment),
-      });
-      // if (!res.ok) {
-      //   throw new Error(`Response status: ${res.status}`);
-      // }
-      if (res.status === 200) {
-        toast.success("El tratamiento fue creado correctamente");
-        window.location.href = `/patient/${treatment.pacienteId}/adherence`;
-      }
-
-      const data: ResponseRequest = await res.json();
-
-      if (data.businessErrorCode === 404) {
-        toast.warning("Seleccionar un medicamento");
-      }
-
-
-
-
-    } catch (err) {
-      toast.success("El tratamiento fue creado correctamente");
-    }
-  }
-}
 
 export async function fetchPatient() {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
   if (token) {
     try {
-      // Usar la información decodificada si es necesario
-      // Por ejemplo, puedes verificar los roles o permisos del usuario aquí
-      const res = await fetch(
-        `${API_URL}/paciente/listar-pacientes-id-medico-conectado?page=0&size=100`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+
+      const res = await fetch(`${API_URL}/paciente/listar-pacientes-id-medico-conectado?page=0&size=100`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      });
+
 
       if (!res.ok) {
         throw new Error(`Response status: ${res.status}`);
@@ -368,7 +340,7 @@ export const fetchMedicines = async () => {
   if (token) {
     try {
       const res = await fetch(
-        `${API_URL}/medicamento/buscar-medicamentos-activos`,
+        `${API_URL}/medicamento/buscar-medicamentos-activos?page=0&size=100`,
         {
           method: "GET",
           headers: {
@@ -417,7 +389,6 @@ export const fetchPatientSingle = async (id: string | undefined) => {
 
 export const fetchMedicData = async () => {
   const token = localStorage.getItem("TOKEN_KEY");
-
   try {
     const res = await fetch(`${API_URL}/medico/buscar-medico-conectado`, {
       method: "GET",
@@ -488,7 +459,7 @@ export const registerClinicHistory = async (
       throw new Error("Fail:" + res.status);
     }
     const data = await res.json();
-    console.log(data);
+    return data;
   } catch (err) {
     console.log(err);
   }
@@ -606,13 +577,14 @@ export const crearDonante = async (data: any) => {
 
     if (response.status === 200) {
       toast.success("El donante fue creado correctamente")
+      window.location.href = `/donations`;
     }
 
     if (!response.ok) {
       const result = await response.json();
       if (result.businessErrorCode == 400) {
-        toast.warning("El paciente ya tiene un donante asignado")
-      }else{
+        toast.warning(`El paciente ${data.nombre} ya tiene un donante asignado`)
+      } else {
         throw new Error('Error fetching data');
       }
     }
@@ -646,7 +618,512 @@ export const fetchTreatmentPatient = async (id: string) => {
       const data = await res.json();
       return data;
     } catch (error) {
-      console.log(error);
+      console.log(error)
+    }
+  }
+}
+
+export async function fetchDonationConnect() {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (token) {
+    try {
+      const res = await fetch(`${API_URL}/donante/buscar-donantes`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+
+      const data: ContentPatient = await res.json();
+      return data
+    } catch (err: any) {
+      console.log(err);
     }
   }
 };
+
+
+export async function fetchDonationDetalle() {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (token) {
+    try {
+      const res = await fetch(`${API_URL}/donante/buscar-medico-por-donante`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+
+      const data: ContentPatient = await res.json();
+      return data
+    } catch (err: any) {
+      console.log(err);
+    }
+  }
+};
+
+export const fetchMedicsData = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  try {
+    const res = await fetch(`${API_URL}/medico/buscar-medico-id-paciente-conectado`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+
+    const data: MedicsContent = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const fetchTreatmentPatientConect = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/tratamiento/listar-tratamientos-paciente-conectado?page=0&size=30`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch treatments");
+    }
+    const data: ContentTreatmentPacient = await res.json();
+    return data
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const registerTreatment = async (treatment: Treatment): Promise<string | void> => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  if (token) {
+    try {
+      const res = await fetch(`${API_URL}/tratamiento/crear-tratamiento-retorna-id-tratamiento`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(treatment),
+      });
+
+      if (res.status === 200) {
+        toast.success("El tratamiento fue creado correctamente");
+        const data: string = await res.text()
+        return data
+      }
+
+      const data: ResponseRequest = await res.json();
+
+      if (data.businessErrorCode === 404) {
+        toast.warning("Seleccionar un medicamento");
+      }
+
+
+
+    } catch (err) {
+      toast.success("El tratamiento fue creado correctamente");
+    }
+  }
+}
+
+
+export const submitImageTreatment = async (treatmentId: string | void, id: string | undefined, idImage: string | undefined) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+  if (treatmentId && id && idImage) {
+    try {
+      const res = await fetch(
+        `${API_URL}/tratamiento/cargar-imagen-a-tratamiento-por-id?idTratamiento=${treatmentId}&idImagen=${idImage}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!res.ok) {
+        throw new Error(`Response status: ${res.status}`);
+      }
+
+
+      if (res.status === 200) {
+        window.location.href = `/patient/${id}/adherence`;
+
+      }
+
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+//! --------------------------------
+// ? Conexiones para el Administrador 
+//! --------------------------------
+
+
+
+
+// POST
+export const CreateMedicament_Admin = async (value: { nombre: string, descripcion: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/medicamento/crear-medicamento`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(value),
+    });
+
+
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+
+    }
+
+
+    toast.success("El medicamento fue creada correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear el medicamento:", error);
+
+  }
+};
+
+
+// * Ver medicamentos 
+export const SearchMedicamentActive_Admin = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/medicamento/buscar-medicamentos-activos?size=20`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch medicament");
+    }
+
+    const data: PaginaMedicamentos<Medicamento> = await res.json();
+
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+
+
+// ? Patalogia Adminstrador 
+
+//? Crear Patalogia Administrador 
+export const CreatePatology_Admin = async (value: { nombre: string, descripcion: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/patologias/crear-patologia`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(value),
+    });
+
+
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+
+    }
+
+    toast.success("La patalogia fue creada correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear la patalogia:", error);
+
+  }
+};
+
+
+//? Ver Patologias Administrador 
+export const SearchPatalogy_Admin = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/patologias/listar-patologias?size=20`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+
+
+// ? Farmaceutica Administrador 
+// * POST > Enviar informacion
+
+// * Crear Farmacia
+export const CreateFarmeceutica_Admin = async (value: { nombre: string; direccion: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/farmacia/crear-farmacia`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(value),
+    });
+
+
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+
+    }
+
+
+    toast.success("La farmacia fue creada correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear la farmacia:", error);
+
+  }
+};
+
+// * Ver farmacias Administrator
+export const SearchFarmeceuty_Admin = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/farmacia/buscar-farmacias-activas?size=20`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+
+// ? Financiadores Administradores 
+
+export const CreateFinanzas_Admin = async (value: { nombre: string; descripcion: string }) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+
+  if (!token) {
+    throw new Error("Token de autenticación no encontrado");
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/financiador/crear-financiador`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(value),
+    });
+
+
+
+    if (res.status === 200) {
+      console.log('La institucion fue creada con exito')
+    }
+
+    toast.success("El financiador fue creado correctamente");
+    return await res.json();
+  }
+  catch (error) {
+    console.error("Error al crear al finaciador:", error);
+
+  }
+};
+
+
+// * Ver Financiadores Administrador 
+
+export const SearchFinanciador_Admin = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/financiador/buscar-financiadores-activos?size=10`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch institutions");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+
+// * Conencion con datos para la Adherencia
+
+//?  Medicamentos globales
+
+export const AdherenciaMedicament_Admin = async (id: string | undefined) => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(
+      `${API_URL}/adherencia/datos-globales-por-medicamento/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch medicament");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+
+  }
+};
+
+export const fetchPathologiesData = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(`${API_URL}/patologias/listar-patologias?page=0&size=100`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+    const data: ContentPathologies = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const fetchFinanciersData = async () => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY);
+
+  try {
+    const res = await fetch(`${API_URL}/financiador/buscar-financiadores-activos?page=0&size=100`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (!res.ok) {
+      throw new Error(`Response status: ${res.status}`);
+    }
+    const data: ContentFinanciers = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}

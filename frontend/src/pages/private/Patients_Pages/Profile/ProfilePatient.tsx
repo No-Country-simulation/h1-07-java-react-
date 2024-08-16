@@ -1,31 +1,32 @@
-import { useEffect, useState } from "react";
-import { Logout } from "../../../../components/Logout";
-import { Paciente } from "../../../../Interfaces/interfaces";
 import { Personal } from "./PersonalData/Personal";
+import usePatientInfo from "../../../../utils/hooks/usePatientInfo";
+import { useAuthContext } from "../../../../Context/AuthContext";
 
 export function ProfilePatient() {
-  const [patientInfo, setPatienInfo] = useState<Paciente>();
+  const { patient } = usePatientInfo()
+  const { logout } = useAuthContext();
 
-  useEffect(() => {
-    const storedMedic = localStorage.getItem("PATIENT-DATA");
-
-    if (storedMedic) {
-      const medic: Paciente = JSON.parse(storedMedic);
-      setPatienInfo(medic);
-    }
-  }, []);
-
+  const handleLogout = () => {
+    logout();
+  };
   return (
-    <main className="container mx-auto  shadow-xl">
-      <div className="max-w-screen-xl mx-auto">
+    <main className="w-full min-h-screen bg-gradient-to-t from-[#B4ACE3] to-[#8778D7]">
+      <div className="container mx-auto max-w-screen-xl">
         <Personal
-          numeroDocumento={patientInfo?.numeroDocumento}
-          patologia={patientInfo?.patologia}
-          entidades={patientInfo?.entidades[0]}
-          medicos={patientInfo?.medicos[0]}>
+          numeroDocumento={patient?.numeroDocumento}
+          patologia={patient?.patologia}
+          entidades={patient?.entidades[0]}
+          medicos={patient?.medicos[0]}>
         </Personal>
-        <footer className="flex flex-row justify-center">
-          <Logout />
+        <footer className="flex flex-row justify-center items-center">
+          <div className=" w-full  p-4 flex justify-center items-center bg-transparent">
+            <button
+              onClick={handleLogout}
+              className="px-14 py-2 bg-[#E08733] font-inter rounded-xl text-white hover:bg-[#794e0a] duration-700"
+            >
+              Cerrar Sesión
+            </button>
+          </div>
         </footer>
       </div>
     </main>

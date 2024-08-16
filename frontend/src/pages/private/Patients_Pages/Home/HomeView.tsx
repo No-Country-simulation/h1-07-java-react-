@@ -9,6 +9,7 @@ import Categories from "./Categories/Categories";
 import HeaderHome from "./HeaderHome/HeaderHome";
 import Shifts from "./Shifts/Shifts";
 import { AsideMenu } from "../../../../components/AsideMenu";
+import Medics from "./Medics/Medics";
 
 export interface NotificationProps {
   idNotificacion: number;
@@ -68,18 +69,23 @@ export function HomeView() {
   }, []);
 
   return (
-    <main className="container mx-auto shadow-xl">
-      <div className="max-w-screen-xl mx-auto">
-        <AsideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+    <>
+      <div className=" bg-[#8778D7]">
+        <AsideMenu src="" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <HeaderHome
           toggleSidebar={toggleSidebar}
           name={patientInfo?.nombre}
           lastname={patientInfo?.apellido}
           notifications={notifications}>
         </HeaderHome>
-        <Categories />
-        <Shifts />
-      </div >
-    </main >
+      </div>
+      <main className="w-full min-h-screen bg-gradient-to-t from-[#B5ACE3] to-[#8778D7]">
+        <div className="container mx-auto max-w-screen-xl">
+          <Categories />
+          <Medics></Medics>
+          <Shifts />
+        </div >
+      </main >
+    </>
   );
 }

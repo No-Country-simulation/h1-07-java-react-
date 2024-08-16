@@ -45,9 +45,9 @@ export default function TreatmentAdherence() {
     {
       total: 10000,
       data: [
-        { name: "Completado", value: 2400 },
-        { name: "Page B", value: 1398 },
-        { name: "Page C", value: 9800 },
+        { name: "Completado", value: 0 },
+        { name: "Page B", value: 0 },
+        { name: "Page C", value: 0 },
       ]
     }
 
@@ -104,9 +104,10 @@ export default function TreatmentAdherence() {
     fetchPatient();
     fetchTreatmentAdherence();
   }, []);
+  
   return (
     <main className="flex min-h-screen bg-gray-100 md:flex md:justify-center ">
-      <div className="w-full max-w-md  min-h-screen pb-4  bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
+      <div className="w-full max-w-md xl:max-w-full min-h-screen pb-4   bg-white rounded-lg shadow-lg font-inter  max-md:m-auto">
         <HeaderProfile
           loading={loading}
           name={patient?.nombre}
@@ -116,9 +117,11 @@ export default function TreatmentAdherence() {
           financier={patient?.financiador}
           document={patient?.numeroDocumento}
           link={`/patient/${id}/adherence`}
+          bgColor={"bg-gradient-to-r from-[#A1AAFF] to-[#5761C8]" }// Default gradient
+          bgHamburger={"bg-[#5761C8]"}
         ></HeaderProfile>
-        <section className="px-6 h-[120vh] ">
-          <h1 className=" mb-4 text-violet-color font-bold text-lg">
+        <section className="px-6 h-[120vh] w-[50%] max-lg:w-full m-auto">
+          <h1 className=" mb-4 text-violet-color font-bold text-lg xl:text-center">
             Adherencia a la medicación
           </h1>
           <div className=" flex justify-centeri justify-around">
@@ -166,7 +169,7 @@ export default function TreatmentAdherence() {
                   background={{ fill: "#eee" }}
                 >
                   {info.data.map((entry, index) => (
-                    <Cell cursor="pointer" fill={COLORS[index % COLORS.length]}key={`cell-${entry.name}`} />
+                    <Cell cursor="pointer" fill={COLORS[index % COLORS.length]} key={`cell-${entry.name}`} />
                   ))}
                 </Bar>
               </BarChart>
@@ -177,7 +180,7 @@ export default function TreatmentAdherence() {
                   dataKey="value"
                   isAnimationActive={false}
                   data={info.data}
-                  cx="50%"
+                  cx="50% "
                   cy="50%"
                   outerRadius={80}
                   fill="#8884d8"

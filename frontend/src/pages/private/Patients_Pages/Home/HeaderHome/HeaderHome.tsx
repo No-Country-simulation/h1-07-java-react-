@@ -15,9 +15,10 @@ export default function HeaderHome({
   notifications: NotificationProps[] | null;
 }) {
   return (
-    <header className=" px-32 max-lg:px-16 max-md:px-8 flex border-none flex-col justify-center h-[12rem] mb-4 w-full bg-gradient-to-r from-[#5761C8] to-[#A1AAFF] border rounded-br-[3rem] ">
-      <div className=" flex border-none justify-between  items-center">
-        <div className="flex mt-4 items-center space-x-2 border-none">
+
+    <header className="  z-10 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] flex rounded-bl-xl border-none flex-col justify-center h-[12rem]  w-full bg-[#8778D7]   rounded-br-[3rem] ">
+      <div className="w-full flex items-center justify-between max-w-screen-xl m-auto px-32 max-lg:px-16 max-md:px-8">
+        <div className="flex items-center space-x-2 border-none">
           <Link to="/profile" className=" flex gap-4">
             <Avatar
               name={name}
@@ -25,14 +26,14 @@ export default function HeaderHome({
               isBordered
               size="lg"
             />
-            <div className="flex flex-col text-lg text-white">
-              <h3 className="font-semibold text-xl ">Buenos días,</h3>
-              <p className="font-bold ">{name} {lastname}</p>
+            <div className="flex flex-col text-md text-white items justify-center flex-wrap">
+              <h3 className="font-semibold text-m ">Buenos días,</h3>
+              <p className="font-bold max-md:text-sm">{name} {lastname} </p>
             </div>
           </Link>
 
         </div>
-        <a href="/" className=" flex  justify-center max-md:hidden   mt-0  ">
+        <a href="/patient-home" className=" flex  justify-center max-md:hidden   mt-0  ">
           <img
             src="JustinaLogo_2.png"
             width={150}
@@ -50,12 +51,12 @@ export default function HeaderHome({
               className=" -z-0"
             >
               <span className=" hover:brightness-90 transition-all duration-300 w-12 h-12  bg-[#006FEE]  rounded-full flex justify-center items-center">
-                <CampanaNotificIcon width={30} height={30} stroke="#fff" />
+                <CampanaNotificIcon width={30} height={30} stroke="#fff" classname=''/>
               </span>
             </Badge>
           </Link>
           <button onClick={toggleSidebar} className=" hover:brightness-90 transition-all duration-300 w-12 h-12  bg-[#006FEE]  rounded-full flex justify-center items-center">
-            <MenuHambuerguesa width={30} height={30} stroke="" />
+            <MenuHambuerguesa width={30} height={30} stroke="" classname=''/>
           </button>
         </div>
       </div>

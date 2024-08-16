@@ -20,20 +20,20 @@ const data = [
 
 export default function Shifts() {
   return (
-    <section className="justify-center flex flex-col font-inter mt-5 px-32 max-lg:px-16 max-md:px-8  w-full">
-      <h3 className="font-bold font-inter text-1xl">
+    <section className="justify-center flex flex-col font-inter mt-5 px-32 max-lg:px-16 max-md:px-8  w-full ">
+      <h3 className="font-bold font-inter text-1xl text-light-color">
         Tú Próxima Cita
       </h3>
       <div className=" grid grid-cols-2 gap-2 max-md:grid-cols-1">
         {data.map((datas) => (
-          <div className="flex flex-col  mt-4 p-3  w-full  border-1 border-solid border-gray-400 rounded-xl mb-4">
+          <div className="flex flex-col  mt-4 p-3  w-full  shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]  border-solid bg-light-color border-gray-400 rounded-xl mb-4">
             <div className=" flex justify-center flex-col items-center">
               <div className="flex flex-row ">
                 <div className="flex flex-col">
                   <h3 className="text-2xl font-inter font-bold ">
                     {datas.name}
                   </h3>
-                  <p className="font-inter text-gray-400 ">{datas.specialty}</p>
+                  <p className="font-inter text-gray-500 ">{datas.specialty}</p>
                 </div>
                 <img
                   src={datas.image}
@@ -43,7 +43,7 @@ export default function Shifts() {
               </div>
               {/* </Link> */}
               <div className="flex flex-row items-center">
-                <RelojIcon width={16} height={16} stroke="" />
+                <RelojIcon width={16} height={16} stroke="" classname=''/>
                 <div className="flex flex-col ml-4">
                   <p className="font-inter font-semibold">{datas.date}</p>
                   <p className="font-inter font-semibold">{datas.time}</p>

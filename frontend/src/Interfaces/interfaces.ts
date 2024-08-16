@@ -199,7 +199,6 @@ export interface AuthContextProps {
   roles: string[];
   registerDoctor: (doctor: DoctorRegister) => void;
   registerPatient: (patient: PatientRegister) => void;
-  registerTreatment: (treatment: Treatment) => void;
   createRole: (email: string, role: string) => Promise<void>;
 }
 
@@ -208,11 +207,7 @@ export interface AuthenticationRequest {
   password: string;
 }
 
-export interface AdherenceRequest {
-  comentario: string;
-  horarioId: number;
-  estado: number;
-}
+
 
 export interface AuthenticationResponse {
   id: number;
@@ -358,6 +353,8 @@ export interface TreatmentPacient {
   estado: string;
   tipoTratamientoId: number;
   horarios: Time[];
+  imagen: string | null
+  urlImagen: null
 }
 
 export interface Time {
@@ -407,4 +404,179 @@ export interface Paciente {
   medicos: string[];
   entidades: string[];
   imagen: string;
+}
+
+
+export interface ContentPathologies {
+  content: Pathologies[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface Pathologies {
+  idPatologia: number
+  nombre: string
+  descripcion: string
+}
+
+export interface ContentFinanciers {
+  content: Financiers[]
+  number: number
+  size: number
+  totalElements: number
+  totalPages: number
+  first: boolean
+  last: boolean
+}
+
+export interface Financiers {
+  idFinanciador: number
+  nombre: string
+  descripcion: string
+}
+
+export interface FilterAdhrenceGlobal {
+  patologiaId: string
+  idMedicamento: string
+  genero: string
+  idFinanciador: string
+  edad: string
+  mayorEdad: string
+}
+
+export interface Donante {
+  idMedico: number;
+  altura: string;
+  descripcion: string;
+  peso: string;
+  genero: number;
+  factorSanguineo: number;
+  fechaNacimiento: string;
+  provincia: string;
+  localidad: string;
+}
+
+export interface DonantesResponse {
+  content: Donante[];
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+
+export interface AdherenceRequest {
+  comentario: string;
+  horarioId: number;
+  estado: number;
+}
+
+export interface DonationForm {
+  textoBusqueda: string
+  edad: string
+  peso: string
+  altura: string
+  generoOrdinal: "0" | "1" | "2" | ""
+  factorSanguineoOrdinal: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "",
+  edadFiltro: "mayor" | "menor" | "igual" | ""
+  pesoFiltro: "mayor" | "menor" | "igual" | ""
+  alturaFiltro: "mayor" | "menor" | "igual" | ""
+}
+// ? Interfaces de Administrador
+
+// * Intituciones
+
+export interface Institution {
+  nombre: string;
+  direccion: string;
+  emailContacto: string;
+}
+
+
+export interface PagedResponse<T> {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+
+// *Medicamentos 
+
+export interface Medicamento {
+  idMedicamento: number | undefined;
+  nombre: string;
+  descripcion: string;
+}
+
+export interface PaginaMedicamentos<T> {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+//* Patalogias 
+
+export interface Patologia {
+  idPatologia: number;
+  nombre: string;
+  descripcion: string;
+}
+
+export interface PaginaPatologias<T> {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+
+//* Farmacia 
+
+export interface Farmacia {
+  idFarmacia: number;
+  nombre: string;
+  dirrecion: string;
+}
+
+export interface PaginaFarmacia<T> {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
+// * Finaziadores 
+
+export interface Financiador {
+  idFinanciador: number;
+  nombre: string;
+  descripcion: string;
+}
+
+export interface PaginaFinanciador<T> {
+  content: T[];
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
 }

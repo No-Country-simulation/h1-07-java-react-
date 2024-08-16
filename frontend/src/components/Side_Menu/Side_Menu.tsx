@@ -1,45 +1,74 @@
-import { Link } from "react-router-dom"
-import { useState } from "react";
-import { FlechaIconTwo } from "../../../public/icons/Icons";
+import { Link, useLocation } from "react-router-dom"
+import { CaledarIcon, HamburguerIcon, HealthIcon, HistoryIconThree, HomeIconTwo, MenssageIconCora, PeopleIcon, TratamentIconTwo, UserIcon } from "../../../public/icons/Icons";
+import { useAuthContext } from "../../Context/AuthContext";
+import { Logout } from "../Logout";
+
+interface SideMenuProps {
+    classname: string;
+    isExpanded: boolean;
+    toggleMenu: () => void;
+}
+
+const menuItems = [
+    { to: "/dashboard", icon: HomeIconTwo, label: "Inicio" },
+    { to: "/patient-list", icon: PeopleIcon, label: "Pacientes" },
+    { to: "/userInfo", icon: UserIcon, label: "Perfil" },
+    { to: "/donations", icon: HealthIcon, label: "Donaciones" },
+];
+
+const menuPatient = [
+    { to: "/patient-home", icon: HomeIconTwo, label: "Inicio" },
+    { to: "/history", icon: HistoryIconThree, label: "Historia" },
+    { to: "/chat-cora", icon: MenssageIconCora, label: "Cora" },
+    { to: "/shift", icon: CaledarIcon, label: "Citas" },
+    { to: "/treatement", icon: TratamentIconTwo, label: "Tratamientos" },
+    { to: "/profile", icon: UserIcon, label: "Perfil" },
+  ];
 
 
 
+export function Side_Menu({ classname, isExpanded, toggleMenu }: SideMenuProps) {
 
-export function Side_Menu() {
-
-    const [isExpanded, setIsExpanded] = useState(true);
-
-    const toggleMenu = () => {
-        setIsExpanded(!isExpanded);
-
-    };
+    const { authTokens } = useAuthContext();
+    const location = useLocation();
 
     return (
-        <aside className={`h-screen fixed top-0 bg-[#fff] text-[#000] font-mono ${isExpanded ? 'w-[325px]' : 'w-[80px]'} shadow-md shadow-black transition-width duration-300 ease-in-out`}>
-            <nav className="flex flex-col w-full">
-                <button onClick={toggleMenu} className="flex justify-end p-2  text-[#fff] rounded-md m-2 pr-3 w-full">
-                    <FlechaIconTwo width={26} height={26} stroke="#000000" classname={""} />
-                </button>
-                <section className={`ml-1 mt-1 mb-[17.67px] ${isExpanded ? 'block' : 'hidden'}`}>
-                    <p className='text-[18px] pb-3 pl-[10px] font-montserrat text-[#828282]'>
-                        Configuraciones
-                    </p>
-                    <div className={`w-[80%] ml-3 rounded-[16px] ${isExpanded ? 'bg-[#D3CAFF] border border-solid border-[#7445C7]' : 'hover:bg-purple-100'}`}>
-                        <Link className='flex items-center py-3 cursor-pointer' to='/profile'>
-                            <span className='pl-[5px]'></span>
-                            <h4 className='ml-3 text-[18px] font-bold font-montserrat'>
-                                Perfil
-                            </h4>
-                        </Link>
-                    </div>
-                </section>
-
-                <div className='flex flex-row justify-center items-center mt-[10px]'>
+        <aside className={`${classname}  duration-500 ${isExpanded ? 'w-[13rem]' : 'w-[60px]'}`}>
+            <nav className="flex flex-col w-full h-full justify-center items-center">
+                <div className="flex flex-col items-center  w-full">
                     <button
-                        className='flex flex-row justify-center p-1 bg-[#7445C7] rounded-md w-[290px] hover:bg-purple-600 transition duration-300 ease-in-out'
+                        onClick={toggleMenu}
+                        className="flex justify-end p-2 text-[#fff] rounded-md m-2 pr-3 w-full"
                     >
-                        <p className='ml-2 text-[#fff] font-montserrat font-[700]'>Salir</p>
+                        <HamburguerIcon width={26} height={26} />
                     </button>
+                    <img src="logo-justina.webp" className={`pt-5 ${isExpanded ? 'w-[190px]' : 'hidden'}`} width={190} alt="" />
+                </div>
+                <ul className={`flex flex-col w-full  ${isExpanded ? 'mt-[2rem]' : 'mt-[6rem]'} `}>
+                    {(authTokens && authTokens.authorities[0] === "ROLE_PACIENTE" ? menuPatient : menuItems).map((item, index) => (
+                        <Link to={item.to} key={index} className="flex flex-col items-center 2xl:scale-105 ">
+                            <li
+                                className={`mb-5 flex items-center p-3 rounded-lg text-white ${location.pathname === item.to
+                                    ? "bg-[#5761C8]"
+                                    : "text-black hover:bg-[#3445a7] hover:text-white  border-[#3D4DA5] "
+                                    } flex-row  transition-all ${isExpanded ? 'w-full' : 'w-[60px]'}`}
+                            >
+                                <Link to={item.to} className=" 2xl:scale-110 2xl:pl-2">
+                                    <item.icon width={26} height={26} stroke="#ffffff" classname=""/>
+                                </Link>
+                                {isExpanded && <p className="font-inter text-xl ml-5 text-white ">{item.label}</p>}
+                            </li>
+                        </Link>
+                    ))}
+                </ul>
+                <div className='flex flex-row justify-center items-center mt-auto mb-4 m'>
+                    <div
+                        className={`flex items-center  rounded-lg ${isExpanded ? 'w-full' : 'w-[60px]'} justify-center ${isExpanded ? '' : 'text-black hover:bg-[#3445a7] hover:text-white'}`}
+                    >
+                        {isExpanded && <div className="">
+                            <Logout />
+                        </div>}
+                    </div>
                 </div>
             </nav>
         </aside>

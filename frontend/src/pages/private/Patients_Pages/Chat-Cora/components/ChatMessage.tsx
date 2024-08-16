@@ -8,25 +8,28 @@ interface MessageProps {
 
 const ChatMessage: React.FC<{ message: MessageProps }> = ({ message }) => (
   <div
-    className={`flex ${
-      message.sender === "bot" ? "justify-start" : "justify-end"
-    } mb-4 cursor-pointer`}
+    className={`flex ${message.sender === "bot" ? "justify-start" : "justify-end"
+      } mb-4 cursor-pointer`}
   >
     {message.sender === "bot" && (
-      <div className="">
-        <div className="w-8 h-8 rounded-full flex items-center justify-center mr-2">
-          <img
-            src="Ellipse_136.png"
-            alt="Bot Avatar"
-            className="w-4 h-4 rounded-full"
-          />
-        </div>
-        <ReactTyped
-          strings={[message.message]}
-          showCursor={false}
-          typeSpeed={5}
-          className="flex max-w-80 mb-16  rounded-lg p-3 gap-3 bg-light-color text-[#1F4A69]"
-        />
+      <div className={`message ${message.sender}`}>
+        {message.sender === 'bot' && (
+          <div className="flex mb-4">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center mr-2 ">
+              <img
+                src="Ellipse_136.png"
+                alt="Bot Avatar"
+                className="w-4 h-4 rounded-full"
+              />
+            </div>
+            <ReactTyped
+              strings={[message.message]}
+              showCursor={false}
+              typeSpeed={5}
+              className="flex max-md:max-w-80 w-2/4 max-md:w-full mb-16 rounded-lg p-3 gap-3 bg-light-color text-[#1F4A69]"
+            />
+          </div>
+        )}
       </div>
     )}
     {message.sender === "user" && (

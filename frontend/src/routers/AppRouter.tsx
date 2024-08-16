@@ -11,12 +11,7 @@ import { Home } from "../pages/private/Medic_Pages/Home/Home";
 import { UserInfo } from "../pages/private/Medic_Pages/UserInfo/UserInfo";
 import { RegisterPatient } from "../pages/private/Medic_Pages/RegisterPatient/RegisterPatient";
 import PatientList from "../pages/private/Medic_Pages/PatientsList/PatientList";
-// import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
-// import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
-// import DeviceDetection from "../pages/DeviceDetection/DeviceDetection";
 import { PatientAppointments } from "../pages/private/Patients_Pages/Patient_Appointments/PatientAppointments";
-// import { Medic_Appointment } from "../pages/private/Patients_Pages/Medic_Appointment/Medic_Appointment";
-// import Donations from "../pages/private/Medic_Pages/Donations/Donations";
 import Chat from "../pages/private/Patients_Pages/Chat-Cora/Chat";
 import { ProfilePatient } from "../pages/private/Patients_Pages/Profile/ProfilePatient";
 import TreatementPatient from "../pages/private/Patients_Pages/Treatement/TreatementPatient";
@@ -26,13 +21,22 @@ import LandingView from "../pages/landing/LandingView";
 import PatientDetail from "../pages/private/Medic_Pages/Patient-Detail/PatientDetail";
 import Adherence from "../pages/private/Medic_Pages/Adherence/Adherence";
 import TreatmentAdherence from "../pages/private/Medic_Pages/Adherence/TreatmentAdherence/TreatmentAdherence";
-import { TreatmentPatient } from "../pages/private/Medic_Pages/Treatment/Treatment-patient";
 import Donations from "../pages/private/Medic_Pages/Donations/Donation_Home/Donations";
 import { ActiveAccount } from "../pages/active-account/ActiveAccount";
 import SignUp from "../pages/signup/SignUp";
 import { Patient_Notification } from "../pages/private/Patients_Pages/Notification/Patient_Notification";
 import { HomeView } from "../pages/private/Patients_Pages/Home/HomeView";
+import Donation_Detail from "../pages/private/Medic_Pages/Donations/Donation_Detail/Donation_Detail";
 import HeaderLayout from "../components/HeaderLayout";
+import Exercises from "../pages/private/Patients_Pages/Exercises/Exercises";
+import Mental from "../pages/private/Patients_Pages/Mental/Mental";
+import Nutrition from "../pages/private/Patients_Pages/Nutrition/Nutrition";
+import { Home_Admin } from "../pages/private/Admin/Home/Home_Admin";
+// import { Hospitals_Registre } from "../pages/private/Admin/Hospital_Registro/Hospital_Registre";
+import { RegisterTreatmentView } from "../pages/private/Medic_Pages/RegisterTreatment/RegisterTreatmentView";
+import { User_Admin } from "../pages/private/Admin/User_Admin/User_Admin";
+import { Adherencia_Admin } from "../pages/private/Admin/Adherencias_Admin/Adherencias_Admin";
+import { AdherenciaGrafica_Admin } from "../components/Components_Admin/AdherenciaGrafic_Admin/AdherenciaGrafic_Admin";
 
 function AppRouter() {
   return (
@@ -59,17 +63,12 @@ function AppRouter() {
               <Route path="/patient-list" element={<PatientList />}></Route>
               <Route path="/patient/:id" element={<PatientDetail />} />
               <Route path="/patient/:id/adherence" element={<Adherence />} />
-              <Route
-                path="/patient/:id/adherence/:idTratamiento"
-                element={<TreatmentAdherence />}
-              />
-              <Route
-                path="/patient/:id/treatment"
-                element={<TreatmentPatient />}
-              />
+              <Route path="/patient/:id/adherence/:idTratamiento" element={<TreatmentAdherence />} />
+              <Route path="/patient/:id/treatment-register" element={<RegisterTreatmentView />} />
               <Route path="/donations" element={<Donations />} />
               <Route path="/donationRegistre" element={<Donation_Registre />} />
-            </Route>
+              <Route path="/donationDetail/:id" element={<Donation_Detail />} />
+            </Route >
             <Route element={<PrivateRoute allowedRoles={["ROLE_PACIENTE"]} />}>
               <Route path="/patient-home" element={<HomeView />} />
               <Route path="/chat-cora" element={<Chat></Chat>}></Route>
@@ -78,14 +77,17 @@ function AppRouter() {
                 <Route path="/treatement" element={<TreatementPatient />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/notification" element={<Patient_Notification />} />
-                <Route path="/citas" element={<PatientAppointments />} />
+                <Route path="/shift" element={<PatientAppointments />} />
+                <Route path="/exercises" element={<Exercises />} />
+                <Route path="/nutrition" element={<Nutrition />} />
+                <Route path="/mental" element={<Mental />} />
               </Route>
-
-
-              {/* <Route
-                path="/Medic_Appointment"
-                element={<Medic_Appointment />}
-              /> */}
+            </Route>
+            <Route element={<PrivateRoute allowedRoles={['ROLE_ADMIN']} />}>
+              <Route path="/admin_page" element={<Home_Admin />} />
+             <Route path="/user_admin" element={<User_Admin />} />
+             <Route path="/adherencias_admin" element={<Adherencia_Admin />} />
+             <Route path="/adherenciasGrafic_admin" element={<AdherenciaGrafica_Admin />}/>
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </RoutesWithNotFound>

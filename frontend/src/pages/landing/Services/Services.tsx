@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styles from "../../../styles.module.css";
 import {
   CheckIconTwo,
@@ -12,24 +13,24 @@ import {
 
 const items = [
   {
-    icon: <HistoryIconTwo width={30} height={30} />,
+    icon: <HistoryIconTwo width={30} height={30} classname=""/>,
     text: "Historial Clínico",
   },
   {
-    icon: <DonationIcon width={30} height={30} />,
+    icon: <DonationIcon width={30} height={30} classname=""/>,
     text: "Donaciones",
   },
   {
-    icon: <TratamentIcon width={30} height={30} />,
+    icon: <TratamentIcon width={30} height={30} classname=""/>,
     text: "Tratamientos",
   },
   {
-    icon: <CorIcon width={30} height={30} />,
+    icon: <CorIcon width={30} height={30} classname=""/>,
     text: "Acompañamiento al paciente",
     padding: "md:pt-6",
   },
   {
-    icon: <WacthIcon width={30} height={30} />,
+    icon: <WacthIcon width={30} height={30} classname=""/>,
     text: "Gestión de turnos",
   },
   {
@@ -37,15 +38,24 @@ const items = [
     text: "Protección de datos",
   },
   {
-    icon: <RecordIcon width={30} height={30} />,
+    icon: <RecordIcon width={30} height={30} classname=""/>,
     text: "Recordatorios para Pacientes",
     padding: "md:mt-4",
   },
   {
-    icon: <CheckIconTwo width={30} height={30} />,
+    icon: <CheckIconTwo width={30} height={30} classname=""/>,
     text: "Perfiles verificados",
   },
 ];
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 export const ServicesSection = () => {
   return (
@@ -60,7 +70,7 @@ export const ServicesSection = () => {
         Servicios
       </h5>
       <h2
-        className={`lg:text-4xl text-2xl md:font-[600] md:w-[60%] font-[500] font-inter `}
+        className={`lg:text-4xl text-2xl md:font-[600] md:w-[60%] font-[500] font-inter`}
       >
         Aportando valor Verdadero
       </h2>
@@ -73,15 +83,19 @@ export const ServicesSection = () => {
         className={`list-none flex flex-col gap-y-16 md:gap-y-4 justify-center items-center md:flex-row md:grid md:grid-cols-4 md:mt-5 mb-10`}
       >
         {items.map((item, index) => (
-          <li
+          <motion.li
             key={index}
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
             className={`gap-y-4 flex flex-col justify-center items-center w-[80%] ${item.padding}`}
           >
             <span className="bg-light-color w-16 h-16 flex items-center justify-center rounded-full">
               {item.icon}
             </span>
             <p className="font-bold text-md">{item.text}</p>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </section>

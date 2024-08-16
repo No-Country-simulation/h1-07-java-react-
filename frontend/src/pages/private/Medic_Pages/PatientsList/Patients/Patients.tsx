@@ -17,7 +17,7 @@ export const Patients: React.FC<PatientProps> = ({
   searchPatient,
 }) => {
   return (
-    <section className=" border-1 border-violet-color rounded-md min-h-[30rem]">
+    <section className=" border-1 border-violet-color rounded-md min-h-[30rem] 2xl:w-[80%] xl:w-[80%]">
       {loading ? (
         <>
           <SkeletonsListPatient />
