@@ -20,8 +20,6 @@ public class ActualizacionEstadoHorarioService {
     private final HorarioTomaRepository horarioTomaRepository;
     private final NotificacionRepository notificacionRepository;
 
-    @Transactional
-    @Scheduled(fixedRate = 3600000) // Ejecución cada 60 minutos
     public void actualizarEstados() {
         LocalDateTime ahora = LocalDateTime.now();
         LocalDateTime haceUnDia = ahora.minusDays(1);
